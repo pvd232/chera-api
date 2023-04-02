@@ -40,7 +40,7 @@ if TYPE_CHECKING:
 
 load_dotenv()
 
-app: Flask = Flask(__name__, static_folder='../build', static_url_path='/')
+app: Flask = Flask(__name__)
 username = os.getenv(
     'DB_USER', GCP_Secret_Manager_Service().get_secret('DB_USER'))
 password = os.getenv(
