@@ -54,7 +54,7 @@ def b() -> Response:
         RESET_PWD = os.getenv(
             "RESET_PWD", GCP_Secret_Manager_Service().get_secret("RESET_PWD"))
         if pwd == RESET_PWD:
-            instantiate_db_connection()
+            new_instantiate_db_connection()
             return Response(status=204)
         else:
             return Response(status=401)
