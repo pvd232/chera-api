@@ -1,0 +1,146 @@
+[
+  {
+    "id": "e98e5fde-034a-449c-b115-849d4367bda6",
+    "meal_time": "breakfast",
+    "name": "Breakfast Burrito",
+    "description": "Scrambled eggs, black beans, rice, chipotle sauce, onions, peppers, cheddar cheese",
+    "price": 12.0,
+    "image_url": "/Users/machina/nourish/Breakfast-Burritos.jpeg",
+    "active": true,
+    "dietary_restrictions": [
+      {
+        "id": "76c6c873-f4ab-41d7-b55d-6dae269f16c4",
+        "meal_id": "e98e5fde-034a-449c-b115-849d4367bda6",
+        "dietary_restriction_id": "vegetarian"
+      }
+    ]
+  },
+  {
+    "id": "4d6ed9b0-e5ed-4ddd-a922-998700ee148d",
+    "meal_time": "breakfast",
+    "name": "Mixed Berry Overnight Oats",
+    "description": "Rolled oats, soy milk, chia seeds, almond butter, mashed bananas, mixed berries, cinnamon",
+    "price": 12.0,
+    "image_url": "/Users/machina/nourish/Breakfast-Burritos.jpeg",
+    "active": true,
+    "dietary_restrictions": [
+      {
+        "id": "6938aac0-6623-49a2-89de-39014179373d",
+        "meal_id": "4d6ed9b0-e5ed-4ddd-a922-998700ee148d",
+        "dietary_restriction_id": "vegetarian"
+      }
+    ]
+  },
+  {
+    "id": "d2562349-84cc-41b5-9e1c-292d34ed6d40",
+    "meal_time": "breakfast",
+    "name": "Blueberry Pancakes & Turkey Sausage",
+    "description": "Eggs, cheese, and corn tortilla with toasted sourdough bread, smashed avocado, radish slices, lemon",
+    "price": 12.0,
+    "image_url": "/Users/machina/nourish/Breakfast-Burritos.jpeg",
+    "active": true,
+    "dietary_restrictions": []
+  },
+  {
+    "id": "9f3a9a2e-b5ae-4179-bd6a-38a394965a5d",
+    "meal_time": "lunch",
+    "name": "Crispy Chicken Grain Bowl",
+    "description": "Oven-baked crispy chicken, quinoa, roasted veggies, chickpeas, tahini dressing",
+    "price": 12.0,
+    "image_url": "/Users/machina/nourish/Breakfast-Burritos.jpeg",
+    "active": true,
+    "dietary_restrictions": []
+  },
+  {
+    "id": "00863ed3-6796-43fe-863e-3fb40a8dd37e",
+    "meal_time": "lunch",
+    "name": "Penne with Pesto & Chicken",
+    "description": "Penne pasta, basil pesto, chicken, parmesan cheese",
+    "price": 12.0,
+    "image_url": "/Users/machina/nourish/Breakfast-Burritos.jpeg",
+    "active": true,
+    "dietary_restrictions": []
+  },
+  {
+    "id": "adbd42b6-cb30-4584-9b02-dd4457372fda",
+    "meal_time": "lunch",
+    "name": "Peanut Noodle Salad with Tofu and Bell Peppers",
+    "description": "Rice noodles, peanut sauce, tofu, bell peppers, crushed peanuts",
+    "price": 12.0,
+    "image_url": "/Users/machina/nourish/Breakfast-Burritos.jpeg",
+    "active": true,
+    "dietary_restrictions": [
+      {
+        "id": "47ff4fcb-0073-4860-a908-edcdc2a723b0",
+        "meal_id": "adbd42b6-cb30-4584-9b02-dd4457372fda",
+        "dietary_restriction_id": "vegetarian"
+      }
+    ]
+  },
+  {
+    "id": "0243a640-da95-4a44-9023-0e1422833534",
+    "meal_time": "lunch",
+    "name": "Burrito Bowl",
+    "description": "Ground beef with taco seasoning, cilantro rice, tortilla chips, peppers, cheddar cheese",
+    "price": 12.0,
+    "image_url": "/Users/machina/nourish/Breakfast-Burritos.jpeg",
+    "active": true,
+    "dietary_restrictions": []
+  },
+  {
+    "id": "c7e3056f-ddb4-4b73-b68f-6c10cff926f1",
+    "meal_time": "dinner",
+    "name": "Beef and Broccoli Stir Fry",
+    "description": "Beef, broccoli, white rice, garlic-ginger sauce, with cashews and scallions",
+    "price": 12.0,
+    "image_url": "/Users/machina/nourish/Breakfast-Burritos.jpeg",
+    "active": true,
+    "dietary_restrictions": []
+  },
+  {
+    "id": "1cfa853f-437f-4a09-bb1d-398facb7d017",
+    "meal_time": "dinner",
+    "name": "Mediterranean Turkey Meatballs and Pilaf",
+    "description": "Turkey meatballs with herbs and feta, rice, roasted veggies, tzatziki sauce",
+    "price": 12.0,
+    "image_url": "/Users/machina/nourish/Breakfast-Burritos.jpeg",
+    "active": true,
+    "dietary_restrictions": []
+  },
+  {
+    "id": "9850e58c-9ebe-48cb-ab94-795bd4c8d7cb",
+    "meal_time": "dinner",
+    "name": "Sweet Potato and Black Bean Enchiladas",
+    "description": "Sweet potatoes, black beans, cheese, enchilada sauce, cilantro",
+    "price": 12.0,
+    "image_url": "/Users/machina/nourish/Breakfast-Burritos.jpeg",
+    "active": true,
+    "dietary_restrictions": [
+      {
+        "id": "3a982945-bed9-49e0-b172-848c6116727f",
+        "meal_id": "9850e58c-9ebe-48cb-ab94-795bd4c8d7cb",
+        "dietary_restriction_id": "vegetarian"
+      }
+    ]
+  },
+  {
+    "id": "aa8e94ec-9714-4ca4-a115-d7195d4ea7e3",
+    "meal_time": "dinner",
+    "name": "Spaghetti Bolognese",
+    "description": "Spaghetti, ground beef, marinara sauce, parmesan cheese",
+    "price": 12.0,
+    "image_url": "/Users/machina/nourish/Breakfast-Burritos.jpeg",
+    "active": true,
+    "dietary_restrictions": []
+  },
+  {
+    "id": "83b2f7c8-b254-44ce-b1d4-c313f66577ac",
+    "meal_time": "dinner",
+    "name": "Teriyaki Salmon",
+    "description": "Salmon, teriyaki sauce, white rice and scallions",
+    "price": 12.0,
+    "image_url": "/Users/machina/nourish/Breakfast-Burritos.jpeg",
+    "active": true,
+    "dietary_restrictions": []
+  }
+]

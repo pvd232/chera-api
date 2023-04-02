@@ -1,0 +1,5 @@
+RegEx expressions
+
+1. find and replace {word}.json with nutrient_data/{word}.json
+find -> (\w*)(\.json)
+replace -> nutrient_data/$1$2

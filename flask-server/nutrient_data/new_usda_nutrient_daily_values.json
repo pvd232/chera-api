@@ -1,0 +1,1472 @@
+[
+  {
+    "id": "fbea636d-4cd7-49cb-a15c-12e602d28568",
+    "nutrient_id": "protein",
+    "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
+    "amount": 100.5,
+    "unit": "g"
+  },
+  {
+    "id": "ee40e28e-298f-4323-80d8-4cc18d2f2ac0",
+    "nutrient_id": "protein",
+    "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
+    "amount": 113.89999999999999,
+    "unit": "g"
+  },
+  {
+    "id": "23f13552-21d0-4d86-b445-f19c158e5031",
+    "nutrient_id": "protein",
+    "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
+    "amount": 127.3,
+    "unit": "g"
+  },
+  {
+    "id": "0872e2b9-d7d2-42f5-8d1a-2dadf54be70a",
+    "nutrient_id": "protein",
+    "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
+    "amount": 140.70000000000002,
+    "unit": "g"
+  },
+  {
+    "id": "4b185a93-0c0c-48cb-bf89-d7dbc4d32631",
+    "nutrient_id": "protein",
+    "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
+    "amount": 154.1,
+    "unit": "g"
+  },
+  {
+    "id": "b59b395c-3c3c-486b-9eae-3e271fe08d9b",
+    "nutrient_id": "protein",
+    "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+    "amount": 167.5,
+    "unit": "g"
+  },
+  {
+    "id": "6a977f7d-aeb2-499d-8674-38ce090f9a99",
+    "nutrient_id": "protein",
+    "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
+    "amount": 180.9,
+    "unit": "g"
+  },
+  {
+    "id": "77c43063-45c0-4b48-8474-451599c57ecc",
+    "nutrient_id": "protein",
+    "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
+    "amount": 194.29999999999998,
+    "unit": "g"
+  },
+  {
+    "id": "beea90f8-52c5-4bed-ae3a-b5ceffd917d6",
+    "nutrient_id": "protein",
+    "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
+    "amount": 207.70000000000002,
+    "unit": "g"
+  },
+  {
+    "id": "8127f20d-d3f3-4e19-a4c3-f4ca87f8a34b",
+    "nutrient_id": "protein",
+    "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+    "amount": 221.1,
+    "unit": "g"
+  },
+  {
+    "id": "114fd33f-d366-48e2-a472-1269aa054396",
+    "nutrient_id": "carb",
+    "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
+    "amount": 172.5,
+    "unit": "g"
+  },
+  {
+    "id": "b7b9e333-128c-4b95-85ce-3d44b7bec3e9",
+    "nutrient_id": "carb",
+    "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
+    "amount": 195.5,
+    "unit": "g"
+  },
+  {
+    "id": "31875ff7-8bd8-4833-99b0-503d618b62b5",
+    "nutrient_id": "carb",
+    "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
+    "amount": 218.5,
+    "unit": "g"
+  },
+  {
+    "id": "ae196b4a-ec22-49e1-ae57-44b0a5edec1c",
+    "nutrient_id": "carb",
+    "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
+    "amount": 241.5,
+    "unit": "g"
+  },
+  {
+    "id": "0d5db8aa-baff-460c-8cab-5eccb723ea80",
+    "nutrient_id": "carb",
+    "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
+    "amount": 264.5,
+    "unit": "g"
+  },
+  {
+    "id": "f3303ad6-e569-4621-892a-07055594782e",
+    "nutrient_id": "carb",
+    "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+    "amount": 287.5,
+    "unit": "g"
+  },
+  {
+    "id": "d20ff246-1d65-4ea5-98f8-fb243fbd1308",
+    "nutrient_id": "carb",
+    "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
+    "amount": 310.5,
+    "unit": "g"
+  },
+  {
+    "id": "bd4a703d-fc4b-4796-9667-43aacf5d30e0",
+    "nutrient_id": "carb",
+    "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
+    "amount": 333.5,
+    "unit": "g"
+  },
+  {
+    "id": "39003c45-4df5-4521-aa3e-5c3ffa9e342e",
+    "nutrient_id": "carb",
+    "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
+    "amount": 356.5,
+    "unit": "g"
+  },
+  {
+    "id": "8266c2cb-5d37-4d88-9be1-51aa1760246e",
+    "nutrient_id": "carb",
+    "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+    "amount": 379.5,
+    "unit": "g"
+  },
+  {
+    "id": "b5b87d28-d5cf-444b-9be8-579689b972b8",
+    "nutrient_id": "dietary_fiber",
+    "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
+    "amount": 21.0,
+    "unit": "g"
+  },
+  {
+    "id": "49590db8-34ce-44ef-93b1-ab2814b7a009",
+    "nutrient_id": "dietary_fiber",
+    "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
+    "amount": 23.8,
+    "unit": "g"
+  },
+  {
+    "id": "8e2deb1f-c5c3-48a8-8440-9dca56737443",
+    "nutrient_id": "dietary_fiber",
+    "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
+    "amount": 26.599999999999998,
+    "unit": "g"
+  },
+  {
+    "id": "728967e6-9b4b-41a2-ba56-39c8688e09c2",
+    "nutrient_id": "dietary_fiber",
+    "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
+    "amount": 29.400000000000002,
+    "unit": "g"
+  },
+  {
+    "id": "12250b99-c1bd-44fa-98a9-2c5d47908fd9",
+    "nutrient_id": "dietary_fiber",
+    "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
+    "amount": 32.199999999999996,
+    "unit": "g"
+  },
+  {
+    "id": "8c6e25e6-6774-4657-b0ee-d8d64c9aecde",
+    "nutrient_id": "dietary_fiber",
+    "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+    "amount": 35.0,
+    "unit": "g"
+  },
+  {
+    "id": "5af7500c-ddd6-45eb-804d-5b81209ca52d",
+    "nutrient_id": "dietary_fiber",
+    "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
+    "amount": 37.800000000000004,
+    "unit": "g"
+  },
+  {
+    "id": "a9947491-f893-49fd-8f14-4c92d0c706e3",
+    "nutrient_id": "dietary_fiber",
+    "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
+    "amount": 40.6,
+    "unit": "g"
+  },
+  {
+    "id": "eb09c2b9-930d-42e4-83e0-d83dad797737",
+    "nutrient_id": "dietary_fiber",
+    "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
+    "amount": 43.4,
+    "unit": "g"
+  },
+  {
+    "id": "a06424c5-aba1-4d1f-a22e-a518777d9361",
+    "nutrient_id": "dietary_fiber",
+    "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+    "amount": 46.199999999999996,
+    "unit": "g"
+  },
+  {
+    "id": "c92992be-14d8-4a12-a597-651a9b0bd7ae",
+    "nutrient_id": "fat",
+    "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
+    "amount": 45.75,
+    "unit": "g"
+  },
+  {
+    "id": "d79199c3-d4c9-4d48-935a-a086ccc2766b",
+    "nutrient_id": "fat",
+    "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
+    "amount": 51.85,
+    "unit": "g"
+  },
+  {
+    "id": "9186bbb4-e402-4309-b30d-f658a3c418b9",
+    "nutrient_id": "fat",
+    "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
+    "amount": 57.949999999999996,
+    "unit": "g"
+  },
+  {
+    "id": "72045a21-e590-4332-8d38-171890c0ff5c",
+    "nutrient_id": "fat",
+    "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
+    "amount": 64.05,
+    "unit": "g"
+  },
+  {
+    "id": "c23f1a52-ac50-4ea1-bccd-25f114fc6993",
+    "nutrient_id": "fat",
+    "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
+    "amount": 70.14999999999999,
+    "unit": "g"
+  },
+  {
+    "id": "f1e4da27-3e33-4374-b9f2-1c5af57a3143",
+    "nutrient_id": "fat",
+    "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+    "amount": 76.25,
+    "unit": "g"
+  },
+  {
+    "id": "bf78b528-ad57-434b-8162-2012e8c26913",
+    "nutrient_id": "fat",
+    "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
+    "amount": 82.35000000000001,
+    "unit": "g"
+  },
+  {
+    "id": "8c0f1227-98db-46a0-944b-dc646969ff28",
+    "nutrient_id": "fat",
+    "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
+    "amount": 88.45,
+    "unit": "g"
+  },
+  {
+    "id": "2b53ff33-16f5-48fa-b5c5-4ba887a8c19d",
+    "nutrient_id": "fat",
+    "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
+    "amount": 94.55,
+    "unit": "g"
+  },
+  {
+    "id": "e65fe0c8-521c-4ae6-91db-9c66c396b24a",
+    "nutrient_id": "fat",
+    "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+    "amount": 100.64999999999999,
+    "unit": "g"
+  },
+  {
+    "id": "dee779ab-8eac-42b9-95af-4d08a1f30916",
+    "nutrient_id": "saturated_fat",
+    "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
+    "amount": 15.0,
+    "unit": "g"
+  },
+  {
+    "id": "2511c6c2-5427-40e1-9035-bab441f383da",
+    "nutrient_id": "saturated_fat",
+    "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
+    "amount": 17.0,
+    "unit": "g"
+  },
+  {
+    "id": "40bcb591-9b22-4be5-8f23-4788f1c7eae9",
+    "nutrient_id": "saturated_fat",
+    "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
+    "amount": 19.0,
+    "unit": "g"
+  },
+  {
+    "id": "a28cb6c1-4b02-4397-97c2-eaa50e1df3d4",
+    "nutrient_id": "saturated_fat",
+    "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
+    "amount": 21.0,
+    "unit": "g"
+  },
+  {
+    "id": "18ed7f3b-ea9b-4dd9-a2b1-d3799ed2a507",
+    "nutrient_id": "saturated_fat",
+    "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
+    "amount": 23.0,
+    "unit": "g"
+  },
+  {
+    "id": "14dc0d48-2736-462b-875e-64e5671bd566",
+    "nutrient_id": "saturated_fat",
+    "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+    "amount": 25.0,
+    "unit": "g"
+  },
+  {
+    "id": "33c2642b-d772-436a-8522-e6831ea85720",
+    "nutrient_id": "saturated_fat",
+    "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
+    "amount": 27.0,
+    "unit": "g"
+  },
+  {
+    "id": "5153c2bb-e4d4-4d80-af09-1f619c950ada",
+    "nutrient_id": "saturated_fat",
+    "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
+    "amount": 29.0,
+    "unit": "g"
+  },
+  {
+    "id": "327dde90-2a87-4af9-8e71-52ea77c52bcb",
+    "nutrient_id": "saturated_fat",
+    "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
+    "amount": 31.0,
+    "unit": "g"
+  },
+  {
+    "id": "45a92922-f058-4174-8f11-b9706353720b",
+    "nutrient_id": "saturated_fat",
+    "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+    "amount": 33.0,
+    "unit": "g"
+  },
+  {
+    "id": "a40eccd5-e741-4c7c-846a-ed064acde907",
+    "nutrient_id": "vitamin_d",
+    "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
+    "amount": 15.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "e96b96a6-d3e3-4390-b00e-2db18282f574",
+    "nutrient_id": "vitamin_d",
+    "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
+    "amount": 17.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "5100b69f-b1c0-46cb-8cf0-1ef2410e7e7c",
+    "nutrient_id": "vitamin_d",
+    "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
+    "amount": 19.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "2734b264-88ec-4b3c-938a-84c0da9ae7b4",
+    "nutrient_id": "vitamin_d",
+    "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
+    "amount": 21.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "a5b9374c-171b-474e-9edc-bac00b590db4",
+    "nutrient_id": "vitamin_d",
+    "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
+    "amount": 23.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "3f992ffa-dcf6-49de-bd7e-403d6c83128a",
+    "nutrient_id": "vitamin_d",
+    "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+    "amount": 25.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "c275f309-17ea-4157-ba0e-597d3c3d3690",
+    "nutrient_id": "vitamin_d",
+    "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
+    "amount": 27.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "3d15c0dd-aaad-4e72-8eb1-e2dcd157aef1",
+    "nutrient_id": "vitamin_d",
+    "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
+    "amount": 29.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "6ac9d87b-20b9-46c2-8dfb-abec98f9c92a",
+    "nutrient_id": "vitamin_d",
+    "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
+    "amount": 31.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "01f58603-1d21-4bbc-a4b7-0ba9a43857dc",
+    "nutrient_id": "vitamin_d",
+    "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+    "amount": 33.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "bf046a19-9e16-45a6-b67a-a3b036c88be1",
+    "nutrient_id": "calcium",
+    "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
+    "amount": 975.0,
+    "unit": "mg"
+  },
+  {
+    "id": "4c2bd30f-84c5-4e6c-a4f2-f0fcf77e2fbc",
+    "nutrient_id": "calcium",
+    "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
+    "amount": 1105.0,
+    "unit": "mg"
+  },
+  {
+    "id": "a707a482-5477-43e9-8527-3094f470ca23",
+    "nutrient_id": "calcium",
+    "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
+    "amount": 1235.0,
+    "unit": "mg"
+  },
+  {
+    "id": "04530591-fe19-4037-a404-ed5578efe72f",
+    "nutrient_id": "calcium",
+    "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
+    "amount": 1365.0,
+    "unit": "mg"
+  },
+  {
+    "id": "73bb58a2-da2f-4b6b-993f-66681cb8c89c",
+    "nutrient_id": "calcium",
+    "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
+    "amount": 1494.9999999999998,
+    "unit": "mg"
+  },
+  {
+    "id": "8e06c16e-21cd-4b4b-a234-deb8e3b4b25a",
+    "nutrient_id": "calcium",
+    "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+    "amount": 1625.0,
+    "unit": "mg"
+  },
+  {
+    "id": "1c2556aa-fb3a-4631-8cea-2d4344337c02",
+    "nutrient_id": "calcium",
+    "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
+    "amount": 1755.0000000000002,
+    "unit": "mg"
+  },
+  {
+    "id": "f730e999-5123-49b8-83ad-4cfc19a212c9",
+    "nutrient_id": "calcium",
+    "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
+    "amount": 1885.0,
+    "unit": "mg"
+  },
+  {
+    "id": "adb2d63e-dca3-43ee-9809-e7982d8eb24e",
+    "nutrient_id": "calcium",
+    "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
+    "amount": 2015.0,
+    "unit": "mg"
+  },
+  {
+    "id": "ed33db0b-291a-4e18-aa5b-49f488c46b32",
+    "nutrient_id": "calcium",
+    "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+    "amount": 2145.0,
+    "unit": "mg"
+  },
+  {
+    "id": "1a42b0da-244b-473b-bde1-543b030fc909",
+    "nutrient_id": "iron",
+    "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
+    "amount": 13.5,
+    "unit": "mg"
+  },
+  {
+    "id": "1d2bc0c4-286e-462f-ba37-754b1cd6038c",
+    "nutrient_id": "iron",
+    "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
+    "amount": 15.299999999999999,
+    "unit": "mg"
+  },
+  {
+    "id": "036a71dd-78f7-4889-abc6-4c0da5878d84",
+    "nutrient_id": "iron",
+    "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
+    "amount": 17.099999999999998,
+    "unit": "mg"
+  },
+  {
+    "id": "0516634c-68f3-4583-874a-24a074969223",
+    "nutrient_id": "iron",
+    "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
+    "amount": 18.900000000000002,
+    "unit": "mg"
+  },
+  {
+    "id": "2f2568d7-9f27-4036-a283-8c63b8b6b816",
+    "nutrient_id": "iron",
+    "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
+    "amount": 20.7,
+    "unit": "mg"
+  },
+  {
+    "id": "28fc7bca-1dbc-4e33-b615-ecfbe6b471c2",
+    "nutrient_id": "iron",
+    "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+    "amount": 22.5,
+    "unit": "mg"
+  },
+  {
+    "id": "29d0db14-29c0-4278-b108-ab5af66f3c63",
+    "nutrient_id": "iron",
+    "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
+    "amount": 24.3,
+    "unit": "mg"
+  },
+  {
+    "id": "728c1d8a-d6a2-4752-b9ca-4ede45a7c1d9",
+    "nutrient_id": "iron",
+    "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
+    "amount": 26.099999999999998,
+    "unit": "mg"
+  },
+  {
+    "id": "fe9bfa13-31e5-4c45-8410-cdb4160f28a1",
+    "nutrient_id": "iron",
+    "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
+    "amount": 27.900000000000002,
+    "unit": "mg"
+  },
+  {
+    "id": "0e8ede08-ed83-4a0c-84d3-893ca135ca84",
+    "nutrient_id": "iron",
+    "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+    "amount": 29.7,
+    "unit": "mg"
+  },
+  {
+    "id": "915d9ea6-285a-48c2-8855-631574149bff",
+    "nutrient_id": "potassium",
+    "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
+    "amount": 3525.0,
+    "unit": "mg"
+  },
+  {
+    "id": "2da89944-5823-47f3-a666-0471de3d098d",
+    "nutrient_id": "potassium",
+    "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
+    "amount": 3995.0,
+    "unit": "mg"
+  },
+  {
+    "id": "11256f07-1b07-400f-8e96-d73a030040d6",
+    "nutrient_id": "potassium",
+    "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
+    "amount": 4465.0,
+    "unit": "mg"
+  },
+  {
+    "id": "8b005c2c-7200-4c15-a27f-cace04444680",
+    "nutrient_id": "potassium",
+    "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
+    "amount": 4935.0,
+    "unit": "mg"
+  },
+  {
+    "id": "9f014c2f-1126-4632-a670-52bc3d920d77",
+    "nutrient_id": "potassium",
+    "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
+    "amount": 5405.0,
+    "unit": "mg"
+  },
+  {
+    "id": "c209f68b-8710-4645-bffd-81475f8df675",
+    "nutrient_id": "potassium",
+    "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+    "amount": 5875.0,
+    "unit": "mg"
+  },
+  {
+    "id": "d39cc694-23e1-4ca6-861c-1e99df9d66dc",
+    "nutrient_id": "potassium",
+    "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
+    "amount": 6345.0,
+    "unit": "mg"
+  },
+  {
+    "id": "ee45e6ec-d974-48fb-b84e-61aec42274d8",
+    "nutrient_id": "potassium",
+    "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
+    "amount": 6815.0,
+    "unit": "mg"
+  },
+  {
+    "id": "6a12525b-bc00-4227-85e6-75d6cb4732f3",
+    "nutrient_id": "potassium",
+    "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
+    "amount": 7285.0,
+    "unit": "mg"
+  },
+  {
+    "id": "f4e4ab5a-15ee-4d2c-8c45-eb25d7ba2029",
+    "nutrient_id": "potassium",
+    "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+    "amount": 7755.0,
+    "unit": "mg"
+  },
+  {
+    "id": "d0a16463-302a-487c-8d94-9add60efc132",
+    "nutrient_id": "sodium",
+    "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
+    "amount": 1725.0,
+    "unit": "mg"
+  },
+  {
+    "id": "40aa3d4b-7e9c-4973-a0eb-2f6fdcbcc978",
+    "nutrient_id": "sodium",
+    "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
+    "amount": 1955.0,
+    "unit": "mg"
+  },
+  {
+    "id": "d13c928d-a565-4a8d-bb07-277e66fc807c",
+    "nutrient_id": "sodium",
+    "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
+    "amount": 2185.0,
+    "unit": "mg"
+  },
+  {
+    "id": "0cd8b174-4c33-4f8a-8efa-a1cb8c99a80e",
+    "nutrient_id": "sodium",
+    "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
+    "amount": 2415.0,
+    "unit": "mg"
+  },
+  {
+    "id": "9126f4ed-f591-48e6-bc2b-5c6ba434897a",
+    "nutrient_id": "sodium",
+    "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
+    "amount": 2645.0,
+    "unit": "mg"
+  },
+  {
+    "id": "697bbd11-815b-44be-b7da-41833845a539",
+    "nutrient_id": "sodium",
+    "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+    "amount": 2875.0,
+    "unit": "mg"
+  },
+  {
+    "id": "04956354-c01a-44f5-898c-a8b95f2393c6",
+    "nutrient_id": "sodium",
+    "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
+    "amount": 3105.0,
+    "unit": "mg"
+  },
+  {
+    "id": "f99c9aa4-392f-4ca3-b3fd-92c81bee91e1",
+    "nutrient_id": "sodium",
+    "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
+    "amount": 3335.0,
+    "unit": "mg"
+  },
+  {
+    "id": "aca818f1-16db-4e1c-9a6e-7accb4773def",
+    "nutrient_id": "sodium",
+    "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
+    "amount": 3565.0,
+    "unit": "mg"
+  },
+  {
+    "id": "5c09ffdb-0d28-41bb-918c-81e6ec21a113",
+    "nutrient_id": "sodium",
+    "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+    "amount": 3795.0,
+    "unit": "mg"
+  },
+  {
+    "id": "5c408cae-3100-4cf6-8cfa-ef5e02e3abac",
+    "nutrient_id": "cholesterol",
+    "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
+    "amount": 225.0,
+    "unit": "mg"
+  },
+  {
+    "id": "e68cee46-d485-4a00-8a85-c41ca1c8c3a9",
+    "nutrient_id": "cholesterol",
+    "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
+    "amount": 255.0,
+    "unit": "mg"
+  },
+  {
+    "id": "786cf594-31e7-4076-8b0c-6e4b1e225468",
+    "nutrient_id": "cholesterol",
+    "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
+    "amount": 285.0,
+    "unit": "mg"
+  },
+  {
+    "id": "dbcade9a-6830-44b4-ba75-c6cefc87f7a0",
+    "nutrient_id": "cholesterol",
+    "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
+    "amount": 315.0,
+    "unit": "mg"
+  },
+  {
+    "id": "becaddea-a23c-4859-a170-80950230b665",
+    "nutrient_id": "cholesterol",
+    "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
+    "amount": 345.0,
+    "unit": "mg"
+  },
+  {
+    "id": "e54cfc33-38eb-4109-8141-6c1e1ba73c9c",
+    "nutrient_id": "cholesterol",
+    "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+    "amount": 375.0,
+    "unit": "mg"
+  },
+  {
+    "id": "717fe76b-beb8-4f72-ac27-61c7e8768fe3",
+    "nutrient_id": "cholesterol",
+    "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
+    "amount": 405.0,
+    "unit": "mg"
+  },
+  {
+    "id": "a039510a-6b03-49a1-9eae-b5c71e37d43e",
+    "nutrient_id": "cholesterol",
+    "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
+    "amount": 435.0,
+    "unit": "mg"
+  },
+  {
+    "id": "dd4af3bd-b30e-461a-a86b-57cb19b5db99",
+    "nutrient_id": "cholesterol",
+    "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
+    "amount": 465.0,
+    "unit": "mg"
+  },
+  {
+    "id": "c9eb19d5-e321-43f4-b063-86f696aced8c",
+    "nutrient_id": "cholesterol",
+    "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+    "amount": 495.0,
+    "unit": "mg"
+  },
+  {
+    "id": "ae8260ff-37da-4b53-90e0-7d9690730007",
+    "nutrient_id": "vitamin_a",
+    "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
+    "amount": 675.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "37b188a8-c05b-466c-835e-59b2bad5be81",
+    "nutrient_id": "vitamin_a",
+    "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
+    "amount": 765.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "413186d4-1d45-4050-8176-f75cefac2156",
+    "nutrient_id": "vitamin_a",
+    "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
+    "amount": 855.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "df2ebf9f-2010-489c-9f9f-fee5a9eb756a",
+    "nutrient_id": "vitamin_a",
+    "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
+    "amount": 945.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "a6fe03b3-3bb7-47fd-b246-87e228d3fb00",
+    "nutrient_id": "vitamin_a",
+    "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
+    "amount": 1035.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "9890e2d2-8a36-47d4-a65e-433130421ef1",
+    "nutrient_id": "vitamin_a",
+    "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+    "amount": 1125.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "08503223-89ac-4cc7-b768-17167773ced1",
+    "nutrient_id": "vitamin_a",
+    "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
+    "amount": 1215.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "c9ab7e52-fc56-4581-b55b-e185535e5e9a",
+    "nutrient_id": "vitamin_a",
+    "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
+    "amount": 1305.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "21acc2fa-5a8c-489e-8bb7-874f4de02ce6",
+    "nutrient_id": "vitamin_a",
+    "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
+    "amount": 1395.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "0bd36562-aded-421a-80c3-c1aaa78ef774",
+    "nutrient_id": "vitamin_a",
+    "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+    "amount": 1485.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "f99e26c2-964a-4aa4-99a3-f9fa816ef9f3",
+    "nutrient_id": "vitamin_c",
+    "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
+    "amount": 67.5,
+    "unit": "mg"
+  },
+  {
+    "id": "2756df06-757f-4df7-bb6a-fa7059eb7a06",
+    "nutrient_id": "vitamin_c",
+    "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
+    "amount": 76.5,
+    "unit": "mg"
+  },
+  {
+    "id": "9c2ed884-c05c-4064-adc9-e63e7b98350e",
+    "nutrient_id": "vitamin_c",
+    "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
+    "amount": 85.5,
+    "unit": "mg"
+  },
+  {
+    "id": "2c91e0dd-f782-4cac-8816-7bf16f8b3c02",
+    "nutrient_id": "vitamin_c",
+    "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
+    "amount": 94.5,
+    "unit": "mg"
+  },
+  {
+    "id": "64209542-8af8-4569-b3d0-2e263e707f37",
+    "nutrient_id": "vitamin_c",
+    "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
+    "amount": 103.49999999999999,
+    "unit": "mg"
+  },
+  {
+    "id": "666a4e47-2944-4377-a3cc-11f3de7c9497",
+    "nutrient_id": "vitamin_c",
+    "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+    "amount": 112.5,
+    "unit": "mg"
+  },
+  {
+    "id": "1b598020-a245-4355-8cc9-ef76228576c4",
+    "nutrient_id": "vitamin_c",
+    "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
+    "amount": 121.50000000000001,
+    "unit": "mg"
+  },
+  {
+    "id": "b2572b36-1cf6-4a0e-a659-ac9c7f4c87d5",
+    "nutrient_id": "vitamin_c",
+    "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
+    "amount": 130.5,
+    "unit": "mg"
+  },
+  {
+    "id": "b9b34c73-cc65-414f-a762-4edecb71623c",
+    "nutrient_id": "vitamin_c",
+    "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
+    "amount": 139.5,
+    "unit": "mg"
+  },
+  {
+    "id": "7af39a42-029b-4ebb-b366-46e50c348ad4",
+    "nutrient_id": "vitamin_c",
+    "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+    "amount": 148.5,
+    "unit": "mg"
+  },
+  {
+    "id": "bfe64d22-076b-4f3b-a96b-71955defe7da",
+    "nutrient_id": "vitamin_b_6",
+    "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
+    "amount": 1.275,
+    "unit": "mg"
+  },
+  {
+    "id": "294919da-6553-4bc3-9c30-34aad9a89472",
+    "nutrient_id": "vitamin_b_6",
+    "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
+    "amount": 1.4449999999999998,
+    "unit": "mg"
+  },
+  {
+    "id": "1c2e0dc0-84fe-4a8b-a114-1c14a28ddff3",
+    "nutrient_id": "vitamin_b_6",
+    "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
+    "amount": 1.615,
+    "unit": "mg"
+  },
+  {
+    "id": "087b4e46-8ff5-43db-af53-ea5371bc239d",
+    "nutrient_id": "vitamin_b_6",
+    "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
+    "amount": 1.785,
+    "unit": "mg"
+  },
+  {
+    "id": "bd82fbb1-ecd7-4f51-b854-0e4ce74a9151",
+    "nutrient_id": "vitamin_b_6",
+    "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
+    "amount": 1.9549999999999998,
+    "unit": "mg"
+  },
+  {
+    "id": "6068ffc3-9fa4-411f-ac32-db8d0d92a49c",
+    "nutrient_id": "vitamin_b_6",
+    "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+    "amount": 2.125,
+    "unit": "mg"
+  },
+  {
+    "id": "7ff02ab2-be0d-4be6-bc02-f6391af5d1c7",
+    "nutrient_id": "vitamin_b_6",
+    "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
+    "amount": 2.295,
+    "unit": "mg"
+  },
+  {
+    "id": "ca4f31c3-03a3-4720-98a5-89854038b798",
+    "nutrient_id": "vitamin_b_6",
+    "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
+    "amount": 2.465,
+    "unit": "mg"
+  },
+  {
+    "id": "32af2778-78a6-4de7-b0f8-ab148307351c",
+    "nutrient_id": "vitamin_b_6",
+    "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
+    "amount": 2.635,
+    "unit": "mg"
+  },
+  {
+    "id": "bb0c2951-1238-4035-8aa4-8312351470b8",
+    "nutrient_id": "vitamin_b_6",
+    "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+    "amount": 2.8049999999999997,
+    "unit": "mg"
+  },
+  {
+    "id": "3afd7541-e539-40c4-a459-cb9d9fedc5f7",
+    "nutrient_id": "vitamin_b_12",
+    "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
+    "amount": 1.7999999999999998,
+    "unit": "mcg"
+  },
+  {
+    "id": "768519a9-4a22-4ed6-aacc-d8a3df4d43f8",
+    "nutrient_id": "vitamin_b_12",
+    "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
+    "amount": 2.04,
+    "unit": "mcg"
+  },
+  {
+    "id": "75f873c5-9f32-4262-af80-669602d86740",
+    "nutrient_id": "vitamin_b_12",
+    "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
+    "amount": 2.28,
+    "unit": "mcg"
+  },
+  {
+    "id": "7a787627-65e7-4053-af28-a01fd9185723",
+    "nutrient_id": "vitamin_b_12",
+    "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
+    "amount": 2.52,
+    "unit": "mcg"
+  },
+  {
+    "id": "a7a8138b-3b94-4b98-8f11-82c6e1e3e70c",
+    "nutrient_id": "vitamin_b_12",
+    "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
+    "amount": 2.76,
+    "unit": "mcg"
+  },
+  {
+    "id": "99ca7947-82ea-4bb6-af75-c28b54d515fd",
+    "nutrient_id": "vitamin_b_12",
+    "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+    "amount": 3.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "2385e0d2-354c-4a0a-81fc-0e45900e31ba",
+    "nutrient_id": "vitamin_b_12",
+    "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
+    "amount": 3.24,
+    "unit": "mcg"
+  },
+  {
+    "id": "f1425442-dbef-4126-8e87-2dfb19932ae2",
+    "nutrient_id": "vitamin_b_12",
+    "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
+    "amount": 3.48,
+    "unit": "mcg"
+  },
+  {
+    "id": "ffdde883-55ed-4626-8476-273db2270b72",
+    "nutrient_id": "vitamin_b_12",
+    "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
+    "amount": 3.7199999999999998,
+    "unit": "mcg"
+  },
+  {
+    "id": "1174dc43-9abf-4914-a2d5-6601f85a900b",
+    "nutrient_id": "vitamin_b_12",
+    "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+    "amount": 3.9599999999999995,
+    "unit": "mcg"
+  },
+  {
+    "id": "58e4c32e-29fe-4aac-91c7-03f9a097cc75",
+    "nutrient_id": "thiamin",
+    "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
+    "amount": 0.8999999999999999,
+    "unit": "mg"
+  },
+  {
+    "id": "582cba01-0981-462d-8855-096f6d44565f",
+    "nutrient_id": "thiamin",
+    "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
+    "amount": 1.02,
+    "unit": "mg"
+  },
+  {
+    "id": "9168b4f2-1d4d-4027-970e-de798de25511",
+    "nutrient_id": "thiamin",
+    "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
+    "amount": 1.14,
+    "unit": "mg"
+  },
+  {
+    "id": "e101be68-fdc4-4740-8d8c-55aa72dde08c",
+    "nutrient_id": "thiamin",
+    "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
+    "amount": 1.26,
+    "unit": "mg"
+  },
+  {
+    "id": "8bae9722-9d59-4a8e-b85a-19b71eecaed4",
+    "nutrient_id": "thiamin",
+    "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
+    "amount": 1.38,
+    "unit": "mg"
+  },
+  {
+    "id": "ef3d09e1-debf-4579-a791-6589fbee9f5c",
+    "nutrient_id": "thiamin",
+    "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+    "amount": 1.5,
+    "unit": "mg"
+  },
+  {
+    "id": "c7fedab8-e537-4779-a4bb-384c73699bbf",
+    "nutrient_id": "thiamin",
+    "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
+    "amount": 1.62,
+    "unit": "mg"
+  },
+  {
+    "id": "3bc0a40c-315c-46df-8a25-f93d0c3a333a",
+    "nutrient_id": "thiamin",
+    "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
+    "amount": 1.74,
+    "unit": "mg"
+  },
+  {
+    "id": "dc7fa0c1-c377-4a30-a4b1-2974fe8839c0",
+    "nutrient_id": "thiamin",
+    "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
+    "amount": 1.8599999999999999,
+    "unit": "mg"
+  },
+  {
+    "id": "e0bda995-1fa3-48f1-98c0-49cd54b38f9e",
+    "nutrient_id": "thiamin",
+    "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+    "amount": 1.9799999999999998,
+    "unit": "mg"
+  },
+  {
+    "id": "47642c45-d806-4459-9d4a-1a3f1d57825c",
+    "nutrient_id": "riboflavin",
+    "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
+    "amount": 0.9750000000000001,
+    "unit": "mg"
+  },
+  {
+    "id": "6ae9ebc5-1d13-4ac7-a6e3-db6930a7316c",
+    "nutrient_id": "riboflavin",
+    "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
+    "amount": 1.105,
+    "unit": "mg"
+  },
+  {
+    "id": "1bfb0f96-3823-462d-931e-76a211f52eaa",
+    "nutrient_id": "riboflavin",
+    "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
+    "amount": 1.2349999999999999,
+    "unit": "mg"
+  },
+  {
+    "id": "6dca1dda-f421-41b6-af50-6bafbceca615",
+    "nutrient_id": "riboflavin",
+    "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
+    "amount": 1.3650000000000002,
+    "unit": "mg"
+  },
+  {
+    "id": "ac039ca5-dd34-4334-a4b7-5ff622c9f48a",
+    "nutrient_id": "riboflavin",
+    "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
+    "amount": 1.4949999999999999,
+    "unit": "mg"
+  },
+  {
+    "id": "555c6fb0-88ec-46fb-942e-05f28c564c2c",
+    "nutrient_id": "riboflavin",
+    "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+    "amount": 1.625,
+    "unit": "mg"
+  },
+  {
+    "id": "9d7c7c8f-c849-483e-9c74-33b103d866a0",
+    "nutrient_id": "riboflavin",
+    "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
+    "amount": 1.7550000000000001,
+    "unit": "mg"
+  },
+  {
+    "id": "53343531-06d1-41a4-92a2-db0fbc4b1575",
+    "nutrient_id": "riboflavin",
+    "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
+    "amount": 1.885,
+    "unit": "mg"
+  },
+  {
+    "id": "f9bb0243-53b0-42e5-bb2e-65f2d7c06b50",
+    "nutrient_id": "riboflavin",
+    "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
+    "amount": 2.015,
+    "unit": "mg"
+  },
+  {
+    "id": "ec61b02b-35f6-4c6c-87df-51670f41c53b",
+    "nutrient_id": "riboflavin",
+    "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+    "amount": 2.145,
+    "unit": "mg"
+  },
+  {
+    "id": "25decc66-e5e8-4c9e-9520-449bde8f64af",
+    "nutrient_id": "niacin",
+    "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
+    "amount": 12.0,
+    "unit": "mg"
+  },
+  {
+    "id": "9ba76a30-8550-4cfb-8771-59727fbb0551",
+    "nutrient_id": "niacin",
+    "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
+    "amount": 13.6,
+    "unit": "mg"
+  },
+  {
+    "id": "3d9d7e82-9575-4870-8fb9-4804cd61d185",
+    "nutrient_id": "niacin",
+    "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
+    "amount": 15.2,
+    "unit": "mg"
+  },
+  {
+    "id": "cba3d446-0fb1-440e-b6db-bf96aa07c217",
+    "nutrient_id": "niacin",
+    "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
+    "amount": 16.8,
+    "unit": "mg"
+  },
+  {
+    "id": "80c06565-a255-42fa-ac39-5dcd99028b22",
+    "nutrient_id": "niacin",
+    "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
+    "amount": 18.4,
+    "unit": "mg"
+  },
+  {
+    "id": "99867131-6b7f-4c93-87b3-9a6f825dd759",
+    "nutrient_id": "niacin",
+    "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+    "amount": 20.0,
+    "unit": "mg"
+  },
+  {
+    "id": "499855ea-e47b-4841-be31-f2d10e6af73c",
+    "nutrient_id": "niacin",
+    "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
+    "amount": 21.6,
+    "unit": "mg"
+  },
+  {
+    "id": "a70d18ba-09d5-462c-80a5-beeb8139c02d",
+    "nutrient_id": "niacin",
+    "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
+    "amount": 23.2,
+    "unit": "mg"
+  },
+  {
+    "id": "3980551e-fa54-4a3f-a04a-ad6cf6e64ff0",
+    "nutrient_id": "niacin",
+    "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
+    "amount": 24.8,
+    "unit": "mg"
+  },
+  {
+    "id": "83fc31d9-0aa8-44a8-9a26-3569788ddac5",
+    "nutrient_id": "niacin",
+    "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+    "amount": 26.4,
+    "unit": "mg"
+  },
+  {
+    "id": "e32f9dc3-936a-43e8-a6af-bb9418a87a92",
+    "nutrient_id": "folate",
+    "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
+    "amount": 300.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "d2a8ae23-aa1e-4690-970b-69963f1cd6b5",
+    "nutrient_id": "folate",
+    "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
+    "amount": 340.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "f413888d-242d-416c-b614-67e23281a33d",
+    "nutrient_id": "folate",
+    "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
+    "amount": 380.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "0519b25e-d955-46d7-a3a3-307fe0e5adbe",
+    "nutrient_id": "folate",
+    "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
+    "amount": 420.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "68550dbd-8bb9-469f-97ad-c964569a7f62",
+    "nutrient_id": "folate",
+    "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
+    "amount": 459.99999999999994,
+    "unit": "mcg"
+  },
+  {
+    "id": "8061d7d9-a2d9-423e-8d16-3c0381814f3b",
+    "nutrient_id": "folate",
+    "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+    "amount": 500.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "db6f5869-1824-4862-aae9-ff0a3207f1f4",
+    "nutrient_id": "folate",
+    "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
+    "amount": 540.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "93078082-8611-4824-9b21-bc14da3288b7",
+    "nutrient_id": "folate",
+    "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
+    "amount": 580.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "5c34df31-5976-4a58-8fff-a2746ad82429",
+    "nutrient_id": "folate",
+    "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
+    "amount": 620.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "27bda29f-ff6a-43ba-8e29-e50d7c863a1d",
+    "nutrient_id": "folate",
+    "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+    "amount": 660.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "d0d378d4-238f-455c-971d-1f20016d94e8",
+    "nutrient_id": "vitamin_e",
+    "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
+    "amount": 11.25,
+    "unit": "mg"
+  },
+  {
+    "id": "36575061-d1a1-4f45-87b1-8c8b634300d9",
+    "nutrient_id": "vitamin_e",
+    "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
+    "amount": 12.75,
+    "unit": "mg"
+  },
+  {
+    "id": "637c319e-8d69-418f-9b0d-3b70b6fccd06",
+    "nutrient_id": "vitamin_e",
+    "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
+    "amount": 14.25,
+    "unit": "mg"
+  },
+  {
+    "id": "58f34faf-d099-41fb-853e-cca8718cd0d4",
+    "nutrient_id": "vitamin_e",
+    "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
+    "amount": 15.75,
+    "unit": "mg"
+  },
+  {
+    "id": "0dfd7727-831d-4627-a51b-48a7f66232a4",
+    "nutrient_id": "vitamin_e",
+    "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
+    "amount": 17.25,
+    "unit": "mg"
+  },
+  {
+    "id": "26e05be3-99c8-447b-b02d-8c7382f55c4f",
+    "nutrient_id": "vitamin_e",
+    "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+    "amount": 18.75,
+    "unit": "mg"
+  },
+  {
+    "id": "aa9d2e0a-ffb7-49ee-a685-a6efb8f0719e",
+    "nutrient_id": "vitamin_e",
+    "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
+    "amount": 20.25,
+    "unit": "mg"
+  },
+  {
+    "id": "d88aff40-ef46-4162-b044-c22f99e14d70",
+    "nutrient_id": "vitamin_e",
+    "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
+    "amount": 21.75,
+    "unit": "mg"
+  },
+  {
+    "id": "051483d6-e55c-41a4-a68c-636f5faaca57",
+    "nutrient_id": "vitamin_e",
+    "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
+    "amount": 23.25,
+    "unit": "mg"
+  },
+  {
+    "id": "7649897a-c577-4488-aaf6-461bc221fff6",
+    "nutrient_id": "vitamin_e",
+    "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+    "amount": 24.75,
+    "unit": "mg"
+  },
+  {
+    "id": "f6c31467-3590-4b55-b428-19b3a175d836",
+    "nutrient_id": "vitamin_k",
+    "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
+    "amount": 90.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "930d4b5d-b731-4654-8c51-4db735c85deb",
+    "nutrient_id": "vitamin_k",
+    "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
+    "amount": 102.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "25a7cc0a-778c-4701-8173-7b92196e32fa",
+    "nutrient_id": "vitamin_k",
+    "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
+    "amount": 114.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "963b0fea-a9fd-469f-be46-e1c33267f7a5",
+    "nutrient_id": "vitamin_k",
+    "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
+    "amount": 126.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "21828864-133e-477d-81fd-6751e39dc01f",
+    "nutrient_id": "vitamin_k",
+    "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
+    "amount": 138.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "ca0f9423-bc0a-447b-89a8-9fa0f0d202fc",
+    "nutrient_id": "vitamin_k",
+    "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+    "amount": 150.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "bebe9575-ad2d-4312-a346-19a1c275041e",
+    "nutrient_id": "vitamin_k",
+    "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
+    "amount": 162.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "46259a13-c4eb-42ae-8375-1bcb99656d3c",
+    "nutrient_id": "vitamin_k",
+    "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
+    "amount": 174.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "6a76ffb9-d3ab-4bf6-a71b-8a1b6f049565",
+    "nutrient_id": "vitamin_k",
+    "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
+    "amount": 186.0,
+    "unit": "mcg"
+  },
+  {
+    "id": "1237d6bd-1d52-4636-adf9-6c8950bac266",
+    "nutrient_id": "vitamin_k",
+    "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+    "amount": 198.0,
+    "unit": "mcg"
+  }
+]

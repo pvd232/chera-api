@@ -1,0 +1,98 @@
+[
+  {
+    "id": "protein",
+    "unit": "g"
+  },
+  {
+    "id": "carb",
+    "unit": "g"
+  },
+  {
+    "id": "dietary_fiber",
+    "unit": "g"
+  },
+  {
+    "id": "sugars",
+    "unit": "g"
+  },
+  {
+    "id": "net_carb",
+    "unit": "g"
+  },
+  {
+    "id": "fat",
+    "unit": "g"
+  },
+  {
+    "id": "trans_fat",
+    "unit": "g"
+  },
+  {
+    "id": "saturated_fat",
+    "unit": "g"
+  },
+  {
+    "id": "vitamin_d",
+    "unit": "mcg"
+  },
+  {
+    "id": "calcium",
+    "unit": "mg"
+  },
+  {
+    "id": "iron",
+    "unit": "mg"
+  },
+  {
+    "id": "potassium",
+    "unit": "mg"
+  },
+  {
+    "id": "sodium",
+    "unit": "mg"
+  },
+  {
+    "id": "cholesterol",
+    "unit": "mg"
+  },
+  {
+    "id": "vitamin_a",
+    "unit": "mcg"
+  },
+  {
+    "id": "vitamin_c",
+    "unit": "mg"
+  },
+  {
+    "id": "vitamin_b_6",
+    "unit": "mg"
+  },
+  {
+    "id": "vitamin_b_12",
+    "unit": "mcg"
+  },
+  {
+    "id": "thiamin",
+    "unit": "mg"
+  },
+  {
+    "id": "riboflavin",
+    "unit": "mg"
+  },
+  {
+    "id": "niacin",
+    "unit": "mg"
+  },
+  {
+    "id": "folate",
+    "unit": "mcg"
+  },
+  {
+    "id": "vitamin_e",
+    "unit": "mg"
+  },
+  {
+    "id": "vitamin_k",
+    "unit": "mcg"
+  }
+]

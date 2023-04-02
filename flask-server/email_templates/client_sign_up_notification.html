@@ -1,0 +1,69 @@
+<div style="height: 100%">
+  <!-- grey background -->
+
+  <div style="width: 100%; height: 100%; background-color: #e8e8e8">
+    <div
+      style="
+        width: 100%;
+        max-width: 500px;
+        height: 80vh;
+        margin-top: 0%;
+        margin-bottom: 10%;
+        margin-right: auto;
+        margin-left: auto;
+        background-color: #e8e8e8;
+      "
+    >
+      <!-- spacer -->
+      <tr style="width: 100%; height: 5vh"></tr>
+
+      <!-- mail body, white background -->
+
+      <div
+        style="
+          width: calc(100% - 30px);
+          height: 55vh;
+          padding: 30px 30px 30px 30px;
+          background-color: white;
+          margin-top: auto;
+          margin-bottom: auto;
+        "
+      >
+        <!-- logo -->
+        <div
+          style="
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <img
+            src="{logo_url}"
+            style="
+              width: 25%;
+              height: 6%;
+              margin-left: auto;
+              margin-right: auto;
+            "
+            alt="img"
+          />
+        </div>
+        <br />
+
+        <!-- email text -->
+        <div>
+          <p style="margin-bottom: 0px">Hey {first_name},</p>
+          <br />
+          <p style="margin-bottom: 0px">Look who just signed up!</p>
+          <br />
+
+          <p style="margin-bottom: 15px"><b>User type:</b> {user_type}</p>
+          <p><b>Name:</b> {user_first_name}</p>
+          <p><b>Email:</b> {email}</p>
+        </div>
+      </div>
+      <tr style="width: 100%; height: 10vh"></tr>
+    </div>
+  </div>
+</div>

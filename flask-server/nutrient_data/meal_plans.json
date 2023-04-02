@@ -1,0 +1,122 @@
+[
+  {
+    "id": "",
+    "number": 1,
+    "breakfast_calories": 400,
+    "lunch_calories": 400,
+    "dinner_calories": 400,
+    "stated_caloric_lower_bound": 1400,
+    "stated_caloric_upper_bound": 1600,
+    "number_of_snacks": 2,
+    "per_snack_caloric_lower_bound": 100,
+    "per_snack_caloric_upper_bound": 200
+  },
+  {
+    "id": "",
+    "number": 2,
+    "breakfast_calories": 400,
+    "lunch_calories": 400,
+    "dinner_calories": 400,
+    "stated_caloric_lower_bound": 1600,
+    "stated_caloric_upper_bound": 1800,
+    "number_of_snacks": 2,
+    "per_snack_caloric_lower_bound": 200,
+    "per_snack_caloric_upper_bound": 300
+  },
+  {
+    "id": "",
+    "number": 3,
+    "breakfast_calories": 500,
+    "lunch_calories": 500,
+    "dinner_calories": 500,
+    "stated_caloric_lower_bound": 1800,
+    "stated_caloric_upper_bound": 2000,
+    "number_of_snacks": 2,
+    "per_snack_caloric_lower_bound": 150,
+    "per_snack_caloric_upper_bound": 250
+  },
+  {
+    "id": "",
+    "number": 4,
+    "breakfast_calories": 500,
+    "lunch_calories": 500,
+    "dinner_calories": 500,
+    "stated_caloric_lower_bound": 2000,
+    "stated_caloric_upper_bound": 2200,
+    "number_of_snacks": 2,
+    "per_snack_caloric_lower_bound": 250,
+    "per_snack_caloric_upper_bound": 350
+  },
+  {
+    "id": "",
+    "number": 5,
+    "breakfast_calories": 600,
+    "lunch_calories": 600,
+    "dinner_calories": 600,
+    "stated_caloric_lower_bound": 2200,
+    "stated_caloric_upper_bound": 2400,
+    "number_of_snacks": 2,
+    "per_snack_caloric_lower_bound": 200,
+    "per_snack_caloric_upper_bound": 300
+  },
+  {
+    "id": "",
+    "number": 6,
+    "breakfast_calories": 600,
+    "lunch_calories": 600,
+    "dinner_calories": 600,
+    "stated_caloric_lower_bound": 2400,
+    "stated_caloric_upper_bound": 2600,
+    "number_of_snacks": 2,
+    "per_snack_caloric_lower_bound": 300,
+    "per_snack_caloric_upper_bound": 400
+  },
+  {
+    "id": "",
+    "number": 7,
+    "breakfast_calories": 700,
+    "lunch_calories": 700,
+    "dinner_calories": 700,
+    "stated_caloric_lower_bound": 2600,
+    "stated_caloric_upper_bound": 2800,
+    "number_of_snacks": 2,
+    "per_snack_caloric_lower_bound": 250,
+    "per_snack_caloric_upper_bound": 350
+  },
+  {
+    "id": "",
+    "number": 8,
+    "breakfast_calories": 700,
+    "lunch_calories": 700,
+    "dinner_calories": 700,
+    "stated_caloric_lower_bound": 2800,
+    "stated_caloric_upper_bound": 3000,
+    "number_of_snacks": 2,
+    "per_snack_caloric_lower_bound": 350,
+    "per_snack_caloric_upper_bound": 450
+  },
+  {
+    "id": "",
+    "number": 9,
+    "breakfast_calories": 800,
+    "lunch_calories": 800,
+    "dinner_calories": 800,
+    "stated_caloric_lower_bound": 3000,
+    "stated_caloric_upper_bound": 3200,
+    "number_of_snacks": 2,
+    "per_snack_caloric_lower_bound": 300,
+    "per_snack_caloric_upper_bound": 400
+  },
+  {
+    "id": "",
+    "number": 10,
+    "breakfast_calories": 800,
+    "lunch_calories": 800,
+    "dinner_calories": 800,
+    "stated_caloric_lower_bound": 3200,
+    "stated_caloric_upper_bound": 3400,
+    "number_of_snacks": 2,
+    "per_snack_caloric_lower_bound": 400,
+    "per_snack_caloric_upper_bound": 500
+  }
+]
