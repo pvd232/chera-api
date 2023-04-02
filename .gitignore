@@ -22,7 +22,7 @@ flask-server/.env
 .env.development.local
 .env.test.local
 .env.production.local
-
+nourish-351123-0216abaa0926.json*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -76,7 +76,6 @@ pip-log.txt
 pip-delete-this-directory.txt
 
 # Unit test / coverage reports
-frontend-react-app/src/tests
 htmlcov/
 .tox/
 .nox/
@@ -169,6 +168,5 @@ pip-selfcheck.json
 .vscode
 # Mac Folder Meta Data Files
 .DS_Store
-node_modules/
 .eslintrc.json
 package-lock.json
