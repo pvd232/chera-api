@@ -18,6 +18,7 @@ class USDA_Ingredient_Portion_DTO(Base_DTO):
             self.portion_description: str = usda_ingredient_portion_json["portion_description"]
             self.is_imperial: bool = usda_ingredient_portion_json["is_imperial"]
             self.usda_data_type: str = usda_ingredient_portion_json["usda_data_type"]
+            self.custom_value: bool = usda_ingredient_portion_json["custom_value"]
         elif usda_ingredient_portion_domain:
             self.id: UUID = usda_ingredient_portion_domain.id
             self.usda_ingredient_id: str = usda_ingredient_portion_domain.usda_ingredient_id
@@ -28,3 +29,4 @@ class USDA_Ingredient_Portion_DTO(Base_DTO):
             self.portion_description: str = usda_ingredient_portion_domain.portion_description
             self.is_imperial: bool = usda_ingredient_portion_domain.is_imperial
             self.usda_data_type: str = usda_ingredient_portion_domain.usda_data_type
+            self.custom_value: bool = usda_ingredient_portion_domain.custom_value

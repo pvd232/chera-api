@@ -1468,5 +1468,75 @@
     "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
     "amount": 198.0,
     "unit": "mcg"
+  },
+  {
+    "id": "f6c31467-3590-4b55-b428-19b3a175d836",
+    "nutrient_id": "phosphorus",
+    "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
+    "amount": 937.5,
+    "unit": "mcg"
+  },
+  {
+    "id": "930d4b5d-b731-4654-8c51-4db735c85deb",
+    "nutrient_id": "phosphorus",
+    "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
+    "amount": 1062.5,
+    "unit": "mcg"
+  },
+  {
+    "id": "25a7cc0a-778c-4701-8173-7b92196e32fa",
+    "nutrient_id": "phosphorus",
+    "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
+    "amount": 1187.5,
+    "unit": "mcg"
+  },
+  {
+    "id": "963b0fea-a9fd-469f-be46-e1c33267f7a5",
+    "nutrient_id": "phosphorus",
+    "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
+    "amount": 1312.5,
+    "unit": "mcg"
+  },
+  {
+    "id": "21828864-133e-477d-81fd-6751e39dc01f",
+    "nutrient_id": "phosphorus",
+    "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
+    "amount": 1437.5,
+    "unit": "mcg"
+  },
+  {
+    "id": "ca0f9423-bc0a-447b-89a8-9fa0f0d202fc",
+    "nutrient_id": "phosphorus",
+    "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+    "amount": 1562.5,
+    "unit": "mcg"
+  },
+  {
+    "id": "bebe9575-ad2d-4312-a346-19a1c275041e",
+    "nutrient_id": "phosphorus",
+    "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
+    "amount": 1687.5,
+    "unit": "mcg"
+  },
+  {
+    "id": "46259a13-c4eb-42ae-8375-1bcb99656d3c",
+    "nutrient_id": "phosphorus",
+    "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
+    "amount": 1812.5,
+    "unit": "mcg"
+  },
+  {
+    "id": "6a76ffb9-d3ab-4bf6-a71b-8a1b6f049565",
+    "nutrient_id": "phosphorus",
+    "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
+    "amount": 1937.5,
+    "unit": "mcg"
+  },
+  {
+    "id": "1237d6bd-1d52-4636-adf9-6c8950bac266",
+    "nutrient_id": "phosphorus",
+    "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+    "amount": 2062.5,
+    "unit": "mcg"
   }
 ]

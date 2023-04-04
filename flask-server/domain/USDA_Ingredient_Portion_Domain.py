@@ -14,3 +14,4 @@ class USDA_Ingredient_Portion_Domain(Base_Domain):
         self.portion_description = usda_ingredient_portion_object.portion_description
         self.is_imperial = usda_ingredient_portion_object.is_imperial
         self.usda_data_type = usda_ingredient_portion_object.usda_data_type
+        self.custom_value = usda_ingredient_portion_object.custom_value

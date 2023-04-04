@@ -1,6 +1,5 @@
 from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
 from dotenv import load_dotenv
-from werkzeug.datastructures import FileStorage
 import json
 import uuid
 from flask import Flask
@@ -653,6 +652,7 @@ class USDA_Ingredient_Portion_Model(db.Model):
     is_imperial = db.Column(db.Boolean(), default=True, nullable=False)
     usda_data_type = db.Column(db.String(80),
                                nullable=False)
+    custom_value = db.Column(db.Boolean(), default=False, nullable=False)
 
     def __init__(self, usda_ingredient_portion_domain: 'USDA_Ingredient_Portion_Domain') -> None:
         self.id = usda_ingredient_portion_domain.id
@@ -666,8 +666,8 @@ class USDA_Ingredient_Portion_Model(db.Model):
         self.usda_data_type = usda_ingredient_portion_domain.usda_data_type
 
 
-class Imperial_Ingredient_Unit_Model(db.Model):
-    __tablename__ = 'imperial_ingredient_unit'
+class Imperial_Unit_Model(db.Model):
+    __tablename__ = 'imperial_unit'
     id = db.Column(db.String(80), primary_key=True,
                    unique=True, nullable=False)
 
@@ -706,17 +706,12 @@ class USDA_Ingredient_Nutrient_Model(db.Model):
         'nutrient.id'), nullable=False)
     amount = db.Column(db.Float(), nullable=False)
 
-    def __init__(self, usda_ingredient_nutrient_domain: 'USDA_Ingredient_Nutrient_Domain' = None, usda_ingredient_nutrient_dict: dict = None) -> None:
+    def __init__(self, usda_ingredient_nutrient_domain: 'USDA_Ingredient_Nutrient_Domain' = None) -> None:
         if usda_ingredient_nutrient_domain:
             self.id = usda_ingredient_nutrient_domain.id
             self.usda_ingredient_id = usda_ingredient_nutrient_domain.usda_ingredient_id
             self.nutrient_id = usda_ingredient_nutrient_domain.nutrient_id
             self.amount = usda_ingredient_nutrient_domain.amount
-        else:
-            self.id = usda_ingredient_nutrient_dict['id']
-            self.usda_ingredient_id = usda_ingredient_nutrient_dict['usda_ingredient_id']
-            self.nutrient_id = usda_ingredient_nutrient_dict['nutrient_id']
-            self.amount = usda_ingredient_nutrient_dict['amount']
 
 
 class Recipe_Ingredient_Nutrient_Model(db.Model):
@@ -869,54 +864,11 @@ def _compile_drop_table(element, compiler, **kwargs):
     return compiler.visit_drop_table(element) + ' CASCADE'
 
 
-class Google_Cloud_Storage_Service(object):
-    def __init__(self) -> None:
-        super().__init__()
-        # Imports the Google Cloud client library
-        from google.cloud import storage
-        app.config['GOOGLE_APPLICATION_CREDENTIALS'] = os.path.join(
-            os.getcwd(), 'nourish-351123-0216abaa0926.json')
-        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = app.config['GOOGLE_APPLICATION_CREDENTIALS']
-        self.bucket_name = 'meal-photos'
-        # Instantiates a client
-        self.storage_client = storage.Client()
-
-        self.bucket = self.storage_client.bucket(self.bucket_name)
-
-    def create_bucket(self, bucket_name) -> None:
-        # The name for the new bucket
-
-        # Creates the new bucket
-        bucket = self.storage_client.create_bucket(bucket_name)
-
-        print('Bucket {} created.'.format(bucket.name))
-
-    def upload_meal_image_file(self, meal: Meal_Model) -> Meal_Model:
-        '''Uploads a file to the bucket.'''
-        # bucket_name = 'your-bucket-name'
-        # file = 'local/path/to/file' this will be the business folder, with a folder named after the business' unique id, which will have the menu file in it
-        # destination_blob_name = 'storage-object-name' this will be the business uuid
-        # read an image
-        with open(meal.image_url, 'rb') as file_bytes:
-            file = FileStorage(file_bytes)
-            file_type = meal.image_url.rsplit('.', 1)[1].lower()
-
-            destination_blob_name = 'menu/' + \
-                str(meal.id) + '.' + file_type
-            blob = self.bucket.blob(destination_blob_name)
-            blob.upload_from_file(file)
-            image_url_pre_fix = 'https://storage.googleapis.com/meal-photos/'
-            image_url = image_url_pre_fix + destination_blob_name
-            meal.image_url = image_url
-            # blob.make_public()
-            return meal
-
-
 def load_json(filename) -> dict:
     with open(filename) as file:
         jsn = json.load(file)
         file.close()
-    return jsn
+        return jsn
 
 
 def create_dietary_restrictions() -> None:
@@ -925,35 +877,6 @@ def create_dietary_restrictions() -> None:
         new_dietary_restriction = Dietary_Restriction_Model(
             id=dietary_restriction)
         db.session.add(new_dietary_restriction)
-    db.session.commit()
-
-
-def create_meal_plans() -> None:
-    meal_plan_list: list[dict] = load_json('nutrient_data/meal_plans.json')
-    for meal_plan in meal_plan_list:
-        meal_plan['id'] = uuid.uuid4()
-        meal_plan = Meal_Plan_Model(meal_plan_dict=meal_plan)
-        db.session.add(meal_plan)
-    db.session.commit()
-
-
-def create_meals() -> None:
-    meal_list: list[dict] = load_json('nutrient_data/meals.json')
-    for meal in meal_list:
-        meal['id'] = uuid.uuid4()
-        meal['ingredients'] = []
-        new_meal = Meal_Model(id=meal['id'], meal_time=meal['meal_time'], name=meal['name'],
-                              description=meal['description'], price=meal_price, image_url=meal['image_url'])
-        db.session.add(new_meal)
-
-        for dietary_restriction in meal['dietary_restrictions']:
-            new_meal_dietary_restriction = Meal_Dietary_Restriction_Model(id=uuid.uuid4(
-            ), dietary_restriction_id=dietary_restriction['dietary_restriction_id'], meal_id=meal['id'])
-            db.session.add(new_meal_dietary_restriction)
-
-        # will change this when we have real images for the menu, right now the meal objects are initialized with the logo url hard coded
-        # updated_meal = Google_Cloud_Storage_Service(
-        # ).upload_meal_image_file(meal = new_meal)
     db.session.commit()
 
 
@@ -981,7 +904,7 @@ def create_imperial_units() -> None:
     imperial_units = [{'name': 'teaspoon', 'ounces': 0.166667}, {
         'name': 'tablespoon', 'ounces': 0.5}, {'ounces': 8.0, 'name': 'cup'}, {'name': 'oz', 'ounces': 1.0}]
     for unit in imperial_units:
-        new_imperial_unit = Imperial_Ingredient_Unit_Model(
+        new_imperial_unit = Imperial_Unit_Model(
             id=unit['name'], ounces=unit['ounces'])
         db.session.add(new_imperial_unit)
     db.session.commit()
@@ -1037,12 +960,12 @@ def create_new_usda_ingredient_nutrients() -> None:
 
 def create_usda_ingredient_data() -> None:
     from service.USDA_API_Service import USDA_API_Service
-    from domain.Imperial_Ingredient_Unit_Domain import Imperial_Ingredient_Unit_Domain
+    from domain.Imperial_Unit_Domain import Imperial_Unit_Domain
     from domain.Nutrient_Domain import Nutrient_Domain
     from dto.USDA_Nutrient_Mapper_DTO import USDA_Nutrient_Mapper_DTO
     usda_ingredients = load_json('nutrient_data/new_usda_ingredients.json')
-    imperial_units = [Imperial_Ingredient_Unit_Domain(
-        imperial_ingredient_unit_object=x) for x in db.session.query(Imperial_Ingredient_Unit_Model).all()]
+    imperial_units = [Imperial_Unit_Domain(
+        imperial_unit_object=x) for x in db.session.query(Imperial_Unit_Model).all()]
     nutrients = [Nutrient_Domain(nutrient_object=x)
                  for x in db.session.query(Nutrient_Model).all()]
     for usda_ingredient in usda_ingredients:
@@ -1105,6 +1028,7 @@ def create_new_usda_nutrient_daily_values() -> None:
     daily_nutrient_values = load_json(
         'nutrient_data/new_usda_nutrient_daily_values.json')
     for daily_nutrient_value in daily_nutrient_values:
+        daily_nutrient_value['id'] = uuid.uuid4()
         new_daily_value = USDA_Nutrient_Daily_Value_Model(
             usda_nutrient_daily_value_dict=daily_nutrient_value)
         db.session.add(new_daily_value)
@@ -1129,24 +1053,6 @@ def create_discount() -> None:
     db.session.add(new_discount)
     db.session.commit()
 
-
-def gcp_models_intialization_script() -> None:
-    db.drop_all()
-    db.create_all()
-    create_imperial_units()
-    create_new_meal_plans()
-    create_dietary_restrictions()
-    create_new_meals()
-    create_state_tax_rates()
-    create_new_meal_plan_meals()
-    create_new_usda_ingredients()
-    create_new_usda_ingredient_portions()
-    create_new_nutrients()
-    create_new_usda_ingredient_nutrients()
-    create_new_usda_nutrient_daily_values()
-    create_new_recipe_ingredients()
-    create_new_recipe_ingredient_nutrients()
-    create_discount()
 
 # TODO write tests for create USDA_Nutrient_Mapper_DTO,
 # Then populate the database with the new data,
@@ -1180,11 +1086,12 @@ def new_gcp_models_initialization() -> None:
     # Meals, Meal Plan Meals, and Recipe Ingredients are created in the MenuBuilder
 
 
-def instantiate_db_connection() -> None:
-    gcp_models_intialization_script()
-
-
 def new_instantiate_db_connection() -> None:
+    from pathlib import Path
+    cwd = os.getcwd()
+    if cwd.endswith('bendito-api'):
+        server_path = Path('.').joinpath('flask-server')
+        os.chdir(server_path)
     new_gcp_models_initialization()
 
 
@@ -1192,15 +1099,44 @@ def wipe_all_meal_related_data() -> None:
     meals = db.session.query(Meal_Model).all()
     meal_plan_meals = db.session.query(Meal_Plan_Meal_Model).all()
     for meal_plan_meal in meal_plan_meals:
-
         for recipe_ingredient in meal_plan_meal.recipe:
             for recipe_ingredient_nutrient in recipe_ingredient.nutrients:
                 db.session.delete(recipe_ingredient_nutrient)
             db.session.delete(recipe_ingredient)
-
         db.session.delete(meal_plan_meal)
     for meal in meals:
         for meal_dietary_restriction in meal.dietary_restrictions:
             db.session.delete(meal_dietary_restriction)
         db.session.delete(meal)
+    db.session.commit()
+
+
+def wipe_meal_data(meal_id: UUID) -> None:
+    meal = db.session.query(Meal_Model).filter(
+        Meal_Model.id == meal_id).first()
+    meal_plan_meals = db.session.query(Meal_Plan_Meal_Model).filter(
+        Meal_Plan_Meal_Model.meal_id == meal_id).all()
+    for meal_plan_meal in meal_plan_meals:
+        for recipe_ingredient in meal_plan_meal.recipe:
+            for recipe_ingredient_nutrient in recipe_ingredient.nutrients:
+                db.session.delete(recipe_ingredient_nutrient)
+            db.session.delete(recipe_ingredient)
+        db.session.delete(meal_plan_meal)
+    for meal_dietary_restriction in meal.dietary_restrictions:
+        db.session.delete(meal_dietary_restriction)
+    db.session.delete(meal)
+    db.session.commit()
+
+
+def wipe_all_usda_ingredient_related_data(usda_ingredient_id: str) -> None:
+    usda_ingredient = db.session.query(USDA_Ingredient_Model).filter(
+        USDA_Ingredient_Model.id == usda_ingredient_id).first()
+    nutrients = db.session.query(USDA_Ingredient_Nutrient_Model).filter(
+        USDA_Ingredient_Nutrient_Model.usda_ingredient_id == usda_ingredient.id).all()
+    for usda_ingredient_nutrient in nutrients:
+        db.session.delete(usda_ingredient_nutrient)
+    for usda_ingredient_portion in usda_ingredient.portions:
+        db.session.delete(usda_ingredient_portion)
+    db.session.commit()
+    db.session.delete(usda_ingredient)
     db.session.commit()

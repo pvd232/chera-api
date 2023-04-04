@@ -14,7 +14,7 @@ class Recipe_Ingredient_DTO(Base_DTO):
                 recipe_ingredient_json["meal_plan_meal_id"])
             self.usda_ingredient_portion_id: UUID = UUID(
                 recipe_ingredient_json["usda_ingredient_portion_id"])
-            self.quantity: int = int(recipe_ingredient_json["quantity"])
+            self.quantity: float = float(recipe_ingredient_json["quantity"])
             self.active: bool = recipe_ingredient_json["active"]
 
         elif recipe_ingredient_domain:
@@ -22,5 +22,5 @@ class Recipe_Ingredient_DTO(Base_DTO):
             self.usda_ingredient_id: str = recipe_ingredient_domain.usda_ingredient_id
             self.meal_plan_meal_id: UUID = recipe_ingredient_domain.meal_plan_meal_id
             self.usda_ingredient_portion_id: UUID = recipe_ingredient_domain.usda_ingredient_portion_id
-            self.quantity: int = int(recipe_ingredient_domain.quantity)
+            self.quantity: float = recipe_ingredient_domain.quantity
             self.active: bool = recipe_ingredient_domain.active

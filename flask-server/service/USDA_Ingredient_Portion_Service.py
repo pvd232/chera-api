@@ -5,11 +5,18 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from repository.USDA_Ingredient_Portion_Repository import USDA_Ingredient_Portion_Repository
+    from dto.USDA_Ingredient_Portion_DTO import USDA_Ingredient_Portion_DTO
 
 
 class USDA_Ingredient_Portion_Service(object):
     def __init__(self, usda_ingredient_portion_repository: 'USDA_Ingredient_Portion_Repository') -> None:
         self.usda_ingredient_portion_repository = usda_ingredient_portion_repository
+
+    def create_usda_ingredient_portion(self, usda_ingredient_portion_dto: 'USDA_Ingredient_Portion_DTO') -> None:
+        usda_ingredient_portion_domain = USDA_Ingredient_Portion_Domain(
+            usda_ingredient_portion_object=usda_ingredient_portion_dto)
+        self.usda_ingredient_portion_repository.create_usda_ingredient_portion(
+            usda_ingredient_portion_domain=usda_ingredient_portion_domain)
 
     def get_usda_ingredient_portion(self, usda_ingredient_portion_id: UUID) -> USDA_Ingredient_Portion_Domain:
         usda_ingredient_portion = self.usda_ingredient_portion_repository.get_usda_ingredient_portion(

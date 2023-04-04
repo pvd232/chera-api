@@ -159,5 +159,12 @@
     "unit": "mcg",
     "usda_id": "1185",
     "has_daily_value": true
+  },
+    {
+    "id": "phosphorus",
+    "name": "Phosphorus",
+    "unit": "mg",
+    "usda_id": "1091",
+    "has_daily_value": true
   }
 ]

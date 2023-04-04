@@ -5,11 +5,16 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from repository.USDA_Ingredient_Repository import USDA_Ingredient_Repository
+    from dto.USDA_Nutrient_Mapper_DTO import USDA_Nutrient_Mapper_DTO
 
 
 class USDA_Ingredient_Service(object):
     def __init__(self, usda_ingredient_repository: 'USDA_Ingredient_Repository') -> None:
         self.usda_ingredient_repository = usda_ingredient_repository
+
+    def create_usda_ingredient(self, usda_nutrient_mapper_dto: 'USDA_Nutrient_Mapper_DTO') -> None:
+        self.usda_ingredient_repository.create_ingredient(
+            usda_nutrient_mapper_dto=usda_nutrient_mapper_dto)
 
     def get_usda_ingredients(self) -> list[USDA_Ingredient_Domain]:
         usda_ingredient_domains: list[USDA_Ingredient_Domain] = [USDA_Ingredient_Domain(

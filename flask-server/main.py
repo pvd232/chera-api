@@ -1,8 +1,8 @@
 from uuid import UUID
 import os
-from models import app, db, stripe_meal_price_id, shipping_price, meal_price, stripe_endpoint_secret, env, host_url, instantiate_db_connection, new_instantiate_db_connection
+from models import app, db, stripe_meal_price_id, shipping_price, meal_price, stripe_endpoint_secret, env, host_url,  new_instantiate_db_connection
 from datetime import date, datetime, timezone
-from flask import Response, request, render_template, jsonify
+from flask import Response, request, jsonify
 import json
 from werkzeug.exceptions import HTTPException
 from typing import Optional
@@ -26,22 +26,93 @@ def handle_exception(e) -> HTTPException | Response:
     return Response(status=500, response=json.dumps(res))
 
 
-@app.route('/api/usda_test/<string:fdc_id>')
-def usda_test(fdc_id: str) -> Response:
+@app.route('/api/usda_ingredient_portion', methods=["POST"])
+def usda_ingredient_portion() -> Response:
+    db.metadata.create_all(db.engine)
+    if request.method == "POST":
+        from repository.USDA_Ingredient_Portion_Repository import USDA_Ingredient_Portion_Repository
+        from service.USDA_Ingredient_Portion_Service import USDA_Ingredient_Portion_Service
+        from dto.USDA_Ingredient_Portion_DTO import USDA_Ingredient_Portion_DTO
+        portion_data = json.loads(request.data)
+        portion_json = {
+            "id": portion_data['portion_id'],
+            "usda_ingredient_id": portion_data['usda_ingredient_id'],
+            "fda_portion_id": portion_data['fda_portion_id'],
+            "non_metric_unit": portion_data['non_metric_unit'],
+            "unit": portion_data['unit'],
+            "grams_per_non_metric_unit": portion_data['grams_per_non_metric_unit'],
+            "portion_description": portion_data['portion_description'],
+            "is_imperial": portion_data['is_imperial'],
+            "usda_data_type": portion_data['usda_data_type'],
+            "custom_value": True
+        }
+
+        usda_portion_dto = USDA_Ingredient_Portion_DTO(
+            usda_ingredient_portion_json=portion_json)
+        USDA_Ingredient_Portion_Service(usda_ingredient_portion_repository=USDA_Ingredient_Portion_Repository(
+            db=db)).create_usda_ingredient_portion(usda_ingredient_portion_dto=usda_portion_dto)
+        return Response(status=201)
+    else:
+        return Response(status=405)
+
+
+@app.route('/api/usda_ingredient', methods=["POST", "DELETE"])
+def usda_ingredient() -> Response:
     from models import USDA_api_key
+    from repository.Imperial_Unit_Repository import Imperial_Unit_Repository
+    from repository.Nutrient_Repository import Nutrient_Repository
+    from repository.USDA_Ingredient_Repository import USDA_Ingredient_Repository
+    from repository.USDA_Ingredient_Portion_Repository import USDA_Ingredient_Portion_Repository
+    from repository.USDA_Ingredient_Nutrient_Repository import USDA_Ingredient_Nutrient_Repository
     from service.USDA_API_Service import USDA_API_Service
-    results = USDA_API_Service(
-        USDA_api_key=USDA_api_key).get_ingredient(fdc_id=fdc_id)
-    return Response(status=200, response=json.dumps(results))
+    from service.Nutrient_Service import Nutrient_Service
+    from service.Imperial_Unit_Service import Imperial_Unit_Service
+    from service.USDA_Ingredient_Service import USDA_Ingredient_Service
+    from service.USDA_Ingredient_Portion_Service import USDA_Ingredient_Portion_Service
+    from service.USDA_Ingredient_Nutrient_Service import USDA_Ingredient_Nutrient_Service
+    from dto.USDA_Nutrient_Mapper_DTO import USDA_Nutrient_Mapper_DTO
+    if request.method == "POST":
+        imperial_units = Imperial_Unit_Service(
+            imperial_unit_repository=Imperial_Unit_Repository(db=db)).get_imperial_units()
+        nutrients = Nutrient_Service(
+            nutrient_repository=Nutrient_Repository(db=db)).get_nutrients()
+        usda_ingredients = json.loads(request.data)
+        for usda_ingredient in usda_ingredients:
+            fdc_id = usda_ingredient['fdc_id']
+            usda_ingredient_id = usda_ingredient['id']
+            usda_ingredient_name = usda_ingredient['name']
+            usda_ingredient_data = USDA_API_Service(
+                USDA_api_key=USDA_api_key).get_ingredient(fdc_id=fdc_id)
+
+            mapped_usda_ingredient_data = USDA_Nutrient_Mapper_DTO(
+                usda_ingredient_id=usda_ingredient_id, usda_ingredient_name=usda_ingredient_name, fdc_id=fdc_id, usda_ingredient_data=usda_ingredient_data, nutrients_list=nutrients, imperial_units=imperial_units)
+
+            USDA_Ingredient_Service(usda_ingredient_repository=USDA_Ingredient_Repository(
+                db=db)).create_usda_ingredient(usda_nutrient_mapper_dto=mapped_usda_ingredient_data)
+
+            USDA_Ingredient_Nutrient_Service(usda_ingredient_nutrient_repository=USDA_Ingredient_Nutrient_Repository(
+                db=db)).create_usda_ingredient_nutrients(usda_ingredient_nutrient_dtos=mapped_usda_ingredient_data.nutrients)
+
+            for portion_dto in mapped_usda_ingredient_data.portions:
+                USDA_Ingredient_Portion_Service(usda_ingredient_portion_repository=USDA_Ingredient_Portion_Repository(
+                    db=db)).create_usda_ingredient_portion(usda_ingredient_portion_dto=portion_dto)
+
+        return Response(status=201)
+
+    elif request.method == "DELETE":
+        from models import wipe_all_usda_ingredient_related_data
+        wipe_all_usda_ingredient_related_data(
+            usda_ingredient_id=request.args.get('id'))
+        return Response(status=200)
 
 
-@app.errorhandler(404)
+@ app.errorhandler(404)
 def not_found(e) -> str:
     print('requested url:', request.path, '\n', "error:", e)
     return Response(status=204)
 
 
-@app.route("/api/b")
+@ app.route("/api/b")
 def b() -> Response:
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
     import os
@@ -60,30 +131,31 @@ def b() -> Response:
             return Response(status=401)
 
 
-@app.route('/api/drop_table')
+@ app.route('/api/drop_table')
 def drop_table() -> Response:
     from models import connection_string
     from helpers.drop_table import drop_table
     drop_table(database_url=connection_string,
-               table_name='recipe_ingredient')
+               table_name='Imperial_Unit')
+    db.metadata.create_all(db.engine)
     return Response(status=204)
 
 
-@app.route('/api/create_table')
+@ app.route('/api/create_table')
 def create_table() -> Response:
     from models import db
     db.metadata.create_all(db.engine)
     return Response(status=204)
 
 
-@app.route('/api/wipe_meals')
+@ app.route('/api/wipe_meals')
 def wipe_meals() -> Response:
     from models import wipe_all_meal_related_data
     wipe_all_meal_related_data()
     return Response(status=204, response='Wiped all meal related data')
 
 
-@app.route('/api/webhook/weekly_update', methods=['POST'])
+@ app.route('/api/webhook/weekly_update', methods=['POST'])
 def weekly_update() -> Response:
     import base64
     from repository.Meal_Subscription_Repository import Meal_Subscription_Repository
@@ -112,7 +184,7 @@ def weekly_update() -> Response:
         return Response(status=401)
 
 
-@app.route('/api/webhook/email/order_summary/<int:email_number>', methods=['POST'])
+@ app.route('/api/webhook/email/order_summary/<int:email_number>', methods=['POST'])
 def email_webhook(email_number: int) -> Response:
     from repository.Meal_Subscription_Invoice_Repository import Meal_Subscription_Invoice_Repository
     from service.Extended_Meal_Subscription_Invoice_Service import Extended_Meal_Subscription_Invoice_Service
@@ -143,7 +215,7 @@ def email_webhook(email_number: int) -> Response:
         return Response(status=401)
 
 
-@app.route('/api/webhook', methods=['POST'])
+@ app.route('/api/webhook', methods=['POST'])
 def webhook() -> Response:
     from stripe import Event
 
@@ -720,19 +792,6 @@ def extended_usda_ingredient() -> Response:
         return Response(status=405)
 
 
-@ app.route("/api/usda_ingredient", methods=["GET"])
-def usda_ingredient() -> Response:
-    from service.USDA_Ingredient_Service import USDA_Ingredient_Service
-    from repository.USDA_Ingredient_Repository import USDA_Ingredient_Repository
-
-    if request.method == "GET":
-        usda_ingredient_dtos = [x.dto_serialize()
-                                for x in USDA_Ingredient_Service(usda_ingredient_repository=USDA_Ingredient_Repository(db=db)).get_usda_ingredients()]
-        return jsonify(usda_ingredient_dtos), 200
-    else:
-        return Response(status=405)
-
-
 @ app.route("/api/nutrient", methods=["GET"])
 def nutrient() -> Response:
     from service.Nutrient_Service import Nutrient_Service
@@ -826,19 +885,6 @@ def recipe_ingredient_nutrient() -> Response:
         return Response(status=405)
 
 
-@ app.route("/api/usda_ingredient_portion", methods=["GET"])
-def usda_ingredient_portion() -> Response:
-    from service.USDA_Ingredient_Portion_Service import USDA_Ingredient_Portion_Service
-    from repository.USDA_Ingredient_Portion_Repository import USDA_Ingredient_Portion_Repository
-
-    if request.method == "GET":
-        usda_ingredient_portion_dtos = [x.dto_serialize(
-        ) for x in USDA_Ingredient_Portion_Service(usda_ingredient_portion_repository=USDA_Ingredient_Portion_Repository(db=db)).get_usda_ingredient_portions()]
-        return jsonify(usda_ingredient_portion_dtos), 200
-    else:
-        return Response(status=405)
-
-
 @ app.route("/api/usda_ingredient_nutrient", methods=["GET"])
 def usda_ingredient_nutrient() -> Response:
     from service.USDA_Ingredient_Nutrient_Service import USDA_Ingredient_Nutrient_Service
@@ -899,7 +945,7 @@ def dietary_restrictions() -> Response:
         return Response(status=405)
 
 
-@ app.route("/api/meal", methods=["GET", "POST"])
+@ app.route('/api/meal', methods=["GET", "POST", "DELETE"])
 def meal() -> Response:
     from service.Meal_Service import Meal_Service
     from repository.Meal_Repository import Meal_Repository
@@ -914,6 +960,12 @@ def meal() -> Response:
         Meal_Service(meal_repository=Meal_Repository(
             db=db)).create_meal(meal_dto=meal_dto)
         return Response(status=201)
+    elif request.method == "DELETE":
+        from models import wipe_meal_data
+        meal_id = request.args.get('meal_id')
+        meal_uuid = UUID(meal_id)
+        wipe_meal_data(meal_id=meal_uuid)
+        return Response(status=204, response='Wiped meal data')
     else:
         return Response(status=405)
 
