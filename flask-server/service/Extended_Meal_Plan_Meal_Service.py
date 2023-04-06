@@ -20,6 +20,14 @@ class Extended_Meal_Plan_Meal_Service(Meal_Plan_Meal_Service):
         else:
             return None
 
+    def get_specific_extended_meal_plan_meals(self, meal_plan_id: UUID) -> Optional[list['Extended_Meal_Plan_Meal_Domain']]:
+        meal_plan_meals: Optional[list['Meal_Plan_Meal_Model']
+                                  ] = self.meal_plan_meal_repository.get_meal_plan_meals(meal_plan_id=meal_plan_id)
+        if meal_plan_meals:
+            return [Extended_Meal_Plan_Meal_Domain(meal_plan_meal_model=x) for x in meal_plan_meals]
+        else:
+            return None
+
     def compute_new_meal_plan_meal(self, meal_plan_meal_id: UUID, updated_recipe: list['Extended_Recipe_Ingredient_DTO']) -> Extended_Meal_Plan_Meal_Domain:
         unaltered_extended_meal_plan_meal_domain = self.get_extended_meal_plan_meal(
             meal_plan_meal_id=meal_plan_meal_id)

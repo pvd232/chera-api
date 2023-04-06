@@ -12,7 +12,6 @@ class USDA_Ingredient_Portion_DTO(Base_DTO):
             self.usda_ingredient_id: str = usda_ingredient_portion_json["usda_ingredient_id"]
             self.fda_portion_id: str = usda_ingredient_portion_json["fda_portion_id"]
             self.non_metric_unit: str = usda_ingredient_portion_json["non_metric_unit"]
-            self.unit: str = usda_ingredient_portion_json["unit"]
             self.grams_per_non_metric_unit: float = float(usda_ingredient_portion_json[
                 "grams_per_non_metric_unit"])
             self.portion_description: str = usda_ingredient_portion_json["portion_description"]
@@ -24,7 +23,6 @@ class USDA_Ingredient_Portion_DTO(Base_DTO):
             self.usda_ingredient_id: str = usda_ingredient_portion_domain.usda_ingredient_id
             self.fda_portion_id: str = usda_ingredient_portion_domain.fda_portion_id
             self.non_metric_unit: str = usda_ingredient_portion_domain.non_metric_unit
-            self.unit: str = usda_ingredient_portion_domain.unit
             self.grams_per_non_metric_unit: float = usda_ingredient_portion_domain.grams_per_non_metric_unit
             self.portion_description: str = usda_ingredient_portion_domain.portion_description
             self.is_imperial: bool = usda_ingredient_portion_domain.is_imperial

@@ -41,24 +41,36 @@ def get_nutrients(nutrient_list: list[Nutrient_Domain], usda_ingredient_id: str,
 
 
 def get_portions(portion_list: list[dict], imperial_units: list[Imperial_Unit_Domain], usda_ingredient_id: str, usda_data_type: str) -> list[USDA_Ingredient_Portion_Domain]:
+    is_imperial = True
     portions_to_return: list[USDA_Ingredient_Portion_Domain] = []
-    imperial_units_dict = {}
-    for imperial_unit in imperial_units:
-        imperial_units_dict[imperial_unit.id] = imperial_unit
-    if usda_data_type == "Survey (FNDDS)":
-        regular_non_metric_units_added = {}
+    if usda_data_type == "Survey (FNDDS)" or usda_data_type == 'SR Legacy':
         for portion in portion_list:
             fda_portion_id = portion["id"]
             portion_amount = portion["gramWeight"]
-            usda_portion_description = portion["portionDescription"]
+
+            if usda_data_type == "Survey (FNDDS)":
+                usda_portion_description = portion["portionDescription"]
+            else:
+                usda_portion_description = portion["modifier"]
             non_metric_unit: str = usda_portion_description.split()[-1]
             is_non_specified_portion = usda_portion_description.find(
                 'not specified')
             is_guideline_amount = usda_portion_description.find(
                 'Guideline amount per')
-            # Regular metric unit
-            if non_metric_unit in imperial_units_dict:
-                is_imperial = True
+            if is_non_specified_portion == -1 and is_guideline_amount == -1:
+                is_imperial = False
+                for imperial_unit in imperial_units:
+                    if usda_portion_description.find(
+                            imperial_unit.id) != -1:
+                        is_imperial = True
+                non_metric_unit_string_list: list[str] = usda_portion_description.split(
+                )
+
+                # Remove the quantity
+                if non_metric_unit_string_list[0].isnumeric():
+                    non_metric_unit_string_list.pop(0)
+                non_metric_unit = ' '.join(
+                    non_metric_unit_string_list)
                 new_portion_dto = USDA_Ingredient_Portion_DTO(usda_ingredient_portion_json={
                     "id": str(uuid4()),
                     "usda_ingredient_id": usda_ingredient_id,
@@ -68,91 +80,39 @@ def get_portions(portion_list: list[dict], imperial_units: list[Imperial_Unit_Do
                     "grams_per_non_metric_unit": portion_amount,
                     "portion_description": usda_portion_description,
                     "usda_data_type": usda_data_type,
-                    "is_imperial": is_imperial
+                    "is_imperial": is_imperial,
+                    "custom_value": False
                 }
                 )
                 new_usda_portion = USDA_Ingredient_Portion_Domain(
                     usda_ingredient_portion_object=new_portion_dto)
                 portions_to_return.append(
                     new_usda_portion)
-                regular_non_metric_units_added[non_metric_unit] = ""
-            # Irregular units i.e. tortilla
-            # All USDA ingredients have one portion that is "Quantity not specified" which is useless"
-            elif is_non_specified_portion == -1 and is_guideline_amount == -1:
-                non_metric_unit_to_add = non_metric_unit
-                is_imperial = False
-                should_add_unit = True
-                for imperial_unit in imperial_units:
-                    # Irregular units can still have the substring i.e. 1 cup of peanuts etc. inside the string
-                    test_if_imperial = usda_portion_description.find(
-                        imperial_unit.id)
-                    # Substring exists
-                    if test_if_imperial != -1:
-                        is_imperial = True
-                        non_metric_unit_to_add = imperial_unit.id
-
-                        # If the substring has already been added, check if the new one is NFS, which is more accurate
-                        if imperial_unit.id in regular_non_metric_units_added:
-                            # Dont add a duplicate portion
-                            should_add_unit = False
-                            is_nfs_portion = usda_portion_description.find(
-                                "NFS")
-                            if is_nfs_portion != -1:
-                                portion_to_update = [
-                                    x for x in portions_to_return if x.non_metric_unit == imperial_unit.id][0]
-                                portion_to_update.grams_per_non_metric_unit = portion_amount
-                                portion_to_update.portion_description = usda_portion_description
-
-                if should_add_unit:
-                    if is_imperial:
-                        regular_non_metric_units_added[non_metric_unit_to_add] = ""
-                    else:
-                        # If the unit isnt imperial then it is a non standard unit and should include all elements of the description except for the quantity i.e. 1 large tortilla
-                        non_metric_unit_string_list = usda_portion_description.split()
-
-                        # Remove the quantity
-                        non_metric_unit_string_list.pop(0)
-
-                        non_metric_unit_to_add = ' '.join(
-                            non_metric_unit_string_list)
-                    new_portion_dto = USDA_Ingredient_Portion_DTO(usda_ingredient_portion_json={
-                        "id": str(uuid4()),
-                        "usda_ingredient_id": usda_ingredient_id,
-                        "fda_portion_id": fda_portion_id,
-                        "non_metric_unit": non_metric_unit_to_add,
-                        "unit": "g",
-                        "grams_per_non_metric_unit": portion_amount,
-                        "portion_description": usda_portion_description,
-                        "usda_data_type": usda_data_type,
-                        "is_imperial": is_imperial
-                    }
-                    )
-                    new_usda_portion = USDA_Ingredient_Portion_Domain(
-                        usda_ingredient_portion_object=new_portion_dto)
-                    portions_to_return.append(
-                        new_usda_portion)
     elif usda_data_type == "Foundation":
+        imperial_units_dict = {}
+        for imperial_unit in imperial_units:
+            imperial_units_dict[imperial_unit.id] = imperial_unit
         for portion in portion_list:
-            non_metric_unit_to_add = portion['measureUnit']['name']
+            non_metric_unit = portion['measureUnit']['name']
             portion_amount = portion['gramWeight']
             fda_portion_id = portion["id"]
             usda_portion_description = ''
-            if non_metric_unit_to_add in imperial_units_dict:
+            if non_metric_unit in imperial_units_dict:
                 is_imperial = True
             new_portion_dto = USDA_Ingredient_Portion_DTO(usda_ingredient_portion_json={
                 "id": str(uuid4()),
                 "usda_ingredient_id": usda_ingredient_id,
                 "fda_portion_id": fda_portion_id,
-                "non_metric_unit": non_metric_unit_to_add,
+                "non_metric_unit": non_metric_unit,
                 "unit": "g",
-                        "grams_per_non_metric_unit": portion_amount,
-                        "portion_description": usda_portion_description,
-                        "usda_data_type": usda_data_type,
-                        "is_imperial": is_imperial
+                "grams_per_non_metric_unit": portion_amount,
+                "portion_description": usda_portion_description,
+                "usda_data_type": usda_data_type,
+                "is_imperial": is_imperial,
+                "custom_value": False
             }
             )
             portions_to_return.append(new_portion_dto)
-
     return portions_to_return
 
 
@@ -212,9 +172,12 @@ class USDA_Nutrient_Mapper_DTO(object):
         if vitamin_e_exists:
             vitamin_e_natural = usda_nutrient_dict_by_name.get(
                 "Vitamin E (alpha-tocopherol)")["amount"]
-
-            vitamin_e_added = usda_nutrient_dict_by_name.get("Vitamin E, added")[
-                "amount"]
+            vitamin_e_added = 0
+            vitamin_e_added_exists = usda_nutrient_dict_by_name.get(
+                "Vitamin E, added")
+            if vitamin_e_added_exists:
+                vitamin_e_added = usda_nutrient_dict_by_name.get("Vitamin E, added")[
+                    "amount"]
 
             vitamin_e = vitamin_e_natural + vitamin_e_added
         vitamin_e_dto = USDA_Ingredient_Nutrient_DTO(usda_ingredient_nutrient_json={

@@ -644,8 +644,6 @@ class USDA_Ingredient_Portion_Model(db.Model):
         db.String(80),  nullable=False)
     non_metric_unit = db.Column(
         db.String(80),  nullable=False)
-    unit = db.Column(db.String(80),
-                     nullable=False)
     grams_per_non_metric_unit = db.Column(db.Float(), nullable=False)
     portion_description = db.Column(db.String(80),
                                     nullable=False)
@@ -659,7 +657,6 @@ class USDA_Ingredient_Portion_Model(db.Model):
         self.usda_ingredient_id = usda_ingredient_portion_domain.usda_ingredient_id
         self.fda_portion_id = usda_ingredient_portion_domain.fda_portion_id
         self.non_metric_unit = usda_ingredient_portion_domain.non_metric_unit
-        self.unit = usda_ingredient_portion_domain.unit
         self.grams_per_non_metric_unit = usda_ingredient_portion_domain.grams_per_non_metric_unit
         self.portion_description = usda_ingredient_portion_domain.portion_description
         self.is_imperial = usda_ingredient_portion_domain.is_imperial
@@ -1114,18 +1111,19 @@ def wipe_all_meal_related_data() -> None:
 def wipe_meal_data(meal_id: UUID) -> None:
     meal = db.session.query(Meal_Model).filter(
         Meal_Model.id == meal_id).first()
-    meal_plan_meals = db.session.query(Meal_Plan_Meal_Model).filter(
-        Meal_Plan_Meal_Model.meal_id == meal_id).all()
-    for meal_plan_meal in meal_plan_meals:
-        for recipe_ingredient in meal_plan_meal.recipe:
-            for recipe_ingredient_nutrient in recipe_ingredient.nutrients:
-                db.session.delete(recipe_ingredient_nutrient)
-            db.session.delete(recipe_ingredient)
-        db.session.delete(meal_plan_meal)
-    for meal_dietary_restriction in meal.dietary_restrictions:
-        db.session.delete(meal_dietary_restriction)
-    db.session.delete(meal)
-    db.session.commit()
+    if meal:
+        meal_plan_meals = db.session.query(Meal_Plan_Meal_Model).filter(
+            Meal_Plan_Meal_Model.meal_id == meal_id).all()
+        for meal_plan_meal in meal_plan_meals:
+            for recipe_ingredient in meal_plan_meal.recipe:
+                for recipe_ingredient_nutrient in recipe_ingredient.nutrients:
+                    db.session.delete(recipe_ingredient_nutrient)
+                db.session.delete(recipe_ingredient)
+            db.session.delete(meal_plan_meal)
+        for meal_dietary_restriction in meal.dietary_restrictions:
+            db.session.delete(meal_dietary_restriction)
+        db.session.delete(meal)
+        db.session.commit()
 
 
 def wipe_all_usda_ingredient_related_data(usda_ingredient_id: str) -> None:

@@ -9,7 +9,6 @@ class USDA_Ingredient_Portion_Domain(Base_Domain):
         self.usda_ingredient_id = usda_ingredient_portion_object.usda_ingredient_id
         self.fda_portion_id = usda_ingredient_portion_object.fda_portion_id
         self.non_metric_unit = usda_ingredient_portion_object.non_metric_unit
-        self.unit = usda_ingredient_portion_object.unit
         self.grams_per_non_metric_unit = usda_ingredient_portion_object.grams_per_non_metric_unit
         self.portion_description = usda_ingredient_portion_object.portion_description
         self.is_imperial = usda_ingredient_portion_object.is_imperial

@@ -39,7 +39,6 @@ def usda_ingredient_portion() -> Response:
             "usda_ingredient_id": portion_data['usda_ingredient_id'],
             "fda_portion_id": portion_data['fda_portion_id'],
             "non_metric_unit": portion_data['non_metric_unit'],
-            "unit": portion_data['unit'],
             "grams_per_non_metric_unit": portion_data['grams_per_non_metric_unit'],
             "portion_description": portion_data['portion_description'],
             "is_imperial": portion_data['is_imperial'],
@@ -56,8 +55,9 @@ def usda_ingredient_portion() -> Response:
         return Response(status=405)
 
 
-@app.route('/api/usda_ingredient', methods=["POST", "DELETE"])
-def usda_ingredient() -> Response:
+@app.route('/api/usda_ingredient/<string:usda_ingredient_id>', methods=["DELETE"])
+@app.route('/api/usda_ingredient', defaults={'usda_ingredient_id': None}, methods=["POST"])
+def usda_ingredient(usda_ingredient_id: str) -> Response:
     from models import USDA_api_key
     from repository.Imperial_Unit_Repository import Imperial_Unit_Repository
     from repository.Nutrient_Repository import Nutrient_Repository
@@ -83,7 +83,6 @@ def usda_ingredient() -> Response:
             usda_ingredient_name = usda_ingredient['name']
             usda_ingredient_data = USDA_API_Service(
                 USDA_api_key=USDA_api_key).get_ingredient(fdc_id=fdc_id)
-
             mapped_usda_ingredient_data = USDA_Nutrient_Mapper_DTO(
                 usda_ingredient_id=usda_ingredient_id, usda_ingredient_name=usda_ingredient_name, fdc_id=fdc_id, usda_ingredient_data=usda_ingredient_data, nutrients_list=nutrients, imperial_units=imperial_units)
 
@@ -99,10 +98,10 @@ def usda_ingredient() -> Response:
 
         return Response(status=201)
 
-    elif request.method == "DELETE":
+    elif request.method == "DELETE" and usda_ingredient_id is not None:
         from models import wipe_all_usda_ingredient_related_data
         wipe_all_usda_ingredient_related_data(
-            usda_ingredient_id=request.args.get('id'))
+            usda_ingredient_id=usda_ingredient_id)
         return Response(status=200)
 
 
@@ -945,10 +944,11 @@ def dietary_restrictions() -> Response:
         return Response(status=405)
 
 
-@ app.route('/api/meal', methods=["GET", "POST", "DELETE"])
-def meal() -> Response:
-    from service.Meal_Service import Meal_Service
+@ app.route('/api/meal/<string:meal_id>', methods=["DELETE"])
+@ app.route('/api/meal', defaults={'meal_id': None}, methods=["GET", "POST"])
+def meal(meal_id: Optional[str]) -> Response:
     from repository.Meal_Repository import Meal_Repository
+    from service.Meal_Service import Meal_Service
     from dto.Meal_DTO import Meal_DTO
     if request.method == "GET":
         meals = [x.serialize() for x in Meal_Service(
@@ -962,7 +962,6 @@ def meal() -> Response:
         return Response(status=201)
     elif request.method == "DELETE":
         from models import wipe_meal_data
-        meal_id = request.args.get('meal_id')
         meal_uuid = UUID(meal_id)
         wipe_meal_data(meal_id=meal_uuid)
         return Response(status=204, response='Wiped meal data')
@@ -978,16 +977,29 @@ def extended_meal_plan_meal() -> Response:
     from dto.Extended_Meal_Plan_Meal_DTO import Extended_Meal_Plan_Meal_DTO
     from dto.Recipe_Ingredient_DTO import Recipe_Ingredient_DTO
     if request.method == "GET":
-        extended_meal_plan_meals: Optional[list[Extended_Meal_Plan_Meal_Domain]] = Extended_Meal_Plan_Meal_Service(meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
-                                                                                                                   ).get_extended_meal_plan_meals()
-        if extended_meal_plan_meals:
-            meal_plan_meal_DTOs = [Extended_Meal_Plan_Meal_DTO(extended_meal_plan_meal_domain=x)
-                                   for x in extended_meal_plan_meals]
-            serialized_meal_plan_meal_DTOs = [x.serialize()
-                                              for x in meal_plan_meal_DTOs]
-            return jsonify(serialized_meal_plan_meal_DTOs), 200
+        meal_plan_id = request.args.get('meal_plan_id')
+        if not meal_plan_id:
+            extended_meal_plan_meals: Optional[list[Extended_Meal_Plan_Meal_Domain]] = Extended_Meal_Plan_Meal_Service(meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+                                                                                                                       ).get_extended_meal_plan_meals()
+            if extended_meal_plan_meals:
+                meal_plan_meal_DTOs = [Extended_Meal_Plan_Meal_DTO(extended_meal_plan_meal_domain=x)
+                                       for x in extended_meal_plan_meals]
+                serialized_meal_plan_meal_DTOs = [x.serialize()
+                                                  for x in meal_plan_meal_DTOs]
+                return jsonify(serialized_meal_plan_meal_DTOs), 200
+            else:
+                return Response(status=404)
         else:
-            return Response(status=404)
+            extended_meal_plan_meals: Optional[list[Extended_Meal_Plan_Meal_Domain]] = Extended_Meal_Plan_Meal_Service(meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+                                                                                                                       ).get_specific_extended_meal_plan_meals(meal_plan_id=meal_plan_id)
+            if extended_meal_plan_meals:
+                meal_plan_meal_DTOs = [Extended_Meal_Plan_Meal_DTO(extended_meal_plan_meal_domain=x)
+                                       for x in extended_meal_plan_meals]
+                serialized_meal_plan_meal_DTOs = [x.serialize()
+                                                  for x in meal_plan_meal_DTOs]
+                return jsonify(serialized_meal_plan_meal_DTOs), 200
+            else:
+                return Response(status=404)
     elif request.method == "PUT":
         ephemeral_meal_plan_meal = json.loads(request.data)
 
@@ -1005,7 +1017,7 @@ def extended_meal_plan_meal() -> Response:
         return Response(status=405)
 
 
-@ app.route("/api/meal_plan_meal", methods=["GET", "PUT", "POST"])
+@ app.route("/api/meal_plan_meal", methods=["PUT", "POST"])
 def meal_plan_meal() -> Response:
     from service.Meal_Plan_Meal_Service import Meal_Plan_Meal_Service
     from service.Recipe_Ingredient_Service import Recipe_Ingredient_Service
@@ -1014,22 +1026,8 @@ def meal_plan_meal() -> Response:
     from repository.Meal_Plan_Meal_Repository import Meal_Plan_Meal_Repository
     from repository.Recipe_Ingredient_Repository import Recipe_Ingredient_Repository
     from repository.USDA_Ingredient_Repository import USDA_Ingredient_Repository
-    from domain.Meal_Plan_Meal_Domain import Meal_Plan_Meal_Domain
     from dto.Meal_Plan_Meal_DTO import Meal_Plan_Meal_DTO
-    if request.method == "GET":
-        meal_plan_id: str | None = request.args.get("meal_plan_id")
-        meal_plan_meals: Optional[list[Meal_Plan_Meal_Domain]] = Meal_Plan_Meal_Service(meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
-                                                                                        ).get_meal_plan_meals(meal_plan_id=meal_plan_id)
-        if meal_plan_meals:
-            meal_plan_meal_dtos = [Meal_Plan_Meal_DTO(meal_plan_meal_domain=x)
-                                   for x in meal_plan_meals]
-            serialized_meal_plan_meal_dtos = [x.serialize()
-                                              for x in meal_plan_meal_dtos]
-            return jsonify(serialized_meal_plan_meal_dtos), 200
-        else:
-            return Response(status=404)
-
-    elif request.method == "PUT":
+    if request.method == "PUT":
         meal_plan_meals_json = json.loads(request.data)
         Meal_Plan_Meal_Service(meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)).update_meal_plan_meals(
             meal_plan_meals=meal_plan_meals_json, recipe_ingredient_service=Recipe_Ingredient_Service(recipe_ingredient_repository=Recipe_Ingredient_Repository(db=db)), usda_ingredient_service=USDA_Ingredient_Service(usda_ingredient_repository=USDA_Ingredient_Repository(db=db)), continuity_service=Continuity_Service())
