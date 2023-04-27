@@ -15,7 +15,7 @@ class Schedule_Snack_Repository(Base_Repository):
         for schedule_snack_domain in schedule_snack_domains:
             new_schedule_snack = Schedule_Snack_Model(
                 id=schedule_snack_domain.id,
-                meal_id=schedule_snack_domain.meal_id,
+                snack_id=schedule_snack_domain.snack_id,
                 meal_subscription_id=schedule_snack_domain.meal_subscription_id,
             )
             self.db.session.add(new_schedule_snack)

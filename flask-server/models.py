@@ -7,7 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship, Mapped
 from sqlalchemy.dialects.postgresql import UUID
 import os
-from sqlalchemy.schema import DropTable
+from sqlalchemy.schema import DropTable, CheckConstraint
 from sqlalchemy.ext.compiler import compiles
 from werkzeug.security import generate_password_hash
 import stripe
@@ -38,6 +38,10 @@ if TYPE_CHECKING:
     from domain.Recipe_Ingredient_Nutrient_Domain import (
         Recipe_Ingredient_Nutrient_Domain,
     )
+    from domain.Snack_Domain import Snack_Domain
+    from domain.Order_Snack_Domain import Order_Snack_Domain
+    from domain.Scheduled_Order_Snack_Domain import Scheduled_Order_Snack_Domain
+
     from dto.USDA_Nutrient_Mapper_DTO import USDA_Nutrient_Mapper_DTO
 
 load_dotenv()
@@ -456,7 +460,7 @@ class Meal_Plan_Snack_Model(db.Model):
 
     def __init__(self, meal_plan_snack_domain: "Meal_Plan_Snack_Domain") -> None:
         self.id = meal_plan_snack_domain.id
-        self.meal_id = meal_plan_snack_domain.meal_id
+        self.snack_id = meal_plan_snack_domain.snack_id
         self.meal_plan_id = meal_plan_snack_domain.meal_plan_id
         self.active = meal_plan_snack_domain.active
 
@@ -553,6 +557,9 @@ class Meal_Subscription_Invoice_Model(db.Model):
     order_meals: Mapped[list[Order_Meal_Model]] = relationship(
         "Order_Meal_Model", lazy=True
     )
+    order_snacks: Mapped[list[Order_Snack_Model]] = relationship(
+        "Order_Snack_Model", lazy=True
+    )
     meal_shipments: Mapped[list[Meal_Shipment_Model]] = relationship(
         "Meal_Shipment_Model", lazy=True
     )
@@ -613,6 +620,42 @@ class Staged_Schedule_Meal_Model(db.Model):
         self.id = staged_schedule_meal_domain.id
         self.meal_id = staged_schedule_meal_domain.meal_id
         self.staged_client_id = staged_schedule_meal_domain.staged_client_id
+
+
+class Scheduled_Order_Snack_Model(db.Model):
+    __tablename__ = "scheduled_order_snack"
+    id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
+    meal_subscription_id = db.Column(
+        UUID(as_uuid=True), db.ForeignKey("meal_subscription.id"), nullable=False
+    )
+    snack_id = db.Column(UUID(as_uuid=True), db.ForeignKey("snack.id"), nullable=False)
+    delivery_date = db.Column(db.Float(), nullable=False)
+    delivery_skipped = db.Column(db.Boolean(), default=False, nullable=False)
+    delivery_paused = db.Column(db.Boolean(), default=False, nullable=False)
+    datetime = db.Column(db.Float(), nullable=False)
+
+    associated_snack = relationship("Snack_Model", lazy="joined")
+
+    def __init__(
+        self, scheduled_order_snack_domain: "Scheduled_Order_Snack_Domain"
+    ) -> None:
+        self.id = scheduled_order_snack_domain.id
+        self.meal_subscription_id = scheduled_order_snack_domain.meal_subscription_id
+        self.snack_id = scheduled_order_snack_domain.snack_id
+        self.delivery_date = scheduled_order_snack_domain.delivery_date
+        self.delivery_skipped = scheduled_order_snack_domain.delivery_skipped
+        self.delivery_paused = scheduled_order_snack_domain.delivery_paused
+        self.datetime = scheduled_order_snack_domain.datetime
+
+
+class Schedule_Snack_Model(db.Model):
+    __tablename__ = "schedule_snack"
+    id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
+    snack_id = db.Column(UUID(as_uuid=True), db.ForeignKey("snack.id"), nullable=False)
+    meal_subscription_id = db.Column(
+        UUID(as_uuid=True), db.ForeignKey("meal_subscription.id"), nullable=False
+    )
+    associated_snack = relationship("Snack_Model", lazy="joined")
 
 
 class Meal_Subscription_Model(db.Model):
@@ -704,6 +747,11 @@ class USDA_Ingredient_Model(db.Model):
 
 class Recipe_Ingredient_Model(db.Model):
     __tablename__ = "recipe_ingredient"
+    __table_args__ = (
+        CheckConstraint(
+            "NOT(meal_plan_meal_id IS NULL AND meal_plan_snack_id IS NULL)"
+        ),
+    )
     id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
     usda_ingredient_id = db.Column(
         db.String(80),
@@ -714,8 +762,12 @@ class Recipe_Ingredient_Model(db.Model):
     meal_plan_meal_id = db.Column(
         UUID(as_uuid=True),
         db.ForeignKey("meal_plan_meal.id"),
-        primary_key=True,
-        nullable=False,
+        nullable=True,
+    )
+    meal_plan_snack_id = db.Column(
+        UUID(as_uuid=True),
+        db.ForeignKey("meal_plan_snack.id"),
+        nullable=True,
     )
     usda_ingredient_portion_id = db.Column(
         UUID(as_uuid=True), db.ForeignKey("usda_ingredient_portion.id"), nullable=False
@@ -734,6 +786,7 @@ class Recipe_Ingredient_Model(db.Model):
         self.id = recipe_ingredient_domain.id
         self.usda_ingredient_id = recipe_ingredient_domain.usda_ingredient_id
         self.meal_plan_meal_id = recipe_ingredient_domain.meal_plan_meal_id
+        self.meal_plan_snack_id = recipe_ingredient_domain.meal_plan_snack_id
         self.usda_ingredient_portion_id = (
             recipe_ingredient_domain.usda_ingredient_portion_id
         )
@@ -1313,6 +1366,22 @@ def wipe_meal_data(meal_id: UUID) -> None:
             db.session.delete(meal_dietary_restriction)
         db.session.delete(meal)
         db.session.commit()
+
+
+def wipe_snack_data(snack_id: UUID) -> None:
+    snack = db.session.query(Snack_Model).filter(Snack_Model.id == snack_id).first()
+    if snack:
+        snack_plan_snacks = (
+            db.session.query(Meal_Plan_Snack_Model)
+            .filter(Meal_Plan_Snack_Model.snack_id == snack_id)
+            .all()
+        )
+        for snack_plan_snack in snack_plan_snacks:
+            for recipe_ingredient in snack_plan_snack.recipe:
+                for recipe_ingredient_nutrient in recipe_ingredient.nutrients:
+                    db.session.delete(recipe_ingredient_nutrient)
+                db.session.delete(recipe_ingredient)
+            db.session.delete(snack_plan_snack)
 
 
 def wipe_all_usda_ingredient_related_data(usda_ingredient_id: str) -> None:

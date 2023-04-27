@@ -182,6 +182,16 @@ def b() -> Response:
             return Response(status=401)
 
 
+@app.route("/api/update_table")
+def update_table() -> Response:
+    from models import connection_string
+    from helpers.update_table import update_table
+
+    update_table(database_url=connection_string, table_name="recipe_ingredient")
+    db.metadata.create_all(db.engine)
+    return Response(status=204)
+
+
 @app.route("/api/drop_table")
 def drop_table() -> Response:
     from models import connection_string
@@ -1399,6 +1409,599 @@ def meal_plan_meal() -> Response:
         return Response(status=405)
 
 
+@app.route("/api/extended_scheduled_order_meal", methods=["GET"])
+def extended_scheduled_order_meal() -> Response:
+    from service.Extended_Scheduled_Order_Meal_Service import (
+        Extended_Scheduled_Order_Meal_Service,
+    )
+    from repository.Scheduled_Order_Meal_Repository import (
+        Scheduled_Order_Meal_Repository,
+    )
+    from domain.Extended_Scheduled_Order_Meal_Domain import (
+        Extended_Scheduled_Order_Meal_Domain,
+    )
+    from dto.Extended_Scheduled_Order_Meal_DTO import Extended_Scheduled_Order_Meal_DTO
+
+    meal_subscription_id: str = request.args.get("meal_subscription_id")
+    if request.method == "GET":
+        extended_scheduled_order_meal_domains: Optional[
+            list[Extended_Scheduled_Order_Meal_Domain]
+        ] = Extended_Scheduled_Order_Meal_Service(
+            scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(db=db)
+        ).get_upcoming_extended_scheduled_order_meals(
+            meal_subscription_id=meal_subscription_id
+        )
+        if extended_scheduled_order_meal_domains:
+            extended_scheduled_order_meal_dtos: list[
+                Extended_Scheduled_Order_Meal_DTO
+            ] = [
+                Extended_Scheduled_Order_Meal_DTO(
+                    extended_scheduled_order_meal_domain=x
+                )
+                for x in extended_scheduled_order_meal_domains
+            ]
+            serialized_extended_scheduled_order_meal_dtos: list[dict] = [
+                x.serialize() for x in extended_scheduled_order_meal_dtos
+            ]
+            return jsonify(serialized_extended_scheduled_order_meal_dtos), 200
+        else:
+            return Response(status=204)
+    else:
+        return Response(status=405)
+
+
+@app.route("/api/scheduled_order_meal", methods=["GET", "POST", "PUT", "DELETE"])
+def scheduled_order_meal() -> Response:
+    from service.Date_Service import Date_Service
+    from service.Scheduled_Order_Meal_Service import Scheduled_Order_Meal_Service
+    from repository.Scheduled_Order_Meal_Repository import (
+        Scheduled_Order_Meal_Repository,
+    )
+    from domain.Scheduled_Order_Meal_Domain import Scheduled_Order_Meal_Domain
+    from dto.Scheduled_Order_Meal_DTO import Scheduled_Order_Meal_DTO
+
+    if request.method == "POST":
+        scheduled_order_meals_json: list[dict] = json.loads(request.data)
+        scheduled_order_meal_dtos = [
+            Scheduled_Order_Meal_DTO(scheduled_order_meal_json=x)
+            for x in scheduled_order_meals_json
+        ]
+        Scheduled_Order_Meal_Service(
+            scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(db=db)
+        ).create_scheduled_order_meals(
+            scheduled_order_meal_dtos=scheduled_order_meal_dtos
+        )
+        return Response(status=204)
+    elif request.method == "GET":
+        meal_subscription_id: str = request.args.get("meal_subscription_id")
+        scheduled_order_meal_domains: Optional[
+            list[Scheduled_Order_Meal_Domain]
+        ] = Scheduled_Order_Meal_Service(
+            scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(db=db)
+        ).get_scheduled_order_meals(
+            meal_subscription_id=meal_subscription_id
+        )
+        if scheduled_order_meal_domains:
+            scheduled_order_meal_dtos = [
+                Scheduled_Order_Meal_DTO(scheduled_order_meal_domain=x)
+                for x in scheduled_order_meal_domains
+            ]
+            serialized_scheduled_order_meal_dtos: list[dict] = [
+                x.serialize() for x in scheduled_order_meal_dtos
+            ]
+            return jsonify(serialized_scheduled_order_meal_dtos), 200
+        else:
+            return Response(status=404)
+    elif request.method == "PUT":
+        meal_subscription_id: Optional[str] = request.args.get("meal_subscription_id")
+        if not meal_subscription_id:
+            # Handle changes to scheduled order meals on home page
+            scheduled_order_meals_json = json.loads(request.data)
+            scheduled_order_meal_dtos = [
+                Scheduled_Order_Meal_DTO(scheduled_order_meal_json=x)
+                for x in scheduled_order_meals_json
+            ]
+            Scheduled_Order_Meal_Service(
+                scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(db=db)
+            ).update_home_page_scheduled_order_meals(
+                scheduled_order_meal_dtos=scheduled_order_meal_dtos
+            )
+        else:
+            should_pause_scheduled_order_meals: bool = (
+                request.headers.get("update") == "pause"
+            )
+            if should_pause_scheduled_order_meals:
+                Scheduled_Order_Meal_Service(
+                    scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(
+                        db=db
+                    )
+                ).pause_scheduled_order_meals(meal_subscription_id=meal_subscription_id)
+            else:
+                Scheduled_Order_Meal_Service(
+                    scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(
+                        db=db
+                    )
+                ).unpause_scheduled_order_meals(
+                    meal_subscription_id=meal_subscription_id
+                )
+        return Response(status=204)
+    elif request.method == "DELETE":
+        meal_subscription_id: str = request.args.get("meal_subscription_id")
+        # Check if past cutoff date and if it is the client's first week of meals
+        cutoff_date = Date_Service().get_current_week_cutoff(
+            Date_Service().get_current_week_delivery_date()
+        )
+        is_first_week = Scheduled_Order_Meal_Service(
+            scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(db=db)
+        ).check_if_first_week_of_meals(meal_subscription_id=meal_subscription_id)
+
+        Scheduled_Order_Meal_Service(
+            scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(db=db)
+        ).delete_scheduled_order_meals(
+            meal_subscription_id=meal_subscription_id,
+            cutoff_date=cutoff_date,
+            current_week_delivery_date=Date_Service().get_current_week_delivery_date(),
+            is_first_week=is_first_week,
+        )
+        return Response(status=204)
+    else:
+        return Response(status=405)
+
+
+@app.route("/api/extended_schedule_meal", methods=["GET"])
+def extended_schedule_meal() -> Response:
+    from service.Extended_Schedule_Meal_Service import Extended_Schedule_Meal_Service
+    from service.Client_Service import Client_Service
+    from repository.Schedule_Meal_Repository import Schedule_Meal_Repository
+    from repository.Client_Repository import Client_Repository
+    from domain.Extended_Schedule_Meal_Domain import Extended_Schedule_Meal_Domain
+    from dto.Extended_Schedule_Meal_DTO import Extended_Schedule_Meal_DTO
+
+    if request.method == "GET":
+        meal_subscription_id: str | None = request.args.get("meal_subscription_id")
+
+        if meal_subscription_id:
+            extended_schedule_meal_domains = Extended_Schedule_Meal_Service(
+                schedule_meal_repository=Schedule_Meal_Repository(db=db)
+            ).get_extended_schedule_meals(meal_subscription_id=meal_subscription_id)
+            extended_schedule_meal_DTOs = [
+                Extended_Schedule_Meal_DTO(extended_schedule_meal_domain=x)
+                for x in extended_schedule_meal_domains
+            ]
+            serialized_extended_schedule_meals: list[dict] = [
+                x.serialize() for x in extended_schedule_meal_DTOs
+            ]
+            return jsonify(serialized_extended_schedule_meals), 200
+
+        else:
+            dietitian_id = request.args.get("dietitian_id")
+            extended_schedule_meal_domains: list[
+                Optional[Extended_Schedule_Meal_Domain]
+            ] = Extended_Schedule_Meal_Service(
+                schedule_meal_repository=Schedule_Meal_Repository(db=db)
+            ).get_dietitian_extended_schedule_meals(
+                dietitian_id=dietitian_id,
+                client_service=Client_Service(
+                    client_repository=Client_Repository(db=db)
+                ),
+            )
+            if extended_schedule_meal_domains:
+                extended_schedule_meal_DTOs = [
+                    Extended_Schedule_Meal_DTO(extended_schedule_meal_domain=x)
+                    for x in extended_schedule_meal_domains
+                ]
+                serialized_extended_schedule_meals: list[dict] = [
+                    x.serialize() for x in extended_schedule_meal_DTOs
+                ]
+                return jsonify(serialized_extended_schedule_meals), 200
+            else:
+                return Response(status=204)
+
+    else:
+        return Response(status=405)
+
+
+@app.route("/api/schedule_meal", methods=["GET", "POST", "DELETE"])
+def schedule_meal() -> Response:
+    from service.Schedule_Meal_Service import Schedule_Meal_Service
+    from service.Client_Service import Client_Service
+    from repository.Schedule_Meal_Repository import Schedule_Meal_Repository
+    from repository.Client_Repository import Client_Repository
+    from domain.Schedule_Meal_Domain import Schedule_Meal_Domain
+    from dto.Schedule_Meal_DTO import Schedule_Meal_DTO
+
+    if request.method == "POST":
+        schedule_meals_JSON = json.loads(request.data)
+        schedule_meal_DTOs = [
+            Schedule_Meal_DTO(schedule_meal_json=x) for x in schedule_meals_JSON
+        ]
+        Schedule_Meal_Service(
+            schedule_meal_repository=Schedule_Meal_Repository(db=db)
+        ).create_schedule_meals(schedule_meal_dtos=schedule_meal_DTOs)
+        return Response(status=201)
+
+    elif request.method == "GET":
+        meal_subscription_id: str | None = request.args.get("meal_subscription_id")
+
+        if meal_subscription_id:
+            schedule_meal_domains: list[Schedule_Meal_Domain] = Schedule_Meal_Service(
+                schedule_meal_repository=Schedule_Meal_Repository(db=db)
+            ).get_schedule_meals(meal_subscription_id=meal_subscription_id)
+            schedule_meal_DTOs = [
+                Schedule_Meal_DTO(schedule_meal_domain=x) for x in schedule_meal_domains
+            ]
+            serialized_schedule_meals: list[dict] = [
+                x.serialize() for x in schedule_meal_DTOs
+            ]
+            return jsonify(serialized_schedule_meals), 200
+
+        else:
+            dietitian_id: str | None = request.args.get("dietitian_id")
+            schedule_meal_domains: list[Schedule_Meal_Domain] = Schedule_Meal_Service(
+                schedule_meal_repository=Schedule_Meal_Repository(db=db)
+            ).get_dietitian_schedule_meals(
+                dietitian_id=dietitian_id,
+                client_service=Client_Service(
+                    client_repository=Client_Repository(db=db)
+                ),
+            )
+            schedule_meal_DTOs = [
+                Schedule_Meal_DTO(schedule_meal_domain=x) for x in schedule_meal_domains
+            ]
+            serialized_schedule_meals: list[dict] = [
+                x.serialize() for x in schedule_meal_DTOs
+            ]
+            return jsonify(serialized_schedule_meals), 200
+
+    elif request.method == "DELETE":
+        meal_subscription_id = request.args.get("meal_subscription_id")
+        Schedule_Meal_Service(
+            schedule_meal_repository=Schedule_Meal_Repository(db=db)
+        ).delete_schedule_meals(meal_subscription_id=meal_subscription_id)
+        return Response(status=204)
+
+    else:
+        return Response(status=405)
+
+
+@app.route("/api/extended_staged_schedule_meal", methods=["GET"])
+def extended_staged_schedule_meal() -> Response:
+    from service.Extended_Staged_Schedule_Meal_Service import (
+        Extended_Staged_Schedule_Meal_Service,
+    )
+    from repository.Staged_Schedule_Meal_Repository import (
+        Staged_Schedule_Meal_Repository,
+    )
+    from domain.Extended_Staged_Schedule_Meal_Domain import (
+        Extended_Staged_Schedule_Meal_Domain,
+    )
+    from dto.Extended_Staged_Schedule_Meal_DTO import Extended_Staged_Schedule_Meal_DTO
+
+    if request.method == "GET":
+        staged_client_id: str = request.args.get("staged_client_id")
+        extended_staged_schedule_meal_domains: Optional[
+            list[Extended_Staged_Schedule_Meal_Domain]
+        ] = Extended_Staged_Schedule_Meal_Service(
+            staged_schedule_meal_repository=Staged_Schedule_Meal_Repository(db=db)
+        ).get_staged_schedule_meals(
+            staged_client_id=staged_client_id
+        )
+        if extended_staged_schedule_meal_domains:
+            staged_schedule_meal_dtos = [
+                Extended_Staged_Schedule_Meal_DTO(
+                    extended_staged_schedule_meal_domain=x
+                )
+                for x in extended_staged_schedule_meal_domains
+            ]
+            serialized_staged_schedule_meal_DTOs = [
+                x.serialize() for x in staged_schedule_meal_dtos
+            ]
+        return jsonify(serialized_staged_schedule_meal_DTOs), 200
+    else:
+        return Response(status=405)
+
+
+@app.route("/api/staged_schedule_meal", methods=["GET", "POST"])
+def staged_schedule_meal() -> Response:
+    from repository.Staged_Schedule_Meal_Repository import (
+        Staged_Schedule_Meal_Repository,
+    )
+    from service.Staged_Schedule_Meal_Service import Staged_Schedule_Meal_Service
+    from dto.Staged_Schedule_Meal_DTO import Staged_Schedule_Meal_DTO
+
+    if request.method == "POST":
+        staged_schedule_meals_JSON = json.loads(request.data)
+        staged_schedule_meal_DTOs = [
+            Staged_Schedule_Meal_DTO(staged_schedule_meal_json=x)
+            for x in staged_schedule_meals_JSON
+        ]
+        Staged_Schedule_Meal_Service(
+            staged_schedule_meal_repository=Staged_Schedule_Meal_Repository(db=db)
+        ).create_staged_schedule_meals(
+            staged_schedule_meal_dtos=staged_schedule_meal_DTOs
+        )
+        return Response(status=1)
+    else:
+        return Response(status=405)
+
+
+# ---> Snacks <--- #
+@app.route("/api/snack/<string:snack_id>", methods=["DELETE"])
+@app.route("/api/snack", defaults={"snack_id": None}, methods=["GET", "POST"])
+def snack(snack_id: Optional[str]) -> Response:
+    from repository.Snack_Repository import Snack_Repository
+    from service.Snack_Service import Snack_Service
+    from dto.Snack_DTO import Snack_DTO
+
+    if request.method == "GET":
+        snacks = [
+            x.serialize()
+            for x in Snack_Service(
+                snack_repository=Snack_Repository(db=db)
+            ).get_snacks()
+        ]
+        return jsonify(snacks), 200
+    elif request.method == "POST":
+        snack = json.loads(request.data)
+        snack_dto = Snack_DTO(snack_json=snack)
+        Snack_Service(snack_repository=Snack_Repository(db=db)).create_snack(
+            snack_dto=snack_dto
+        )
+        return Response(status=201)
+    elif request.method == "DELETE":
+        from models import wipe_snack_data
+
+        snack_uuid = UUID(snack_id)
+        wipe_snack_data(snack_id=snack_uuid)
+        return Response(status=204, response="Wiped snack data")
+    else:
+        return Response(status=405)
+
+
+@app.route("/api/schedule_snack", methods=["GET", "POST", "DELETE"])
+def schedule_snack() -> Response:
+    from service.Schedule_Snack_Service import Schedule_Snack_Service
+    from service.Client_Service import Client_Service
+    from repository.Schedule_Snack_Repository import Schedule_Snack_Repository
+    from repository.Client_Repository import Client_Repository
+    from domain.Schedule_Snack_Domain import Schedule_Snack_Domain
+    from dto.Schedule_Snack_DTO import Schedule_Snack_DTO
+
+    if request.method == "POST":
+        schedule_snacks_JSON = json.loads(request.data)
+        schedule_snack_DTOs = [
+            Schedule_Snack_DTO(schedule_snack_json=x) for x in schedule_snacks_JSON
+        ]
+        Schedule_Snack_Service(
+            schedule_snack_repository=Schedule_Snack_Repository(db=db)
+        ).create_schedule_snacks(schedule_snack_dtos=schedule_snack_DTOs)
+        return Response(status=201)
+
+    elif request.method == "GET":
+        meal_subscription_id: str | None = request.args.get("meal_subscription_id")
+
+        if meal_subscription_id:
+            schedule_snack_domains: list[
+                Schedule_Snack_Domain
+            ] = Schedule_Snack_Service(
+                schedule_snack_repository=Schedule_Snack_Repository(db=db)
+            ).get_schedule_snacks(
+                meal_subscription_id=meal_subscription_id
+            )
+            schedule_snack_DTOs = [
+                Schedule_Snack_DTO(schedule_snack_domain=x)
+                for x in schedule_snack_domains
+            ]
+            serialized_schedule_snacks: list[dict] = [
+                x.serialize() for x in schedule_snack_DTOs
+            ]
+            return jsonify(serialized_schedule_snacks), 200
+
+        else:
+            dietitian_id: str | None = request.args.get("dietitian_id")
+            schedule_snack_domains: list[
+                Schedule_Snack_Domain
+            ] = Schedule_Snack_Service(
+                schedule_snack_repository=Schedule_Snack_Repository(db=db)
+            ).get_dietitian_schedule_snacks(
+                dietitian_id=dietitian_id,
+                client_service=Client_Service(
+                    client_repository=Client_Repository(db=db)
+                ),
+            )
+            schedule_snack_DTOs = [
+                Schedule_Snack_DTO(schedule_snack_domain=x)
+                for x in schedule_snack_domains
+            ]
+            serialized_schedule_snacks: list[dict] = [
+                x.serialize() for x in schedule_snack_DTOs
+            ]
+            return jsonify(serialized_schedule_snacks), 200
+
+    elif request.method == "DELETE":
+        meal_subscription_id = request.args.get("meal_subscription_id")
+        Schedule_Snack_Service(
+            schedule_snack_repository=Schedule_Snack_Repository(db=db)
+        ).delete_schedule_snacks(meal_subscription_id=meal_subscription_id)
+        return Response(status=204)
+
+    else:
+        return Response(status=405)
+
+
+@app.route("/api/scheduled_order_snack", methods=["GET", "POST", "PUT", "DELETE"])
+def scheduled_order_snack() -> Response:
+    from service.Date_Service import Date_Service
+    from service.Scheduled_Order_Snack_Service import Scheduled_Order_Snack_Service
+    from repository.Scheduled_Order_Snack_Repository import (
+        Scheduled_Order_Snack_Repository,
+    )
+    from domain.Scheduled_Order_Snack_Domain import Scheduled_Order_Snack_Domain
+    from dto.Scheduled_Order_Snack_DTO import Scheduled_Order_Snack_DTO
+
+    if request.method == "POST":
+        scheduled_order_snacks_json: list[dict] = json.loads(request.data)
+        scheduled_order_snack_dtos = [
+            Scheduled_Order_Snack_DTO(scheduled_order_snack_json=x)
+            for x in scheduled_order_snacks_json
+        ]
+        Scheduled_Order_Snack_Service(
+            scheduled_order_snack_repository=Scheduled_Order_Snack_Repository(db=db)
+        ).create_scheduled_order_snacks(
+            scheduled_order_snack_dtos=scheduled_order_snack_dtos
+        )
+        return Response(status=201)
+    elif request.method == "GET":
+        meal_subscription_id: str = request.args.get("meal_subscription_id")
+        scheduled_order_snack_domains: Optional[
+            list[Scheduled_Order_Snack_Domain]
+        ] = Scheduled_Order_Snack_Service(
+            scheduled_order_snack_repository=Scheduled_Order_Snack_Repository(db=db)
+        ).get_scheduled_order_snacks(
+            meal_subscription_id=meal_subscription_id
+        )
+        if scheduled_order_snack_domains:
+            scheduled_order_snack_dtos = [
+                Scheduled_Order_Snack_DTO(scheduled_order_snack_domain=x)
+                for x in scheduled_order_snack_domains
+            ]
+            serialized_scheduled_order_snack_dtos: list[dict] = [
+                x.serialize() for x in scheduled_order_snack_dtos
+            ]
+            return jsonify(serialized_scheduled_order_snack_dtos), 200
+        else:
+            return Response(status=404)
+    elif request.method == "PUT":
+        meal_subscription_id: Optional[str] = request.args.get("meal_subscription_id")
+        if not meal_subscription_id:
+            # Handle changes to scheduled order meals on home page
+            scheduled_order_snacks_json = json.loads(request.data)
+            scheduled_order_snack_dtos = [
+                Scheduled_Order_Snack_DTO(scheduled_order_snack_json=x)
+                for x in scheduled_order_snacks_json
+            ]
+            Scheduled_Order_Snack_Service(
+                scheduled_order_snack_repository=Scheduled_Order_Snack_Repository(db=db)
+            ).update_home_page_scheduled_order_snacks(
+                scheduled_order_snack_dtos=scheduled_order_snack_dtos
+            )
+        else:
+            should_pause_scheduled_order_snacks: bool = (
+                request.headers.get("update") == "pause"
+            )
+            if should_pause_scheduled_order_snacks:
+                Scheduled_Order_Snack_Service(
+                    scheduled_order_snack_repository=Scheduled_Order_Snack_Repository(
+                        db=db
+                    )
+                ).pause_scheduled_order_snacks(
+                    meal_subscription_id=meal_subscription_id
+                )
+            else:
+                Scheduled_Order_Snack_Service(
+                    scheduled_order_snack_repository=Scheduled_Order_Snack_Repository(
+                        db=db
+                    )
+                ).unpause_scheduled_order_snacks(
+                    meal_subscription_id=meal_subscription_id
+                )
+        return Response(status=204)
+    elif request.method == "DELETE":
+        meal_subscription_id: str = request.args.get("meal_subscription_id")
+        # Check if past cutoff date and if it is the client's first week of meals
+        cutoff_date = Date_Service().get_current_week_cutoff(
+            Date_Service().get_current_week_delivery_date()
+        )
+        is_first_week = Scheduled_Order_Snack_Service(
+            scheduled_order_snack_repository=Scheduled_Order_Snack_Repository(db=db)
+        ).check_if_first_week_of_snacks(meal_subscription_id=meal_subscription_id)
+
+        Scheduled_Order_Snack_Service(
+            scheduled_order_snack_repository=Scheduled_Order_Snack_Repository(db=db)
+        ).delete_scheduled_order_snacks(
+            meal_subscription_id=meal_subscription_id,
+            cutoff_date=cutoff_date,
+            current_week_delivery_date=Date_Service().get_current_week_delivery_date(),
+            is_first_week=is_first_week,
+        )
+        return Response(status=204)
+    else:
+        return Response(status=405)
+
+
+@app.route("/api/order_snack", methods=["POST", "GET"])
+def order_snack() -> Response:
+    from service.Order_Snack_Service import Order_Snack_Service
+    from repository.Order_Snack_Repository import Order_Snack_Repository
+    from domain.Order_Snack_Domain import Order_Snack_Domain
+    from dto.Order_Snack_DTO import Order_Snack_DTO
+
+    if request.method == "POST":
+        order_snacks_json = json.loads(request.data)
+        order_snack_DTOs = [
+            Order_Snack_DTO(order_snack_json=x) for x in order_snacks_json
+        ]
+        Order_Snack_Service(
+            order_snack_repository=Order_Snack_Repository(db=db)
+        ).create_order_snacks(order_snack_dtos=order_snack_DTOs)
+        return Response(status=201)
+    elif request.method == "GET":
+        meal_subscription_id: str = request.args.get("meal_subscription_id")
+        order_snack_domains: Optional[list[Order_Snack_Domain]] = Order_Snack_Service(
+            order_snack_repository=Order_Snack_Repository(db=db)
+        ).get_order_snacks(meal_subscription_id=meal_subscription_id)
+        if order_snack_domains:
+            order_snack_DTOs = [
+                Order_Snack_DTO(order_snack_domain=x) for x in order_snack_domains
+            ]
+            serialized_order_snack_DTOs = [x.serialize() for x in order_snack_DTOs]
+
+            return jsonify(serialized_order_snack_DTOs), 200
+        else:
+            return Response(status=204)
+    else:
+        return Response(status=405)
+
+
+@app.route("/api/meal_plan_snack", methods=["PUT", "POST"])
+def meal_plan_snack() -> Response:
+    from service.Meal_Plan_Snack_Service import Meal_Plan_Snack_Service
+    from service.Recipe_Ingredient_Service import Recipe_Ingredient_Service
+    from service.USDA_Ingredient_Service import USDA_Ingredient_Service
+    from service.Continuity_Service import Continuity_Service
+    from repository.Meal_Plan_Snack_Repository import Meal_Plan_Snack_Repository
+    from repository.Recipe_Ingredient_Repository import Recipe_Ingredient_Repository
+    from repository.USDA_Ingredient_Repository import USDA_Ingredient_Repository
+    from dto.Meal_Plan_Snack_DTO import Meal_Plan_Snack_DTO
+
+    if request.method == "PUT":
+        meal_plan_snacks_json = json.loads(request.data)
+        Meal_Plan_Snack_Service(
+            meal_plan_snack_repository=Meal_Plan_Snack_Repository(db=db)
+        ).update_meal_plan_snacks(
+            meal_plan_snacks=meal_plan_snacks_json,
+            recipe_ingredient_service=Recipe_Ingredient_Service(
+                recipe_ingredient_repository=Recipe_Ingredient_Repository(db=db)
+            ),
+            usda_ingredient_service=USDA_Ingredient_Service(
+                usda_ingredient_repository=USDA_Ingredient_Repository(db=db)
+            ),
+            continuity_service=Continuity_Service(),
+        )
+        return Response(status=204)
+    elif request.method == "POST":
+        meal_plan_snack_data = json.loads(request.data)
+        meal_plan_snack_dto = Meal_Plan_Snack_DTO(
+            meal_plan_snack_json=meal_plan_snack_data
+        )
+        Meal_Plan_Snack_Service(
+            meal_plan_snack_repository=Meal_Plan_Snack_Repository(db=db)
+        ).create_meal_plan_snack(meal_plan_snack_dto=meal_plan_snack_dto)
+        return Response(status=201)
+    else:
+        return Response(status=405)
+
+
 @app.route("/api/dietitian_prepayment", methods=["POST"])
 def dietitian_prepayment() -> Response:
     from service.Dietitian_Prepayment_Service import Dietitian_Prepayment_Service
@@ -1866,322 +2469,6 @@ def admin_meal_subscription() -> Response | None:
             x.dto_serialize() for x in meal_subscriptions
         ]
         return jsonify(meal_subscription_DTOs), 200
-    else:
-        return Response(status=405)
-
-
-@app.route("/api/extended_scheduled_order_meal", methods=["GET"])
-def extended_scheduled_order_meal() -> Response:
-    from service.Extended_Scheduled_Order_Meal_Service import (
-        Extended_Scheduled_Order_Meal_Service,
-    )
-    from repository.Scheduled_Order_Meal_Repository import (
-        Scheduled_Order_Meal_Repository,
-    )
-    from domain.Extended_Scheduled_Order_Meal_Domain import (
-        Extended_Scheduled_Order_Meal_Domain,
-    )
-    from dto.Extended_Scheduled_Order_Meal_DTO import Extended_Scheduled_Order_Meal_DTO
-
-    meal_subscription_id: str = request.args.get("meal_subscription_id")
-    if request.method == "GET":
-        extended_scheduled_order_meal_domains: Optional[
-            list[Extended_Scheduled_Order_Meal_Domain]
-        ] = Extended_Scheduled_Order_Meal_Service(
-            scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(db=db)
-        ).get_upcoming_extended_scheduled_order_meals(
-            meal_subscription_id=meal_subscription_id
-        )
-        if extended_scheduled_order_meal_domains:
-            extended_scheduled_order_meal_dtos: list[
-                Extended_Scheduled_Order_Meal_DTO
-            ] = [
-                Extended_Scheduled_Order_Meal_DTO(
-                    extended_scheduled_order_meal_domain=x
-                )
-                for x in extended_scheduled_order_meal_domains
-            ]
-            serialized_extended_scheduled_order_meal_dtos: list[dict] = [
-                x.serialize() for x in extended_scheduled_order_meal_dtos
-            ]
-            return jsonify(serialized_extended_scheduled_order_meal_dtos), 200
-        else:
-            return Response(status=204)
-    else:
-        return Response(status=405)
-
-
-@app.route("/api/scheduled_order_meal", methods=["GET", "POST", "PUT", "DELETE"])
-def scheduled_order_meal() -> Response:
-    from service.Date_Service import Date_Service
-    from service.Scheduled_Order_Meal_Service import Scheduled_Order_Meal_Service
-    from repository.Scheduled_Order_Meal_Repository import (
-        Scheduled_Order_Meal_Repository,
-    )
-    from domain.Scheduled_Order_Meal_Domain import Scheduled_Order_Meal_Domain
-    from dto.Scheduled_Order_Meal_DTO import Scheduled_Order_Meal_DTO
-
-    if request.method == "POST":
-        scheduled_order_meals_json: list[dict] = json.loads(request.data)
-        scheduled_order_meal_dtos = [
-            Scheduled_Order_Meal_DTO(scheduled_order_meal_json=x)
-            for x in scheduled_order_meals_json
-        ]
-        Scheduled_Order_Meal_Service(
-            scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(db=db)
-        ).create_scheduled_order_meals(
-            scheduled_order_meal_dtos=scheduled_order_meal_dtos
-        )
-        return Response(status=204)
-    elif request.method == "GET":
-        meal_subscription_id: str = request.args.get("meal_subscription_id")
-        scheduled_order_meal_domains: Optional[
-            list[Scheduled_Order_Meal_Domain]
-        ] = Scheduled_Order_Meal_Service(
-            scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(db=db)
-        ).get_scheduled_order_meals(
-            meal_subscription_id=meal_subscription_id
-        )
-        if scheduled_order_meal_domains:
-            scheduled_order_meal_dtos = [
-                Scheduled_Order_Meal_DTO(scheduled_order_meal_domain=x)
-                for x in scheduled_order_meal_domains
-            ]
-            serialized_scheduled_order_meal_dtos: list[dict] = [
-                x.serialize() for x in scheduled_order_meal_dtos
-            ]
-            return jsonify(serialized_scheduled_order_meal_dtos), 200
-        else:
-            return Response(status=404)
-    elif request.method == "PUT":
-        meal_subscription_id: Optional[str] = request.args.get("meal_subscription_id")
-        if not meal_subscription_id:
-            # Handle changes to scheduled order meals on home page
-            scheduled_order_meals_json = json.loads(request.data)
-            scheduled_order_meal_dtos = [
-                Scheduled_Order_Meal_DTO(scheduled_order_meal_json=x)
-                for x in scheduled_order_meals_json
-            ]
-            Scheduled_Order_Meal_Service(
-                scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(db=db)
-            ).update_home_page_scheduled_order_meals(
-                scheduled_order_meal_dtos=scheduled_order_meal_dtos
-            )
-        else:
-            should_pause_scheduled_order_meals: bool = (
-                request.headers.get("update") == "pause"
-            )
-            if should_pause_scheduled_order_meals:
-                Scheduled_Order_Meal_Service(
-                    scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(
-                        db=db
-                    )
-                ).pause_scheduled_order_meals(meal_subscription_id=meal_subscription_id)
-            else:
-                Scheduled_Order_Meal_Service(
-                    scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(
-                        db=db
-                    )
-                ).unpause_scheduled_order_meals(
-                    meal_subscription_id=meal_subscription_id
-                )
-        return Response(status=204)
-    elif request.method == "DELETE":
-        meal_subscription_id: str = request.args.get("meal_subscription_id")
-        # Check if past cutoff date and if it is the client's first week of meals
-        cutoff_date = Date_Service().get_current_week_cutoff(
-            Date_Service().get_current_week_delivery_date()
-        )
-        is_first_week = Scheduled_Order_Meal_Service(
-            scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(db=db)
-        ).check_if_first_week_of_meals(meal_subscription_id=meal_subscription_id)
-
-        Scheduled_Order_Meal_Service(
-            scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(db=db)
-        ).delete_scheduled_order_meals(
-            meal_subscription_id=meal_subscription_id,
-            cutoff_date=cutoff_date,
-            current_week_delivery_date=Date_Service().get_current_week_delivery_date(),
-            is_first_week=is_first_week,
-        )
-        return Response(status=204)
-    else:
-        return Response(status=405)
-
-
-@app.route("/api/extended_schedule_meal", methods=["GET"])
-def extended_schedule_meal() -> Response:
-    from service.Extended_Schedule_Meal_Service import Extended_Schedule_Meal_Service
-    from service.Client_Service import Client_Service
-    from repository.Schedule_Meal_Repository import Schedule_Meal_Repository
-    from repository.Client_Repository import Client_Repository
-    from domain.Extended_Schedule_Meal_Domain import Extended_Schedule_Meal_Domain
-    from dto.Extended_Schedule_Meal_DTO import Extended_Schedule_Meal_DTO
-
-    if request.method == "GET":
-        meal_subscription_id: str | None = request.args.get("meal_subscription_id")
-
-        if meal_subscription_id:
-            extended_schedule_meal_domains = Extended_Schedule_Meal_Service(
-                schedule_meal_repository=Schedule_Meal_Repository(db=db)
-            ).get_extended_schedule_meals(meal_subscription_id=meal_subscription_id)
-            extended_schedule_meal_DTOs = [
-                Extended_Schedule_Meal_DTO(extended_schedule_meal_domain=x)
-                for x in extended_schedule_meal_domains
-            ]
-            serialized_extended_schedule_meals: list[dict] = [
-                x.serialize() for x in extended_schedule_meal_DTOs
-            ]
-            return jsonify(serialized_extended_schedule_meals), 200
-
-        else:
-            dietitian_id = request.args.get("dietitian_id")
-            extended_schedule_meal_domains: list[
-                Optional[Extended_Schedule_Meal_Domain]
-            ] = Extended_Schedule_Meal_Service(
-                schedule_meal_repository=Schedule_Meal_Repository(db=db)
-            ).get_dietitian_extended_schedule_meals(
-                dietitian_id=dietitian_id,
-                client_service=Client_Service(
-                    client_repository=Client_Repository(db=db)
-                ),
-            )
-            if extended_schedule_meal_domains:
-                extended_schedule_meal_DTOs = [
-                    Extended_Schedule_Meal_DTO(extended_schedule_meal_domain=x)
-                    for x in extended_schedule_meal_domains
-                ]
-                serialized_extended_schedule_meals: list[dict] = [
-                    x.serialize() for x in extended_schedule_meal_DTOs
-                ]
-                return jsonify(serialized_extended_schedule_meals), 200
-            else:
-                return Response(status=204)
-
-    else:
-        return Response(status=405)
-
-
-@app.route("/api/schedule_meal", methods=["GET", "POST", "DELETE"])
-def schedule_meal() -> Response:
-    from service.Schedule_Meal_Service import Schedule_Meal_Service
-    from service.Client_Service import Client_Service
-    from repository.Schedule_Meal_Repository import Schedule_Meal_Repository
-    from repository.Client_Repository import Client_Repository
-    from domain.Schedule_Meal_Domain import Schedule_Meal_Domain
-    from dto.Schedule_Meal_DTO import Schedule_Meal_DTO
-
-    if request.method == "POST":
-        schedule_meals_JSON = json.loads(request.data)
-        schedule_meal_DTOs = [
-            Schedule_Meal_DTO(schedule_meal_json=x) for x in schedule_meals_JSON
-        ]
-        Schedule_Meal_Service(
-            schedule_meal_repository=Schedule_Meal_Repository(db=db)
-        ).create_schedule_meals(schedule_meal_dtos=schedule_meal_DTOs)
-        return Response(status=201)
-
-    elif request.method == "GET":
-        meal_subscription_id: str | None = request.args.get("meal_subscription_id")
-
-        if meal_subscription_id:
-            schedule_meal_domains: list[Schedule_Meal_Domain] = Schedule_Meal_Service(
-                schedule_meal_repository=Schedule_Meal_Repository(db=db)
-            ).get_schedule_meals(meal_subscription_id=meal_subscription_id)
-            schedule_meal_DTOs = [
-                Schedule_Meal_DTO(schedule_meal_domain=x) for x in schedule_meal_domains
-            ]
-            serialized_schedule_meals: list[dict] = [
-                x.serialize() for x in schedule_meal_DTOs
-            ]
-            return jsonify(serialized_schedule_meals), 200
-
-        else:
-            dietitian_id: str | None = request.args.get("dietitian_id")
-            schedule_meal_domains: list[Schedule_Meal_Domain] = Schedule_Meal_Service(
-                schedule_meal_repository=Schedule_Meal_Repository(db=db)
-            ).get_dietitian_schedule_meals(
-                dietitian_id=dietitian_id,
-                client_service=Client_Service(
-                    client_repository=Client_Repository(db=db)
-                ),
-            )
-            schedule_meal_DTOs = [
-                Schedule_Meal_DTO(schedule_meal_domain=x) for x in schedule_meal_domains
-            ]
-            serialized_schedule_meals: list[dict] = [
-                x.serialize() for x in schedule_meal_DTOs
-            ]
-            return jsonify(serialized_schedule_meals), 200
-
-    elif request.method == "DELETE":
-        meal_subscription_id = request.args.get("meal_subscription_id")
-        Schedule_Meal_Service(
-            schedule_meal_repository=Schedule_Meal_Repository(db=db)
-        ).delete_schedule_meals(meal_subscription_id=meal_subscription_id)
-        return Response(status=204)
-
-    else:
-        return Response(status=405)
-
-
-@app.route("/api/extended_staged_schedule_meal", methods=["GET"])
-def extended_staged_schedule_meal() -> Response:
-    from service.Extended_Staged_Schedule_Meal_Service import (
-        Extended_Staged_Schedule_Meal_Service,
-    )
-    from repository.Staged_Schedule_Meal_Repository import (
-        Staged_Schedule_Meal_Repository,
-    )
-    from domain.Extended_Staged_Schedule_Meal_Domain import (
-        Extended_Staged_Schedule_Meal_Domain,
-    )
-    from dto.Extended_Staged_Schedule_Meal_DTO import Extended_Staged_Schedule_Meal_DTO
-
-    if request.method == "GET":
-        staged_client_id: str = request.args.get("staged_client_id")
-        extended_staged_schedule_meal_domains: Optional[
-            list[Extended_Staged_Schedule_Meal_Domain]
-        ] = Extended_Staged_Schedule_Meal_Service(
-            staged_schedule_meal_repository=Staged_Schedule_Meal_Repository(db=db)
-        ).get_staged_schedule_meals(
-            staged_client_id=staged_client_id
-        )
-        if extended_staged_schedule_meal_domains:
-            staged_schedule_meal_dtos = [
-                Extended_Staged_Schedule_Meal_DTO(
-                    extended_staged_schedule_meal_domain=x
-                )
-                for x in extended_staged_schedule_meal_domains
-            ]
-            serialized_staged_schedule_meal_DTOs = [
-                x.serialize() for x in staged_schedule_meal_dtos
-            ]
-        return jsonify(serialized_staged_schedule_meal_DTOs), 200
-    else:
-        return Response(status=405)
-
-
-@app.route("/api/staged_schedule_meal", methods=["GET", "POST"])
-def staged_schedule_meal() -> Response:
-    from repository.Staged_Schedule_Meal_Repository import (
-        Staged_Schedule_Meal_Repository,
-    )
-    from service.Staged_Schedule_Meal_Service import Staged_Schedule_Meal_Service
-    from dto.Staged_Schedule_Meal_DTO import Staged_Schedule_Meal_DTO
-
-    if request.method == "POST":
-        staged_schedule_meals_JSON = json.loads(request.data)
-        staged_schedule_meal_DTOs = [
-            Staged_Schedule_Meal_DTO(staged_schedule_meal_json=x)
-            for x in staged_schedule_meals_JSON
-        ]
-        Staged_Schedule_Meal_Service(
-            staged_schedule_meal_repository=Staged_Schedule_Meal_Repository(db=db)
-        ).create_staged_schedule_meals(
-            staged_schedule_meal_dtos=staged_schedule_meal_DTOs
-        )
-        return Response(status=1)
     else:
         return Response(status=405)
 
