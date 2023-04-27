@@ -17,7 +17,7 @@ class Extended_Meal_Plan_Snack_Domain(Meal_Plan_Snack_Domain):
         ]
 
         self.associated_snack = Snack_Domain(
-            snack_model=meal_plan_snack_model.associated_snack
+            snack_object=meal_plan_snack_model.associated_snack
         )
         self.associated_meal_plan = Extended_Meal_Plan_Domain(
             meal_plan_model=meal_plan_snack_model.associated_meal_plan

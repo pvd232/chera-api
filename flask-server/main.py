@@ -210,6 +210,14 @@ def create_table() -> Response:
     return Response(status=204)
 
 
+@app.route("/api/wipe_snacks")
+def wipe_snacks() -> Response:
+    from models import wipe_all_snack_related_data
+
+    wipe_all_snack_related_data()
+    return Response(status=204, response="Wiped all snack related data")
+
+
 @app.route("/api/wipe_meals")
 def wipe_meals() -> Response:
     from models import wipe_all_meal_related_data
@@ -1098,6 +1106,7 @@ def recipe_ingredient_nutrient() -> Response:
         Recipe_Ingredient_Nutrient_Service,
     )
     from service.Meal_Plan_Meal_Service import Meal_Plan_Meal_Service
+    from service.Meal_Plan_Snack_Service import Meal_Plan_Snack_Service
     from service.USDA_Ingredient_Service import USDA_Ingredient_Service
     from service.USDA_Ingredient_Portion_Service import USDA_Ingredient_Portion_Service
     from service.USDA_Ingredient_Nutrient_Service import (
@@ -1112,6 +1121,7 @@ def recipe_ingredient_nutrient() -> Response:
         Recipe_Ingredient_Nutrient_Repository,
     )
     from repository.Meal_Plan_Meal_Repository import Meal_Plan_Meal_Repository
+    from repository.Meal_Plan_Snack_Repository import Meal_Plan_Snack_Repository
     from repository.USDA_Ingredient_Repository import USDA_Ingredient_Repository
     from repository.USDA_Ingredient_Portion_Repository import (
         USDA_Ingredient_Portion_Repository,
@@ -1139,6 +1149,9 @@ def recipe_ingredient_nutrient() -> Response:
             recipe_ingredient_dtos=recipe_ingredient_dtos,
             meal_plan_meal_service=Meal_Plan_Meal_Service(
                 meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+            ),
+            meal_plan_snack_service=Meal_Plan_Snack_Service(
+                meal_plan_snack_repository=Meal_Plan_Snack_Repository(db=db)
             ),
             usda_ingredient_service=USDA_Ingredient_Service(
                 usda_ingredient_repository=USDA_Ingredient_Repository(db=db)
@@ -1348,7 +1361,7 @@ def extended_meal_plan_meal() -> Response:
                 ]
                 return jsonify(serialized_meal_plan_meal_DTOs), 200
             else:
-                return Response(status=404)
+                return jsonify([]), 200
     elif request.method == "PUT":
         ephemeral_meal_plan_meal = json.loads(request.data)
 
@@ -2002,6 +2015,77 @@ def meal_plan_snack() -> Response:
         return Response(status=405)
 
 
+@app.route("/api/extended_meal_plan_snack", methods=["GET", "PUT"])
+def extended_meal_plan_snack() -> Response:
+    from service.Extended_Meal_Plan_Snack_Service import (
+        Extended_Meal_Plan_Snack_Service,
+    )
+    from repository.Meal_Plan_Snack_Repository import Meal_Plan_Snack_Repository
+    from domain.Extended_Meal_Plan_Snack_Domain import Extended_Meal_Plan_Snack_Domain
+    from dto.Extended_Meal_Plan_Snack_DTO import Extended_Meal_Plan_Snack_DTO
+    from dto.Recipe_Ingredient_DTO import Recipe_Ingredient_DTO
+
+    if request.method == "GET":
+        meal_plan_id = request.args.get("meal_plan_id")
+        if not meal_plan_id:
+            extended_meal_plan_snacks: Optional[
+                list[Extended_Meal_Plan_Snack_Domain]
+            ] = Extended_Meal_Plan_Snack_Service(
+                meal_plan_snack_repository=Meal_Plan_Snack_Repository(db=db)
+            ).get_extended_meal_plan_snacks()
+            if extended_meal_plan_snacks:
+                meal_plan_snack_DTOs = [
+                    Extended_Meal_Plan_Snack_DTO(extended_meal_plan_snack_domain=x)
+                    for x in extended_meal_plan_snacks
+                ]
+                serialized_meal_plan_snack_DTOs = [
+                    x.serialize() for x in meal_plan_snack_DTOs
+                ]
+                return jsonify(serialized_meal_plan_snack_DTOs), 200
+            else:
+                return Response(status=404)
+        else:
+            extended_meal_plan_snacks: Optional[
+                list[Extended_Meal_Plan_Snack_Domain]
+            ] = Extended_Meal_Plan_Snack_Service(
+                meal_plan_snack_repository=Meal_Plan_Snack_Repository(db=db)
+            ).get_specific_extended_meal_plan_snacks(
+                meal_plan_id=meal_plan_id
+            )
+            if extended_meal_plan_snacks:
+                meal_plan_snack_DTOs = [
+                    Extended_Meal_Plan_Snack_DTO(extended_meal_plan_snack_domain=x)
+                    for x in extended_meal_plan_snacks
+                ]
+                serialized_meal_plan_snack_DTOs = [
+                    x.serialize() for x in meal_plan_snack_DTOs
+                ]
+                return jsonify(serialized_meal_plan_snack_DTOs), 200
+            else:
+                return jsonify([]), 200
+    elif request.method == "PUT":
+        ephemeral_meal_plan_snack = json.loads(request.data)
+
+        # Get new quantity values for recipe ingredients to compute changes to nutrient amounts
+        updated_recipe = ephemeral_meal_plan_snack["recipe"]
+        updated_recipe_dtos = [
+            Recipe_Ingredient_DTO(recipe_ingredient_json=x) for x in updated_recipe
+        ]
+        updated_meal_plan_snack = Extended_Meal_Plan_Snack_Service(
+            meal_plan_snack_repository=Meal_Plan_Snack_Repository(db=db)
+        ).compute_new_meal_plan_snack(
+            meal_plan_snack_id=ephemeral_meal_plan_snack["id"],
+            updated_recipe=updated_recipe_dtos,
+        )
+
+        updated_meal_plan_snack_dto = Extended_Meal_Plan_Snack_DTO(
+            extended_meal_plan_snack_domain=updated_meal_plan_snack
+        )
+        return jsonify(updated_meal_plan_snack_dto.serialize()), 200
+    else:
+        return Response(status=405)
+
+
 @app.route("/api/dietitian_prepayment", methods=["POST"])
 def dietitian_prepayment() -> Response:
     from service.Dietitian_Prepayment_Service import Dietitian_Prepayment_Service
@@ -2279,6 +2363,16 @@ def meal_price() -> Response:
 
     if request.method == "GET":
         return jsonify(meal_price), 200
+    else:
+        return Response(status=405)
+
+
+@app.route("/api/snack_price", methods=["GET"])
+def snack_price() -> Response:
+    from models import snack_price
+
+    if request.method == "GET":
+        return jsonify(snack_price), 200
     else:
         return Response(status=405)
 

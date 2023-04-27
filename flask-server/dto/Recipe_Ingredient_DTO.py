@@ -19,13 +19,20 @@ class Recipe_Ingredient_DTO(Base_DTO):
             self.meal_plan_meal_id: Optional[UUID] = recipe_ingredient_json[
                 "meal_plan_meal_id"
             ]
-            if self.meal_plan_meal_id:
+            if self.meal_plan_meal_id == "":
+                self.meal_plan_meal_id = None
+            else:
                 self.meal_plan_meal_id = UUID(self.meal_plan_meal_id)
-            self.meal_plan_snack_id: Optional[UUID] = UUID(
-                recipe_ingredient_json["meal_plan_snack_id"]
-            )
-            if self.meal_plan_snack_id:
+
+            self.meal_plan_snack_id: Optional[UUID] = recipe_ingredient_json[
+                "meal_plan_snack_id"
+            ]
+
+            if self.meal_plan_snack_id == "":
+                self.meal_plan_snack_id = None
+            else:
                 self.meal_plan_snack_id = UUID(self.meal_plan_snack_id)
+
             self.usda_ingredient_portion_id: UUID = UUID(
                 recipe_ingredient_json["usda_ingredient_portion_id"]
             )

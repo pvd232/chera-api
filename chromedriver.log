@@ -9577,3 +9577,10 @@ objc[67234]: Class WebSwapCGLLayer is implemented in both /System/Library/Framew
 [1682510359.161][INFO]: [f31e625cede9dbf392291c20a1bb0a1d] RESPONSE FindElements ERROR no such window: target window already closed
 from unknown error: web view not found
   (Session info: chrome=112.0.5615.137)
+[67220:259:0427/051113.053560:ERROR:gpu_process_host.cc(942)] GPU process exited unexpectedly: exit_code=15
+[0427/051113.052401:ERROR:gpu_process_host.cc(942)] GPU process exited unexpectedly: exit_code=15
+[0427/051113.055329:WARNING:gpu_process_host.cc(1292)] The GPU process has crashed 1 time(s)
+[67220:259:0427/051113.140188:ERROR:network_service_instance_impl.cc(541)] Network service crashed, restarting service.
+[0427/051114.262509:ERROR:mach_port_rendezvous.cc(311)] bootstrap_look_up com.google.Chrome.MachPortRendezvousServer.1: Permission denied (1100)
+objc[68273]: Class WebSwapCGLLayer is implemented in both /System/Library/Frameworks/WebKit.framework/Versions/A/Frameworks/WebCore.framework/Versions/A/Frameworks/libANGLE-shared.dylib (0x7ffa5d0e8550) and /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/112.0.5615.137/Libraries/libGLESv2.dylib (0x1127559c8). One of the two will be used. Which one is undefined.
+[0427/051114.636810:ERROR:child_thread_impl.cc(230)] Mach rendezvous failed, terminating process (parent died?)

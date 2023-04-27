@@ -77,6 +77,8 @@ if env == "debug":
 
     CORS(app)
 
+    # --> MEALS <--
+
     # $12 / week
     stripe_meal_price_id = "price_1MEKY0FseFjpsgWvnbtiZYuZ"
 
@@ -85,6 +87,19 @@ if env == "debug":
 
     # $6
     stripe_one_time_fnce_discounted_meal_price_id = "price_1MEKh0FseFjpsgWvxgj4nR0T"
+
+    # --> SNACKS <--
+
+    # $6 / week
+    stripe_snack_price_id = "price_1N1Tb4FseFjpsgWvnbpfAAIX"
+
+    # $6
+    stripe_one_time_snack_price_id = "price_1N1TfrFseFjpsgWvpuP9hhx3"
+
+    # $3
+    stripe_one_time_fnce_discounted_snack_price_id = "price_1N1Th8FseFjpsgWvzgqVuMPJ"
+
+    # --> SHIPPING <--
 
     # $14 / week
     stripe_shipping_price_id = "price_1MEKYVFseFjpsgWv6vuzKoqV"
@@ -105,6 +120,8 @@ else:
         host_url = "https://staging.bendito.io"
         SHIPPO_API_KEY = GCP_Secret_Manager_Service().get_secret("SHIPPO_TEST_KEY")
 
+        # --> MEALS <--
+
         # $1.1 / week
         stripe_meal_price_id = "price_1MFOinFseFjpsgWvgPHNHzaq"
 
@@ -113,6 +130,21 @@ else:
 
         # $1
         stripe_one_time_fnce_discounted_meal_price_id = "price_1LauS8FseFjpsgWvFp0xZNAU"
+
+        # --> SNACKS <--
+
+        # $0.6 / week
+        stripe_snack_price_id = "price_1N1TrGFseFjpsgWvkL7onf2k"
+
+        # $0.6
+        stripe_one_time_snack_price_id = "price_1N1Ts4FseFjpsgWvW4heb5Oq"
+
+        # $0.5
+        stripe_one_time_fnce_discounted_snack_price_id = (
+            "price_1N1TsOFseFjpsgWvWjsqserh"
+        )
+
+        # --> SHIPPING <--
 
         # $1.2 / week
         stripe_shipping_price_id = "price_1MFOlBFseFjpsgWvgQ8qnLZM"
@@ -127,6 +159,8 @@ else:
         host_url = "https://bendito.io"
         SHIPPO_API_KEY = GCP_Secret_Manager_Service().get_secret("SHIPPO_KEY")
 
+        # --> MEALS <--
+
         # $12 / week
         stripe_meal_price_id = "price_1MFLb4FseFjpsgWv9kHmHCMg"
 
@@ -135,6 +169,21 @@ else:
 
         # $6
         stripe_one_time_fnce_discounted_meal_price_id = "price_1MMdGsFseFjpsgWvsJjAELxk"
+
+        # --> SNACKS <--
+
+        # $6 / week
+        stripe_snack_price_id = "price_1N1TtmFseFjpsgWvED8ZSvW1"
+
+        # $6
+        stripe_one_time_snack_price_id = "price_1N1TtxFseFjpsgWvluWLxfxV"
+
+        # $3
+        stripe_one_time_fnce_discounted_snack_price_id = (
+            "price_1N1TuBFseFjpsgWvVa2vYm1K"
+        )
+
+        # --> SHIPPING <--
 
         # $14 / week
         stripe_shipping_price_id = "price_1MFLbYFseFjpsgWvhkesuznl"
@@ -163,6 +212,7 @@ stripe_fee_percentage = 0.029
 
 # inclusive of stripe fees. minimum order is 60, plus .3 fixed fee, divided by 1 - .29 = 62.1. divide this by 6 to get price inclusive of stripe fee
 meal_price = 12.0
+snack_price = 2.0
 shipping_price = 14.0
 
 db = SQLAlchemy(app)
@@ -1345,6 +1395,20 @@ def wipe_all_meal_related_data() -> None:
         for meal_dietary_restriction in meal.dietary_restrictions:
             db.session.delete(meal_dietary_restriction)
         db.session.delete(meal)
+    db.session.commit()
+
+
+def wipe_all_snack_related_data() -> None:
+    snacks = db.session.query(Snack_Model).all()
+    meal_plan_snacks = db.session.query(Meal_Plan_Snack_Model).all()
+    for meal_plan_snack in meal_plan_snacks:
+        for recipe_ingredient in meal_plan_snack.recipe:
+            for recipe_ingredient_nutrient in recipe_ingredient.nutrients:
+                db.session.delete(recipe_ingredient_nutrient)
+            db.session.delete(recipe_ingredient)
+        db.session.delete(meal_plan_snack)
+    for snack in snacks:
+        db.session.delete(snack)
     db.session.commit()
 
 
