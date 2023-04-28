@@ -2148,7 +2148,7 @@ def extended_staged_schedule_snack() -> Response:
     )
 
     if request.method == "GET":
-        staged_client_id: str = request.args.get("staged_client_id")
+        staged_client_id = request.args.get("staged_client_id")
         extended_staged_schedule_snack_domains: Optional[
             list[Extended_Staged_Schedule_Snack_Domain]
         ] = Extended_Staged_Schedule_Snack_Service(
