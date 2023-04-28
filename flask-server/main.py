@@ -4,6 +4,7 @@ from models import (
     app,
     db,
     stripe_meal_price_id,
+    stripe_snack_price_id,
     shipping_price,
     meal_price,
     stripe_endpoint_secret,
@@ -210,6 +211,14 @@ def create_table() -> Response:
     return Response(status=204)
 
 
+@app.route("/api/wipe_snacks_and_client_data")
+def wipe_snacks_and_client_data() -> Response:
+    from models import wipe_all_snack_and_client_related_data
+
+    wipe_all_snack_and_client_related_data()
+    return Response(status=204, response="Wiped all snack and client related data")
+
+
 @app.route("/api/wipe_snacks")
 def wipe_snacks() -> Response:
     from models import wipe_all_snack_related_data
@@ -351,13 +360,17 @@ def webhook() -> Response:
         from repository.Meal_Subscription_Invoice_Repository import (
             Meal_Subscription_Invoice_Repository,
         )
-        from repository.Schedule_Meal_Repository import Schedule_Meal_Repository
         from repository.Scheduled_Order_Meal_Repository import (
             Scheduled_Order_Meal_Repository,
         )
+        from repository.Scheduled_Order_Snack_Repository import (
+            Scheduled_Order_Snack_Repository,
+        )
         from repository.Meal_Repository import Meal_Repository
+        from repository.Snack_Repository import Snack_Repository
         from repository.Staged_Client_Repository import Staged_Client_Repository
         from repository.Order_Meal_Repository import Order_Meal_Repository
+        from repository.Order_Snack_Repository import Order_Snack_Repository
         from repository.Email_Tracker_Repository import Email_Tracker_Repository
         from repository.Meal_Repository import Meal_Repository
         from repository.State_Sales_Tax_Repository import State_Sales_Tax_Repository
@@ -366,15 +379,18 @@ def webhook() -> Response:
         from service.Staged_Client_Service import Staged_Client_Service
         from service.Client_Service import Client_Service
         from service.Scheduled_Order_Meal_Service import Scheduled_Order_Meal_Service
+        from service.Scheduled_Order_Snack_Service import Scheduled_Order_Snack_Service
         from service.Meal_Service import Meal_Service
+        from service.Snack_Service import Snack_Service
         from service.Meal_Subscription_Service import Meal_Subscription_Service
         from service.Meal_Subscription_Invoice_Service import (
             Meal_Subscription_Invoice_Service,
         )
-        from service.Schedule_Meal_Service import Schedule_Meal_Service
+        from service.Order_Meal_Service import Order_Meal_Service
+        from service.Order_Snack_Service import Order_Snack_Service
+
         from service.Date_Service import Date_Service
         from service.Shippo_Service import Shippo_Service
-        from service.Order_Meal_Service import Order_Meal_Service
         from service.Stripe_Service import Stripe_Service
         from service.Email_Service import Email_Service
         from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
@@ -382,13 +398,16 @@ def webhook() -> Response:
         from domain.Client_Domain import Client_Domain
         from domain.Meal_Subscription_Domain import Meal_Subscription_Domain
         from domain.Scheduled_Order_Meal_Domain import Scheduled_Order_Meal_Domain
+        from domain.Scheduled_Order_Snack_Domain import Scheduled_Order_Snack_Domain
         from domain.Staged_Client_Domain import Staged_Client_Domain
         from domain.Meal_Subscription_Invoice_Domain import (
             Meal_Subscription_Invoice_Domain,
         )
         from domain.Order_Meal_Domain import Order_Meal_Domain
+        from domain.Order_Snack_Domain import Order_Snack_Domain
 
         from dto.Order_Meal_DTO import Order_Meal_DTO
+        from dto.Order_Snack_DTO import Order_Snack_DTO
         from dto.Meal_Subscription_Invoice_DTO import Meal_Subscription_Invoice_DTO
         from datetime import datetime
 
@@ -451,7 +470,13 @@ def webhook() -> Response:
                         db=db
                     )
                 ),
+                scheduled_order_snack_service=Scheduled_Order_Snack_Service(
+                    scheduled_order_snack_repository=Scheduled_Order_Snack_Repository(
+                        db=db
+                    )
+                ),
                 meal_service=Meal_Service(meal_repository=Meal_Repository(db=db)),
+                snack_service=Snack_Service(snack_repository=Snack_Repository(db=db)),
             )
 
             client: Optional[Client_Domain] = Client_Service(
@@ -487,6 +512,34 @@ def webhook() -> Response:
                 Order_Meal_Service(
                     order_meal_repository=Order_Meal_Repository(db=db)
                 ).create_order_meal(order_meal=order_meal_domain)
+
+            # Get scheduled order snacks for this week
+            this_weeks_scheduled_order_snacks: list[
+                Scheduled_Order_Snack_Domain
+            ] = Scheduled_Order_Snack_Service(
+                scheduled_order_snack_repository=Scheduled_Order_Snack_Repository(db=db)
+            ).get_scheduled_order_snacks_for_week(
+                meal_subscription_id=meal_subscription.id,
+                delivery_date=Date_Service().get_current_week_delivery_date(),
+            )
+
+            # Create new order snacks for invoice
+            for scheduled_order_snack in this_weeks_scheduled_order_snacks:
+                order_snack_id = uuid.uuid4()
+                scheduled_order_snack_id = scheduled_order_snack.id
+                order_snack_json = {
+                    "id": order_snack_id,
+                    "scheduled_order_snack_id": scheduled_order_snack_id,
+                    "meal_subscription_invoice_id": new_invoice.id,
+                }
+
+                order_snack_dto = Order_Snack_DTO(order_snack_json=order_snack_json)
+                order_snack_domain = Order_Snack_Domain(
+                    order_snack_object=order_snack_dto
+                )
+                Order_Snack_Service(
+                    order_snack_repository=Order_Snack_Repository(db=db)
+                ).create_order_snack(order_snack=order_snack_domain)
 
         # Invoice created when client first signs up
         elif staged_client.account_created == False:
@@ -864,12 +917,13 @@ def create_stripe_subscription() -> Response:
     from service.Date_Service import Date_Service
     from repository.Discount_Repository import Discount_Repository
     from repository.Meal_Subscription_Repository import Meal_Subscription_Repository
-    from domain.Discount_Domain import Discount_Domain
-    from domain.Meal_Subscription_Domain import Meal_Subscription_Domain
     from models import (
-        stripe_one_time_fnce_discounted_meal_price_id,
-        stripe_one_time_meal_price_id,
         stripe_meal_price_id,
+        stripe_one_time_meal_price_id,
+        stripe_one_time_fnce_discounted_meal_price_id,
+        stripe_snack_price_id,
+        stripe_one_time_snack_price_id,
+        stripe_one_time_fnce_discounted_snack_price_id,
         stripe_shipping_price_id,
         stripe_one_time_shipping_price_id,
         stripe_one_time_account_setup_fee,
@@ -880,6 +934,7 @@ def create_stripe_subscription() -> Response:
 
         client_id: str = stripe_subscription_data["client_id"]
         number_of_meals: int = stripe_subscription_data["number_of_meals"]
+        number_of_snacks: int = stripe_subscription_data["number_of_snacks"]
         discount_code: str = stripe_subscription_data["discount_code"]
         prepaid: bool = stripe_subscription_data["prepaid"]
 
@@ -889,6 +944,7 @@ def create_stripe_subscription() -> Response:
 
         client_stripe_data = Stripe_Service().create_stripe_subscription(
             number_of_meals=number_of_meals,
+            number_of_snacks=number_of_snacks,
             client_id=client_id,
             stripe_one_time_fnce_discounted_meal_price_id=stripe_one_time_fnce_discounted_meal_price_id,
             stripe_one_time_meal_price_id=stripe_one_time_meal_price_id,
@@ -896,6 +952,9 @@ def create_stripe_subscription() -> Response:
             stripe_shipping_price_id=stripe_shipping_price_id,
             stripe_one_time_shipping_price_id=stripe_one_time_shipping_price_id,
             stripe_one_time_account_setup_fee=stripe_one_time_account_setup_fee,
+            stripe_snack_price_id=stripe_snack_price_id,
+            stripe_one_time_snack_price_id=stripe_one_time_snack_price_id,
+            stripe_one_time_fnce_discounted_snack_price_id=stripe_one_time_fnce_discounted_snack_price_id,
             date_service=Date_Service(),
             prepaid=prepaid,
             discount=discount,
@@ -905,6 +964,7 @@ def create_stripe_subscription() -> Response:
         meal_subscription_id = request.args.get("meal_subscription_id")
 
         number_of_meals = request.headers.get("number-of-meals")
+        number_of_snacks = request.headers.get("number-of-snacks")
 
         client_subscription = Meal_Subscription_Service(
             meal_subscription_repository=Meal_Subscription_Repository(db=db)
@@ -913,7 +973,9 @@ def create_stripe_subscription() -> Response:
         Stripe_Service().update_subscription(
             stripe_subscription_id=client_subscription.stripe_subscription_id,
             number_of_meals=number_of_meals,
+            number_of_snacks=number_of_snacks,
             stripe_meal_price_id=stripe_meal_price_id,
+            stripe_snack_price_id=stripe_snack_price_id,
         )
         return Response(status=204)
 
@@ -1051,23 +1113,6 @@ def extended_usda_ingredient() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/nutrient", methods=["GET"])
-def nutrient() -> Response:
-    from service.Nutrient_Service import Nutrient_Service
-    from repository.Nutrient_Repository import Nutrient_Repository
-
-    if request.method == "GET":
-        nutrient_dtos = [
-            x.dto_serialize()
-            for x in Nutrient_Service(
-                nutrient_repository=Nutrient_Repository(db=db)
-            ).get_nutrients()
-        ]
-        return jsonify(nutrient_dtos), 200
-    else:
-        return Response(status=405)
-
-
 @app.route("/api/recipe_ingredient", methods=["POST", "PUT"])
 def recipe_ingredient() -> Response:
     from repository.Recipe_Ingredient_Repository import Recipe_Ingredient_Repository
@@ -1193,29 +1238,6 @@ def recipe_ingredient_nutrient() -> Response:
         )
         return Response(status=201)
 
-    else:
-        return Response(status=405)
-
-
-@app.route("/api/usda_ingredient_nutrient", methods=["GET"])
-def usda_ingredient_nutrient() -> Response:
-    from service.USDA_Ingredient_Nutrient_Service import (
-        USDA_Ingredient_Nutrient_Service,
-    )
-    from repository.USDA_Ingredient_Nutrient_Repository import (
-        USDA_Ingredient_Nutrient_Repository,
-    )
-
-    if request.method == "GET":
-        usda_ingredient_nutrient_dtos = [
-            x.dto_serialize()
-            for x in USDA_Ingredient_Nutrient_Service(
-                usda_ingredient_nutrient_repository=USDA_Ingredient_Nutrient_Repository(
-                    db=db
-                )
-            ).get_usda_ingredient_nutrients()
-        ]
-        return jsonify(usda_ingredient_nutrient_dtos), 200
     else:
         return Response(status=405)
 
@@ -1484,7 +1506,7 @@ def scheduled_order_meal() -> Response:
         ).create_scheduled_order_meals(
             scheduled_order_meal_dtos=scheduled_order_meal_dtos
         )
-        return Response(status=204)
+        return Response(status=201)
     elif request.method == "GET":
         meal_subscription_id: str = request.args.get("meal_subscription_id")
         scheduled_order_meal_domains: Optional[
@@ -1733,7 +1755,7 @@ def staged_schedule_meal() -> Response:
         ).create_staged_schedule_meals(
             staged_schedule_meal_dtos=staged_schedule_meal_DTOs
         )
-        return Response(status=1)
+        return Response(status=201)
     else:
         return Response(status=405)
 
@@ -2086,6 +2108,69 @@ def extended_meal_plan_snack() -> Response:
         return Response(status=405)
 
 
+@app.route("/api/staged_schedule_snack", methods=["POST"])
+def staged_schedule_snack() -> Response:
+    from repository.Staged_Schedule_Snack_Repository import (
+        Staged_Schedule_Snack_Repository,
+    )
+    from service.Staged_Schedule_Snack_Service import Staged_Schedule_Snack_Service
+    from dto.Staged_Schedule_Snack_DTO import Staged_Schedule_Snack_DTO
+
+    if request.method == "POST":
+        staged_schedule_snacks_JSON = json.loads(request.data)
+        staged_schedule_snack_DTOs = [
+            Staged_Schedule_Snack_DTO(staged_schedule_snack_json=x)
+            for x in staged_schedule_snacks_JSON
+        ]
+        Staged_Schedule_Snack_Service(
+            staged_schedule_snack_repository=Staged_Schedule_Snack_Repository(db=db)
+        ).create_staged_schedule_snacks(
+            staged_schedule_snack_dtos=staged_schedule_snack_DTOs
+        )
+        return Response(status=201)
+    else:
+        return Response(status=405)
+
+
+@app.route("/api/extended_staged_schedule_snack", methods=["GET"])
+def extended_staged_schedule_snack() -> Response:
+    from service.Extended_Staged_Schedule_Snack_Service import (
+        Extended_Staged_Schedule_Snack_Service,
+    )
+    from repository.Staged_Schedule_Snack_Repository import (
+        Staged_Schedule_Snack_Repository,
+    )
+    from domain.Extended_Staged_Schedule_Snack_Domain import (
+        Extended_Staged_Schedule_Snack_Domain,
+    )
+    from dto.Extended_Staged_Schedule_Snack_DTO import (
+        Extended_Staged_Schedule_Snack_DTO,
+    )
+
+    if request.method == "GET":
+        staged_client_id: str = request.args.get("staged_client_id")
+        extended_staged_schedule_snack_domains: Optional[
+            list[Extended_Staged_Schedule_Snack_Domain]
+        ] = Extended_Staged_Schedule_Snack_Service(
+            staged_schedule_snack_repository=Staged_Schedule_Snack_Repository(db=db)
+        ).get_staged_schedule_snacks(
+            staged_client_id=staged_client_id
+        )
+        if extended_staged_schedule_snack_domains:
+            staged_schedule_snack_dtos = [
+                Extended_Staged_Schedule_Snack_DTO(
+                    extended_staged_schedule_snack_domain=x
+                )
+                for x in extended_staged_schedule_snack_domains
+            ]
+            serialized_staged_schedule_snack_DTOs = [
+                x.serialize() for x in staged_schedule_snack_dtos
+            ]
+        return jsonify(serialized_staged_schedule_snack_DTOs), 200
+    else:
+        return Response(status=405)
+
+
 @app.route("/api/dietitian_prepayment", methods=["POST"])
 def dietitian_prepayment() -> Response:
     from service.Dietitian_Prepayment_Service import Dietitian_Prepayment_Service
@@ -2101,11 +2186,16 @@ def dietitian_prepayment() -> Response:
 
     if request.method == "POST":
         prepayment_data = json.loads(request.data)
+
         prepaid_order_discount_code = prepayment_data["discount_code"]
         num_meals = prepayment_data["num_meals"]
+
+        # TODO add snacks to prepaid flow
+        num_snacks = prepayment_data["num_snacks"]
         staged_client_id = prepayment_data["staged_client_id"]
         dietitian_id = prepayment_data["dietitian_id"]
         stripe_payment_intent_id = prepayment_data["stripe_payment_intent_id"]
+
         Dietitian_Prepayment_Service(
             dietitian_prepayment_repository=Dietitian_Prepayment_Repository(db=db)
         ).create_dietitian_prepayment(
@@ -2578,15 +2668,21 @@ def meal_subscription_invoice() -> Response:
     from repository.Scheduled_Order_Meal_Repository import (
         Scheduled_Order_Meal_Repository,
     )
+    from repository.Snack_Repository import Snack_Repository
+    from repository.Scheduled_Order_Snack_Repository import (
+        Scheduled_Order_Snack_Repository,
+    )
     from repository.Meal_Shipment_Repository import Meal_Shipment_Repository
 
     from service.Client_Service import Client_Service
     from service.Scheduled_Order_Meal_Service import Scheduled_Order_Meal_Service
+    from service.Scheduled_Order_Snack_Service import Scheduled_Order_Snack_Service
     from service.Meal_Subscription_Invoice_Service import (
         Meal_Subscription_Invoice_Service,
     )
     from service.Meal_Subscription_Service import Meal_Subscription_Service
     from service.Meal_Service import Meal_Service
+    from service.Snack_Service import Snack_Service
     from service.Shippo_Service import Shippo_Service
     from service.Email_Service import Email_Service
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
@@ -2610,7 +2706,11 @@ def meal_subscription_invoice() -> Response:
             scheduled_order_meal_service=Scheduled_Order_Meal_Service(
                 scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(db=db)
             ),
+            scheduled_order_snack_service=Scheduled_Order_Snack_Service(
+                scheduled_order_snack_repository=Scheduled_Order_Snack_Repository(db=db)
+            ),
             meal_service=Meal_Service(meal_repository=Meal_Repository(db=db)),
+            snack_service=Snack_Service(snack_repository=Snack_Repository(db=db)),
         )
 
         associated_meal_subscription = Meal_Subscription_Service(

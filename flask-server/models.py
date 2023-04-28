@@ -30,6 +30,7 @@ if TYPE_CHECKING:
     from domain.Recipe_Ingredient_Domain import Recipe_Ingredient_Domain
     from domain.Order_Discount_Domain import Order_Discount_Domain
     from domain.Staged_Schedule_Meal_Domain import Staged_Schedule_Meal_Domain
+    from domain.Staged_Schedule_Snack_Domain import Staged_Schedule_Snack_Domain
     from domain.Dietitian_Prepayment_Domain import Dietitian_Prepayment_Domain
     from domain.Dietitian_Prepayment_Domain import Dietitian_Prepayment_Domain
     from domain.Prepaid_Order_Discount_Domain import Prepaid_Order_Discount_Domain
@@ -212,7 +213,7 @@ stripe_fee_percentage = 0.029
 
 # inclusive of stripe fees. minimum order is 60, plus .3 fixed fee, divided by 1 - .29 = 62.1. divide this by 6 to get price inclusive of stripe fee
 meal_price = 12.0
-snack_price = 2.0
+snack_price = 6.0
 shipping_price = 14.0
 
 db = SQLAlchemy(app)
@@ -706,6 +707,27 @@ class Schedule_Snack_Model(db.Model):
         UUID(as_uuid=True), db.ForeignKey("meal_subscription.id"), nullable=False
     )
     associated_snack = relationship("Snack_Model", lazy="joined")
+
+
+class Staged_Schedule_Snack_Model(db.Model):
+    __tablename__ = "staged_schedule_snack"
+    id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
+    snack_id = db.Column(UUID(as_uuid=True), db.ForeignKey("snack.id"), nullable=False)
+    staged_client_id = db.Column(
+        db.String(80), db.ForeignKey("staged_client.id"), nullable=False
+    )
+    dietitian_prepayment_id = db.Column(
+        UUID(as_uuid=True), db.ForeignKey("dietitian_prepayment.id"), nullable=True
+    )
+
+    associated_snack = relationship("Snack_Model", lazy="joined")
+
+    def __init__(
+        self, staged_schedule_snack_domain: "Staged_Schedule_Snack_Domain"
+    ) -> None:
+        self.id = staged_schedule_snack_domain.id
+        self.snack_id = staged_schedule_snack_domain.snack_id
+        self.staged_client_id = staged_schedule_snack_domain.staged_client_id
 
 
 class Meal_Subscription_Model(db.Model):
@@ -1401,6 +1423,37 @@ def wipe_all_meal_related_data() -> None:
 def wipe_all_snack_related_data() -> None:
     snacks = db.session.query(Snack_Model).all()
     meal_plan_snacks = db.session.query(Meal_Plan_Snack_Model).all()
+    for meal_plan_snack in meal_plan_snacks:
+        for recipe_ingredient in meal_plan_snack.recipe:
+            for recipe_ingredient_nutrient in recipe_ingredient.nutrients:
+                db.session.delete(recipe_ingredient_nutrient)
+            db.session.delete(recipe_ingredient)
+        db.session.delete(meal_plan_snack)
+    for snack in snacks:
+        db.session.delete(snack)
+    db.session.commit()
+
+
+def wipe_all_snack_and_client_related_data() -> None:
+    snacks = db.session.query(Snack_Model).all()
+    meal_plan_snacks = db.session.query(Meal_Plan_Snack_Model).all()
+    for snack in snacks:
+        associated_scheduled_order_snacks = (
+            db.session.query(Scheduled_Order_Snack_Model)
+            .filter(Scheduled_Order_Snack_Model.snack_id == snack.id)
+            .all()
+        )
+        for scheduled_order_snack in associated_scheduled_order_snacks:
+            db.session.delete(scheduled_order_snack)
+
+        associated_schedule_snacks = (
+            db.session.query(Schedule_Snack_Model)
+            .filter(Schedule_Snack_Model.snack_id == snack.id)
+            .all()
+        )
+        for schedule_snack in associated_schedule_snacks:
+            db.session.delete(schedule_snack)
+
     for meal_plan_snack in meal_plan_snacks:
         for recipe_ingredient in meal_plan_snack.recipe:
             for recipe_ingredient_nutrient in recipe_ingredient.nutrients:

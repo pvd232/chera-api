@@ -19,6 +19,8 @@ class Recipe_Ingredient_DTO(Base_DTO):
             self.meal_plan_meal_id: Optional[UUID] = recipe_ingredient_json[
                 "meal_plan_meal_id"
             ]
+
+            # Frontend sends empty string for null values
             if self.meal_plan_meal_id == "":
                 self.meal_plan_meal_id = None
             else:
