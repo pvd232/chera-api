@@ -7,8 +7,9 @@ if TYPE_CHECKING:
 
 
 class Extended_Order_Meal_Domain(Order_Meal_Domain):
-    def __init__(self, order_meal_model: 'Order_Meal_Model') -> None:
+    def __init__(self, order_meal_model: "Order_Meal_Model") -> None:
         super().__init__(order_meal_object=order_meal_model)
 
         self.scheduled_order_meal = Extended_Scheduled_Order_Meal_Domain(
-            scheduled_order_meal_object=order_meal_model.scheduled_order_meal)
+            scheduled_order_meal_model=order_meal_model.scheduled_order_meal
+        )

@@ -8,12 +8,19 @@ if TYPE_CHECKING:
 
 
 class Extended_Order_Meal_Service(Order_Meal_Service):
-    def get_extended_order_meals(self, meal_subscription_id: UUID) -> Optional[list[Extended_Order_Meal_Domain]]:
-        order_meal_models: Optional[list['Order_Meal_Model']] = self.order_meal_repository.get_order_meals(
-            meal_subscription_id=meal_subscription_id)
+    def get_extended_order_meals(
+        self, meal_subscription_id: UUID
+    ) -> Optional[list[Extended_Order_Meal_Domain]]:
+        order_meal_models: Optional[
+            list["Order_Meal_Model"]
+        ] = self.order_meal_repository.get_order_meals(
+            meal_subscription_id=meal_subscription_id
+        )
         if order_meal_models != None:
             order_meal_domains: list[Extended_Order_Meal_Domain] = [
-                Extended_Order_Meal_Domain(order_meal_object=x) for x in order_meal_models]
+                Extended_Order_Meal_Domain(order_meal_model=x)
+                for x in order_meal_models
+            ]
             return order_meal_domains
         else:
             return None
