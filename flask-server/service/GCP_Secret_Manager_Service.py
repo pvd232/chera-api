@@ -1,4 +1,6 @@
 from typing import Any
+import os
+from pathlib import Path
 
 
 class GCP_Secret_Manager_Service(object):
@@ -41,12 +43,13 @@ class GCP_Secret_Manager_Service(object):
 
         # Build the resource name of the secret.
         secret_path = client.secret_version_path(
-            self.project_id, secret_id, self.get_secret_version(secret_id))
+            self.project_id, secret_id, self.get_secret_version(secret_id)
+        )
 
         # Get the secret.
 
         response = client.access_secret_version(request={"name": secret_path})
 
         # Access the secret payload.
-        secret_string = response.payload.data.decode('UTF-8')
+        secret_string = response.payload.data.decode("UTF-8")
         return secret_string

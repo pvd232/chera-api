@@ -249,8 +249,6 @@ class Meal_Subscription_Invoice_Service(object):
             )
             snacks_subtotal += snack.price
 
-        new_meal_subscription_invoice_domain.shipping_total = shipping_cost
-
         sales_tax_percentage = 0.0
         sales_tax_total = sales_tax_percentage * meals_subtotal
 
@@ -263,7 +261,7 @@ class Meal_Subscription_Invoice_Service(object):
         new_meal_subscription_invoice_domain.sales_tax_total = round(sales_tax_total, 2)
         new_meal_subscription_invoice_domain.stripe_fee_total = round(service_fee, 2)
         new_meal_subscription_invoice_domain.sales_tax_percentage = sales_tax_percentage
-        new_meal_subscription_invoice_domain.shipping_total = 0
+        new_meal_subscription_invoice_domain.shipping_total = shipping_cost
 
         created_invoice = (
             self.meal_subscription_invoice_repository.create_meal_subscription_invoice(

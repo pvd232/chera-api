@@ -4,9 +4,7 @@ from models import (
     app,
     db,
     stripe_meal_price_id,
-    stripe_snack_price_id,
     shipping_price,
-    meal_price,
     stripe_endpoint_secret,
     env,
     host_url,
@@ -37,6 +35,13 @@ def handle_exception(e) -> HTTPException | Response:
     if env == "debug":
         res["errorMessage"] = e.message if hasattr(e, "message") else f"{e}"
     return Response(status=500, response=json.dumps(res))
+
+
+@app.route("/api/test", methods=["GET"])
+def test() -> Response:
+    test = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+    print("test", test)
+    return Response(status=200, response="test")
 
 
 @app.route("/api/usda_ingredient_portion", methods=["POST"])
@@ -79,7 +84,7 @@ def usda_ingredient_portion() -> Response:
 @app.route(
     "/api/usda_ingredient", defaults={"usda_ingredient_id": None}, methods=["POST"]
 )
-def usda_ingredient(usda_ingredient_id: str) -> Response:
+def usda_ingredient(usda_ingredient_id: Optional[str]) -> Response:
     from models import USDA_api_key
     from repository.Imperial_Unit_Repository import Imperial_Unit_Repository
     from repository.Nutrient_Repository import Nutrient_Repository
@@ -651,10 +656,19 @@ def dietitian() -> Response | Response:
             dietitian_repository=Dietitian_Repository(db=db)
         ).create_dietitian(dietitian_dto=requested_dietitian_dto)
 
-        # Email_Service(host_url=host_url,gcp_secret_manager_service=GCP_Secret_Manager_Service()).send_confirmation_email(
-        #     user_type="Dietitian", user=created_dietitian_domain)
-        # Email_Service(host_url=host_url,gcp_secret_manager_service=GCP_Secret_Manager_Service()).send_client_sign_up_notification_email(first_name="Peter", email="patardriscoll@gmail.com",
-        #                                                           user_type="Dietitian", user=created_dietitian_domain, zipcode=created_dietitian_domain.clinic_zipcode)
+        Email_Service(
+            host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+        ).send_confirmation_email(user_type="Dietitian", user=created_dietitian_domain)
+        Email_Service(
+            host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+        ).send_client_sign_up_notification_email(
+            first_name="Peter",
+            email="patardriscoll@gmail.com",
+            user_type="Dietitian",
+            user=created_dietitian_domain,
+            env=env,
+            zipcode=created_dietitian_domain.clinic_zipcode,
+        )
         dietitian_dto = Dietitian_DTO(dietitian_domain=created_dietitian_domain)
         serialized_dietitian_dto = dietitian_dto.serialize()
         return jsonify(serialized_dietitian_dto), 201
@@ -983,7 +997,7 @@ def create_stripe_subscription() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/staged_client/<string:staged_client_id>", methods=["GET", "PUT"])
+@app.route("/api/staged_client/<string:staged_client_id>", methods=["GET"])
 def staged_client_url_param(staged_client_id) -> Response:
     from service.Staged_Client_Service import Staged_Client_Service
     from repository.Staged_Client_Repository import Staged_Client_Repository
@@ -998,15 +1012,10 @@ def staged_client_url_param(staged_client_id) -> Response:
         # Username is unavailable
         if staged_client:
             staged_client_dto = Staged_Client_DTO(staged_client_domain=staged_client)
-            return jsonify(staged_client_dto.serialize()), 200
+            return jsonify(staged_client_dto.serialize()), 409
         # Username is available
         else:
-            return Response(status=404)
-    elif request.method == "PUT":
-        Staged_Client_Service(
-            staged_client_repository=Staged_Client_Repository(db=db)
-        ).add_staged_client_to_waitlist(staged_client_id=staged_client_id)
-        return Response(status=204)
+            return Response(status=200)
 
     else:
         return Response(status=405)
@@ -1045,8 +1054,13 @@ def extended_staged_client() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/staged_client", methods=["GET", "POST", "PUT"])
-def staged_client() -> Response:
+@app.route("/api/staged_client/<string:staged_client_id>", methods=["GET"])
+@app.route(
+    "/api/staged_client",
+    defaults={"staged_client_id": None},
+    methods=["GET", "POST", "PUT"],
+)
+def staged_client(staged_client_id: Optional[str]) -> Response:
     from service.Staged_Client_Service import Staged_Client_Service
     from service.Email_Service import Email_Service
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
@@ -1054,7 +1068,21 @@ def staged_client() -> Response:
     from domain.Staged_Client_Domain import Staged_Client_Domain
     from dto.Staged_Client_DTO import Staged_Client_DTO
 
-    if request.method == "GET":
+    # Checking username availability
+    if request.method == "GET" and staged_client_id:
+        staged_client: Optional[Staged_Client_Domain] = Staged_Client_Service(
+            staged_client_repository=Staged_Client_Repository(db=db)
+        ).get_staged_client(staged_client_id=staged_client_id)
+
+        # Username is unavailable
+        if staged_client:
+            staged_client_dto = Staged_Client_DTO(staged_client_domain=staged_client)
+            return jsonify(staged_client_dto.serialize()), 409
+        # Username is available
+        else:
+            return Response(status=200)
+
+    elif request.method == "GET" and not staged_client_id:
         dietitian_id: Optional[str] = request.args.get("dietitian_id")
         staged_client_domains: list[Staged_Client_Domain] = Staged_Client_Service(
             staged_client_repository=Staged_Client_Repository(db=db)
@@ -1074,10 +1102,19 @@ def staged_client() -> Response:
             staged_client_repository=Staged_Client_Repository(db=db)
         ).create_staged_client(staged_client_dto=staged_client_dto)
 
-        # Email_Service(host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service(
-        # )).send_sign_up_email(staged_client=new_staged_client_domain)
-        # Email_Service(host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()).send_client_sign_up_notification_email(first_name="Peter", email="patardriscoll@gmail.com",
-        #                                                                                                                                  user_type="Staged_Client", user=new_staged_client_domain, env=env, zipcode=None)
+        Email_Service(
+            host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+        ).send_sign_up_email(staged_client=new_staged_client_domain)
+        Email_Service(
+            host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+        ).send_client_sign_up_notification_email(
+            first_name="Peter",
+            email="patardriscoll@gmail.com",
+            user_type="Staged_Client",
+            user=new_staged_client_domain,
+            env=env,
+            zipcode=None,
+        )
         return Response(status=201)
     elif request.method == "PUT":
         staged_client_dto: Staged_Client_DTO = Staged_Client_DTO(
@@ -1756,6 +1793,17 @@ def staged_schedule_meal() -> Response:
             staged_schedule_meal_dtos=staged_schedule_meal_DTOs
         )
         return Response(status=201)
+
+    elif request.method == "GET":
+        staged_client_id = request.args.get("staged_client_id")
+        staged_schedule_meal_doamins = Staged_Schedule_Meal_Service(
+            staged_schedule_meal_repository=Staged_Schedule_Meal_Repository(db=db)
+        ).get_staged_schedule_meals(staged_client_id=staged_client_id)
+        staged_schedule_meal_DTOs = [
+            Staged_Schedule_Meal_DTO(staged_schedule_meal_domain=x)
+            for x in staged_schedule_meal_doamins
+        ]
+        return jsonify([x.serialize() for x in staged_schedule_meal_DTOs]), 200
     else:
         return Response(status=405)
 
@@ -2108,7 +2156,7 @@ def extended_meal_plan_snack() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/staged_schedule_snack", methods=["POST"])
+@app.route("/api/staged_schedule_snack", methods=["POST", "GET"])
 def staged_schedule_snack() -> Response:
     from repository.Staged_Schedule_Snack_Repository import (
         Staged_Schedule_Snack_Repository,
@@ -2128,6 +2176,17 @@ def staged_schedule_snack() -> Response:
             staged_schedule_snack_dtos=staged_schedule_snack_DTOs
         )
         return Response(status=201)
+
+    elif request.method == "GET":
+        staged_client_id = request.args.get("staged_client_id")
+        staged_schedule_snack_domains = Staged_Schedule_Snack_Service(
+            staged_schedule_snack_repository=Staged_Schedule_Snack_Repository(db=db)
+        ).get_staged_schedule_snacks(staged_client_id=staged_client_id)
+        staged_schedule_snack_DTOs = [
+            Staged_Schedule_Snack_DTO(staged_schedule_snack_domain=x)
+            for x in staged_schedule_snack_domains
+        ]
+        return jsonify([x.serialize() for x in staged_schedule_snack_DTOs]), 200
     else:
         return Response(status=405)
 
@@ -2183,14 +2242,13 @@ def dietitian_prepayment() -> Response:
     from repository.Prepaid_Order_Discount_Repository import (
         Prepaid_Order_Discount_Repository,
     )
+    from models import meal_price, snack_price
 
     if request.method == "POST":
         prepayment_data = json.loads(request.data)
 
         prepaid_order_discount_code = prepayment_data["discount_code"]
         num_meals = prepayment_data["num_meals"]
-
-        # TODO add snacks to prepaid flow
         num_snacks = prepayment_data["num_snacks"]
         staged_client_id = prepayment_data["staged_client_id"]
         dietitian_id = prepayment_data["dietitian_id"]
@@ -2200,11 +2258,13 @@ def dietitian_prepayment() -> Response:
             dietitian_prepayment_repository=Dietitian_Prepayment_Repository(db=db)
         ).create_dietitian_prepayment(
             num_meals=num_meals,
+            num_snacks=num_snacks,
             discount_code=prepaid_order_discount_code,
             staged_client_id=staged_client_id,
             dietitian_id=dietitian_id,
             stripe_payment_intent_id=stripe_payment_intent_id,
             meal_price=meal_price,
+            snack_price=snack_price,
             shipping_price=shipping_price,
             discount_service=Discount_Service(
                 discount_repository=Discount_Repository(db=db)
@@ -2225,9 +2285,6 @@ def update_meal_subscription(meal_subscription_id: str) -> Response:
     from service.Meal_Subscription_Service import Meal_Subscription_Service
     from service.Stripe_Service import Stripe_Service
     from repository.Meal_Subscription_Repository import Meal_Subscription_Repository
-    from repository.Scheduled_Order_Meal_Repository import (
-        Scheduled_Order_Meal_Repository,
-    )
 
     if request.method == "PUT":
         if request.headers.get("update") == "deactivate":
@@ -2532,132 +2589,7 @@ def skip_week() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/dietitian/admin", methods=["GET"])
-def admin_dietitian() -> Response:
-    from service.Dietitian_Service import Dietitian_Service
-    from repository.Dietitian_Repository import Dietitian_Repository
-    from domain.Dietitian_Domain import Dietitian_Domain
-    from dto.Dietitian_DTO import Dietitian_DTO
-
-    if request.method == "GET":
-        dietitians: list[Dietitian_Domain] = Dietitian_Service(
-            dietitian_repository=Dietitian_Repository(db=db)
-        ).get_dietitians()
-        dietitian_DTOs = [Dietitian_DTO(dietitian_domain=x) for x in dietitians]
-        serialized_dietitian_DTOs = [x.serialize() for x in dietitian_DTOs]
-        return jsonify(serialized_dietitian_DTOs), 200
-    else:
-        return Response(status=405)
-
-
-@app.route("/api/staged_client/admin", methods=["GET"])
-def admin_staged_client() -> Response:
-    from service.Staged_Client_Service import Staged_Client_Service
-    from repository.Staged_Client_Repository import Staged_Client_Repository
-    from domain.Staged_Client_Domain import Staged_Client_Domain
-    from dto.Staged_Client_DTO import Staged_Client_DTO
-
-    if request.method == "GET":
-        staged_clients: list[Staged_Client_Domain] = Staged_Client_Service(
-            staged_client_repository=Staged_Client_Repository(db=db)
-        ).get_staged_clients(dietitian_id=None)
-        staged_client_DTOs: list[Staged_Client_DTO] = [
-            Staged_Client_DTO(staged_client_json=x) for x in staged_clients
-        ]
-        serialized_staged_client_dtos: list[dict] = [
-            x.serialize() for x in staged_client_DTOs
-        ]
-        return jsonify(serialized_staged_client_dtos), 200
-    else:
-        return Response(status=405)
-
-
-@app.route("/api/scheduled_order_meal/admin", methods=["GET"])
-def admin_scheduled_order_meal() -> Response:
-    from service.Scheduled_Order_Meal_Service import Scheduled_Order_Meal_Service
-    from repository.Scheduled_Order_Meal_Repository import (
-        Scheduled_Order_Meal_Repository,
-    )
-    from domain.Scheduled_Order_Meal_Domain import Scheduled_Order_Meal_Domain
-    from dto.Scheduled_Order_Meal_DTO import Scheduled_Order_Meal_DTO
-
-    if request.method == "GET":
-        scheduled_order_meals: list[
-            Scheduled_Order_Meal_Domain
-        ] = Scheduled_Order_Meal_Service(
-            scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(db=db)
-        ).get_scheduled_order_meals(
-            meal_subscription_id=None
-        )
-        scheduled_order_meal_DTOs = [
-            Scheduled_Order_Meal_DTO(scheduled_order_meal_domain=x)
-            for x in scheduled_order_meals
-        ]
-        serialized_scheduled_order_meal_DTOs = [
-            x.serialize() for x in scheduled_order_meal_DTOs
-        ]
-        return jsonify(serialized_scheduled_order_meal_DTOs), 200
-    else:
-        return Response(status=405)
-
-
-@app.route("/api/client/admin", methods=["GET"])
-def admin_clients() -> Response:
-    from service.Client_Service import Client_Service
-    from repository.Client_Repository import Client_Repository
-    from domain.Client_Domain import Client_Domain
-    from dto.Client_DTO import Client_DTO
-
-    if request.method == "GET":
-        requested_clients: list[Client_Domain] = Client_Service(
-            client_repository=Client_Repository(db=db)
-        ).get_clients(dietitian_id=None)
-        requested_client_DTOs: list[Client_DTO] = [
-            Client_DTO(client_domain=x) for x in requested_clients
-        ]
-        serialized_requested_client_DTOs: list[dict] = [
-            x.serialize() for x in requested_client_DTOs
-        ]
-        return jsonify(serialized_requested_client_DTOs), 200
-    else:
-        return Response(status=405)
-
-
-@app.route("/api/schedule_meal/admin", methods=["GET"])
-def admin_schedule_meal() -> Response:
-    from service.Schedule_Meal_Service import Schedule_Meal_Service
-    from repository.Schedule_Meal_Repository import Schedule_Meal_Repository
-    from domain.Schedule_Meal_Domain import Schedule_Meal_Domain
-
-    if request.method == "GET":
-        schedule_meals: list[Schedule_Meal_Domain] = Schedule_Meal_Service(
-            schedule_meal_repository=Schedule_Meal_Repository(db=db)
-        ).get_schedule_meals(meal_subscription_id=None)
-        schedule_meal_DTOs: list[dict] = [x.dto_serialize() for x in schedule_meals]
-        return jsonify(schedule_meal_DTOs), 200
-    else:
-        return Response(status=405)
-
-
-@app.route("/api/meal_subscription/admin", methods=["GET"])
-def admin_meal_subscription() -> Response | None:
-    from service.Meal_Subscription_Service import Meal_Subscription_Service
-    from repository.Meal_Subscription_Repository import Meal_Subscription_Repository
-    from domain.Meal_Subscription_Domain import Meal_Subscription_Domain
-
-    if request.method == "GET":
-        meal_subscriptions: list[Meal_Subscription_Domain] = Meal_Subscription_Service(
-            meal_subscription_repository=Meal_Subscription_Repository(db=db)
-        ).get_dietitian_meal_subscriptions(dietitian_id=None)
-        meal_subscription_DTOs: list[dict] = [
-            x.dto_serialize() for x in meal_subscriptions
-        ]
-        return jsonify(meal_subscription_DTOs), 200
-    else:
-        return Response(status=405)
-
-
-@app.route("/api/meal_subscription_invoice", methods=["POST", "PUT", "GET"])
+@app.route("/api/meal_subscription_invoice", methods=["POST"])
 def meal_subscription_invoice() -> Response:
     from repository.Client_Repository import Client_Repository
     from repository.Meal_Subscription_Invoice_Repository import (
@@ -2744,32 +2676,6 @@ def meal_subscription_invoice() -> Response:
             new_meal_subscription_invoice_dto.serialize()
         )
         return jsonify(serialized_new_meal_subscription_invoice_dto), 201
-
-    elif request.method == "GET":
-        meal_subscription_id: str = request.args.get("meal_subscription_id")
-        meal_subscription_invoices: Optional[
-            list[Meal_Subscription_Invoice_Domain]
-        ] = Meal_Subscription_Invoice_Service(
-            meal_subscription_invoice_repository=Meal_Subscription_Invoice_Repository(
-                db=db
-            )
-        ).get_meal_subscription_invoices(
-            meal_subscription_id=meal_subscription_id
-        )
-
-        if meal_subscription_invoices:
-            meal_subscription_invoice_DTOs = [
-                Meal_Subscription_Invoice_DTO(meal_subscription_invoice_domain=x)
-                for x in meal_subscription_invoices
-            ]
-            serialized_meal_subscription_invoice_DTOs = [
-                x.serialize() for x in meal_subscription_invoice_DTOs
-            ]
-
-            return jsonify(serialized_meal_subscription_invoice_DTOs), 200
-        else:
-            return Response(status=404)
-
     else:
         return Response(status=405)
 
@@ -2817,16 +2723,20 @@ def create_stripe_payment_intent() -> Response:
     from repository.Discount_Repository import Discount_Repository
     from service.Discount_Service import Discount_Service
     from service.Stripe_Service import Stripe_Service
+    from models import meal_price, snack_price
 
     if request.method == "POST":
         number_of_meals = request.headers.get("number_of_meals")
+        number_of_snacks = request.headers.get("number_of_snacks")
         discount_code = request.headers.get("discount_code")
         # If no discount code is provided, set to False so that it is not passed to Stripe_Service
         if discount_code == "":
             discount_code = False
         stripe_secret = Stripe_Service().create_payment_intent(
             number_of_meals=number_of_meals,
+            number_of_snacks=number_of_snacks,
             meal_price=meal_price,
+            snack_price=snack_price,
             discount_service=Discount_Service(
                 discount_repository=Discount_Repository(db=db)
             ),
