@@ -326,8 +326,10 @@ class Dietitian_Model(db.Model):
     password = db.Column(db.String(200), nullable=False)
     first_name = db.Column(db.String(80), nullable=False)
     last_name = db.Column(db.String(80), nullable=False)
-    clinic_zipcode = db.Column(db.String(5), nullable=False)
-    clinic_name = db.Column(db.String(80), nullable=False)
+    dietetic_registration_number = db.Column(db.String(12), nullable=False)
+    clinic_city = db.Column(db.String(80), nullable=False)
+    clinic_state = db.Column(db.String(2), nullable=False)
+    clinic_url = db.Column(db.String(80), nullable=False)
 
     datetime = db.Column(db.Float(), nullable=False)
     active = db.Column(db.Boolean(), default=True, nullable=False)
@@ -340,8 +342,12 @@ class Dietitian_Model(db.Model):
         self.password = generate_password_hash(dietitian_domain.password)
         self.first_name = dietitian_domain.first_name
         self.last_name = dietitian_domain.last_name
-        self.clinic_name = dietitian_domain.clinic_name
-        self.clinic_zipcode = dietitian_domain.clinic_zipcode
+        self.dietetic_registration_number = (
+            dietitian_domain.dietetic_registration_number
+        )
+        self.clinic_city = dietitian_domain.clinic_city
+        self.clinic_state = dietitian_domain.clinic_state
+        self.clinic_url = dietitian_domain.clinic_url
         self.datetime = dietitian_domain.datetime
         self.active = dietitian_domain.active
 
