@@ -18,5 +18,5 @@ class Extended_Scheduled_Order_Snack_Domain(Scheduled_Order_Snack_Domain):
             is_paused=None,
         )
         self.associated_snack = Snack_Domain(
-            snack_object=scheduled_order_snack_model.associated_snack
+            snack_model=scheduled_order_snack_model.associated_snack
         )

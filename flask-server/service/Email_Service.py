@@ -102,7 +102,7 @@ class Email_Service(object):
             s.sendmail(message["From"], message["To"], message.as_string())
             s.quit()
 
-    def send_new_user_sign_up_notification(
+    def send_client_sign_up_notification_email(
         self,
         first_name: str,
         email: str,

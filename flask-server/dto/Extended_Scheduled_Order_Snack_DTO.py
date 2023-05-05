@@ -14,5 +14,5 @@ class Extended_Scheduled_Order_Snack_DTO(Scheduled_Order_Snack_DTO):
             scheduled_order_snack_domain=extended_scheduled_order_snack_domain
         )
         self.associated_snack: Snack_DTO = Snack_DTO(
-            snack_domain=extended_scheduled_order_snack_domain.associated_snack
+            extended_snack_domain=extended_scheduled_order_snack_domain.associated_snack
         )

@@ -10,11 +10,7 @@ class Dietitian_Domain(Base_Domain):
         self.password: str = dietitian_object.password
         self.first_name: str = dietitian_object.first_name
         self.last_name: str = dietitian_object.last_name
-        self.dietetic_registration_number: str = (
-            dietitian_object.dietetic_registration_number
-        )
-        self.clinic_city: str = dietitian_object.clinic_city
-        self.clinic_state: str = dietitian_object.clinic_state
-        self.clinic_url: str = dietitian_object.clinic_url
+        self.clinic_name: str = dietitian_object.clinic_name
+        self.clinic_zipcode: str = dietitian_object.clinic_zipcode
         self.datetime: float = dietitian_object.datetime
         self.active: bool = dietitian_object.active

@@ -190,8 +190,7 @@ class Scheduled_Order_Snack_Service(object):
             ]
             return weekly_scheduled_order_snack_domains
         else:
-            # Snacks are optional so if there are no snacks for the week, return an empty list
-            return []
+            return None
 
     def get_current_scheduled_order_snack_delivery_dates(
         self, meal_subscription_id: UUID
