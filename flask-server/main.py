@@ -28,13 +28,6 @@ def handle_exception(e) -> HTTPException | Response:
     return Response(status=500, response=json.dumps(res))
 
 
-@app.route("/api/test", methods=["GET"])
-def test() -> Response:
-    test = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
-    print("test", test)
-    return Response(status=200, response="test")
-
-
 @app.route("/api/usda_ingredient_portion", methods=["POST"])
 def usda_ingredient_portion() -> Response:
     db.metadata.create_all(db.engine)
@@ -214,7 +207,7 @@ def wipe_snacks_and_client_data() -> Response:
     from models import wipe_all_snack_and_client_related_data
 
     wipe_all_snack_and_client_related_data()
-    return Response(status=204, response="Wiped all snack and client related data")
+    return Response(status=201, response="Wiped all snack and client related data")
 
 
 @app.route("/api/wipe_snacks")
@@ -222,7 +215,7 @@ def wipe_snacks() -> Response:
     from models import wipe_all_snack_related_data
 
     wipe_all_snack_related_data()
-    return Response(status=204, response="Wiped all snack related data")
+    return Response(status=201, response="Wiped all snack related data")
 
 
 @app.route("/api/wipe_meals")
@@ -230,7 +223,7 @@ def wipe_meals() -> Response:
     from models import wipe_all_meal_related_data
 
     wipe_all_meal_related_data()
-    return Response(status=204, response="Wiped all meal related data")
+    return Response(status=201, response="Wiped all meal related data")
 
 
 @app.route("/api/webhook/weekly_update", methods=["POST"])
@@ -644,25 +637,30 @@ def dietitian() -> Response | Response:
 
     if request.method == "POST":
         requested_dietitian = json.loads(request.data)
-        requested_dietitian_dto = Dietitian_DTO(dietitian_json=requested_dietitian)
+        requested_dietitian_dto = Dietitian_DTO(
+            gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+            dietitian_json=requested_dietitian,
+        )
         created_dietitian_domain = Dietitian_Service(
             dietitian_repository=Dietitian_Repository(db=db)
         ).create_dietitian(dietitian_dto=requested_dietitian_dto)
 
-        Email_Service(
-            host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
-        ).send_confirmation_email(user_type="Dietitian", user=created_dietitian_domain)
-        Email_Service(
-            host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
-        ).send_client_sign_up_notification_email(
-            first_name="Peter",
-            email="patardriscoll@gmail.com",
-            user_type="Dietitian",
-            user=created_dietitian_domain,
-            env=env,
-            zipcode=created_dietitian_domain.clinic_zipcode,
+        # Email_Service(
+        #     host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+        # ).send_confirmation_email(user_type="Dietitian", user=created_dietitian_domain)
+        # Email_Service(
+        #     host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+        # ).send_new_user_sign_up_notification(
+        #     first_name="Peter",
+        #     email="patardriscoll@gmail.com",
+        #     user_type="Dietitian",
+        #     user=created_dietitian_domain,
+        #     env=env,
+        # )
+        dietitian_dto = Dietitian_DTO(
+            gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+            dietitian_domain=created_dietitian_domain,
         )
-        dietitian_dto = Dietitian_DTO(dietitian_domain=created_dietitian_domain)
         serialized_dietitian_dto = dietitian_dto.serialize()
         return jsonify(serialized_dietitian_dto), 201
     else:
@@ -674,16 +672,22 @@ def dietitian() -> Response | Response:
 
 @app.route("/api/dietitian/<string:dietitian_id>", methods=["GET"])
 def get_dietitian(dietitian_id: str) -> Response:
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
     from service.Dietitian_Service import Dietitian_Service
     from repository.Dietitian_Repository import Dietitian_Repository
     from domain.Dietitian_Domain import Dietitian_Domain
+    from dto.Dietitian_DTO import Dietitian_DTO
 
     if request.method == "GET":
-        dietitian: Optional[Dietitian_Domain] = Dietitian_Service(
+        dietitian_domain: Optional[Dietitian_Domain] = Dietitian_Service(
             dietitian_repository=Dietitian_Repository(db=db)
         ).get_dietitian(dietitian_id=dietitian_id)
-        if dietitian:
-            return Response(status=204)
+        if dietitian_domain:
+            dietitian_DTO = Dietitian_DTO(
+                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+                dietitian_domain=dietitian_domain,
+            )
+            return jsonify(dietitian_DTO.serialize()), 200
         else:
             return Response(status=404)
     else:
@@ -695,6 +699,7 @@ def get_dietitian(dietitian_id: str) -> Response:
 
 @app.route("/api/dietitian/authenticate", methods=["GET"])
 def authenticate_dietitian() -> Response:
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
     from service.Dietitian_Service import Dietitian_Service
     from repository.Dietitian_Repository import Dietitian_Repository
     from domain.Dietitian_Domain import Dietitian_Domain
@@ -715,7 +720,10 @@ def authenticate_dietitian() -> Response:
             dietitian_repository=Dietitian_Repository(db=db)
         ).authenticate_dietitian(dietitian_id=username, password=password)
         if dietitian:
-            dietitian_dto = Dietitian_DTO(dietitian_domain=dietitian)
+            dietitian_dto = Dietitian_DTO(
+                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+                dietitian_domain=dietitian,
+            )
             serialized_dietitian_dto = dietitian_dto.serialize()
             return jsonify(serialized_dietitian_dto), 200
         else:
@@ -741,7 +749,9 @@ def authenticate_client() -> Response:
         message_bytes: bytes = base64.b64decode(base64_bytes)
         message: str = message_bytes.decode("ascii")
         username: str = message.split(":")[0]
+        print("username", username)
         password: str = message.split(":")[1]
+        print("password", password)
         client: Optional[Client_Domain] = Client_Service(
             client_repository=Client_Repository(db=db)
         ).authenticate_client(client_id=username, password=password)
@@ -787,7 +797,8 @@ def dietitian_password() -> Response:
             dietitian_id=new_data["id"], new_password=new_data["password"]
         )
         updated_dietitian_dto: Dietitian_DTO = Dietitian_DTO(
-            dietitian_domain=updated_dietitian
+            gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+            dietitian_domain=updated_dietitian,
         )
         serialized_dietitian_dto = updated_dietitian_dto.serialize()
         return jsonify(serialized_dietitian_dto), 200
@@ -865,18 +876,21 @@ def extended_clients() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/client/<string:client_id>", methods=["PUT"])
+@app.route("/api/client/<string:client_id>", methods=["GET"])
 def update_client(client_id: str) -> Response:
-    from service.Client_Service import Client_Service
     from repository.Client_Repository import Client_Repository
+    from service.Client_Service import Client_Service
+    from dto.Client_DTO import Client_DTO
 
-    if request.method == "PUT":
-        meal_subscription_id = request.args.get("meal_subscription_id")
-        Client_Service(
+    if request.method == "GET":
+        requested_client = Client_Service(
             client_repository=Client_Repository(db=db)
-        ).update_client_meal_subscription_id(
-            client_id=client_id, meal_subscription_id=meal_subscription_id
-        )
+        ).get_client(client_id=client_id)
+        if requested_client:
+            client_DTO = Client_DTO(client_domain=requested_client)
+            return jsonify(client_DTO.serialize()), 200
+        else:
+            return Response(status=404)
     else:
         return Response(status=405)
 
@@ -890,27 +904,7 @@ def clients() -> Response:
     from domain.Client_Domain import Client_Domain
     from dto.Client_DTO import Client_DTO
 
-    if request.method == "POST":
-        requested_client: dict = json.loads(request.data)
-        requested_client_dto: Client_DTO = Client_DTO(client_json=requested_client)
-        returned_client: Optional[Client_Domain] = Client_Service(
-            client_repository=Client_Repository(db=db)
-        ).create_client(client_dto=requested_client_dto)
-
-        Email_Service(
-            host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
-        ).send_client_sign_up_notification_email(
-            first_name="Peter",
-            email="patardriscoll@gmail.com",
-            user_type="Client",
-            user=returned_client,
-            env=env,
-            zipcode=returned_client.zipcode,
-        )
-        returned_client_dto = Client_DTO(client_domain=returned_client)
-
-        return jsonify(returned_client_dto.serialize()), 201
-    elif request.method == "GET":
+    if request.method == "GET":
         dietitian_id: str = request.args.get("dietitian_id")
         requested_clients: list[Client_Domain] = Client_Service(
             client_repository=Client_Repository(db=db)
@@ -922,6 +916,34 @@ def clients() -> Response:
             x.serialize() for x in requested_client_dtos
         ]
         return jsonify(serialized_requested_client_dtos), 200
+
+    elif request.method == "POST":
+        requested_client: dict = json.loads(request.data)
+        requested_client_dto: Client_DTO = Client_DTO(client_json=requested_client)
+        returned_client: Optional[Client_Domain] = Client_Service(
+            client_repository=Client_Repository(db=db)
+        ).create_client(client_dto=requested_client_dto)
+
+        # Email_Service(
+        #     host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+        # ).send_new_user_sign_up_notification(
+        #     first_name="Peter",
+        #     email="patardriscoll@gmail.com",
+        #     user_type="Client",
+        #     user=returned_client,
+        #     env=env,
+        #     zipcode=returned_client.zipcode,
+        # )
+        returned_client_dto = Client_DTO(client_domain=returned_client)
+
+        return jsonify(returned_client_dto.serialize()), 201
+
+    elif request.method == "PUT":
+        client_dto: Client_DTO = Client_DTO(client_json=json.loads(request.data))
+        Client_Service(
+            client_repository=Client_Repository(db=db)
+        ).update_client_meal_plan(client_dto=client_dto)
+        return Response(status=204)
 
 
 @app.route("/api/stripe/subscription", methods=["POST", "PUT"])
@@ -946,7 +968,6 @@ def create_stripe_subscription() -> Response:
 
     if request.method == "POST":
         stripe_subscription_data = json.loads(request.data)
-
         client_id: str = stripe_subscription_data["client_id"]
         number_of_meals: int = stripe_subscription_data["number_of_meals"]
         number_of_snacks: int = stripe_subscription_data["number_of_snacks"]
@@ -998,35 +1019,9 @@ def create_stripe_subscription() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/staged_client/<string:staged_client_id>", methods=["GET"])
-def staged_client_url_param(staged_client_id) -> Response:
-    from service.Staged_Client_Service import Staged_Client_Service
-    from repository.Staged_Client_Repository import Staged_Client_Repository
-    from domain.Staged_Client_Domain import Staged_Client_Domain
-    from dto.Staged_Client_DTO import Staged_Client_DTO
-
-    if request.method == "GET":
-        staged_client: Optional[Staged_Client_Domain] = Staged_Client_Service(
-            staged_client_repository=Staged_Client_Repository(db=db)
-        ).get_staged_client(staged_client_id=staged_client_id)
-
-        # Username is unavailable
-        if staged_client:
-            staged_client_dto = Staged_Client_DTO(staged_client_domain=staged_client)
-            return jsonify(staged_client_dto.serialize()), 409
-        # Username is available
-        else:
-            return Response(status=200)
-
-    else:
-        return Response(status=405)
-
-
 @app.route("/api/extended_staged_client", methods=["GET"])
 def extended_staged_client() -> Response:
     from service.Extended_Staged_Client_Service import Extended_Staged_Client_Service
-    from service.Email_Service import Email_Service
-    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
     from repository.Staged_Client_Repository import Staged_Client_Repository
     from domain.Extended_Staged_Client_Domain import Extended_Staged_Client_Domain
     from dto.Extended_Staged_Client_DTO import Extended_Staged_Client_DTO
@@ -1078,10 +1073,10 @@ def staged_client(staged_client_id: Optional[str]) -> Response:
         # Username is unavailable
         if staged_client:
             staged_client_dto = Staged_Client_DTO(staged_client_domain=staged_client)
-            return jsonify(staged_client_dto.serialize()), 409
+            return jsonify(staged_client_dto.serialize()), 200
         # Username is available
         else:
-            return Response(status=200)
+            return Response(status=404)
 
     elif request.method == "GET" and not staged_client_id:
         dietitian_id: Optional[str] = request.args.get("dietitian_id")
@@ -1095,6 +1090,7 @@ def staged_client(staged_client_id: Optional[str]) -> Response:
             x.serialize() for x in staged_client_DTOs
         ]
         return jsonify(serialized_staged_clients), 200
+
     elif request.method == "POST":
         staged_client_dto: Staged_Client_DTO = Staged_Client_DTO(
             staged_client_json=json.loads(request.data)
@@ -1103,27 +1099,28 @@ def staged_client(staged_client_id: Optional[str]) -> Response:
             staged_client_repository=Staged_Client_Repository(db=db)
         ).create_staged_client(staged_client_dto=staged_client_dto)
 
-        Email_Service(
-            host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
-        ).send_sign_up_email(staged_client=new_staged_client_domain)
-        Email_Service(
-            host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
-        ).send_client_sign_up_notification_email(
-            first_name="Peter",
-            email="patardriscoll@gmail.com",
-            user_type="Staged_Client",
-            user=new_staged_client_domain,
-            env=env,
-            zipcode=None,
-        )
+        # Email_Service(
+        #     host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+        # ).send_sign_up_email(staged_client=new_staged_client_domain)
+        # Email_Service(
+        #     host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+        # ).send_new_user_sign_up_notification(
+        #     first_name="Peter",
+        #     email="patardriscoll@gmail.com",
+        #     user_type="Staged_Client",
+        #     user=new_staged_client_domain,
+        #     env=env,
+        #     zipcode=None,
+        # )
         return Response(status=201)
+
     elif request.method == "PUT":
         staged_client_dto: Staged_Client_DTO = Staged_Client_DTO(
             staged_client_json=json.loads(request.data)
         )
         Staged_Client_Service(
             staged_client_repository=Staged_Client_Repository(db=db)
-        ).update_staged_client_meal_plan(new_staged_client=staged_client_dto)
+        ).update_staged_client_meal_plan(staged_client_dto=staged_client_dto)
         return Response(status=204)
     else:
         return Response(status=405)
@@ -1837,7 +1834,7 @@ def snack(snack_id: Optional[str]) -> Response:
 
         snack_uuid = UUID(snack_id)
         wipe_snack_data(snack_id=snack_uuid)
-        return Response(status=204, response="Wiped snack data")
+        return Response(status=201, response="Wiped snack data")
     else:
         return Response(status=405)
 
@@ -1958,7 +1955,7 @@ def scheduled_order_snack() -> Response:
     elif request.method == "PUT":
         meal_subscription_id: Optional[str] = request.args.get("meal_subscription_id")
         if not meal_subscription_id:
-            # Handle changes to scheduled order meals on home page
+            # Handle changes to scheduled order snacks on home page
             scheduled_order_snacks_json = json.loads(request.data)
             scheduled_order_snack_dtos = [
                 Scheduled_Order_Snack_DTO(scheduled_order_snack_json=x)
@@ -1992,7 +1989,7 @@ def scheduled_order_snack() -> Response:
         return Response(status=204)
     elif request.method == "DELETE":
         meal_subscription_id: str = request.args.get("meal_subscription_id")
-        # Check if past cutoff date and if it is the client's first week of meals
+        # Check if past cutoff date and if it is the client's first week of snacks
         cutoff_date = Date_Service().get_current_week_cutoff(
             Date_Service().get_current_week_delivery_date()
         )
@@ -2009,6 +2006,49 @@ def scheduled_order_snack() -> Response:
             is_first_week=is_first_week,
         )
         return Response(status=204)
+    else:
+        return Response(status=405)
+
+
+@app.route("/api/extended_scheduled_order_snack", methods=["GET"])
+def extended_scheduled_order_snack() -> Response:
+    from service.Extended_Scheduled_Order_Snack_Service import (
+        Extended_Scheduled_Order_Snack_Service,
+    )
+    from repository.Scheduled_Order_Snack_Repository import (
+        Scheduled_Order_Snack_Repository,
+    )
+    from domain.Extended_Scheduled_Order_Snack_Domain import (
+        Extended_Scheduled_Order_Snack_Domain,
+    )
+    from dto.Extended_Scheduled_Order_Snack_DTO import (
+        Extended_Scheduled_Order_Snack_DTO,
+    )
+
+    meal_subscription_id: str = request.args.get("meal_subscription_id")
+    if request.method == "GET":
+        extended_scheduled_order_snack_domains: Optional[
+            list[Extended_Scheduled_Order_Snack_Domain]
+        ] = Extended_Scheduled_Order_Snack_Service(
+            scheduled_order_snack_repository=Scheduled_Order_Snack_Repository(db=db)
+        ).get_upcoming_extended_scheduled_order_snacks(
+            meal_subscription_id=meal_subscription_id
+        )
+        if extended_scheduled_order_snack_domains:
+            extended_scheduled_order_snack_dtos: list[
+                Extended_Scheduled_Order_Snack_DTO
+            ] = [
+                Extended_Scheduled_Order_Snack_DTO(
+                    extended_scheduled_order_snack_domain=x
+                )
+                for x in extended_scheduled_order_snack_domains
+            ]
+            serialized_extended_scheduled_order_snack_dtos: list[dict] = [
+                x.serialize() for x in extended_scheduled_order_snack_dtos
+            ]
+            return jsonify(serialized_extended_scheduled_order_snack_dtos), 200
+        else:
+            return Response(status=204)
     else:
         return Response(status=405)
 
@@ -2549,6 +2589,7 @@ def is_first_week(meal_subscription_id: UUID) -> Response:
 
 @app.route("/api/meal_subscription/skip_week", methods=["PUT"])
 def skip_week() -> Response:
+    from service.Date_Service import Date_Service
     from service.Scheduled_Order_Meal_Service import Scheduled_Order_Meal_Service
     from service.Stripe_Service import Stripe_Service
     from repository.Scheduled_Order_Meal_Repository import (
@@ -2573,12 +2614,8 @@ def skip_week() -> Response:
             )
             Stripe_Service().skip_week(
                 stripe_subscription_id=stripe_subscription_id,
-                meal_subscription_id=meal_subscription_id,
-                scheduled_order_meal_service=Scheduled_Order_Meal_Service(
-                    scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(
-                        db=db
-                    )
-                ),
+                delivery_date=delivery_date_timestamp,
+                date_service=Date_Service(),
             )
         else:
             Scheduled_Order_Meal_Service(
@@ -2594,7 +2631,7 @@ def skip_week() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/meal_subscription_invoice", methods=["POST"])
+@app.route("/api/meal_subscription_invoice", methods=["GET", "POST"])
 def meal_subscription_invoice() -> Response:
     from models import shipping_price
     from repository.Client_Repository import Client_Repository
@@ -2622,13 +2659,31 @@ def meal_subscription_invoice() -> Response:
     from service.Meal_Service import Meal_Service
     from service.Snack_Service import Snack_Service
     from service.Shippo_Service import Shippo_Service
-    from service.Email_Service import Email_Service
-    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
     from service.Date_Service import Date_Service
-    from domain.Meal_Subscription_Invoice_Domain import Meal_Subscription_Invoice_Domain
     from dto.Meal_Subscription_Invoice_DTO import Meal_Subscription_Invoice_DTO
 
-    if request.method == "POST":
+    if request.method == "GET":
+        meal_subscription_id = request.args.get("meal_subscription_id")
+        requested_meal_subscription_invoice_domains = Meal_Subscription_Invoice_Service(
+            meal_subscription_invoice_repository=Meal_Subscription_Invoice_Repository(
+                db=db
+            )
+        ).get_meal_subscription_invoices(meal_subscription_id=meal_subscription_id)
+        if requested_meal_subscription_invoice_domains:
+            requested_meal_subscription_invoice_DTOs = [
+                Meal_Subscription_Invoice_DTO(meal_subscription_invoice_domain=x)
+                for x in requested_meal_subscription_invoice_domains
+            ]
+            return (
+                jsonify(
+                    [x.serialize() for x in requested_meal_subscription_invoice_DTOs]
+                ),
+                200,
+            )
+        else:
+            return Response(status=404)
+
+    elif request.method == "POST":
         meal_subscription_invoice_data = json.loads(request.data)
         meal_subscription_invoice_dto = Meal_Subscription_Invoice_DTO(
             meal_subscription_invoice_json=meal_subscription_invoice_data
