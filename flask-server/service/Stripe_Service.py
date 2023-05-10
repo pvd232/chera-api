@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from service.Discount_Service import Discount_Service
+    from service.Order_Calc_Service import Order_Calc_Service
     from service.Date_Service import Date_Service
     from domain.Discount_Domain import Discount_Domain
 
@@ -15,28 +15,19 @@ class Stripe_Service(object):
         number_of_snacks: int,
         meal_price: float,
         snack_price: float,
-        discount_service: "Discount_Service",
-        discount_code: str = False,
+        shipping_cost: float,
+        order_calc_service: "Order_Calc_Service" = None,
+        discount_percentage: float = False,
     ) -> dict:
-        if discount_code:
-            discount: Optional[
-                "Discount_Domain"
-            ] = discount_service.verify_discount_code(discount_code=discount_code)
-        else:
-            discount = False
-        if discount:
-            order_subtotal = (
-                float(number_of_meals) * meal_price * discount.discount_percentage
-            )
-            order_subtotal += (
-                float(number_of_snacks) * snack_price * discount.discount_percentage
-            )
-        else:
-            order_subtotal = float(number_of_meals) * meal_price
-            order_subtotal += float(number_of_snacks) * snack_price
+        stripe_order_total = order_calc_service.get_stripe_order_total(
+            num_meals=number_of_meals,
+            num_snacks=number_of_snacks,
+            meal_price=meal_price,
+            snack_price=snack_price,
+            shipping_cost=shipping_cost,
+            discount_percentage=discount_percentage,
+        )
 
-        order_total = order_subtotal + 14.0
-        stripe_order_total = int(order_total * 100)
         intent = stripe.PaymentIntent.create(
             amount=stripe_order_total,
             currency="usd",
@@ -52,8 +43,8 @@ class Stripe_Service(object):
     def get_payment_intent(self, stripe_payment_intent_id: str) -> stripe.PaymentIntent:
         return stripe.PaymentIntent.retrieve(stripe_payment_intent_id)
 
-    def get_invoice(self, stripe_invoice_id: str) -> stripe.Invoice:
-        invoice = stripe.Invoice.retrieve(stripe_invoice_id)
+    def get_invoice(self, invoice_id: str) -> stripe.Invoice:
+        invoice = stripe.Invoice.retrieve(invoice_id)
         return invoice
 
     def create_stripe_customer(self, client_id: str) -> stripe.Customer:
@@ -95,8 +86,8 @@ class Stripe_Service(object):
         stripe_customer: stripe.Customer = self.create_stripe_customer(
             client_id=client_id
         )
-        # Current week will be paid for and invoiced immidiately, subsequent invoice will be next wednesday, the billing anchor, and will be billed weekly
 
+        # Current week will be paid for and invoiced immidiately, subsequent invoice will be upcoming wednesday, the billing anchor, and will be discounted 100% to account for up front payment of first week
         if not prepaid:
             subscription = stripe.Subscription.create(
                 customer=stripe_customer.id,
@@ -136,6 +127,10 @@ class Stripe_Service(object):
                         "price": stripe_meal_price_id,
                         "quantity": number_of_meals,
                     },
+                    {
+                        "price": stripe_snack_price_id,
+                        "quantity": number_of_snacks,
+                    },
                     {"price": stripe_shipping_price_id, "quantity": 1},
                 ],
                 payment_behavior="default_incomplete",
@@ -155,11 +150,15 @@ class Stripe_Service(object):
         self,
         stripe_subscription_id: str,
         number_of_meals: int,
+        number_of_snacks: int,
         stripe_meal_price_id: str,
+        stripe_snack_price_id: str,
     ) -> None:
         subscription: stripe.Subscription = stripe.Subscription.retrieve(
             stripe_subscription_id
         )
+
+        # Meal subscription item is first item in list, snack subscription item is second item in list, shipping subscription item is third item in list
         stripe.Subscription.modify(
             stripe_subscription_id,
             cancel_at_period_end=False,
@@ -169,7 +168,12 @@ class Stripe_Service(object):
                     "id": subscription["items"]["data"][0].id,
                     "price": stripe_meal_price_id,
                     "quantity": number_of_meals,
-                }
+                },
+                {
+                    "id": subscription["items"]["data"][1].id,
+                    "price": stripe_snack_price_id,
+                    "quantity": number_of_snacks,
+                },
             ],
         )
         return

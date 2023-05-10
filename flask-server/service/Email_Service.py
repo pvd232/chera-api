@@ -27,8 +27,8 @@ class Email_Service(object):
         self.logo_url = (
             "https://storage.googleapis.com/meal-photos/bendito-small-updated.png"
         )
-        self.mailgun_domain = "postmaster@info.bendito.io"
-        self.mailgun_password = gcp_secret_manager_service.get_secret("MAILJET_PWD")
+        self.mailgun_domain = "postmaster@info.cherahealth.com"
+        self.mailgun_password = gcp_secret_manager_service.get_secret("MAILGUN_PWD")
 
     def send_fnce_lead_email(self, fnce_lead: "FNCE_Lead_Domain") -> None:
         # creates SMTP

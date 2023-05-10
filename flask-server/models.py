@@ -113,9 +113,6 @@ if env == "debug":
     stripe_one_time_account_setup_fee = "price_1MJ07mFseFjpsgWvsQToDJFu"
 
 else:
-    from werkzeug.middleware.proxy_fix import ProxyFix
-
-    app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
     STRIPE_API_KEY = GCP_Secret_Manager_Service().get_secret("STRIPE_KEY")
 
     if env == "staging":
@@ -203,11 +200,10 @@ shippo.config.api_key = SHIPPO_API_KEY
 jwt_secret = os.getenv(
     "JWT_SECRET", GCP_Secret_Manager_Service().get_secret("JWT_SECRET")
 )
-stripe_endpoint_secret = os.getenv(
-    "STRIPE_ENDPOINT_SECRET",
-    GCP_Secret_Manager_Service().get_secret("STRIPE_ENDPOINT_SECRET"),
+stripe_invoice_endpoint_secret = os.getenv(
+    "STRIPE_INVOICE_ENDPOINT_SECRET",
+    GCP_Secret_Manager_Service().get_secret("STRIPE_INVOICE_ENDPOINT_SECRET"),
 )
-
 
 # full stripe fee is .029 * total + .3 per transaction
 stripe_fee_percentage = 0.029
@@ -215,7 +211,7 @@ stripe_fee_percentage = 0.029
 # inclusive of stripe fees. minimum order is 60, plus .3 fixed fee, divided by 1 - .29 = 62.1. divide this by 6 to get price inclusive of stripe fee
 meal_price = 12.0
 snack_price = 6.0
-shipping_price = 14.0
+shipping_cost = 14.0
 
 db = SQLAlchemy(app)
 

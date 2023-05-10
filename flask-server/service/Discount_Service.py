@@ -6,12 +6,17 @@ if TYPE_CHECKING:
 
 
 class Discount_Service(object):
-    def __init__(self, discount_repository: 'Discount_Repository') -> None:
+    def __init__(self, discount_repository: "Discount_Repository") -> None:
         self.discount_repository = discount_repository
+
+    def get_discount(self, discount_code: str) -> Discount_Domain:
+        discount = self.discount_repository.get_discount(discount_code=discount_code)
+        return Discount_Domain(discount_object=discount)
 
     def verify_discount_code(self, discount_code: str) -> Optional[Discount_Domain]:
         discount_code = self.discount_repository.verify_discount(
-            discount_code=discount_code)
+            discount_code=discount_code
+        )
         if discount_code:
             return Discount_Domain(discount_object=discount_code)
         else:

@@ -26,7 +26,7 @@ class Dietitian_Prepayment_Service(object):
         dietitian_prepayment_domain: Dietitian_Prepayment_Domain,
         meal_price: float,
         snack_price: float,
-        shipping_price: float,
+        shipping_cost: float,
         discount_percentage: float = None,
     ) -> Dietitian_Prepayment_Domain:
         service_fee = 0.0
@@ -41,7 +41,7 @@ class Dietitian_Prepayment_Service(object):
         # no sales tax until 500K revenue
         sales_tax_percentage = 0
         sales_tax_total = 0
-        total = meals_subtotal + sales_tax_total + snacks_subtotal + shipping_price
+        total = meals_subtotal + sales_tax_total + snacks_subtotal + shipping_cost
         service_fee = (0.029 * total) + 0.3
 
         dietitian_prepayment_domain.total = total
@@ -49,7 +49,7 @@ class Dietitian_Prepayment_Service(object):
         dietitian_prepayment_domain.sales_tax_total = sales_tax_total
         dietitian_prepayment_domain.stripe_fee_total = service_fee
         dietitian_prepayment_domain.sales_tax_percentage = sales_tax_percentage
-        dietitian_prepayment_domain.shipping_total = shipping_price
+        dietitian_prepayment_domain.shipping_total = shipping_cost
         dietitian_prepayment_domain.datetime = datetime.now(timezone.utc).timestamp()
         return dietitian_prepayment_domain
 
@@ -63,7 +63,7 @@ class Dietitian_Prepayment_Service(object):
         stripe_payment_intent_id: str,
         meal_price: float,
         snack_price: float,
-        shipping_price: float,
+        shipping_cost: float,
         discount_service: "Discount_Service",
         prepaid_order_discount_service: "Prepaid_Order_Discount_Service",
     ) -> None:
@@ -107,7 +107,7 @@ class Dietitian_Prepayment_Service(object):
             discount_percentage=discount_percentage,
             meal_price=meal_price,
             snack_price=snack_price,
-            shipping_price=shipping_price,
+            shipping_cost=shipping_cost,
         )
 
         self.dietitian_prepayment_repository.create_dietitian_prepayment(

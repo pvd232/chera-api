@@ -1,7 +1,7 @@
 from uuid import UUID
 import os
 from models import app, db, env, host_url
-from datetime import date, datetime, timezone
+from datetime import datetime, timezone
 from flask import Response, request, jsonify
 import json
 from werkzeug.exceptions import HTTPException
@@ -321,9 +321,9 @@ def email_webhook(email_number: int) -> Response:
         return Response(status=401)
 
 
-@app.route("/api/webhook", methods=["POST"])
-def webhook() -> Response:
-    from models import stripe_endpoint_secret
+@app.route("/api/stripe_webhook/invoice", methods=["POST"])
+def stripe_webhook() -> Response:
+    from models import stripe_invoice_endpoint_secret
     from stripe import Event
 
     event = None
@@ -334,20 +334,20 @@ def webhook() -> Response:
     except:
         print("⚠️  Webhook error while parsing basic request." + str(e))
         return Response(status=400)
-    if stripe_endpoint_secret:
+    if stripe_invoice_endpoint_secret:
         # Only verify the event if there is an endpoint secret defined
         # Otherwise use the basic event deserialized with json
         sig_header: str | None = request.headers.get("stripe-signature")
         try:
             event: Event = stripe.Webhook.construct_event(
-                payload, sig_header, stripe_endpoint_secret
+                payload, sig_header, stripe_invoice_endpoint_secret
             )
         except stripe.error.SignatureVerificationError as e:
             print("⚠️  Webhook signature verification failed." + str(e))
             return Response(status=400)
 
     if event and event["type"] == "invoice.paid":
-        from models import shipping_price
+        from models import meal_price, snack_price, shipping_cost
         from repository.Client_Repository import Client_Repository
         from repository.Meal_Subscription_Repository import Meal_Subscription_Repository
         from repository.Meal_Subscription_Invoice_Repository import (
@@ -364,9 +364,7 @@ def webhook() -> Response:
         from repository.Staged_Client_Repository import Staged_Client_Repository
         from repository.Order_Meal_Repository import Order_Meal_Repository
         from repository.Order_Snack_Repository import Order_Snack_Repository
-        from repository.Email_Tracker_Repository import Email_Tracker_Repository
         from repository.Meal_Repository import Meal_Repository
-        from repository.State_Sales_Tax_Repository import State_Sales_Tax_Repository
         from repository.Meal_Shipment_Repository import Meal_Shipment_Repository
 
         from service.Staged_Client_Service import Staged_Client_Service
@@ -385,16 +383,12 @@ def webhook() -> Response:
         from service.Date_Service import Date_Service
         from service.Shippo_Service import Shippo_Service
         from service.Stripe_Service import Stripe_Service
-        from service.Email_Service import Email_Service
-        from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+        from service.Order_Calc_Service import Order_Calc_Service
 
-        from domain.Client_Domain import Client_Domain
         from domain.Meal_Subscription_Domain import Meal_Subscription_Domain
         from domain.Scheduled_Order_Meal_Domain import Scheduled_Order_Meal_Domain
         from domain.Scheduled_Order_Snack_Domain import Scheduled_Order_Snack_Domain
-        from domain.Meal_Subscription_Invoice_Domain import (
-            Meal_Subscription_Invoice_Domain,
-        )
+
         from domain.Order_Meal_Domain import Order_Meal_Domain
         from domain.Order_Snack_Domain import Order_Snack_Domain
 
@@ -403,10 +397,15 @@ def webhook() -> Response:
         from dto.Meal_Subscription_Invoice_DTO import Meal_Subscription_Invoice_DTO
         from datetime import datetime
 
+        print()
+        stripe_invoice = event["data"]["object"]
+        print("stripe_invoice", stripe_invoice)
+        print()
         stripe_invoice_id = event["data"]["object"]["id"]
         stripe_subscription_id = event["data"]["object"]["subscription"]
         stripe_payment_intent_id = event["data"]["object"]["payment_intent"]
         invoice_amount = event["data"]["object"]["amount_due"]
+        print("invoice_amount", invoice_amount)
 
         meal_subscription: Optional[
             Meal_Subscription_Domain
@@ -415,35 +414,16 @@ def webhook() -> Response:
         ).get_meal_subscription(
             stripe_subscription_id=stripe_subscription_id
         )
+
         if not meal_subscription:
-            meal_subscription = Meal_Subscription_Service(
-                meal_subscription_repository=Meal_Subscription_Repository(db=db)
-            ).get_client_meal_subscription(
-                client_id=event["data"]["object"]["customer_email"]
-            )
-            if not meal_subscription:
-                return Response(status=404)
+            return Response(status=404)
+
         staged_client = Staged_Client_Service(
             staged_client_repository=Staged_Client_Repository(db=db)
         ).get_staged_client(staged_client_id=meal_subscription.client_id)
-        number_of_invoices = len(
-            Meal_Subscription_Invoice_Service(
-                meal_subscription_invoice_repository=Meal_Subscription_Invoice_Repository(
-                    db=db
-                )
-            ).get_meal_subscription_invoices(meal_subscription_id=meal_subscription.id)
-        )
 
-        first_meal_subscription_invoice: Meal_Subscription_Invoice_Domain = Meal_Subscription_Invoice_Service(
-            meal_subscription_invoice_repository=Meal_Subscription_Invoice_Repository(
-                db=db
-            )
-        ).get_first_meal_subscription_invoice(
-            meal_subscription_id=meal_subscription.id
-        )
-        # TEST THIS
-        # regularly scheduled invoice on Wednesday, not the first Wednesday after account create, send email to me with meals
-        if date.today().weekday() == 2 and number_of_invoices > 1:
+        # Regularly scheduled invoice on delivery day cutoff (Wed) - excluding invoice for first week
+        if staged_client.account_created is True:
             meal_subscription_invoice_dto = Meal_Subscription_Invoice_DTO()
             meal_subscription_invoice_dto.datetime = datetime.now(timezone.utc)
             new_invoice = Meal_Subscription_Invoice_Service(
@@ -455,7 +435,9 @@ def webhook() -> Response:
                 meal_subscription=meal_subscription,
                 stripe_invoice_id=stripe_invoice_id,
                 stripe_payment_intent_id=stripe_payment_intent_id,
-                shipping_cost=shipping_price,
+                meal_price=meal_price,
+                snack_price=snack_price,
+                shipping_cost=shipping_cost,
                 scheduled_order_meal_service=Scheduled_Order_Meal_Service(
                     scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(
                         db=db
@@ -468,16 +450,19 @@ def webhook() -> Response:
                 ),
                 meal_service=Meal_Service(meal_repository=Meal_Repository(db=db)),
                 snack_service=Snack_Service(snack_repository=Snack_Repository(db=db)),
+                order_calc_service=Order_Calc_Service(),
             )
 
-            client: Optional[Client_Domain] = Client_Service(
+            client = Client_Service(
                 client_repository=Client_Repository(db=db)
             ).get_client(client_id=meal_subscription.client_id)
+
             Shippo_Service().create_shipment(
                 meal_subscription_invoice_id=new_invoice.id,
                 client=client,
                 meal_shipment_repository=Meal_Shipment_Repository(db=db),
             )
+
             # Get scheduled order meals for this week
             this_weeks_scheduled_order_meals: list[
                 Scheduled_Order_Meal_Domain
@@ -533,54 +518,36 @@ def webhook() -> Response:
                 ).create_order_snack(order_snack=order_snack_domain)
 
         # Invoice created when client first signs up
-        elif staged_client.account_created == False:
+        else:
             from service.Staged_Client_Service import Staged_Client_Service
             from service.Meal_Subscription_Invoice_Service import (
                 Meal_Subscription_Invoice_Service,
             )
 
+            first_meal_subscription_invoice = Meal_Subscription_Invoice_Service(
+                meal_subscription_invoice_repository=Meal_Subscription_Invoice_Repository(
+                    db=db
+                )
+            ).get_first_meal_subscription_invoice(
+                meal_subscription_id=meal_subscription.id
+            )
             Meal_Subscription_Invoice_Service(
                 meal_subscription_invoice_repository=Meal_Subscription_Invoice_Repository(
                     db=db
                 )
             ).update_first_meal_subscription_invoice(
                 meal_subscription_invoice_id=first_meal_subscription_invoice.id,
-                stripe_payment_intent_id=stripe_payment_intent_id,
-                shipping_cost=shipping_price,
                 stripe_invoice_id=stripe_invoice_id,
-                meal_repository=Meal_Repository(db=db),
-                meal_subscription_repository=Meal_Subscription_Repository(db=db),
-                client_repository=Client_Repository(db=db),
-                state_sales_tax_repository=State_Sales_Tax_Repository(db=db),
+                stripe_payment_intent_id=stripe_payment_intent_id,
             )
+            # Apply discount to invoice for the first week of meals because it was paid up front during account creation
             Stripe_Service().apply_coupon(stripe_subscription_id=stripe_subscription_id)
 
-            staged_client = Staged_Client_Service(
-                staged_client_repository=Staged_Client_Repository(db=db)
-            ).get_staged_client(staged_client_id=meal_subscription.client_id)
+            # Update staged client account status to created
             Staged_Client_Service(
                 staged_client_repository=Staged_Client_Repository(db=db)
             ).update_staged_client_account_status(staged_client_id=staged_client.id)
 
-    # if event and event['type'] == 'customer.subscription.deleted':
-    # Send an email or something
-
-    # Handle the event
-    if event and event["type"] == "payment_intent.succeeded":
-        pass
-        # Contains a stripe.PaymentIntent
-        # payment_intent = event["data"]["object"]
-        # payment_intent_id = payment_intent["id"]
-        # associated_invoice_id = payment_intent["invoice"]
-
-    # elif event['type'] == 'payment_method.attached':
-    #     Contains a stripe.PaymentMethod
-
-    #     payment_method = event['data']['object']
-
-    #     Define and call a method to handle the successful attachment of a PaymentMethod.
-
-    #     handle_payment_method_attached(payment_method)
     else:
         # Unexpected event type, payment failes etc... lots of work to be done here
         print("Unhandled event type {}".format(event["type"]))
@@ -602,9 +569,6 @@ def delivery_date() -> None:
             "upcoming_cutoff_dates": upcoming_delivery_cutoff_dates,
         }
     )
-
-
-# NO POSTMAN TEST NEEDED
 
 
 @app.route("/api/staged_client/reminder", methods=["GET"])
@@ -644,19 +608,24 @@ def dietitian() -> Response | Response:
         created_dietitian_domain = Dietitian_Service(
             dietitian_repository=Dietitian_Repository(db=db)
         ).create_dietitian(dietitian_dto=requested_dietitian_dto)
+        if env != "debug":
+            Email_Service(
+                host_url=host_url,
+                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+            ).send_confirmation_email(
+                user_type="Dietitian", user=created_dietitian_domain
+            )
+            Email_Service(
+                host_url=host_url,
+                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+            ).send_new_user_sign_up_notification(
+                first_name="Peter",
+                email="patardriscoll@gmail.com",
+                user_type="Dietitian",
+                user=created_dietitian_domain,
+                env=env,
+            )
 
-        # Email_Service(
-        #     host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
-        # ).send_confirmation_email(user_type="Dietitian", user=created_dietitian_domain)
-        # Email_Service(
-        #     host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
-        # ).send_new_user_sign_up_notification(
-        #     first_name="Peter",
-        #     email="patardriscoll@gmail.com",
-        #     user_type="Dietitian",
-        #     user=created_dietitian_domain,
-        #     env=env,
-        # )
         dietitian_dto = Dietitian_DTO(
             gcp_secret_manager_service=GCP_Secret_Manager_Service(),
             dietitian_domain=created_dietitian_domain,
@@ -846,8 +815,6 @@ def client_password() -> Response:
 @app.route("/api/extended_client", methods=["GET"])
 def extended_clients() -> Response:
     from service.Extended_Client_Service import Extended_Client_Service
-    from service.Email_Service import Email_Service
-    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
     from repository.Client_Repository import Client_Repository
     from domain.Extended_Client_Domain import Extended_Client_Domain
     from dto.Extended_Client_DTO import Extended_Client_DTO
@@ -924,16 +891,18 @@ def clients() -> Response:
             client_repository=Client_Repository(db=db)
         ).create_client(client_dto=requested_client_dto)
 
-        # Email_Service(
-        #     host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
-        # ).send_new_user_sign_up_notification(
-        #     first_name="Peter",
-        #     email="patardriscoll@gmail.com",
-        #     user_type="Client",
-        #     user=returned_client,
-        #     env=env,
-        #     zipcode=returned_client.zipcode,
-        # )
+        if env != "debug":
+            Email_Service(
+                host_url=host_url,
+                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+            ).send_new_user_sign_up_notification(
+                first_name="Peter",
+                email="patardriscoll@gmail.com",
+                user_type="Client",
+                user=returned_client,
+                env=env,
+                zipcode=returned_client.zipcode,
+            )
         returned_client_dto = Client_DTO(client_domain=returned_client)
 
         return jsonify(returned_client_dto.serialize()), 201
@@ -946,8 +915,25 @@ def clients() -> Response:
         return Response(status=204)
 
 
-@app.route("/api/stripe/subscription", methods=["POST", "PUT"])
-def create_stripe_subscription() -> Response:
+@app.route("/api/stripe/invoice", methods=["GET"])
+def get_stripe_invoice() -> Response:
+    from service.Stripe_Service import Stripe_Service
+    from repository.Client_Repository import Client_Repository
+
+    if request.method == "GET":
+        invoice_id: str = request.args.get("invoice_id")
+        invoice = Stripe_Service().get_invoice(invoice_id=invoice_id)
+        if invoice:
+            print("invoice", invoice)
+            return jsonify(invoice), 200
+        else:
+            return Response(status=204)
+    else:
+        return Response(status=405)
+
+
+@app.route("/api/stripe/subscription", methods=["POST", "PUT", "GET"])
+def stripe_subscription_data() -> Response:
     from service.Meal_Subscription_Service import Meal_Subscription_Service
     from service.Stripe_Service import Stripe_Service
     from service.Discount_Service import Discount_Service
@@ -1015,6 +1001,12 @@ def create_stripe_subscription() -> Response:
         )
         return Response(status=204)
 
+    elif request.method == "GET":
+        stripe_subscription = Stripe_Service().get_subscription(
+            stripe_subscription_id=request.args.get("stripe_subscription_id")
+        )
+        print("stripe_subscription", stripe_subscription)
+        return jsonify(stripe_subscription), 200
     else:
         return Response(status=405)
 
@@ -1098,20 +1090,22 @@ def staged_client(staged_client_id: Optional[str]) -> Response:
         new_staged_client_domain = Staged_Client_Service(
             staged_client_repository=Staged_Client_Repository(db=db)
         ).create_staged_client(staged_client_dto=staged_client_dto)
-
-        # Email_Service(
-        #     host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
-        # ).send_sign_up_email(staged_client=new_staged_client_domain)
-        # Email_Service(
-        #     host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
-        # ).send_new_user_sign_up_notification(
-        #     first_name="Peter",
-        #     email="patardriscoll@gmail.com",
-        #     user_type="Staged_Client",
-        #     user=new_staged_client_domain,
-        #     env=env,
-        #     zipcode=None,
-        # )
+        if env != "debug":
+            Email_Service(
+                host_url=host_url,
+                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+            ).send_sign_up_email(staged_client=new_staged_client_domain)
+            Email_Service(
+                host_url=host_url,
+                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+            ).send_new_user_sign_up_notification(
+                first_name="Peter",
+                email="patardriscoll@gmail.com",
+                user_type="Staged_Client",
+                user=new_staged_client_domain,
+                env=env,
+                zipcode=None,
+            )
         return Response(status=201)
 
     elif request.method == "PUT":
@@ -2273,7 +2267,7 @@ def extended_staged_schedule_snack() -> Response:
 
 @app.route("/api/dietitian_prepayment", methods=["POST"])
 def dietitian_prepayment() -> Response:
-    from models import meal_price, snack_price, shipping_price
+    from models import meal_price, snack_price, shipping_cost
     from repository.Dietitian_Prepayment_Repository import (
         Dietitian_Prepayment_Repository,
     )
@@ -2307,7 +2301,7 @@ def dietitian_prepayment() -> Response:
             stripe_payment_intent_id=stripe_payment_intent_id,
             meal_price=meal_price,
             snack_price=snack_price,
-            shipping_price=shipping_price,
+            shipping_cost=shipping_cost,
             discount_service=Discount_Service(
                 discount_repository=Discount_Repository(db=db)
             ),
@@ -2358,41 +2352,23 @@ def update_meal_subscription(meal_subscription_id: str) -> Response:
 
 @app.route("/api/meal_subscription", methods=["POST", "PUT", "GET"])
 def meal_subscription() -> Response:
-    from models import shipping_price
+    from models import shipping_cost
     from repository.Meal_Subscription_Repository import Meal_Subscription_Repository
-    from repository.Order_Discount_Repository import Order_Discount_Repository
     from service.Meal_Subscription_Service import Meal_Subscription_Service
-    from service.Order_Discount_Service import Order_Discount_Service
     from domain.Meal_Subscription_Domain import Meal_Subscription_Domain
     from dto.Meal_Subscription_DTO import Meal_Subscription_DTO
-    from dto.Order_Discount_DTO import Order_Discount_DTO
 
     if request.method == "POST":
-        meal_subscription_json = json.loads(request.data)
-        meal_subscription_data = meal_subscription_json["meal_subscription"]
+        meal_subscription_data = json.loads(request.data)
         meal_subscription_DTO = Meal_Subscription_DTO(
             meal_subscription_json=meal_subscription_data
         )
-        order_discount: Optional[dict] = meal_subscription_json["order_discount"]
-        if order_discount:
-            order_discount_dto = Order_Discount_DTO(order_discount_json=order_discount)
-            created_meal_subscription_domain = Meal_Subscription_Service(
-                meal_subscription_repository=Meal_Subscription_Repository(db=db)
-            ).create_meal_subscription(
-                meal_subscription_dto=meal_subscription_DTO,
-                shipping_cost=shipping_price,
-                order_discount=order_discount_dto,
-                order_discount_service=Order_Discount_Service(
-                    order_discount_repository=Order_Discount_Repository(db=db)
-                ),
-            )
-        else:
-            created_meal_subscription_domain = Meal_Subscription_Service(
-                meal_subscription_repository=Meal_Subscription_Repository(db=db)
-            ).create_meal_subscription(
-                meal_subscription_dto=meal_subscription_DTO,
-                shipping_cost=shipping_price,
-            )
+        created_meal_subscription_domain = Meal_Subscription_Service(
+            meal_subscription_repository=Meal_Subscription_Repository(db=db)
+        ).create_meal_subscription(
+            meal_subscription_dto=meal_subscription_DTO,
+            shipping_cost=shipping_cost,
+        )
         created_meal_subscription_dto = Meal_Subscription_DTO(
             meal_subscription_domain=created_meal_subscription_domain
         )
@@ -2541,10 +2517,10 @@ def meal_subscription_stripe_price_id() -> Response:
 
 @app.route("/api/shipping_cost", methods=["GET"])
 def shipping_cost() -> Response:
-    from models import shipping_price
+    from models import shipping_cost
 
     if request.method == "GET":
-        return jsonify(shipping_price), 200
+        return jsonify(shipping_cost), 200
     else:
         return Response(status=405)
 
@@ -2633,21 +2609,21 @@ def skip_week() -> Response:
 
 @app.route("/api/meal_subscription_invoice", methods=["GET", "POST"])
 def meal_subscription_invoice() -> Response:
-    from models import shipping_price
+    from models import meal_price, snack_price, shipping_cost
+
     from repository.Client_Repository import Client_Repository
     from repository.Meal_Subscription_Invoice_Repository import (
         Meal_Subscription_Invoice_Repository,
     )
     from repository.Meal_Subscription_Repository import Meal_Subscription_Repository
-    from repository.Meal_Repository import Meal_Repository
     from repository.Scheduled_Order_Meal_Repository import (
         Scheduled_Order_Meal_Repository,
     )
-    from repository.Snack_Repository import Snack_Repository
     from repository.Scheduled_Order_Snack_Repository import (
         Scheduled_Order_Snack_Repository,
     )
     from repository.Meal_Shipment_Repository import Meal_Shipment_Repository
+    from repository.Discount_Repository import Discount_Repository
 
     from service.Client_Service import Client_Service
     from service.Scheduled_Order_Meal_Service import Scheduled_Order_Meal_Service
@@ -2656,10 +2632,13 @@ def meal_subscription_invoice() -> Response:
         Meal_Subscription_Invoice_Service,
     )
     from service.Meal_Subscription_Service import Meal_Subscription_Service
-    from service.Meal_Service import Meal_Service
-    from service.Snack_Service import Snack_Service
     from service.Shippo_Service import Shippo_Service
     from service.Date_Service import Date_Service
+    from service.Discount_Service import Discount_Service
+    from service.Order_Calc_Service import Order_Calc_Service
+    from service.Email_Service import Email_Service
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+
     from dto.Meal_Subscription_Invoice_DTO import Meal_Subscription_Invoice_DTO
 
     if request.method == "GET":
@@ -2685,6 +2664,15 @@ def meal_subscription_invoice() -> Response:
 
     elif request.method == "POST":
         meal_subscription_invoice_data = json.loads(request.data)
+        discount_code: Optional[str] = request.headers.get("discount_code")
+        discount_percentage = False
+        if discount_code:
+            discount_percentage = (
+                Discount_Service(discount_repository=Discount_Repository(db=db))
+                .get_discount(discount_code=discount_code)
+                .discount_percentage
+            )
+
         meal_subscription_invoice_dto = Meal_Subscription_Invoice_DTO(
             meal_subscription_invoice_json=meal_subscription_invoice_data
         )
@@ -2695,15 +2683,17 @@ def meal_subscription_invoice() -> Response:
             )
         ).create_meal_subscription_invoice(
             meal_subscription_invoice_dto=meal_subscription_invoice_dto,
-            shipping_cost=shipping_price,
+            meal_price=meal_price,
+            snack_price=snack_price,
+            shipping_cost=shipping_cost,
             scheduled_order_meal_service=Scheduled_Order_Meal_Service(
                 scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(db=db)
             ),
             scheduled_order_snack_service=Scheduled_Order_Snack_Service(
                 scheduled_order_snack_repository=Scheduled_Order_Snack_Repository(db=db)
             ),
-            meal_service=Meal_Service(meal_repository=Meal_Repository(db=db)),
-            snack_service=Snack_Service(snack_repository=Snack_Repository(db=db)),
+            order_calc_service=Order_Calc_Service(),
+            discount_percentage=discount_percentage,
         )
 
         associated_meal_subscription = Meal_Subscription_Service(
@@ -2714,7 +2704,7 @@ def meal_subscription_invoice() -> Response:
         associated_client = Client_Service(
             client_repository=Client_Repository(db=db)
         ).get_client(client_id=associated_meal_subscription.client_id)
-        # create meal_shipment, using Shippo service because our meal_shipment is dependent on values generated during Shippo shipment creation
+        # Create meal_shipment, using Shippo service because our meal_shipment is dependent on values generated during Shippo shipment creation
 
         meal_shipment = Shippo_Service().create_shipment(
             meal_subscription_invoice_id=new_meal_subscription_invoice.id,
@@ -2722,17 +2712,26 @@ def meal_subscription_invoice() -> Response:
             meal_shipment_repository=Meal_Shipment_Repository(db=db),
         )
 
-        # send client confirmation email after creating shipment so as to include the tracking number
-        # get values needed to send client confirmation email
-
+        # Get values needed to send client confirmation email
         upcoming_delivery_date = Date_Service().get_current_week_delivery_date()
 
-        # send client confirmation email
-        # Email_Service(host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()).send_confirmation_email(user_type="Client", user=associated_client,
-        #                                                                                                                   delivery_date=upcoming_delivery_date, tracking_url=meal_shipment.tracking_url, date_service=Date_Service())
+        # Send client confirmation email after creating shipment so as to include the tracking number
+        if env != "debug":
+            Email_Service(
+                host_url=host_url,
+                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+            ).send_confirmation_email(
+                user_type="Client",
+                user=associated_client,
+                delivery_date=upcoming_delivery_date,
+                tracking_url=meal_shipment.tracking_url,
+                date_service=Date_Service(),
+            )
+
         new_meal_subscription_invoice_dto = Meal_Subscription_Invoice_DTO(
             meal_subscription_invoice_domain=new_meal_subscription_invoice
         )
+
         serialized_new_meal_subscription_invoice_dto = (
             new_meal_subscription_invoice_dto.serialize()
         )
@@ -2758,6 +2757,21 @@ def sales_tax() -> Response:
         return Response(status=405)
 
 
+@app.route("/api/order_discount", methods=["POST"])
+def order_discount() -> Response:
+    from service.Order_Discount_Service import Order_Discount_Service
+    from repository.Order_Discount_Repository import Order_Discount_Repository
+    from dto.Order_Discount_DTO import Order_Discount_DTO
+
+    if request.method == "POST":
+        order_discount_json = json.loads(request.data)
+        order_discount_dto = Order_Discount_DTO(order_discount_json=order_discount_json)
+        Order_Discount_Service(
+            order_discount_repository=Order_Discount_Repository(db=db)
+        ).create_order_discount(order_discount_dto=order_discount_dto)
+        return Response(status=201)
+
+
 @app.route("/api/discount", methods=["GET"])
 def verify_discount() -> Response:
     from service.Discount_Service import Discount_Service
@@ -2781,27 +2795,37 @@ def verify_discount() -> Response:
 
 @app.route("/api/stripe/payment_intent", methods=["POST"])
 def create_stripe_payment_intent() -> Response:
+    from models import meal_price, snack_price, shipping_cost
+
     from repository.Discount_Repository import Discount_Repository
+
     from service.Discount_Service import Discount_Service
     from service.Stripe_Service import Stripe_Service
-    from models import meal_price, snack_price
+    from service.Order_Calc_Service import Order_Calc_Service
 
     if request.method == "POST":
         number_of_meals = request.headers.get("number_of_meals")
         number_of_snacks = request.headers.get("number_of_snacks")
         discount_code = request.headers.get("discount_code")
+
         # If no discount code is provided, set to False so that it is not passed to Stripe_Service
         if discount_code == "":
-            discount_code = False
+            discount_percentage = False
+        else:
+            discount_percentage = (
+                Discount_Service(discount_repository=Discount_Repository(db=db))
+                .get_discount(discount_code=discount_code)
+                .discount_percentage
+            )
+
         stripe_secret = Stripe_Service().create_payment_intent(
             number_of_meals=number_of_meals,
             number_of_snacks=number_of_snacks,
             meal_price=meal_price,
             snack_price=snack_price,
-            discount_service=Discount_Service(
-                discount_repository=Discount_Repository(db=db)
-            ),
-            discount_code=discount_code,
+            shipping_cost=shipping_cost,
+            order_calc_service=Order_Calc_Service(),
+            discount_percentage=discount_percentage,
         )
 
         return jsonify(stripe_secret), 200
