@@ -28,6 +28,28 @@ def handle_exception(e) -> HTTPException | Response:
     return Response(status=500, response=json.dumps(res))
 
 
+@app.route("/api/test_dietetic", methods=["POST"])
+def validate_dietetic_registration_number() -> Response:
+    import requests
+
+    dietetic_registration_number = json.loads(request.data)
+    print("dietetic_registration_number", dietetic_registration_number)
+    headers = {"Content-Type": "application/json"}
+    response = requests.post(
+        "https://secure.eatright.org/v14pgmlib/lansaweb?w=CDRVFYS&r=CREDSEARCH&vlweb=1&part=prd&lang=ENG&_T=1683030503817",
+        json={
+            "webroutine": {"fields": {"CRID#": {"value": dietetic_registration_number}}}
+        },
+        headers=headers,
+    )
+    response_data = response.json()
+    entries = response_data["webroutine"]["lists"]["CREDCUST"]["entries"]
+    if len(entries) > 0:
+        return Response(status=200)
+    else:
+        return Response(status=404)
+
+
 @app.route("/api/usda_ingredient_portion", methods=["POST"])
 def usda_ingredient_portion() -> Response:
     db.metadata.create_all(db.engine)
@@ -1598,7 +1620,7 @@ def scheduled_order_meal() -> Response:
         is_first_week = Scheduled_Order_Meal_Service(
             scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(db=db)
         ).check_if_first_week_of_meals(meal_subscription_id=meal_subscription_id)
-
+        print("is_first_week", is_first_week)
         Scheduled_Order_Meal_Service(
             scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(db=db)
         ).delete_scheduled_order_meals(

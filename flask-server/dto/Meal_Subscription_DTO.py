@@ -7,16 +7,19 @@ if TYPE_CHECKING:
 
 
 class Meal_Subscription_DTO(Base_DTO):
-    def __init__(self, meal_subscription_json: dict = None, meal_subscription_domain: 'Meal_Subscription_Domain' = None) -> None:
+    def __init__(
+        self,
+        meal_subscription_json: dict = None,
+        meal_subscription_domain: "Meal_Subscription_Domain" = None,
+    ) -> None:
         if meal_subscription_json:
             self.id: UUID = UUID(meal_subscription_json["id"])
             self.client_id: str = meal_subscription_json["client_id"]
             self.dietitian_id: str = meal_subscription_json["dietitian_id"]
-            self.stripe_price_id: str = str(
-                meal_subscription_json["stripe_price_id"])
-            self.stripe_subscription_id: str = meal_subscription_json["stripe_subscription_id"]
-            self.shipping_cost: float = float(
-                meal_subscription_json["shipping_cost"])
+            self.stripe_subscription_id: str = meal_subscription_json[
+                "stripe_subscription_id"
+            ]
+            self.shipping_cost: float = float(meal_subscription_json["shipping_cost"])
             self.datetime: float = float(meal_subscription_json["datetime"])
             self.paused: bool = meal_subscription_json["paused"]
             self.active: bool = meal_subscription_json["active"]
@@ -24,8 +27,9 @@ class Meal_Subscription_DTO(Base_DTO):
             self.id: UUID = meal_subscription_domain.id
             self.client_id: str = meal_subscription_domain.client_id
             self.dietitian_id: str = meal_subscription_domain.dietitian_id
-            self.stripe_price_id: str = meal_subscription_domain.stripe_price_id
-            self.stripe_subscription_id: str = meal_subscription_domain.stripe_subscription_id
+            self.stripe_subscription_id: str = (
+                meal_subscription_domain.stripe_subscription_id
+            )
             self.shipping_cost: float = meal_subscription_domain.shipping_cost
             self.datetime: float = meal_subscription_domain.datetime
             self.paused: bool = meal_subscription_domain.paused

@@ -741,7 +741,6 @@ class Meal_Subscription_Model(db.Model):
         db.String(80), db.ForeignKey("dietitian.id"), nullable=False
     )
     stripe_subscription_id = db.Column(db.String(80), unique=True, nullable=False)
-    stripe_price_id = db.Column(db.String(80), nullable=False)
     datetime = db.Column(db.Float(), nullable=False)
     shipping_cost = db.Column(db.Float(), nullable=False)
     active = db.Column(db.Boolean(), default=True, nullable=False)
@@ -752,7 +751,6 @@ class Meal_Subscription_Model(db.Model):
         self.client_id = meal_subscription.client_id
         self.dietitian_id = meal_subscription.dietitian_id
         self.stripe_subscription_id = meal_subscription.stripe_subscription_id
-        self.stripe_price_id = meal_subscription.stripe_price_id
         self.datetime = meal_subscription.datetime
         self.shipping_cost = meal_subscription.shipping_cost
         self.active = meal_subscription.active
