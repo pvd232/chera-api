@@ -1,12 +1,15 @@
 from uuid import UUID
 from typing import TYPE_CHECKING
 from .Base_DTO import Base_DTO
+
 if TYPE_CHECKING:
     from domain.Client_Domain import Client_Domain
 
 
 class Client_DTO(Base_DTO):
-    def __init__(self, client_json: dict = None, client_domain: 'Client_Domain' = None) -> None:
+    def __init__(
+        self, client_json: dict = None, client_domain: "Client_Domain" = None
+    ) -> None:
         if client_json:
             self.id: UUID = client_json["id"]
             self.password: str = client_json["password"]
@@ -20,6 +23,7 @@ class Client_DTO(Base_DTO):
             self.city: str = client_json["city"]
             self.state: str = client_json["state"]
             self.zipcode: int = client_json["zipcode"]
+            self.zipcode_extension: int = client_json["zipcode_extension"]
             self.address: str = client_json["address"]
             self.notes: str = client_json["notes"]
             self.phone_number: int = client_json["phone_number"]
@@ -40,6 +44,7 @@ class Client_DTO(Base_DTO):
             self.city: str = client_domain.city
             self.state: str = client_domain.state
             self.zipcode: int = client_domain.zipcode
+            self.zipcode_extension: int = client_domain.zipcode_extension
             self.address: str = client_domain.address
             self.phone_number: int = client_domain.phone_number
             self.notes: str = client_domain.notes

@@ -19,6 +19,7 @@ class Client_Domain(Base_Domain):
         self.city: str = client_object.city
         self.state: str = client_object.state
         self.zipcode: int = client_object.zipcode
+        self.zipcode_extension: int = client_object.zipcode_extension
         self.address: str = client_object.address
         self.phone_number: int = client_object.phone_number
         self.notes: str = client_object.notes

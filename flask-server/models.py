@@ -234,6 +234,7 @@ class Client_Model(db.Model):
     city = db.Column(db.String(80), nullable=False)
     state = db.Column(db.String(80), nullable=False)
     zipcode = db.Column(db.String(5), nullable=False)
+    zipcode_extension = db.Column(db.String(4), nullable=False)
     address = db.Column(db.String(200), nullable=False)
     phone_number = db.Column(db.BigInteger(), nullable=False)
     datetime = db.Column(db.Float(), nullable=False)
@@ -259,6 +260,7 @@ class Client_Model(db.Model):
         self.city = client_domain.city
         self.state = client_domain.state
         self.zipcode = client_domain.zipcode
+        self.zipcode_extension = client_domain.zipcode_extension
         self.address = client_domain.address
         self.phone_number = client_domain.phone_number
         self.datetime = client_domain.datetime
@@ -275,6 +277,7 @@ class Client_Model(db.Model):
         self.city = requested_client.city
         self.state = requested_client.state
         self.zipcode = requested_client.zipcode
+        self.zipcode_extension = requested_client.zipcode_extension
         self.address = requested_client.address
         self.phone_number = requested_client.phone_number
         self.notes = requested_client.notes

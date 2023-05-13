@@ -33,7 +33,6 @@ def validate_dietetic_registration_number() -> Response:
     import requests
 
     dietetic_registration_number = json.loads(request.data)
-    print("dietetic_registration_number", dietetic_registration_number)
     headers = {"Content-Type": "application/json"}
     response = requests.post(
         "https://secure.eatright.org/v14pgmlib/lansaweb?w=CDRVFYS&r=CREDSEARCH&vlweb=1&part=prd&lang=ENG&_T=1683030503817",
@@ -419,15 +418,9 @@ def stripe_webhook() -> Response:
         from dto.Meal_Subscription_Invoice_DTO import Meal_Subscription_Invoice_DTO
         from datetime import datetime
 
-        print()
-        stripe_invoice = event["data"]["object"]
-        print("stripe_invoice", stripe_invoice)
-        print()
         stripe_invoice_id = event["data"]["object"]["id"]
         stripe_subscription_id = event["data"]["object"]["subscription"]
         stripe_payment_intent_id = event["data"]["object"]["payment_intent"]
-        invoice_amount = event["data"]["object"]["amount_due"]
-        print("invoice_amount", invoice_amount)
 
         meal_subscription: Optional[
             Meal_Subscription_Domain
@@ -740,9 +733,7 @@ def authenticate_client() -> Response:
         message_bytes: bytes = base64.b64decode(base64_bytes)
         message: str = message_bytes.decode("ascii")
         username: str = message.split(":")[0]
-        print("username", username)
         password: str = message.split(":")[1]
-        print("password", password)
         client: Optional[Client_Domain] = Client_Service(
             client_repository=Client_Repository(db=db)
         ).authenticate_client(client_id=username, password=password)
@@ -946,7 +937,6 @@ def get_stripe_invoice() -> Response:
         invoice_id: str = request.args.get("invoice_id")
         invoice = Stripe_Service().get_invoice(invoice_id=invoice_id)
         if invoice:
-            print("invoice", invoice)
             return jsonify(invoice), 200
         else:
             return Response(status=204)
@@ -1027,7 +1017,6 @@ def stripe_subscription_data() -> Response:
         stripe_subscription = Stripe_Service().get_subscription(
             stripe_subscription_id=request.args.get("stripe_subscription_id")
         )
-        print("stripe_subscription", stripe_subscription)
         return jsonify(stripe_subscription), 200
     else:
         return Response(status=405)
@@ -1620,7 +1609,6 @@ def scheduled_order_meal() -> Response:
         is_first_week = Scheduled_Order_Meal_Service(
             scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(db=db)
         ).check_if_first_week_of_meals(meal_subscription_id=meal_subscription_id)
-        print("is_first_week", is_first_week)
         Scheduled_Order_Meal_Service(
             scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(db=db)
         ).delete_scheduled_order_meals(

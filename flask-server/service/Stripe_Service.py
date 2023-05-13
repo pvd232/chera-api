@@ -195,6 +195,7 @@ class Stripe_Service(object):
         return
 
     def apply_coupon(self, stripe_subscription_id: str) -> None:
+        print("applying coupon")
         stripe.Subscription.modify(
             stripe_subscription_id,
             coupon=stripe.Coupon.create(duration="once", percent_off=100),
