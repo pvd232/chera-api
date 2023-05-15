@@ -53,6 +53,14 @@ class Client_Repository(Base_Repository):
             clients = self.db.session.query(Client_Model).all()
         return clients
 
+    def update_client(self, client_domain: "Client_Domain"):
+        client_to_update: Client_Model = (
+            self.db.session.query(Client_Model)
+            .filter(Client_Model.id == client_domain.id)
+            .first()
+        )
+        client_to_update.update(client_domain=client_domain)
+
     def update_client_meal_plan(self, client_domain: "Client_Domain") -> None:
         client_to_update = (
             self.db.session.query(Client_Model)
@@ -70,15 +78,11 @@ class Client_Repository(Base_Repository):
         self.db.session.commit()
         return client_to_update
 
-    def update_client(self, requested_client: "Client_Domain") -> Client_Model:
-        client_to_update: Client_Model = (
-            self.db.session.query(Client_Model)
-            .filter(Client_Model.id == requested_client.id)
-            .first()
-        )
-        client_to_update.update(requested_client=requested_client)
+    def deactivate_client(self, client_id: str) -> None:
+        client_to_update: Client_Model = self.get_client(client_id=client_id)
+        client_to_update.active = False
         self.db.session.commit()
-        return client_to_update
+        return
 
     def authenticate_client(
         self, client_id: str, password: str

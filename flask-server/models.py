@@ -758,6 +758,14 @@ class Meal_Subscription_Model(db.Model):
         self.shipping_cost = meal_subscription.shipping_cost
         self.active = meal_subscription.active
         self.paused = meal_subscription.paused
+        
+    def update(self, meal_subscription_domain: "Meal_Subscription_Domain"):
+        self.dietitian_id = meal_subscription_domain.dietitian_id
+        self.stripe_subscription_id = meal_subscription_domain.stripe_subscription_id
+        self.datetime = meal_subscription_domain.datetime
+        self.shipping_cost = meal_subscription_domain.shipping_cost
+        self.active = meal_subscription_domain.active
+        self.paused = meal_subscription_domain.paused
 
 
 class Meal_Dietary_Restriction_Model(db.Model):

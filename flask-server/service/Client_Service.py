@@ -21,21 +21,6 @@ class Client_Service(object):
         created_client_domain = Client_Domain(client_object=client_model)
         return created_client_domain
 
-    def update_client_meal_plan(self, client_dto: "Client_DTO") -> None:
-        updated_client: Client_Domain = Client_Domain(client_object=client_dto)
-        return self.client_repository.update_client_meal_plan(
-            client_domain=updated_client
-        )
-
-    def update_client_password(
-        self, client_id: str, new_password: str
-    ) -> Client_Domain:
-        return Client_Domain(
-            client_object=self.client_repository.update_client_password(
-                client_id=client_id, new_password=new_password
-            )
-        )
-
     def get_client(
         self, client_id: str = None, client_stripe_id: str = None
     ) -> Optional[Client_Domain]:
@@ -64,6 +49,28 @@ class Client_Service(object):
             ]
         else:
             return None
+
+    def update_client(self, client_dto: "Client_DTO") -> None:
+        client_domain = Client_Domain(client_object=client_dto)
+        return self.client_repository.update_client(client_domain=client_domain)
+
+    def update_client_meal_plan(self, client_dto: "Client_DTO") -> None:
+        updated_client: Client_Domain = Client_Domain(client_object=client_dto)
+        return self.client_repository.update_client_meal_plan(
+            client_domain=updated_client
+        )
+
+    def update_client_password(
+        self, client_id: str, new_password: str
+    ) -> Client_Domain:
+        return Client_Domain(
+            client_object=self.client_repository.update_client_password(
+                client_id=client_id, new_password=new_password
+            )
+        )
+
+    def deactivate_client(self, client_id: str) -> None:
+        return self.client_repository.deactivate_client(client_id=client_id)
 
     def authenticate_client(
         self, client_id: str, password: str

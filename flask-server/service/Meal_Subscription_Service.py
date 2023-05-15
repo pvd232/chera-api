@@ -79,7 +79,6 @@ class Meal_Subscription_Service(object):
     def create_meal_subscription(
         self, meal_subscription_dto: "Meal_Subscription_DTO", shipping_cost: float
     ) -> Meal_Subscription_Domain:
-        # Create meal subscription
         requested_meal_subscription = Meal_Subscription_Domain(
             meal_subscription_object=meal_subscription_dto
         )
@@ -121,6 +120,26 @@ class Meal_Subscription_Service(object):
             stripe_service.unpause_stripe_subscription(
                 stripe_subscription_id=meal_subscription_to_unpause.stripe_subscription_id
             )
+        return
+
+    def update_meal_subscription(
+        self, meal_subscription_dto: "Meal_Subscription_DTO"
+    ) -> Meal_Subscription_Domain:
+        meal_subscription_domain = Meal_Subscription_Domain(
+            meal_subscription_object=meal_subscription_dto
+        )
+        updated_meal_subscription_id = (
+            self.meal_subscription_repository.update_meal_subscription(
+                meal_subscription_domain=meal_subscription_domain
+            )
+        )
+        meal_subscription_domain.id = updated_meal_subscription_id
+        return meal_subscription_domain
+
+    def deactivate_meal_subscription(self, meal_subscription_id: UUID) -> None:
+        self.meal_subscription_repository.deactivate_meal_subscription(
+            meal_subscription_id=meal_subscription_id
+        )
         return
 
     def get_client_meal_subscription(

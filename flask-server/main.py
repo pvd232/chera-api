@@ -342,7 +342,7 @@ def email_webhook(email_number: int) -> Response:
         return Response(status=401)
 
 
-@app.route("/api/stripe_webhook/invoice", methods=["POST"])
+@app.route("/api/stripe/webhook", methods=["POST"])
 def stripe_webhook() -> Response:
     from models import stripe_invoice_endpoint_secret
     from stripe import Event
@@ -738,7 +738,7 @@ def authenticate_client() -> Response:
             client_repository=Client_Repository(db=db)
         ).authenticate_client(client_id=username, password=password)
 
-        if client:
+        if client and client.active:
             client_dto: Client_DTO = Client_DTO(client_domain=client)
             return jsonify(client_dto.serialize()), 200
         else:
@@ -856,7 +856,7 @@ def extended_clients() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/client/<string:client_id>", methods=["GET"])
+@app.route("/api/client/<string:client_id>", methods=["GET", "PUT"])
 def update_client(client_id: str) -> Response:
     from repository.Client_Repository import Client_Repository
     from service.Client_Service import Client_Service
@@ -866,17 +866,22 @@ def update_client(client_id: str) -> Response:
         requested_client = Client_Service(
             client_repository=Client_Repository(db=db)
         ).get_client(client_id=client_id)
-        if requested_client:
+        if requested_client and requested_client.active:
             client_DTO = Client_DTO(client_domain=requested_client)
             return jsonify(client_DTO.serialize()), 200
         else:
             return Response(status=404)
+    elif request.method == "PUT":
+        Client_Service(client_repository=Client_Repository(db=db)).deactivate_client(
+            client_id=client_id
+        )
+        return Response(status=204)
     else:
         return Response(status=405)
 
 
 @app.route("/api/client", methods=["POST", "GET", "PUT"])
-def clients() -> Response:
+def client() -> Response:
     from service.Client_Service import Client_Service
     from service.Email_Service import Email_Service
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
@@ -900,9 +905,17 @@ def clients() -> Response:
     elif request.method == "POST":
         requested_client: dict = json.loads(request.data)
         requested_client_dto: Client_DTO = Client_DTO(client_json=requested_client)
-        returned_client: Optional[Client_Domain] = Client_Service(
+        check_previous_client: Optional[Client_Domain] = Client_Service(
             client_repository=Client_Repository(db=db)
-        ).create_client(client_dto=requested_client_dto)
+        ).get_client(client_id=requested_client_dto.id)
+        if check_previous_client:
+            Client_Service(client_repository=Client_Repository(db=db)).update_client(
+                client_dto=requested_client_dto
+            )
+        else:
+            returned_client: Optional[Client_Domain] = Client_Service(
+                client_repository=Client_Repository(db=db)
+            ).create_client(client_dto=requested_client_dto)
 
         if env != "debug":
             Email_Service(
@@ -925,7 +938,6 @@ def clients() -> Response:
         Client_Service(
             client_repository=Client_Repository(db=db)
         ).update_client_meal_plan(client_dto=client_dto)
-        return Response(status=204)
 
 
 @app.route("/api/stripe/invoice", methods=["GET"])
@@ -944,7 +956,7 @@ def get_stripe_invoice() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/stripe/subscription", methods=["POST", "PUT", "GET"])
+@app.route("/api/stripe/subscription", methods=["POST", "PUT", "GET", "DELETE"])
 def stripe_subscription_data() -> Response:
     from service.Meal_Subscription_Service import Meal_Subscription_Service
     from service.Stripe_Service import Stripe_Service
@@ -1018,6 +1030,13 @@ def stripe_subscription_data() -> Response:
             stripe_subscription_id=request.args.get("stripe_subscription_id")
         )
         return jsonify(stripe_subscription), 200
+
+    elif request.method == "DELETE":
+        stripe_subscription_id = request.args.get("stripe_subscription_id")
+        Stripe_Service().delete_subscription(
+            stripe_subscription_id=stripe_subscription_id
+        )
+        return Response(status=204)
     else:
         return Response(status=405)
 
@@ -2334,10 +2353,9 @@ def update_meal_subscription(meal_subscription_id: str) -> Response:
 
     if request.method == "PUT":
         if request.headers.get("update") == "deactivate":
-            pass
-            # TODO implement this function across stack
-            # Meal_Subscription_Service(meal_subscription_repository=Meal_Subscription_Repository(db=db)).deactivate_meal_subscription(
-            #     meal_subscription_id=meal_subscription_id)
+            Meal_Subscription_Service(
+                meal_subscription_repository=Meal_Subscription_Repository(db=db)
+            ).deactivate_meal_subscription(meal_subscription_id=meal_subscription_id)
 
         elif request.headers.get("update") == "pause":
             Meal_Subscription_Service(
@@ -2360,7 +2378,7 @@ def update_meal_subscription(meal_subscription_id: str) -> Response:
         return Response(status=405)
 
 
-@app.route("/api/meal_subscription", methods=["POST", "PUT", "GET"])
+@app.route("/api/meal_subscription", methods=["POST", "GET"])
 def meal_subscription() -> Response:
     from models import shipping_cost
     from repository.Meal_Subscription_Repository import Meal_Subscription_Repository
@@ -2373,12 +2391,23 @@ def meal_subscription() -> Response:
         meal_subscription_DTO = Meal_Subscription_DTO(
             meal_subscription_json=meal_subscription_data
         )
-        created_meal_subscription_domain = Meal_Subscription_Service(
+        prev_meal_subscription_domain = Meal_Subscription_Service(
             meal_subscription_repository=Meal_Subscription_Repository(db=db)
-        ).create_meal_subscription(
-            meal_subscription_dto=meal_subscription_DTO,
-            shipping_cost=shipping_cost,
-        )
+        ).get_client_meal_subscription(client_id=meal_subscription_DTO.client_id)
+        if (
+            prev_meal_subscription_domain
+            and prev_meal_subscription_domain.active == False
+        ):
+            created_meal_subscription_domain = Meal_Subscription_Service(
+                meal_subscription_repository=Meal_Subscription_Repository(db=db)
+            ).update_meal_subscription(meal_subscription_dto=meal_subscription_DTO)
+        else:
+            created_meal_subscription_domain = Meal_Subscription_Service(
+                meal_subscription_repository=Meal_Subscription_Repository(db=db)
+            ).create_meal_subscription(
+                meal_subscription_dto=meal_subscription_DTO,
+                shipping_cost=shipping_cost,
+            )
         created_meal_subscription_dto = Meal_Subscription_DTO(
             meal_subscription_domain=created_meal_subscription_domain
         )
