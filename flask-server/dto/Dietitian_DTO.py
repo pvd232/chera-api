@@ -24,6 +24,7 @@ class Dietitian_DTO(Base_DTO):
             ]
             self.clinic_city: str = dietitian_json["clinic_city"]
             self.clinic_state: str = dietitian_json["clinic_state"]
+            self.clinic_address: str = dietitian_json["clinic_address"]
             self.clinic_url: str = dietitian_json["clinic_url"]
             self.datetime: float = float(dietitian_json["datetime"])
             self.active: bool = dietitian_json["active"]
@@ -44,6 +45,7 @@ class Dietitian_DTO(Base_DTO):
             )
             self.clinic_city: str = dietitian_domain.clinic_city
             self.clinic_state: str = dietitian_domain.clinic_state
+            self.clinic_address: str = dietitian_domain.clinic_address
             self.clinic_url: str = dietitian_domain.clinic_url
             self.datetime: float = dietitian_domain.datetime
             self.active: bool = dietitian_domain.active

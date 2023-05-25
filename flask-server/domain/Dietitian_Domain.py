@@ -15,6 +15,7 @@ class Dietitian_Domain(Base_Domain):
         )
         self.clinic_city: str = dietitian_object.clinic_city
         self.clinic_state: str = dietitian_object.clinic_state
+        self.clinic_address: str = dietitian_object.clinic_address
         self.clinic_url: str = dietitian_object.clinic_url
         self.datetime: float = dietitian_object.datetime
         self.active: bool = dietitian_object.active

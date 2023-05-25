@@ -328,6 +328,7 @@ class Dietitian_Model(db.Model):
     dietetic_registration_number = db.Column(db.String(12), nullable=False)
     clinic_city = db.Column(db.String(80), nullable=False)
     clinic_state = db.Column(db.String(2), nullable=False)
+    clinic_address = db.Column(db.String(200), nullable=False)
     clinic_url = db.Column(db.String(80), nullable=False)
 
     datetime = db.Column(db.Float(), nullable=False)
@@ -758,7 +759,7 @@ class Meal_Subscription_Model(db.Model):
         self.shipping_cost = meal_subscription.shipping_cost
         self.active = meal_subscription.active
         self.paused = meal_subscription.paused
-        
+
     def update(self, meal_subscription_domain: "Meal_Subscription_Domain"):
         self.dietitian_id = meal_subscription_domain.dietitian_id
         self.stripe_subscription_id = meal_subscription_domain.stripe_subscription_id

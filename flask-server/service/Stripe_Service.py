@@ -1,6 +1,6 @@
 import stripe
 from datetime import datetime
-from typing import Optional, TYPE_CHECKING
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from service.Order_Calc_Service import Order_Calc_Service
@@ -49,6 +49,12 @@ class Stripe_Service(object):
 
     def create_stripe_customer(self, client_id: str) -> stripe.Customer:
         return stripe.Customer.create(email=client_id)
+
+    def delete_customer(self, customer_id: str) -> stripe.Customer:
+        stripe_customer = stripe.Customer.retrieve(customer_id)
+        if stripe_customer:
+            stripe_customer.delete()
+        return
 
     def get_subscription(self, stripe_subscription_id: str) -> stripe.Subscription:
         return stripe.Subscription.retrieve(stripe_subscription_id)
@@ -195,7 +201,6 @@ class Stripe_Service(object):
         return
 
     def apply_coupon(self, stripe_subscription_id: str) -> None:
-        print("applying coupon")
         stripe.Subscription.modify(
             stripe_subscription_id,
             coupon=stripe.Coupon.create(duration="once", percent_off=100),

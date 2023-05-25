@@ -956,6 +956,17 @@ def get_stripe_invoice() -> Response:
         return Response(status=405)
 
 
+@app.route("/api/stripe/customer/<string:customer_id>", methods=["DELETE"])
+def get_stripe_invoice(customer_id: str) -> Response:
+    from service.Stripe_Service import Stripe_Service
+
+    if request.method == "DELETE":
+        Stripe_Service().delete_customer(customer_id=customer_id)
+        return Response(status=204)
+    else:
+        return Response(status=405)
+
+
 @app.route("/api/stripe/subscription", methods=["POST", "PUT", "GET", "DELETE"])
 def stripe_subscription_data() -> Response:
     from service.Meal_Subscription_Service import Meal_Subscription_Service
