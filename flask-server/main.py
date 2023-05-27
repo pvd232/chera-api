@@ -8,6 +8,7 @@ from werkzeug.exceptions import HTTPException
 from typing import Optional
 import stripe
 import uuid
+import pandas as pd
 
 
 @app.errorhandler(500)
@@ -47,6 +48,51 @@ def validate_dietetic_registration_number() -> Response:
         return Response(status=200)
     else:
         return Response(status=404)
+
+
+@app.route("/api/recruiting_email", methods=["GET"])
+def recruiting_email() -> Response:
+    from pathlib import Path
+    from service.Email_Service import Email_Service
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+
+    calendly_link = (
+        "https://calendly.com/peterdriscoll-chera/chera-swe-internship-interview"
+    )
+    role = request.args.get("role")
+    # Get email list from excel sheet
+    import pandas as pd
+    import numpy as np
+
+    # Create data frame
+    df: pd.DataFrame = pd.read_csv(
+        Path(".")
+        .joinpath("flask-server")
+        .joinpath("excel_data")
+        .joinpath("software_engineering.csv")
+    )
+
+    candidate_emails = df["Email"].to_list()
+    candidate_first_name_series = df["First Name"].to_list()
+    candidate_list = []
+
+    for i in range(len(candidate_emails)):
+        candidate = {
+            "email": candidate_emails[i],
+            "first_name": candidate_first_name_series[i],
+        }
+        candidate_list.append(candidate)
+    print("candidate_list", candidate_list)
+    for candidate in candidate_list:
+        Email_Service(
+            host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+        ).send_recruiting_email(
+            first_name=candidate["first_name"],
+            email=candidate["email"],
+            role=role,
+            calendly_link=calendly_link,
+        )
+    return Response(status=200)
 
 
 @app.route("/api/usda_ingredient_portion", methods=["POST"])
@@ -957,7 +1003,7 @@ def get_stripe_invoice() -> Response:
 
 
 @app.route("/api/stripe/customer/<string:customer_id>", methods=["DELETE"])
-def get_stripe_invoice(customer_id: str) -> Response:
+def delete_stripe_invoice(customer_id: str) -> Response:
     from service.Stripe_Service import Stripe_Service
 
     if request.method == "DELETE":

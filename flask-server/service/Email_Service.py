@@ -35,16 +35,52 @@ class Email_Service(object):
         s = smtplib.SMTP_SSL("smtp.gmail.com", 465)
 
         # Authentication
-        s.login("peterdriscoll27@gmail.com", "jvuvmltffdxglfoq")
+        s.login("peterdriscoll@cherahealth.com", "hmdisbafknqnblst")
 
-        # message to be sent
-        message = "Message_you_need_to_send"
+        calendly_link = (
+            "https://calendly.com/peterdriscoll-chera/chera-swe-internship-interview"
+        )
 
         # sending the mail
-        s.sendmail("peterdriscoll27@gmail.com", fnce_lead.id, message)
-
+        s.sendmail("peterdriscoll@cherahealth.com", fnce_lead.id, calendly_link)
+        # hmdisbafknqnblst
         # terminating the session
         s.quit()
+
+    def send_recruiting_email(
+        self, first_name: str, email: str, role: str, calendly_link: str
+    ) -> None:
+        # creates SMTP
+        s = smtplib.SMTP_SSL("smtp.gmail.com", 465)
+
+        # Authentication
+        s.login("peterdriscoll@cherahealth.com", "hmdisbafknqnblst")
+
+        email_file_name = (
+            Path(".")
+            .joinpath("flask-server")
+            .joinpath("email_templates")
+            .joinpath("intern_internship_interview.html")
+        )
+
+        with open(email_file_name, "r") as mail_body:
+            # Setup the MIME
+            message = MIMEMultipart()
+            message["From"] = "peterdriscoll@cherahealth.com"
+            # message["To"] = email
+
+            # The subject line
+            message["Subject"] = f"Chera {role} Internship Interview"
+
+            mail_content = mail_body.read().format(
+                first_name=first_name, role=role, calendly_link=calendly_link
+            )
+            # The body and the attachments for the mail
+            message.attach(MIMEText(mail_content, "html"))
+            # sending the mail
+            s.sendmail(message["From"], "nimishahvarma@gmail.com", message.as_string())
+            # terminating the session
+            s.quit()
 
     def send_confirmation_email(
         self,
