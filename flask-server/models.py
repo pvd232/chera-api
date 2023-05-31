@@ -12,7 +12,6 @@ from sqlalchemy.ext.compiler import compiles
 from werkzeug.security import generate_password_hash
 import stripe
 import shippo
-from pathlib import Path
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:

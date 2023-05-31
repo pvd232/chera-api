@@ -50,19 +50,18 @@ def validate_dietetic_registration_number() -> Response:
         return Response(status=404)
 
 
-@app.route("/api/recruiting_email", methods=["GET"])
+@app.route("/api/recruiting_email", methods=["POST"])
 def recruiting_email() -> Response:
     from pathlib import Path
     from service.Email_Service import Email_Service
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
 
-    calendly_link = (
-        "https://calendly.com/peterdriscoll-chera/chera-swe-internship-interview"
-    )
-    role = request.args.get("role")
+    request_data = json.loads(request.data)
+
+    calendly_link = request_data["calendly_link"]
+    role = request_data["role"]
     # Get email list from excel sheet
     import pandas as pd
-    import numpy as np
 
     # Create data frame
     df: pd.DataFrame = pd.read_csv(
@@ -72,26 +71,34 @@ def recruiting_email() -> Response:
         .joinpath("software_engineering.csv")
     )
 
-    candidate_emails = df["Email"].to_list()
-    candidate_first_name_series = df["First Name"].to_list()
+    candidate_emails: list[str] = df["Email"].to_list()
+    candidate_first_name_series: list[str] = df["First Name"].to_list()
     candidate_list = []
 
     for i in range(len(candidate_emails)):
         candidate = {
             "email": candidate_emails[i],
-            "first_name": candidate_first_name_series[i],
+            "first_name": candidate_first_name_series[i].capitalize(),
         }
         candidate_list.append(candidate)
-    print("candidate_list", candidate_list)
-    for candidate in candidate_list:
-        Email_Service(
-            host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
-        ).send_recruiting_email(
-            first_name=candidate["first_name"],
-            email=candidate["email"],
-            role=role,
-            calendly_link=calendly_link,
-        )
+
+    Email_Service(
+        host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+    ).send_recruiting_email(
+        first_name=candidate_list[0]["first_name"],
+        email=candidate_list[0]["email"],
+        role=role,
+        calendly_link=calendly_link,
+    )
+    # for candidate in candidate_list:
+    #     Email_Service(
+    #         host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+    #     ).send_recruiting_email(
+    #         first_name=candidate["first_name"],
+    #         email=candidate["email"],
+    #         role=role,
+    #         calendly_link=calendly_link,
+    #     )
     return Response(status=200)
 
 
@@ -239,6 +246,12 @@ def b() -> Response:
             return Response(status=204)
         else:
             return Response(status=401)
+
+
+@app.route("/api/setup_tables")
+def create_table() -> Response:
+    db.metadata.create_all(db.engine)
+    return Response(status=200)
 
 
 @app.route("/api/update_table")

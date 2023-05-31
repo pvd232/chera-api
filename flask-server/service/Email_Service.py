@@ -78,7 +78,7 @@ class Email_Service(object):
             # The body and the attachments for the mail
             message.attach(MIMEText(mail_content, "html"))
             # sending the mail
-            s.sendmail(message["From"], "nimishahvarma@gmail.com", message.as_string())
+            s.sendmail(message["From"], message["From"], message.as_string())
             # terminating the session
             s.quit()
 
