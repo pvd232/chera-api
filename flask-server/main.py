@@ -248,7 +248,7 @@ def b() -> Response:
 
 
 @app.route("/api/setup_tables")
-def create_table() -> Response:
+def setup_table() -> Response:
     db.metadata.create_all(db.engine)
     return Response(status=200)
 
