@@ -8,7 +8,6 @@ from werkzeug.exceptions import HTTPException
 from typing import Optional
 import stripe
 import uuid
-import pandas as pd
 
 
 @app.errorhandler(500)
