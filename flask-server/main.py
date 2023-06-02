@@ -55,10 +55,17 @@ def recruiting_email() -> Response:
     from service.Email_Service import Email_Service
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
 
+    def format_file_name(role: str) -> str:
+        return "_".join(role.split(" ")).lower()
+
     request_data = json.loads(request.data)
 
     calendly_link = request_data["calendly_link"]
     role = request_data["role"]
+    file_name_no_extension = format_file_name(role=role)
+    print("file_name_no_extension", file_name_no_extension)
+    excel_file_name = f"{format_file_name(role=role)}.csv"
+    testing = request_data["testing"]
     # Get email list from excel sheet
     import pandas as pd
 
@@ -67,7 +74,7 @@ def recruiting_email() -> Response:
         Path(".")
         .joinpath("flask-server")
         .joinpath("excel_data")
-        .joinpath("software_engineering.csv")
+        .joinpath(excel_file_name)
     )
 
     candidate_emails: list[str] = df["Email"].to_list()
@@ -80,24 +87,30 @@ def recruiting_email() -> Response:
             "first_name": candidate_first_name_series[i].capitalize(),
         }
         candidate_list.append(candidate)
-
-    Email_Service(
-        host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
-    ).send_recruiting_email(
-        first_name=candidate_list[0]["first_name"],
-        email=candidate_list[0]["email"],
-        role=role,
-        calendly_link=calendly_link,
-    )
-    # for candidate in candidate_list:
-    #     Email_Service(
-    #         host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
-    #     ).send_recruiting_email(
-    #         first_name=candidate["first_name"],
-    #         email=candidate["email"],
-    #         role=role,
-    #         calendly_link=calendly_link,
-    #     )
+    if not testing:
+        for candidate in candidate_list:
+            Email_Service(
+                host_url=host_url,
+                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+            ).send_recruiting_email(
+                first_name=candidate["first_name"],
+                email=candidate["email"],
+                role=role,
+                calendly_link=calendly_link,
+                testing=testing,
+                file_name=file_name_no_extension,
+            )
+    else:
+        Email_Service(
+            host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+        ).send_recruiting_email(
+            first_name=candidate_list[0]["first_name"],
+            email=candidate_list[0]["email"],
+            role=role,
+            calendly_link=calendly_link,
+            testing=testing,
+            file_name=file_name_no_extension,
+        )
     return Response(status=200)
 
 

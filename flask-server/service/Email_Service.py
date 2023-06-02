@@ -48,7 +48,13 @@ class Email_Service(object):
         s.quit()
 
     def send_recruiting_email(
-        self, first_name: str, email: str, role: str, calendly_link: str
+        self,
+        first_name: str,
+        email: str,
+        role: str,
+        calendly_link: str,
+        testing: bool,
+        file_name: str,
     ) -> None:
         # creates SMTP
         s = smtplib.SMTP_SSL("smtp.gmail.com", 465)
@@ -60,14 +66,17 @@ class Email_Service(object):
             Path(".")
             .joinpath("flask-server")
             .joinpath("email_templates")
-            .joinpath("intern_internship_interview.html")
+            .joinpath(f"{file_name}_internship_interview.html")
         )
 
         with open(email_file_name, "r") as mail_body:
             # Setup the MIME
             message = MIMEMultipart()
             message["From"] = "peterdriscoll@cherahealth.com"
-            # message["To"] = email
+            if not testing:
+                message["To"] = email
+            else:
+                message["To"] = message["From"]
 
             # The subject line
             message["Subject"] = f"Chera {role} Internship Interview"
@@ -78,7 +87,9 @@ class Email_Service(object):
             # The body and the attachments for the mail
             message.attach(MIMEText(mail_content, "html"))
             # sending the mail
-            s.sendmail(message["From"], message["From"], message.as_string())
+
+            s.sendmail(message["From"], message["To"], message.as_string())
+
             # terminating the session
             s.quit()
 
