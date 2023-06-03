@@ -115,7 +115,7 @@ else:
     STRIPE_API_KEY = GCP_Secret_Manager_Service().get_secret("STRIPE_KEY")
 
     if env == "staging":
-        host_url = "https://staging.bendito.io"
+        host_url = "https://staging.chera.io"
         SHIPPO_API_KEY = GCP_Secret_Manager_Service().get_secret("SHIPPO_TEST_KEY")
 
         # --> MEALS <--
@@ -154,7 +154,7 @@ else:
         stripe_one_time_account_setup_fee = "price_1MJ06nFseFjpsgWv16WGfto4"
 
     elif env == "production":
-        host_url = "https://bendito.io"
+        host_url = "https://chera.io"
         SHIPPO_API_KEY = GCP_Secret_Manager_Service().get_secret("SHIPPO_KEY")
 
         # --> MEALS <--

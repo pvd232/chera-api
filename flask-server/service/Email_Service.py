@@ -66,7 +66,8 @@ class Email_Service(object):
             Path(".")
             .joinpath("flask-server")
             .joinpath("email_templates")
-            .joinpath(f"{file_name}_internship_interview.html")
+            .joinpath("internship_interview")
+            .joinpath(f"{file_name}.html")
         )
 
         with open(email_file_name, "r") as mail_body:
@@ -101,23 +102,16 @@ class Email_Service(object):
         tracking_url: str = None,
         date_service: "Date_Service" = None,
     ) -> None:
-        if user_type == "Dietitian":
-            email_file_name = (
-                Path(".")
-                .joinpath("flask-server")
-                .joinpath("email_templates")
-                .joinpath("dietitian_sign_up_confirmation.html")
-            )
-        else:
-            email_file_name = (
-                Path(".")
-                .joinpath("flask-server")
-                .joinpath("email_templates")
-                .joinpath("client_sign_up_confirmation.html")
-            )
+        email_file_name = (
+            Path(".")
+            .joinpath("flask-server")
+            .joinpath("email_templates")
+            .joinpath(user_type.lower())
+            .joinpath("sign_up_confirmation.html")
+        )
 
         with open(email_file_name, "r") as mail_body:
-            sender_address = "Welcome@info.bendito.io"
+            sender_address = "Welcome@info.cherahealth.com"
             email = user.id
 
             # Setup the MIME
@@ -126,7 +120,7 @@ class Email_Service(object):
             message["To"] = email
 
             # The subject line
-            message["Subject"] = "Welcome to Bendito - PLEASE READ"
+            message["Subject"] = "Welcome to Chera - PLEASE READ"
 
             if user_type == "Client":
                 mail_content = mail_body.read().format(
@@ -163,6 +157,7 @@ class Email_Service(object):
                 Path(".")
                 .joinpath("flask-server")
                 .joinpath("email_templates")
+                .joinpath("admin")
                 .joinpath("client_sign_up_notification.html")
             )
         else:
@@ -170,11 +165,12 @@ class Email_Service(object):
                 Path(".")
                 .joinpath("flask-server")
                 .joinpath("email_templates")
+                .joinpath("admin")
                 .joinpath("dietitian_sign_up_notification.html")
             )
 
         with open(email_file_name, "r") as mail_body:
-            sender_address = "Growth@info.bendito.io"
+            sender_address = "Growth@info.cherahealth.com"
 
             # Setup the MIME
             message = MIMEMultipart()
@@ -222,7 +218,8 @@ class Email_Service(object):
                 Path(".")
                 .joinpath("flask-server")
                 .joinpath("email_templates")
-                .joinpath("client_sign_up_prepaid_meals.html")
+                .joinpath("client")
+                .joinpath("sign_up_prepaid_meals.html")
             )
 
         else:
@@ -230,10 +227,11 @@ class Email_Service(object):
                 Path(".")
                 .joinpath("flask-server")
                 .joinpath("email_templates")
-                .joinpath("client_sign_up.html")
+                .joinpath("client")
+                .joinpath("sign_up.html")
             )
         with open(email_file_name, "r") as mail_body:
-            sender_address = "Registration@info.bendito.io"
+            sender_address = "Registration@info.cherahealth.com"
             email = staged_client.id
 
             # Setup the MIME
@@ -245,7 +243,7 @@ class Email_Service(object):
             if staged_client.meals_prepaid:
                 message["Subject"] = "Claim Your Free Week of Meals"
             else:
-                message["Subject"] = "Create your Bendito Account"
+                message["Subject"] = "Create your Chera Account"
 
             mail_content = mail_body.read().format(
                 logo_url=self.logo_url,
@@ -268,7 +266,7 @@ class Email_Service(object):
         with open(
             "./flask-server/email_templates/client_sign_up_reminder.html", "r"
         ) as mail_body:
-            sender_address = "Registration@info.bendito.io"
+            sender_address = "Registration@info.cherahealth.com"
             email = staged_client.id
 
             # Setup the MIME
@@ -280,7 +278,7 @@ class Email_Service(object):
             if staged_client.meals_prepaid:
                 message["Subject"] = "Reminder - Claim Your Free Week of Meals"
             else:
-                message["Subject"] = "Reminder - Create your Bendito Account"
+                message["Subject"] = "Reminder - Create your Chera Account"
 
             mail_content = mail_body.read().format(
                 logo_url=self.logo_url,
@@ -303,7 +301,7 @@ class Email_Service(object):
         with open(
             "./flask-server/email_templates/password_reset.html", "r"
         ) as mail_body:
-            sender_address = "Password@info.bendito.io"
+            sender_address = "Password@info.cherahealth.com"
             email = user.id
 
             # Setup the MIME
@@ -312,7 +310,7 @@ class Email_Service(object):
             message["To"] = email
 
             # The subject line
-            message["Subject"] = "Reset Your Bendito Account Password"
+            message["Subject"] = "Reset Your Chera Account Password"
 
             mail_content = mail_body.read().format(
                 logo_url=self.logo_url,
@@ -365,7 +363,7 @@ class Email_Service(object):
                             ].quantity += 1
                 for meal in meal_dict.values():
                     order_meal_text += str(meal)
-            sender_address = "Delivery@info.bendito.io"
+            sender_address = "Delivery@info.cherahealth.com"
 
             # Setup the MIME
             message = MIMEMultipart()
