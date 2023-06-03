@@ -1,4 +1,3 @@
-import os
 from pathlib import Path
 import smtplib
 from email.mime.multipart import MIMEMultipart
@@ -7,12 +6,16 @@ from datetime import datetime
 from typing import TYPE_CHECKING
 from domain.Client_Domain import Client_Domain
 from domain.Dietitian_Domain import Dietitian_Domain
+from typing import Optional
 
 if TYPE_CHECKING:
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
     from service.Date_Service import Date_Service
     from domain.Extended_Meal_Subscription_Invoice_Domain import (
         Extended_Meal_Subscription_Invoice_Domain,
+    )
+    from domain.Extended_Meal_Email_Summary_Domain import (
+        Extended_Meal_Email_Summary_Domain,
     )
     from domain.FNCE_Lead_Domain import FNCE_Lead_Domain
     from domain.Staged_Client_Domain import Staged_Client_Domain
@@ -97,7 +100,7 @@ class Email_Service(object):
     def send_confirmation_email(
         self,
         user_type: str,
-        user=None,
+        user: Optional[Client_Domain | Dietitian_Domain] = None,
         delivery_date: datetime = None,
         tracking_url: str = None,
         date_service: "Date_Service" = None,
@@ -152,22 +155,18 @@ class Email_Service(object):
         env: str,
         zipcode: str = None,
     ) -> None:
-        if user_type == "Staged_Client":
-            email_file_name = (
-                Path(".")
-                .joinpath("flask-server")
-                .joinpath("email_templates")
-                .joinpath("admin")
-                .joinpath("client_sign_up_notification.html")
-            )
+        if user_type == "Client" or user_type == "Staged_Client":
+            email_template_name = "client_sign_up_notification.html"
         else:
-            email_file_name = (
-                Path(".")
-                .joinpath("flask-server")
-                .joinpath("email_templates")
-                .joinpath("admin")
-                .joinpath("dietitian_sign_up_notification.html")
-            )
+            email_template_name = "dietitian_sign_up_notification.html"
+
+        email_file_name = (
+            Path(".")
+            .joinpath("flask-server")
+            .joinpath("email_templates")
+            .joinpath("admin")
+            .joinpath(email_template_name)
+        )
 
         with open(email_file_name, "r") as mail_body:
             sender_address = "Growth@info.cherahealth.com"
@@ -214,22 +213,17 @@ class Email_Service(object):
     def send_sign_up_email(self, staged_client: "Staged_Client_Domain") -> None:
         button_url = f"{self.host}/client-sign-up?staged_client_id={staged_client.id}"
         if staged_client.meals_prepaid:
-            email_file_name = (
-                Path(".")
-                .joinpath("flask-server")
-                .joinpath("email_templates")
-                .joinpath("client")
-                .joinpath("sign_up_prepaid_meals.html")
-            )
-
+            email_template_name = "sign_up_prepaid_meals.html"
         else:
-            email_file_name = (
-                Path(".")
-                .joinpath("flask-server")
-                .joinpath("email_templates")
-                .joinpath("client")
-                .joinpath("sign_up.html")
-            )
+            email_template_name = "sign_up.html"
+
+        email_file_name = (
+            Path(".")
+            .joinpath("flask-server")
+            .joinpath("email_templates")
+            .joinpath("client")
+            .joinpath(email_template_name)
+        )
         with open(email_file_name, "r") as mail_body:
             sender_address = "Registration@info.cherahealth.com"
             email = staged_client.id
@@ -263,9 +257,14 @@ class Email_Service(object):
         self, staged_client: "Staged_Client_Domain"
     ) -> None:
         button_url = f"{self.host}/client-sign-up?staged_client_id={staged_client.id}"
-        with open(
-            "./flask-server/email_templates/client_sign_up_reminder.html", "r"
-        ) as mail_body:
+        email_file_name = (
+            Path(".")
+            .joinpath("flask-server")
+            .joinpath("email_templates")
+            .joinpath("client")
+            .joinpath("sign_up_reminder.html")
+        )
+        with open(email_file_name, "r") as mail_body:
             sender_address = "Registration@info.cherahealth.com"
             email = staged_client.id
 
@@ -276,9 +275,9 @@ class Email_Service(object):
 
             # The subject line
             if staged_client.meals_prepaid:
-                message["Subject"] = "Reminder - Claim Your Free Week of Meals"
+                message["Subject"] = "Reminder - Claim Your Prepaid First Week of Meals"
             else:
-                message["Subject"] = "Reminder - Create your Chera Account"
+                message["Subject"] = "Reminder - Create Your Chera Account"
 
             mail_content = mail_body.read().format(
                 logo_url=self.logo_url,
@@ -298,9 +297,13 @@ class Email_Service(object):
         self, user: Client_Domain | Dietitian_Domain, domain: str
     ) -> None:
         button_url = f"{self.host}/reset-{domain}-password?{domain}_id={user.id}"
-        with open(
-            "./flask-server/email_templates/password_reset.html", "r"
-        ) as mail_body:
+        email_file_name = (
+            Path(".")
+            .joinpath("flask-server")
+            .joinpath("email_templates")
+            .joinpath("password_reset.html")
+        )
+        with open(email_file_name, "r") as mail_body:
             sender_address = "Password@info.cherahealth.com"
             email = user.id
 
@@ -330,37 +333,30 @@ class Email_Service(object):
     def send_upcoming_deliveries_email(
         self,
         delivery_date: datetime,
-        first_email_datetime: float,
         meal_subscription_invoices: list["Extended_Meal_Subscription_Invoice_Domain"],
-        email_number: int,
     ) -> None:
-        with open(
-            "./flask-server/email_templates/upcoming_deliveries.html", "r"
-        ) as mail_body:
+        email_file_name = (
+            Path(".")
+            .joinpath("flask-server")
+            .joinpath("email_templates")
+            .joinpath("admin")
+            .joinpath("upcoming_deliveries.html")
+        )
+        with open(email_file_name, "r") as mail_body:
             order_number = 0
             order_meal_text = ""
             for meal_subscription_invoice in meal_subscription_invoices:
                 order_number += 1
-                meal_dict = {}
+                meal_dict: dict[str, "Extended_Meal_Email_Summary_Domain"] = {}
                 order_meal_text += f"<p style='font-size: 1rem;margin-bottom: 3vh;font-weight:bold;'>Order # {order_number} (Invoice Id {meal_subscription_invoice.id})</p>"
                 for order_meal in meal_subscription_invoice.order_meals:
-                    if email_number == 1 or (
-                        email_number == 2
-                        and order_meal.scheduled_order_meal.datetime
-                        > first_email_datetime
-                    ):
-                        # set meal property such that order meal string function can output the formatted meal summary
-                        if (
-                            order_meal.scheduled_order_meal.associated_meal.id
-                            not in meal_dict
-                        ):
-                            meal_dict[
-                                order_meal.scheduled_order_meal.associated_meal.id
-                            ] = order_meal.scheduled_order_meal.associated_meal
-                        else:
-                            meal_dict[
-                                order_meal.scheduled_order_meal.associated_meal.id
-                            ].quantity += 1
+                    # Set meal property such that order meal string function can output the formatted meal summary
+                    if order_meal.associated_meal.id not in meal_dict:
+                        meal_dict[
+                            order_meal.associated_meal.id
+                        ] = order_meal.associated_meal
+                    else:
+                        meal_dict[order_meal.associated_meal.id].quantity += 1
                 for meal in meal_dict.values():
                     order_meal_text += str(meal)
             sender_address = "Delivery@info.cherahealth.com"
@@ -368,13 +364,11 @@ class Email_Service(object):
             # Setup the MIME
             message = MIMEMultipart()
             message["From"] = sender_address
-            message["To"] = "patardriscoll@gmail.com"
+            message["To"] = "peterdriscoll@cherahealth.com"
 
             # The subject line
-            message["Subject"] = (
-                "Deliveries for the Week of "
-                + delivery_date.strftime("%m/%d/%Y")
-                + f" Email # {email_number}"
+            message["Subject"] = "Deliveries for the Week of " + delivery_date.strftime(
+                "%m/%d/%Y"
             )
 
             mail_content = mail_body.read().format(
