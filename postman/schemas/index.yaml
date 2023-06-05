@@ -241,7 +241,76 @@ components:
       properties:
         mealPlan:
           type: string
-          
+
+    ExtendedMeal:
+      description: child class of meal, which also includes dietary restrictions
+      type: string
+      required:
+        - dietaryRestrictions
+      properties:
+        dietaryRestrictions:
+          type: string
+
+    ExtendedMealPlan:
+      description: child class of meal plan, takes on additional USDA nutrient daily values
+      type: string
+      required:
+        - usdaNutrentDailyValues
+      properties: 
+        usdaNutrentDailyValues:
+          type: object
+
+    ExtendedMealPlanMeal:
+      description: contains all information from meal and includes recipe, associated meal, associated meal plan
+      type: string
+      required:
+        - recipe
+        - associatedMeal
+        - associatedMealPlan
+      properties:
+        recipe:
+          type: object
+        associatedMeal:
+          type: object
+        associatedMealPlan:
+          type: object
+
+    ExtendedMealPlanSnack:
+      description: contains all associated snacks and snack plans
+      type: string
+      required: 
+        - recipe
+        - associatedSnack
+        - associatedSnackPlan
+        - nutrients
+      properties:
+        recipe:
+          type: object
+        associatedSnack:
+          type: object
+        associatedSnackPlan:
+          type: object
+        nutrients:
+          type: string
+    
+    ExtendedOrderMeal:
+      description: child class of meal, adds scheduled order meals
+      type: string
+      required:
+        - scheduledOrderMeal
+      properties:
+        scheduledOrderMeal:
+          type: object
+
+    ExtendedOrderSnack:
+      description: child class of snack, adds scheduled order snacks
+      type: string
+      required: 
+        - scheduledOrderSnack
+      properties:
+        scheduledOrderSnack:
+          type: object
+        
 
     SpacecraftId:
       description: The unique identifier of a spacecraft
