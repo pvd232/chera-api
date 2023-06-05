@@ -244,7 +244,7 @@ components:
 
     ExtendedMeal:
       description: child class of meal, which also includes dietary restrictions
-      type: string
+      type: object
       required:
         - dietaryRestrictions
       properties:
@@ -253,7 +253,7 @@ components:
 
     ExtendedMealPlan:
       description: child class of meal plan, takes on additional USDA nutrient daily values
-      type: string
+      type: object
       required:
         - usdaNutrentDailyValues
       properties: 
@@ -262,7 +262,7 @@ components:
 
     ExtendedMealPlanMeal:
       description: contains all information from meal and includes recipe, associated meal, associated meal plan
-      type: string
+      type: object
       required:
         - recipe
         - associatedMeal
@@ -277,7 +277,7 @@ components:
 
     ExtendedMealPlanSnack:
       description: contains all associated snacks and snack plans
-      type: string
+      type: object
       required: 
         - recipe
         - associatedSnack
@@ -295,7 +295,7 @@ components:
     
     ExtendedOrderMeal:
       description: child class of meal, adds scheduled order meals
-      type: string
+      type: object
       required:
         - scheduledOrderMeal
       properties:
@@ -304,13 +304,571 @@ components:
 
     ExtendedOrderSnack:
       description: child class of snack, adds scheduled order snacks
-      type: string
+      type: object
       required: 
         - scheduledOrderSnack
       properties:
         scheduledOrderSnack:
           type: object
-        
+    
+    ExtendedRecipeIngredient:
+      description: child class of recipe ingredient, includes ingredients along with portion sizes
+      type: object
+      required:
+        - nutrients
+        - usdaIngredientName
+        - usdaIngredientFdcId
+        - fdaPortionId
+        - amountOfGrams
+        - isImperial
+        - nonMetricUnit
+        - kCal
+      properties:
+        nutrients:
+          type: string
+        usdaIngredientName:
+          type: string
+        usdaIngredientFdcId:
+          type: string
+        fdaPortionId:
+          type: string
+        amountOfGrams:
+          type: number
+        isImperial:
+          type: boolean
+        nonMetricUnit:
+          type: string
+        kCal:
+          type: number
+
+    ExtendedRecipeIngredientNutrient:
+      description: child class of recipeIngredientNutrient, adds nutrient info (name, unit, id)
+      type: object
+      required:
+        - nutrientName
+        - nutrientUnit
+        - USDANutrientID
+      properties:
+        nutrientName:
+          type: string
+        nutrientUnit:
+          type: string
+        USDANutrientID:
+          type: string
+    
+    ExtendedScheduleMeal:
+      description: child class of meal, adds associated meal
+      type: object
+      required:
+        - associatedMeal
+      properties:
+        associatedMeal:
+          type: object
+    
+    ExtendedScheduleSnack:
+      description: child class of scheduleSnackDomain, adds associated snack
+      type: object
+      required:
+        - associatedSnack
+      properties:
+        associatedSnack:
+          type: object
+
+    ExtendedScheduledOrderMeal:
+      description: child class of scheduledOrderMeal
+      type: object
+      required:
+        - associatedMeal
+      properties:
+        associatedMeal:
+          type: object
+    
+    ExtendedScheduledOrderSnack:
+      description: child class of scheduledOrderSnack, adds associated snack
+      type: object
+      required:
+        - associatedSnack
+      properties:
+        associatedSnack:
+          type: object
+
+    ExtendedStagedClient:
+      description: child class of stagedClient, adds meal plan
+      type: object
+      required:
+        - mealPlan
+      properties:
+         mealPlan:
+          type: object
+
+    ExtendedStagedScheduleMeal:
+      description: child class of ExtendedStagedScheduleMeal, adds associatedMeal
+      type: object
+      required:
+        - associatedMeal
+      properties:
+        associatedMeal:
+          type: object
+
+    ExtendedStagedScheduleSnack:
+      description: child class of stagedScheduleSnack, adds associatedSnack
+      type: object
+      required:
+        - associatedSnack
+      properties:
+        associatedSnack:
+          type: object
+
+    ExtendedUsdaIngredient:
+      description: child of usdaIngredient, adds portions and serializes names
+      type: object
+      required:
+        - portions
+      properties:
+        portions:
+          type: object
+
+    MealDietaryRestriction:
+      description: contains user ID, meal ID, and dietary restriction ID
+      type: object
+      required: 
+        - id
+        - mealId
+        - dietaryRestrictionId
+      properties:
+        id:
+          type: string
+        mealId:
+          type: string
+        dietaryRestrictionId:
+          type: string
+
+    Meal:
+      description: super class, contains all meal variables
+      type: object
+      required:
+        - id
+        - mealTime
+        - name
+        - description
+        - price
+        - imageUrl
+        - active
+      properties:
+        id:
+          type: string
+        mealTime:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        imageUrl:
+          type: string
+        active:
+          type: boolean
+
+    MealPlan:
+      description: super class, contains all meal plan information
+      type: object
+      required:
+        - id
+        - number
+        - breakfastCalories
+        - lunchCalories
+        - dinnerCalories
+        - statedCaloricLowerBound
+        - statedCaloricUpperBound
+        - numberOfSnacks
+        - perSnackCaloricLowerBound
+        - perSnackCaloricUpperBound
+      properties:
+        id:
+          type: string
+        number:
+          type: integer
+        breakfastCalories:
+          type: integer
+        lunchCalories:
+          type: integer
+        dinnerCalories:
+          type: integer
+        statedCaloricLowerBound:
+          type: integer
+        statedCaloricUpperBound:
+          type: integer
+        numberOfSnacks:
+          type: number
+        perSnackCaloricLowerBound:
+          type: integer
+        perSnackCaloricUpperBound:
+          type: integer
+
+    MealPlanMeal:
+      description: indiviual meal plan meal info
+      type: object
+      required:
+        - id
+        - mealId
+        - mealPlan
+        - active
+      properties:
+        id:
+          type: string
+        mealId:
+          type: string
+        mealPlan:
+          type: string
+        active:
+          type: boolean
+
+    MealPlanSnack:
+      description: indiviual meal plan snack info
+      type: object
+      required:
+        - id
+        - snackId
+        - mealplanID
+        - active
+      properties:
+        id:
+          type: string
+        snackId:
+          type: string
+        mealplanID:
+          type: string
+        active: 
+          type: boolean
+
+    MealSubscription:
+      description: contains client info, dietitian info, stripe info, along with fees
+      type: object
+      required: 
+        - id
+        - clientId
+        - dietitianId
+        - stripeSubscriptionId
+        - shippingCost
+        - datetime
+        - paused
+        - active
+      properties:
+        id:
+          type: string
+        clientId:
+          type: string
+        dietitianID:
+          type: string
+        stripeSubscriptionId:
+          type: string
+        shippingCost:
+          type: number
+        dateTime:
+          type: number
+        paused:
+          type: boolean
+        active:
+          type: boolean
+
+    MealSubscriptionInvoice:
+      description: holds all invoice information
+      type: object
+      required:
+        - id
+        - MealSubscriptionId
+        - subtotal
+        - salesTaxPercentage
+        - salesTaxTotal
+        - shippingTotal
+        - stripeFeeTotal
+        - stripeInvoiceId
+        - stripePaymentIntentId
+        - total
+        - datetime
+        - deliveryDate
+      properties:
+        id:
+          type: string
+        MealSubscriptionId:
+          type: string
+        subtotal: 
+          type: number
+        salesTaxPercentage:
+          type: number
+        salesTaxTotal:
+          type: number
+        shippingTotal:
+          type: number
+        stripeFeeTotal:
+          type: number
+        stripeInvoiceId:
+          type: string
+        stripePaymentIntentId:
+          type: string
+        total:
+          type: number
+        datetime:
+          type: number
+        deliveryDate:
+          type: number
+    
+    Nutrient:
+      description: contains all nutrient information, including usda id and daily values
+      type: object
+      required: 
+        - id
+        - name
+        - unit
+        - usdaId
+        - hasDailyValue
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        unit:
+          type: string
+        usdaId:
+          type: string
+        hasDailyValue:
+          type: boolean
+
+    OrderDiscount:
+      description: contains discount information, along with staged client id
+      type: object
+      required:
+        - discountId
+        - stagedClientId
+        - amount
+        - datetime
+      properties:
+        discountId:
+          type: string
+        stagedClientId:
+          type: string
+        amount:
+          type: number
+        datetime:
+          type: number
+    
+    OrderMeal:
+      description: contains meal order and subscription invoice id
+      type: object
+      required:
+        - id
+        - scheduledOrderMealId
+        - mealSubscriptionInvoiceId
+      properties:
+        id:
+          type: string
+        scheduledOrderMealId:
+          type: string
+        mealSubscriptionInvoiceId:
+          type: string
+
+    OrderSnack:
+      description: contains id, and scheduled snack order id
+      type: object
+      required:
+        - id
+        - scheduledOrderSnackId
+        - mealSubscriptionInvoiceId
+      properties:
+        id:
+          type: string
+        scheduledOrderSnackId:
+          type: string
+        mealSubscriptionInvoiceId:
+          type: string
+    
+    RecipeIngredient:
+      description: contains USDA ingredient id alongside meal plan ids
+      type: object
+      required:
+        - id
+        - usdaIngredientId
+        - mealPlanMealId
+      properties:
+        id:
+          type: string
+        usdaIngredientId:
+          type: string
+        mealPlanMealId:
+          type: string
+
+    RecipeIngredientNutrient:
+      description: contains ingredient information alongside amount of nutrients
+      type: object
+      required:
+        - id
+        - recipeIngredientId
+        - nutrientId 
+        - usdaNutrientDailyValueAmount
+        - amount
+      properties:
+        id:
+          type: string
+        recipeIngredientId:
+          type: string
+        nutrientId:
+          type: string
+        usdaNutrientDailyValueAmount:
+          type: number
+        amount:
+          type: number
+
+    ScheduleMeal:
+      description: shows meal info related to schedule
+      type: object
+      required:
+        - id
+        - mealId
+        - mealSubscriptionId
+      properties:
+        id:
+          type: string
+        mealId:
+          type: string
+        mealSubscriptionId:
+          type: string
+
+    ScheduleSnack:
+      description: contains scheduled snack information
+      type: object
+      required: 
+        - id
+        - snackId 
+        - mealSubscriptionId
+      properties:
+        id:
+          type: string
+        snackId:
+          type: string
+        mealSubscriptionId:
+          type: string
+
+    ScheduledOrderMeal:
+      description: contains meal info and also delivery info for client
+      type: object
+      required:
+        - id
+        - mealSubscriptionId
+        - mealId
+        - deliveryDate
+        - deliverySkipped
+        - deliveryPaused
+        - datetime
+      properties:
+        id:
+          type: string
+        mealSubscriptionId:
+          type: string
+        mealId:
+          type: string
+        deliveryDate:
+          type: number
+        deliverySkipped: 
+          type: boolean
+        deliveryPaused:
+          type: boolean
+        datetime:
+          type: number
+
+    ScheduledOrderSnack:
+      description: contains snack info and also delivery info for client
+      type: object
+      required:
+        - id
+        - mealSubscriptionId
+        - snackId
+        - deliveryDate
+        - deliverySkipped
+        - deliveryPaused
+        - datetime
+      properties:
+        id: 
+          type: string
+        mealSubscriptionId:
+          type: string
+        snackId:
+          type: string
+        deliveryDate:
+          type: number
+        deliverySkipped:
+          type: boolean
+        deliveryPaused:
+          type: boolean
+        datetime:
+          type: number
+
+    Snack:
+      description: contains all snack information
+      type: object
+      required:
+        - id
+        - name
+        - description
+        - price
+        - imageUrl
+        - active
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        imageUrl: 
+          type: strisng
+        active:
+          type: boolean
+  
+    StagedClient:
+      description: contains all client information
+      type: object
+      required:
+        - id
+        - firstname
+        - dietitianid
+        - mealplanId
+        - notes
+        - datetime
+        - accountCreated
+        - active
+        - waitlisted
+        - mealsPreSelected
+        - mealsPrepaid
+      properties:
+        id:
+          type: string
+        firstname:
+          type: string
+        dietitianid:
+          type: string
+        mealplanId:
+          type: string
+        notes:
+          type: string
+        datetime:
+          type: number
+        accountCreated:
+          type: boolean
+        active:
+          type: boolean
+        waitlisted:
+          type: boolean
+        mealsPreSelected:
+          type: boolean
+        mealsPrepaid:
+          type: boolean
+
+    
+    
+
 
     SpacecraftId:
       description: The unique identifier of a spacecraft
