@@ -23,7 +23,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Spacecraft'
         404:
-          description: No spacecraft found for the provided `spacecraftId`
+          description: No spacecraft found for the  provided `spacecraftId`
           content:
             application/json:
               schema:
