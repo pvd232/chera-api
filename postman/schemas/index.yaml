@@ -36,6 +36,213 @@ paths:
                 $ref: '#/components/schemas/Error'
 components: 
   schemas:
+    Base:
+      description: Parent class that holds serialized attributes and names
+      type: string
+
+    Client:
+      description: Class that holds onto all client information
+      type: string
+      required:
+        - id
+        - password
+        - dietitianID
+        - mealplanID
+        - stripeID
+        - firstname
+        - lastname
+        - street
+        - suite
+        - city
+        - state
+        - zipcode
+        - zipcodeextension
+        - address
+        - notes
+        - phonenumber
+        - datetime
+        - active
+      properties:
+        id:
+          type: string
+        password:
+          type: string
+        dietitianID:
+          type: string
+        mealplanID:
+          type: string
+        stripeID:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        street:
+          type: string
+        suite:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zipcode:
+          type: integer
+        zipcodeextension:
+          type: integer
+        address: 
+          type: string
+        notes:
+          type: string
+        phonenumber:
+          type: integer
+        datetime:
+          type: number
+        active:
+          type: boolean
+
+    CompressedNutrientData:
+      description: Contains all nutrient information
+      type: string
+      required:
+        - id
+        - recipeIngredientID
+        - nutrientID
+        - usdaNutrentDailyValueAmount
+        - amount
+        - nutrientName
+        - nutrientUnit
+        - USDANutrientID
+      properties:
+        id:
+          type: string
+        recipeIngredientID:
+          type: string
+        nutrientID:
+          type: string
+        usdaNutrentDailyValueAmount:
+          type: number
+        amount:
+          type: number
+        nutrientName:
+          type: string
+        nutrientUnit:
+          type: string
+
+    DietaryRestriction:
+      description: Sets user ID in the case that the user has a dietary restriction
+      type: string
+      required: 
+        - id
+      properties:
+        id:
+          type: string
+
+    Dietitian:
+      description: Holds all dietitian information
+      type: string
+      required:
+        - id
+        - password
+        - firstname
+        - lastname
+        - dieteticRegistrationNumber
+        - clinicCity
+        - clinicState
+        - clinicAddress
+        - clicicUrl
+        - datetime
+        - active
+      properties:
+        id:
+          type: string
+        password: 
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        dieteticRegistrationNumber:
+          type: string
+        clinicCity:
+          type: string
+        clinicState:
+          type: string
+        clinicAddress:
+          type: string
+        clinicUrl:
+          type: string
+        datetime:
+          type: number
+        active:
+          type: boolean
+    
+    DietitianPrepayment:
+      description: Contains dietitian id and fees
+      type: string
+      required:
+        - id
+        - dietitianID
+        - stagedClientID
+        - subtotal
+        - salesTaxPercentage
+        - salesTaxTotal
+        - shippingTotal
+        - stripeFeeTotal
+        - stripePaymentIntentID
+        - total
+        - datetime
+      properties:
+        id:
+          type: string
+        dietitianID:
+          type: string
+        stagedClientID:
+          type: string
+        subtotal:
+          type: number
+        salesTaxPercentage:
+          type: number
+        salesTaxTotal:
+          type: number
+        shippingTotal:
+          type: number
+        stripeFeeTotal:
+          type: number
+        stripePaymentIntentID:
+          type: string
+        total:
+          type: number
+        datetime:
+          type: number
+
+    Discount:
+      description: Contains discount code, percantage, and active
+      type: string
+      required: 
+        - id
+        - code
+        - discountPercentage
+        - active
+      properties:
+        id:
+          type: string
+        code:
+          type: string
+        discountPercentage:
+          type: number
+        active:
+          type: boolean
+    
+    ExtendedClient:
+      description: child class of client, which also includes meal plan
+      type: string
+      required:
+        - mealPlan
+      properties:
+        mealPlan:
+          type: string
+          
+
     SpacecraftId:
       description: The unique identifier of a spacecraft
       type: string
