@@ -34,35 +34,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /spacecrafts2/{spacecraftId2}:
-    parameters:
-      - name: spacecraftId2
-        description: The unique identifier of the spacecraft
-        in: path
-        required: true
-        schema:
-          $ref: '#/components/schemas/SpacecraftId2'
-    get:
-      summary: Read a spacecraft
-      responses:
-        '200':
-          description: The spacecraft corresponding to the provided `spacecraftId`
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Spacecraft'
-        404:
-          description: No spacecraft found for the provided `spacecraftId`
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        500:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
 components: 
   schemas:
     SpacecraftId:
@@ -77,27 +48,6 @@ components:
       properties:
         id:
           $ref: '#/components/schemas/SpacecraftId'
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-            - capsule
-            - probe
-            - satellite
-            - spaceplane
-            - station
-        description:
-          type: string
-    Spacecraft2:
-      type: object
-      required:
-        - id
-        - name
-        - type
-      properties:
-        id:
-          type: string
         name:
           type: string
         type:
