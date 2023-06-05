@@ -60,6 +60,27 @@ components:
             - station
         description:
           type: string
+    Spacecraft2:
+      type: object
+      required:
+        - id
+        - name
+        - type
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+            - capsule
+            - probe
+            - satellite
+            - spaceplane
+            - station
+        description:
+          type: string
     Error:
       type: object
       required:
