@@ -4,7 +4,60 @@ info:
   title: 'Sample API'
   description: Buy or rent spacecrafts
 
+servers:
+  - url: https://localhost:4000/api
+    description: Local development server
+  - url: https://cherahealth.com
+    description: Production server (uses live data)
+  - url: https://staging.cherahealth.com
+    description: Staging server
 paths:
+  /{usda_ingredient_portion}:
+    parameters:
+      - name: usda_ingredient_portion
+        description: Contains all portion information of usda ingredients
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/UsdaIngredientPortion'
+    post:
+      summary: Sends usda ingredient portion information
+      responses:
+        '201':
+          description: The usda ingredient portion corresponding to the provided `usdaIngredientPortion`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsdaIngredientPortion'
+
+  /{usda_ingredient}:
+    parameters:
+      - name: usda_ingredient
+        description: The unique identifier of a usda ingredient
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/UsdaIngredient'
+    post:
+      summary: Send ingredient information
+      responses:
+        '201':
+          description: The usda ingredient corresponding to the provided `usdaIngredient`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsdaIngredient'
+    
+    delete:
+      summary: Deletes a USDA Ingredient given in the parameters
+      responses:
+        '200':
+          description: The usda ingredient was successfully deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsdaIngredient'
+
   /spacecrafts/{spacecraftId}:
     parameters:
       - name: spacecraftId
