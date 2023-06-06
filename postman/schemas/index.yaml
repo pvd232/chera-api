@@ -235,7 +235,7 @@ components:
     
     ExtendedClient:
       description: child class of client, which also includes meal plan
-      type: string
+      type: object
       required:
         - mealPlan
       properties:
@@ -823,7 +823,7 @@ components:
         price:
           type: number
         imageUrl: 
-          type: strisng
+          type: string
         active:
           type: boolean
   
@@ -866,7 +866,187 @@ components:
         mealsPrepaid:
           type: boolean
 
+    StagedScheduleMeal:
+      description: super class, creates base of client id, and meal id
+      type: object
+      required:
+        - id
+        - mealId
+        - stagedClientId
+      properties:
+        id:
+          type: string
+        mealId:
+          type: string
+        stagedClientId:
+          type: string
     
+    StagedScheduleSnack:
+      description: super class, creates base of client id, and snack id
+      type: object
+      required:
+        - id
+        - snackId
+        - stagedClientId 
+      properties:
+        id: 
+          type: string
+        snackId:
+          type: string
+        stagedClientId:
+          type: string
+
+    StateSalesTax:
+      description: holds state tax with percentage and tax id
+      type: object
+      required:
+        - state
+        - salesTaxPercentage
+        - stripeTaxId
+      properties:
+        state:
+          type: string
+        salesTaxPercentage:
+          type: number
+        stripeTaxId: 
+          type: string
+    
+    UsdaIngredient:
+      description: holds all ingredient information
+      type: object
+      required: 
+        - id
+        - name
+        - fdcId 
+        - amountOfGrams
+        - kCal
+        - kCalToGramRatio
+        - usdaDataType
+        - fdaIdentifier
+        - active
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        fdcId:
+          type: string
+        amountOfGrams:
+          type: number
+        kCal:
+          type: integer
+        kCalToGramRatio:
+          type: number
+        usdaDataType:
+          type: string
+        active:
+          type: boolean
+
+    UsdaIngredientNutrient:
+      description: contains all nutrient information for ingredients
+      type: object
+      required:
+        - id
+        - usdaIngredientId
+        - nutrientId
+        - amount
+      properties:
+        id:
+          type: string
+        usdaIngredientId:
+          type: string
+        nutrientId:
+          type: string
+        amount:
+          type: number
+
+    UsdaIngredientPortion:
+      description: contains all portion information for ingredients
+      type: object
+      required: 
+        - id
+        - usdaIngredientId
+        - fdaPortionId
+        - nonMetricUnit
+        - gramsPerNonMetricUnit
+        - portionDescription
+        - isImperial
+        - usdaDataType
+        - customValue
+      properties:
+        id:
+          type: string
+        usdaIngredientId:
+          type: string
+        fdaPortionId:
+          type: string
+        nonMetricUnit:
+          type: string
+        gramsPerNonMetricUnit:
+          type: number
+        portionDescription:
+          type: string
+        isImperial:
+          type: boolean
+        usdaDataType:
+          type: string
+        customValue:
+          type: boolean
+    
+    UsdaNutrientDailyValue:
+      description: contains all nutrient info
+      type: object
+      required:
+        - id
+        - nutrientId
+        - mealplanId
+        - amount
+        - unit
+      properties:
+        id:
+          type: string
+        nutrientId:
+          type: string
+        mealplanId:
+          type: string
+        amount:
+          type: number
+        unit:
+          type: string
+    
+    UsdaNutrientMapper:
+      description: contains all usda ingredient nutrient information and also maps the info
+      type: object
+      required: 
+        - id
+        - name
+        - fdcId
+        - fdaIdentifier
+        - amountOfGrams
+        - kCal
+        - kCalToGramRatio
+        - usdaDataType
+        - active
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        fdcId:
+          type: string
+        fdaIdentifier:
+          type: string
+        amountOfGrams:
+          type: number
+        kCal:
+          type: integer
+        kCalToGramRatio:
+          type: number
+        usdaDataType:
+          type: string
+        active:
+          type: boolean
+
     
 
 
