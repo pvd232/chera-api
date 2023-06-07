@@ -12,16 +12,9 @@ servers:
   - url: https://staging.cherahealth.com
     description: Staging server
 paths:
-  /{usda_ingredient_portion}:
-    parameters:
-      - name: usda_ingredient_portion
-        description: Contains all portion information of usda ingredients
-        in: path
-        required: true
-        schema:
-          $ref: '#/components/schemas/UsdaIngredientPortion'
+  /usda_ingredient_portion:
     post:
-      summary: Sends usda ingredient portion information
+      summary: Creates usda ingredient portion information
       responses:
         '201':
           description: The usda ingredient portion corresponding to the provided `usdaIngredientPortion`
@@ -30,19 +23,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/UsdaIngredientPortion'
 
-  /{usda_ingredient}:
-    parameters:
-      - name: usda_ingredient
-        description: The unique identifier of a usda ingredient
-        in: path
-        required: true
-        schema:
-          $ref: '#/components/schemas/UsdaIngredient'
+  /usda_ingredient:
     post:
-      summary: Send ingredient information
+      summary: Create ingredient information
       responses:
         '201':
-          description: The usda ingredient corresponding to the provided `usdaIngredient`
+          description: The usda ingredient corresponding to the provided `usdaIngredient` was successfully created
           content:
             application/json:
               schema:
