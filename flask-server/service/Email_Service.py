@@ -97,6 +97,133 @@ class Email_Service(object):
             # terminating the session
             s.quit()
 
+    def send_pause_recruiting_email(
+        self,
+        first_name: str,
+        email: str,
+        testing: bool,
+    ) -> None:
+        # creates SMTP
+        s = smtplib.SMTP_SSL("smtp.gmail.com", 465)
+
+        # Authentication
+        s.login("peterdriscoll@cherahealth.com", "hmdisbafknqnblst")
+
+        email_file_name = (
+            Path(".")
+            .joinpath("flask-server")
+            .joinpath("email_templates")
+            .joinpath("internship_interview")
+            .joinpath("pause_hiring.html")
+        )
+
+        with open(email_file_name, "r") as mail_body:
+            # Setup the MIME
+            message = MIMEMultipart()
+            message["From"] = "peterdriscoll@cherahealth.com"
+            if not testing:
+                message["To"] = email
+            else:
+                message["To"] = message["From"]
+
+            # The subject line
+            message["Subject"] = f"Chera Hiring Pause"
+
+            mail_content = mail_body.read().format(first_name=first_name)
+            # The body and the attachments for the mail
+            message.attach(MIMEText(mail_content, "html"))
+            # sending the mail
+
+            s.sendmail(message["From"], message["To"], message.as_string())
+
+            # terminating the session
+            s.quit()
+
+    def send_hiring_status_update_email(
+        self,
+        first_name: str,
+        email: str,
+        testing: bool,
+    ) -> None:
+        # creates SMTP
+        s = smtplib.SMTP_SSL("smtp.gmail.com", 465)
+
+        # Authentication
+        s.login("peterdriscoll@cherahealth.com", "hmdisbafknqnblst")
+
+        email_file_name = (
+            Path(".")
+            .joinpath("flask-server")
+            .joinpath("email_templates")
+            .joinpath("internship_interview")
+            .joinpath("hiring_status_update.html")
+        )
+
+        with open(email_file_name, "r") as mail_body:
+            # Setup the MIME
+            message = MIMEMultipart()
+            message["From"] = "peterdriscoll@cherahealth.com"
+            if not testing:
+                message["To"] = email
+            else:
+                message["To"] = message["From"]
+
+            # The subject line
+            message["Subject"] = f"Chera Internship Status Update"
+
+            mail_content = mail_body.read().format(first_name=first_name)
+            # The body and the attachments for the mail
+            message.attach(MIMEText(mail_content, "html"))
+            # sending the mail
+
+            s.sendmail(message["From"], message["To"], message.as_string())
+
+            # terminating the session
+            s.quit()
+
+    def send_offer_notification_email(
+        self,
+        first_name: str,
+        email: str,
+        role: str,
+        testing: bool,
+    ) -> None:
+        # creates SMTP
+        s = smtplib.SMTP_SSL("smtp.gmail.com", 465)
+
+        # Authentication
+        s.login("peterdriscoll@cherahealth.com", "hmdisbafknqnblst")
+
+        email_file_name = (
+            Path(".")
+            .joinpath("flask-server")
+            .joinpath("email_templates")
+            .joinpath("internship_interview")
+            .joinpath("offer_notification.html")
+        )
+
+        with open(email_file_name, "r") as mail_body:
+            # Setup the MIME
+            message = MIMEMultipart()
+            message["From"] = "peterdriscoll@cherahealth.com"
+            if not testing:
+                message["To"] = email
+            else:
+                message["To"] = message["From"]
+
+            # The subject line
+            message["Subject"] = f"Chera {role} Internship Offer"
+
+            mail_content = mail_body.read().format(first_name=first_name, role=role)
+            # The body and the attachments for the mail
+            message.attach(MIMEText(mail_content, "html"))
+            # sending the mail
+
+            s.sendmail(message["From"], message["To"], message.as_string())
+
+            # terminating the session
+            s.quit()
+
     def send_confirmation_email(
         self,
         user_type: str,

@@ -44,6 +44,6 @@
 
 # 1. Depending on your editor (VSCode is highly reccomended) you might have to manually activate the virtual env periodically. You can see if it is activated by checking for the (venv) in your console
 
-# 2. To start the backend, run main.py in your editor
+# 2. To start the backend, run main.py in your editor. Make sure you run it from the bendito-api directory (root)
 
 # 3. When signing off, shut down the backend by entering "ctrl + c" into the terminal window that has the backend running

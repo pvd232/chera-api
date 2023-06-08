@@ -8,40 +8,52 @@ if TYPE_CHECKING:
 
 
 class Dietitian_Service(object):
-    def __init__(self, dietitian_repository: 'Dietitian_Repository') -> None:
+    def __init__(self, dietitian_repository: "Dietitian_Repository") -> None:
         self.dietitian_repository = dietitian_repository
 
     def get_dietitians(self) -> list[Dietitian_Domain]:
-        dietitian_domains: list[Dietitian_Domain] = [Dietitian_Domain(
-            dietitian_object=x)for x in self.dietitian_repository.get_dietitians()]
+        dietitian_domains: list[Dietitian_Domain] = [
+            Dietitian_Domain(dietitian_object=x)
+            for x in self.dietitian_repository.get_dietitians()
+        ]
         return dietitian_domains
 
-    def update_dietitian_password(self, dietitian_id: str, new_password: str) -> Dietitian_Domain:
-        return Dietitian_Domain(dietitian_object=self.dietitian_repository.update_dietitian_password(dietitian_id=dietitian_id, new_password=new_password))
+    def update_dietitian_password(
+        self, dietitian_id: str, new_password: str
+    ) -> Dietitian_Domain:
+        return Dietitian_Domain(
+            dietitian_object=self.dietitian_repository.update_dietitian_password(
+                dietitian_id=dietitian_id, new_password=new_password
+            )
+        )
 
-    def authenticate_dietitian(self, dietitian_id: str, password: str) -> Optional[Dietitian_Domain]:
+    def authenticate_dietitian(
+        self, dietitian_id: str, password: str
+    ) -> Optional[Dietitian_Domain]:
         dietitian_object = self.dietitian_repository.authenticate_dietitian(
-            dietitian_id=dietitian_id, password=password)
+            dietitian_id=dietitian_id, password=password
+        )
         if dietitian_object:
             dietitian_domain: Dietitian_Domain = Dietitian_Domain(
-                dietitian_object=dietitian_object)
+                dietitian_object=dietitian_object
+            )
             return dietitian_domain
         else:
             return None
 
     def get_dietitian(self, dietitian_id: str) -> Optional[Dietitian_Domain]:
         requested_dietitian = self.dietitian_repository.get_dietitian(
-            dietitian_id=dietitian_id)
+            dietitian_id=dietitian_id
+        )
         if requested_dietitian:
             return Dietitian_Domain(dietitian_object=requested_dietitian)
         else:
             return None
 
-    def create_dietitian(self, dietitian_dto: 'Dietitian_DTO') -> Dietitian_Domain:
-        requested_dietitian_domain: Dietitian_Domain = Dietitian_Domain(
-            dietitian_object=dietitian_dto)
-        created_dietitian: Dietitian_Model = self.dietitian_repository.create_dietitian(
-            dietitian=requested_dietitian_domain)
-        created_dietitian_domain: Dietitian_Domain = Dietitian_Domain(
-            dietitian_object=created_dietitian)
+    def create_dietitian(self, dietitian_dto: "Dietitian_DTO") -> Dietitian_Domain:
+        requested_dietitian_domain = Dietitian_Domain(dietitian_object=dietitian_dto)
+        created_dietitian = self.dietitian_repository.create_dietitian(
+            dietitian=requested_dietitian_domain
+        )
+        created_dietitian_domain = Dietitian_Domain(dietitian_object=created_dietitian)
         return created_dietitian_domain

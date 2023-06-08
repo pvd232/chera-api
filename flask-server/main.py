@@ -49,7 +49,7 @@ def validate_dietetic_registration_number() -> Response:
         return Response(status=404)
 
 
-@app.route("/api/recruiting_email", methods=["POST"])
+@app.route("/api/email/recruiting", methods=["POST"])
 def recruiting_email() -> Response:
     from pathlib import Path
     from service.Email_Service import Email_Service
@@ -63,7 +63,6 @@ def recruiting_email() -> Response:
     calendly_link = request_data["calendly_link"]
     role = request_data["role"]
     file_name_no_extension = format_file_name(role=role)
-    print("file_name_no_extension", file_name_no_extension)
     excel_file_name = f"{format_file_name(role=role)}.csv"
     testing = request_data["testing"]
     # Get email list from excel sheet
@@ -110,6 +109,166 @@ def recruiting_email() -> Response:
             calendly_link=calendly_link,
             testing=testing,
             file_name=file_name_no_extension,
+        )
+    return Response(status=200)
+
+
+@app.route("/api/email/pause_hiring", methods=["POST"])
+def pause_recruiting_email() -> Response:
+    from pathlib import Path
+    from service.Email_Service import Email_Service
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+
+    request_data = json.loads(request.data)
+    excel_file_name = "pause_hiring.csv"
+    testing = request_data["testing"]
+    # Get email list from excel sheet
+    import pandas as pd
+
+    # Create data frame
+    df: pd.DataFrame = pd.read_csv(
+        Path(".")
+        .joinpath("flask-server")
+        .joinpath("excel_data")
+        .joinpath(excel_file_name)
+    )
+
+    candidate_emails: list[str] = df["Email"].to_list()
+    candidate_first_name_series: list[str] = df["First Name"].to_list()
+    candidate_list = []
+
+    for i in range(len(candidate_emails)):
+        candidate = {
+            "email": candidate_emails[i],
+            "first_name": candidate_first_name_series[i].capitalize(),
+        }
+        candidate_list.append(candidate)
+    if not testing:
+        for candidate in candidate_list:
+            Email_Service(
+                host_url=host_url,
+                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+            ).send_pause_recruiting_email(
+                first_name=candidate["first_name"],
+                email=candidate["email"],
+                testing=testing,
+            )
+    else:
+        Email_Service(
+            host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+        ).send_pause_recruiting_email(
+            first_name=candidate_list[0]["first_name"],
+            email=candidate_list[0]["email"],
+            testing=testing,
+        )
+    return Response(status=200)
+
+
+@app.route("/api/email/hiring_status_update", methods=["POST"])
+def hiring_status_update() -> Response:
+    from pathlib import Path
+    from service.Email_Service import Email_Service
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+
+    request_data = json.loads(request.data)
+    excel_file_name = "hiring_status_update.csv"
+    testing = request_data["testing"]
+
+    # Get email list from excel sheet
+    import pandas as pd
+
+    # Create data frame
+    df: pd.DataFrame = pd.read_csv(
+        Path(".")
+        .joinpath("flask-server")
+        .joinpath("excel_data")
+        .joinpath(excel_file_name)
+    )
+
+    candidate_emails: list[str] = df["Email"].to_list()
+    candidate_first_name_series: list[str] = df["First Name"].to_list()
+    candidate_list = []
+
+    for i in range(len(candidate_emails)):
+        candidate = {
+            "email": candidate_emails[i],
+            "first_name": candidate_first_name_series[i].capitalize(),
+        }
+        candidate_list.append(candidate)
+    if not testing:
+        for candidate in candidate_list:
+            Email_Service(
+                host_url=host_url,
+                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+            ).send_hiring_status_update_email(
+                first_name=candidate["first_name"],
+                email=candidate["email"],
+                testing=testing,
+            )
+    else:
+        Email_Service(
+            host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+        ).send_hiring_status_update_email(
+            first_name=candidate_list[0]["first_name"],
+            email=candidate_list[0]["email"],
+            testing=testing,
+        )
+    return Response(status=200)
+
+
+@app.route("/api/email/offer_notification", methods=["POST"])
+def offer_notification() -> Response:
+    from pathlib import Path
+    from service.Email_Service import Email_Service
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+
+    request_data = json.loads(request.data)
+    excel_file_name = "offer_notification.csv"
+    testing = request_data["testing"]
+
+    # Get email list from excel sheet
+    import pandas as pd
+
+    # Create data frame
+    df: pd.DataFrame = pd.read_csv(
+        Path(".")
+        .joinpath("flask-server")
+        .joinpath("excel_data")
+        .joinpath(excel_file_name)
+    )
+
+    candidate_email_series: list[str] = df["Email"].to_list()
+    candidate_first_name_series: list[str] = df["First Name"].to_list()
+    candidate_role_series: list[str] = df["Role"].to_list()
+    candidate_list = []
+
+    for i in range(len(candidate_email_series)):
+        candidate = {
+            "email": candidate_email_series[i],
+            "first_name": candidate_first_name_series[i].capitalize(),
+            "role": candidate_role_series[i],
+        }
+        candidate_list.append(candidate)
+    if not testing:
+        for candidate in candidate_list:
+            Email_Service(
+                host_url=host_url,
+                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+            ).send_offer_notification_email(
+                first_name=candidate["first_name"],
+                email=candidate["email"],
+                role=candidate["role"],
+                testing=testing,
+            )
+    else:
+        Email_Service(
+            host_url=host_url,
+            gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+        ).send_offer_notification_email(
+            first_name=candidate["first_name"],
+            email=candidate["email"],
+            role=candidate["role"],
+            testing=testing,
         )
     return Response(status=200)
 
@@ -413,7 +572,7 @@ def email_webhook(email_number: int) -> Response:
         return Response(status=401)
 
 
-@app.route("/api/stripe/webhook", methods=["POST"])
+@app.route("/api/webhook/stripe/invoice", methods=["POST"])
 def stripe_webhook() -> Response:
     from models import stripe_invoice_endpoint_secret
     from stripe import Event

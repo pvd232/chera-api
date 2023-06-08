@@ -346,6 +346,7 @@ class Dietitian_Model(db.Model):
         )
         self.clinic_city = dietitian_domain.clinic_city
         self.clinic_state = dietitian_domain.clinic_state
+        self.clinic_address = dietitian_domain.clinic_address
         self.clinic_url = dietitian_domain.clinic_url
         self.datetime = dietitian_domain.datetime
         self.active = dietitian_domain.active
