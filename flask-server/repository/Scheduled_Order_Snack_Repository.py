@@ -60,16 +60,7 @@ class Scheduled_Order_Snack_Repository(Base_Repository):
         )
         return weekly_scheduled_order_snacks
 
-    def create_scheduled_order_snack(
-        self, scheduled_order_snack: "Scheduled_Order_Snack_Domain"
-    ) -> None:
-        new_scheduled_order_snack = Scheduled_Order_Snack_Model(
-            scheduled_order_snack_domain=scheduled_order_snack
-        )
-        self.db.session.add(new_scheduled_order_snack)
-        self.db.session.commit()
 
-        return
 
     def create_scheduled_order_snacks(
         self, scheduled_order_snack_domains: list["Scheduled_Order_Snack_Domain"]

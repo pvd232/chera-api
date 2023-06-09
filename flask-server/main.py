@@ -649,7 +649,9 @@ def stripe_webhook() -> Response:
         from datetime import datetime
 
         stripe_invoice_id = event["data"]["object"]["id"]
+        print("stripe_invoice_id", stripe_invoice_id)
         stripe_subscription_id = event["data"]["object"]["subscription"]
+        print("stripe_subscription_id", stripe_subscription_id)
         stripe_payment_intent_id = event["data"]["object"]["payment_intent"]
 
         meal_subscription: Optional[
@@ -667,6 +669,14 @@ def stripe_webhook() -> Response:
             staged_client_repository=Staged_Client_Repository(db=db)
         ).get_staged_client(staged_client_id=meal_subscription.client_id)
 
+        print(
+            "",
+        )
+        print(staged_client.serialize())
+
+        print(
+            "",
+        )
         # Regularly scheduled invoice on delivery day cutoff (Wed) - excluding invoice for first week
         if staged_client.account_created is True:
             meal_subscription_invoice_dto = Meal_Subscription_Invoice_DTO()
@@ -1133,8 +1143,8 @@ def client() -> Response:
         return jsonify(serialized_requested_client_dtos), 200
 
     elif request.method == "POST":
-        requested_client: dict = json.loads(request.data)
-        requested_client_dto: Client_DTO = Client_DTO(client_json=requested_client)
+        requested_client = json.loads(request.data)
+        requested_client_dto = Client_DTO(client_json=requested_client)
         check_previous_client: Optional[Client_Domain] = Client_Service(
             client_repository=Client_Repository(db=db)
         ).get_client(client_id=requested_client_dto.id)
@@ -1946,6 +1956,9 @@ def schedule_meal() -> Response:
 
     if request.method == "POST":
         schedule_meals_JSON = json.loads(request.data)
+        print()
+        print(schedule_meals_JSON[0])
+        print()
         schedule_meal_DTOs = [
             Schedule_Meal_DTO(schedule_meal_json=x) for x in schedule_meals_JSON
         ]
@@ -2498,11 +2511,11 @@ def staged_schedule_snack() -> Response:
 
 @app.route("/api/extended_staged_schedule_snack", methods=["GET"])
 def extended_staged_schedule_snack() -> Response:
-    from service.Extended_Staged_Schedule_Snack_Service import (
-        Extended_Staged_Schedule_Snack_Service,
-    )
     from repository.Staged_Schedule_Snack_Repository import (
         Staged_Schedule_Snack_Repository,
+    )
+    from service.Extended_Staged_Schedule_Snack_Service import (
+        Extended_Staged_Schedule_Snack_Service,
     )
     from domain.Extended_Staged_Schedule_Snack_Domain import (
         Extended_Staged_Schedule_Snack_Domain,
@@ -2586,12 +2599,23 @@ def dietitian_prepayment() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/meal_subscription/<string:meal_subscription_id>", methods=["PUT"])
+@app.route(
+    "/api/meal_subscription/<string:meal_subscription_id>", methods=["GET", "PUT"]
+)
 def update_meal_subscription(meal_subscription_id: str) -> Response:
     from repository.Meal_Subscription_Repository import Meal_Subscription_Repository
     from service.Meal_Subscription_Service import Meal_Subscription_Service
     from service.Stripe_Service import Stripe_Service
+    from dto.Meal_Subscription_DTO import Meal_Subscription_DTO
 
+    if request.method == "GET":
+        meal_subscription_domain = Meal_Subscription_Service(
+            meal_subscription_repository=Meal_Subscription_Repository(db=db)
+        ).get_meal_subscription(meal_subscription_id=meal_subscription_id)
+        meal_subscription_dto = Meal_Subscription_DTO(
+            meal_subscription_domain=meal_subscription_domain
+        )
+        return jsonify(meal_subscription_dto.serialize()), 200
     if request.method == "PUT":
         if request.headers.get("update") == "deactivate":
             Meal_Subscription_Service(

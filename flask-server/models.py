@@ -747,8 +747,8 @@ class Meal_Subscription_Model(db.Model):
     stripe_subscription_id = db.Column(db.String(80), unique=True, nullable=False)
     datetime = db.Column(db.Float(), nullable=False)
     shipping_cost = db.Column(db.Float(), nullable=False)
-    active = db.Column(db.Boolean(), default=True, nullable=False)
     paused = db.Column(db.Boolean(), default=False, nullable=False)
+    active = db.Column(db.Boolean(), default=True, nullable=False)
 
     def __init__(self, meal_subscription: "Meal_Subscription_Domain") -> None:
         self.id = meal_subscription.id

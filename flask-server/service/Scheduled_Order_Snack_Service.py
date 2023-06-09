@@ -100,12 +100,6 @@ class Scheduled_Order_Snack_Service(object):
         )
         return
 
-    def create_scheduled_order_snack(
-        self, scheduled_order_snack: Scheduled_Order_Snack_Domain
-    ) -> None:
-        self.scheduled_order_snack_repository.create_scheduled_order_snacks(
-            scheduled_order_snack_domain=scheduled_order_snack
-        )
 
     def create_scheduled_order_snacks(
         self, scheduled_order_snack_dtos: list["Scheduled_Order_Snack_DTO"]
