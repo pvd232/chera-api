@@ -28,8 +28,6 @@ class Dietitian_DTO(Base_DTO):
             self.clinic_url: str = dietitian_json["clinic_url"]
             self.datetime: float = float(dietitian_json["datetime"])
             self.active: bool = dietitian_json["active"]
-            print()
-            print("dir", os.getcwd())
             if self.id == gcp_secret_manager_service.get_secret("ADMIN_ID"):
                 self.admin = True
             else:

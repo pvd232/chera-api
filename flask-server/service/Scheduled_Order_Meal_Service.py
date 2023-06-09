@@ -250,7 +250,6 @@ class Scheduled_Order_Meal_Service(object):
             meal_subscription_id=meal_subscription_id
         )
         today = datetime.now(timezone.utc)
-        print("delivery_dates", delivery_dates)
         if delivery_dates[0] >= today.timestamp():
             return True
         else:

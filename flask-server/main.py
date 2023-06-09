@@ -669,14 +669,6 @@ def stripe_webhook() -> Response:
             staged_client_repository=Staged_Client_Repository(db=db)
         ).get_staged_client(staged_client_id=meal_subscription.client_id)
 
-        print(
-            "",
-        )
-        print(staged_client.serialize())
-
-        print(
-            "",
-        )
         # Regularly scheduled invoice on delivery day cutoff (Wed) - excluding invoice for first week
         if staged_client.account_created is True:
             meal_subscription_invoice_dto = Meal_Subscription_Invoice_DTO()
@@ -1956,9 +1948,6 @@ def schedule_meal() -> Response:
 
     if request.method == "POST":
         schedule_meals_JSON = json.loads(request.data)
-        print()
-        print(schedule_meals_JSON[0])
-        print()
         schedule_meal_DTOs = [
             Schedule_Meal_DTO(schedule_meal_json=x) for x in schedule_meals_JSON
         ]
