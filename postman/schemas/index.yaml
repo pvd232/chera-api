@@ -43,6 +43,552 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UsdaIngredient'
+  
+  /usda_ingredient/{usda_ingredient_id}:
+    parameters:
+      - name: usda_ingredient_id
+        description: The unique  identifier of the ingredient
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/UsdaIngredientId'
+    delete:
+      summary: remove a usda ingredient
+      responses:
+        '200':
+          description: The ingredient corresponding to the `ingredientId` was successfully  deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsdaIngredientId'
+
+  /dietitian:
+    post:
+      summary: create a dietitian object
+      responses:
+        '201':
+          description: The dietitian object was succesfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dietitian'
+        '405':
+          description: Client used a HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dietitian'
+
+  /dietitian/{dietitian_id}:
+    parameters:
+      - name: dietitian_id
+        description: The unique identifier of each dietitian
+        in: path
+        required: true
+        schema: 
+          $ref: '#/components/schemas/Dietitian'
+    get:
+      summary: Read a dietitian
+      responses:
+        '200':
+          description: The dietitianId corresponding to the provided `dietitianId`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dietitian'
+        '404':
+          description: The dietitianId was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dietitian'
+        '405':
+          description: Client used a HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dietitian'
+
+  /dietitian/authenticate:
+    get:
+      summary: Read dietitian information and validate
+      responses:
+        '200':
+          description: The dietitian information is valid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dietitian'
+        '401': 
+          description: Unauthorized dietitian attempting to connect
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dietitian'
+        '405':
+          description:  Client used a HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dietitian'
+
+  /client/authenticate:
+    get:
+      summary: Read client information and validate
+      responses:
+        '200':
+          description: The client information is valid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '401':
+          description: Unauthorized client attempting to connect
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '405':
+          description: Client used a HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+
+  /dietitian/reset_password:
+    put:
+      summary: updates a dietitian password
+      responses:
+        '200':
+          description: Password was succesfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dietitian'
+        '405':
+          description: Client used a HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dietitian'
+    get:
+      summary: reads dietitian information and checks if email exists
+      responses:
+        '204':
+          description: email was succesfully sent to client for reset, and client does not need to change webpage
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dietitian'
+        '401':
+          description: Unauthorized dietitian trying to change password
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dietitian'
+
+  /client/reset_password:
+    get:
+      summary: Read a clients password and check email validity
+      responses:
+        '204':
+          description: email was succesfully sent to client for reset, and client does not need to change webpage
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '401':
+          description: Unauthorized client trying to change password
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+    put:
+      summary: reset a clients password
+      responses:
+        '200':
+          description: client password was successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '405':
+          description: Client used a HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+
+  /extended_client:
+    get:
+      summary: read extended client information
+      responses:
+        '200':
+          description: The extended client information was successfully read
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedClient'
+        '204':
+          description: extended client information was succesfully read and user does not need to change percantage
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedClient'
+        '405':
+          description: Client used a HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedClient'
+
+  /client/{client_id}:
+    parameters:
+      - name: client_id
+        description: The unique identifier for client
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Client'
+    get:
+      summary: Read a clients id
+      responses:
+        '200':
+          description: Client information was successfully read 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '404':
+          description: Client information corresponding to the provided `client_id` was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+    put:
+      summary: Edit a clients id
+      responses:
+        '204':
+          description: Client information was successfully edited
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '405':
+          description: Client used a HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+
+  /client:
+    get:
+      summary: Read a client
+      responses:
+        '200':
+          description: Client information was successfully read
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+    post:
+      summary: Create a new client object
+      responses:
+        '201':
+          description: Client object was successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+    put:
+      summary: Edit a existing client object
+      responses:
+        '200':
+          description: Client was successfully edited
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+
+  /extended_staged_client:
+    get:
+      summary: Reads extra client information
+      responses:
+        '200':
+          description: extra client information successfully read
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedStagedClient'
+        '204':
+          description: extra client information successfully read and user does not need to navigate away
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedStagedClient'
+        '405':
+          description: Client attempted to use an HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedStagedClient'
+    
+  /extended_staged_client/{staged_client_id}:
+    parameters:
+      - name: staged_client_id
+        description: The unique identifier of the extended staged client
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/ExtendedStagedClient'
+    get:
+      summary: Read a staged client given their id
+      responses:
+        '200':
+          description: The extended staged client corresponding to the provided `spacecraftId`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedStagedClient'
+
+  /staged_client:
+    get:
+      summary: Read a staged client
+      responses:
+        '200':
+          description: The staged client information was successfully read
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StagedClient'
+        '404':
+          description: The staged client information was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StagedClient'
+    post:
+      summary: Create a new staged client
+      responses:
+        '201':
+          description: The staged client was successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StagedClient'
+    put:
+      summary: Edit a staged client
+      responses:
+        '204':
+          description: Successfully edited staged client information and client does not need to navigate away
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StagedClient'
+        '405':
+          description: User tried to use an HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StagedClient'
+
+  /extended_usda_ingredient:
+    get:
+      summary: Read a usda ingredient with extended information
+      responses:
+        '200':
+          description: Successfully read usda ingredient extended information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedUsdaIngredient'
+        '405':
+          description: User tried to use an HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedUsdaIngredient'
+
+  /recipe_ingredient:
+    post:
+      summary: Create a new extended usda ingredient
+      responses: 
+        '201':
+          description: Successfully created a new extended usda ingredient
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeIngredient'
+    put:
+      summary: Edit a extended usda ingredient
+      responses:
+        '204': 
+          description: Successfully edited recipe ingredient information and client doesnt need to navigate to new page
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeIngredient'
+        '405':
+          description: User tried to use an HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeIngredient'
+
+  /recipe_ingredient_nutrient:
+    post:
+      summary: Create a new recipe ingredient with nutrient information
+      responses:
+        '201':
+          description: The recipe ingredient nutrient was successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeIngredientNutrient'
+        '405':
+          description: User tried to use an HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeIngredientNutrient'
+    put:
+      summary: Edit a existing recipe ingredient nutrient
+      responses:
+        '201':
+          description: The recipe ingredient nutrient was successfully edited
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeIngredientNutrient'
+        '405':
+          description: User tried to use an HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeIngredientNutrient'
+
+  /extended_meal:
+    get:
+      summary: Reads extended meal information
+      responses:
+        '200': 
+          description: Extended meal information successfully read
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedMeal'
+        '405':
+          description: User tried to use an HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedMeal'
+
+  /meal_dietary_restriction:
+    post: 
+      summary: create new meal dietary restriction
+      responses:
+        '201':
+          description: Meal dietary restriction successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealDietaryRestriction'
+        '405':
+          description: User tried to use an HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealDietaryRestriction'
+
+  /dietary_restriction:
+    get:
+      summary: Read a dietary restriction
+      responses:
+        '200':
+          description: Successfully read a dietary restriction
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DietaryRestriction'
+        '405':
+          description: User tried to use an HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DietaryRestriction'
+
+  /meal/{meal_id}:
+    parameters: 
+      - name: meal_id
+        description: The unique identifier of a meal
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Meal'
+    delete:
+      summary: delete a meal
+      responses:
+        '204': 
+          description: The meal corresponding to the provided `meal_id` was successfully deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Meal'
+        '405':
+          description: User tried to use an HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Meal'
+
+  /meal:
+    get:
+      summary: Read a meal
+      responses:
+        '200':
+          description: Successfully read a meal
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Meal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Meal'
+    post:
+      summary: Create a meal
+      responses:
+        '201':
+          description: Meal successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Meal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Meal'
+    delete:
+      summary: Delete a meal
+      responses: 
+        '204':
+          description: Meal data successfully deleted
+          content:
+            application/json:
+              schema:
+                $ref:  '#/components/schemas/Meal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Meal'
+
 
   /spacecrafts/{spacecraftId}:
     parameters:
