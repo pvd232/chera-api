@@ -1,5 +1,4 @@
 from uuid import UUID
-from datetime import datetime
 from .Base_Domain import Base_Domain
 from models import Client_Model
 from dto.Client_DTO import Client_DTO
@@ -18,10 +17,10 @@ class Client_Domain(Base_Domain):
         self.suite: str = client_object.suite
         self.city: str = client_object.city
         self.state: str = client_object.state
-        self.zipcode: int = client_object.zipcode
-        self.zipcode_extension: int = client_object.zipcode_extension
+        self.zipcode: str = client_object.zipcode
+        self.zipcode_extension: str = client_object.zipcode_extension
         self.address: str = client_object.address
-        self.phone_number: int = client_object.phone_number
+        self.phone_number: str = client_object.phone_number
         self.notes: str = client_object.notes
         self.datetime: float = client_object.datetime
         self.active: bool = client_object.active

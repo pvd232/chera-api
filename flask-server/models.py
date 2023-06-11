@@ -235,7 +235,7 @@ class Client_Model(db.Model):
     zipcode = db.Column(db.String(5), nullable=False)
     zipcode_extension = db.Column(db.String(4), nullable=False)
     address = db.Column(db.String(200), nullable=False)
-    phone_number = db.Column(db.BigInteger(), nullable=False)
+    phone_number = db.Column(db.String(20), nullable=False)
     datetime = db.Column(db.Float(), nullable=False)
     active = db.Column(db.Boolean(), default=True, nullable=False)
     dietitian_id = db.Column(

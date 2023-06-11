@@ -1112,7 +1112,7 @@ def update_client(client_id: str) -> Response:
         return Response(status=405)
 
 
-@app.route("/api/client", methods=["POST", "GET", "PUT"])
+@app.route("/api/client", methods=["GET", "POST", "PUT"])
 def client() -> Response:
     from service.Client_Service import Client_Service
     from service.Email_Service import Email_Service
@@ -1170,6 +1170,7 @@ def client() -> Response:
         Client_Service(
             client_repository=Client_Repository(db=db)
         ).update_client_meal_plan(client_dto=client_dto)
+        return Response(status=200)
 
 
 @app.route("/api/stripe/invoice", methods=["GET"])

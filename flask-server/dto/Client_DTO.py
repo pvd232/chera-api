@@ -22,11 +22,11 @@ class Client_DTO(Base_DTO):
             self.suite: str = client_json["suite"]
             self.city: str = client_json["city"]
             self.state: str = client_json["state"]
-            self.zipcode: int = client_json["zipcode"]
-            self.zipcode_extension: int = client_json["zipcode_extension"]
+            self.zipcode: str = client_json["zipcode"]
+            self.zipcode_extension: str = client_json["zipcode_extension"]
             self.address: str = client_json["address"]
             self.notes: str = client_json["notes"]
-            self.phone_number: int = client_json["phone_number"]
+            self.phone_number: str = client_json["phone_number"]
 
             self.datetime: float = float(client_json["datetime"])
             self.active: bool = client_json["active"]
@@ -43,10 +43,10 @@ class Client_DTO(Base_DTO):
             self.suite: str = client_domain.suite
             self.city: str = client_domain.city
             self.state: str = client_domain.state
-            self.zipcode: int = client_domain.zipcode
-            self.zipcode_extension: int = client_domain.zipcode_extension
+            self.zipcode: str = client_domain.zipcode
+            self.zipcode_extension: str = client_domain.zipcode_extension
             self.address: str = client_domain.address
-            self.phone_number: int = client_domain.phone_number
+            self.phone_number: str = client_domain.phone_number
             self.notes: str = client_domain.notes
             self.datetime: float = client_domain.datetime
             self.active: bool = client_domain.active
