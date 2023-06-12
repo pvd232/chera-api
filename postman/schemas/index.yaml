@@ -589,7 +589,818 @@ paths:
               schema:
                 $ref: '#/components/schemas/Meal'
 
+  /extended_meal_plan_meal:
+    get:
+      summary: Read a extended meal plan's indiviual meal
+      responses:
+        '200': 
+          description: Successfully read a extended meal plan meal
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedMealPlanMeal'
+        '404':
+          description: Extended meal plan meal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedMealPlanMeal'
+    put:
+      summary: Edit a current extended meal plan's indiviual meal
+      responses:
+        '200':
+          description: successfully updated meal plan meal
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedMealPlanMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedMealPlanMeal'
 
+  /meal_plan_meal:
+    put:
+      summary: Edit a meal plan's meal
+      responses:
+        '204':
+          description: The meal plan's meal was successfully changed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealPlanMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealPlanMeal'
+    post:
+      summary: Create a meal plan's meal
+      responses:
+        '201':
+          description: The meal plan's meal was successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealPlanMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealPlanMeal'
+
+  /extended_scheduled_order_meal:
+    get:
+      summary: Read a extended scheduled order meal
+      responses:
+        '204':
+          description: Successfully read extended scheduled order meal
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedScheduledOrderMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedScheduledOrderMeal'
+
+  /scheduled_order_meal:
+    summary: CRUD a scheduled order meal object
+    get:
+      summary: Read a scheduled order meal
+      responses:
+        '200':
+          description: Successfully read scheduled order meal object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderMeal'
+    post:
+      summary: Create a scheduled order meal
+      responses:
+        '201':
+          description: Successfully created a scheduled order meal object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderMeal'
+    put:
+      summary: Edit a existing scheduled order meal
+      responses:
+        '204':
+          description: Successfully edited a scheduled order meal object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderMeal'
+    delete:
+      summary: Delete a existing scheduled order meal
+      responses:
+        '204':
+          description: Successfully deleted a scheduled order meal object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderMeal'
+  /extended_schedule_meal:
+    get:
+      summary: Read a extended scheule meal
+      responses:
+        '200':
+          description: The extended schedule meal was successfully read
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedScheduleMeal'
+        '204':
+          description: Nothing to return
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedScheduleMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedScheduleMeal'
+
+  /schedule_meal:
+    post:
+      summary: Create a schedule meal object
+      responses:
+        '201':
+          description: Successfully created a schedule meal object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleMeal'
+    get:
+      summary: Read a schedule meal object
+      responses:
+        '200':
+          description: Successfully read a schedule meal object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleMeal'
+    delete:
+      summary: Delete a schedule meal object
+      responses: 
+        '204':
+          description: Successfully delete a schedule meal object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleMeal'
+  
+  /extended_staged_schedule_meal:
+    get:
+      summary: Read a extended staged schedule meal
+      responses:
+        '200':
+          description: The staged schedule meal was successfully read
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedStagedScheduleMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedStagedScheduleMeal'
+    
+  /staged_schedule_meal:
+    post:
+      summary: Create a staged schedule meal
+      responses:
+        '201':
+          description:  The staged schedule meal was successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StagedScheduleMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref:  '#/components/schemas/StagedScheduleMeal'
+    get:
+      summary: Read a staged schedule meal
+      responses:
+        '200':
+          description: Successfully read staged schedule meal
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StagedScheduleMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StagedScheduleMeal'
+  
+  /snack/{snack_id}:
+    parameters:
+      - name: snack_id
+        description: The unique identifier of the snack
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Snack'
+    delete:
+      summary: delete a snack based off the snack ID
+      responses:
+        '201': 
+          description: Snack successfully deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Snack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Snack'
+
+  /snack:
+    get:
+      summary: Read a snack
+      responses:
+        '200':
+          description: Snack successfully read
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Snack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Snack'
+    post:
+      summary: Create a snack
+      responses:
+        '201':
+          description: Snack successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Snack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Snack'
+
+  /schedule_snack:
+    get:
+      summary: Read a scheduled snack
+      responses:
+        '200':
+          description: Successfully read a scheduled snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleSnack'
+    post:
+      summary: Create a scheduled snack
+      responses:
+        '201':
+          description: Successfully created a scheduled snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleSnack'
+    delete:
+      summary: Delete a scheduled snack
+      responses:
+        '204':
+          description: Successfully deleted a scheduled snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleSnack'
+
+  /scheduled_order_snack:
+    get:
+      summary: Read a scheduled order snack
+      responses:
+        '200':
+          description: Successfully read a scheduled order snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderSnack'
+        '404':
+          description: Scheduled order snack not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderSnack'
+    post:
+      summary: Create a scheduled order snack
+      responses:
+        '201':
+          description: Successfully created a scheduled order snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderSnack'
+    put:
+      summary: Edit a existing scheduled order snack
+      responses:
+        '204':
+          description: Successfully edited a scheduled order snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderSnack'
+    delete:
+      summary: Delete a existing scheduled order snack
+      responses:
+        '204':
+          description: Successfully deleted a scheduled order snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderSnack'
+    
+  /extended_scheduled_order_snack:
+    get:
+      summary: Read a extended scheduled order snack
+      responses:
+        '200': 
+          description: Successfully read a extended scheduled order snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedScheduledOrderSnack'
+        '204':
+          description: The extended order snack domain did not match the DTO
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedScheduledOrderSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedScheduledOrderSnack'
+  
+  /order_snack:
+    post:
+      summary: Create a order snack
+      responses:
+        '201':
+          description: Successfully created a order snack
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/OrderSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderSnack'
+    get:
+      summary: Read a order snack object
+      responses:
+        '200':
+          description: Successfully read a order snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderSnack'
+        '204':
+          description: Order snack domain did not match the DTO
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderSnack'
+
+  /meal_plan_snack:
+    put:
+      summary: Edit a meal plan snack
+      responses:
+        '204':
+          description: Successfully edited a meal plan snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealPlanSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealPlanSnack'
+    post:
+      summary: Create a meal plan snack
+      responses:
+        '201':
+          description: Successfully created a meal plan snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealPlanSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealPlanSnack'
+
+  /extended_meal_plan_snack:
+    get:
+      summary: Read a extended meal plan snack
+      responses:
+        '200':
+          description: Successfully read a extended meal plan snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedMealPlanSnack'
+        '404':
+          description: Extended meal plan snack not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedMealPlanSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedMealPlanSnack'
+    put:
+      summary: Edit a existing extended meal plan snack
+      responses:
+        '200':
+          description: Successfully edited a extended meal plan snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedMealPlanSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedMealPlanSnack'
+
+  /staged_schedule_snack:
+    post:
+      summary: Create a staged schedule snack
+      responses:
+        '201':
+          description: Successfully created a staged schedule snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StagedScheduleSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StagedScheduleSnack'
+    get:
+      summary: Read a staged schedule snack
+      responses:
+        '200':
+          description: Successfully read a staged schedule snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StagedScheduleSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StagedScheduleSnack'
+
+  /extended_staged_schedule_snack:
+    get:
+      summary: Read a extended staged schedule snack
+      responses:
+        '200':
+          description: Successfully read a extended staged schedule snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedStagedScheduleSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref:  '#/components/schemas/ExtendedScheduledOrderSnack'
+
+  /dietitian_prepayment:
+    post:
+      summary: Create a dietitian prepayment object
+      responses:
+        '201':
+          description: Successfully created a dietitian prepayment object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DietitianPrepayment'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DietitianPrepayment'
+
+  /meal_subscription/{meal_subscription_id}:
+    parameters:
+      - name: meal_subscription_id
+        description: The unique identifier of the meal subscription
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/MealSubscription'
+    put:
+      summary: Edit a existing meal subscription
+      responses:
+        '204':
+          description: Either successfully deactivated, paused, or unpaused a meal subscription
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealSubscription'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealSubscription'
+
+  /meal_subscription:
+    post:
+      summary: Create a new meal subscription
+      responses:
+        '201':
+          description: Successfully created a new meal subscription
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealSubscription'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealSubscription'
+    get:
+      summary: Read a meal subscription
+      responses:
+        '200':
+          description: Successfully read a meal subscription
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealSubscription'
+        '204':
+          description: Successfully read but there is no content to send in responses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealSubscription'
+        '404':
+          description: Meal subscription not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealSubscription'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealSubscription'
+  
+  /meal_plan:
+    get:
+      summary: Read a meal plan
+      responses:
+        '200':
+          description: Successfully read a meal plan
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealPlan'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealPlan'
+  
+  /extended_order_meal:
+    get:
+      summary: Read a extended order meal
+      responses:
+        '200':
+          description: Successfully read a extended order meal
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedOrderMeal'
+        '404':
+          description: Extended order meal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedOrderMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedOrderMeal'
+
+  /order_meal:
+    post:
+      summary: Create a order meal
+      responses:
+        '201':
+          description: Successfully created a order meal
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderMeal'
+    get:
+      summary: Read a order meal
+      responses:
+        '200':
+          description: Read a order meal
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderMeal'
+        '204':
+          description: order meal domain did not match DTO
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderMeal'
+  
+  
+  /order_discount:
+    post:
+      summary: Create a new order discount
+      responses:
+        '201':
+          description: Successfully created a new order discount
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderDiscount'
+  
+  /discount:
+    get:
+      summary: Read a discount
+      responses:
+        '200':
+          description: Successfully read discount
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Discount'
+        '404':
+          description: Discount not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Discount'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Discount'
+
+    
+
+
+
+
+
+            
   /spacecrafts/{spacecraftId}:
     parameters:
       - name: spacecraftId
