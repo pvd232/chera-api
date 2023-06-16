@@ -1,4 +1,4 @@
-FROM python:3.11-alpine
+FROM python:3.11.1-alpine
 WORKDIR /app
 ADD /flask-server /app/flask-server
 COPY requirements.txt /app/flask-server
