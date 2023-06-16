@@ -186,6 +186,7 @@ class Email_Service(object):
         first_name: str,
         email: str,
         role: str,
+        email_file_name: str,
         testing: bool,
     ) -> None:
         # creates SMTP
@@ -199,7 +200,7 @@ class Email_Service(object):
             .joinpath("flask-server")
             .joinpath("email_templates")
             .joinpath("internship_interview")
-            .joinpath("offer_notification.html")
+            .joinpath(email_file_name)
         )
 
         with open(email_file_name, "r") as mail_body:

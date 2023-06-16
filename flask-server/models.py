@@ -892,6 +892,7 @@ class USDA_Ingredient_Portion_Model(db.Model):
     is_imperial = db.Column(db.Boolean(), default=True, nullable=False)
     usda_data_type = db.Column(db.String(80), nullable=False)
     custom_value = db.Column(db.Boolean(), default=False, nullable=False)
+    multiplier = db.Column(db.Float(), default=1, nullable=False)
 
     def __init__(
         self, usda_ingredient_portion_domain: "USDA_Ingredient_Portion_Domain"
@@ -906,6 +907,8 @@ class USDA_Ingredient_Portion_Model(db.Model):
         self.portion_description = usda_ingredient_portion_domain.portion_description
         self.is_imperial = usda_ingredient_portion_domain.is_imperial
         self.usda_data_type = usda_ingredient_portion_domain.usda_data_type
+        self.custom_value = usda_ingredient_portion_domain.custom_value
+        self.multiplier = usda_ingredient_portion_domain.multiplier
 
 
 class Imperial_Unit_Model(db.Model):

@@ -223,7 +223,7 @@ def offer_notification() -> Response:
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
 
     request_data = json.loads(request.data)
-    excel_file_name = "offer_notification.csv"
+    excel_file_name = request_data["file_name"]
     testing = request_data["testing"]
 
     # Get email list from excel sheet
@@ -275,32 +275,40 @@ def offer_notification() -> Response:
 
 @app.route("/api/usda_ingredient_portion", methods=["POST"])
 def usda_ingredient_portion() -> Response:
-    db.metadata.create_all(db.engine)
     if request.method == "POST":
         from repository.USDA_Ingredient_Portion_Repository import (
             USDA_Ingredient_Portion_Repository,
         )
+        from repository.USDA_Ingredient_Repository import USDA_Ingredient_Repository
+        from service.USDA_Ingredient_Service import USDA_Ingredient_Service
         from service.USDA_Ingredient_Portion_Service import (
             USDA_Ingredient_Portion_Service,
         )
         from dto.USDA_Ingredient_Portion_DTO import USDA_Ingredient_Portion_DTO
 
         portion_data = json.loads(request.data)
+
         portion_json = {
             "id": portion_data["portion_id"],
             "usda_ingredient_id": portion_data["usda_ingredient_id"],
             "fda_portion_id": portion_data["fda_portion_id"],
             "non_metric_unit": portion_data["non_metric_unit"],
+            # Grams to be calculated using standard portion size * multiplier, unless usda_data_type is Branded
             "grams_per_non_metric_unit": portion_data["grams_per_non_metric_unit"],
             "portion_description": portion_data["portion_description"],
             "is_imperial": portion_data["is_imperial"],
-            "usda_data_type": portion_data["usda_data_type"],
-            "custom_value": True,
+            # usda data type will be harvested from database
+            "usda_data_type": "",
+            "custom_value": portion_data["custom_value"],
+            "multiplier": portion_data["multiplier"],
         }
-
         usda_portion_dto = USDA_Ingredient_Portion_DTO(
             usda_ingredient_portion_json=portion_json
         )
+        usda_ingredient = USDA_Ingredient_Service(
+            usda_ingredient_repository=USDA_Ingredient_Repository(db=db)
+        ).get_usda_ingredient(usda_ingredient_id=usda_portion_dto.usda_ingredient_id)
+        usda_portion_dto.usda_data_type = usda_ingredient.usda_data_type
         USDA_Ingredient_Portion_Service(
             usda_ingredient_portion_repository=USDA_Ingredient_Portion_Repository(db=db)
         ).create_usda_ingredient_portion(usda_ingredient_portion_dto=usda_portion_dto)
@@ -403,6 +411,9 @@ def b() -> Response:
 
     import os
 
+    a = GCP_Secret_Manager_Service().get_secret("STRIPE_INVOICE_ENDPOINT_SECRET")
+    print("", a)
+    return Response(status=204)
     if env == "debug":
         new_instantiate_db_connection()
         return Response(status=204)
@@ -835,9 +846,6 @@ def send_reminder() -> Response:
     return Response(status=204)
 
 
-# POSTMAN TESTED
-
-
 @app.route("/api/dietitian", methods=["POST"])
 def dietitian() -> Response | Response:
     from service.Dietitian_Service import Dietitian_Service
@@ -883,9 +891,6 @@ def dietitian() -> Response | Response:
         return Response(status=405)
 
 
-# POSTMAN TESTED
-
-
 @app.route("/api/dietitian/<string:dietitian_id>", methods=["GET"])
 def get_dietitian(dietitian_id: str) -> Response:
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
@@ -908,9 +913,6 @@ def get_dietitian(dietitian_id: str) -> Response:
             return Response(status=404)
     else:
         return Response(status=405)
-
-
-# POSTMAN TESTED
 
 
 @app.route("/api/dietitian/authenticate", methods=["GET"])

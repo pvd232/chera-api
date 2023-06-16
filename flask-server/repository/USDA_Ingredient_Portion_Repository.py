@@ -9,18 +9,46 @@ if TYPE_CHECKING:
 
 
 class USDA_Ingredient_Portion_Repository(Base_Repository):
-    def get_usda_ingredient_portion(self, usda_ingredient_portion_id: UUID) -> USDA_Ingredient_Portion_Model:
-        usda_ingredient_portion = self.db.session.query(USDA_Ingredient_Portion_Model).filter(
-            USDA_Ingredient_Portion_Model.id == usda_ingredient_portion_id).first()
+    def get_usda_ingredient_portion(
+        self,
+        usda_ingredient_portion_id: Optional[UUID] = None,
+        fda_portion_id: Optional[str] = None,
+    ) -> USDA_Ingredient_Portion_Model:
+        if usda_ingredient_portion_id:
+            usda_ingredient_portion = (
+                self.db.session.query(USDA_Ingredient_Portion_Model)
+                .filter(USDA_Ingredient_Portion_Model.id == usda_ingredient_portion_id)
+                .first()
+            )
+        else:
+            usda_ingredient_portion = (
+                self.db.session.query(USDA_Ingredient_Portion_Model)
+                .filter(
+                    USDA_Ingredient_Portion_Model.fda_portion_id == fda_portion_id,
+                    USDA_Ingredient_Portion_Model.custom_value == False,
+                )
+                .first()
+            )
         return usda_ingredient_portion
 
-    def get_recipe_ingredient_portions(self, recipe_ingredient_domain: 'Recipe_Ingredient_Domain') -> Optional[list[USDA_Ingredient_Portion_Model]]:
-        usda_ingredient_portions = self.db.session.query(USDA_Ingredient_Portion_Model).filter(
-            USDA_Ingredient_Portion_Model.usda_ingredient_id == recipe_ingredient_domain.usda_ingredient_id).all()
+    def get_recipe_ingredient_portions(
+        self, recipe_ingredient_domain: "Recipe_Ingredient_Domain"
+    ) -> Optional[list[USDA_Ingredient_Portion_Model]]:
+        usda_ingredient_portions = (
+            self.db.session.query(USDA_Ingredient_Portion_Model)
+            .filter(
+                USDA_Ingredient_Portion_Model.usda_ingredient_id
+                == recipe_ingredient_domain.usda_ingredient_id
+            )
+            .all()
+        )
         return usda_ingredient_portions
 
-    def create_usda_ingredient_portion(self, usda_ingredient_portion_domain: 'USDA_Ingredient_Portion_Domain') -> None:
+    def create_usda_ingredient_portion(
+        self, usda_ingredient_portion_domain: "USDA_Ingredient_Portion_Domain"
+    ) -> None:
         new_usda_ingredient_portion = USDA_Ingredient_Portion_Model(
-            usda_ingredient_portion_domain=usda_ingredient_portion_domain)
+            usda_ingredient_portion_domain=usda_ingredient_portion_domain
+        )
         self.db.session.add(new_usda_ingredient_portion)
         self.db.session.commit()
