@@ -411,9 +411,6 @@ def b() -> Response:
 
     import os
 
-    a = GCP_Secret_Manager_Service().get_secret("STRIPE_INVOICE_ENDPOINT_SECRET")
-    print("", a)
-    return Response(status=204)
     if env == "debug":
         new_instantiate_db_connection()
         return Response(status=204)
