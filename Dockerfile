@@ -2,14 +2,11 @@ FROM python:3.11-alpine
 WORKDIR /app
 ADD /flask-server /app/flask-server
 COPY requirements.txt /app/flask-server
-RUN mkdir -p /app/flask-server/venv
+
 # Allow statements and log messages to immediately appear in the Knative logs
 ENV PYTHONUNBUFFERED True
-# ENV VIRTUAL_ENV=/app/flask-server/venv
-# RUN python3 -m venv $VIRTUAL_ENV
 WORKDIR /app/flask-server
 
-# RUN pip3 install --upgrade pip
 # Install grpcio (gcc, g++, linux-headers) psycopg2 (musl-dev postgresql-libs postgresql-dev) dependencies
 RUN apk update && \ 
     # postgresql-libs must be installed on the system for psycopg2 
