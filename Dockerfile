@@ -8,7 +8,7 @@ ENV PYTHONUNBUFFERED True
 ENV VIRTUAL_ENV=/app/flask-server/venv
 RUN python3 -m venv $VIRTUAL_ENV
 WORKDIR /app/flask-server
-RUN source $VIRTUAL_ENV/bin/activate
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN pip3 install --upgrade pip
 # Install grpcio (gcc, g++, linux-headers) psycopg2 (musl-dev postgresql-libs postgresql-dev) dependencies
 RUN apk update && \ 
