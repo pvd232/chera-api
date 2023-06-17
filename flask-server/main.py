@@ -70,10 +70,7 @@ def recruiting_email() -> Response:
 
     # Create data frame
     df: pd.DataFrame = pd.read_csv(
-        Path(".")
-        .joinpath("flask-server")
-        .joinpath("excel_data")
-        .joinpath(excel_file_name)
+        Path(".").joinpath("excel_data").joinpath(excel_file_name)
     )
 
     candidate_emails: list[str] = df["Email"].to_list()
@@ -127,10 +124,7 @@ def pause_recruiting_email() -> Response:
 
     # Create data frame
     df: pd.DataFrame = pd.read_csv(
-        Path(".")
-        .joinpath("flask-server")
-        .joinpath("excel_data")
-        .joinpath(excel_file_name)
+        Path(".").joinpath("excel_data").joinpath(excel_file_name)
     )
 
     candidate_emails: list[str] = df["Email"].to_list()
@@ -179,10 +173,7 @@ def hiring_status_update() -> Response:
 
     # Create data frame
     df: pd.DataFrame = pd.read_csv(
-        Path(".")
-        .joinpath("flask-server")
-        .joinpath("excel_data")
-        .joinpath(excel_file_name)
+        Path(".").joinpath("excel_data").joinpath(excel_file_name)
     )
 
     candidate_emails: list[str] = df["Email"].to_list()
@@ -231,10 +222,7 @@ def offer_notification() -> Response:
 
     # Create data frame
     df: pd.DataFrame = pd.read_csv(
-        Path(".")
-        .joinpath("flask-server")
-        .joinpath("excel_data")
-        .joinpath(excel_file_name)
+        Path(".").joinpath("excel_data").joinpath(excel_file_name)
     )
 
     candidate_email_series: list[str] = df["Email"].to_list()
@@ -860,7 +848,7 @@ def dietitian() -> Response | Response:
         created_dietitian_domain = Dietitian_Service(
             dietitian_repository=Dietitian_Repository(db=db)
         ).create_dietitian(dietitian_dto=requested_dietitian_dto)
-        if env != "debug":
+        if env != "debu":
             Email_Service(
                 host_url=host_url,
                 gcp_secret_manager_service=GCP_Secret_Manager_Service(),

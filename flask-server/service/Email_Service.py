@@ -67,7 +67,6 @@ class Email_Service(object):
 
         email_file_name = (
             Path(".")
-            .joinpath("flask-server")
             .joinpath("email_templates")
             .joinpath("internship_interview")
             .joinpath(f"{file_name}.html")
@@ -111,7 +110,6 @@ class Email_Service(object):
 
         email_file_name = (
             Path(".")
-            .joinpath("flask-server")
             .joinpath("email_templates")
             .joinpath("internship_interview")
             .joinpath("pause_hiring.html")
@@ -153,7 +151,6 @@ class Email_Service(object):
 
         email_file_name = (
             Path(".")
-            .joinpath("flask-server")
             .joinpath("email_templates")
             .joinpath("internship_interview")
             .joinpath("hiring_status_update.html")
@@ -197,7 +194,6 @@ class Email_Service(object):
 
         email_file_name = (
             Path(".")
-            .joinpath("flask-server")
             .joinpath("email_templates")
             .joinpath("internship_interview")
             .joinpath(email_file_name)
@@ -233,15 +229,19 @@ class Email_Service(object):
         tracking_url: str = None,
         date_service: "Date_Service" = None,
     ) -> None:
+        import os
+
+        cwd = os.getcwd()
+        print("cwd", cwd)
         email_file_name = (
             Path(".")
-            .joinpath("flask-server")
             .joinpath("email_templates")
             .joinpath(user_type.lower())
             .joinpath("sign_up_confirmation.html")
         )
 
         with open(email_file_name, "r") as mail_body:
+            print("email_file_name", email_file_name)
             sender_address = "Welcome@info.cherahealth.com"
             email = user.id
 
@@ -290,7 +290,6 @@ class Email_Service(object):
 
         email_file_name = (
             Path(".")
-            .joinpath("flask-server")
             .joinpath("email_templates")
             .joinpath("admin")
             .joinpath(email_template_name)
@@ -347,7 +346,6 @@ class Email_Service(object):
 
         email_file_name = (
             Path(".")
-            .joinpath("flask-server")
             .joinpath("email_templates")
             .joinpath("client")
             .joinpath(email_template_name)
@@ -387,7 +385,6 @@ class Email_Service(object):
         button_url = f"{self.host}/client-sign-up?staged_client_id={staged_client.id}"
         email_file_name = (
             Path(".")
-            .joinpath("flask-server")
             .joinpath("email_templates")
             .joinpath("client")
             .joinpath("sign_up_reminder.html")
@@ -426,10 +423,7 @@ class Email_Service(object):
     ) -> None:
         button_url = f"{self.host}/reset-{domain}-password?{domain}_id={user.id}"
         email_file_name = (
-            Path(".")
-            .joinpath("flask-server")
-            .joinpath("email_templates")
-            .joinpath("password_reset.html")
+            Path(".").joinpath("email_templates").joinpath("password_reset.html")
         )
         with open(email_file_name, "r") as mail_body:
             sender_address = "Password@info.cherahealth.com"
@@ -465,7 +459,6 @@ class Email_Service(object):
     ) -> None:
         email_file_name = (
             Path(".")
-            .joinpath("flask-server")
             .joinpath("email_templates")
             .joinpath("admin")
             .joinpath("upcoming_deliveries.html")
