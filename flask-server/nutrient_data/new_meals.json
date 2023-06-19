@@ -1,0 +1,29 @@
+[
+    {
+        "id": "5b054042-4d10-45af-a3df-a2e808db387b",
+        "meal_time": "lunch",
+        "name": "Chicken Pesto Pasta",
+        "description": "penne pasta tossed in fragrant basil pesto sauce with juicy grilled chicken",
+        "price": 12.0,
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/chicken_pesto_pasta.jpg",
+        "active": true
+    },
+    {
+        "id": "863cdf3d-858d-4a9b-9e1d-cd3531ebd9d4",
+        "meal_time": "dinner",
+        "name": "Beef & Broccoli Stir Fry",
+        "description": "Flank steak strips, wok-fried in soy sauce, served with broccoli and mushrooms",
+        "price": 12.0,
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/beef_and_broccoli_stir_fry.jpg",
+        "active": true
+    },
+    {
+        "id": "daa78044-7ec3-4367-b25f-3d851516c395",
+        "meal_time": "lunch",
+        "name": "Grilled Chicken & Butter Beans",
+        "description": "Grilled chicken with southern style lima beans, smoked ham, seasoned and served in a bed of white rice",
+        "price": 12.0,
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/grilled_chicken_and_butter_beans.jpg",
+        "active": true
+    }
+]

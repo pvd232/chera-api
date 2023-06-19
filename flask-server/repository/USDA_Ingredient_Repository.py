@@ -8,9 +8,12 @@ if TYPE_CHECKING:
 
 
 class USDA_Ingredient_Repository(Base_Repository):
-    def create_ingredient(self, usda_nutrient_mapper_dto: 'USDA_Nutrient_Mapper_DTO') -> None:
+    def create_ingredient(
+        self, usda_nutrient_mapper_dto: "USDA_Nutrient_Mapper_DTO"
+    ) -> None:
         new_usda_ingredient = USDA_Ingredient_Model(
-            usda_ingredient_nutrient_mapper=usda_nutrient_mapper_dto)
+            usda_ingredient_nutrient_mapper=usda_nutrient_mapper_dto
+        )
         self.db.session.add(new_usda_ingredient)
         self.db.session.commit()
 
@@ -18,14 +21,53 @@ class USDA_Ingredient_Repository(Base_Repository):
         usda_ingredients = self.db.session.query(USDA_Ingredient_Model).all()
         return usda_ingredients
 
-    def get_usda_ingredient(self, usda_ingredient_id: str) -> USDA_Ingredient_Model | None:
-        usda_ingredient = self.db.session.query(USDA_Ingredient_Model).filter(
-            USDA_Ingredient_Model.id == usda_ingredient_id).first()
+    def get_usda_ingredient(
+        self, usda_ingredient_id: str
+    ) -> USDA_Ingredient_Model | None:
+        usda_ingredient = (
+            self.db.session.query(USDA_Ingredient_Model)
+            .filter(USDA_Ingredient_Model.id == usda_ingredient_id)
+            .first()
+        )
         return usda_ingredient
 
-    def update_usda_ingredient(self, usda_ingredient_id: str, recipe_ingredient_domain: 'Recipe_Ingredient_Domain') -> None:
-        usda_ingredient_to_update: USDA_Ingredient_Model = self.db.session.query(USDA_Ingredient_Model).filter(
-            USDA_Ingredient_Model.id == usda_ingredient_id).first()
+    def update_usda_ingredient(
+        self,
+        usda_ingredient_id: str,
+        recipe_ingredient_domain: "Recipe_Ingredient_Domain",
+    ) -> None:
+        usda_ingredient_to_update: USDA_Ingredient_Model = (
+            self.db.session.query(USDA_Ingredient_Model)
+            .filter(USDA_Ingredient_Model.id == usda_ingredient_id)
+            .first()
+        )
         usda_ingredient_to_update.update(
-            updated_recipe_ingredient=recipe_ingredient_domain)
+            updated_recipe_ingredient=recipe_ingredient_domain
+        )
+        self.db.session.commit()
+
+    def initialize_usda_ingredients(self) -> None:
+        from pathlib import Path
+        from utils.load_json import load_json
+        from domain.USDA_Ingredient_Domain import USDA_Ingredient_Domain
+        from dto.USDA_Ingredient_DTO import USDA_Ingredient_DTO
+
+        usda_ingredient_json_file = Path(
+            ".", "nutrient_data", "new_usda_ingredients.json"
+        )
+        usda_ingredients_data = load_json(filename=usda_ingredient_json_file)
+
+        # Only initialize custom values, not USDA values which are initialized alongside USDA_Ingredient_Models
+        for usda_ingredient_json in usda_ingredients_data:
+            usda_ingredient_dto = USDA_Ingredient_DTO(
+                usda_ingredient_json=usda_ingredient_json
+            )
+            usda_ingredient_domain = USDA_Ingredient_Domain(
+                usda_ingredient_object=usda_ingredient_dto
+            )
+
+            new_usda_ingredient_model = USDA_Ingredient_Model(
+                usda_ingredient_domain=usda_ingredient_domain
+            )
+            self.db.session.add(new_usda_ingredient_model)
         self.db.session.commit()

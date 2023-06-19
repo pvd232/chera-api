@@ -10,23 +10,27 @@ class Nutrient_Service(object):
 
     def get_nutrient(self, nutrient_id: str) -> Nutrient_Domain:
         nutrient_domain = Nutrient_Domain(
-            nutrient_object=self.nutrient_repository.get_nutrient(nutrient_id=nutrient_id))
+            nutrient_object=self.nutrient_repository.get_nutrient(
+                nutrient_id=nutrient_id
+            )
+        )
         return nutrient_domain
 
     def get_nutrients(self) -> list[Nutrient_Domain]:
-        nutrient_domains = [Nutrient_Domain(
-            nutrient_object=x) for x in self.nutrient_repository.get_nutrients()]
+        nutrient_domains = [
+            Nutrient_Domain(nutrient_object=x)
+            for x in self.nutrient_repository.get_nutrients()
+        ]
         return nutrient_domains
 
     def write_nutrients(self) -> None:
-        with open("new_nutrients.json", "r+") as outfile:
-            nutrient_dtos = [Nutrient_DTO(nutrient_domain=x)
-                             for x in self.get_nutrients()]
-            serialized_nutrient_DTOs = [x.serialize() for x in nutrient_dtos]
-            data = json.load(outfile)
-            if data:
-                outfile.seek(0)
-                json.dump(serialized_nutrient_DTOs, outfile, indent=4)
-                outfile.truncate()
-            else:
-                outfile.write(json.dumps(serialized_nutrient_DTOs, indent=4))
+        from pathlib import Path
+        from utils.write_json import write_json
+
+        nutrient_json_file = Path(".", "nutrient_data", "new_nutrients.json")
+        with open(nutrient_json_file, "r+") as outfile:
+            nutrient_dicts = [
+                Nutrient_DTO(nutrient_domain=x).serialize()
+                for x in self.get_nutrients()
+            ]
+            write_json(outfile=outfile, dicts=nutrient_dicts)

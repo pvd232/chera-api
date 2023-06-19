@@ -13,8 +13,15 @@ from werkzeug.security import generate_password_hash
 import stripe
 import shippo
 from typing import TYPE_CHECKING
+from helpers.get_db_connection_string import get_db_connection_string
 
 if TYPE_CHECKING:
+    from domain.USDA_Ingredient_Domain import USDA_Ingredient_Domain
+    from domain.Meal_Plan_Domain import Meal_Plan_Domain
+    from domain.Discount_Domain import Discount_Domain
+    from domain.USDA_Nutrient_Daily_Value_Domain import USDA_Nutrient_Daily_Value_Domain
+    from domain.Nutrient_Domain import Nutrient_Domain
+    from domain.Imperial_Unit_Domain import Imperial_Unit_Domain
     from domain.Meal_Domain import Meal_Domain
     from domain.Meal_Plan_Meal_Domain import Meal_Plan_Meal_Domain
     from domain.Meal_Dietary_Restriction_Domain import Meal_Dietary_Restriction_Domain
@@ -47,17 +54,14 @@ if TYPE_CHECKING:
 
 load_dotenv()
 
-app: Flask = Flask(__name__)
+app = Flask(__name__)
 username = os.getenv("DB_USER", GCP_Secret_Manager_Service().get_secret("DB_USER"))
 password = os.getenv(
     "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
 )
-connection_string_beginning = "postgresql://"
-connection_string_end = "@localhost:5432/nourishdb"
-connection_string = (
-    connection_string_beginning + username + ":" + password + connection_string_end
+connection_string = get_db_connection_string(
+    username=username, password=password, db_name="nourishdb"
 )
-
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DB_STRING", connection_string)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 
@@ -383,22 +387,48 @@ class Meal_Plan_Model(db.Model):
         "USDA_Nutrient_Daily_Value_Model", lazy=True
     )
 
-    def __init__(self, meal_plan_dict: dict) -> None:
-        self.id = meal_plan_dict["id"]
-        self.number = meal_plan_dict["number"]
-        self.breakfast_calories = meal_plan_dict["breakfast_calories"]
-        self.lunch_calories = meal_plan_dict["lunch_calories"]
-        self.dinner_calories = meal_plan_dict["dinner_calories"]
-        self.stated_caloric_lower_bound = meal_plan_dict["stated_caloric_lower_bound"]
-        self.stated_caloric_upper_bound = meal_plan_dict["stated_caloric_upper_bound"]
-        self.number_of_snacks = meal_plan_dict["number_of_snacks"]
-        self.per_snack_caloric_lower_bound = meal_plan_dict[
-            "per_snack_caloric_lower_bound"
-        ]
-        self.per_snack_caloric_upper_bound = meal_plan_dict[
-            "per_snack_caloric_upper_bound"
-        ]
-        self.active = meal_plan_dict["active"]
+    def __init__(
+        self, meal_plan_dict: dict = None, meal_plan_domain: "Meal_Plan_Domain" = None
+    ) -> None:
+        if meal_plan_dict:
+            self.id = meal_plan_dict["id"]
+            self.number = meal_plan_dict["number"]
+            self.breakfast_calories = meal_plan_dict["breakfast_calories"]
+            self.lunch_calories = meal_plan_dict["lunch_calories"]
+            self.dinner_calories = meal_plan_dict["dinner_calories"]
+            self.stated_caloric_lower_bound = meal_plan_dict[
+                "stated_caloric_lower_bound"
+            ]
+            self.stated_caloric_upper_bound = meal_plan_dict[
+                "stated_caloric_upper_bound"
+            ]
+            self.number_of_snacks = meal_plan_dict["number_of_snacks"]
+            self.per_snack_caloric_lower_bound = meal_plan_dict[
+                "per_snack_caloric_lower_bound"
+            ]
+            self.per_snack_caloric_upper_bound = meal_plan_dict[
+                "per_snack_caloric_upper_bound"
+            ]
+            self.active = meal_plan_dict["active"]
+        elif meal_plan_domain:
+            self.id = meal_plan_domain.id
+            self.number = meal_plan_domain.number
+            self.breakfast_calories = meal_plan_domain.breakfast_calories
+            self.lunch_calories = meal_plan_domain.lunch_calories
+            self.dinner_calories = meal_plan_domain.dinner_calories
+            self.stated_caloric_lower_bound = (
+                meal_plan_domain.stated_caloric_lower_bound
+            )
+            self.stated_caloric_upper_bound = (
+                meal_plan_domain.stated_caloric_upper_bound
+            )
+            self.number_of_snacks = meal_plan_domain.number_of_snacks
+            self.per_snack_caloric_lower_bound = (
+                meal_plan_domain.per_snack_caloric_lower_bound
+            )
+            self.per_snack_caloric_upper_bound = (
+                meal_plan_domain.per_snack_caloric_upper_bound
+            )
 
 
 class Meal_Model(db.Model):
@@ -807,24 +837,38 @@ class USDA_Ingredient_Model(db.Model):
     k_cal = db.Column(db.Integer(), nullable=False)
     k_cal_to_gram_ratio = db.Column(db.Float(), nullable=False)
     usda_data_type = db.Column(db.String(80), nullable=False)
+    # usda_description = db.Column(db.String(80), default="", nullable=False)
     active = db.Column(db.Boolean(), default=True, nullable=False)
 
     portions = relationship("USDA_Ingredient_Portion_Model", lazy="joined")
 
     def __init__(
-        self, usda_ingredient_nutrient_mapper: "USDA_Nutrient_Mapper_DTO"
+        self,
+        usda_ingredient_nutrient_mapper: "USDA_Nutrient_Mapper_DTO" = None,
+        usda_ingredient_domain: "USDA_Ingredient_Domain" = None,
     ) -> None:
-        self.id = usda_ingredient_nutrient_mapper.usda_ingredient_id
-        self.name = usda_ingredient_nutrient_mapper.usda_ingredient_name
-        self.fdc_id = usda_ingredient_nutrient_mapper.fdc_id
-        self.fda_identifier = usda_ingredient_nutrient_mapper.fda_identifier
-        self.amount_of_grams = usda_ingredient_nutrient_mapper.amount_of_grams
-        self.k_cal = usda_ingredient_nutrient_mapper.calories
-        self.k_cal_to_gram_ratio = (
-            usda_ingredient_nutrient_mapper.calories_to_grams_ratio
-        )
-        self.usda_data_type = usda_ingredient_nutrient_mapper.usda_data_type
-        self.active = True
+        if usda_ingredient_nutrient_mapper:
+            self.id = usda_ingredient_nutrient_mapper.usda_ingredient_id
+            self.name = usda_ingredient_nutrient_mapper.usda_ingredient_name
+            self.fdc_id = usda_ingredient_nutrient_mapper.fdc_id
+            self.fda_identifier = usda_ingredient_nutrient_mapper.fda_identifier
+            self.amount_of_grams = usda_ingredient_nutrient_mapper.amount_of_grams
+            self.k_cal = usda_ingredient_nutrient_mapper.calories
+            self.k_cal_to_gram_ratio = (
+                usda_ingredient_nutrient_mapper.calories_to_grams_ratio
+            )
+            self.usda_data_type = usda_ingredient_nutrient_mapper.usda_data_type
+            self.active = True
+        elif usda_ingredient_domain:
+            self.id = usda_ingredient_domain.id
+            self.name = usda_ingredient_domain.name
+            self.fdc_id = usda_ingredient_domain.fdc_id
+            self.fda_identifier = usda_ingredient_domain.fda_identifier
+            self.amount_of_grams = usda_ingredient_domain.amount_of_grams
+            self.k_cal = usda_ingredient_domain.k_cal
+            self.k_cal_to_gram_ratio = usda_ingredient_domain.k_cal_to_gram_ratio
+            self.usda_data_type = usda_ingredient_domain.usda_data_type
+            self.active = usda_ingredient_domain.active
 
     def update(self, updated_recipe_ingredient: "Recipe_Ingredient_Domain") -> None:
         self.id = updated_recipe_ingredient.usda_ingredient_id
@@ -917,6 +961,10 @@ class Imperial_Unit_Model(db.Model):
 
     ounces = db.Column(db.Float(), nullable=False)
 
+    def __init__(self, imperial_unit_domain: "Imperial_Unit_Domain") -> None:
+        self.id = imperial_unit_domain.id
+        self.ounces = imperial_unit_domain.ounces
+
 
 class Nutrient_Model(db.Model):
     __tablename__ = "nutrient"
@@ -926,15 +974,24 @@ class Nutrient_Model(db.Model):
     usda_id = db.Column(db.String(80), unique=True, nullable=False)
     has_daily_value = db.Column(db.Boolean(), default=True, nullable=False)
 
-    def __init__(self, nutrient_dict: dict) -> None:
-        self.id = nutrient_dict["id"]
-        self.unit = nutrient_dict["unit"]
-        self.name = nutrient_dict["name"]
-        if nutrient_dict["usda_id"] == "N/A":
-            self.usda_id = ""
-        else:
-            self.usda_id = nutrient_dict["usda_id"]
-        self.has_daily_value = nutrient_dict["has_daily_value"]
+    def __init__(
+        self, nutrient_dict: dict = None, nutrient_domain: "Nutrient_Domain" = None
+    ) -> None:
+        if nutrient_dict:
+            self.id = nutrient_dict["id"]
+            self.unit = nutrient_dict["unit"]
+            self.name = nutrient_dict["name"]
+            if nutrient_dict["usda_id"] == "N/A":
+                self.usda_id = ""
+            else:
+                self.usda_id = nutrient_dict["usda_id"]
+            self.has_daily_value = nutrient_dict["has_daily_value"]
+        elif nutrient_domain:
+            self.id = nutrient_domain.id
+            self.unit = nutrient_domain.unit
+            self.name = nutrient_domain.name
+            self.usda_id = nutrient_domain.usda_id
+            self.has_daily_value = nutrient_domain.has_daily_value
 
 
 class USDA_Ingredient_Nutrient_Model(db.Model):
@@ -997,12 +1054,23 @@ class USDA_Nutrient_Daily_Value_Model(db.Model):
     amount = db.Column(db.Float(), nullable=False)
     unit = db.Column(db.String(80), nullable=False)
 
-    def __init__(self, usda_nutrient_daily_value_dict: dict) -> None:
-        self.id = usda_nutrient_daily_value_dict["id"]
-        self.nutrient_id = usda_nutrient_daily_value_dict["nutrient_id"]
-        self.meal_plan_id = usda_nutrient_daily_value_dict["meal_plan_id"]
-        self.amount = usda_nutrient_daily_value_dict["amount"]
-        self.unit = usda_nutrient_daily_value_dict["unit"]
+    def __init__(
+        self,
+        usda_nutrient_daily_value_dict: dict = None,
+        usda_nutrient_daily_value_domain: "USDA_Nutrient_Daily_Value_Domain" = None,
+    ) -> None:
+        if usda_nutrient_daily_value_dict:
+            self.id = usda_nutrient_daily_value_dict["id"]
+            self.nutrient_id = usda_nutrient_daily_value_dict["nutrient_id"]
+            self.meal_plan_id = usda_nutrient_daily_value_dict["meal_plan_id"]
+            self.amount = usda_nutrient_daily_value_dict["amount"]
+            self.unit = usda_nutrient_daily_value_dict["unit"]
+        elif usda_nutrient_daily_value_domain:
+            self.id = usda_nutrient_daily_value_domain.id
+            self.nutrient_id = usda_nutrient_daily_value_domain.nutrient_id
+            self.meal_plan_id = usda_nutrient_daily_value_domain.meal_plan_id
+            self.amount = usda_nutrient_daily_value_domain.amount
+            self.unit = usda_nutrient_daily_value_domain.unit
 
 
 class Email_Tracker_Model(db.Model):
@@ -1037,11 +1105,19 @@ class Discount_Model(db.Model):
     discount_percentage = db.Column(db.Float(), nullable=False)
     active = db.Column(db.Boolean(), nullable=False)
 
-    def __init__(self, discount_dict: dict) -> None:
-        self.id = discount_dict["id"]
-        self.code = discount_dict["code"]
-        self.discount_percentage = discount_dict["discount_percentage"]
-        self.active = discount_dict["active"]
+    def __init__(
+        self, discount_dict: dict = None, discount_domain: "Discount_Domain" = None
+    ) -> None:
+        if discount_dict:
+            self.id = discount_dict["id"]
+            self.code = discount_dict["code"]
+            self.discount_percentage = discount_dict["discount_percentage"]
+            self.active = discount_dict["active"]
+        else:
+            self.id = discount_domain.id
+            self.code = discount_domain.code
+            self.discount_percentage = discount_domain.discount_percentage
+            self.active = discount_domain.active
 
 
 class Prepaid_Order_Discount_Model(db.Model):

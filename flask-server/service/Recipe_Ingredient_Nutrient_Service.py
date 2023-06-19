@@ -44,6 +44,14 @@ class Recipe_Ingredient_Nutrient_Service(object):
         ]
         return recipe_ingredient_nutrient_domains
 
+    def get_all_recipe_ingredient_nutrients(
+        self,
+    ) -> list[Recipe_Ingredient_Nutrient_Domain]:
+        return [
+            Recipe_Ingredient_Nutrient_Domain(recipe_ingredient_nutrient_object=x)
+            for x in self.recipe_ingredient_nutrient_repository.get_all_recipe_ingredient_nutrients()
+        ]
+
     def create_recipe_ingredient_nutrients(
         self,
         recipe_ingredient_dtos: list["Recipe_Ingredient_DTO"],
@@ -60,6 +68,7 @@ class Recipe_Ingredient_Nutrient_Service(object):
             for x in recipe_ingredient_dtos
         ]
         meal_plan_id = ""
+        # Check is recipe ingredient is meal or snack
         if recipe_ingredient_domains[0].meal_plan_meal_id is not None:
             meal_plan_id = meal_plan_meal_service.get_meal_plan_meal(
                 meal_plan_meal_id=recipe_ingredient_domains[0].meal_plan_meal_id
@@ -72,28 +81,28 @@ class Recipe_Ingredient_Nutrient_Service(object):
         for recipe_ingredient_domain in recipe_ingredient_domains:
             recipe_ingredient_nutrients_to_create = []
 
-            # get usda ingredient
+            # Get usda ingredient
             usda_ingredient_domain = usda_ingredient_service.get_usda_ingredient(
                 usda_ingredient_id=recipe_ingredient_domain.usda_ingredient_id
             )
 
-            # get usda ingredient portion from recipe ingredient portion id
+            # Get usda ingredient portion from recipe ingredient portion id
             usda_ingredient_portion = usda_ingredient_portion_service.get_usda_ingredient_portion(
                 usda_ingredient_portion_id=recipe_ingredient_domain.usda_ingredient_portion_id
             )
 
-            # get recipe ingredient grams by multiplying usda ingredient portion grams per non metric unit by recipe ingredient quantity
+            # Get recipe ingredient grams by multiplying usda ingredient portion grams per non metric unit by recipe ingredient quantity
             recipe_ingredient_grams = (
                 usda_ingredient_portion.grams_per_non_metric_unit
                 * recipe_ingredient_domain.quantity
             )
 
-            # get ratio of recipe ingredient grams to usda ingredient grams
+            # Get ratio of recipe ingredient grams to usda ingredient grams
             recipe_ingredient_grams_to_usda_ingredient_grams_ratio = (
                 recipe_ingredient_grams / usda_ingredient_domain.amount_of_grams
             )
 
-            # get usda ingredient nutrients
+            # Get usda ingredient nutrients
             usda_ingredient_nutrients = (
                 usda_ingredient_nutrient_service.get_usda_ingredient_nutrients(
                     usda_ingredient_id=usda_ingredient_domain.id
@@ -202,14 +211,14 @@ class Recipe_Ingredient_Nutrient_Service(object):
             )
 
     def write_recipe_ingredient_nutrients(self) -> None:
-        with open("new_recipe_ingredient_nutrients.json", "r+") as outfile:
-            recipe_ingredient_nutrient_dtos = [
-                x.dto_serialize() for x in self.get_recipe_ingredient_nutrients()
+        from pathlib import Path
+        from utils.write_json import write_json
+
+        recipe_ingredient_nutrient_json_file = Path(
+            ".", "nutrient_data", "new_recipe_ingredient_nutrients.json"
+        )
+        with open(recipe_ingredient_nutrient_json_file, "r+") as outfile:
+            recipe_ingredient_nutrient_dicts = [
+                x.serialize() for x in self.get_all_recipe_ingredient_nutrients()
             ]
-            data = json.load(outfile)
-            if data:
-                outfile.seek(0)
-                json.dump(recipe_ingredient_nutrient_dtos, outfile, indent=4)
-                outfile.truncate()
-            else:
-                outfile.write(json.dumps(recipe_ingredient_nutrient_dtos, indent=4))
+            write_json(outfile=outfile, dicts=recipe_ingredient_nutrient_dicts)

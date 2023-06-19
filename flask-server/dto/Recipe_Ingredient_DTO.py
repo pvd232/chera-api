@@ -20,8 +20,8 @@ class Recipe_Ingredient_DTO(Base_DTO):
                 "meal_plan_meal_id"
             ]
 
-            # Frontend sends empty string for null values
-            if self.meal_plan_meal_id == "":
+            # Frontend sends empty string for null values, when reinstantiating the object, value will be None
+            if self.meal_plan_meal_id == "" or self.meal_plan_meal_id == None:
                 self.meal_plan_meal_id = None
             else:
                 self.meal_plan_meal_id = UUID(self.meal_plan_meal_id)
@@ -30,7 +30,7 @@ class Recipe_Ingredient_DTO(Base_DTO):
                 "meal_plan_snack_id"
             ]
 
-            if self.meal_plan_snack_id == "":
+            if self.meal_plan_snack_id == "" or self.meal_plan_snack_id == None:
                 self.meal_plan_snack_id = None
             else:
                 self.meal_plan_snack_id = UUID(self.meal_plan_snack_id)

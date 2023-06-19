@@ -119,9 +119,7 @@ class Meal_Plan_Snack_Service(object):
 
     def write_meal_plan_snacks(self) -> None:
         with open("new_meal_plan_snacks.json", "r+") as outfile:
-            meal_plan_snack_dtos = [
-                x.dto_serialize() for x in self.get_meal_plan_snacks()
-            ]
+            meal_plan_snack_dtos = [x.serialize() for x in self.get_meal_plan_snacks()]
             data = json.load(outfile)
             if data:
                 outfile.seek(0)

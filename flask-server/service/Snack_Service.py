@@ -32,7 +32,7 @@ class Snack_Service(object):
     # NO matching JSON file for this method yet
     def write_snacks(self) -> None:
         with open("new_snacks.json", "r+") as outfile:
-            snack_dtos = [x.dto_serialize() for x in self.get_snacks()]
+            snack_dtos = [x.serialize() for x in self.get_snacks()]
             data = json.load(outfile)
             if data:
                 outfile.seek(0)

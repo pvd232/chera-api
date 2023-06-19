@@ -1,17 +1,16 @@
 from uuid import uuid4
 from domain.USDA_Ingredient_Portion_Domain import USDA_Ingredient_Portion_Domain
-from domain.USDA_Ingredient_Nutrient_Domain import USDA_Ingredient_Nutrient_Domain
-from domain.Nutrient_Domain import Nutrient_Domain
 from domain.Imperial_Unit_Domain import Imperial_Unit_Domain
+from dto.Nutrient_DTO import Nutrient_DTO
 from dto.USDA_Ingredient_Portion_DTO import USDA_Ingredient_Portion_DTO
 from dto.USDA_Ingredient_Nutrient_DTO import USDA_Ingredient_Nutrient_DTO
 
 
 def get_nutrients(
-    nutrient_list: list[Nutrient_Domain],
+    nutrient_list: list[Nutrient_DTO],
     usda_ingredient_id: str,
     usda_nutrient_data: list[dict],
-):
+) -> list[USDA_Ingredient_Nutrient_DTO]:
     nutrients_to_return = []
     usda_nutrient_dict_by_id = {}
     for nutrient in usda_nutrient_data:
@@ -35,11 +34,7 @@ def get_nutrients(
                     "amount": amount,
                 }
             )
-            nutrients_to_return.append(
-                USDA_Ingredient_Nutrient_Domain(
-                    usda_ingredient_nutrient_object=nutrient_dto
-                )
-            )
+            nutrients_to_return.append(nutrient_dto)
     # Then append trans fat
     trans_fat_dto = USDA_Ingredient_Nutrient_DTO(
         usda_ingredient_nutrient_json={
@@ -50,9 +45,7 @@ def get_nutrients(
             "amount": 0,
         }
     )
-    nutrients_to_return.append(
-        USDA_Ingredient_Nutrient_Domain(usda_ingredient_nutrient_object=trans_fat_dto)
-    )
+    nutrients_to_return.append(trans_fat_dto)
     return nutrients_to_return
 
 
@@ -61,9 +54,9 @@ def get_portions(
     imperial_units: list[Imperial_Unit_Domain],
     usda_ingredient_id: str,
     usda_data_type: str,
-) -> list[USDA_Ingredient_Portion_Domain]:
+) -> list[USDA_Ingredient_Portion_DTO]:
     is_imperial = True
-    portions_to_return: list[USDA_Ingredient_Portion_Domain] = []
+    portions_to_return = []
     if usda_data_type == "Survey (FNDDS)" or usda_data_type == "SR Legacy":
         for portion in portion_list:
             fda_portion_id = portion["id"]
@@ -148,7 +141,7 @@ class USDA_Nutrient_Mapper_DTO(object):
         usda_ingredient_name: str,
         fdc_id: str,
         usda_ingredient_data: list[dict],
-        nutrients_list: list[Nutrient_Domain],
+        nutrients_list: list[Nutrient_DTO],
         imperial_units: list[Imperial_Unit_Domain],
     ) -> None:
         if "foodCode" in usda_ingredient_data:
@@ -165,13 +158,30 @@ class USDA_Nutrient_Mapper_DTO(object):
         usda_nutrient_data = usda_ingredient_data["foodNutrients"]
 
         usda_nutrient_dict_by_id = {}
+        usda_nutrient_dict_by_name = {}
         for nutrient in usda_nutrient_data:
+            calorie_usda_id = 1008
             # Foundation food types will not have calories nor some nutrients
             usda_nutrient_dict_by_id[nutrient["nutrient"]["id"]] = nutrient
-            if 1008 in usda_nutrient_dict_by_id:
-                self.calories = usda_nutrient_dict_by_id.get(1008)["amount"]
+            usda_nutrient_dict_by_name[nutrient["nutrient"]["name"]] = nutrient
+            if calorie_usda_id in usda_nutrient_dict_by_id:
+                self.calories = usda_nutrient_dict_by_id.get(calorie_usda_id)["amount"]
             else:
-                self.calories = 0
+                # Try atwar specific energy
+                calorie_usda_id = 2048
+                if calorie_usda_id in usda_nutrient_dict_by_id:
+                    self.calories = usda_nutrient_dict_by_id.get(calorie_usda_id)[
+                        "amount"
+                    ]
+                else:
+                    # Try atwar general energy
+                    calorie_usda_id = 2047
+                    if calorie_usda_id in usda_nutrient_dict_by_id:
+                        self.calories = usda_nutrient_dict_by_id.get(calorie_usda_id)[
+                            "amount"
+                        ]
+                    else:
+                        self.calories = 0
         self.calories_to_grams_ratio = self.calories / self.amount_of_grams
 
         self.nutrients = get_nutrients(
@@ -184,11 +194,12 @@ class USDA_Nutrient_Mapper_DTO(object):
         vitamin_a_rae_exists = usda_nutrient_dict_by_id.get(1106)
         if vitamin_a_rae_exists:
             vitamin_a = vitamin_a_rae_exists["amount"]
-        # else:
-        #     vitamin_a_iu_exists = usda_nutrient_dict_by_id.get("Vitamin A, IU")
-        #     if vitamin_a_iu_exists:
-        #         vitamin_a_iu = vitamin_a_iu_exists["amount"]
-        #         vitamin_a = vitamin_a_iu * 0.3
+        else:
+            # legacy usda data
+            vitamin_a_iu_exists = usda_nutrient_dict_by_id.get("Vitamin A, IU")
+            if vitamin_a_iu_exists:
+                vitamin_a_iu = vitamin_a_iu_exists["amount"]
+                vitamin_a = vitamin_a_iu * 0.3
         vitamin_a_dto = USDA_Ingredient_Nutrient_DTO(
             usda_ingredient_nutrient_json={
                 "id": str(uuid4()),
@@ -197,11 +208,7 @@ class USDA_Nutrient_Mapper_DTO(object):
                 "amount": vitamin_a,
             }
         )
-        self.nutrients.append(
-            USDA_Ingredient_Nutrient_Domain(
-                usda_ingredient_nutrient_object=vitamin_a_dto
-            )
-        )
+        self.nutrients.append(vitamin_a_dto)
         vitamin_e = 0
         vitamin_e_exists = usda_nutrient_dict_by_id.get(1109)
         if vitamin_e_exists:
@@ -220,13 +227,9 @@ class USDA_Nutrient_Mapper_DTO(object):
                 "amount": vitamin_e,
             }
         )
-        self.nutrients.append(
-            USDA_Ingredient_Nutrient_Domain(
-                usda_ingredient_nutrient_object=vitamin_e_dto
-            )
-        )
+        self.nutrients.append(vitamin_e_dto)
 
-        self.portions: list[USDA_Ingredient_Portion_Domain] = []
+        self.portions = []
         if "foodPortions" in usda_ingredient_data:
             portions_data = usda_ingredient_data["foodPortions"]
             self.portions = get_portions(

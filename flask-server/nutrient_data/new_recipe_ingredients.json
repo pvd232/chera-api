@@ -1,0 +1,4232 @@
+[
+    {
+        "id": "19eee062-93a4-41fe-bfb6-615155fe3c92",
+        "usda_ingredient_id": "sauteed_chicken",
+        "meal_plan_meal_id": "e8a95830-97a4-44f1-8d9b-436df5fd0376",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "24fe9b17-4622-4ee2-900e-0ece75e7d58d",
+        "quantity": 0.375,
+        "active": true
+    },
+    {
+        "id": "6a5473e6-727e-4674-8330-32c2bdc11e32",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "e8a95830-97a4-44f1-8d9b-436df5fd0376",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "14ad82c6-19d3-4dc3-bb85-bd34dce36a62",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "38a61d0a-3017-4899-acf3-6fc1601e993e",
+        "usda_ingredient_id": "pasta",
+        "meal_plan_meal_id": "e8a95830-97a4-44f1-8d9b-436df5fd0376",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "e2fcdaa4-b969-464b-876e-c5c8ddacb9ee",
+        "quantity": 6.0,
+        "active": true
+    },
+    {
+        "id": "0f927a1e-9bbc-496a-8972-c63cf20442a9",
+        "usda_ingredient_id": "milk_whole",
+        "meal_plan_meal_id": "e8a95830-97a4-44f1-8d9b-436df5fd0376",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0b54b198-766e-4502-86fd-75cbb15f1b84",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "19065156-e93a-436c-8d43-0cc23ad35851",
+        "usda_ingredient_id": "parmesan_cheese",
+        "meal_plan_meal_id": "e8a95830-97a4-44f1-8d9b-436df5fd0376",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c0f4b3c7-e69b-422f-83e5-1491d27f2e04",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "60c3027a-7a65-4d61-8d52-29e48daaf387",
+        "usda_ingredient_id": "spinach",
+        "meal_plan_meal_id": "e8a95830-97a4-44f1-8d9b-436df5fd0376",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c825324f-416e-4cea-8156-36951fd2afb3",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "20c300ee-ddb4-4228-a092-5bfc5d982a8c",
+        "usda_ingredient_id": "sauteed_chicken",
+        "meal_plan_meal_id": "b882107c-3c93-46f3-bfd0-0b8a661fd34f",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "24fe9b17-4622-4ee2-900e-0ece75e7d58d",
+        "quantity": 0.375,
+        "active": true
+    },
+    {
+        "id": "4df598f7-70e0-4612-ba53-28e9335a778f",
+        "usda_ingredient_id": "pasta",
+        "meal_plan_meal_id": "b882107c-3c93-46f3-bfd0-0b8a661fd34f",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "e2fcdaa4-b969-464b-876e-c5c8ddacb9ee",
+        "quantity": 6.0,
+        "active": true
+    },
+    {
+        "id": "db385396-02d2-4747-b7c9-11806e8594c5",
+        "usda_ingredient_id": "basil_pesto",
+        "meal_plan_meal_id": "e8a95830-97a4-44f1-8d9b-436df5fd0376",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8573be04-9e6a-493f-8a15-d3a3fb0c86eb",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "29041ec1-9944-4b11-85de-fdaa2767595b",
+        "usda_ingredient_id": "red_pepper_flakes",
+        "meal_plan_meal_id": "e8a95830-97a4-44f1-8d9b-436df5fd0376",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "bb651421-101c-40d9-bb57-be548e713f58",
+        "usda_ingredient_id": "olive_oil",
+        "meal_plan_meal_id": "e8a95830-97a4-44f1-8d9b-436df5fd0376",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "3911954b-21ac-48b8-bfab-1b56cad22377",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "b882107c-3c93-46f3-bfd0-0b8a661fd34f",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "14ad82c6-19d3-4dc3-bb85-bd34dce36a62",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "73acb1ee-02c8-4301-8e43-b3c275b5302e",
+        "usda_ingredient_id": "milk_whole",
+        "meal_plan_meal_id": "b882107c-3c93-46f3-bfd0-0b8a661fd34f",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0b54b198-766e-4502-86fd-75cbb15f1b84",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "09980d3a-4386-4128-9ae9-958aca1eedf7",
+        "usda_ingredient_id": "parmesan_cheese",
+        "meal_plan_meal_id": "b882107c-3c93-46f3-bfd0-0b8a661fd34f",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c0f4b3c7-e69b-422f-83e5-1491d27f2e04",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "6156590f-af0f-4cd9-b64b-ab80587d5b7c",
+        "usda_ingredient_id": "spinach",
+        "meal_plan_meal_id": "b882107c-3c93-46f3-bfd0-0b8a661fd34f",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c825324f-416e-4cea-8156-36951fd2afb3",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "6091b084-cef1-49a5-a1c4-e6424fbea709",
+        "usda_ingredient_id": "sauteed_chicken",
+        "meal_plan_meal_id": "d36edc19-11a6-441d-b565-74ab59e6e7b3",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "24fe9b17-4622-4ee2-900e-0ece75e7d58d",
+        "quantity": 0.375,
+        "active": true
+    },
+    {
+        "id": "0ba544c8-2580-4282-966e-2d96b78215b7",
+        "usda_ingredient_id": "basil_pesto",
+        "meal_plan_meal_id": "b882107c-3c93-46f3-bfd0-0b8a661fd34f",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8573be04-9e6a-493f-8a15-d3a3fb0c86eb",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "865607a6-d8c5-4448-9b86-b4a3a4d22af7",
+        "usda_ingredient_id": "red_pepper_flakes",
+        "meal_plan_meal_id": "b882107c-3c93-46f3-bfd0-0b8a661fd34f",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "68ba7581-aa29-4424-b71c-155e5176ea50",
+        "usda_ingredient_id": "olive_oil",
+        "meal_plan_meal_id": "b882107c-3c93-46f3-bfd0-0b8a661fd34f",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "21d79f51-5fac-4046-8043-acb87d3815dc",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "d36edc19-11a6-441d-b565-74ab59e6e7b3",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "14ad82c6-19d3-4dc3-bb85-bd34dce36a62",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "37087dab-4a13-40d1-be2d-f39217b5a38f",
+        "usda_ingredient_id": "pasta",
+        "meal_plan_meal_id": "d36edc19-11a6-441d-b565-74ab59e6e7b3",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "e2fcdaa4-b969-464b-876e-c5c8ddacb9ee",
+        "quantity": 6.0,
+        "active": true
+    },
+    {
+        "id": "2174b1eb-5194-4726-910e-b7c42afdae8c",
+        "usda_ingredient_id": "basil_pesto",
+        "meal_plan_meal_id": "d36edc19-11a6-441d-b565-74ab59e6e7b3",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8573be04-9e6a-493f-8a15-d3a3fb0c86eb",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "a0f1b3c1-c588-4497-9eda-17b59122cec5",
+        "usda_ingredient_id": "red_pepper_flakes",
+        "meal_plan_meal_id": "d36edc19-11a6-441d-b565-74ab59e6e7b3",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "c1037ef3-4e90-4910-8221-f5ff8e597316",
+        "usda_ingredient_id": "olive_oil",
+        "meal_plan_meal_id": "d36edc19-11a6-441d-b565-74ab59e6e7b3",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "68d409a0-8895-47e1-af2f-878a38016987",
+        "usda_ingredient_id": "milk_whole",
+        "meal_plan_meal_id": "d36edc19-11a6-441d-b565-74ab59e6e7b3",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0b54b198-766e-4502-86fd-75cbb15f1b84",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "d07dd1a7-d595-4486-b978-ac6b4c4c31dc",
+        "usda_ingredient_id": "parmesan_cheese",
+        "meal_plan_meal_id": "d36edc19-11a6-441d-b565-74ab59e6e7b3",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c0f4b3c7-e69b-422f-83e5-1491d27f2e04",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "0d11d92c-5ace-41da-8044-5a04c0b8546b",
+        "usda_ingredient_id": "spinach",
+        "meal_plan_meal_id": "d36edc19-11a6-441d-b565-74ab59e6e7b3",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c825324f-416e-4cea-8156-36951fd2afb3",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "3c31cdf2-1d67-461e-a2d5-a617d93f7e28",
+        "usda_ingredient_id": "sauteed_chicken",
+        "meal_plan_meal_id": "2eaa2e28-1bc1-4858-b175-15916481ecdc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "24fe9b17-4622-4ee2-900e-0ece75e7d58d",
+        "quantity": 0.375,
+        "active": true
+    },
+    {
+        "id": "2cfc6f78-23e8-4904-bcf4-43e43dabfb12",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "2eaa2e28-1bc1-4858-b175-15916481ecdc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "14ad82c6-19d3-4dc3-bb85-bd34dce36a62",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "2415fdcc-08ec-4c6b-ad40-1608a9abeec5",
+        "usda_ingredient_id": "milk_whole",
+        "meal_plan_meal_id": "2eaa2e28-1bc1-4858-b175-15916481ecdc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0b54b198-766e-4502-86fd-75cbb15f1b84",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "2ee7aa1b-3f95-49b7-968b-57aa92f24cff",
+        "usda_ingredient_id": "parmesan_cheese",
+        "meal_plan_meal_id": "2eaa2e28-1bc1-4858-b175-15916481ecdc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c0f4b3c7-e69b-422f-83e5-1491d27f2e04",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "861f4904-166b-4873-98ba-70bc5d9cce2f",
+        "usda_ingredient_id": "spinach",
+        "meal_plan_meal_id": "2eaa2e28-1bc1-4858-b175-15916481ecdc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c825324f-416e-4cea-8156-36951fd2afb3",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "10b2c307-6650-436b-89f7-6a0fba289668",
+        "usda_ingredient_id": "pasta",
+        "meal_plan_meal_id": "2eaa2e28-1bc1-4858-b175-15916481ecdc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "e2fcdaa4-b969-464b-876e-c5c8ddacb9ee",
+        "quantity": 6.0,
+        "active": true
+    },
+    {
+        "id": "9a305bdc-554e-417d-8c16-e9dd459b7981",
+        "usda_ingredient_id": "basil_pesto",
+        "meal_plan_meal_id": "2eaa2e28-1bc1-4858-b175-15916481ecdc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8573be04-9e6a-493f-8a15-d3a3fb0c86eb",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "e6a07391-6916-4662-bf28-a7c5a18927b4",
+        "usda_ingredient_id": "red_pepper_flakes",
+        "meal_plan_meal_id": "2eaa2e28-1bc1-4858-b175-15916481ecdc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "d2d0dc38-955f-4c9d-9fc2-c1f9995ab03b",
+        "usda_ingredient_id": "olive_oil",
+        "meal_plan_meal_id": "2eaa2e28-1bc1-4858-b175-15916481ecdc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "71331cba-d6c4-4fa3-ab05-69d6ac501d78",
+        "usda_ingredient_id": "sauteed_chicken",
+        "meal_plan_meal_id": "4897179e-fcff-4f76-9d56-60d81a73fb58",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "24fe9b17-4622-4ee2-900e-0ece75e7d58d",
+        "quantity": 0.375,
+        "active": true
+    },
+    {
+        "id": "4bbcdb73-02a0-4b5a-9f16-4ff608f86009",
+        "usda_ingredient_id": "pasta",
+        "meal_plan_meal_id": "4897179e-fcff-4f76-9d56-60d81a73fb58",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "e2fcdaa4-b969-464b-876e-c5c8ddacb9ee",
+        "quantity": 6.0,
+        "active": true
+    },
+    {
+        "id": "521e4428-9aed-4852-83b0-d27dbacc9a1b",
+        "usda_ingredient_id": "basil_pesto",
+        "meal_plan_meal_id": "4897179e-fcff-4f76-9d56-60d81a73fb58",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8573be04-9e6a-493f-8a15-d3a3fb0c86eb",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "11bf9d86-1b31-4081-9ac1-20556ce3bd2c",
+        "usda_ingredient_id": "red_pepper_flakes",
+        "meal_plan_meal_id": "4897179e-fcff-4f76-9d56-60d81a73fb58",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "afeb53f1-5202-490b-9f47-fb0fa8ec7c6d",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "4897179e-fcff-4f76-9d56-60d81a73fb58",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "14ad82c6-19d3-4dc3-bb85-bd34dce36a62",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "2a673cd7-d680-49bf-a9cf-5b52c91240dc",
+        "usda_ingredient_id": "milk_whole",
+        "meal_plan_meal_id": "4897179e-fcff-4f76-9d56-60d81a73fb58",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0b54b198-766e-4502-86fd-75cbb15f1b84",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "c4e114ca-5bc4-49c4-b903-d221164ca36f",
+        "usda_ingredient_id": "parmesan_cheese",
+        "meal_plan_meal_id": "4897179e-fcff-4f76-9d56-60d81a73fb58",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c0f4b3c7-e69b-422f-83e5-1491d27f2e04",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "53bb1d9f-baea-4639-bd10-7591a77c13de",
+        "usda_ingredient_id": "olive_oil",
+        "meal_plan_meal_id": "4897179e-fcff-4f76-9d56-60d81a73fb58",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "dc8426a6-0b8d-45ee-b114-00b7d4075b67",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "710fc319-5aae-4b32-b219-1236505c7432",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "14ad82c6-19d3-4dc3-bb85-bd34dce36a62",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "aa2ef861-d503-4897-aaea-7318f9cfc535",
+        "usda_ingredient_id": "milk_whole",
+        "meal_plan_meal_id": "710fc319-5aae-4b32-b219-1236505c7432",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0b54b198-766e-4502-86fd-75cbb15f1b84",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "b48b228e-48cf-4dd0-989f-42e24678da41",
+        "usda_ingredient_id": "spinach",
+        "meal_plan_meal_id": "4897179e-fcff-4f76-9d56-60d81a73fb58",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c825324f-416e-4cea-8156-36951fd2afb3",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "457c9c86-0175-45ac-a5ed-da263a9a1fd4",
+        "usda_ingredient_id": "sauteed_chicken",
+        "meal_plan_meal_id": "710fc319-5aae-4b32-b219-1236505c7432",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "24fe9b17-4622-4ee2-900e-0ece75e7d58d",
+        "quantity": 0.375,
+        "active": true
+    },
+    {
+        "id": "157e9487-2fd1-4fcc-9d59-2c5083ca5256",
+        "usda_ingredient_id": "pasta",
+        "meal_plan_meal_id": "710fc319-5aae-4b32-b219-1236505c7432",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "e2fcdaa4-b969-464b-876e-c5c8ddacb9ee",
+        "quantity": 6.0,
+        "active": true
+    },
+    {
+        "id": "9a4a64b9-ec87-4ab7-ad28-ed380dae0209",
+        "usda_ingredient_id": "basil_pesto",
+        "meal_plan_meal_id": "710fc319-5aae-4b32-b219-1236505c7432",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8573be04-9e6a-493f-8a15-d3a3fb0c86eb",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "e4e76f4a-6d36-4fe3-bd6e-eeda26d255ae",
+        "usda_ingredient_id": "red_pepper_flakes",
+        "meal_plan_meal_id": "710fc319-5aae-4b32-b219-1236505c7432",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "a7e5ff00-43df-4f42-84a6-6095160672a6",
+        "usda_ingredient_id": "olive_oil",
+        "meal_plan_meal_id": "710fc319-5aae-4b32-b219-1236505c7432",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "cae50a92-fcbd-41b9-a14e-4c8cde2f43cc",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "87ee6511-730e-412f-83c6-8f46751a292a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "14ad82c6-19d3-4dc3-bb85-bd34dce36a62",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "3693b42b-3cd6-4dee-ae67-e3da7e365dd7",
+        "usda_ingredient_id": "milk_whole",
+        "meal_plan_meal_id": "87ee6511-730e-412f-83c6-8f46751a292a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0b54b198-766e-4502-86fd-75cbb15f1b84",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "17fb2c05-b54f-40b6-8a11-c3d8358d152b",
+        "usda_ingredient_id": "parmesan_cheese",
+        "meal_plan_meal_id": "710fc319-5aae-4b32-b219-1236505c7432",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c0f4b3c7-e69b-422f-83e5-1491d27f2e04",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "be4e1894-a290-44b9-8c65-2220631b9e63",
+        "usda_ingredient_id": "spinach",
+        "meal_plan_meal_id": "710fc319-5aae-4b32-b219-1236505c7432",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c825324f-416e-4cea-8156-36951fd2afb3",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "1461904f-cee2-414f-85d0-073660ed60e1",
+        "usda_ingredient_id": "sauteed_chicken",
+        "meal_plan_meal_id": "87ee6511-730e-412f-83c6-8f46751a292a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "24fe9b17-4622-4ee2-900e-0ece75e7d58d",
+        "quantity": 0.375,
+        "active": true
+    },
+    {
+        "id": "47929e43-6302-4fb8-a2fd-94f647370674",
+        "usda_ingredient_id": "pasta",
+        "meal_plan_meal_id": "87ee6511-730e-412f-83c6-8f46751a292a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "e2fcdaa4-b969-464b-876e-c5c8ddacb9ee",
+        "quantity": 6.0,
+        "active": true
+    },
+    {
+        "id": "2c5019bf-08be-4dc5-8d1d-f346d6883416",
+        "usda_ingredient_id": "basil_pesto",
+        "meal_plan_meal_id": "87ee6511-730e-412f-83c6-8f46751a292a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8573be04-9e6a-493f-8a15-d3a3fb0c86eb",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "93642eb3-a652-4d5b-b1e0-769a7b1141c8",
+        "usda_ingredient_id": "red_pepper_flakes",
+        "meal_plan_meal_id": "87ee6511-730e-412f-83c6-8f46751a292a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "c0f64ddc-cda4-428e-96ee-a9fb859a9681",
+        "usda_ingredient_id": "olive_oil",
+        "meal_plan_meal_id": "87ee6511-730e-412f-83c6-8f46751a292a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "1021fe79-663d-4949-b672-40d291df49b1",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "c84d9f50-0ae2-40fb-b336-10f2e428a870",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "14ad82c6-19d3-4dc3-bb85-bd34dce36a62",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "b03d35d1-2acb-40f9-bd1a-b05b745e7a72",
+        "usda_ingredient_id": "parmesan_cheese",
+        "meal_plan_meal_id": "87ee6511-730e-412f-83c6-8f46751a292a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c0f4b3c7-e69b-422f-83e5-1491d27f2e04",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "91315110-7d06-49d5-bc11-c984a830ae26",
+        "usda_ingredient_id": "spinach",
+        "meal_plan_meal_id": "87ee6511-730e-412f-83c6-8f46751a292a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c825324f-416e-4cea-8156-36951fd2afb3",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "e0f66d64-4daf-4734-9cdc-98f114a592a1",
+        "usda_ingredient_id": "sauteed_chicken",
+        "meal_plan_meal_id": "c84d9f50-0ae2-40fb-b336-10f2e428a870",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "24fe9b17-4622-4ee2-900e-0ece75e7d58d",
+        "quantity": 0.375,
+        "active": true
+    },
+    {
+        "id": "0f1200cd-be9b-404e-8701-75fa855ba218",
+        "usda_ingredient_id": "pasta",
+        "meal_plan_meal_id": "c84d9f50-0ae2-40fb-b336-10f2e428a870",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "e2fcdaa4-b969-464b-876e-c5c8ddacb9ee",
+        "quantity": 6.0,
+        "active": true
+    },
+    {
+        "id": "43d93ebc-ebb0-407b-a29b-d64124d0a95d",
+        "usda_ingredient_id": "milk_whole",
+        "meal_plan_meal_id": "c84d9f50-0ae2-40fb-b336-10f2e428a870",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0b54b198-766e-4502-86fd-75cbb15f1b84",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "7f785cb2-b56f-4261-bdff-bdca1b207ed1",
+        "usda_ingredient_id": "parmesan_cheese",
+        "meal_plan_meal_id": "c84d9f50-0ae2-40fb-b336-10f2e428a870",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c0f4b3c7-e69b-422f-83e5-1491d27f2e04",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "4d19aaa5-4cd4-4e69-980c-4b3b3610818e",
+        "usda_ingredient_id": "spinach",
+        "meal_plan_meal_id": "c84d9f50-0ae2-40fb-b336-10f2e428a870",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c825324f-416e-4cea-8156-36951fd2afb3",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "b2448b0f-b327-4cdb-8003-7a79200e49ff",
+        "usda_ingredient_id": "sauteed_chicken",
+        "meal_plan_meal_id": "a3f63f78-b080-44e3-b903-f0f18b0f8226",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "24fe9b17-4622-4ee2-900e-0ece75e7d58d",
+        "quantity": 0.375,
+        "active": true
+    },
+    {
+        "id": "c08bcc79-751c-438b-b3fb-6d32b98065ab",
+        "usda_ingredient_id": "basil_pesto",
+        "meal_plan_meal_id": "c84d9f50-0ae2-40fb-b336-10f2e428a870",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8573be04-9e6a-493f-8a15-d3a3fb0c86eb",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "2c439735-d88c-44f4-b6ea-17181a501d52",
+        "usda_ingredient_id": "red_pepper_flakes",
+        "meal_plan_meal_id": "c84d9f50-0ae2-40fb-b336-10f2e428a870",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "23056e3e-cd4a-4971-84a0-8d8542666ca4",
+        "usda_ingredient_id": "olive_oil",
+        "meal_plan_meal_id": "c84d9f50-0ae2-40fb-b336-10f2e428a870",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "8b81efa7-eb06-443a-b19a-75240233136b",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "a3f63f78-b080-44e3-b903-f0f18b0f8226",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "14ad82c6-19d3-4dc3-bb85-bd34dce36a62",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "51837b98-b0ef-4627-8242-61bdc2b9ee05",
+        "usda_ingredient_id": "pasta",
+        "meal_plan_meal_id": "a3f63f78-b080-44e3-b903-f0f18b0f8226",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "e2fcdaa4-b969-464b-876e-c5c8ddacb9ee",
+        "quantity": 6.0,
+        "active": true
+    },
+    {
+        "id": "f655c2cc-1d62-4202-8c96-57b4bd7871c4",
+        "usda_ingredient_id": "basil_pesto",
+        "meal_plan_meal_id": "a3f63f78-b080-44e3-b903-f0f18b0f8226",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8573be04-9e6a-493f-8a15-d3a3fb0c86eb",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "7e0c0867-d744-44e7-b184-c449940e16e8",
+        "usda_ingredient_id": "red_pepper_flakes",
+        "meal_plan_meal_id": "a3f63f78-b080-44e3-b903-f0f18b0f8226",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "5922131c-86d2-4ff3-9ecd-70bf66b1273a",
+        "usda_ingredient_id": "olive_oil",
+        "meal_plan_meal_id": "a3f63f78-b080-44e3-b903-f0f18b0f8226",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "f47cd5f2-1970-4da2-a47c-11a6dbddac59",
+        "usda_ingredient_id": "milk_whole",
+        "meal_plan_meal_id": "a3f63f78-b080-44e3-b903-f0f18b0f8226",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0b54b198-766e-4502-86fd-75cbb15f1b84",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "c0cce859-0eb3-4978-8f59-9db5afc234ee",
+        "usda_ingredient_id": "parmesan_cheese",
+        "meal_plan_meal_id": "a3f63f78-b080-44e3-b903-f0f18b0f8226",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c0f4b3c7-e69b-422f-83e5-1491d27f2e04",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "39c0e855-7328-4eea-aac6-aff3563118ab",
+        "usda_ingredient_id": "spinach",
+        "meal_plan_meal_id": "a3f63f78-b080-44e3-b903-f0f18b0f8226",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c825324f-416e-4cea-8156-36951fd2afb3",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "b6aa61ec-df6e-496a-b023-0892a5a9fa29",
+        "usda_ingredient_id": "sauteed_chicken",
+        "meal_plan_meal_id": "bf5edbc4-d776-4ed6-a7bf-b0450399646a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "24fe9b17-4622-4ee2-900e-0ece75e7d58d",
+        "quantity": 0.375,
+        "active": true
+    },
+    {
+        "id": "e54365cf-ad47-4144-9d1e-99c14409a27a",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "bf5edbc4-d776-4ed6-a7bf-b0450399646a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "14ad82c6-19d3-4dc3-bb85-bd34dce36a62",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "3f884b6f-646a-4f13-8bb1-3c7c8134f245",
+        "usda_ingredient_id": "milk_whole",
+        "meal_plan_meal_id": "bf5edbc4-d776-4ed6-a7bf-b0450399646a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0b54b198-766e-4502-86fd-75cbb15f1b84",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "98fba3c1-764a-41c0-89e0-457fb70f6cd2",
+        "usda_ingredient_id": "parmesan_cheese",
+        "meal_plan_meal_id": "bf5edbc4-d776-4ed6-a7bf-b0450399646a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c0f4b3c7-e69b-422f-83e5-1491d27f2e04",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "8a200622-483c-4402-8f71-1cb9fbdba178",
+        "usda_ingredient_id": "spinach",
+        "meal_plan_meal_id": "bf5edbc4-d776-4ed6-a7bf-b0450399646a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c825324f-416e-4cea-8156-36951fd2afb3",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "a3820d87-3ab1-4983-a2f1-331129d9122e",
+        "usda_ingredient_id": "pasta",
+        "meal_plan_meal_id": "bf5edbc4-d776-4ed6-a7bf-b0450399646a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "e2fcdaa4-b969-464b-876e-c5c8ddacb9ee",
+        "quantity": 6.0,
+        "active": true
+    },
+    {
+        "id": "bef9a766-6f97-4283-bec5-deb50105bc5c",
+        "usda_ingredient_id": "basil_pesto",
+        "meal_plan_meal_id": "bf5edbc4-d776-4ed6-a7bf-b0450399646a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8573be04-9e6a-493f-8a15-d3a3fb0c86eb",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "623359c8-51b3-487e-9076-f54376e25647",
+        "usda_ingredient_id": "red_pepper_flakes",
+        "meal_plan_meal_id": "bf5edbc4-d776-4ed6-a7bf-b0450399646a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "123651f3-93b3-498c-8e86-9da076325bc0",
+        "usda_ingredient_id": "steak",
+        "meal_plan_meal_id": "f1a5f623-24dc-4d40-99cb-165c51510b04",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "589252e3-b72c-4299-b452-24eb0b6b6416",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "96a07109-37f0-42c9-8537-0ffa9d220696",
+        "usda_ingredient_id": "olive_oil",
+        "meal_plan_meal_id": "f1a5f623-24dc-4d40-99cb-165c51510b04",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "e24d4be2-7df6-4964-be45-653282940a83",
+        "usda_ingredient_id": "soy_sauce",
+        "meal_plan_meal_id": "f1a5f623-24dc-4d40-99cb-165c51510b04",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "83fe3278-f610-4e1b-b250-94e7240ebff0",
+        "quantity": 1.75,
+        "active": true
+    },
+    {
+        "id": "3362752f-fb07-4a10-92e6-a63099bfb24d",
+        "usda_ingredient_id": "olive_oil",
+        "meal_plan_meal_id": "bf5edbc4-d776-4ed6-a7bf-b0450399646a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "559f389e-09c8-4d61-9845-168b51c1ab07",
+        "usda_ingredient_id": "goya_mojo",
+        "meal_plan_meal_id": "f1a5f623-24dc-4d40-99cb-165c51510b04",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "b5d2b8c1-e9f5-4624-9966-04a292023c3a",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "a2047008-e570-450c-a48d-af4c614299ba",
+        "usda_ingredient_id": "worcestershire_sauce",
+        "meal_plan_meal_id": "f1a5f623-24dc-4d40-99cb-165c51510b04",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "fefb944d-7eb1-4f88-873b-f07118ed0cf8",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "d472d1f0-213d-4d6e-a4b7-040b45edbaf9",
+        "usda_ingredient_id": "balsamic_vinegar",
+        "meal_plan_meal_id": "f1a5f623-24dc-4d40-99cb-165c51510b04",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5face6f1-5cde-412e-9fbb-b4ef71b10131",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "57abd0c4-dfc4-4606-9ede-67f812105050",
+        "usda_ingredient_id": "broccoli",
+        "meal_plan_meal_id": "f1a5f623-24dc-4d40-99cb-165c51510b04",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "03171774-88ee-4be9-94f9-de63b105620f",
+        "quantity": 5.0,
+        "active": true
+    },
+    {
+        "id": "6152b7e7-e016-4111-8175-8d13cdaf9805",
+        "usda_ingredient_id": "adobo",
+        "meal_plan_meal_id": "f1a5f623-24dc-4d40-99cb-165c51510b04",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "cc0d3ba0-c9a8-442a-a0ff-08b43fab5d41",
+        "usda_ingredient_id": "garlic_powder",
+        "meal_plan_meal_id": "f1a5f623-24dc-4d40-99cb-165c51510b04",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ad7a9425-384a-4ce7-9d75-94ac75547bc6",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "4ad375c5-aec2-4cad-95f3-8117c9838c7d",
+        "usda_ingredient_id": "salt",
+        "meal_plan_meal_id": "f1a5f623-24dc-4d40-99cb-165c51510b04",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "5625ebd2-c362-47d9-bdf2-2f31824803a8",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "f1a5f623-24dc-4d40-99cb-165c51510b04",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5669f29c-edf0-4a26-92ba-c2b2f988980f",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "656df7ae-5a44-4d68-8b8b-e219ced3e022",
+        "usda_ingredient_id": "white_rice_cooked",
+        "meal_plan_meal_id": "f1a5f623-24dc-4d40-99cb-165c51510b04",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71bd62ec-b446-4cd5-a608-51118a03941d",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "d49fd692-3670-4b14-8362-08e0c288fbff",
+        "usda_ingredient_id": "onion_powder",
+        "meal_plan_meal_id": "f1a5f623-24dc-4d40-99cb-165c51510b04",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "37be0e4a-98e8-49f1-9d0b-1af823967d33",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "ef6f89ee-e72f-4b12-b057-84d888577e8e",
+        "usda_ingredient_id": "black_pepper",
+        "meal_plan_meal_id": "f1a5f623-24dc-4d40-99cb-165c51510b04",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ce3c7638-26ba-4f81-bb03-ba48fcd80910",
+        "quantity": 0.0625,
+        "active": true
+    },
+    {
+        "id": "5e07869c-5bb8-4ee3-92b1-723456fa7cac",
+        "usda_ingredient_id": "beef_stock",
+        "meal_plan_meal_id": "f1a5f623-24dc-4d40-99cb-165c51510b04",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "16b02bd1-f118-4db5-b72a-b2c2ad7077a9",
+        "quantity": 0.625,
+        "active": true
+    },
+    {
+        "id": "883ae2d1-17f1-408d-ac2e-ea41b77f19b3",
+        "usda_ingredient_id": "sugar",
+        "meal_plan_meal_id": "f1a5f623-24dc-4d40-99cb-165c51510b04",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71486006-c9da-4b34-915d-54bfafc47828",
+        "quantity": 0.0625,
+        "active": true
+    },
+    {
+        "id": "18c8b4e8-e540-4492-9cf5-f7114953981f",
+        "usda_ingredient_id": "white_pepper",
+        "meal_plan_meal_id": "f1a5f623-24dc-4d40-99cb-165c51510b04",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "cc225707-b74c-4b70-9c2b-ab1720df74c9",
+        "quantity": 0.0825,
+        "active": true
+    },
+    {
+        "id": "dfbb7900-fd29-4059-b233-e44dc14684fd",
+        "usda_ingredient_id": "onion_raw",
+        "meal_plan_meal_id": "f1a5f623-24dc-4d40-99cb-165c51510b04",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "50b34dba-1eec-40e9-bf65-187b5dd191f7",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "cabdb4f3-d4bd-4d8d-9289-1806c5572812",
+        "usda_ingredient_id": "oyster_sauce",
+        "meal_plan_meal_id": "f1a5f623-24dc-4d40-99cb-165c51510b04",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "4a6997b1-9786-4075-96d0-132135cb903b",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "bcf41136-72b4-47e0-86c1-1ce04cee6ce9",
+        "usda_ingredient_id": "sesame_oil",
+        "meal_plan_meal_id": "f1a5f623-24dc-4d40-99cb-165c51510b04",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a556c1b4-c8c8-4870-89f5-74d5f1f63c61",
+        "quantity": 0.125,
+        "active": true
+    },
+    {
+        "id": "3c3656c6-3f23-4390-baba-448ebcdd3616",
+        "usda_ingredient_id": "cornstarch",
+        "meal_plan_meal_id": "f1a5f623-24dc-4d40-99cb-165c51510b04",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0f6e8454-0c5b-4b25-9629-fbe8713232f5",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "b61e2be0-ee79-4fd9-ac2c-da8dff3eff52",
+        "usda_ingredient_id": "ginger_root_raw",
+        "meal_plan_meal_id": "f1a5f623-24dc-4d40-99cb-165c51510b04",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a158a823-503b-434a-9ada-7d903b474334",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "4d75ba90-cbe9-4323-90bf-52224e80089d",
+        "usda_ingredient_id": "steak",
+        "meal_plan_meal_id": "1c2ac53b-4b98-4790-a35d-38a3722f57c5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "589252e3-b72c-4299-b452-24eb0b6b6416",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "92414cc6-d7f5-496c-886d-8a71ff12abb5",
+        "usda_ingredient_id": "olive_oil",
+        "meal_plan_meal_id": "1c2ac53b-4b98-4790-a35d-38a3722f57c5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "2fb11ab3-b930-4cb3-8c2b-91751e42e8a9",
+        "usda_ingredient_id": "soy_sauce",
+        "meal_plan_meal_id": "1c2ac53b-4b98-4790-a35d-38a3722f57c5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "83fe3278-f610-4e1b-b250-94e7240ebff0",
+        "quantity": 1.75,
+        "active": true
+    },
+    {
+        "id": "7a3d4348-a6e1-4229-be9e-cad020ece71c",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "1c2ac53b-4b98-4790-a35d-38a3722f57c5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5669f29c-edf0-4a26-92ba-c2b2f988980f",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "38373187-86fe-4a3d-b63c-9735baccb1db",
+        "usda_ingredient_id": "goya_mojo",
+        "meal_plan_meal_id": "1c2ac53b-4b98-4790-a35d-38a3722f57c5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "b5d2b8c1-e9f5-4624-9966-04a292023c3a",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "2177cc6f-3bfa-464d-b61a-112c8d521c4e",
+        "usda_ingredient_id": "worcestershire_sauce",
+        "meal_plan_meal_id": "1c2ac53b-4b98-4790-a35d-38a3722f57c5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "fefb944d-7eb1-4f88-873b-f07118ed0cf8",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "4f526743-a3ee-4a18-871c-3a6cf4b5c34b",
+        "usda_ingredient_id": "balsamic_vinegar",
+        "meal_plan_meal_id": "1c2ac53b-4b98-4790-a35d-38a3722f57c5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5face6f1-5cde-412e-9fbb-b4ef71b10131",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "57bacff8-9acd-4327-afec-5dfdaeacffa4",
+        "usda_ingredient_id": "broccoli",
+        "meal_plan_meal_id": "1c2ac53b-4b98-4790-a35d-38a3722f57c5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "03171774-88ee-4be9-94f9-de63b105620f",
+        "quantity": 5.0,
+        "active": true
+    },
+    {
+        "id": "ea45b6f8-31b8-4854-aec0-70edf854bb2e",
+        "usda_ingredient_id": "white_rice_cooked",
+        "meal_plan_meal_id": "1c2ac53b-4b98-4790-a35d-38a3722f57c5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71bd62ec-b446-4cd5-a608-51118a03941d",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "35e98bf2-9847-46b9-9173-0747ba521d7e",
+        "usda_ingredient_id": "onion_powder",
+        "meal_plan_meal_id": "1c2ac53b-4b98-4790-a35d-38a3722f57c5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "37be0e4a-98e8-49f1-9d0b-1af823967d33",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "3fa82637-4895-4918-8dc1-ab05eeb6c884",
+        "usda_ingredient_id": "black_pepper",
+        "meal_plan_meal_id": "1c2ac53b-4b98-4790-a35d-38a3722f57c5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ce3c7638-26ba-4f81-bb03-ba48fcd80910",
+        "quantity": 0.0625,
+        "active": true
+    },
+    {
+        "id": "35f293b3-8075-4621-9344-50b6e938ee43",
+        "usda_ingredient_id": "beef_stock",
+        "meal_plan_meal_id": "1c2ac53b-4b98-4790-a35d-38a3722f57c5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "16b02bd1-f118-4db5-b72a-b2c2ad7077a9",
+        "quantity": 0.625,
+        "active": true
+    },
+    {
+        "id": "03801ce9-c0e4-4eed-99ff-0277c92c93b3",
+        "usda_ingredient_id": "adobo",
+        "meal_plan_meal_id": "1c2ac53b-4b98-4790-a35d-38a3722f57c5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "38302295-1c38-483b-946d-5ac93f5ed403",
+        "usda_ingredient_id": "garlic_powder",
+        "meal_plan_meal_id": "1c2ac53b-4b98-4790-a35d-38a3722f57c5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ad7a9425-384a-4ce7-9d75-94ac75547bc6",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "f6900ed4-9e9e-4bbb-a829-42aa89685c3c",
+        "usda_ingredient_id": "salt",
+        "meal_plan_meal_id": "1c2ac53b-4b98-4790-a35d-38a3722f57c5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "96b05d07-f324-4778-8a6b-6e8146d474b9",
+        "usda_ingredient_id": "oyster_sauce",
+        "meal_plan_meal_id": "1c2ac53b-4b98-4790-a35d-38a3722f57c5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "4a6997b1-9786-4075-96d0-132135cb903b",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "1775ba5f-a42b-45a9-8c3c-d26a1ec0c88d",
+        "usda_ingredient_id": "sugar",
+        "meal_plan_meal_id": "1c2ac53b-4b98-4790-a35d-38a3722f57c5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71486006-c9da-4b34-915d-54bfafc47828",
+        "quantity": 0.0625,
+        "active": true
+    },
+    {
+        "id": "9b68770e-20eb-4e88-bc3d-2e2faaf601bb",
+        "usda_ingredient_id": "white_pepper",
+        "meal_plan_meal_id": "1c2ac53b-4b98-4790-a35d-38a3722f57c5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "cc225707-b74c-4b70-9c2b-ab1720df74c9",
+        "quantity": 0.0825,
+        "active": true
+    },
+    {
+        "id": "0e1cdfc0-4261-4ffb-839d-517a3053e82e",
+        "usda_ingredient_id": "onion_raw",
+        "meal_plan_meal_id": "1c2ac53b-4b98-4790-a35d-38a3722f57c5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "50b34dba-1eec-40e9-bf65-187b5dd191f7",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "bc045e93-c019-480b-98ae-2adec868d9f2",
+        "usda_ingredient_id": "steak",
+        "meal_plan_meal_id": "e7e833d5-22d0-45bf-8608-674b0c00acd6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "589252e3-b72c-4299-b452-24eb0b6b6416",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "fb15c85b-6383-405d-b40f-5a1b6ff0c7a5",
+        "usda_ingredient_id": "sesame_oil",
+        "meal_plan_meal_id": "1c2ac53b-4b98-4790-a35d-38a3722f57c5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a556c1b4-c8c8-4870-89f5-74d5f1f63c61",
+        "quantity": 0.125,
+        "active": true
+    },
+    {
+        "id": "4b7e1684-d35f-4e4e-91cc-df4334cf2227",
+        "usda_ingredient_id": "cornstarch",
+        "meal_plan_meal_id": "1c2ac53b-4b98-4790-a35d-38a3722f57c5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0f6e8454-0c5b-4b25-9629-fbe8713232f5",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "87863514-496b-4008-a666-6154415882e1",
+        "usda_ingredient_id": "ginger_root_raw",
+        "meal_plan_meal_id": "1c2ac53b-4b98-4790-a35d-38a3722f57c5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a158a823-503b-434a-9ada-7d903b474334",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "fc679b7f-4cbf-4357-b52c-5290dee13cc6",
+        "usda_ingredient_id": "olive_oil",
+        "meal_plan_meal_id": "e7e833d5-22d0-45bf-8608-674b0c00acd6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "2b58a955-fff4-4241-9607-a609a938ced3",
+        "usda_ingredient_id": "soy_sauce",
+        "meal_plan_meal_id": "e7e833d5-22d0-45bf-8608-674b0c00acd6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "83fe3278-f610-4e1b-b250-94e7240ebff0",
+        "quantity": 1.75,
+        "active": true
+    },
+    {
+        "id": "9a7b6270-ec8e-4033-a39d-dfc8df757708",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "e7e833d5-22d0-45bf-8608-674b0c00acd6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5669f29c-edf0-4a26-92ba-c2b2f988980f",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "08385683-3faa-497e-9496-d900de4ef8f2",
+        "usda_ingredient_id": "goya_mojo",
+        "meal_plan_meal_id": "e7e833d5-22d0-45bf-8608-674b0c00acd6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "b5d2b8c1-e9f5-4624-9966-04a292023c3a",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "794b5c6d-e30c-402d-aa3e-de4e49c412d9",
+        "usda_ingredient_id": "worcestershire_sauce",
+        "meal_plan_meal_id": "e7e833d5-22d0-45bf-8608-674b0c00acd6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "fefb944d-7eb1-4f88-873b-f07118ed0cf8",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "da2dfa04-aad8-40d2-bd55-001938aa56ec",
+        "usda_ingredient_id": "balsamic_vinegar",
+        "meal_plan_meal_id": "e7e833d5-22d0-45bf-8608-674b0c00acd6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5face6f1-5cde-412e-9fbb-b4ef71b10131",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "a97306cc-e27f-4a6d-a802-d44c73b286b9",
+        "usda_ingredient_id": "broccoli",
+        "meal_plan_meal_id": "e7e833d5-22d0-45bf-8608-674b0c00acd6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "03171774-88ee-4be9-94f9-de63b105620f",
+        "quantity": 5.0,
+        "active": true
+    },
+    {
+        "id": "80687c0f-a980-4d9e-91e8-72fc84f1209e",
+        "usda_ingredient_id": "adobo",
+        "meal_plan_meal_id": "e7e833d5-22d0-45bf-8608-674b0c00acd6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "c6a80b3d-31dc-4922-8478-9fe13041b7b1",
+        "usda_ingredient_id": "garlic_powder",
+        "meal_plan_meal_id": "e7e833d5-22d0-45bf-8608-674b0c00acd6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ad7a9425-384a-4ce7-9d75-94ac75547bc6",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "2d137990-e1fb-4b7c-a09d-395409108b80",
+        "usda_ingredient_id": "salt",
+        "meal_plan_meal_id": "e7e833d5-22d0-45bf-8608-674b0c00acd6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "d71826ce-413f-47b0-9dcd-d67dc25b50d8",
+        "usda_ingredient_id": "oyster_sauce",
+        "meal_plan_meal_id": "e7e833d5-22d0-45bf-8608-674b0c00acd6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "4a6997b1-9786-4075-96d0-132135cb903b",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "f14c7af0-f201-4321-abf8-a6b8e1a60c1a",
+        "usda_ingredient_id": "white_rice_cooked",
+        "meal_plan_meal_id": "e7e833d5-22d0-45bf-8608-674b0c00acd6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71bd62ec-b446-4cd5-a608-51118a03941d",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "9c0b9beb-70a0-4d30-bd17-9a69f46bb629",
+        "usda_ingredient_id": "onion_powder",
+        "meal_plan_meal_id": "e7e833d5-22d0-45bf-8608-674b0c00acd6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "37be0e4a-98e8-49f1-9d0b-1af823967d33",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "88af3cbb-7a88-4cfe-ac08-48cb0a0d57c5",
+        "usda_ingredient_id": "black_pepper",
+        "meal_plan_meal_id": "e7e833d5-22d0-45bf-8608-674b0c00acd6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ce3c7638-26ba-4f81-bb03-ba48fcd80910",
+        "quantity": 0.0625,
+        "active": true
+    },
+    {
+        "id": "55d3ed3e-ab94-43e2-8f49-27033e7948dc",
+        "usda_ingredient_id": "beef_stock",
+        "meal_plan_meal_id": "e7e833d5-22d0-45bf-8608-674b0c00acd6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "16b02bd1-f118-4db5-b72a-b2c2ad7077a9",
+        "quantity": 0.625,
+        "active": true
+    },
+    {
+        "id": "606f882b-4213-46e0-a03c-e01d5d11ab31",
+        "usda_ingredient_id": "sugar",
+        "meal_plan_meal_id": "e7e833d5-22d0-45bf-8608-674b0c00acd6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71486006-c9da-4b34-915d-54bfafc47828",
+        "quantity": 0.0625,
+        "active": true
+    },
+    {
+        "id": "3a894d01-ce68-4a21-92a9-685141b030c8",
+        "usda_ingredient_id": "white_pepper",
+        "meal_plan_meal_id": "e7e833d5-22d0-45bf-8608-674b0c00acd6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "cc225707-b74c-4b70-9c2b-ab1720df74c9",
+        "quantity": 0.0825,
+        "active": true
+    },
+    {
+        "id": "28065e12-3d99-46e2-9512-055cd21650a0",
+        "usda_ingredient_id": "onion_raw",
+        "meal_plan_meal_id": "e7e833d5-22d0-45bf-8608-674b0c00acd6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "50b34dba-1eec-40e9-bf65-187b5dd191f7",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "a72f3d6f-9017-40a1-ae78-aca80c25f54b",
+        "usda_ingredient_id": "steak",
+        "meal_plan_meal_id": "48db798e-38cc-4f25-93fe-f686e2431d7b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "589252e3-b72c-4299-b452-24eb0b6b6416",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "52b63608-6b1b-446a-8e6e-63eb10810e37",
+        "usda_ingredient_id": "sesame_oil",
+        "meal_plan_meal_id": "e7e833d5-22d0-45bf-8608-674b0c00acd6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a556c1b4-c8c8-4870-89f5-74d5f1f63c61",
+        "quantity": 0.125,
+        "active": true
+    },
+    {
+        "id": "7d9ecb39-0edb-4687-b3a7-3d52f871cf33",
+        "usda_ingredient_id": "cornstarch",
+        "meal_plan_meal_id": "e7e833d5-22d0-45bf-8608-674b0c00acd6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0f6e8454-0c5b-4b25-9629-fbe8713232f5",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "98644745-7ea2-4dcc-b06f-1cb2eae20263",
+        "usda_ingredient_id": "ginger_root_raw",
+        "meal_plan_meal_id": "e7e833d5-22d0-45bf-8608-674b0c00acd6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a158a823-503b-434a-9ada-7d903b474334",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "c0387c21-3480-4a81-85c5-d2b7e075e370",
+        "usda_ingredient_id": "goya_mojo",
+        "meal_plan_meal_id": "48db798e-38cc-4f25-93fe-f686e2431d7b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "b5d2b8c1-e9f5-4624-9966-04a292023c3a",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "964a2792-aaac-46ad-a3d6-9f76da4d845c",
+        "usda_ingredient_id": "olive_oil",
+        "meal_plan_meal_id": "48db798e-38cc-4f25-93fe-f686e2431d7b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "d9bf1828-742c-4a88-94ae-a1f11c4ae1ff",
+        "usda_ingredient_id": "soy_sauce",
+        "meal_plan_meal_id": "48db798e-38cc-4f25-93fe-f686e2431d7b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "83fe3278-f610-4e1b-b250-94e7240ebff0",
+        "quantity": 1.75,
+        "active": true
+    },
+    {
+        "id": "d89fd3cc-c36f-43c9-b3ad-d1a1905f62c0",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "48db798e-38cc-4f25-93fe-f686e2431d7b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5669f29c-edf0-4a26-92ba-c2b2f988980f",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "f8695f1e-2643-49c8-a8d2-1a9f028636b7",
+        "usda_ingredient_id": "white_rice_cooked",
+        "meal_plan_meal_id": "48db798e-38cc-4f25-93fe-f686e2431d7b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71bd62ec-b446-4cd5-a608-51118a03941d",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "57e6fa5e-000f-44ff-baeb-e32c5942b817",
+        "usda_ingredient_id": "worcestershire_sauce",
+        "meal_plan_meal_id": "48db798e-38cc-4f25-93fe-f686e2431d7b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "fefb944d-7eb1-4f88-873b-f07118ed0cf8",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "3bc34f2f-abfb-4958-aeff-3e74d5f8f551",
+        "usda_ingredient_id": "balsamic_vinegar",
+        "meal_plan_meal_id": "48db798e-38cc-4f25-93fe-f686e2431d7b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5face6f1-5cde-412e-9fbb-b4ef71b10131",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "6a4c6424-087a-4574-990a-e419f9e1448d",
+        "usda_ingredient_id": "broccoli",
+        "meal_plan_meal_id": "48db798e-38cc-4f25-93fe-f686e2431d7b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "03171774-88ee-4be9-94f9-de63b105620f",
+        "quantity": 5.0,
+        "active": true
+    },
+    {
+        "id": "65443b22-8ad9-4689-a427-fd7a94426185",
+        "usda_ingredient_id": "adobo",
+        "meal_plan_meal_id": "48db798e-38cc-4f25-93fe-f686e2431d7b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "bd665445-f9cf-4168-936a-157e63858a85",
+        "usda_ingredient_id": "onion_powder",
+        "meal_plan_meal_id": "48db798e-38cc-4f25-93fe-f686e2431d7b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "37be0e4a-98e8-49f1-9d0b-1af823967d33",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "4d1abc3b-c598-40af-b787-94edf1849cf3",
+        "usda_ingredient_id": "black_pepper",
+        "meal_plan_meal_id": "48db798e-38cc-4f25-93fe-f686e2431d7b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ce3c7638-26ba-4f81-bb03-ba48fcd80910",
+        "quantity": 0.0625,
+        "active": true
+    },
+    {
+        "id": "556da871-ad7b-4bfc-a8ef-c5b86bcc3ac8",
+        "usda_ingredient_id": "beef_stock",
+        "meal_plan_meal_id": "48db798e-38cc-4f25-93fe-f686e2431d7b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "16b02bd1-f118-4db5-b72a-b2c2ad7077a9",
+        "quantity": 0.625,
+        "active": true
+    },
+    {
+        "id": "a7b8bcbc-5f65-4455-906a-2ce6722e007a",
+        "usda_ingredient_id": "sugar",
+        "meal_plan_meal_id": "48db798e-38cc-4f25-93fe-f686e2431d7b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71486006-c9da-4b34-915d-54bfafc47828",
+        "quantity": 0.0625,
+        "active": true
+    },
+    {
+        "id": "df953727-e679-494c-ad17-d5d801db21f7",
+        "usda_ingredient_id": "garlic_powder",
+        "meal_plan_meal_id": "48db798e-38cc-4f25-93fe-f686e2431d7b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ad7a9425-384a-4ce7-9d75-94ac75547bc6",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "0ed9a021-3284-426d-b018-2a60cf22411a",
+        "usda_ingredient_id": "salt",
+        "meal_plan_meal_id": "48db798e-38cc-4f25-93fe-f686e2431d7b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "e8b94038-363a-4add-8302-e203b8464c14",
+        "usda_ingredient_id": "oyster_sauce",
+        "meal_plan_meal_id": "48db798e-38cc-4f25-93fe-f686e2431d7b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "4a6997b1-9786-4075-96d0-132135cb903b",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "902df548-94fa-4e1f-96b0-99ab32077945",
+        "usda_ingredient_id": "sesame_oil",
+        "meal_plan_meal_id": "48db798e-38cc-4f25-93fe-f686e2431d7b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a556c1b4-c8c8-4870-89f5-74d5f1f63c61",
+        "quantity": 0.125,
+        "active": true
+    },
+    {
+        "id": "933e0bba-75cb-4685-8c24-7df2716ccbca",
+        "usda_ingredient_id": "white_pepper",
+        "meal_plan_meal_id": "48db798e-38cc-4f25-93fe-f686e2431d7b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "cc225707-b74c-4b70-9c2b-ab1720df74c9",
+        "quantity": 0.0825,
+        "active": true
+    },
+    {
+        "id": "74e4b0e1-4ca1-4c22-9e98-4760dda3c4f7",
+        "usda_ingredient_id": "onion_raw",
+        "meal_plan_meal_id": "48db798e-38cc-4f25-93fe-f686e2431d7b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "50b34dba-1eec-40e9-bf65-187b5dd191f7",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "6dc9935a-ced1-48db-bba6-a9241c0b846d",
+        "usda_ingredient_id": "steak",
+        "meal_plan_meal_id": "6fdffd10-580e-41f9-b848-9e960bb43b5a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "589252e3-b72c-4299-b452-24eb0b6b6416",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "774afc61-f313-4532-a801-d9fad19a2e53",
+        "usda_ingredient_id": "olive_oil",
+        "meal_plan_meal_id": "6fdffd10-580e-41f9-b848-9e960bb43b5a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "50a07f91-c3c9-417d-9932-5025d6122e92",
+        "usda_ingredient_id": "cornstarch",
+        "meal_plan_meal_id": "48db798e-38cc-4f25-93fe-f686e2431d7b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0f6e8454-0c5b-4b25-9629-fbe8713232f5",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "36433871-7950-4aa5-ae7f-9c7041ccdce8",
+        "usda_ingredient_id": "ginger_root_raw",
+        "meal_plan_meal_id": "48db798e-38cc-4f25-93fe-f686e2431d7b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a158a823-503b-434a-9ada-7d903b474334",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "46d2829e-f1f9-437f-95d7-95df30d5d111",
+        "usda_ingredient_id": "goya_mojo",
+        "meal_plan_meal_id": "6fdffd10-580e-41f9-b848-9e960bb43b5a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "b5d2b8c1-e9f5-4624-9966-04a292023c3a",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "bf2fe48c-404c-4d33-b04d-22c1225fbae4",
+        "usda_ingredient_id": "soy_sauce",
+        "meal_plan_meal_id": "6fdffd10-580e-41f9-b848-9e960bb43b5a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "83fe3278-f610-4e1b-b250-94e7240ebff0",
+        "quantity": 1.75,
+        "active": true
+    },
+    {
+        "id": "d2424823-e4bb-4aa5-bc13-f5f0c0207154",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "6fdffd10-580e-41f9-b848-9e960bb43b5a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5669f29c-edf0-4a26-92ba-c2b2f988980f",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "3090c503-b161-4167-98de-bea2b83d9e30",
+        "usda_ingredient_id": "white_rice_cooked",
+        "meal_plan_meal_id": "6fdffd10-580e-41f9-b848-9e960bb43b5a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71bd62ec-b446-4cd5-a608-51118a03941d",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "d96ac337-f012-4201-8758-be4653449c8f",
+        "usda_ingredient_id": "worcestershire_sauce",
+        "meal_plan_meal_id": "6fdffd10-580e-41f9-b848-9e960bb43b5a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "fefb944d-7eb1-4f88-873b-f07118ed0cf8",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "12304c3d-50f9-4162-aab7-0d213b880cf5",
+        "usda_ingredient_id": "balsamic_vinegar",
+        "meal_plan_meal_id": "6fdffd10-580e-41f9-b848-9e960bb43b5a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5face6f1-5cde-412e-9fbb-b4ef71b10131",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "6ff68bc3-6a3a-48b8-8081-c7debd6b24a2",
+        "usda_ingredient_id": "broccoli",
+        "meal_plan_meal_id": "6fdffd10-580e-41f9-b848-9e960bb43b5a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "03171774-88ee-4be9-94f9-de63b105620f",
+        "quantity": 5.0,
+        "active": true
+    },
+    {
+        "id": "af7eae11-c42d-4e97-8ba7-f0ab5edcd260",
+        "usda_ingredient_id": "adobo",
+        "meal_plan_meal_id": "6fdffd10-580e-41f9-b848-9e960bb43b5a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "b14f31a3-0ab9-425f-8f92-a981e81f84b6",
+        "usda_ingredient_id": "garlic_powder",
+        "meal_plan_meal_id": "6fdffd10-580e-41f9-b848-9e960bb43b5a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ad7a9425-384a-4ce7-9d75-94ac75547bc6",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "e9480174-f318-4388-8e56-524203b76806",
+        "usda_ingredient_id": "salt",
+        "meal_plan_meal_id": "6fdffd10-580e-41f9-b848-9e960bb43b5a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "d01216c8-357f-42fe-87a5-480360f220c8",
+        "usda_ingredient_id": "oyster_sauce",
+        "meal_plan_meal_id": "6fdffd10-580e-41f9-b848-9e960bb43b5a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "4a6997b1-9786-4075-96d0-132135cb903b",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "83f6e037-5483-481e-8058-97655b62719f",
+        "usda_ingredient_id": "sesame_oil",
+        "meal_plan_meal_id": "6fdffd10-580e-41f9-b848-9e960bb43b5a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a556c1b4-c8c8-4870-89f5-74d5f1f63c61",
+        "quantity": 0.125,
+        "active": true
+    },
+    {
+        "id": "c95fcc82-f016-4e30-9716-bd970ad41cf0",
+        "usda_ingredient_id": "onion_powder",
+        "meal_plan_meal_id": "6fdffd10-580e-41f9-b848-9e960bb43b5a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "37be0e4a-98e8-49f1-9d0b-1af823967d33",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "2943e555-a247-4fc5-8c35-24a76ecd1e06",
+        "usda_ingredient_id": "black_pepper",
+        "meal_plan_meal_id": "6fdffd10-580e-41f9-b848-9e960bb43b5a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ce3c7638-26ba-4f81-bb03-ba48fcd80910",
+        "quantity": 0.0625,
+        "active": true
+    },
+    {
+        "id": "1e136082-4154-464e-b104-01b2b91bf910",
+        "usda_ingredient_id": "beef_stock",
+        "meal_plan_meal_id": "6fdffd10-580e-41f9-b848-9e960bb43b5a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "16b02bd1-f118-4db5-b72a-b2c2ad7077a9",
+        "quantity": 0.625,
+        "active": true
+    },
+    {
+        "id": "00441c74-a460-4bc9-a0c2-d6a6aca7b7c4",
+        "usda_ingredient_id": "sugar",
+        "meal_plan_meal_id": "6fdffd10-580e-41f9-b848-9e960bb43b5a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71486006-c9da-4b34-915d-54bfafc47828",
+        "quantity": 0.0625,
+        "active": true
+    },
+    {
+        "id": "38743ef8-bb58-4bac-b592-cfd320c5dbe7",
+        "usda_ingredient_id": "white_pepper",
+        "meal_plan_meal_id": "6fdffd10-580e-41f9-b848-9e960bb43b5a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "cc225707-b74c-4b70-9c2b-ab1720df74c9",
+        "quantity": 0.0825,
+        "active": true
+    },
+    {
+        "id": "51f076c1-d6dd-430e-bd37-c05dcd9b12fb",
+        "usda_ingredient_id": "onion_raw",
+        "meal_plan_meal_id": "6fdffd10-580e-41f9-b848-9e960bb43b5a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "50b34dba-1eec-40e9-bf65-187b5dd191f7",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "b830ccfa-08e1-43d4-8ca0-689687005ef1",
+        "usda_ingredient_id": "steak",
+        "meal_plan_meal_id": "9b3801f9-944c-4069-9861-2945f3c4a960",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "589252e3-b72c-4299-b452-24eb0b6b6416",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "a3d9ca31-5267-4676-b613-e6dd1552af11",
+        "usda_ingredient_id": "olive_oil",
+        "meal_plan_meal_id": "9b3801f9-944c-4069-9861-2945f3c4a960",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "a016a4df-b8bd-4a87-86b2-f6e4248ed21d",
+        "usda_ingredient_id": "cornstarch",
+        "meal_plan_meal_id": "6fdffd10-580e-41f9-b848-9e960bb43b5a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0f6e8454-0c5b-4b25-9629-fbe8713232f5",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "3fe8625c-fec2-4d31-a82c-eb3bc48a0c82",
+        "usda_ingredient_id": "ginger_root_raw",
+        "meal_plan_meal_id": "6fdffd10-580e-41f9-b848-9e960bb43b5a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a158a823-503b-434a-9ada-7d903b474334",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "cbd40868-0a51-43fc-8fc8-0398f91ac71e",
+        "usda_ingredient_id": "goya_mojo",
+        "meal_plan_meal_id": "9b3801f9-944c-4069-9861-2945f3c4a960",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "b5d2b8c1-e9f5-4624-9966-04a292023c3a",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "25faeb9a-eb16-4c30-abe2-2525b9386b62",
+        "usda_ingredient_id": "worcestershire_sauce",
+        "meal_plan_meal_id": "9b3801f9-944c-4069-9861-2945f3c4a960",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "fefb944d-7eb1-4f88-873b-f07118ed0cf8",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "25799a2b-2103-4c33-bd98-d815f11ee5ae",
+        "usda_ingredient_id": "soy_sauce",
+        "meal_plan_meal_id": "9b3801f9-944c-4069-9861-2945f3c4a960",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "83fe3278-f610-4e1b-b250-94e7240ebff0",
+        "quantity": 1.75,
+        "active": true
+    },
+    {
+        "id": "eb670d4a-a278-4b32-97ee-a7bf4b59deff",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "9b3801f9-944c-4069-9861-2945f3c4a960",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5669f29c-edf0-4a26-92ba-c2b2f988980f",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "1410772b-1766-4aa5-b3cb-21771711b90e",
+        "usda_ingredient_id": "white_rice_cooked",
+        "meal_plan_meal_id": "9b3801f9-944c-4069-9861-2945f3c4a960",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71bd62ec-b446-4cd5-a608-51118a03941d",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "d754a043-3306-437b-bb29-bf86d412cdcf",
+        "usda_ingredient_id": "onion_powder",
+        "meal_plan_meal_id": "9b3801f9-944c-4069-9861-2945f3c4a960",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "37be0e4a-98e8-49f1-9d0b-1af823967d33",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "9ccb3bfe-4fca-4627-83a4-b4d4c4a1210e",
+        "usda_ingredient_id": "balsamic_vinegar",
+        "meal_plan_meal_id": "9b3801f9-944c-4069-9861-2945f3c4a960",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5face6f1-5cde-412e-9fbb-b4ef71b10131",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "9cf313e5-429d-436b-becf-157eae8c73e7",
+        "usda_ingredient_id": "broccoli",
+        "meal_plan_meal_id": "9b3801f9-944c-4069-9861-2945f3c4a960",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "03171774-88ee-4be9-94f9-de63b105620f",
+        "quantity": 5.0,
+        "active": true
+    },
+    {
+        "id": "fa3a9671-e4c1-4a0d-99c9-95c210d8f8f1",
+        "usda_ingredient_id": "adobo",
+        "meal_plan_meal_id": "9b3801f9-944c-4069-9861-2945f3c4a960",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "aff43077-2425-479d-9fb2-59c6be3e70a5",
+        "usda_ingredient_id": "garlic_powder",
+        "meal_plan_meal_id": "9b3801f9-944c-4069-9861-2945f3c4a960",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ad7a9425-384a-4ce7-9d75-94ac75547bc6",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "342bbb89-f4ac-48c0-ac67-65d9aec3fdbb",
+        "usda_ingredient_id": "black_pepper",
+        "meal_plan_meal_id": "9b3801f9-944c-4069-9861-2945f3c4a960",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ce3c7638-26ba-4f81-bb03-ba48fcd80910",
+        "quantity": 0.0625,
+        "active": true
+    },
+    {
+        "id": "1b28428b-4f3c-4b4b-923e-aee99ec735ce",
+        "usda_ingredient_id": "beef_stock",
+        "meal_plan_meal_id": "9b3801f9-944c-4069-9861-2945f3c4a960",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "16b02bd1-f118-4db5-b72a-b2c2ad7077a9",
+        "quantity": 0.625,
+        "active": true
+    },
+    {
+        "id": "0ad9851b-4d56-486b-8e57-8528d170e3c5",
+        "usda_ingredient_id": "sugar",
+        "meal_plan_meal_id": "9b3801f9-944c-4069-9861-2945f3c4a960",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71486006-c9da-4b34-915d-54bfafc47828",
+        "quantity": 0.0625,
+        "active": true
+    },
+    {
+        "id": "fb673585-205b-41a7-b2ce-f393b65fb994",
+        "usda_ingredient_id": "white_pepper",
+        "meal_plan_meal_id": "9b3801f9-944c-4069-9861-2945f3c4a960",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "cc225707-b74c-4b70-9c2b-ab1720df74c9",
+        "quantity": 0.0825,
+        "active": true
+    },
+    {
+        "id": "f3bbad44-1ef8-4ebb-9fa1-4bf4aab66c83",
+        "usda_ingredient_id": "salt",
+        "meal_plan_meal_id": "9b3801f9-944c-4069-9861-2945f3c4a960",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "148a5f19-7f0e-4c4d-aeb7-fc8da3b9ca06",
+        "usda_ingredient_id": "oyster_sauce",
+        "meal_plan_meal_id": "9b3801f9-944c-4069-9861-2945f3c4a960",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "4a6997b1-9786-4075-96d0-132135cb903b",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "385bca24-45db-4b37-a1ba-fa003cf0fe1f",
+        "usda_ingredient_id": "sesame_oil",
+        "meal_plan_meal_id": "9b3801f9-944c-4069-9861-2945f3c4a960",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a556c1b4-c8c8-4870-89f5-74d5f1f63c61",
+        "quantity": 0.125,
+        "active": true
+    },
+    {
+        "id": "f024656b-314e-4fb1-9aa6-4e8ffdc8c9a6",
+        "usda_ingredient_id": "cornstarch",
+        "meal_plan_meal_id": "9b3801f9-944c-4069-9861-2945f3c4a960",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0f6e8454-0c5b-4b25-9629-fbe8713232f5",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "b21d3485-db85-483b-883c-0704e2e02e8a",
+        "usda_ingredient_id": "onion_raw",
+        "meal_plan_meal_id": "9b3801f9-944c-4069-9861-2945f3c4a960",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "50b34dba-1eec-40e9-bf65-187b5dd191f7",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "41a2ab68-1417-487c-afef-66a45b2541ab",
+        "usda_ingredient_id": "steak",
+        "meal_plan_meal_id": "a0431584-7e84-46dd-974a-e9d5f9b7bd7a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "589252e3-b72c-4299-b452-24eb0b6b6416",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "7eb6ba06-affe-4e77-b457-246a63f3e8e9",
+        "usda_ingredient_id": "olive_oil",
+        "meal_plan_meal_id": "a0431584-7e84-46dd-974a-e9d5f9b7bd7a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "09697be7-4dcf-437c-90ad-9c97da81340e",
+        "usda_ingredient_id": "soy_sauce",
+        "meal_plan_meal_id": "a0431584-7e84-46dd-974a-e9d5f9b7bd7a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "83fe3278-f610-4e1b-b250-94e7240ebff0",
+        "quantity": 1.75,
+        "active": true
+    },
+    {
+        "id": "2c4423bd-1634-4353-a2bf-981805a3db57",
+        "usda_ingredient_id": "ginger_root_raw",
+        "meal_plan_meal_id": "9b3801f9-944c-4069-9861-2945f3c4a960",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a158a823-503b-434a-9ada-7d903b474334",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "f107839a-5d0f-440e-84b4-01f5b4ecbaa4",
+        "usda_ingredient_id": "goya_mojo",
+        "meal_plan_meal_id": "a0431584-7e84-46dd-974a-e9d5f9b7bd7a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "b5d2b8c1-e9f5-4624-9966-04a292023c3a",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "a9ee9693-659f-40f5-b288-90ec4d23ab45",
+        "usda_ingredient_id": "worcestershire_sauce",
+        "meal_plan_meal_id": "a0431584-7e84-46dd-974a-e9d5f9b7bd7a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "fefb944d-7eb1-4f88-873b-f07118ed0cf8",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "b48583a6-bcea-4b6a-a094-18029d12ed01",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "a0431584-7e84-46dd-974a-e9d5f9b7bd7a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5669f29c-edf0-4a26-92ba-c2b2f988980f",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "86bb7252-9f18-4059-9866-107f6c2ff427",
+        "usda_ingredient_id": "white_rice_cooked",
+        "meal_plan_meal_id": "a0431584-7e84-46dd-974a-e9d5f9b7bd7a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71bd62ec-b446-4cd5-a608-51118a03941d",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "7a1c2c25-3b70-4009-ae36-85fe68505430",
+        "usda_ingredient_id": "onion_powder",
+        "meal_plan_meal_id": "a0431584-7e84-46dd-974a-e9d5f9b7bd7a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "37be0e4a-98e8-49f1-9d0b-1af823967d33",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "6e6153fe-edd4-4d22-afee-8c09afc9f369",
+        "usda_ingredient_id": "balsamic_vinegar",
+        "meal_plan_meal_id": "a0431584-7e84-46dd-974a-e9d5f9b7bd7a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5face6f1-5cde-412e-9fbb-b4ef71b10131",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "a1a7a094-2446-43c4-af9f-b73bd4776379",
+        "usda_ingredient_id": "broccoli",
+        "meal_plan_meal_id": "a0431584-7e84-46dd-974a-e9d5f9b7bd7a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "03171774-88ee-4be9-94f9-de63b105620f",
+        "quantity": 5.0,
+        "active": true
+    },
+    {
+        "id": "150a3c8e-0f15-455a-aa86-dbbbefd1cd15",
+        "usda_ingredient_id": "adobo",
+        "meal_plan_meal_id": "a0431584-7e84-46dd-974a-e9d5f9b7bd7a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "1c9e2cfb-8fcd-4f63-921f-e0d1815193ad",
+        "usda_ingredient_id": "garlic_powder",
+        "meal_plan_meal_id": "a0431584-7e84-46dd-974a-e9d5f9b7bd7a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ad7a9425-384a-4ce7-9d75-94ac75547bc6",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "4dfcbc9e-9ce3-43c6-92f0-3469de94028c",
+        "usda_ingredient_id": "salt",
+        "meal_plan_meal_id": "a0431584-7e84-46dd-974a-e9d5f9b7bd7a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "ae592dea-ecb2-4341-9bb9-3c16dbb10c9c",
+        "usda_ingredient_id": "oyster_sauce",
+        "meal_plan_meal_id": "a0431584-7e84-46dd-974a-e9d5f9b7bd7a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "4a6997b1-9786-4075-96d0-132135cb903b",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "a352af83-a5a1-405b-a3d8-f6288f50b77e",
+        "usda_ingredient_id": "sesame_oil",
+        "meal_plan_meal_id": "a0431584-7e84-46dd-974a-e9d5f9b7bd7a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a556c1b4-c8c8-4870-89f5-74d5f1f63c61",
+        "quantity": 0.125,
+        "active": true
+    },
+    {
+        "id": "47633ad8-e78d-473b-87ce-bf832890707f",
+        "usda_ingredient_id": "cornstarch",
+        "meal_plan_meal_id": "a0431584-7e84-46dd-974a-e9d5f9b7bd7a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0f6e8454-0c5b-4b25-9629-fbe8713232f5",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "8a7aab7a-5c12-49c0-8123-732689c73deb",
+        "usda_ingredient_id": "black_pepper",
+        "meal_plan_meal_id": "a0431584-7e84-46dd-974a-e9d5f9b7bd7a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ce3c7638-26ba-4f81-bb03-ba48fcd80910",
+        "quantity": 0.0625,
+        "active": true
+    },
+    {
+        "id": "4052ae09-2185-46f7-9849-4b52ccd37be9",
+        "usda_ingredient_id": "beef_stock",
+        "meal_plan_meal_id": "a0431584-7e84-46dd-974a-e9d5f9b7bd7a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "16b02bd1-f118-4db5-b72a-b2c2ad7077a9",
+        "quantity": 0.625,
+        "active": true
+    },
+    {
+        "id": "523cd34a-0a07-4fb1-a416-2b474320ad81",
+        "usda_ingredient_id": "sugar",
+        "meal_plan_meal_id": "a0431584-7e84-46dd-974a-e9d5f9b7bd7a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71486006-c9da-4b34-915d-54bfafc47828",
+        "quantity": 0.0625,
+        "active": true
+    },
+    {
+        "id": "6b114d85-0f46-46d2-9858-3629ae1bce4d",
+        "usda_ingredient_id": "white_pepper",
+        "meal_plan_meal_id": "a0431584-7e84-46dd-974a-e9d5f9b7bd7a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "cc225707-b74c-4b70-9c2b-ab1720df74c9",
+        "quantity": 0.0825,
+        "active": true
+    },
+    {
+        "id": "bc458955-6796-474f-882b-8da97a0bf7bb",
+        "usda_ingredient_id": "onion_raw",
+        "meal_plan_meal_id": "a0431584-7e84-46dd-974a-e9d5f9b7bd7a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "50b34dba-1eec-40e9-bf65-187b5dd191f7",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "332cebd2-8ba3-46f0-8c7a-4d400aa4ae68",
+        "usda_ingredient_id": "steak",
+        "meal_plan_meal_id": "f9db708f-d550-4273-92eb-9f6818013c2e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "589252e3-b72c-4299-b452-24eb0b6b6416",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "4084ea0d-83ae-4c1d-b3f9-3f34e0eca6c3",
+        "usda_ingredient_id": "olive_oil",
+        "meal_plan_meal_id": "f9db708f-d550-4273-92eb-9f6818013c2e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "3ca325d6-ea45-4afc-8be8-4e682e8bee0b",
+        "usda_ingredient_id": "soy_sauce",
+        "meal_plan_meal_id": "f9db708f-d550-4273-92eb-9f6818013c2e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "83fe3278-f610-4e1b-b250-94e7240ebff0",
+        "quantity": 1.75,
+        "active": true
+    },
+    {
+        "id": "1efab502-ef5f-4921-aa2b-12e9ed51185d",
+        "usda_ingredient_id": "ginger_root_raw",
+        "meal_plan_meal_id": "a0431584-7e84-46dd-974a-e9d5f9b7bd7a",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a158a823-503b-434a-9ada-7d903b474334",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "95e6dc71-5f6a-4958-8e5d-6993978dac3d",
+        "usda_ingredient_id": "goya_mojo",
+        "meal_plan_meal_id": "f9db708f-d550-4273-92eb-9f6818013c2e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "b5d2b8c1-e9f5-4624-9966-04a292023c3a",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "d5ac684e-68fa-4e1a-96c1-8cbd34511f24",
+        "usda_ingredient_id": "worcestershire_sauce",
+        "meal_plan_meal_id": "f9db708f-d550-4273-92eb-9f6818013c2e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "fefb944d-7eb1-4f88-873b-f07118ed0cf8",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "dc30c2a2-0a5b-433d-9a93-8d7262817f34",
+        "usda_ingredient_id": "balsamic_vinegar",
+        "meal_plan_meal_id": "f9db708f-d550-4273-92eb-9f6818013c2e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5face6f1-5cde-412e-9fbb-b4ef71b10131",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "ed148642-7263-4f70-a093-10a76e38cea3",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "f9db708f-d550-4273-92eb-9f6818013c2e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5669f29c-edf0-4a26-92ba-c2b2f988980f",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "39c0e31d-ea36-4c80-bece-8e6fea13d366",
+        "usda_ingredient_id": "white_rice_cooked",
+        "meal_plan_meal_id": "f9db708f-d550-4273-92eb-9f6818013c2e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71bd62ec-b446-4cd5-a608-51118a03941d",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "2fb683e0-fe84-459d-a54c-46e70da62707",
+        "usda_ingredient_id": "onion_powder",
+        "meal_plan_meal_id": "f9db708f-d550-4273-92eb-9f6818013c2e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "37be0e4a-98e8-49f1-9d0b-1af823967d33",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "5839abe2-f785-4409-bf74-5a79114d5626",
+        "usda_ingredient_id": "black_pepper",
+        "meal_plan_meal_id": "f9db708f-d550-4273-92eb-9f6818013c2e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ce3c7638-26ba-4f81-bb03-ba48fcd80910",
+        "quantity": 0.0625,
+        "active": true
+    },
+    {
+        "id": "12ea2472-be45-4ee9-ae2d-18f79c074643",
+        "usda_ingredient_id": "broccoli",
+        "meal_plan_meal_id": "f9db708f-d550-4273-92eb-9f6818013c2e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "03171774-88ee-4be9-94f9-de63b105620f",
+        "quantity": 5.0,
+        "active": true
+    },
+    {
+        "id": "77f9a4af-47e0-41f6-a840-77391d2fb6db",
+        "usda_ingredient_id": "adobo",
+        "meal_plan_meal_id": "f9db708f-d550-4273-92eb-9f6818013c2e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "00b4facf-cdec-4ddf-a6ae-2dea9421991e",
+        "usda_ingredient_id": "garlic_powder",
+        "meal_plan_meal_id": "f9db708f-d550-4273-92eb-9f6818013c2e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ad7a9425-384a-4ce7-9d75-94ac75547bc6",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "a857d50b-cf47-401b-ab18-8287288d7337",
+        "usda_ingredient_id": "salt",
+        "meal_plan_meal_id": "f9db708f-d550-4273-92eb-9f6818013c2e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "a24874a1-b31b-4877-b666-5195546a8a35",
+        "usda_ingredient_id": "beef_stock",
+        "meal_plan_meal_id": "f9db708f-d550-4273-92eb-9f6818013c2e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "16b02bd1-f118-4db5-b72a-b2c2ad7077a9",
+        "quantity": 0.625,
+        "active": true
+    },
+    {
+        "id": "1ee5e7b7-e038-40b6-a044-584db435c7fd",
+        "usda_ingredient_id": "sugar",
+        "meal_plan_meal_id": "f9db708f-d550-4273-92eb-9f6818013c2e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71486006-c9da-4b34-915d-54bfafc47828",
+        "quantity": 0.0625,
+        "active": true
+    },
+    {
+        "id": "b7ea291c-dccc-4f0a-a299-95fd2d98390b",
+        "usda_ingredient_id": "white_pepper",
+        "meal_plan_meal_id": "f9db708f-d550-4273-92eb-9f6818013c2e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "cc225707-b74c-4b70-9c2b-ab1720df74c9",
+        "quantity": 0.0825,
+        "active": true
+    },
+    {
+        "id": "4478e472-1fca-48b0-8802-6dc98757dcee",
+        "usda_ingredient_id": "onion_raw",
+        "meal_plan_meal_id": "f9db708f-d550-4273-92eb-9f6818013c2e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "50b34dba-1eec-40e9-bf65-187b5dd191f7",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "af04c143-ca47-4b4c-ad4d-1e548653cb01",
+        "usda_ingredient_id": "oyster_sauce",
+        "meal_plan_meal_id": "f9db708f-d550-4273-92eb-9f6818013c2e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "4a6997b1-9786-4075-96d0-132135cb903b",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "cda8cbd2-d81e-4940-b9a0-0f72c481f7c4",
+        "usda_ingredient_id": "sesame_oil",
+        "meal_plan_meal_id": "f9db708f-d550-4273-92eb-9f6818013c2e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a556c1b4-c8c8-4870-89f5-74d5f1f63c61",
+        "quantity": 0.125,
+        "active": true
+    },
+    {
+        "id": "75b9f796-8c9f-4c65-a560-2ee19c0e45e6",
+        "usda_ingredient_id": "cornstarch",
+        "meal_plan_meal_id": "f9db708f-d550-4273-92eb-9f6818013c2e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0f6e8454-0c5b-4b25-9629-fbe8713232f5",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "05e6d945-91b3-4adf-919e-5bc574c19b43",
+        "usda_ingredient_id": "ginger_root_raw",
+        "meal_plan_meal_id": "f9db708f-d550-4273-92eb-9f6818013c2e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a158a823-503b-434a-9ada-7d903b474334",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "4cd64538-6c06-4ed4-96a0-fd257530c094",
+        "usda_ingredient_id": "steak",
+        "meal_plan_meal_id": "a83913d5-eaf4-44d8-9bcf-8cc47a8426e5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "589252e3-b72c-4299-b452-24eb0b6b6416",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "06d60fd6-acc7-4c6f-b7ed-d03579455524",
+        "usda_ingredient_id": "olive_oil",
+        "meal_plan_meal_id": "a83913d5-eaf4-44d8-9bcf-8cc47a8426e5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "40759bf6-8adf-400d-8882-c95e42578dec",
+        "usda_ingredient_id": "soy_sauce",
+        "meal_plan_meal_id": "a83913d5-eaf4-44d8-9bcf-8cc47a8426e5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "83fe3278-f610-4e1b-b250-94e7240ebff0",
+        "quantity": 1.75,
+        "active": true
+    },
+    {
+        "id": "7ef173ac-3e09-43a0-b7d9-f12188275d05",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "a83913d5-eaf4-44d8-9bcf-8cc47a8426e5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5669f29c-edf0-4a26-92ba-c2b2f988980f",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "8645390b-45f3-4f65-888b-7b7bb7df5bc9",
+        "usda_ingredient_id": "goya_mojo",
+        "meal_plan_meal_id": "a83913d5-eaf4-44d8-9bcf-8cc47a8426e5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "b5d2b8c1-e9f5-4624-9966-04a292023c3a",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "c6bcb82a-9df7-4590-888f-43bff51e534d",
+        "usda_ingredient_id": "worcestershire_sauce",
+        "meal_plan_meal_id": "a83913d5-eaf4-44d8-9bcf-8cc47a8426e5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "fefb944d-7eb1-4f88-873b-f07118ed0cf8",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "b3655f1b-8816-4723-909b-ff2636e50d58",
+        "usda_ingredient_id": "balsamic_vinegar",
+        "meal_plan_meal_id": "a83913d5-eaf4-44d8-9bcf-8cc47a8426e5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5face6f1-5cde-412e-9fbb-b4ef71b10131",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "fcaf358d-9402-466d-9990-c86cd8bf899b",
+        "usda_ingredient_id": "white_rice_cooked",
+        "meal_plan_meal_id": "a83913d5-eaf4-44d8-9bcf-8cc47a8426e5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71bd62ec-b446-4cd5-a608-51118a03941d",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "a4ece494-4b19-4302-b50e-05351c70877b",
+        "usda_ingredient_id": "onion_powder",
+        "meal_plan_meal_id": "a83913d5-eaf4-44d8-9bcf-8cc47a8426e5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "37be0e4a-98e8-49f1-9d0b-1af823967d33",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "86a04cbb-5cb9-4b8c-9f61-e31c424974c3",
+        "usda_ingredient_id": "black_pepper",
+        "meal_plan_meal_id": "a83913d5-eaf4-44d8-9bcf-8cc47a8426e5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ce3c7638-26ba-4f81-bb03-ba48fcd80910",
+        "quantity": 0.0625,
+        "active": true
+    },
+    {
+        "id": "a2d5fc11-289e-4fa7-9e0c-b4aaa541c297",
+        "usda_ingredient_id": "broccoli",
+        "meal_plan_meal_id": "a83913d5-eaf4-44d8-9bcf-8cc47a8426e5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "03171774-88ee-4be9-94f9-de63b105620f",
+        "quantity": 5.0,
+        "active": true
+    },
+    {
+        "id": "fbae9bfd-c9ff-43ad-b0ec-8f91a0926561",
+        "usda_ingredient_id": "adobo",
+        "meal_plan_meal_id": "a83913d5-eaf4-44d8-9bcf-8cc47a8426e5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "d92fe6c5-048d-4646-839f-ff3bd4a20e5d",
+        "usda_ingredient_id": "garlic_powder",
+        "meal_plan_meal_id": "a83913d5-eaf4-44d8-9bcf-8cc47a8426e5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ad7a9425-384a-4ce7-9d75-94ac75547bc6",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "44de661d-dbe1-4e69-8442-ebe48d8e3b98",
+        "usda_ingredient_id": "salt",
+        "meal_plan_meal_id": "a83913d5-eaf4-44d8-9bcf-8cc47a8426e5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "91ea27ea-bc51-4fc3-b296-196f6deaa7d7",
+        "usda_ingredient_id": "oyster_sauce",
+        "meal_plan_meal_id": "a83913d5-eaf4-44d8-9bcf-8cc47a8426e5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "4a6997b1-9786-4075-96d0-132135cb903b",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "ea8c877d-137a-429b-a840-d58e7ee36894",
+        "usda_ingredient_id": "sesame_oil",
+        "meal_plan_meal_id": "a83913d5-eaf4-44d8-9bcf-8cc47a8426e5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a556c1b4-c8c8-4870-89f5-74d5f1f63c61",
+        "quantity": 0.125,
+        "active": true
+    },
+    {
+        "id": "522a5c3d-d85c-4a7f-a565-151e63fc7aee",
+        "usda_ingredient_id": "cornstarch",
+        "meal_plan_meal_id": "a83913d5-eaf4-44d8-9bcf-8cc47a8426e5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0f6e8454-0c5b-4b25-9629-fbe8713232f5",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "f28bc0a5-46d2-4677-968a-f224c924c258",
+        "usda_ingredient_id": "ginger_root_raw",
+        "meal_plan_meal_id": "a83913d5-eaf4-44d8-9bcf-8cc47a8426e5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a158a823-503b-434a-9ada-7d903b474334",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "57e81a20-0e47-4f7d-bd77-e6db1d8d7336",
+        "usda_ingredient_id": "beef_stock",
+        "meal_plan_meal_id": "a83913d5-eaf4-44d8-9bcf-8cc47a8426e5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "16b02bd1-f118-4db5-b72a-b2c2ad7077a9",
+        "quantity": 0.625,
+        "active": true
+    },
+    {
+        "id": "beec914e-3949-47b9-ac98-96b085621f3f",
+        "usda_ingredient_id": "sugar",
+        "meal_plan_meal_id": "a83913d5-eaf4-44d8-9bcf-8cc47a8426e5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71486006-c9da-4b34-915d-54bfafc47828",
+        "quantity": 0.0625,
+        "active": true
+    },
+    {
+        "id": "4932f092-b51d-4e69-880d-bee48d7bdb4c",
+        "usda_ingredient_id": "white_pepper",
+        "meal_plan_meal_id": "a83913d5-eaf4-44d8-9bcf-8cc47a8426e5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "cc225707-b74c-4b70-9c2b-ab1720df74c9",
+        "quantity": 0.0825,
+        "active": true
+    },
+    {
+        "id": "aa17c70f-72aa-458b-9f1e-a15b09968b9a",
+        "usda_ingredient_id": "onion_raw",
+        "meal_plan_meal_id": "a83913d5-eaf4-44d8-9bcf-8cc47a8426e5",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "50b34dba-1eec-40e9-bf65-187b5dd191f7",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "b854fc73-4bc9-4010-951b-7308c3ab7dfa",
+        "usda_ingredient_id": "steak",
+        "meal_plan_meal_id": "d7b0d2ec-643f-4a79-8f75-f72e6cac43dc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "589252e3-b72c-4299-b452-24eb0b6b6416",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "2d0bc3d5-cac5-4f28-b378-2c85319ee2f6",
+        "usda_ingredient_id": "olive_oil",
+        "meal_plan_meal_id": "d7b0d2ec-643f-4a79-8f75-f72e6cac43dc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "1b869c3d-8a17-457e-970a-219236ea4749",
+        "usda_ingredient_id": "soy_sauce",
+        "meal_plan_meal_id": "d7b0d2ec-643f-4a79-8f75-f72e6cac43dc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "83fe3278-f610-4e1b-b250-94e7240ebff0",
+        "quantity": 1.75,
+        "active": true
+    },
+    {
+        "id": "9328269b-9ba8-4f05-a8ea-060103567f44",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "d7b0d2ec-643f-4a79-8f75-f72e6cac43dc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5669f29c-edf0-4a26-92ba-c2b2f988980f",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "d164fde5-df14-4670-a1ba-dd34472ba819",
+        "usda_ingredient_id": "goya_mojo",
+        "meal_plan_meal_id": "d7b0d2ec-643f-4a79-8f75-f72e6cac43dc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "b5d2b8c1-e9f5-4624-9966-04a292023c3a",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "d59912e0-7a46-448e-a50c-ddc4385445fb",
+        "usda_ingredient_id": "worcestershire_sauce",
+        "meal_plan_meal_id": "d7b0d2ec-643f-4a79-8f75-f72e6cac43dc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "fefb944d-7eb1-4f88-873b-f07118ed0cf8",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "48cecda7-f3e8-43d3-b55c-96dace75aa44",
+        "usda_ingredient_id": "balsamic_vinegar",
+        "meal_plan_meal_id": "d7b0d2ec-643f-4a79-8f75-f72e6cac43dc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5face6f1-5cde-412e-9fbb-b4ef71b10131",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "1afdf789-5f53-40f7-809e-22d8f5e6d4e2",
+        "usda_ingredient_id": "broccoli",
+        "meal_plan_meal_id": "d7b0d2ec-643f-4a79-8f75-f72e6cac43dc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "03171774-88ee-4be9-94f9-de63b105620f",
+        "quantity": 5.0,
+        "active": true
+    },
+    {
+        "id": "019e81c6-af29-40ea-a8f6-504096d93a4b",
+        "usda_ingredient_id": "white_rice_cooked",
+        "meal_plan_meal_id": "d7b0d2ec-643f-4a79-8f75-f72e6cac43dc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71bd62ec-b446-4cd5-a608-51118a03941d",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "10aae309-31f8-44f0-b899-b9d03e2d9bd0",
+        "usda_ingredient_id": "onion_powder",
+        "meal_plan_meal_id": "d7b0d2ec-643f-4a79-8f75-f72e6cac43dc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "37be0e4a-98e8-49f1-9d0b-1af823967d33",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "4f7df73c-e1fc-4349-889b-ea7cee6a05dc",
+        "usda_ingredient_id": "black_pepper",
+        "meal_plan_meal_id": "d7b0d2ec-643f-4a79-8f75-f72e6cac43dc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ce3c7638-26ba-4f81-bb03-ba48fcd80910",
+        "quantity": 0.0625,
+        "active": true
+    },
+    {
+        "id": "109df573-610e-4147-8ea7-1d988425ddde",
+        "usda_ingredient_id": "beef_stock",
+        "meal_plan_meal_id": "d7b0d2ec-643f-4a79-8f75-f72e6cac43dc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "16b02bd1-f118-4db5-b72a-b2c2ad7077a9",
+        "quantity": 0.625,
+        "active": true
+    },
+    {
+        "id": "1a0cddfd-7392-45d0-8191-27f9ca879ad3",
+        "usda_ingredient_id": "adobo",
+        "meal_plan_meal_id": "d7b0d2ec-643f-4a79-8f75-f72e6cac43dc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "8dd7d30f-0a9d-4f6c-a58f-fc072ed4289d",
+        "usda_ingredient_id": "garlic_powder",
+        "meal_plan_meal_id": "d7b0d2ec-643f-4a79-8f75-f72e6cac43dc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ad7a9425-384a-4ce7-9d75-94ac75547bc6",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "b8571dc6-c46c-428e-a787-0819eec3aef5",
+        "usda_ingredient_id": "salt",
+        "meal_plan_meal_id": "d7b0d2ec-643f-4a79-8f75-f72e6cac43dc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "fb0463c1-baf6-4110-813d-a83bde648fd8",
+        "usda_ingredient_id": "oyster_sauce",
+        "meal_plan_meal_id": "d7b0d2ec-643f-4a79-8f75-f72e6cac43dc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "4a6997b1-9786-4075-96d0-132135cb903b",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "2c39d619-ea81-4c1d-8f34-bb53264494e7",
+        "usda_ingredient_id": "sugar",
+        "meal_plan_meal_id": "d7b0d2ec-643f-4a79-8f75-f72e6cac43dc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71486006-c9da-4b34-915d-54bfafc47828",
+        "quantity": 0.0625,
+        "active": true
+    },
+    {
+        "id": "9a44ea5d-272d-4da1-9e6f-d8a98cd56dfa",
+        "usda_ingredient_id": "white_pepper",
+        "meal_plan_meal_id": "d7b0d2ec-643f-4a79-8f75-f72e6cac43dc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "cc225707-b74c-4b70-9c2b-ab1720df74c9",
+        "quantity": 0.0825,
+        "active": true
+    },
+    {
+        "id": "fa9a3d63-bf70-4620-9c6e-aa994d4193a4",
+        "usda_ingredient_id": "onion_raw",
+        "meal_plan_meal_id": "d7b0d2ec-643f-4a79-8f75-f72e6cac43dc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "50b34dba-1eec-40e9-bf65-187b5dd191f7",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "6049141e-c2c7-4485-8b9a-5179129cb4d0",
+        "usda_ingredient_id": "butter_beans",
+        "meal_plan_meal_id": "6514522c-2539-4b01-ace4-cf374c31c480",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "abff4dec-d888-4c23-b5a2-33e066eb8a33",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "08a0bc8f-d7a7-4a3e-8789-8ef19d30c79c",
+        "usda_ingredient_id": "sesame_oil",
+        "meal_plan_meal_id": "d7b0d2ec-643f-4a79-8f75-f72e6cac43dc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a556c1b4-c8c8-4870-89f5-74d5f1f63c61",
+        "quantity": 0.125,
+        "active": true
+    },
+    {
+        "id": "3890db3d-0dac-4a41-a4e9-4e7a8f6f1f53",
+        "usda_ingredient_id": "cornstarch",
+        "meal_plan_meal_id": "d7b0d2ec-643f-4a79-8f75-f72e6cac43dc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0f6e8454-0c5b-4b25-9629-fbe8713232f5",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "cb92b292-0dae-42dd-b696-d4caa14ddb8d",
+        "usda_ingredient_id": "ginger_root_raw",
+        "meal_plan_meal_id": "d7b0d2ec-643f-4a79-8f75-f72e6cac43dc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a158a823-503b-434a-9ada-7d903b474334",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "366e1f3c-1e3d-44d7-a516-1d26d1c0498d",
+        "usda_ingredient_id": "smoked_ham",
+        "meal_plan_meal_id": "6514522c-2539-4b01-ace4-cf374c31c480",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "363796d0-5ac8-4ab3-acd6-7e220a2d6bca",
+        "quantity": 0.66667,
+        "active": true
+    },
+    {
+        "id": "e182f2ee-9095-4211-81e5-c1e6781d5f7b",
+        "usda_ingredient_id": "bay_leaves",
+        "meal_plan_meal_id": "6514522c-2539-4b01-ace4-cf374c31c480",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "3a8e485d-8698-45a4-8353-80794db6a903",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "01937044-c143-4982-8ba1-6d41b8eaf464",
+        "usda_ingredient_id": "adobo",
+        "meal_plan_meal_id": "6514522c-2539-4b01-ace4-cf374c31c480",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 0.33333,
+        "active": true
+    },
+    {
+        "id": "91a5c5e9-f1da-4bb9-9765-7871322c7f13",
+        "usda_ingredient_id": "salt",
+        "meal_plan_meal_id": "6514522c-2539-4b01-ace4-cf374c31c480",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.33333,
+        "active": true
+    },
+    {
+        "id": "0d605647-8410-4d19-b1c6-a0abeb020cdb",
+        "usda_ingredient_id": "black_pepper",
+        "meal_plan_meal_id": "6514522c-2539-4b01-ace4-cf374c31c480",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c509c903-95b5-4686-b154-1ffc28c03685",
+        "quantity": 0.02083,
+        "active": true
+    },
+    {
+        "id": "a4c385ba-8046-45a1-8e34-4a14c2b170c9",
+        "usda_ingredient_id": "red_pepper_flakes",
+        "meal_plan_meal_id": "6514522c-2539-4b01-ace4-cf374c31c480",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.04167,
+        "active": true
+    },
+    {
+        "id": "f0b8120b-9ed8-4ec7-9c5a-1a05e7e62a1f",
+        "usda_ingredient_id": "liquid_smoke",
+        "meal_plan_meal_id": "6514522c-2539-4b01-ace4-cf374c31c480",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a92faa94-860a-4bca-a35c-c53d8e3a12dd",
+        "quantity": 0.02083,
+        "active": true
+    },
+    {
+        "id": "89184c1a-7cfa-4229-a3f6-e06f2a49b5b2",
+        "usda_ingredient_id": "honey",
+        "meal_plan_meal_id": "6514522c-2539-4b01-ace4-cf374c31c480",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c9861f6b-0ab9-4133-b9ae-c59df95ce30c",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "094f81b6-2569-4963-8da8-06e47ed0c923",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "6514522c-2539-4b01-ace4-cf374c31c480",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "14ad82c6-19d3-4dc3-bb85-bd34dce36a62",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "877f9c0f-9e7d-4781-9145-f682d096a699",
+        "usda_ingredient_id": "sofrito",
+        "meal_plan_meal_id": "6514522c-2539-4b01-ace4-cf374c31c480",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "38680978-3adc-4fda-97be-558c4329ec64",
+        "quantity": 0.83333,
+        "active": true
+    },
+    {
+        "id": "4a6b49f6-6be7-4698-8f79-e86ea204b826",
+        "usda_ingredient_id": "hot_sauce_tabasco",
+        "meal_plan_meal_id": "6514522c-2539-4b01-ace4-cf374c31c480",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5426a19e-6d44-41b4-8a1b-2481e70cd24f",
+        "quantity": 0.04167,
+        "active": true
+    },
+    {
+        "id": "aafa2dfa-de3b-43a5-8e1b-b7444678c78e",
+        "usda_ingredient_id": "tomato_sauce",
+        "meal_plan_meal_id": "6514522c-2539-4b01-ace4-cf374c31c480",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "bfd40dd5-3c8f-4cd1-b525-fb0a6243c4ef",
+        "quantity": 1.33333,
+        "active": true
+    },
+    {
+        "id": "9fa7db90-a310-4fd5-80c0-251960f049f8",
+        "usda_ingredient_id": "herbs_de_provence",
+        "meal_plan_meal_id": "6514522c-2539-4b01-ace4-cf374c31c480",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "1deccd46-e392-44b7-9d21-897d9514a93e",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "3446c4ff-6ec3-44ec-9e20-2703fada52b0",
+        "usda_ingredient_id": "sauteed_chicken",
+        "meal_plan_meal_id": "6514522c-2539-4b01-ace4-cf374c31c480",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "24fe9b17-4622-4ee2-900e-0ece75e7d58d",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "f505033e-9a98-4bc6-8748-c0d5f79dd609",
+        "usda_ingredient_id": "smoked_ham",
+        "meal_plan_meal_id": "5899cb4d-f857-481c-b147-b61e9cddad8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "363796d0-5ac8-4ab3-acd6-7e220a2d6bca",
+        "quantity": 0.66667,
+        "active": true
+    },
+    {
+        "id": "b0f4510b-da6a-4cba-8496-39c3317cda51",
+        "usda_ingredient_id": "adobo",
+        "meal_plan_meal_id": "5899cb4d-f857-481c-b147-b61e9cddad8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 0.33333,
+        "active": true
+    },
+    {
+        "id": "f0aacad3-b95f-4c51-bb81-5d69351b2625",
+        "usda_ingredient_id": "white_rice_cooked",
+        "meal_plan_meal_id": "6514522c-2539-4b01-ace4-cf374c31c480",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71bd62ec-b446-4cd5-a608-51118a03941d",
+        "quantity": 0.66667,
+        "active": true
+    },
+    {
+        "id": "88f323c9-4129-476c-afea-61fb9850cfcc",
+        "usda_ingredient_id": "butter_beans",
+        "meal_plan_meal_id": "5899cb4d-f857-481c-b147-b61e9cddad8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "abff4dec-d888-4c23-b5a2-33e066eb8a33",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "a821b43f-e7bd-4ab9-9400-0f66698e90cd",
+        "usda_ingredient_id": "bay_leaves",
+        "meal_plan_meal_id": "5899cb4d-f857-481c-b147-b61e9cddad8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "3a8e485d-8698-45a4-8353-80794db6a903",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "b1adeb62-dfde-463a-be0a-dae33a153b40",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "5899cb4d-f857-481c-b147-b61e9cddad8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "14ad82c6-19d3-4dc3-bb85-bd34dce36a62",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "80ebe804-0a59-4c76-8fd4-33c3655c8509",
+        "usda_ingredient_id": "sofrito",
+        "meal_plan_meal_id": "5899cb4d-f857-481c-b147-b61e9cddad8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "38680978-3adc-4fda-97be-558c4329ec64",
+        "quantity": 0.83333,
+        "active": true
+    },
+    {
+        "id": "13ba77fb-106a-4446-8100-57e53eab5acc",
+        "usda_ingredient_id": "hot_sauce_tabasco",
+        "meal_plan_meal_id": "5899cb4d-f857-481c-b147-b61e9cddad8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5426a19e-6d44-41b4-8a1b-2481e70cd24f",
+        "quantity": 0.04167,
+        "active": true
+    },
+    {
+        "id": "5b630806-286d-4200-a687-2dc34a1e9d69",
+        "usda_ingredient_id": "tomato_sauce",
+        "meal_plan_meal_id": "5899cb4d-f857-481c-b147-b61e9cddad8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "bfd40dd5-3c8f-4cd1-b525-fb0a6243c4ef",
+        "quantity": 1.33333,
+        "active": true
+    },
+    {
+        "id": "1cbe68e4-ffa1-4bac-968b-4d940537b655",
+        "usda_ingredient_id": "salt",
+        "meal_plan_meal_id": "5899cb4d-f857-481c-b147-b61e9cddad8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.33333,
+        "active": true
+    },
+    {
+        "id": "dd81e9ee-3008-40d6-923f-69784e93dffa",
+        "usda_ingredient_id": "black_pepper",
+        "meal_plan_meal_id": "5899cb4d-f857-481c-b147-b61e9cddad8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c509c903-95b5-4686-b154-1ffc28c03685",
+        "quantity": 0.02083,
+        "active": true
+    },
+    {
+        "id": "95c5b526-bd90-477a-8a56-87c98fd262c5",
+        "usda_ingredient_id": "red_pepper_flakes",
+        "meal_plan_meal_id": "5899cb4d-f857-481c-b147-b61e9cddad8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.04167,
+        "active": true
+    },
+    {
+        "id": "48ede9d4-fefd-47f7-961b-dc5e4fa1c312",
+        "usda_ingredient_id": "liquid_smoke",
+        "meal_plan_meal_id": "5899cb4d-f857-481c-b147-b61e9cddad8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a92faa94-860a-4bca-a35c-c53d8e3a12dd",
+        "quantity": 0.02083,
+        "active": true
+    },
+    {
+        "id": "6901d273-090c-408e-a3f0-9aebf5d4a55c",
+        "usda_ingredient_id": "honey",
+        "meal_plan_meal_id": "5899cb4d-f857-481c-b147-b61e9cddad8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c9861f6b-0ab9-4133-b9ae-c59df95ce30c",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "5abbe65c-b75f-4715-9a92-4fce117b5fca",
+        "usda_ingredient_id": "white_rice_cooked",
+        "meal_plan_meal_id": "5899cb4d-f857-481c-b147-b61e9cddad8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71bd62ec-b446-4cd5-a608-51118a03941d",
+        "quantity": 0.66667,
+        "active": true
+    },
+    {
+        "id": "52e1faac-1064-45e9-8cdc-a7a3af24e3ea",
+        "usda_ingredient_id": "butter_beans",
+        "meal_plan_meal_id": "047f32da-9ab8-4440-9dd0-052933e85fa1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "abff4dec-d888-4c23-b5a2-33e066eb8a33",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "6baec8e8-9d46-4b2f-818b-060eae8d5a4f",
+        "usda_ingredient_id": "bay_leaves",
+        "meal_plan_meal_id": "047f32da-9ab8-4440-9dd0-052933e85fa1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "3a8e485d-8698-45a4-8353-80794db6a903",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "00bd0424-a31d-40a2-85bf-66b1c1de5d2f",
+        "usda_ingredient_id": "herbs_de_provence",
+        "meal_plan_meal_id": "5899cb4d-f857-481c-b147-b61e9cddad8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "1deccd46-e392-44b7-9d21-897d9514a93e",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "5cb7f666-7356-4659-9ab5-cd5f415c34e4",
+        "usda_ingredient_id": "sauteed_chicken",
+        "meal_plan_meal_id": "5899cb4d-f857-481c-b147-b61e9cddad8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "24fe9b17-4622-4ee2-900e-0ece75e7d58d",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "00857320-0bbd-4b66-97c8-fb3110e31d59",
+        "usda_ingredient_id": "smoked_ham",
+        "meal_plan_meal_id": "047f32da-9ab8-4440-9dd0-052933e85fa1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "363796d0-5ac8-4ab3-acd6-7e220a2d6bca",
+        "quantity": 0.66667,
+        "active": true
+    },
+    {
+        "id": "9384fd54-629c-4107-aa64-18b584be2ef3",
+        "usda_ingredient_id": "adobo",
+        "meal_plan_meal_id": "047f32da-9ab8-4440-9dd0-052933e85fa1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 0.33333,
+        "active": true
+    },
+    {
+        "id": "7ebe9385-86a5-45ad-80d7-423c32c0dc2d",
+        "usda_ingredient_id": "salt",
+        "meal_plan_meal_id": "047f32da-9ab8-4440-9dd0-052933e85fa1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.33333,
+        "active": true
+    },
+    {
+        "id": "6fbfdd03-e2a1-4596-be45-8f2ddbde50d1",
+        "usda_ingredient_id": "black_pepper",
+        "meal_plan_meal_id": "047f32da-9ab8-4440-9dd0-052933e85fa1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c509c903-95b5-4686-b154-1ffc28c03685",
+        "quantity": 0.02083,
+        "active": true
+    },
+    {
+        "id": "4351cda8-3027-48e9-99ba-0e55099b51c3",
+        "usda_ingredient_id": "red_pepper_flakes",
+        "meal_plan_meal_id": "047f32da-9ab8-4440-9dd0-052933e85fa1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.04167,
+        "active": true
+    },
+    {
+        "id": "222b571a-9aac-4bcc-8b14-8cd0e58a71b1",
+        "usda_ingredient_id": "liquid_smoke",
+        "meal_plan_meal_id": "047f32da-9ab8-4440-9dd0-052933e85fa1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a92faa94-860a-4bca-a35c-c53d8e3a12dd",
+        "quantity": 0.02083,
+        "active": true
+    },
+    {
+        "id": "bdd73353-6469-4ca9-b9e0-1b3fe971e39e",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "047f32da-9ab8-4440-9dd0-052933e85fa1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "14ad82c6-19d3-4dc3-bb85-bd34dce36a62",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "d49e1f6a-b689-401e-8e88-aac115a0d0c7",
+        "usda_ingredient_id": "sofrito",
+        "meal_plan_meal_id": "047f32da-9ab8-4440-9dd0-052933e85fa1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "38680978-3adc-4fda-97be-558c4329ec64",
+        "quantity": 0.83333,
+        "active": true
+    },
+    {
+        "id": "ed2c2870-0068-4ab4-86ae-7a856c3a55bb",
+        "usda_ingredient_id": "hot_sauce_tabasco",
+        "meal_plan_meal_id": "047f32da-9ab8-4440-9dd0-052933e85fa1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5426a19e-6d44-41b4-8a1b-2481e70cd24f",
+        "quantity": 0.04167,
+        "active": true
+    },
+    {
+        "id": "53883986-c3bc-4137-86f5-ae04eb3813d6",
+        "usda_ingredient_id": "tomato_sauce",
+        "meal_plan_meal_id": "047f32da-9ab8-4440-9dd0-052933e85fa1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "bfd40dd5-3c8f-4cd1-b525-fb0a6243c4ef",
+        "quantity": 1.33333,
+        "active": true
+    },
+    {
+        "id": "d59b6115-1ad8-480c-8a1a-3331dcb6b8ba",
+        "usda_ingredient_id": "honey",
+        "meal_plan_meal_id": "047f32da-9ab8-4440-9dd0-052933e85fa1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c9861f6b-0ab9-4133-b9ae-c59df95ce30c",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "770dd347-5d54-45fe-911b-235def96706f",
+        "usda_ingredient_id": "white_rice_cooked",
+        "meal_plan_meal_id": "047f32da-9ab8-4440-9dd0-052933e85fa1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71bd62ec-b446-4cd5-a608-51118a03941d",
+        "quantity": 0.66667,
+        "active": true
+    },
+    {
+        "id": "60dbf350-0c09-4bf0-8cc4-00a6cef627cc",
+        "usda_ingredient_id": "butter_beans",
+        "meal_plan_meal_id": "ebfd9edb-49e2-442c-8a58-f4755b3b7734",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "abff4dec-d888-4c23-b5a2-33e066eb8a33",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "bf1a7d67-67c2-4fbc-8399-78b96ae46fd9",
+        "usda_ingredient_id": "bay_leaves",
+        "meal_plan_meal_id": "ebfd9edb-49e2-442c-8a58-f4755b3b7734",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "3a8e485d-8698-45a4-8353-80794db6a903",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "46d253eb-15cb-40fb-8449-7bd8a5a5a04f",
+        "usda_ingredient_id": "herbs_de_provence",
+        "meal_plan_meal_id": "047f32da-9ab8-4440-9dd0-052933e85fa1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "1deccd46-e392-44b7-9d21-897d9514a93e",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "0e985c63-e088-4d16-8e7d-fc8b0ade3616",
+        "usda_ingredient_id": "sauteed_chicken",
+        "meal_plan_meal_id": "047f32da-9ab8-4440-9dd0-052933e85fa1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "24fe9b17-4622-4ee2-900e-0ece75e7d58d",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "a1b52621-3eae-4dd7-9959-e0275668c264",
+        "usda_ingredient_id": "smoked_ham",
+        "meal_plan_meal_id": "ebfd9edb-49e2-442c-8a58-f4755b3b7734",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "363796d0-5ac8-4ab3-acd6-7e220a2d6bca",
+        "quantity": 0.66667,
+        "active": true
+    },
+    {
+        "id": "0945bfb9-28e9-4b03-b47f-cf7df9604a6c",
+        "usda_ingredient_id": "salt",
+        "meal_plan_meal_id": "ebfd9edb-49e2-442c-8a58-f4755b3b7734",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.33333,
+        "active": true
+    },
+    {
+        "id": "4611d05b-e97e-4376-bf7a-252354e75055",
+        "usda_ingredient_id": "black_pepper",
+        "meal_plan_meal_id": "ebfd9edb-49e2-442c-8a58-f4755b3b7734",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c509c903-95b5-4686-b154-1ffc28c03685",
+        "quantity": 0.02083,
+        "active": true
+    },
+    {
+        "id": "0f2794ad-eb2a-45d3-b205-b1cb759caf06",
+        "usda_ingredient_id": "red_pepper_flakes",
+        "meal_plan_meal_id": "ebfd9edb-49e2-442c-8a58-f4755b3b7734",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.04167,
+        "active": true
+    },
+    {
+        "id": "9316b0c4-9698-466c-953f-819cc535cba8",
+        "usda_ingredient_id": "liquid_smoke",
+        "meal_plan_meal_id": "ebfd9edb-49e2-442c-8a58-f4755b3b7734",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a92faa94-860a-4bca-a35c-c53d8e3a12dd",
+        "quantity": 0.02083,
+        "active": true
+    },
+    {
+        "id": "677e0216-ebee-4315-8a4c-9397d584221d",
+        "usda_ingredient_id": "adobo",
+        "meal_plan_meal_id": "ebfd9edb-49e2-442c-8a58-f4755b3b7734",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 0.33333,
+        "active": true
+    },
+    {
+        "id": "26ba8b5c-3c38-4020-81fd-d8fd24c305f3",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "ebfd9edb-49e2-442c-8a58-f4755b3b7734",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "14ad82c6-19d3-4dc3-bb85-bd34dce36a62",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "b01c14b2-1119-4258-a8dc-b581ed39ed3e",
+        "usda_ingredient_id": "sofrito",
+        "meal_plan_meal_id": "ebfd9edb-49e2-442c-8a58-f4755b3b7734",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "38680978-3adc-4fda-97be-558c4329ec64",
+        "quantity": 0.83333,
+        "active": true
+    },
+    {
+        "id": "ecdb01ee-b950-4710-9683-7c0c4e1ea150",
+        "usda_ingredient_id": "hot_sauce_tabasco",
+        "meal_plan_meal_id": "ebfd9edb-49e2-442c-8a58-f4755b3b7734",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5426a19e-6d44-41b4-8a1b-2481e70cd24f",
+        "quantity": 0.04167,
+        "active": true
+    },
+    {
+        "id": "43c36d56-3beb-4a98-a27b-27217a687f58",
+        "usda_ingredient_id": "tomato_sauce",
+        "meal_plan_meal_id": "ebfd9edb-49e2-442c-8a58-f4755b3b7734",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "bfd40dd5-3c8f-4cd1-b525-fb0a6243c4ef",
+        "quantity": 1.33333,
+        "active": true
+    },
+    {
+        "id": "d1388ee9-54e8-422f-895e-b8d0339b4ac9",
+        "usda_ingredient_id": "herbs_de_provence",
+        "meal_plan_meal_id": "ebfd9edb-49e2-442c-8a58-f4755b3b7734",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "1deccd46-e392-44b7-9d21-897d9514a93e",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "cb51dcc1-552e-4262-92a0-68cf85e0d321",
+        "usda_ingredient_id": "sauteed_chicken",
+        "meal_plan_meal_id": "ebfd9edb-49e2-442c-8a58-f4755b3b7734",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "24fe9b17-4622-4ee2-900e-0ece75e7d58d",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "52b78903-6748-428b-b472-72a1fbcb1347",
+        "usda_ingredient_id": "smoked_ham",
+        "meal_plan_meal_id": "37bd74b0-4243-4816-b7ed-f229a8872887",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "363796d0-5ac8-4ab3-acd6-7e220a2d6bca",
+        "quantity": 0.66667,
+        "active": true
+    },
+    {
+        "id": "bdf03f12-1e84-4d9a-8159-bc63e9e37415",
+        "usda_ingredient_id": "honey",
+        "meal_plan_meal_id": "ebfd9edb-49e2-442c-8a58-f4755b3b7734",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c9861f6b-0ab9-4133-b9ae-c59df95ce30c",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "9f09fce0-c72c-4046-af04-903943f9e3ca",
+        "usda_ingredient_id": "white_rice_cooked",
+        "meal_plan_meal_id": "ebfd9edb-49e2-442c-8a58-f4755b3b7734",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71bd62ec-b446-4cd5-a608-51118a03941d",
+        "quantity": 0.66667,
+        "active": true
+    },
+    {
+        "id": "85067084-0942-4aeb-85b4-5ff26071693c",
+        "usda_ingredient_id": "butter_beans",
+        "meal_plan_meal_id": "37bd74b0-4243-4816-b7ed-f229a8872887",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "abff4dec-d888-4c23-b5a2-33e066eb8a33",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "d7767b4a-d4ea-465e-b684-7c6a67d4058a",
+        "usda_ingredient_id": "adobo",
+        "meal_plan_meal_id": "37bd74b0-4243-4816-b7ed-f229a8872887",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 0.33333,
+        "active": true
+    },
+    {
+        "id": "e25a460d-a770-4afd-839e-62b420c8b540",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "37bd74b0-4243-4816-b7ed-f229a8872887",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "14ad82c6-19d3-4dc3-bb85-bd34dce36a62",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "4fe6b76b-08ad-4be2-a1ca-a38ad0b4704d",
+        "usda_ingredient_id": "sofrito",
+        "meal_plan_meal_id": "37bd74b0-4243-4816-b7ed-f229a8872887",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "38680978-3adc-4fda-97be-558c4329ec64",
+        "quantity": 0.83333,
+        "active": true
+    },
+    {
+        "id": "1a82743c-9f1b-49e7-bc47-9d9677ea00aa",
+        "usda_ingredient_id": "hot_sauce_tabasco",
+        "meal_plan_meal_id": "37bd74b0-4243-4816-b7ed-f229a8872887",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5426a19e-6d44-41b4-8a1b-2481e70cd24f",
+        "quantity": 0.04167,
+        "active": true
+    },
+    {
+        "id": "676560c5-7a72-4e45-b461-0c7b697fb37d",
+        "usda_ingredient_id": "bay_leaves",
+        "meal_plan_meal_id": "37bd74b0-4243-4816-b7ed-f229a8872887",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "3a8e485d-8698-45a4-8353-80794db6a903",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "c3e3dfa2-3d17-4816-b477-9687ff67579c",
+        "usda_ingredient_id": "salt",
+        "meal_plan_meal_id": "37bd74b0-4243-4816-b7ed-f229a8872887",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.33333,
+        "active": true
+    },
+    {
+        "id": "a4680a31-0e2b-43f0-aa7d-db9987d30fb4",
+        "usda_ingredient_id": "black_pepper",
+        "meal_plan_meal_id": "37bd74b0-4243-4816-b7ed-f229a8872887",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c509c903-95b5-4686-b154-1ffc28c03685",
+        "quantity": 0.02083,
+        "active": true
+    },
+    {
+        "id": "d7010b9f-6bba-4b7c-a46a-936256dc14cd",
+        "usda_ingredient_id": "red_pepper_flakes",
+        "meal_plan_meal_id": "37bd74b0-4243-4816-b7ed-f229a8872887",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.04167,
+        "active": true
+    },
+    {
+        "id": "90cf8a58-828a-4326-b327-84d57814a86e",
+        "usda_ingredient_id": "liquid_smoke",
+        "meal_plan_meal_id": "37bd74b0-4243-4816-b7ed-f229a8872887",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a92faa94-860a-4bca-a35c-c53d8e3a12dd",
+        "quantity": 0.02083,
+        "active": true
+    },
+    {
+        "id": "c2f5b330-75e7-4ab6-94b1-060924c56b39",
+        "usda_ingredient_id": "honey",
+        "meal_plan_meal_id": "37bd74b0-4243-4816-b7ed-f229a8872887",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c9861f6b-0ab9-4133-b9ae-c59df95ce30c",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "a161ef50-4cdc-401b-9c7e-d6371ff7d7c8",
+        "usda_ingredient_id": "white_rice_cooked",
+        "meal_plan_meal_id": "37bd74b0-4243-4816-b7ed-f229a8872887",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71bd62ec-b446-4cd5-a608-51118a03941d",
+        "quantity": 0.66667,
+        "active": true
+    },
+    {
+        "id": "42585456-5f7e-491b-b6e9-7e2f3611b276",
+        "usda_ingredient_id": "butter_beans",
+        "meal_plan_meal_id": "042577aa-5f12-4019-a359-bf2759339ce1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "abff4dec-d888-4c23-b5a2-33e066eb8a33",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "62f23860-2f7a-4cb0-b95a-99c3111d32c2",
+        "usda_ingredient_id": "tomato_sauce",
+        "meal_plan_meal_id": "37bd74b0-4243-4816-b7ed-f229a8872887",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "bfd40dd5-3c8f-4cd1-b525-fb0a6243c4ef",
+        "quantity": 1.33333,
+        "active": true
+    },
+    {
+        "id": "e47752d9-dded-40e1-9f31-42db8bcfe9b7",
+        "usda_ingredient_id": "herbs_de_provence",
+        "meal_plan_meal_id": "37bd74b0-4243-4816-b7ed-f229a8872887",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "1deccd46-e392-44b7-9d21-897d9514a93e",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "50003b94-d05e-42f9-b12c-78e130bbb838",
+        "usda_ingredient_id": "sauteed_chicken",
+        "meal_plan_meal_id": "37bd74b0-4243-4816-b7ed-f229a8872887",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "24fe9b17-4622-4ee2-900e-0ece75e7d58d",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "6a7184af-208a-4987-b140-cb217eb41bd7",
+        "usda_ingredient_id": "smoked_ham",
+        "meal_plan_meal_id": "042577aa-5f12-4019-a359-bf2759339ce1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "363796d0-5ac8-4ab3-acd6-7e220a2d6bca",
+        "quantity": 0.66667,
+        "active": true
+    },
+    {
+        "id": "e5ed4a8b-fdc0-4186-9aaa-1f5358b63547",
+        "usda_ingredient_id": "bay_leaves",
+        "meal_plan_meal_id": "042577aa-5f12-4019-a359-bf2759339ce1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "3a8e485d-8698-45a4-8353-80794db6a903",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "31bb8ca8-a8ef-419e-96e0-c69877acdd6c",
+        "usda_ingredient_id": "salt",
+        "meal_plan_meal_id": "042577aa-5f12-4019-a359-bf2759339ce1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.33333,
+        "active": true
+    },
+    {
+        "id": "45a98781-aaaa-4ab1-ad5b-d10a2f98b7c6",
+        "usda_ingredient_id": "black_pepper",
+        "meal_plan_meal_id": "042577aa-5f12-4019-a359-bf2759339ce1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c509c903-95b5-4686-b154-1ffc28c03685",
+        "quantity": 0.02083,
+        "active": true
+    },
+    {
+        "id": "8d448f3c-b2a1-4f33-8e96-5dade4724648",
+        "usda_ingredient_id": "red_pepper_flakes",
+        "meal_plan_meal_id": "042577aa-5f12-4019-a359-bf2759339ce1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.04167,
+        "active": true
+    },
+    {
+        "id": "2bf4095c-035f-4c61-be92-4493c5200b06",
+        "usda_ingredient_id": "adobo",
+        "meal_plan_meal_id": "042577aa-5f12-4019-a359-bf2759339ce1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 0.33333,
+        "active": true
+    },
+    {
+        "id": "7b96b94b-9c09-4774-bafe-309adb604ef7",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "042577aa-5f12-4019-a359-bf2759339ce1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "14ad82c6-19d3-4dc3-bb85-bd34dce36a62",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "7542bde7-ad91-450c-911a-0821cacc631e",
+        "usda_ingredient_id": "sofrito",
+        "meal_plan_meal_id": "042577aa-5f12-4019-a359-bf2759339ce1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "38680978-3adc-4fda-97be-558c4329ec64",
+        "quantity": 0.83333,
+        "active": true
+    },
+    {
+        "id": "223c21dd-0997-420e-a632-a5e1e4c3a310",
+        "usda_ingredient_id": "hot_sauce_tabasco",
+        "meal_plan_meal_id": "042577aa-5f12-4019-a359-bf2759339ce1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5426a19e-6d44-41b4-8a1b-2481e70cd24f",
+        "quantity": 0.04167,
+        "active": true
+    },
+    {
+        "id": "82ea51f1-7e66-4d8a-9c44-21205552677d",
+        "usda_ingredient_id": "liquid_smoke",
+        "meal_plan_meal_id": "042577aa-5f12-4019-a359-bf2759339ce1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a92faa94-860a-4bca-a35c-c53d8e3a12dd",
+        "quantity": 0.02083,
+        "active": true
+    },
+    {
+        "id": "a7343724-9cb1-404e-bc87-1eeedbd03fe1",
+        "usda_ingredient_id": "honey",
+        "meal_plan_meal_id": "042577aa-5f12-4019-a359-bf2759339ce1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c9861f6b-0ab9-4133-b9ae-c59df95ce30c",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "2827452f-6008-43b2-9db1-8f1a073f0ed6",
+        "usda_ingredient_id": "white_rice_cooked",
+        "meal_plan_meal_id": "042577aa-5f12-4019-a359-bf2759339ce1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71bd62ec-b446-4cd5-a608-51118a03941d",
+        "quantity": 0.66667,
+        "active": true
+    },
+    {
+        "id": "6f7af70f-486a-401b-90b5-667dec7c6275",
+        "usda_ingredient_id": "butter_beans",
+        "meal_plan_meal_id": "1bbb937c-c0da-448a-b16b-b2be95a039bf",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "abff4dec-d888-4c23-b5a2-33e066eb8a33",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "c794a9f3-c8e9-4a50-b3ad-10af94655280",
+        "usda_ingredient_id": "tomato_sauce",
+        "meal_plan_meal_id": "042577aa-5f12-4019-a359-bf2759339ce1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "bfd40dd5-3c8f-4cd1-b525-fb0a6243c4ef",
+        "quantity": 1.33333,
+        "active": true
+    },
+    {
+        "id": "a2cd136b-c4ca-4481-bcfb-41de26baffdc",
+        "usda_ingredient_id": "herbs_de_provence",
+        "meal_plan_meal_id": "042577aa-5f12-4019-a359-bf2759339ce1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "1deccd46-e392-44b7-9d21-897d9514a93e",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "560c8211-4b7e-4ed7-b902-aa15ae97538d",
+        "usda_ingredient_id": "sauteed_chicken",
+        "meal_plan_meal_id": "042577aa-5f12-4019-a359-bf2759339ce1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "24fe9b17-4622-4ee2-900e-0ece75e7d58d",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "4151f244-9361-486c-b7c2-302a80544945",
+        "usda_ingredient_id": "bay_leaves",
+        "meal_plan_meal_id": "1bbb937c-c0da-448a-b16b-b2be95a039bf",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "3a8e485d-8698-45a4-8353-80794db6a903",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "dc97aebf-7951-46c3-a8dc-af4468f4bf7d",
+        "usda_ingredient_id": "salt",
+        "meal_plan_meal_id": "1bbb937c-c0da-448a-b16b-b2be95a039bf",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.33333,
+        "active": true
+    },
+    {
+        "id": "4040c420-446d-480e-be74-10083531ddc9",
+        "usda_ingredient_id": "black_pepper",
+        "meal_plan_meal_id": "1bbb937c-c0da-448a-b16b-b2be95a039bf",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c509c903-95b5-4686-b154-1ffc28c03685",
+        "quantity": 0.02083,
+        "active": true
+    },
+    {
+        "id": "30e9a33a-c929-426e-b9e6-550ad5f3d16b",
+        "usda_ingredient_id": "red_pepper_flakes",
+        "meal_plan_meal_id": "1bbb937c-c0da-448a-b16b-b2be95a039bf",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.04167,
+        "active": true
+    },
+    {
+        "id": "3f6d884f-103d-465b-ab97-843b341082a2",
+        "usda_ingredient_id": "smoked_ham",
+        "meal_plan_meal_id": "1bbb937c-c0da-448a-b16b-b2be95a039bf",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "363796d0-5ac8-4ab3-acd6-7e220a2d6bca",
+        "quantity": 0.66667,
+        "active": true
+    },
+    {
+        "id": "422ad8eb-8bc4-4bef-9576-d2ffa7dc4f0e",
+        "usda_ingredient_id": "adobo",
+        "meal_plan_meal_id": "1bbb937c-c0da-448a-b16b-b2be95a039bf",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 0.33333,
+        "active": true
+    },
+    {
+        "id": "140c7450-09b5-4048-8d29-5e2aeba53bea",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "1bbb937c-c0da-448a-b16b-b2be95a039bf",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "14ad82c6-19d3-4dc3-bb85-bd34dce36a62",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "fc9cf22d-e4fc-43ee-83c1-741e3cbb6697",
+        "usda_ingredient_id": "sofrito",
+        "meal_plan_meal_id": "1bbb937c-c0da-448a-b16b-b2be95a039bf",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "38680978-3adc-4fda-97be-558c4329ec64",
+        "quantity": 0.83333,
+        "active": true
+    },
+    {
+        "id": "3a9ee36c-7747-4b78-9571-6e95dd5ca778",
+        "usda_ingredient_id": "hot_sauce_tabasco",
+        "meal_plan_meal_id": "1bbb937c-c0da-448a-b16b-b2be95a039bf",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5426a19e-6d44-41b4-8a1b-2481e70cd24f",
+        "quantity": 0.04167,
+        "active": true
+    },
+    {
+        "id": "38a53e1c-2ca6-490e-be29-afcd2cceaf01",
+        "usda_ingredient_id": "tomato_sauce",
+        "meal_plan_meal_id": "1bbb937c-c0da-448a-b16b-b2be95a039bf",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "bfd40dd5-3c8f-4cd1-b525-fb0a6243c4ef",
+        "quantity": 1.33333,
+        "active": true
+    },
+    {
+        "id": "1c72f9bd-8f12-4f70-9234-dbce89c6b18b",
+        "usda_ingredient_id": "herbs_de_provence",
+        "meal_plan_meal_id": "1bbb937c-c0da-448a-b16b-b2be95a039bf",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "1deccd46-e392-44b7-9d21-897d9514a93e",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "6c2ff075-3239-4bdb-af43-9c19f0f2ed61",
+        "usda_ingredient_id": "sauteed_chicken",
+        "meal_plan_meal_id": "1bbb937c-c0da-448a-b16b-b2be95a039bf",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "24fe9b17-4622-4ee2-900e-0ece75e7d58d",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "84a35afe-e894-40aa-9a1d-8c78ec903030",
+        "usda_ingredient_id": "liquid_smoke",
+        "meal_plan_meal_id": "1bbb937c-c0da-448a-b16b-b2be95a039bf",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a92faa94-860a-4bca-a35c-c53d8e3a12dd",
+        "quantity": 0.02083,
+        "active": true
+    },
+    {
+        "id": "366b5b2c-a870-4a6f-ae1a-06c5d613c2c1",
+        "usda_ingredient_id": "honey",
+        "meal_plan_meal_id": "1bbb937c-c0da-448a-b16b-b2be95a039bf",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c9861f6b-0ab9-4133-b9ae-c59df95ce30c",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "dd4fc2fd-bb72-47c6-99f0-97f0c01c6df5",
+        "usda_ingredient_id": "white_rice_cooked",
+        "meal_plan_meal_id": "1bbb937c-c0da-448a-b16b-b2be95a039bf",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71bd62ec-b446-4cd5-a608-51118a03941d",
+        "quantity": 0.66667,
+        "active": true
+    },
+    {
+        "id": "ec87fbf6-b123-45fc-9f86-c58619a05605",
+        "usda_ingredient_id": "smoked_ham",
+        "meal_plan_meal_id": "04ea7315-964b-4f4f-b485-cf4520c7d4ac",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "363796d0-5ac8-4ab3-acd6-7e220a2d6bca",
+        "quantity": 0.66667,
+        "active": true
+    },
+    {
+        "id": "7726129e-86da-4b03-a3d5-02f4b5e49310",
+        "usda_ingredient_id": "adobo",
+        "meal_plan_meal_id": "04ea7315-964b-4f4f-b485-cf4520c7d4ac",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 0.33333,
+        "active": true
+    },
+    {
+        "id": "09f95a99-d92c-4a06-9aaa-906b0eadecc3",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "04ea7315-964b-4f4f-b485-cf4520c7d4ac",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "14ad82c6-19d3-4dc3-bb85-bd34dce36a62",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "eb35b9ed-bfb9-4306-ac37-c8924661871a",
+        "usda_ingredient_id": "sofrito",
+        "meal_plan_meal_id": "04ea7315-964b-4f4f-b485-cf4520c7d4ac",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "38680978-3adc-4fda-97be-558c4329ec64",
+        "quantity": 0.83333,
+        "active": true
+    },
+    {
+        "id": "ae5898c6-fcf6-42f2-befc-70a0f6c11e87",
+        "usda_ingredient_id": "butter_beans",
+        "meal_plan_meal_id": "04ea7315-964b-4f4f-b485-cf4520c7d4ac",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "abff4dec-d888-4c23-b5a2-33e066eb8a33",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "634a7839-cf9c-4b1e-8625-505e7b6b2fe2",
+        "usda_ingredient_id": "bay_leaves",
+        "meal_plan_meal_id": "04ea7315-964b-4f4f-b485-cf4520c7d4ac",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "3a8e485d-8698-45a4-8353-80794db6a903",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "2394babf-0b2f-4d01-b985-963a7b80865b",
+        "usda_ingredient_id": "salt",
+        "meal_plan_meal_id": "04ea7315-964b-4f4f-b485-cf4520c7d4ac",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.33333,
+        "active": true
+    },
+    {
+        "id": "784e1dc7-075e-43ab-b98b-6741d83eb23e",
+        "usda_ingredient_id": "black_pepper",
+        "meal_plan_meal_id": "04ea7315-964b-4f4f-b485-cf4520c7d4ac",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c509c903-95b5-4686-b154-1ffc28c03685",
+        "quantity": 0.02083,
+        "active": true
+    },
+    {
+        "id": "ac6d87a9-d416-46fe-8cca-4e56bb765601",
+        "usda_ingredient_id": "red_pepper_flakes",
+        "meal_plan_meal_id": "04ea7315-964b-4f4f-b485-cf4520c7d4ac",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.04167,
+        "active": true
+    },
+    {
+        "id": "569083c5-cfcd-43c6-aadf-378971b536b4",
+        "usda_ingredient_id": "liquid_smoke",
+        "meal_plan_meal_id": "04ea7315-964b-4f4f-b485-cf4520c7d4ac",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a92faa94-860a-4bca-a35c-c53d8e3a12dd",
+        "quantity": 0.02083,
+        "active": true
+    },
+    {
+        "id": "9256804b-8a3e-4f07-8ede-2818e2c3eecd",
+        "usda_ingredient_id": "honey",
+        "meal_plan_meal_id": "04ea7315-964b-4f4f-b485-cf4520c7d4ac",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c9861f6b-0ab9-4133-b9ae-c59df95ce30c",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "d83f86f3-1f25-4a48-9735-5080dcb26145",
+        "usda_ingredient_id": "white_rice_cooked",
+        "meal_plan_meal_id": "04ea7315-964b-4f4f-b485-cf4520c7d4ac",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71bd62ec-b446-4cd5-a608-51118a03941d",
+        "quantity": 0.66667,
+        "active": true
+    },
+    {
+        "id": "dc963dc6-c1d0-4eef-aa31-7a72bc824392",
+        "usda_ingredient_id": "hot_sauce_tabasco",
+        "meal_plan_meal_id": "04ea7315-964b-4f4f-b485-cf4520c7d4ac",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5426a19e-6d44-41b4-8a1b-2481e70cd24f",
+        "quantity": 0.04167,
+        "active": true
+    },
+    {
+        "id": "05a1602d-9574-4bd7-be09-0a24e07d73c4",
+        "usda_ingredient_id": "tomato_sauce",
+        "meal_plan_meal_id": "04ea7315-964b-4f4f-b485-cf4520c7d4ac",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "bfd40dd5-3c8f-4cd1-b525-fb0a6243c4ef",
+        "quantity": 1.33333,
+        "active": true
+    },
+    {
+        "id": "6c3248c6-ee47-4a47-8d44-8686ff0f692d",
+        "usda_ingredient_id": "herbs_de_provence",
+        "meal_plan_meal_id": "04ea7315-964b-4f4f-b485-cf4520c7d4ac",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "1deccd46-e392-44b7-9d21-897d9514a93e",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "e8708c3a-d897-4b06-83a0-2d044b0b2972",
+        "usda_ingredient_id": "sauteed_chicken",
+        "meal_plan_meal_id": "04ea7315-964b-4f4f-b485-cf4520c7d4ac",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "24fe9b17-4622-4ee2-900e-0ece75e7d58d",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "1ba9d60a-cad2-4ad1-b2ee-792a9fc3a48e",
+        "usda_ingredient_id": "butter_beans",
+        "meal_plan_meal_id": "215eb197-183b-4e42-8e8f-503ac08adf46",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "abff4dec-d888-4c23-b5a2-33e066eb8a33",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "35813662-e1e5-4196-aa80-ba8db099a33d",
+        "usda_ingredient_id": "bay_leaves",
+        "meal_plan_meal_id": "215eb197-183b-4e42-8e8f-503ac08adf46",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "3a8e485d-8698-45a4-8353-80794db6a903",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "b4b6f4bb-187e-413d-a245-acbc46852cee",
+        "usda_ingredient_id": "salt",
+        "meal_plan_meal_id": "215eb197-183b-4e42-8e8f-503ac08adf46",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.33333,
+        "active": true
+    },
+    {
+        "id": "2afef681-6443-4406-95a8-6a59a35422f0",
+        "usda_ingredient_id": "black_pepper",
+        "meal_plan_meal_id": "215eb197-183b-4e42-8e8f-503ac08adf46",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c509c903-95b5-4686-b154-1ffc28c03685",
+        "quantity": 0.02083,
+        "active": true
+    },
+    {
+        "id": "e7c60c71-a324-4239-a940-12943531aa6c",
+        "usda_ingredient_id": "smoked_ham",
+        "meal_plan_meal_id": "215eb197-183b-4e42-8e8f-503ac08adf46",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "363796d0-5ac8-4ab3-acd6-7e220a2d6bca",
+        "quantity": 0.66667,
+        "active": true
+    },
+    {
+        "id": "e19b22d0-cd71-4b2a-a55b-2c6981cea9ea",
+        "usda_ingredient_id": "adobo",
+        "meal_plan_meal_id": "215eb197-183b-4e42-8e8f-503ac08adf46",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 0.33333,
+        "active": true
+    },
+    {
+        "id": "71cba834-359b-40f0-935d-f39ae6148d48",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "215eb197-183b-4e42-8e8f-503ac08adf46",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "14ad82c6-19d3-4dc3-bb85-bd34dce36a62",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "e090d2ba-b196-4f7a-bf7c-f05e197ff1f0",
+        "usda_ingredient_id": "sofrito",
+        "meal_plan_meal_id": "215eb197-183b-4e42-8e8f-503ac08adf46",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "38680978-3adc-4fda-97be-558c4329ec64",
+        "quantity": 0.83333,
+        "active": true
+    },
+    {
+        "id": "2031632f-3146-4201-9d9d-0526446caba5",
+        "usda_ingredient_id": "red_pepper_flakes",
+        "meal_plan_meal_id": "215eb197-183b-4e42-8e8f-503ac08adf46",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.04167,
+        "active": true
+    },
+    {
+        "id": "f4e14a99-7c42-455d-b351-b0ff439272bc",
+        "usda_ingredient_id": "liquid_smoke",
+        "meal_plan_meal_id": "215eb197-183b-4e42-8e8f-503ac08adf46",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a92faa94-860a-4bca-a35c-c53d8e3a12dd",
+        "quantity": 0.02083,
+        "active": true
+    },
+    {
+        "id": "24530404-ac7f-4997-9b96-a1cfa69db450",
+        "usda_ingredient_id": "honey",
+        "meal_plan_meal_id": "215eb197-183b-4e42-8e8f-503ac08adf46",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c9861f6b-0ab9-4133-b9ae-c59df95ce30c",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "de2bb12d-962e-4156-bc42-75db562ed414",
+        "usda_ingredient_id": "white_rice_cooked",
+        "meal_plan_meal_id": "215eb197-183b-4e42-8e8f-503ac08adf46",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71bd62ec-b446-4cd5-a608-51118a03941d",
+        "quantity": 0.66667,
+        "active": true
+    },
+    {
+        "id": "e92bc364-7fc6-47d4-ae38-dff50060bbb5",
+        "usda_ingredient_id": "hot_sauce_tabasco",
+        "meal_plan_meal_id": "215eb197-183b-4e42-8e8f-503ac08adf46",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5426a19e-6d44-41b4-8a1b-2481e70cd24f",
+        "quantity": 0.04167,
+        "active": true
+    },
+    {
+        "id": "8f8fc53a-8e17-4d8a-8eb9-11aade547058",
+        "usda_ingredient_id": "tomato_sauce",
+        "meal_plan_meal_id": "215eb197-183b-4e42-8e8f-503ac08adf46",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "bfd40dd5-3c8f-4cd1-b525-fb0a6243c4ef",
+        "quantity": 1.33333,
+        "active": true
+    },
+    {
+        "id": "ba5017e0-f05b-49fa-86fe-947b151a6d5c",
+        "usda_ingredient_id": "herbs_de_provence",
+        "meal_plan_meal_id": "215eb197-183b-4e42-8e8f-503ac08adf46",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "1deccd46-e392-44b7-9d21-897d9514a93e",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "674df3b9-a90d-4c4e-a3b6-b237d759469a",
+        "usda_ingredient_id": "butter_beans",
+        "meal_plan_meal_id": "2f9cea45-3c4c-4f9e-a266-16a27c362cc8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "abff4dec-d888-4c23-b5a2-33e066eb8a33",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "5f6705b7-6440-4b0d-8a14-951617992859",
+        "usda_ingredient_id": "bay_leaves",
+        "meal_plan_meal_id": "2f9cea45-3c4c-4f9e-a266-16a27c362cc8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "3a8e485d-8698-45a4-8353-80794db6a903",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "f6547a7a-f2f3-4833-a144-bebf1cf12725",
+        "usda_ingredient_id": "salt",
+        "meal_plan_meal_id": "2f9cea45-3c4c-4f9e-a266-16a27c362cc8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.33333,
+        "active": true
+    },
+    {
+        "id": "13a2586c-c6b2-4fbd-8924-56cd418fb212",
+        "usda_ingredient_id": "black_pepper",
+        "meal_plan_meal_id": "2f9cea45-3c4c-4f9e-a266-16a27c362cc8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c509c903-95b5-4686-b154-1ffc28c03685",
+        "quantity": 0.02083,
+        "active": true
+    },
+    {
+        "id": "859a0b96-90dc-4e74-aada-6f8f13cd7b15",
+        "usda_ingredient_id": "sauteed_chicken",
+        "meal_plan_meal_id": "215eb197-183b-4e42-8e8f-503ac08adf46",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "24fe9b17-4622-4ee2-900e-0ece75e7d58d",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "ed25a065-8c0d-4a2f-b87f-c0cac8a8e7ee",
+        "usda_ingredient_id": "smoked_ham",
+        "meal_plan_meal_id": "2f9cea45-3c4c-4f9e-a266-16a27c362cc8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "363796d0-5ac8-4ab3-acd6-7e220a2d6bca",
+        "quantity": 0.66667,
+        "active": true
+    },
+    {
+        "id": "cf834500-c94e-4afa-927d-73c66613ed26",
+        "usda_ingredient_id": "adobo",
+        "meal_plan_meal_id": "2f9cea45-3c4c-4f9e-a266-16a27c362cc8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 0.33333,
+        "active": true
+    },
+    {
+        "id": "fbcd695b-044f-4ffb-b6d0-89e3cbd17e4b",
+        "usda_ingredient_id": "garlic_minced",
+        "meal_plan_meal_id": "2f9cea45-3c4c-4f9e-a266-16a27c362cc8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "14ad82c6-19d3-4dc3-bb85-bd34dce36a62",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "c233475c-9fb2-4d4d-a7ce-43f6f8a96364",
+        "usda_ingredient_id": "sofrito",
+        "meal_plan_meal_id": "2f9cea45-3c4c-4f9e-a266-16a27c362cc8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "38680978-3adc-4fda-97be-558c4329ec64",
+        "quantity": 0.83333,
+        "active": true
+    },
+    {
+        "id": "8805a4da-aef4-42e1-904b-db0e28328b1e",
+        "usda_ingredient_id": "hot_sauce_tabasco",
+        "meal_plan_meal_id": "2f9cea45-3c4c-4f9e-a266-16a27c362cc8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5426a19e-6d44-41b4-8a1b-2481e70cd24f",
+        "quantity": 0.04167,
+        "active": true
+    },
+    {
+        "id": "d3b4370d-1203-4ffb-86f6-e7086ed1014b",
+        "usda_ingredient_id": "tomato_sauce",
+        "meal_plan_meal_id": "2f9cea45-3c4c-4f9e-a266-16a27c362cc8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "bfd40dd5-3c8f-4cd1-b525-fb0a6243c4ef",
+        "quantity": 1.33333,
+        "active": true
+    },
+    {
+        "id": "195c012f-d4e7-4262-b68b-ce4a9a085a41",
+        "usda_ingredient_id": "herbs_de_provence",
+        "meal_plan_meal_id": "2f9cea45-3c4c-4f9e-a266-16a27c362cc8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "1deccd46-e392-44b7-9d21-897d9514a93e",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "235b9c88-c212-428b-8edf-d03190b2ae5d",
+        "usda_ingredient_id": "red_pepper_flakes",
+        "meal_plan_meal_id": "2f9cea45-3c4c-4f9e-a266-16a27c362cc8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.04167,
+        "active": true
+    },
+    {
+        "id": "fcf87f8d-1cfd-4223-b4a6-6177df5ca1cc",
+        "usda_ingredient_id": "liquid_smoke",
+        "meal_plan_meal_id": "2f9cea45-3c4c-4f9e-a266-16a27c362cc8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a92faa94-860a-4bca-a35c-c53d8e3a12dd",
+        "quantity": 0.02083,
+        "active": true
+    },
+    {
+        "id": "4364dc7f-cec8-4294-9653-d6fcebdf4ebc",
+        "usda_ingredient_id": "honey",
+        "meal_plan_meal_id": "2f9cea45-3c4c-4f9e-a266-16a27c362cc8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c9861f6b-0ab9-4133-b9ae-c59df95ce30c",
+        "quantity": 0.16667,
+        "active": true
+    },
+    {
+        "id": "4d4b7c8e-d579-4389-bd7d-d969aff45ac7",
+        "usda_ingredient_id": "sauteed_chicken",
+        "meal_plan_meal_id": "2f9cea45-3c4c-4f9e-a266-16a27c362cc8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "24fe9b17-4622-4ee2-900e-0ece75e7d58d",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "af223910-247c-47bf-9194-aeff34e3feca",
+        "usda_ingredient_id": "white_rice_cooked",
+        "meal_plan_meal_id": "2f9cea45-3c4c-4f9e-a266-16a27c362cc8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "71bd62ec-b446-4cd5-a608-51118a03941d",
+        "quantity": 0.66667,
+        "active": true
+    }
+]

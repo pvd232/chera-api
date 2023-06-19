@@ -17,7 +17,9 @@ class USDA_Ingredient_Portion_DTO(Base_DTO):
             self.usda_ingredient_id: str = usda_ingredient_portion_json[
                 "usda_ingredient_id"
             ]
-            self.fda_portion_id: str = usda_ingredient_portion_json["fda_portion_id"]
+            self.fda_portion_id: str = str(
+                usda_ingredient_portion_json["fda_portion_id"]
+            )
             self.non_metric_unit: str = usda_ingredient_portion_json["non_metric_unit"]
             self.grams_per_non_metric_unit: float = float(
                 usda_ingredient_portion_json["grams_per_non_metric_unit"]

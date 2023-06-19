@@ -16,6 +16,13 @@ class USDA_Ingredient_Portion_Service(object):
     ) -> None:
         self.usda_ingredient_portion_repository = usda_ingredient_portion_repository
 
+    def get_usda_ingredient_portions(self) -> list[USDA_Ingredient_Portion_Domain]:
+        usda_ingredient_portion_domains = [
+            USDA_Ingredient_Portion_Domain(usda_ingredient_portion_object=x)
+            for x in self.usda_ingredient_portion_repository.get_usda_ingredient_portions()
+        ]
+        return usda_ingredient_portion_domains
+
     def create_usda_ingredient_portion(
         self, usda_ingredient_portion_dto: "USDA_Ingredient_Portion_DTO"
     ) -> None:
@@ -24,7 +31,7 @@ class USDA_Ingredient_Portion_Service(object):
         )
         if (
             usda_ingredient_portion_domain.custom_value == True
-            and usda_ingredient_portion_domain.usda_data_type != "Branded"
+            and usda_ingredient_portion_domain.fda_portion_id != ""
         ):
             dependent_portion = (
                 self.usda_ingredient_portion_repository.get_usda_ingredient_portion(
@@ -57,14 +64,17 @@ class USDA_Ingredient_Portion_Service(object):
         return usda_ingredient_portion_domain
 
     def write_usda_ingredient_portions(self) -> None:
-        with open("new_usda_ingredient_portions.json", "r+") as outfile:
-            usda_ingredient_portion_dtos = [
-                x.dto_serialize() for x in self.get_usda_ingredient_portions()
+        from pathlib import Path
+        from utils.write_json import write_json
+
+        usda_ingredient_portion_file_name = Path(
+            ".", "nutrient_data", "new_usda_ingredient_portions.json"
+        )
+        with open(usda_ingredient_portion_file_name, "r+") as outfile:
+            usda_ingredient_portion_dicts = [
+                x.serialize() for x in self.get_usda_ingredient_portions()
             ]
-            data = json.load(outfile)
-            if data:
-                outfile.seek(0)
-                json.dump(usda_ingredient_portion_dtos, outfile, indent=4)
-                outfile.truncate()
-            else:
-                outfile.write(json.dumps(usda_ingredient_portion_dtos, indent=4))
+            for usda_ingredient_portion_dict in usda_ingredient_portion_dicts:
+                if usda_ingredient_portion_dict["usda_ingredient_id"] == "olive oil":
+                    usda_ingredient_portion_dict["usda_ingredient_id"] = "olive_oil"
+            write_json(outfile=outfile, dicts=usda_ingredient_portion_dicts)

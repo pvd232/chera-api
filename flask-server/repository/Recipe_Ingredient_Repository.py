@@ -36,3 +36,22 @@ class Recipe_Ingredient_Repository(Base_Repository):
                 Recipe_Ingredient_Model.id == recipe_ingredient_domain.id).first()
             recipe_ingredient_to_update.quantity = recipe_ingredient_domain.quantity
         self.db.session.commit()
+        
+    
+    def initialize_recipe_ingredients(self) -> None:
+        from pathlib import Path
+        from utils.load_json import load_json
+        from domain.Recipe_Ingredient_Domain import Recipe_Ingredient_Domain
+        from dto.Recipe_Ingredient_DTO import Recipe_Ingredient_DTO
+
+        recipe_ingredient_json_file = Path(".", "nutrient_data", "new_recipe_ingredients.json")
+        recipe_ingredients_data = load_json(filename=recipe_ingredient_json_file)
+
+        # Only initialize custom values, not USDA values which are initialized alongside Recipe_Ingredient_Models
+        for recipe_ingredient_json in recipe_ingredients_data:
+            recipe_ingredient_dto = Recipe_Ingredient_DTO(recipe_ingredient_json=recipe_ingredient_json)
+            recipe_ingredient_domain = Recipe_Ingredient_Domain(recipe_ingredient_object=recipe_ingredient_dto)
+
+            new_recipe_ingredient_model = Recipe_Ingredient_Model(recipe_ingredient_domain=recipe_ingredient_domain)
+            self.db.session.add(new_recipe_ingredient_model)
+        self.db.session.commit()

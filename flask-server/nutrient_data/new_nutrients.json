@@ -1,170 +1,170 @@
 [
-  {
-    "id": "protein",
-    "name": "Protein",
-    "unit": "g",
-    "usda_id": "1003",
-    "has_daily_value": true
-  },
-  {
-    "id": "carb",
-    "name": "Carb",
-    "unit": "g",
-    "usda_id": "1005",
-    "has_daily_value": true
-  },
-  {
-    "id": "dietary_fiber",
-    "name": "Dietary fiber",
-    "unit": "g",
-    "usda_id": "1079",
-    "has_daily_value": true
-  },
-  {
-    "id": "sugars",
-    "name": "Sugars",
-    "unit": "g",
-    "usda_id": "2000",
-    "has_daily_value": false
-  },
-  {
-    "id": "fat",
-    "name": "Fat",
-    "unit": "g",
-    "usda_id": "1004",
-    "has_daily_value": true
-  },
-  {
-    "id": "trans_fat",
-    "name": "Trans fat",
-    "unit": "g",
-    "usda_id": "N/A",
-    "has_daily_value": false
-  },
-  {
-    "id": "saturated_fat",
-    "name": "Saturated fat",
-    "unit": "g",
-    "usda_id": "1258",
-    "has_daily_value": true
-  },
-  {
-    "id": "vitamin_d",
-    "name": "Vitamin d",
-    "unit": "mcg",
-    "usda_id": "1114",
-    "has_daily_value": true
-  },
-  {
-    "id": "calcium",
-    "name": "Calcium",
-    "unit": "mg",
-    "usda_id": "1087",
-    "has_daily_value": true
-  },
-  {
-    "id": "iron",
-    "name": "Iron",
-    "unit": "mg",
-    "usda_id": "1089",
-    "has_daily_value": true
-  },
-  {
-    "id": "potassium",
-    "name": "Potassium",
-    "unit": "mg",
-    "usda_id": "1092",
-    "has_daily_value": true
-  },
-  {
-    "id": "sodium",
-    "name": "Sodium",
-    "unit": "mg",
-    "usda_id": "1093",
-    "has_daily_value": true
-  },
-  {
-    "id": "cholesterol",
-    "name": "Cholesterol",
-    "unit": "mg",
-    "usda_id": "1253",
-    "has_daily_value": true
-  },
-  {
-    "id": "vitamin_a",
-    "name": "Vitamin a",
-    "unit": "mcg",
-    "usda_id": "1106",
-    "has_daily_value": true
-  },
-  {
-    "id": "vitamin_c",
-    "name": "Vitamin c",
-    "unit": "mg",
-    "usda_id": "1162",
-    "has_daily_value": true
-  },
-  {
-    "id": "vitamin_b_6",
-    "name": "Vitamin B-6",
-    "unit": "mg",
-    "usda_id": "1175",
-    "has_daily_value": true
-  },
-  {
-    "id": "vitamin_b_12",
-    "name": "Vitamin B-12",
-    "unit": "mcg",
-    "usda_id": "1178",
-    "has_daily_value": true
-  },
-  {
-    "id": "thiamin",
-    "name": "Thiamin",
-    "unit": "mg",
-    "usda_id": "1165",
-    "has_daily_value": true
-  },
-  {
-    "id": "riboflavin",
-    "name": "Riboflavin",
-    "unit": "mg",
-    "usda_id": "1166",
-    "has_daily_value": true
-  },
-  {
-    "id": "niacin",
-    "name": "Niacin",
-    "unit": "mg",
-    "usda_id": "1167",
-    "has_daily_value": true
-  },
-  {
-    "id": "folate",
-    "name": "Folate",
-    "unit": "mcg",
-    "usda_id": "1177",
-    "has_daily_value": true
-  },
-  {
-    "id": "vitamin_e",
-    "name": "Vitamin e",
-    "unit": "mg",
-    "usda_id": "1242",
-    "has_daily_value": true
-  },
-  {
-    "id": "vitamin_k",
-    "name": "Vitamin k",
-    "unit": "mcg",
-    "usda_id": "1185",
-    "has_daily_value": true
-  },
     {
-    "id": "phosphorus",
-    "name": "Phosphorus",
-    "unit": "mg",
-    "usda_id": "1091",
-    "has_daily_value": true
-  }
+        "id": "protein",
+        "name": "Protein",
+        "unit": "g",
+        "usda_id": "1003",
+        "has_daily_value": true
+    },
+    {
+        "id": "carb",
+        "name": "Carb",
+        "unit": "g",
+        "usda_id": "1005",
+        "has_daily_value": true
+    },
+    {
+        "id": "dietary_fiber",
+        "name": "Dietary fiber",
+        "unit": "g",
+        "usda_id": "1079",
+        "has_daily_value": true
+    },
+    {
+        "id": "sugars",
+        "name": "Sugars",
+        "unit": "g",
+        "usda_id": "2000",
+        "has_daily_value": false
+    },
+    {
+        "id": "fat",
+        "name": "Fat",
+        "unit": "g",
+        "usda_id": "1004",
+        "has_daily_value": true
+    },
+    {
+        "id": "trans_fat",
+        "name": "Trans fat",
+        "unit": "g",
+        "usda_id": "",
+        "has_daily_value": false
+    },
+    {
+        "id": "saturated_fat",
+        "name": "Saturated fat",
+        "unit": "g",
+        "usda_id": "1258",
+        "has_daily_value": true
+    },
+    {
+        "id": "vitamin_d",
+        "name": "Vitamin d",
+        "unit": "mcg",
+        "usda_id": "1114",
+        "has_daily_value": true
+    },
+    {
+        "id": "calcium",
+        "name": "Calcium",
+        "unit": "mg",
+        "usda_id": "1087",
+        "has_daily_value": true
+    },
+    {
+        "id": "iron",
+        "name": "Iron",
+        "unit": "mg",
+        "usda_id": "1089",
+        "has_daily_value": true
+    },
+    {
+        "id": "potassium",
+        "name": "Potassium",
+        "unit": "mg",
+        "usda_id": "1092",
+        "has_daily_value": true
+    },
+    {
+        "id": "sodium",
+        "name": "Sodium",
+        "unit": "mg",
+        "usda_id": "1093",
+        "has_daily_value": true
+    },
+    {
+        "id": "cholesterol",
+        "name": "Cholesterol",
+        "unit": "mg",
+        "usda_id": "1253",
+        "has_daily_value": true
+    },
+    {
+        "id": "vitamin_a",
+        "name": "Vitamin a",
+        "unit": "mcg",
+        "usda_id": "1106",
+        "has_daily_value": true
+    },
+    {
+        "id": "vitamin_c",
+        "name": "Vitamin c",
+        "unit": "mg",
+        "usda_id": "1162",
+        "has_daily_value": true
+    },
+    {
+        "id": "vitamin_b_6",
+        "name": "Vitamin B-6",
+        "unit": "mg",
+        "usda_id": "1175",
+        "has_daily_value": true
+    },
+    {
+        "id": "vitamin_b_12",
+        "name": "Vitamin B-12",
+        "unit": "mcg",
+        "usda_id": "1178",
+        "has_daily_value": true
+    },
+    {
+        "id": "thiamin",
+        "name": "Thiamin",
+        "unit": "mg",
+        "usda_id": "1165",
+        "has_daily_value": true
+    },
+    {
+        "id": "riboflavin",
+        "name": "Riboflavin",
+        "unit": "mg",
+        "usda_id": "1166",
+        "has_daily_value": true
+    },
+    {
+        "id": "niacin",
+        "name": "Niacin",
+        "unit": "mg",
+        "usda_id": "1167",
+        "has_daily_value": true
+    },
+    {
+        "id": "folate",
+        "name": "Folate",
+        "unit": "mcg",
+        "usda_id": "1177",
+        "has_daily_value": true
+    },
+    {
+        "id": "vitamin_e",
+        "name": "Vitamin e",
+        "unit": "mg",
+        "usda_id": "1242",
+        "has_daily_value": true
+    },
+    {
+        "id": "vitamin_k",
+        "name": "Vitamin k",
+        "unit": "mcg",
+        "usda_id": "1185",
+        "has_daily_value": true
+    },
+    {
+        "id": "phosphorus",
+        "name": "Phosphorus",
+        "unit": "mg",
+        "usda_id": "1091",
+        "has_daily_value": true
+    }
 ]

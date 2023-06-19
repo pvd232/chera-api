@@ -10,6 +10,208 @@ import stripe
 import uuid
 
 
+@app.route("/api/continuity/write")
+def continuity_write() -> Response:
+    from repository.Continuity_Repository import Continuity_Repository
+    from repository.Discount_Repository import Discount_Repository
+    from repository.Imperial_Unit_Repository import Imperial_Unit_Repository
+    from repository.Nutrient_Repository import Nutrient_Repository
+    from repository.USDA_Ingredient_Repository import USDA_Ingredient_Repository
+    from repository.USDA_Ingredient_Nutrient_Repository import (
+        USDA_Ingredient_Nutrient_Repository,
+    )
+    from repository.USDA_Ingredient_Portion_Repository import (
+        USDA_Ingredient_Portion_Repository,
+    )
+    from repository.USDA_Nutrient_Daily_Value_Repository import (
+        USDA_Nutrient_Daily_Value_Repository,
+    )
+
+    from repository.Meal_Plan_Repository import Meal_Plan_Repository
+    from repository.Meal_Plan_Meal_Repository import Meal_Plan_Meal_Repository
+    from repository.Recipe_Ingredient_Repository import Recipe_Ingredient_Repository
+    from repository.Recipe_Ingredient_Nutrient_Repository import (
+        Recipe_Ingredient_Nutrient_Repository,
+    )
+    from repository.Meal_Repository import Meal_Repository
+    from service.Discount_Service import Discount_Service
+    from service.Continuity_Service import Continuity_Service
+    from service.Meal_Service import Meal_Service
+    from service.Meal_Plan_Service import Meal_Plan_Service
+    from service.Meal_Plan_Meal_Service import Meal_Plan_Meal_Service
+    from service.Nutrient_Service import Nutrient_Service
+    from service.Recipe_Ingredient_Service import Recipe_Ingredient_Service
+    from service.Recipe_Ingredient_Nutrient_Service import (
+        Recipe_Ingredient_Nutrient_Service,
+    )
+    from service.USDA_Ingredient_Nutrient_Service import (
+        USDA_Ingredient_Nutrient_Service,
+    )
+    from service.USDA_Ingredient_Portion_Service import (
+        USDA_Ingredient_Portion_Service,
+    )
+    from service.USDA_Ingredient_Service import USDA_Ingredient_Service
+    from service.USDA_Nutrient_Daily_Value_Service import (
+        USDA_Nutrient_Daily_Value_Service,
+    )
+
+    Continuity_Service().write_data(
+        nutrient_service=Nutrient_Service(
+            nutrient_repository=Nutrient_Repository(db=db)
+        ),
+        usda_ingredient_service=USDA_Ingredient_Service(
+            usda_ingredient_repository=USDA_Ingredient_Repository(db=db)
+        ),
+        usda_ingredient_nutrient_service=USDA_Ingredient_Nutrient_Service(
+            usda_ingredient_nutrient_repository=USDA_Ingredient_Nutrient_Repository(
+                db=db
+            )
+        ),
+        usda_ingredient_portion_service=USDA_Ingredient_Portion_Service(
+            usda_ingredient_portion_repository=USDA_Ingredient_Portion_Repository(db=db)
+        ),
+        usda_nutrient_daily_value_service=USDA_Nutrient_Daily_Value_Service(
+            usda_nutrient_daily_value_repository=USDA_Nutrient_Daily_Value_Repository(
+                db=db
+            )
+        ),
+        meal_service=Meal_Service(meal_repository=Meal_Repository(db=db)),
+        meal_plan_service=Meal_Plan_Service(
+            meal_plan_repository=Meal_Plan_Repository(db=db)
+        ),
+        meal_plan_meal_service=Meal_Plan_Meal_Service(
+            meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+        ),
+        recipe_ingredient_service=Recipe_Ingredient_Service(
+            recipe_ingredient_repository=Recipe_Ingredient_Repository(db=db)
+        ),
+        recipe_ingredient_nutrient_service=Recipe_Ingredient_Nutrient_Service(
+            recipe_ingredient_nutrient_repository=Recipe_Ingredient_Nutrient_Repository(
+                db=db
+            )
+        ),
+        discount_service=Discount_Service(
+            discount_repository=Discount_Repository(db=db)
+        ),
+    )
+
+
+@app.route("/api/continuity/initialize")
+def continuity_initialize() -> Response:
+    from sqlalchemy import create_engine, MetaData
+    from helpers.get_db_connection_string import get_db_connection_string
+    from helpers.initialize_db import initialize_db
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+
+    from repository.Continuity_Repository import Continuity_Repository
+    from repository.Discount_Repository import Discount_Repository
+    from repository.Imperial_Unit_Repository import Imperial_Unit_Repository
+    from repository.Nutrient_Repository import Nutrient_Repository
+    from repository.USDA_Ingredient_Repository import USDA_Ingredient_Repository
+    from repository.USDA_Ingredient_Nutrient_Repository import (
+        USDA_Ingredient_Nutrient_Repository,
+    )
+    from repository.USDA_Ingredient_Portion_Repository import (
+        USDA_Ingredient_Portion_Repository,
+    )
+    from repository.USDA_Nutrient_Daily_Value_Repository import (
+        USDA_Nutrient_Daily_Value_Repository,
+    )
+
+    from repository.Meal_Plan_Repository import Meal_Plan_Repository
+    from repository.Meal_Plan_Meal_Repository import Meal_Plan_Meal_Repository
+    from repository.Recipe_Ingredient_Repository import Recipe_Ingredient_Repository
+    from repository.Recipe_Ingredient_Nutrient_Repository import (
+        Recipe_Ingredient_Nutrient_Repository,
+    )
+    from repository.Meal_Repository import Meal_Repository
+
+    username = os.getenv("DB_USER", GCP_Secret_Manager_Service().get_secret("DB_USER"))
+    password = os.getenv(
+        "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
+    )
+
+    initialize_db(db=db, drop_tables=True)
+
+    db_engine = create_engine(
+        get_db_connection_string(
+            username=username, password=password, db_name="nourishdb"
+        )
+    )
+    meta = MetaData()
+    meta.reflect(bind=db_engine)
+    Continuity_Repository().initialize_meal_data(
+        imperial_unit_repository=Imperial_Unit_Repository(engine=db_engine),
+        nutrient_repository=Nutrient_Repository(engine=db_engine),
+        usda_ingredient_repository=USDA_Ingredient_Repository(engine=db_engine),
+        usda_ingredient_nutrient_repository=USDA_Ingredient_Nutrient_Repository(
+            engine=db_engine
+        ),
+        usda_ingredient_portion_repository=USDA_Ingredient_Portion_Repository(
+            engine=db_engine
+        ),
+        usda_nutrient_daily_value_repository=USDA_Nutrient_Daily_Value_Repository(
+            engine=db_engine
+        ),
+        meal_repository=Meal_Repository(engine=db_engine),
+        meal_plan_repository=Meal_Plan_Repository(engine=db_engine),
+        meal_plan_meal_repository=Meal_Plan_Meal_Repository(engine=db_engine),
+        recipe_ingredient_repository=Recipe_Ingredient_Repository(engine=db_engine),
+        recipe_ingredient_nutrient_repository=Recipe_Ingredient_Nutrient_Repository(
+            engine=db_engine
+        ),
+        discount_repository=Discount_Repository(engine=db_engine),
+    )
+
+    return Response(status=200)
+
+
+@app.route("/api/imperial_unit/write")
+def write_imperial_unit() -> Response:
+    from repository.Imperial_Unit_Repository import (
+        Imperial_Unit_Repository,
+    )
+    from service.Imperial_Unit_Service import Imperial_Unit_Service
+
+    Imperial_Unit_Service(
+        imperial_unit_repository=Imperial_Unit_Repository(db=db)
+    ).write_imperial_units()
+    return Response(status=200)
+
+
+@app.route("/api/usda_ingredient_portion/write")
+def write_usda_ingredient_portion() -> Response:
+    from repository.USDA_Ingredient_Portion_Repository import (
+        USDA_Ingredient_Portion_Repository,
+    )
+    from service.USDA_Ingredient_Portion_Service import USDA_Ingredient_Portion_Service
+
+    USDA_Ingredient_Portion_Service(
+        usda_ingredient_portion_repository=USDA_Ingredient_Portion_Repository(db=db)
+    ).write_usda_ingredient_portions()
+    return Response(status=200)
+
+
+@app.route("/api/meal/write")
+def write_meal() -> Response:
+    from repository.Meal_Repository import Meal_Repository
+    from service.Meal_Service import Meal_Service
+
+    Meal_Service(meal_repository=Meal_Repository(db=db)).write_meals()
+    return Response(status=200)
+
+
+@app.route("/api/usda_ingredient/write")
+def write_usda_ingredient() -> Response:
+    from repository.USDA_Ingredient_Repository import USDA_Ingredient_Repository
+    from service.USDA_Ingredient_Service import USDA_Ingredient_Service
+
+    USDA_Ingredient_Service(
+        usda_ingredient_repository=USDA_Ingredient_Repository(db=db)
+    ).write_usda_ingredients()
+    return Response(status=200)
+
+
 @app.errorhandler(500)
 def handle_exception(e) -> HTTPException | Response:
     print()
@@ -337,45 +539,40 @@ def usda_ingredient(usda_ingredient_id: Optional[str]) -> Response:
         nutrients = Nutrient_Service(
             nutrient_repository=Nutrient_Repository(db=db)
         ).get_nutrients()
-        usda_ingredients = json.loads(request.data)
-        for usda_ingredient in usda_ingredients:
-            fdc_id = usda_ingredient["fdc_id"]
-            usda_ingredient_id = usda_ingredient["id"]
-            usda_ingredient_name = usda_ingredient["name"]
-            usda_ingredient_data = USDA_API_Service(
-                USDA_api_key=USDA_api_key
-            ).get_ingredient(fdc_id=fdc_id)
-            mapped_usda_ingredient_data = USDA_Nutrient_Mapper_DTO(
-                usda_ingredient_id=usda_ingredient_id,
-                usda_ingredient_name=usda_ingredient_name,
-                fdc_id=fdc_id,
-                usda_ingredient_data=usda_ingredient_data,
-                nutrients_list=nutrients,
-                imperial_units=imperial_units,
-            )
+        usda_ingredient = json.loads(request.data)
+        fdc_id = usda_ingredient["fdc_id"]
+        usda_ingredient_id = usda_ingredient["id"]
+        usda_ingredient_name = usda_ingredient["name"]
+        usda_ingredient_data = USDA_API_Service(
+            USDA_api_key=USDA_api_key
+        ).get_ingredient(fdc_id=fdc_id)
+        mapped_usda_ingredient_data = USDA_Nutrient_Mapper_DTO(
+            usda_ingredient_id=usda_ingredient_id,
+            usda_ingredient_name=usda_ingredient_name,
+            fdc_id=fdc_id,
+            usda_ingredient_data=usda_ingredient_data,
+            nutrients_list=nutrients,
+            imperial_units=imperial_units,
+        )
 
-            USDA_Ingredient_Service(
-                usda_ingredient_repository=USDA_Ingredient_Repository(db=db)
-            ).create_usda_ingredient(
-                usda_nutrient_mapper_dto=mapped_usda_ingredient_data
-            )
+        USDA_Ingredient_Service(
+            usda_ingredient_repository=USDA_Ingredient_Repository(db=db)
+        ).create_usda_ingredient(usda_nutrient_mapper_dto=mapped_usda_ingredient_data)
 
-            USDA_Ingredient_Nutrient_Service(
-                usda_ingredient_nutrient_repository=USDA_Ingredient_Nutrient_Repository(
+        USDA_Ingredient_Nutrient_Service(
+            usda_ingredient_nutrient_repository=USDA_Ingredient_Nutrient_Repository(
+                db=db
+            )
+        ).create_usda_ingredient_nutrients(
+            usda_ingredient_nutrient_dtos=mapped_usda_ingredient_data.nutrients
+        )
+
+        for portion_dto in mapped_usda_ingredient_data.portions:
+            USDA_Ingredient_Portion_Service(
+                usda_ingredient_portion_repository=USDA_Ingredient_Portion_Repository(
                     db=db
                 )
-            ).create_usda_ingredient_nutrients(
-                usda_ingredient_nutrient_dtos=mapped_usda_ingredient_data.nutrients
-            )
-
-            for portion_dto in mapped_usda_ingredient_data.portions:
-                USDA_Ingredient_Portion_Service(
-                    usda_ingredient_portion_repository=USDA_Ingredient_Portion_Repository(
-                        db=db
-                    )
-                ).create_usda_ingredient_portion(
-                    usda_ingredient_portion_dto=portion_dto
-                )
+            ).create_usda_ingredient_portion(usda_ingredient_portion_dto=portion_dto)
 
         return Response(status=201)
 
@@ -417,6 +614,13 @@ def b() -> Response:
 
 @app.route("/api/setup_tables")
 def setup_table() -> Response:
+    db.metadata.create_all(db.engine)
+    return Response(status=200)
+
+
+@app.route("/api/clear_tables")
+def clear_table() -> Response:
+    db.metadata.drop_all(db.engine)
     db.metadata.create_all(db.engine)
     return Response(status=200)
 
