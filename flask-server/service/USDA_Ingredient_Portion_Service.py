@@ -31,6 +31,7 @@ class USDA_Ingredient_Portion_Service(object):
         )
         if (
             usda_ingredient_portion_domain.custom_value == True
+            and usda_ingredient_portion_domain.non_metric_unit != "oz"
             and usda_ingredient_portion_domain.fda_portion_id != ""
         ):
             dependent_portion = (

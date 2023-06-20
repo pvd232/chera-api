@@ -1827,7 +1827,7 @@ def meal(meal_id: Optional[str]) -> Response:
 
         meal_uuid = UUID(meal_id)
         wipe_meal_data(meal_id=meal_uuid)
-        return Response(status=204, response="Wiped meal data")
+        return Response(status=200, response="Wiped meal data")
     else:
         return Response(status=405)
 
@@ -2292,7 +2292,7 @@ def snack(snack_id: Optional[str]) -> Response:
 
         snack_uuid = UUID(snack_id)
         wipe_snack_data(snack_id=snack_uuid)
-        return Response(status=201, response="Wiped snack data")
+        return Response(status=200, response="Wiped snack data")
     else:
         return Response(status=405)
 

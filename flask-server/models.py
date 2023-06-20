@@ -1212,52 +1212,10 @@ class Dietitian_Prepayment_Model(db.Model):
         self.datetime = dietitian_prepayment_domain.datetime
 
 
+# Allows for db.drop_all() to work by setting universal cascade
 @compiles(DropTable, "postgresql")
 def _compile_drop_table(element, compiler, **kwargs):
     return compiler.visit_drop_table(element) + " CASCADE"
-
-
-def load_json(filename) -> dict:
-    with open(filename) as file:
-        jsn = json.load(file)
-        file.close()
-        return jsn
-
-
-def create_dietary_restrictions() -> None:
-    dietary_restrictions = ["vegetarian"]
-    for dietary_restriction in dietary_restrictions:
-        new_dietary_restriction = Dietary_Restriction_Model(id=dietary_restriction)
-        db.session.add(new_dietary_restriction)
-    db.session.commit()
-
-
-def create_state_tax_rates() -> None:
-    # had to round NY state sales tax from 0.08875 to 0.0888 for stripe
-    states = [
-        {"state": "NJ", "sales_tax": 0.0625},
-        {"state": "NY", "sales_tax": 0.08875},
-    ]
-    for state in states:
-        state_name = state["state"]
-        # stripe expects tax rates to be inputted as percentages
-        stripe_state_sales_tax_percentage = state["sales_tax"] * 100
-        state_sales_tax_percentage = state["sales_tax"]
-
-        stripe_state_tax_rate = stripe.TaxRate.create(
-            display_name=f"{state_name} Sales Tax",
-            inclusive=False,
-            percentage=stripe_state_sales_tax_percentage,
-        )
-
-        new_state_sales_tax = State_Sales_Tax_Model(
-            state=state_name,
-            sales_tax_percentage=state_sales_tax_percentage,
-            stripe_tax_id=stripe_state_tax_rate.id,
-        )
-
-        db.session.add(new_state_sales_tax)
-    db.session.commit()
 
 
 def create_imperial_units() -> None:
@@ -1526,37 +1484,6 @@ def wipe_all_snack_related_data() -> None:
     db.session.commit()
 
 
-def wipe_all_snack_and_client_related_data() -> None:
-    snacks = db.session.query(Snack_Model).all()
-    meal_plan_snacks = db.session.query(Meal_Plan_Snack_Model).all()
-    for snack in snacks:
-        associated_scheduled_order_snacks = (
-            db.session.query(Scheduled_Order_Snack_Model)
-            .filter(Scheduled_Order_Snack_Model.snack_id == snack.id)
-            .all()
-        )
-        for scheduled_order_snack in associated_scheduled_order_snacks:
-            db.session.delete(scheduled_order_snack)
-
-        associated_schedule_snacks = (
-            db.session.query(Schedule_Snack_Model)
-            .filter(Schedule_Snack_Model.snack_id == snack.id)
-            .all()
-        )
-        for schedule_snack in associated_schedule_snacks:
-            db.session.delete(schedule_snack)
-
-    for meal_plan_snack in meal_plan_snacks:
-        for recipe_ingredient in meal_plan_snack.recipe:
-            for recipe_ingredient_nutrient in recipe_ingredient.nutrients:
-                db.session.delete(recipe_ingredient_nutrient)
-            db.session.delete(recipe_ingredient)
-        db.session.delete(meal_plan_snack)
-    for snack in snacks:
-        db.session.delete(snack)
-    db.session.commit()
-
-
 def wipe_meal_data(meal_id: UUID) -> None:
     meal = db.session.query(Meal_Model).filter(Meal_Model.id == meal_id).first()
     if meal:
@@ -1591,6 +1518,8 @@ def wipe_snack_data(snack_id: UUID) -> None:
                     db.session.delete(recipe_ingredient_nutrient)
                 db.session.delete(recipe_ingredient)
             db.session.delete(snack_plan_snack)
+        db.session.delete(snack)
+        db.session.commit()
 
 
 def wipe_all_usda_ingredient_related_data(usda_ingredient_id: str) -> None:
