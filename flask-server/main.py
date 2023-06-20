@@ -792,9 +792,7 @@ def stripe_webhook() -> Response:
         from datetime import datetime
 
         stripe_invoice_id = event["data"]["object"]["id"]
-        print("stripe_invoice_id", stripe_invoice_id)
         stripe_subscription_id = event["data"]["object"]["subscription"]
-        print("stripe_subscription_id", stripe_subscription_id)
         stripe_payment_intent_id = event["data"]["object"]["payment_intent"]
 
         meal_subscription: Optional[
