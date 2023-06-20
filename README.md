@@ -20,9 +20,7 @@
 
 # 3. While still in the flask-server directory, enter the following command to activate your python virtual environment "source ./venv/bin/activate". You should now see a "(venv)" to the left of your computer name in your console
 
-# 4. Enter "cd.." into your terminal to navigate to the bendito-api directory, which is the parent directory of flask-server and the root directory of the backend
-
-# 5. Enter "pip install -r requirements.txt" into your terminal to install the project python dependencies into the venv folder
+# 4. Enter "pip install -r requirements.txt" into your terminal to install the project python dependencies into the venv folder
 
 # PSQL setup
 
@@ -44,6 +42,6 @@
 
 # 1. Depending on your editor (VSCode is highly reccomended) you might have to manually activate the virtual env periodically. You can see if it is activated by checking for the (venv) in your console
 
-# 2. To start the backend, run main.py in your editor. Make sure you run it from the bendito-api directory (root)
+# 2. To start the backend, run main.py in your editor from the flask-server directory. To do this, open up your terminal. Make sure you are in the flask-server directory. Then run main.py
 
 # 3. When signing off, shut down the backend by entering "ctrl + c" into the terminal window that has the backend running
