@@ -1,6 +1,5 @@
 from domain.USDA_Ingredient_Portion_Domain import USDA_Ingredient_Portion_Domain
 from uuid import UUID
-import json
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -51,6 +50,25 @@ class USDA_Ingredient_Portion_Service(object):
             usda_ingredient_portion_domain=usda_ingredient_portion_domain
         )
 
+    def update_usda_ingredient_portion(
+        self, usda_ingredient_portion_data: dict
+    ) -> None:
+        dependent_portion = (
+            self.usda_ingredient_portion_repository.get_usda_ingredient_portion(
+                fda_portion_id=usda_ingredient_portion_data["fda_portion_id"]
+            )
+        )
+        grams_per_non_metric_unit = (
+            dependent_portion.grams_per_non_metric_unit
+            * usda_ingredient_portion_data["multiplier"]
+        )
+        usda_ingredient_portion_data[
+            "grams_per_non_metric_unit"
+        ] = grams_per_non_metric_unit
+        self.usda_ingredient_portion_repository.update_usda_ingredient_portion(
+            usda_ingredient_portion_data=usda_ingredient_portion_data
+        )
+
     def get_usda_ingredient_portion(
         self, usda_ingredient_portion_id: UUID
     ) -> USDA_Ingredient_Portion_Domain:
@@ -63,6 +81,11 @@ class USDA_Ingredient_Portion_Service(object):
             usda_ingredient_portion_object=usda_ingredient_portion
         )
         return usda_ingredient_portion_domain
+
+    def delete_usda_ingredient_portions(self, usda_ingredient_id: str) -> None:
+        self.usda_ingredient_portion_repository.delete_usda_ingredient_portions(
+            usda_ingredient_id=usda_ingredient_id
+        )
 
     def write_usda_ingredient_portions(self) -> None:
         from pathlib import Path

@@ -60,6 +60,7 @@ class Client_Repository(Base_Repository):
             .first()
         )
         client_to_update.update(client_domain=client_domain)
+        self.db.session.commit()
 
     def update_client_meal_plan(self, client_domain: "Client_Domain") -> None:
         client_to_update = (

@@ -59,6 +59,37 @@ class USDA_Ingredient_Portion_Repository(Base_Repository):
         self.db.session.add(new_usda_ingredient_portion)
         self.db.session.commit()
 
+    def update_usda_ingredient_portion(
+        self, usda_ingredient_portion_data: dict
+    ) -> None:
+        portion_to_update = (
+            self.db.session.query(USDA_Ingredient_Portion_Model).filter(
+                USDA_Ingredient_Portion_Model.usda_ingredient_id
+                == usda_ingredient_portion_data["usda_ingredient_id"],
+                USDA_Ingredient_Portion_Model.fda_portion_id
+                == usda_ingredient_portion_data["fda_portion_id"],
+            )
+        ).first()
+        portion_to_update.grams_per_non_metric_unit = usda_ingredient_portion_data[
+            "grams_per_non_metric_unit"
+        ]
+        portion_to_update.multiplier = usda_ingredient_portion_data["multiplier"]
+        portion_to_update.non_metric_unit = usda_ingredient_portion_data["non_metric_unit"]
+
+        self.db.session.commit()
+
+    def delete_usda_ingredient_portions(self, usda_ingredient_id: str) -> None:
+        portions = (
+            self.db.session.query(USDA_Ingredient_Portion_Model)
+            .filter(
+                USDA_Ingredient_Portion_Model.usda_ingredient_id == usda_ingredient_id
+            )
+            .all()
+        )
+        for portion in portions:
+            self.db.session.delete(portion)
+        self.db.session.commit()
+
     def initialize_usda_ingredient_portions(self) -> None:
         from pathlib import Path
         from utils.load_json import load_json

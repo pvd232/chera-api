@@ -1,6 +1,5 @@
 from domain.Meal_Domain import Meal_Domain
 from uuid import UUID
-import json
 from typing import Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:

@@ -1,5 +1,4 @@
 from domain.USDA_Ingredient_Nutrient_Domain import USDA_Ingredient_Nutrient_Domain
-import json
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -52,6 +51,11 @@ class USDA_Ingredient_Nutrient_Service(object):
             USDA_Ingredient_Nutrient_Domain(usda_ingredient_nutrient_object=x)
             for x in self.usda_ingredient_nutrient_repository.get_all_usda_ingredient_nutrients()
         ]
+
+    def delete_usda_ingredient_nutrients(self, usda_ingredient_id: str) -> None:
+        self.usda_ingredient_nutrient_repository.delete_usda_ingredient_nutrients(
+            usda_ingredient_id=usda_ingredient_id
+        )
 
     def write_usda_ingredient_nutrients(self) -> None:
         from pathlib import Path

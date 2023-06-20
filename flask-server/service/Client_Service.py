@@ -1,9 +1,7 @@
 from typing import Optional, TYPE_CHECKING
 from domain.Client_Domain import Client_Domain
-from uuid import UUID
 
 if TYPE_CHECKING:
-    from models import Client_Model
     from repository.Client_Repository import Client_Repository
     from dto.Client_DTO import Client_DTO
 

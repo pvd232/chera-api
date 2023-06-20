@@ -1,6 +1,5 @@
 from domain.USDA_Nutrient_Daily_Value_Domain import USDA_Nutrient_Daily_Value_Domain
 from uuid import UUID
-import json
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:

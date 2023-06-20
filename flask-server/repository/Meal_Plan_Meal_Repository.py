@@ -9,33 +9,40 @@ if TYPE_CHECKING:
 
 class Meal_Plan_Meal_Repository(Base_Repository):
     def get_meal_plan_meal(
-        self, meal_plan_meal_id: UUID
+        self,
+        meal_plan_meal_id: UUID = None,
+        meal_id: UUID = None,
+        meal_plan_id: UUID = None,
     ) -> Optional[Meal_Plan_Meal_Model]:
-        meal_plan_meal: Optional[Meal_Plan_Meal_Model] = (
-            self.db.session.query(Meal_Plan_Meal_Model)
-            .filter(Meal_Plan_Meal_Model.id == meal_plan_meal_id)
-            .first()
-        )
+        if meal_plan_meal_id:
+            meal_plan_meal: Optional[Meal_Plan_Meal_Model] = (
+                self.db.session.query(Meal_Plan_Meal_Model)
+                .filter(Meal_Plan_Meal_Model.id == meal_plan_meal_id)
+                .first()
+            )
+        else:
+            meal_plan_meal: Optional[Meal_Plan_Meal_Model] = (
+                self.db.session.query(Meal_Plan_Meal_Model)
+                .filter(
+                    Meal_Plan_Meal_Model.meal_plan_id == meal_plan_id,
+                    Meal_Plan_Meal_Model.meal_id == meal_id,
+                )
+                .first()
+            )
         return meal_plan_meal
 
     def get_meal_plan_meals(
-        self, meal_plan_id: UUID = None
+        self, meal_plan_id: UUID
     ) -> Optional[list[Meal_Plan_Meal_Model]]:
-        if not meal_plan_id:
-            meal_plan_meals: Optional[
-                list[Meal_Plan_Meal_Model]
-            ] = self.db.session.query(Meal_Plan_Meal_Model).all()
-            return meal_plan_meals
-        else:
-            meal_plan_meals: Optional[list[Meal_Plan_Meal_Model]] = (
+        if meal_plan_id:
+            meal_plan_meals = (
                 self.db.session.query(Meal_Plan_Meal_Model)
                 .filter(Meal_Plan_Meal_Model.meal_plan_id == meal_plan_id)
                 .all()
             )
-            if meal_plan_meals:
-                return meal_plan_meals
-            else:
-                return None
+        else:
+            meal_plan_meals = self.db.session.query(Meal_Plan_Meal_Model).all()
+        return meal_plan_meals
 
     def create_meal_plan_meal(
         self, meal_plan_meal_domain: "Meal_Plan_Meal_Domain"

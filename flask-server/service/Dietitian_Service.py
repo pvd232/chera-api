@@ -1,5 +1,4 @@
 from domain.Dietitian_Domain import Dietitian_Domain
-from models import Dietitian_Model
 from typing import Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:

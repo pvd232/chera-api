@@ -870,8 +870,19 @@ class USDA_Ingredient_Model(db.Model):
             self.usda_data_type = usda_ingredient_domain.usda_data_type
             self.active = usda_ingredient_domain.active
 
-    def update(self, updated_recipe_ingredient: "Recipe_Ingredient_Domain") -> None:
-        self.id = updated_recipe_ingredient.usda_ingredient_id
+    def update(
+        self, usda_ingredient_nutrient_mapper: "USDA_Nutrient_Mapper_DTO"
+    ) -> None:
+        self.name = usda_ingredient_nutrient_mapper.usda_ingredient_name
+        self.fdc_id = usda_ingredient_nutrient_mapper.fdc_id
+        self.fda_identifier = usda_ingredient_nutrient_mapper.fda_identifier
+        self.amount_of_grams = usda_ingredient_nutrient_mapper.amount_of_grams
+        self.k_cal = usda_ingredient_nutrient_mapper.calories
+        self.k_cal_to_gram_ratio = (
+            usda_ingredient_nutrient_mapper.calories_to_grams_ratio
+        )
+        self.usda_data_type = usda_ingredient_nutrient_mapper.usda_data_type
+        self.active = True
 
 
 class Recipe_Ingredient_Model(db.Model):

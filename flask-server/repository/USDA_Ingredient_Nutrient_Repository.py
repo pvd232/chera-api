@@ -18,14 +18,15 @@ class USDA_Ingredient_Nutrient_Repository(Base_Repository):
             .all()
         )
         return usda_ingredient_nutrients
+
     def get_all_usda_ingredient_nutrients(
         self,
     ) -> list[USDA_Ingredient_Nutrient_Model]:
-        usda_ingredient_nutrients = (
-            self.db.session.query(USDA_Ingredient_Nutrient_Model)
-            .all()
-        )
+        usda_ingredient_nutrients = self.db.session.query(
+            USDA_Ingredient_Nutrient_Model
+        ).all()
         return usda_ingredient_nutrients
+
     def create_usda_ingredient_nutrient(
         self, usda_ingredient_nutrient_domain: "USDA_Ingredient_Nutrient_Domain"
     ) -> None:
@@ -43,6 +44,12 @@ class USDA_Ingredient_Nutrient_Repository(Base_Repository):
                 usda_ingredient_nutrient_domain=usda_ingredient_nutrient_domain
             )
             self.db.session.add(new_usda_ingredient_nutrient)
+        self.db.session.commit()
+
+    def delete_usda_ingredient_nutrients(self, usda_ingredient_id: str) -> None:
+        self.db.session.query(USDA_Ingredient_Nutrient_Model).filter(
+            USDA_Ingredient_Nutrient_Model.usda_ingredient_id == usda_ingredient_id
+        ).delete()
         self.db.session.commit()
 
     def initialize_usda_ingredient_nutrients(self) -> None:

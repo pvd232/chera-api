@@ -1,8 +1,9 @@
+from flask_sqlalchemy import SQLAlchemy
 import stripe
-from models import db, State_Sales_Tax_Model
+from models import State_Sales_Tax_Model
 
 
-def create_state_tax_rates() -> None:
+def create_state_tax_rates(db: SQLAlchemy) -> None:
     # had to round NY state sales tax from 0.08875 to 0.0888 for stripe
     states = [
         {"state": "NJ", "sales_tax": 0.0625},

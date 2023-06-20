@@ -1,8 +1,3 @@
-from typing import Any
-import os
-from pathlib import Path
-
-
 class GCP_Secret_Manager_Service(object):
     def __init__(self) -> None:
         self.project_id = "nourish-351123"
@@ -29,7 +24,7 @@ class GCP_Secret_Manager_Service(object):
         version = response.name.split("/")[-1]
         return version
 
-    def get_secret(self, secret_id) -> Any:
+    def get_secret(self, secret_id) -> str:
         """
         Get information about the given secret. This only returns metadata about
         the secret container, not any secret material.

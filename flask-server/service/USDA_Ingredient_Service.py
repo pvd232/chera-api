@@ -1,6 +1,4 @@
 from domain.USDA_Ingredient_Domain import USDA_Ingredient_Domain
-from domain.Recipe_Ingredient_Domain import Recipe_Ingredient_Domain
-import json
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -45,11 +43,11 @@ class USDA_Ingredient_Service(object):
     def update_usda_ingredient(
         self,
         usda_ingredient_id: str,
-        recipe_ingredient_domain: Recipe_Ingredient_Domain,
+        usda_ingredient_mapper_dto: "USDA_Nutrient_Mapper_DTO",
     ) -> None:
         self.usda_ingredient_repository.update_usda_ingredient(
             usda_ingredient_id=usda_ingredient_id,
-            recipe_ingredient_domain=recipe_ingredient_domain,
+            usda_ingredient_nutrient_mapper=usda_ingredient_mapper_dto,
         )
 
     def write_usda_ingredients(self) -> None:

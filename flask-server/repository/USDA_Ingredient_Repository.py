@@ -34,7 +34,7 @@ class USDA_Ingredient_Repository(Base_Repository):
     def update_usda_ingredient(
         self,
         usda_ingredient_id: str,
-        recipe_ingredient_domain: "Recipe_Ingredient_Domain",
+        usda_nutrient_mapper_dto: "USDA_Nutrient_Mapper_DTO",
     ) -> None:
         usda_ingredient_to_update: USDA_Ingredient_Model = (
             self.db.session.query(USDA_Ingredient_Model)
@@ -42,7 +42,7 @@ class USDA_Ingredient_Repository(Base_Repository):
             .first()
         )
         usda_ingredient_to_update.update(
-            updated_recipe_ingredient=recipe_ingredient_domain
+            usda_nutrient_mapper_dto=usda_nutrient_mapper_dto
         )
         self.db.session.commit()
 

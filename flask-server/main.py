@@ -19,7 +19,9 @@ def clear_table() -> Response:
         "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
     )
 
-    check_auth(env=env, db_password=db_password, request=request)
+    if not check_auth(env=env, db_password=db_password, request=request):
+        return Response(status=401)
+
     db.metadata.drop_all(db.engine)
     db.metadata.create_all(db.engine)
     return Response(status=200)
@@ -36,7 +38,8 @@ def update_table() -> Response:
         "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
     )
 
-    check_auth(env=env, db_password=db_password, request=request)
+    if not check_auth(env=env, db_password=db_password, request=request):
+        return Response(status=401)
 
     table_name = request.args.get("table_name")
     update_table(database_url=connection_string, table_name=table_name)
@@ -55,7 +58,9 @@ def drop_table() -> Response:
         "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
     )
 
-    check_auth(env=env, db_password=db_password, request=request)
+    if not check_auth(env=env, db_password=db_password, request=request):
+        return Response(status=401)
+
     drop_table(database_url=connection_string, table_name="Imperial_Unit")
     db.metadata.create_all(db.engine)
     return Response(status=204)
@@ -71,7 +76,9 @@ def create_table() -> Response:
         "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
     )
 
-    check_auth(env=env, db_password=db_password, request=request)
+    if not check_auth(env=env, db_password=db_password, request=request):
+        return Response(status=401)
+
     db.metadata.create_all(db.engine)
     return Response(status=204)
 
@@ -85,7 +92,9 @@ def setup_table() -> Response:
         "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
     )
 
-    check_auth(env=env, db_password=db_password, request=request)
+    if not check_auth(env=env, db_password=db_password, request=request):
+        return Response(status=401)
+
     db.metadata.create_all(db.engine)
     return Response(status=200)
 
@@ -135,6 +144,10 @@ def continuity_write() -> Response:
         USDA_Nutrient_Daily_Value_Service,
     )
 
+    # Only for writing local meal data to json for continuity when initializing in production
+    if env != "debug":
+        return Response(status=401)
+
     Continuity_Service().write_data(
         nutrient_service=Nutrient_Service(
             nutrient_repository=Nutrient_Repository(db=db)
@@ -174,6 +187,7 @@ def continuity_write() -> Response:
             discount_repository=Discount_Repository(db=db)
         ),
     )
+    return Response(status=200)
 
 
 @app.route("/api/continuity/initialize")
@@ -182,6 +196,7 @@ def continuity_initialize() -> Response:
     from helpers.db.get_db_connection_string import get_db_connection_string
     from helpers.db.initialize_db import initialize_db
     from helpers.db.create_dietary_restrictions import create_dietary_restrictions
+    from helpers.db.create_state_tax_rates import create_state_tax_rates
     from helpers.check_auth import check_auth
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
 
@@ -216,10 +231,13 @@ def continuity_initialize() -> Response:
     )
     db_string = os.getenv(
         "DB_STRING",
-        get_db_connection_string(username=db_username, password=db_password),
+        get_db_connection_string(
+            username=db_username, password=db_password, db_name="nourishdb"
+        ),
     )
 
-    check_auth(env=env, db_password=db_password, request=request)
+    if not check_auth(env=env, db_password=db_password, request=request):
+        return Response(status=401)
 
     initialize_db(db=db, drop_tables=True)
 
@@ -249,7 +267,7 @@ def continuity_initialize() -> Response:
         discount_repository=Discount_Repository(engine=db_engine),
     )
     create_dietary_restrictions(db=db)
-
+    create_state_tax_rates(db=db)
     return Response(status=200)
 
 
@@ -498,7 +516,7 @@ def offer_notification() -> Response:
     return Response(status=200)
 
 
-@app.route("/api/usda_ingredient_portion", methods=["POST"])
+@app.route("/api/usda_ingredient_portion", methods=["POST", "PUT"])
 def usda_ingredient_portion() -> Response:
     if request.method == "POST":
         from repository.USDA_Ingredient_Portion_Repository import (
@@ -537,6 +555,26 @@ def usda_ingredient_portion() -> Response:
         USDA_Ingredient_Portion_Service(
             usda_ingredient_portion_repository=USDA_Ingredient_Portion_Repository(db=db)
         ).create_usda_ingredient_portion(usda_ingredient_portion_dto=usda_portion_dto)
+        return Response(status=201)
+    elif request.method == "PUT":
+        from repository.USDA_Ingredient_Portion_Repository import (
+            USDA_Ingredient_Portion_Repository,
+        )
+        from repository.USDA_Ingredient_Repository import USDA_Ingredient_Repository
+        from service.USDA_Ingredient_Service import USDA_Ingredient_Service
+        from service.USDA_Ingredient_Portion_Service import (
+            USDA_Ingredient_Portion_Service,
+        )
+        from dto.USDA_Ingredient_Portion_DTO import USDA_Ingredient_Portion_DTO
+
+        portion_json = json.loads(request.data)
+
+        usda_ingredient = USDA_Ingredient_Service(
+            usda_ingredient_repository=USDA_Ingredient_Repository(db=db)
+        ).get_usda_ingredient(usda_ingredient_id=portion_json["usda_ingredient_id"])
+        USDA_Ingredient_Portion_Service(
+            usda_ingredient_portion_repository=USDA_Ingredient_Portion_Repository(db=db)
+        ).update_usda_ingredient_portion(usda_ingredient_portion_data=portion_json)
         return Response(status=201)
     else:
         return Response(status=405)
@@ -1767,8 +1805,25 @@ def meal(meal_id: Optional[str]) -> Response:
         from helpers.db.wipe_meal_data import wipe_meal_data
 
         meal_uuid = UUID(meal_id)
-        wipe_meal_data(meal_id=meal_uuid)
+        wipe_meal_data(db=db, meal_id=meal_uuid)
         return Response(status=200, response="Wiped meal data")
+    else:
+        return Response(status=405)
+
+
+@app.route("/api/meal_plan_meal", methods=["POST"])
+def meal_plan_meal() -> Response:
+    from service.Meal_Plan_Meal_Service import Meal_Plan_Meal_Service
+    from repository.Meal_Plan_Meal_Repository import Meal_Plan_Meal_Repository
+    from dto.Meal_Plan_Meal_DTO import Meal_Plan_Meal_DTO
+
+    if request.method == "POST":
+        meal_plan_meal_data = json.loads(request.data)
+        meal_plan_meal_dto = Meal_Plan_Meal_DTO(meal_plan_meal_json=meal_plan_meal_data)
+        Meal_Plan_Meal_Service(
+            meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+        ).create_meal_plan_meal(meal_plan_meal_dto=meal_plan_meal_dto)
+        return Response(status=201)
     else:
         return Response(status=405)
 
@@ -1783,7 +1838,8 @@ def extended_meal_plan_meal() -> Response:
 
     if request.method == "GET":
         meal_plan_id = request.args.get("meal_plan_id")
-        if not meal_plan_id:
+        meal_id = request.args.get("meal_id")
+        if not meal_plan_id and not meal_id:
             extended_meal_plan_meals: Optional[
                 list[Extended_Meal_Plan_Meal_Domain]
             ] = Extended_Meal_Plan_Meal_Service(
@@ -1800,14 +1856,10 @@ def extended_meal_plan_meal() -> Response:
                 return jsonify(serialized_meal_plan_meal_DTOs), 200
             else:
                 return Response(status=404)
-        else:
-            extended_meal_plan_meals: Optional[
-                list[Extended_Meal_Plan_Meal_Domain]
-            ] = Extended_Meal_Plan_Meal_Service(
+        elif meal_plan_id and not meal_id:
+            extended_meal_plan_meals = Extended_Meal_Plan_Meal_Service(
                 meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
-            ).get_specific_extended_meal_plan_meals(
-                meal_plan_id=meal_plan_id
-            )
+            ).get_specific_extended_meal_plan_meals(meal_plan_id=meal_plan_id)
             if extended_meal_plan_meals:
                 meal_plan_meal_DTOs = [
                     Extended_Meal_Plan_Meal_DTO(extended_meal_plan_meal_domain=x)
@@ -1818,10 +1870,24 @@ def extended_meal_plan_meal() -> Response:
                 ]
                 return jsonify(serialized_meal_plan_meal_DTOs), 200
             else:
+                return Response(status=404)
+        else:
+            extended_meal_plan_meal = Extended_Meal_Plan_Meal_Service(
+                meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+            ).get_extended_meal_plan_meal(
+                meal_plan_meal_id=None, meal_plan_id=meal_plan_id, meal_id=meal_id
+            )
+            if extended_meal_plan_meal:
+                meal_plan_meal_DTO = Extended_Meal_Plan_Meal_DTO(
+                    extended_meal_plan_meal_domain=extended_meal_plan_meal
+                )
+
+                serialized_meal_plan_meal_DTO = meal_plan_meal_DTO.serialize()
+                return jsonify(serialized_meal_plan_meal_DTO), 200
+            else:
                 return jsonify([]), 200
     elif request.method == "PUT":
         ephemeral_meal_plan_meal = json.loads(request.data)
-
         # Get new quantity values for recipe ingredients to compute changes to nutrient amounts
         updated_recipe = ephemeral_meal_plan_meal["recipe"]
         updated_recipe_dtos = [

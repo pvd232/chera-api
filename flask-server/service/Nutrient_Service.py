@@ -1,7 +1,6 @@
 from repository.Nutrient_Repository import Nutrient_Repository
 from domain.Nutrient_Domain import Nutrient_Domain
 from dto.Nutrient_DTO import Nutrient_DTO
-import json
 
 
 class Nutrient_Service(object):
