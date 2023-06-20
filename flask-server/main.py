@@ -1901,43 +1901,6 @@ def extended_meal_plan_meal() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/meal_plan_meal", methods=["PUT", "POST"])
-def meal_plan_meal() -> Response:
-    from service.Meal_Plan_Meal_Service import Meal_Plan_Meal_Service
-    from service.Recipe_Ingredient_Service import Recipe_Ingredient_Service
-    from service.USDA_Ingredient_Service import USDA_Ingredient_Service
-    from service.Continuity_Service import Continuity_Service
-    from repository.Meal_Plan_Meal_Repository import Meal_Plan_Meal_Repository
-    from repository.Recipe_Ingredient_Repository import Recipe_Ingredient_Repository
-    from repository.USDA_Ingredient_Repository import USDA_Ingredient_Repository
-    from dto.Meal_Plan_Meal_DTO import Meal_Plan_Meal_DTO
-
-    if request.method == "PUT":
-        meal_plan_meals_json = json.loads(request.data)
-        Meal_Plan_Meal_Service(
-            meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
-        ).update_meal_plan_meals(
-            meal_plan_meals=meal_plan_meals_json,
-            recipe_ingredient_service=Recipe_Ingredient_Service(
-                recipe_ingredient_repository=Recipe_Ingredient_Repository(db=db)
-            ),
-            usda_ingredient_service=USDA_Ingredient_Service(
-                usda_ingredient_repository=USDA_Ingredient_Repository(db=db)
-            ),
-            continuity_service=Continuity_Service(),
-        )
-        return Response(status=204)
-    elif request.method == "POST":
-        meal_plan_meal_data = json.loads(request.data)
-        meal_plan_meal_dto = Meal_Plan_Meal_DTO(meal_plan_meal_json=meal_plan_meal_data)
-        Meal_Plan_Meal_Service(
-            meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
-        ).create_meal_plan_meal(meal_plan_meal_dto=meal_plan_meal_dto)
-        return Response(status=201)
-    else:
-        return Response(status=405)
-
-
 @app.route("/api/extended_scheduled_order_meal", methods=["GET"])
 def extended_scheduled_order_meal() -> Response:
     from service.Extended_Scheduled_Order_Meal_Service import (
