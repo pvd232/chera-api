@@ -10,6 +10,86 @@ import stripe
 import uuid
 
 
+@app.route("/api/clear_tables")
+def clear_table() -> Response:
+    from helpers.check_auth import check_auth
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+
+    db_password = os.getenv(
+        "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
+    )
+
+    check_auth(env=env, db_password=db_password, request=request)
+    db.metadata.drop_all(db.engine)
+    db.metadata.create_all(db.engine)
+    return Response(status=200)
+
+
+@app.route("/api/update_table")
+def update_table() -> Response:
+    from models import connection_string
+    from helpers.db.update_table import update_table
+    from helpers.check_auth import check_auth
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+
+    db_password = os.getenv(
+        "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
+    )
+
+    check_auth(env=env, db_password=db_password, request=request)
+
+    table_name = request.args.get("table_name")
+    update_table(database_url=connection_string, table_name=table_name)
+    db.metadata.create_all(db.engine)
+    return Response(status=204)
+
+
+@app.route("/api/drop_table")
+def drop_table() -> Response:
+    from models import connection_string
+    from helpers.db.drop_table import drop_table
+    from helpers.check_auth import check_auth
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+
+    db_password = os.getenv(
+        "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
+    )
+
+    check_auth(env=env, db_password=db_password, request=request)
+    drop_table(database_url=connection_string, table_name="Imperial_Unit")
+    db.metadata.create_all(db.engine)
+    return Response(status=204)
+
+
+@app.route("/api/create_table")
+def create_table() -> Response:
+    from models import db
+    from helpers.check_auth import check_auth
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+
+    db_password = os.getenv(
+        "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
+    )
+
+    check_auth(env=env, db_password=db_password, request=request)
+    db.metadata.create_all(db.engine)
+    return Response(status=204)
+
+
+@app.route("/api/setup_tables")
+def setup_table() -> Response:
+    from helpers.check_auth import check_auth
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+
+    db_password = os.getenv(
+        "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
+    )
+
+    check_auth(env=env, db_password=db_password, request=request)
+    db.metadata.create_all(db.engine)
+    return Response(status=200)
+
+
 @app.route("/api/continuity/write")
 def continuity_write() -> Response:
     from repository.Continuity_Repository import Continuity_Repository
@@ -99,8 +179,10 @@ def continuity_write() -> Response:
 @app.route("/api/continuity/initialize")
 def continuity_initialize() -> Response:
     from sqlalchemy import create_engine, MetaData
-    from helpers.get_db_connection_string import get_db_connection_string
-    from helpers.initialize_db import initialize_db
+    from helpers.db.get_db_connection_string import get_db_connection_string
+    from helpers.db.initialize_db import initialize_db
+    from helpers.db.create_dietary_restrictions import create_dietary_restrictions
+    from helpers.check_auth import check_auth
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
 
     from repository.Continuity_Repository import Continuity_Repository
@@ -126,18 +208,22 @@ def continuity_initialize() -> Response:
     )
     from repository.Meal_Repository import Meal_Repository
 
-    username = os.getenv("DB_USER", GCP_Secret_Manager_Service().get_secret("DB_USER"))
-    password = os.getenv(
+    db_username = os.getenv(
+        "DB_USER", GCP_Secret_Manager_Service().get_secret("DB_USER")
+    )
+    db_password = os.getenv(
         "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
     )
+    db_string = os.getenv(
+        "DB_STRING",
+        get_db_connection_string(username=db_username, password=db_password),
+    )
+
+    check_auth(env=env, db_password=db_password, request=request)
 
     initialize_db(db=db, drop_tables=True)
 
-    db_engine = create_engine(
-        get_db_connection_string(
-            username=username, password=password, db_name="nourishdb"
-        )
-    )
+    db_engine = create_engine(db_string)
     meta = MetaData()
     meta.reflect(bind=db_engine)
     Continuity_Repository().initialize_meal_data(
@@ -162,54 +248,15 @@ def continuity_initialize() -> Response:
         ),
         discount_repository=Discount_Repository(engine=db_engine),
     )
+    create_dietary_restrictions(db=db)
 
     return Response(status=200)
 
 
-@app.route("/api/imperial_unit/write")
-def write_imperial_unit() -> Response:
-    from repository.Imperial_Unit_Repository import (
-        Imperial_Unit_Repository,
-    )
-    from service.Imperial_Unit_Service import Imperial_Unit_Service
-
-    Imperial_Unit_Service(
-        imperial_unit_repository=Imperial_Unit_Repository(db=db)
-    ).write_imperial_units()
-    return Response(status=200)
-
-
-@app.route("/api/usda_ingredient_portion/write")
-def write_usda_ingredient_portion() -> Response:
-    from repository.USDA_Ingredient_Portion_Repository import (
-        USDA_Ingredient_Portion_Repository,
-    )
-    from service.USDA_Ingredient_Portion_Service import USDA_Ingredient_Portion_Service
-
-    USDA_Ingredient_Portion_Service(
-        usda_ingredient_portion_repository=USDA_Ingredient_Portion_Repository(db=db)
-    ).write_usda_ingredient_portions()
-    return Response(status=200)
-
-
-@app.route("/api/meal/write")
-def write_meal() -> Response:
-    from repository.Meal_Repository import Meal_Repository
-    from service.Meal_Service import Meal_Service
-
-    Meal_Service(meal_repository=Meal_Repository(db=db)).write_meals()
-    return Response(status=200)
-
-
-@app.route("/api/usda_ingredient/write")
-def write_usda_ingredient() -> Response:
-    from repository.USDA_Ingredient_Repository import USDA_Ingredient_Repository
-    from service.USDA_Ingredient_Service import USDA_Ingredient_Service
-
-    USDA_Ingredient_Service(
-        usda_ingredient_repository=USDA_Ingredient_Repository(db=db)
-    ).write_usda_ingredients()
-    return Response(status=200)
+@app.errorhandler(404)
+def not_found(e) -> str:
+    print("requested url:", request.path, "\n", "error:", e)
+    return Response(status=404)
 
 
 @app.errorhandler(500)
@@ -230,27 +277,6 @@ def handle_exception(e) -> HTTPException | Response:
     return Response(status=500, response=json.dumps(res))
 
 
-@app.route("/api/test_dietetic", methods=["POST"])
-def validate_dietetic_registration_number() -> Response:
-    import requests
-
-    dietetic_registration_number = json.loads(request.data)
-    headers = {"Content-Type": "application/json"}
-    response = requests.post(
-        "https://secure.eatright.org/v14pgmlib/lansaweb?w=CDRVFYS&r=CREDSEARCH&vlweb=1&part=prd&lang=ENG&_T=1683030503817",
-        json={
-            "webroutine": {"fields": {"CRID#": {"value": dietetic_registration_number}}}
-        },
-        headers=headers,
-    )
-    response_data = response.json()
-    entries = response_data["webroutine"]["lists"]["CREDCUST"]["entries"]
-    if len(entries) > 0:
-        return Response(status=200)
-    else:
-        return Response(status=404)
-
-
 @app.route("/api/email/recruiting", methods=["POST"])
 def recruiting_email() -> Response:
     from pathlib import Path
@@ -259,6 +285,9 @@ def recruiting_email() -> Response:
 
     def format_file_name(role: str) -> str:
         return "_".join(role.split(" ")).lower()
+
+    if env != "debug":
+        return Response(status=401)
 
     request_data = json.loads(request.data)
 
@@ -318,6 +347,8 @@ def pause_recruiting_email() -> Response:
     from service.Email_Service import Email_Service
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
 
+    if env != "debug":
+        return Response(status=401)
     request_data = json.loads(request.data)
     excel_file_name = "pause_hiring.csv"
     testing = request_data["testing"]
@@ -366,6 +397,8 @@ def hiring_status_update() -> Response:
     from service.Email_Service import Email_Service
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
 
+    if env != "debug":
+        return Response(status=401)
     request_data = json.loads(request.data)
     excel_file_name = "hiring_status_update.csv"
     testing = request_data["testing"]
@@ -415,6 +448,8 @@ def offer_notification() -> Response:
     from service.Email_Service import Email_Service
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
 
+    if env != "debug":
+        return Response(status=401)
     request_data = json.loads(request.data)
     excel_file_name = request_data["file_name"]
     testing = request_data["testing"]
@@ -577,104 +612,12 @@ def usda_ingredient(usda_ingredient_id: Optional[str]) -> Response:
         return Response(status=201)
 
     elif request.method == "DELETE" and usda_ingredient_id is not None:
-        from models import wipe_all_usda_ingredient_related_data
+        from helpers.db.wipe_all_usda_ingredient_related_data import (
+            wipe_all_usda_ingredient_related_data,
+        )
 
         wipe_all_usda_ingredient_related_data(usda_ingredient_id=usda_ingredient_id)
         return Response(status=200)
-
-
-@app.errorhandler(404)
-def not_found(e) -> str:
-    print("requested url:", request.path, "\n", "error:", e)
-    return Response(status=204)
-
-
-@app.route("/api/b")
-def b() -> Response:
-    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
-    from models import new_instantiate_db_connection
-
-    import os
-
-    if env == "debug":
-        new_instantiate_db_connection()
-        return Response(status=204)
-
-    else:
-        pwd = request.args.get("pwd")
-        RESET_PWD = os.getenv(
-            "RESET_PWD", GCP_Secret_Manager_Service().get_secret("RESET_PWD")
-        )
-        if pwd == RESET_PWD:
-            new_instantiate_db_connection()
-            return Response(status=204)
-        else:
-            return Response(status=401)
-
-
-@app.route("/api/setup_tables")
-def setup_table() -> Response:
-    db.metadata.create_all(db.engine)
-    return Response(status=200)
-
-
-@app.route("/api/clear_tables")
-def clear_table() -> Response:
-    db.metadata.drop_all(db.engine)
-    db.metadata.create_all(db.engine)
-    return Response(status=200)
-
-
-@app.route("/api/update_table")
-def update_table() -> Response:
-    from models import connection_string
-    from helpers.update_table import update_table
-
-    update_table(database_url=connection_string, table_name="recipe_ingredient")
-    db.metadata.create_all(db.engine)
-    return Response(status=204)
-
-
-@app.route("/api/drop_table")
-def drop_table() -> Response:
-    from models import connection_string
-    from helpers.drop_table import drop_table
-
-    drop_table(database_url=connection_string, table_name="Imperial_Unit")
-    db.metadata.create_all(db.engine)
-    return Response(status=204)
-
-
-@app.route("/api/create_table")
-def create_table() -> Response:
-    from models import db
-
-    db.metadata.create_all(db.engine)
-    return Response(status=204)
-
-
-@app.route("/api/wipe_snacks_and_client_data")
-def wipe_snacks_and_client_data() -> Response:
-    from models import wipe_all_snack_and_client_related_data
-
-    wipe_all_snack_and_client_related_data()
-    return Response(status=201, response="Wiped all snack and client related data")
-
-
-@app.route("/api/wipe_snacks")
-def wipe_snacks() -> Response:
-    from models import wipe_all_snack_related_data
-
-    wipe_all_snack_related_data()
-    return Response(status=201, response="Wiped all snack related data")
-
-
-@app.route("/api/wipe_meals")
-def wipe_meals() -> Response:
-    from models import wipe_all_meal_related_data
-
-    wipe_all_meal_related_data()
-    return Response(status=201, response="Wiped all meal related data")
 
 
 @app.route("/api/webhook/weekly_update", methods=["POST"])
@@ -1823,7 +1766,7 @@ def meal(meal_id: Optional[str]) -> Response:
         )
         return Response(status=201)
     elif request.method == "DELETE":
-        from models import wipe_meal_data
+        from helpers.db.wipe_meal_data import wipe_meal_data
 
         meal_uuid = UUID(meal_id)
         wipe_meal_data(meal_id=meal_uuid)
@@ -2251,7 +2194,7 @@ def snack(snack_id: Optional[str]) -> Response:
         )
         return Response(status=201)
     elif request.method == "DELETE":
-        from models import wipe_snack_data
+        from helpers.db.wipe_snack_data import wipe_snack_data
 
         snack_uuid = UUID(snack_id)
         wipe_snack_data(snack_id=snack_uuid)

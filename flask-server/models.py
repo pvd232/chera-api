@@ -57,10 +57,12 @@ username = os.getenv("DB_USER", GCP_Secret_Manager_Service().get_secret("DB_USER
 password = os.getenv(
     "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
 )
-connection_string = get_db_connection_string(
-    username=username, password=password, db_name="nourishdb"
+connection_string = os.getenv(
+    "DB_STRING",
+    get_db_connection_string(username=username, password=password, db_name="nourishdb"),
 )
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DB_STRING", connection_string)
+
+app.config["SQLALCHEMY_DATABASE_URI"] = connection_string
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 
 USDA_api_key = os.getenv(
