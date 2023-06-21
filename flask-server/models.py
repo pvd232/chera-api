@@ -14,6 +14,7 @@ from typing import TYPE_CHECKING
 from helpers.db.get_db_connection_string import get_db_connection_string
 
 if TYPE_CHECKING:
+    from domain.Dietary_Restriction_Domain import Dietary_Restriction_Domain
     from domain.USDA_Ingredient_Domain import USDA_Ingredient_Domain
     from domain.Meal_Plan_Domain import Meal_Plan_Domain
     from domain.Discount_Domain import Discount_Domain
@@ -382,7 +383,7 @@ class Meal_Plan_Model(db.Model):
     number_of_snacks = db.Column(db.Float(), nullable=False)
     per_snack_caloric_lower_bound = db.Column(db.Integer(), nullable=False)
     per_snack_caloric_upper_bound = db.Column(db.Integer(), nullable=False)
-
+    # multiplier = db.Column(db.Float(), default = 1.0, nullable=False)
     usda_nutrient_daily_values = relationship(
         "USDA_Nutrient_Daily_Value_Model", lazy=True
     )
@@ -469,6 +470,7 @@ class Meal_Plan_Meal_Model(db.Model):
         primary_key=True,
         nullable=False,
     )
+    # multiplier = db.Column(db.Float(), default=1.0, nullable=False)
     active = db.Column(db.Boolean(), default=True, nullable=False)
     recipe = relationship("Recipe_Ingredient_Model", lazy="joined")
     associated_meal = relationship("Meal_Model", lazy="joined")
@@ -790,7 +792,7 @@ class Meal_Subscription_Model(db.Model):
         self.active = meal_subscription.active
         self.paused = meal_subscription.paused
 
-    def update(self, meal_subscription_domain: "Meal_Subscription_Domain"):
+    def update(self, meal_subscription_domain: "Meal_Subscription_Domain") -> None:
         self.dietitian_id = meal_subscription_domain.dietitian_id
         self.stripe_subscription_id = meal_subscription_domain.stripe_subscription_id
         self.datetime = meal_subscription_domain.datetime
@@ -824,6 +826,11 @@ class Dietary_Restriction_Model(db.Model):
     meal_dietary_restriction: Mapped[
         list[Meal_Dietary_Restriction_Model]
     ] = relationship("Meal_Dietary_Restriction_Model", lazy=True)
+
+    def __init__(
+        self, dietary_restriction_domain: "Dietary_Restriction_Domain"
+    ) -> None:
+        self.id = dietary_restriction_domain.id
 
 
 class USDA_Ingredient_Model(db.Model):

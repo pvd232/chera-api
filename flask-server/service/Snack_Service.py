@@ -29,14 +29,12 @@ class Snack_Service(object):
         self.snack_repository.create_snack(snack_domain=snack_domain)
         return
 
-    # NO matching JSON file for this method yet
     def write_snacks(self) -> None:
-        with open("new_snacks.json", "r+") as outfile:
-            snack_dtos = [x.serialize() for x in self.get_snacks()]
-            data = json.load(outfile)
-            if data:
-                outfile.seek(0)
-                json.dump(snack_dtos, outfile, indent=4)
-                outfile.truncate()
-            else:
-                outfile.write(json.dumps(snack_dtos, indent=4))
+        from pathlib import Path
+        from utils.write_json import write_json
+
+        json_file_path = Path(".").joinpath("nutrient_data").joinpath("new_snacks.json")
+
+        with open(json_file_path, "r+") as outfile:
+            snack_dicts = [x.serialize() for x in self.get_snacks()]
+            write_json(outfile=outfile, dicts=snack_dicts)

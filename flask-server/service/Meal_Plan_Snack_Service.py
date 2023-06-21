@@ -118,12 +118,12 @@ class Meal_Plan_Snack_Service(object):
         continuity_service.write_meal_data()
 
     def write_meal_plan_snacks(self) -> None:
-        with open("new_meal_plan_snacks.json", "r+") as outfile:
+        from pathlib import Path
+        from utils.write_json import write_json
+
+        meal_plan_snack_json_file = Path(
+            ".", "nutrient_data", "new_meal_plan_snacks.json"
+        )
+        with open(meal_plan_snack_json_file, "r+") as outfile:
             meal_plan_snack_dtos = [x.serialize() for x in self.get_meal_plan_snacks()]
-            data = json.load(outfile)
-            if data:
-                outfile.seek(0)
-                json.dump(meal_plan_snack_dtos, outfile, indent=4)
-                outfile.truncate()
-            else:
-                outfile.write(json.dumps(meal_plan_snack_dtos, indent=4))
+            write_json(outfile=outfile, dicts=meal_plan_snack_dtos)

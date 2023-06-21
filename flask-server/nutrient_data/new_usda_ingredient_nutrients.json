@@ -10368,150 +10368,6 @@
         "amount": 0.0
     },
     {
-        "id": "947a2096-d9d1-4e42-95ce-e417b4fb9623",
-        "usda_ingredient_id": "tomato_sauce",
-        "nutrient_id": "protein",
-        "amount": 1.32
-    },
-    {
-        "id": "63f9dd72-d30f-4274-9583-b1de9da7d43e",
-        "usda_ingredient_id": "tomato_sauce",
-        "nutrient_id": "carb",
-        "amount": 7.09
-    },
-    {
-        "id": "799fec73-f5c8-4252-8347-02502508d15b",
-        "usda_ingredient_id": "tomato_sauce",
-        "nutrient_id": "dietary_fiber",
-        "amount": 1.4
-    },
-    {
-        "id": "43fdbdf5-5434-43c3-9eaf-1145082c2284",
-        "usda_ingredient_id": "tomato_sauce",
-        "nutrient_id": "sugars",
-        "amount": 0.0
-    },
-    {
-        "id": "0a3af822-5ab1-4da4-9d41-3e5c9d54c370",
-        "usda_ingredient_id": "tomato_sauce",
-        "nutrient_id": "fat",
-        "amount": 0.39
-    },
-    {
-        "id": "6203cd23-f26e-426b-8c87-97b362d387e6",
-        "usda_ingredient_id": "tomato_sauce",
-        "nutrient_id": "saturated_fat",
-        "amount": 0.055
-    },
-    {
-        "id": "5c2ab315-efc3-4a29-a8df-12afb12e3100",
-        "usda_ingredient_id": "tomato_sauce",
-        "nutrient_id": "vitamin_d",
-        "amount": 0.0
-    },
-    {
-        "id": "e425fe1a-a0ed-4485-be6e-e64b1222df9a",
-        "usda_ingredient_id": "tomato_sauce",
-        "nutrient_id": "calcium",
-        "amount": 10.0
-    },
-    {
-        "id": "9ab3014d-fc01-435f-90dd-f5bef64262d4",
-        "usda_ingredient_id": "tomato_sauce",
-        "nutrient_id": "iron",
-        "amount": 0.68
-    },
-    {
-        "id": "1e97892a-b0d0-4f62-abe9-c5ff9055d57e",
-        "usda_ingredient_id": "tomato_sauce",
-        "nutrient_id": "potassium",
-        "amount": 373.0
-    },
-    {
-        "id": "38b28fb5-841d-4996-b6b6-4302925162f6",
-        "usda_ingredient_id": "tomato_sauce",
-        "nutrient_id": "sodium",
-        "amount": 15.0
-    },
-    {
-        "id": "aa71157b-615f-488f-80cd-74992ef4af54",
-        "usda_ingredient_id": "tomato_sauce",
-        "nutrient_id": "cholesterol",
-        "amount": 0.0
-    },
-    {
-        "id": "6867972a-4cc6-46ab-82e7-83465f062e45",
-        "usda_ingredient_id": "tomato_sauce",
-        "nutrient_id": "vitamin_c",
-        "amount": 21.5
-    },
-    {
-        "id": "8a44003d-d954-4f34-bbe6-be1b0ae459a7",
-        "usda_ingredient_id": "tomato_sauce",
-        "nutrient_id": "vitamin_b_6",
-        "amount": 0.155
-    },
-    {
-        "id": "4071b5a1-8f55-43a4-8904-8b398f123842",
-        "usda_ingredient_id": "tomato_sauce",
-        "nutrient_id": "vitamin_b_12",
-        "amount": 0.0
-    },
-    {
-        "id": "271af398-64c6-4808-a72f-23ed329bce17",
-        "usda_ingredient_id": "tomato_sauce",
-        "nutrient_id": "thiamin",
-        "amount": 0.073
-    },
-    {
-        "id": "95241eba-4036-4be1-b184-42d9bccfc729",
-        "usda_ingredient_id": "tomato_sauce",
-        "nutrient_id": "riboflavin",
-        "amount": 0.097
-    },
-    {
-        "id": "6b08e600-2e1c-47fe-ad89-f48d75349342",
-        "usda_ingredient_id": "tomato_sauce",
-        "nutrient_id": "niacin",
-        "amount": 1.183
-    },
-    {
-        "id": "61962f51-fc5d-44aa-912b-a0598d01a437",
-        "usda_ingredient_id": "tomato_sauce",
-        "nutrient_id": "folate",
-        "amount": 9.0
-    },
-    {
-        "id": "146e3e18-7e24-495f-bb0b-5c046afe6cef",
-        "usda_ingredient_id": "tomato_sauce",
-        "nutrient_id": "vitamin_k",
-        "amount": 0.0
-    },
-    {
-        "id": "a9b98e75-5581-404c-b0b6-0131fe309b73",
-        "usda_ingredient_id": "tomato_sauce",
-        "nutrient_id": "phosphorus",
-        "amount": 42.0
-    },
-    {
-        "id": "d98a54c8-2793-4dd9-bc16-4fc5764a4906",
-        "usda_ingredient_id": "tomato_sauce",
-        "nutrient_id": "trans_fat",
-        "amount": 0.0
-    },
-    {
-        "id": "9bd33338-1a1b-4557-a279-53224fd57ca5",
-        "usda_ingredient_id": "tomato_sauce",
-        "nutrient_id": "vitamin_a",
-        "amount": 40.0
-    },
-    {
-        "id": "5e17c2e9-3eb0-476f-b7f4-b8acde552d76",
-        "usda_ingredient_id": "tomato_sauce",
-        "nutrient_id": "vitamin_e",
-        "amount": 0.0
-    },
-    {
         "id": "e892a654-e262-4122-862f-eef3865807e9",
         "usda_ingredient_id": "honey",
         "nutrient_id": "protein",
@@ -17710,5 +17566,293 @@
         "usda_ingredient_id": "goat_cheese",
         "nutrient_id": "vitamin_e",
         "amount": 0.26
+    },
+    {
+        "id": "f055b1bf-2ef5-4bfb-9a98-12fb3b4d65bf",
+        "usda_ingredient_id": "broccoli_raw",
+        "nutrient_id": "protein",
+        "amount": 2.57
+    },
+    {
+        "id": "d76e2b3d-cae8-461d-b1d3-61551d556fff",
+        "usda_ingredient_id": "broccoli_raw",
+        "nutrient_id": "carb",
+        "amount": 6.27
+    },
+    {
+        "id": "e4214942-4074-4537-baf3-62d337215e7f",
+        "usda_ingredient_id": "broccoli_raw",
+        "nutrient_id": "dietary_fiber",
+        "amount": 2.4
+    },
+    {
+        "id": "0a2e4282-0812-4611-84b4-c019ebd18e88",
+        "usda_ingredient_id": "broccoli_raw",
+        "nutrient_id": "sugars",
+        "amount": 1.4
+    },
+    {
+        "id": "e9b218b4-1fc4-4162-8327-7fe3a0556320",
+        "usda_ingredient_id": "broccoli_raw",
+        "nutrient_id": "fat",
+        "amount": 0.34
+    },
+    {
+        "id": "80025ca6-604b-4072-b983-c04eb9b05614",
+        "usda_ingredient_id": "broccoli_raw",
+        "nutrient_id": "saturated_fat",
+        "amount": 0.039
+    },
+    {
+        "id": "359e7130-8ae1-45ef-921f-5cde63c10b41",
+        "usda_ingredient_id": "broccoli_raw",
+        "nutrient_id": "vitamin_d",
+        "amount": 0.0
+    },
+    {
+        "id": "dab70b6b-670d-4cca-8acb-c38744179399",
+        "usda_ingredient_id": "broccoli_raw",
+        "nutrient_id": "calcium",
+        "amount": 46.0
+    },
+    {
+        "id": "46178c46-c29d-4ab8-8787-304402414e00",
+        "usda_ingredient_id": "broccoli_raw",
+        "nutrient_id": "iron",
+        "amount": 0.69
+    },
+    {
+        "id": "7d253641-755e-4310-b377-63d7e95835e1",
+        "usda_ingredient_id": "broccoli_raw",
+        "nutrient_id": "potassium",
+        "amount": 303.0
+    },
+    {
+        "id": "f41f131b-a459-4ada-aace-e8eeb6f1308d",
+        "usda_ingredient_id": "broccoli_raw",
+        "nutrient_id": "sodium",
+        "amount": 36.0
+    },
+    {
+        "id": "9c375e14-807a-4202-9c90-f848feac84b6",
+        "usda_ingredient_id": "broccoli_raw",
+        "nutrient_id": "cholesterol",
+        "amount": 0.0
+    },
+    {
+        "id": "7bd152ed-aba1-420d-9607-2ce4e67264c3",
+        "usda_ingredient_id": "broccoli_raw",
+        "nutrient_id": "vitamin_c",
+        "amount": 91.3
+    },
+    {
+        "id": "5269fd62-8d4d-4b4b-a3af-fd5a96f99090",
+        "usda_ingredient_id": "broccoli_raw",
+        "nutrient_id": "vitamin_b_6",
+        "amount": 0.191
+    },
+    {
+        "id": "2ef8cdad-e939-4d18-9b83-a28db1e4fac1",
+        "usda_ingredient_id": "broccoli_raw",
+        "nutrient_id": "vitamin_b_12",
+        "amount": 0.0
+    },
+    {
+        "id": "5084cbad-cf61-47d6-9551-ad6b13d9dbf4",
+        "usda_ingredient_id": "broccoli_raw",
+        "nutrient_id": "thiamin",
+        "amount": 0.077
+    },
+    {
+        "id": "690f6778-aee8-48bf-8762-c121c919a4fb",
+        "usda_ingredient_id": "broccoli_raw",
+        "nutrient_id": "riboflavin",
+        "amount": 0.114
+    },
+    {
+        "id": "7e2d60e4-7698-41fa-8a53-2641d507d4f6",
+        "usda_ingredient_id": "broccoli_raw",
+        "nutrient_id": "niacin",
+        "amount": 0.639
+    },
+    {
+        "id": "bd8ba413-6ec2-445a-9be3-e1c3c56cdd33",
+        "usda_ingredient_id": "broccoli_raw",
+        "nutrient_id": "folate",
+        "amount": 65.0
+    },
+    {
+        "id": "e708e51d-7ca0-4f56-8e53-425135e3c654",
+        "usda_ingredient_id": "broccoli_raw",
+        "nutrient_id": "vitamin_k",
+        "amount": 102.0
+    },
+    {
+        "id": "03c147f2-ccb3-4b41-a730-ee1c0d7f4d55",
+        "usda_ingredient_id": "broccoli_raw",
+        "nutrient_id": "phosphorus",
+        "amount": 67.0
+    },
+    {
+        "id": "a4ce1142-21de-4828-bd74-cf376220676b",
+        "usda_ingredient_id": "broccoli_raw",
+        "nutrient_id": "trans_fat",
+        "amount": 0.0
+    },
+    {
+        "id": "4be51579-b4d0-4b3f-8a31-c69c9b3b1154",
+        "usda_ingredient_id": "broccoli_raw",
+        "nutrient_id": "vitamin_a",
+        "amount": 8.0
+    },
+    {
+        "id": "1f90133e-4000-4503-b3c0-0f270efb0c3b",
+        "usda_ingredient_id": "broccoli_raw",
+        "nutrient_id": "vitamin_e",
+        "amount": 0.15
+    },
+    {
+        "id": "bd7352b1-024d-47d8-9edd-34e67d623007",
+        "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "protein",
+        "amount": 1.32
+    },
+    {
+        "id": "9c38098f-264a-4723-b979-56a9ac38d214",
+        "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "carb",
+        "amount": 7.09
+    },
+    {
+        "id": "b9088623-3e2d-4eb1-a3d7-31757ef27638",
+        "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "dietary_fiber",
+        "amount": 1.4
+    },
+    {
+        "id": "640f8fad-0e63-49de-bdc5-9934b40e9513",
+        "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "sugars",
+        "amount": 0.0
+    },
+    {
+        "id": "57e3aa46-80e3-4f84-a481-db7fc89a0824",
+        "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "fat",
+        "amount": 0.39
+    },
+    {
+        "id": "13151f55-f953-49a4-9166-b0288f87fa13",
+        "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "saturated_fat",
+        "amount": 0.055
+    },
+    {
+        "id": "0b0c4735-09af-48b2-976a-956d12fd5463",
+        "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "vitamin_d",
+        "amount": 0.0
+    },
+    {
+        "id": "6ca89292-44d7-418d-a1ea-34ccc9aa10bf",
+        "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "calcium",
+        "amount": 10.0
+    },
+    {
+        "id": "9b0354e3-16f2-4b1e-bb8f-c49dce30f327",
+        "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "iron",
+        "amount": 0.68
+    },
+    {
+        "id": "54ac8c3a-1844-4cd4-ada1-93b0ad69ab44",
+        "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "potassium",
+        "amount": 373.0
+    },
+    {
+        "id": "e595448c-aaae-4e3e-9db2-3a138810ad36",
+        "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "sodium",
+        "amount": 15.0
+    },
+    {
+        "id": "c76afae0-57a3-4162-87e9-c13130f55485",
+        "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "cholesterol",
+        "amount": 0.0
+    },
+    {
+        "id": "4d75bbc6-48ca-45da-bd79-135d0e3988fb",
+        "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "vitamin_c",
+        "amount": 21.5
+    },
+    {
+        "id": "5717d58f-1549-4e36-99b9-a9447d286c4d",
+        "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "vitamin_b_6",
+        "amount": 0.155
+    },
+    {
+        "id": "eef98238-a6c2-4db0-8d51-13d3c43c48ca",
+        "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "vitamin_b_12",
+        "amount": 0.0
+    },
+    {
+        "id": "2760378e-a8ec-4650-b422-d1703a545831",
+        "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "thiamin",
+        "amount": 0.073
+    },
+    {
+        "id": "9de3d670-f578-471f-908f-9ab39864b14b",
+        "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "riboflavin",
+        "amount": 0.097
+    },
+    {
+        "id": "8227692d-bfc5-4720-8936-e7331fb70c81",
+        "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "niacin",
+        "amount": 1.183
+    },
+    {
+        "id": "475cdcba-fd0a-4991-9b8a-ce6a076a4f6a",
+        "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "folate",
+        "amount": 9.0
+    },
+    {
+        "id": "142566a5-9da9-427c-8eec-957c766032d4",
+        "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "vitamin_k",
+        "amount": 0.0
+    },
+    {
+        "id": "90ab0b1c-46b7-445c-9852-3a9c7c2cdadf",
+        "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "phosphorus",
+        "amount": 42.0
+    },
+    {
+        "id": "f79a650f-a77d-4e4c-89e4-3bed92de8abb",
+        "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "trans_fat",
+        "amount": 0.0
+    },
+    {
+        "id": "bea17efa-57a6-40f3-8790-6ae9a24cae79",
+        "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "vitamin_a",
+        "amount": 40.0
+    },
+    {
+        "id": "b0aad22e-1bdd-4e61-b306-b3cc5f440360",
+        "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "vitamin_e",
+        "amount": 0.0
     }
 ]

@@ -792,17 +792,6 @@
         "active": true
     },
     {
-        "id": "tomato_sauce",
-        "name": "tomato sauce",
-        "fdc_id": "170463",
-        "amount_of_grams": 100.0,
-        "k_cal": 32,
-        "k_cal_to_gram_ratio": 0.32,
-        "usda_data_type": "SR Legacy",
-        "fda_identifier": "170463",
-        "active": true
-    },
-    {
         "id": "honey",
         "name": "honey",
         "fdc_id": "2345841",
@@ -1350,6 +1339,28 @@
         "k_cal_to_gram_ratio": 0.23722638,
         "usda_data_type": "Foundation",
         "fda_identifier": "2003601",
+        "active": true
+    },
+    {
+        "id": "broccoli_raw",
+        "name": "broccoli raw",
+        "fdc_id": "2345151",
+        "amount_of_grams": 100.0,
+        "k_cal": 39,
+        "k_cal_to_gram_ratio": 0.39,
+        "usda_data_type": "Survey (FNDDS)",
+        "fda_identifier": "72201100",
+        "active": true
+    },
+    {
+        "id": "tomato_sauce",
+        "name": "tomato sauce",
+        "fdc_id": "170463",
+        "amount_of_grams": 100.0,
+        "k_cal": 32,
+        "k_cal_to_gram_ratio": 0.32,
+        "usda_data_type": "SR Legacy",
+        "fda_identifier": "170463",
         "active": true
     }
 ]

@@ -1,10 +1,11 @@
 from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy
+from sqlalchemy.engine import Engine
 from .Base_DB import Base_DB
 
 
 class Base_Repository(object):
-    def __init__(self, db: SQLAlchemy = None, engine=None) -> None:
+    def __init__(self, db: SQLAlchemy = None, engine: Engine = None) -> None:
         if db:
             self.db: SQLAlchemy = db
         # This allows testing using an engine associated with a different database

@@ -70,3 +70,28 @@ class Meal_Plan_Snack_Repository(Base_Repository):
             even_meal_plan_snack_to_update.update(odd_meal_plan_snack)
         self.db.session.commit()
         return
+
+    def initialize_meal_plan_snacks(self) -> None:
+        from pathlib import Path
+        from utils.load_json import load_json
+        from domain.Meal_Plan_Snack_Domain import Meal_Plan_Snack_Domain
+        from dto.Meal_Plan_Snack_DTO import Meal_Plan_Snack_DTO
+
+        meal_plan_snack_json_file = Path(
+            ".", "nutrient_data", "new_meal_plan_snacks.json"
+        )
+        meal_plan_snacks_data = load_json(filename=meal_plan_snack_json_file)
+
+        # Only initialize custom values, not USDA values which are initialized alongside Meal_Plan_Models
+        for meal_plan_json in meal_plan_snacks_data:
+            meal_plan_snack_dto = Meal_Plan_Snack_DTO(
+                meal_plan_snack_json=meal_plan_json
+            )
+            meal_plan_snack_domain = Meal_Plan_Snack_Domain(
+                meal_plan_snack_object=meal_plan_snack_dto
+            )
+            meal_plan_snack_model = Meal_Plan_Snack_Model(
+                meal_plan_snack_domain=meal_plan_snack_domain
+            )
+            self.db.session.add(meal_plan_snack_model)
+        self.db.session.commit()

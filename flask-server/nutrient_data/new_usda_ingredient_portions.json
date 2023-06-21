@@ -2460,30 +2460,6 @@
         "multiplier": 1.0
     },
     {
-        "id": "aeca139e-3169-4f04-b781-407d34f6e4de",
-        "usda_ingredient_id": "tomato_sauce",
-        "fda_portion_id": "86704",
-        "non_metric_unit": "cup",
-        "grams_per_non_metric_unit": 244.0,
-        "portion_description": "cup",
-        "is_imperial": true,
-        "usda_data_type": "SR Legacy",
-        "custom_value": false,
-        "multiplier": 1.0
-    },
-    {
-        "id": "01027091-b888-43ac-a099-86e3704302fb",
-        "usda_ingredient_id": "tomato_sauce",
-        "fda_portion_id": "86705",
-        "non_metric_unit": "can, 15 oz (303 x 406)",
-        "grams_per_non_metric_unit": 425.0,
-        "portion_description": "can, 15 oz (303 x 406)",
-        "is_imperial": true,
-        "usda_data_type": "SR Legacy",
-        "custom_value": false,
-        "multiplier": 1.0
-    },
-    {
         "id": "5d7baee0-b741-47c9-9cf2-99558edb2f29",
         "usda_ingredient_id": "honey",
         "fda_portion_id": "287872",
@@ -2566,18 +2542,6 @@
         "usda_data_type": "Survey (FNDDS)",
         "custom_value": true,
         "multiplier": 0.33333
-    },
-    {
-        "id": "bfd40dd5-3c8f-4cd1-b525-fb0a6243c4ef",
-        "usda_ingredient_id": "tomato_sauce",
-        "fda_portion_id": "86704",
-        "non_metric_unit": "tbsp",
-        "grams_per_non_metric_unit": 3904.0,
-        "portion_description": "based on cup",
-        "is_imperial": true,
-        "usda_data_type": "SR Legacy",
-        "custom_value": true,
-        "multiplier": 16.0
     },
     {
         "id": "c9861f6b-0ab9-4133-b9ae-c59df95ce30c",
@@ -4668,18 +4632,6 @@
         "multiplier": 0.16875
     },
     {
-        "id": "1fa083c4-7d5b-4871-bce5-452fd4befcc8",
-        "usda_ingredient_id": "tomato_sauce",
-        "fda_portion_id": "86704",
-        "non_metric_unit": "oz",
-        "grams_per_non_metric_unit": 28.34952,
-        "portion_description": "based on cup",
-        "is_imperial": true,
-        "usda_data_type": "SR Legacy",
-        "custom_value": true,
-        "multiplier": 0.11619
-    },
-    {
         "id": "ccd58f6e-f557-4bb2-a3f6-005a41d46470",
         "usda_ingredient_id": "cauliflower",
         "fda_portion_id": "285962",
@@ -4702,5 +4654,101 @@
         "usda_data_type": "Survey (FNDDS)",
         "custom_value": true,
         "multiplier": 1.41748
+    },
+    {
+        "id": "7073ff6b-bb4e-4298-88b4-c8b381f9fd46",
+        "usda_ingredient_id": "broccoli_raw",
+        "fda_portion_id": "285446",
+        "non_metric_unit": "cup",
+        "grams_per_non_metric_unit": 90.0,
+        "portion_description": "1 cup",
+        "is_imperial": true,
+        "usda_data_type": "Survey (FNDDS)",
+        "custom_value": false,
+        "multiplier": 1.0
+    },
+    {
+        "id": "0e43ae7c-4883-438d-8c4e-52d6ee3ffe02",
+        "usda_ingredient_id": "broccoli_raw",
+        "fda_portion_id": "285447",
+        "non_metric_unit": "piece",
+        "grams_per_non_metric_unit": 10.0,
+        "portion_description": "1 piece",
+        "is_imperial": false,
+        "usda_data_type": "Survey (FNDDS)",
+        "custom_value": false,
+        "multiplier": 1.0
+    },
+    {
+        "id": "c0caa9ad-cb24-4ca7-82de-5c62a8ae52c1",
+        "usda_ingredient_id": "broccoli_raw",
+        "fda_portion_id": "285448",
+        "non_metric_unit": "floweret",
+        "grams_per_non_metric_unit": 10.0,
+        "portion_description": "1 floweret",
+        "is_imperial": false,
+        "usda_data_type": "Survey (FNDDS)",
+        "custom_value": false,
+        "multiplier": 1.0
+    },
+    {
+        "id": "6d68f883-9f84-4fc9-bb45-f577ba9e1cc1",
+        "usda_ingredient_id": "broccoli_raw",
+        "fda_portion_id": "",
+        "non_metric_unit": "oz",
+        "grams_per_non_metric_unit": 28.34953,
+        "portion_description": "",
+        "is_imperial": true,
+        "usda_data_type": "Survey (FNDDS)",
+        "custom_value": true,
+        "multiplier": 1.0
+    },
+    {
+        "id": "74aed614-7f2a-4524-8c0e-9ca1527e44b1",
+        "usda_ingredient_id": "tomato_sauce",
+        "fda_portion_id": "86704",
+        "non_metric_unit": "cup",
+        "grams_per_non_metric_unit": 244.0,
+        "portion_description": "cup",
+        "is_imperial": true,
+        "usda_data_type": "SR Legacy",
+        "custom_value": false,
+        "multiplier": 1.0
+    },
+    {
+        "id": "9691801e-d12a-4931-9a7b-ffe29fbc50c1",
+        "usda_ingredient_id": "tomato_sauce",
+        "fda_portion_id": "86705",
+        "non_metric_unit": "can, 15 oz (303 x 406)",
+        "grams_per_non_metric_unit": 425.0,
+        "portion_description": "can, 15 oz (303 x 406)",
+        "is_imperial": true,
+        "usda_data_type": "SR Legacy",
+        "custom_value": false,
+        "multiplier": 1.0
+    },
+    {
+        "id": "a54f22c2-47f8-4527-9831-8a6a8d09e9b4",
+        "usda_ingredient_id": "tomato_sauce",
+        "fda_portion_id": "86704",
+        "non_metric_unit": "tbsp",
+        "grams_per_non_metric_unit": 15.25,
+        "portion_description": "based on cup",
+        "is_imperial": true,
+        "usda_data_type": "SR Legacy",
+        "custom_value": true,
+        "multiplier": 0.0625
+    },
+    {
+        "id": "bf646ae7-fc6d-4a77-808f-aaafebd9a3ee",
+        "usda_ingredient_id": "tomato_sauce",
+        "fda_portion_id": "",
+        "non_metric_unit": "oz",
+        "grams_per_non_metric_unit": 28.34953,
+        "portion_description": "",
+        "is_imperial": true,
+        "usda_data_type": "SR Legacy",
+        "custom_value": true,
+        "multiplier": 1.0
     }
 ]

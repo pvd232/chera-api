@@ -122,12 +122,24 @@ def continuity_write() -> Response:
     from repository.Recipe_Ingredient_Nutrient_Repository import (
         Recipe_Ingredient_Nutrient_Repository,
     )
+    from repository.Dietary_Restriction_Repository import Dietary_Restriction_Repository
+    from repository.Meal_Dietary_Restriction_Repository import (
+        Meal_Dietary_Restriction_Repository,
+    )
     from repository.Meal_Repository import Meal_Repository
+    from repository.Snack_Repository import Snack_Repository
+    from repository.Meal_Plan_Snack_Repository import Meal_Plan_Snack_Repository
     from service.Discount_Service import Discount_Service
     from service.Continuity_Service import Continuity_Service
     from service.Meal_Service import Meal_Service
+    from service.Dietary_Restriction_Service import Dietary_Restriction_Service
+    from service.Meal_Dietary_Restriction_Service import (
+        Meal_Dietary_Restriction_Service,
+    )
     from service.Meal_Plan_Service import Meal_Plan_Service
     from service.Meal_Plan_Meal_Service import Meal_Plan_Meal_Service
+    from service.Snack_Service import Snack_Service
+    from service.Meal_Plan_Snack_Service import Meal_Plan_Snack_Service
     from service.Nutrient_Service import Nutrient_Service
     from service.Recipe_Ingredient_Service import Recipe_Ingredient_Service
     from service.Recipe_Ingredient_Nutrient_Service import (
@@ -168,12 +180,24 @@ def continuity_write() -> Response:
                 db=db
             )
         ),
+        dietary_restriction_service=Dietary_Restriction_Service(
+            dietary_restriction_repository=Dietary_Restriction_Repository(db=db)
+        ),
         meal_service=Meal_Service(meal_repository=Meal_Repository(db=db)),
+        meal_dietary_restriction_service=Meal_Dietary_Restriction_Service(
+            meal_dietary_restriction_repository=Meal_Dietary_Restriction_Repository(
+                db=db
+            )
+        ),
         meal_plan_service=Meal_Plan_Service(
             meal_plan_repository=Meal_Plan_Repository(db=db)
         ),
         meal_plan_meal_service=Meal_Plan_Meal_Service(
             meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+        ),
+        snack_service=Snack_Service(snack_repository=Snack_Repository(db=db)),
+        meal_plan_snack_service=Meal_Plan_Snack_Service(
+            meal_plan_snack_repository=Meal_Plan_Snack_Repository(db=db)
         ),
         recipe_ingredient_service=Recipe_Ingredient_Service(
             recipe_ingredient_repository=Recipe_Ingredient_Repository(db=db)
@@ -195,7 +219,6 @@ def continuity_initialize() -> Response:
     from sqlalchemy import create_engine, MetaData
     from helpers.db.get_db_connection_string import get_db_connection_string
     from helpers.db.initialize_db import initialize_db
-    from helpers.db.create_dietary_restrictions import create_dietary_restrictions
     from helpers.db.create_state_tax_rates import create_state_tax_rates
     from helpers.check_auth import check_auth
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
@@ -217,11 +240,17 @@ def continuity_initialize() -> Response:
 
     from repository.Meal_Plan_Repository import Meal_Plan_Repository
     from repository.Meal_Plan_Meal_Repository import Meal_Plan_Meal_Repository
+    from repository.Meal_Plan_Snack_Repository import Meal_Plan_Snack_Repository
     from repository.Recipe_Ingredient_Repository import Recipe_Ingredient_Repository
     from repository.Recipe_Ingredient_Nutrient_Repository import (
         Recipe_Ingredient_Nutrient_Repository,
     )
     from repository.Meal_Repository import Meal_Repository
+    from repository.Snack_Repository import Snack_Repository
+    from repository.Meal_Dietary_Restriction_Repository import (
+        Meal_Dietary_Restriction_Repository,
+    )
+    from repository.Dietary_Restriction_Repository import Dietary_Restriction_Repository
 
     db_username = os.getenv(
         "DB_USER", GCP_Secret_Manager_Service().get_secret("DB_USER")
@@ -229,45 +258,64 @@ def continuity_initialize() -> Response:
     db_password = os.getenv(
         "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
     )
-    db_string = os.getenv(
+
+    live_db_string = os.getenv(
         "DB_STRING",
         get_db_connection_string(
             username=db_username, password=db_password, db_name="nourishdb"
         ),
     )
-
     if not check_auth(env=env, db_password=db_password, request=request):
         return Response(status=401)
 
-    initialize_db(db=db, drop_tables=True)
+    live_db_engine = create_engine(live_db_string)
+    test_db_string = os.getenv(
+        "DB_STRING",
+        get_db_connection_string(
+            username=db_username, password=db_password, db_name="nourishdb"
+        ),
+    )
+    test_db_engine = create_engine(test_db_string)
 
-    db_engine = create_engine(db_string)
-    meta = MetaData()
-    meta.reflect(bind=db_engine)
+    initialize_db(
+        source_db_engine=live_db_engine,
+        target_db_engine=test_db_engine,
+        drop_tables=True,
+    )
+    # create_state_tax_rates(db=db)
     Continuity_Repository().initialize_meal_data(
-        imperial_unit_repository=Imperial_Unit_Repository(engine=db_engine),
-        nutrient_repository=Nutrient_Repository(engine=db_engine),
-        usda_ingredient_repository=USDA_Ingredient_Repository(engine=db_engine),
+        imperial_unit_repository=Imperial_Unit_Repository(engine=test_db_engine),
+        nutrient_repository=Nutrient_Repository(engine=test_db_engine),
+        usda_ingredient_repository=USDA_Ingredient_Repository(engine=test_db_engine),
         usda_ingredient_nutrient_repository=USDA_Ingredient_Nutrient_Repository(
-            engine=db_engine
+            engine=test_db_engine
         ),
         usda_ingredient_portion_repository=USDA_Ingredient_Portion_Repository(
-            engine=db_engine
+            engine=test_db_engine
         ),
         usda_nutrient_daily_value_repository=USDA_Nutrient_Daily_Value_Repository(
-            engine=db_engine
+            engine=test_db_engine
         ),
-        meal_repository=Meal_Repository(engine=db_engine),
-        meal_plan_repository=Meal_Plan_Repository(engine=db_engine),
-        meal_plan_meal_repository=Meal_Plan_Meal_Repository(engine=db_engine),
-        recipe_ingredient_repository=Recipe_Ingredient_Repository(engine=db_engine),
+        dietary_restriction_repository=Dietary_Restriction_Repository(
+            engine=test_db_engine
+        ),
+        meal_repository=Meal_Repository(engine=test_db_engine),
+        snack_repository=Snack_Repository(engine=test_db_engine),
+        meal_dietary_restriction_repository=Meal_Dietary_Restriction_Repository(
+            engine=test_db_engine
+        ),
+        meal_plan_repository=Meal_Plan_Repository(engine=test_db_engine),
+        meal_plan_meal_repository=Meal_Plan_Meal_Repository(engine=test_db_engine),
+        meal_plan_snack_repository=Meal_Plan_Snack_Repository(engine=test_db_engine),
+        recipe_ingredient_repository=Recipe_Ingredient_Repository(
+            engine=test_db_engine
+        ),
         recipe_ingredient_nutrient_repository=Recipe_Ingredient_Nutrient_Repository(
-            engine=db_engine
+            engine=test_db_engine
         ),
-        discount_repository=Discount_Repository(engine=db_engine),
+        discount_repository=Discount_Repository(engine=test_db_engine),
     )
-    create_dietary_restrictions(db=db)
-    create_state_tax_rates(db=db)
+
     return Response(status=200)
 
 
@@ -654,7 +702,9 @@ def usda_ingredient(usda_ingredient_id: Optional[str]) -> Response:
             wipe_all_usda_ingredient_related_data,
         )
 
-        wipe_all_usda_ingredient_related_data(usda_ingredient_id=usda_ingredient_id)
+        wipe_all_usda_ingredient_related_data(
+            db=db, usda_ingredient_id=usda_ingredient_id
+        )
         return Response(status=200)
 
 
@@ -2261,7 +2311,7 @@ def snack(snack_id: Optional[str]) -> Response:
         from helpers.db.wipe_snack_data import wipe_snack_data
 
         snack_uuid = UUID(snack_id)
-        wipe_snack_data(snack_id=snack_uuid)
+        wipe_snack_data(db=db, snack_id=snack_uuid)
         return Response(status=200, response="Wiped snack data")
     else:
         return Response(status=405)
