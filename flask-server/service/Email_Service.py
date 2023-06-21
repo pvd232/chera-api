@@ -392,10 +392,12 @@ class Email_Service(object):
         with open(email_file_name, "r") as mail_body:
             sender_address = "Registration@info.cherahealth.com"
             email = staged_client.id
+            print("email", email)
 
             # Setup the MIME
             message = MIMEMultipart()
             message["From"] = sender_address
+
             message["To"] = email
 
             # The subject line

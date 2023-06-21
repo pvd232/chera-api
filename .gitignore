@@ -9,11 +9,9 @@
 # testing
 /coverage
 
-# production
-flask-server/static/react
 
 # Chrome driver
-flask-server/postman
+# flask-server/postman
 # misc
 .env
 flask-server/.env

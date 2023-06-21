@@ -1,0 +1,2438 @@
+{
+  "info": {
+    "_postman_id": "26b8025b-adb8-4071-b857-8407002bd7df",
+    "name": "Sign_Up_Test",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "7877849"
+  },
+  "item": [
+    {
+      "name": "create_dietitian Copy",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "pm.variables.set(\"dietitian_id\", pm.variables.replaceIn('{{$randomEmail}}'))",
+              "pm.variables.set(\"dietitian_password\", pm.variables.replaceIn('{{$randomPassword}}'))"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const dietitianJSON = JSON.parse(responseBody) ",
+              "const dietitianId = dietitianJSON.id",
+              "",
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(typeof dietitianId).to.be.a('string')",
+              "});",
+              "",
+              "pm.variables.set(\"dietitian_id\", dietitianId)",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"id\": \"{{$randomEmail}}\",\n    \"password\": \"{{dietitian_password}}\",\n    \"first_name\": \"peter\",\n    \"last_name\": \"driscoll\",\n    \"clinic_name\": \"new clinic\",\n    \"clinic_zipcode\": \"10003\",\n    \"datetime\": 1674153970.137,\n    \"active\": true\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_server_url}}/dietitian",
+          "host": ["{{base_server_url}}"],
+          "path": ["dietitian"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get_meal_plans Copy 2",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const mealPlanArray = JSON.parse(responseBody)",
+              "",
+              "pm.test(\"Body is an array\", function () {",
+              "    pm.expect(mealPlanArray).to.be.an('array')",
+              "});",
+              "",
+              "",
+              "const mealPlan1 = mealPlanArray[0]",
+              "const mealPlan1Id = mealPlan1.id",
+              "pm.variables.set(\"meal_plan_id\", mealPlan1Id)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_server_url}}/meal_plan",
+          "host": ["{{base_server_url}}"],
+          "path": ["meal_plan"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create_staged_client Copy",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "pm.variables.set(\"staged_client_id\", pm.variables.replaceIn('{{$randomEmail}}'))",
+              "pm.variables.set(\"staged_client_first_name\", pm.variables.replaceIn('{{$randomFirstName}}'))",
+              "pm.variables.set(\"staged_client_datetime\", Math.round(Date.now()/1000))"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"id\": \"{{staged_client_id}}\",\n    \"first_name\": \"{{staged_client_first_name}}\",\n    \"dietitian_id\": \"{{dietitian_id}}\",\n    \"meal_plan_id\": \"{{meal_plan_id}}\",\n    \"notes\": \"\",\n    \"datetime\": \"{{staged_client_datetime}}\",\n    \"account_created\": false,\n    \"active\": true,\n    \"waitlisted\": false,\n    \"meals_pre_selected\": false,\n    \"meals_prepaid\": false\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_server_url}}/staged_client",
+          "host": ["{{base_server_url}}"],
+          "path": ["staged_client"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "start_chrome_session",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const sessionData = JSON.parse(responseBody) ",
+              "const sessionId = sessionData.sessionId",
+              "",
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(typeof sessionId).to.be.a('string')",
+              "});",
+              "",
+              "pm.variables.set(\"session_id\", sessionId)",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"desiredCapabilities\": {\n        \"caps\": {\n            \"nativeEvents\": false,\n            \"browserName\": \"chrome\",\n            \"version\": \"\",\n            \"platform\": \"ANY\"\n        },\n        \"goog:chromeOptions\": {\n            \"args\": [\n                // \"user-data-dir=/Users/machina/Developer/User_Data\"\n                \"{{headless}}\"\n            ]\n        }\n    }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{chrome_driver_base_url}}/session",
+          "host": ["{{chrome_driver_base_url}}"],
+          "path": ["session"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "redirect_to_sign_up_page",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"url\":\"{{base_client_url}}/client-sign-up?staged_client_id={{staged_client_id}}\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{chrome_driver_base_url}}/session/{{session_id}}/url",
+          "host": ["{{chrome_driver_base_url}}"],
+          "path": ["session", "{{session_id}}", "url"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "grab_password_element",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const responseData = JSON.parse(responseBody)",
+              "const elementId = responseData.value.ELEMENT",
+              "",
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(typeof elementId).to.be.a('string')",
+              "});",
+              "",
+              "pm.variables.set(\"password_input_id\", elementId)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"using\":\"id\",\"value\":\"password\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{chrome_driver_base_url}}/session/{{session_id}}/element",
+          "host": ["{{chrome_driver_base_url}}"],
+          "path": ["session", "{{session_id}}", "element"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "grab_confirm_password_element",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "",
+              "const responseData = JSON.parse(responseBody) ",
+              "const elementId = responseData.value.ELEMENT",
+              "",
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(typeof elementId).to.be.a('string')",
+              "});",
+              "",
+              "pm.variables.set(\"confirm_password_input_id\", elementId)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"using\":\"id\",\"value\":\"confirm-password\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{chrome_driver_base_url}}/session/{{session_id}}/element",
+          "host": ["{{chrome_driver_base_url}}"],
+          "path": ["session", "{{session_id}}", "element"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "input_password",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": ["pm.variables.set(\"client_password\", \"a\")"],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"value\":[\"{{client_password}}\"]}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element/{{password_input_id}}/value",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": [
+            "session",
+            "{{session_id}}",
+            "element",
+            "{{password_input_id}}",
+            "value"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "input_confirm_password",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"value\":[\"{{client_password}}\"]}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element/{{confirm_password_input_id}}/value",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": [
+            "session",
+            "{{session_id}}",
+            "element",
+            "{{confirm_password_input_id}}",
+            "value"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "grab_password_submit_button",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "",
+              "const responseData = JSON.parse(responseBody) ",
+              "const elementId = responseData.value.ELEMENT",
+              "",
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(typeof elementId).to.be.a('string')",
+              "});",
+              "",
+              "pm.variables.set(\"password_button_id\", elementId)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"using\":\"id\",\"value\":\"password-button\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{chrome_driver_base_url}}/session/{{session_id}}/element",
+          "host": ["{{chrome_driver_base_url}}"],
+          "path": ["session", "{{session_id}}", "element"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "click_confirm_password",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element/{{password_button_id}}/click",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": [
+            "session",
+            "{{session_id}}",
+            "element",
+            "{{password_button_id}}",
+            "click"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "grab_add_meal_button_1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "",
+              "const responseData = JSON.parse(responseBody) ",
+              "const elementId = responseData.value.ELEMENT",
+              "",
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(typeof elementId).to.be.a('string')",
+              "});",
+              "",
+              "pm.variables.set(\"meal_button_id\", elementId)"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "const timeToDelay = (()=> {",
+              "    if (pm.environment.get(\"headless\")!== \"headless\"){",
+              "        return parseInt(pm.environment.get(\"meals_redirect_time_head\")) ",
+              "    }",
+              "    else {",
+              "        return parseInt(pm.environment.get(\"meals_redirect_time_headless\")) ",
+              "    }",
+              "})()",
+              "setTimeout(function delay() {",
+              "    }, timeToDelay)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"using\":\"id\",\"value\":\"meal-button-1\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{chrome_driver_base_url}}/session/{{session_id}}/element",
+          "host": ["{{chrome_driver_base_url}}"],
+          "path": ["session", "{{session_id}}", "element"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "click_add_meal_1",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element/{{meal_button_id}}/click",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": [
+            "session",
+            "{{session_id}}",
+            "element",
+            "{{meal_button_id}}",
+            "click"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "click_add_meal_1 Copy",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element/{{meal_button_id}}/click",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": [
+            "session",
+            "{{session_id}}",
+            "element",
+            "{{meal_button_id}}",
+            "click"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "click_add_meal_1 Copy 2",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element/{{meal_button_id}}/click",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": [
+            "session",
+            "{{session_id}}",
+            "element",
+            "{{meal_button_id}}",
+            "click"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "click_add_meal_1 Copy 3",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element/{{meal_button_id}}/click",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": [
+            "session",
+            "{{session_id}}",
+            "element",
+            "{{meal_button_id}}",
+            "click"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "click_add_meal_1 Copy 4",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element/{{meal_button_id}}/click",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": [
+            "session",
+            "{{session_id}}",
+            "element",
+            "{{meal_button_id}}",
+            "click"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "click_add_meal_1 Copy 5",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element/{{meal_button_id}}/click",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": [
+            "session",
+            "{{session_id}}",
+            "element",
+            "{{meal_button_id}}",
+            "click"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "grab_submit_client_meals_button",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "",
+              "const responseData = JSON.parse(responseBody) ",
+              "const elementId = responseData.value.ELEMENT",
+              "",
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(typeof elementId).to.be.a('string')",
+              "});",
+              "",
+              "pm.variables.set(\"client_meal_submit_button_id\", elementId)"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"using\":\"id\",\"value\":\"client-menu-submit\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{chrome_driver_base_url}}/session/{{session_id}}/element",
+          "host": ["{{chrome_driver_base_url}}"],
+          "path": ["session", "{{session_id}}", "element"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "click_client_submit_meals_button",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": ["setTimeout(function delay() {", "    }, 1000)"],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element/{{client_meal_submit_button_id}}/click",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": [
+            "session",
+            "{{session_id}}",
+            "element",
+            "{{client_meal_submit_button_id}}",
+            "click"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "grab_delivery_info_first_name",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "",
+              "const responseData = JSON.parse(responseBody) ",
+              "const elementId = responseData.value.ELEMENT",
+              "",
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(typeof elementId).to.be.a('string')",
+              "});",
+              "",
+              "pm.variables.set(\"first_name_input_id\", elementId)"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"using\":\"id\",\"value\":\"firstName\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{chrome_driver_base_url}}/session/{{session_id}}/element",
+          "host": ["{{chrome_driver_base_url}}"],
+          "path": ["session", "{{session_id}}", "element"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "input_first_name",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"value\":[\"Peter\"]}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element/{{first_name_input_id}}/value",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": [
+            "session",
+            "{{session_id}}",
+            "element",
+            "{{first_name_input_id}}",
+            "value"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "grab_delivery_info_last_name",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const responseData = JSON.parse(responseBody) ",
+              "const elementId = responseData.value.ELEMENT",
+              "",
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(typeof elementId).to.be.a('string')",
+              "});",
+              "",
+              "pm.variables.set(\"last_name_input_id\", elementId)"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"using\":\"id\",\"value\":\"lastName\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{chrome_driver_base_url}}/session/{{session_id}}/element",
+          "host": ["{{chrome_driver_base_url}}"],
+          "path": ["session", "{{session_id}}", "element"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "input_last_name",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"value\":[\"Driscoll\"]}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element/{{last_name_input_id}}/value",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": [
+            "session",
+            "{{session_id}}",
+            "element",
+            "{{last_name_input_id}}",
+            "value"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "grab_delivery_info_location",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const responseData = JSON.parse(responseBody) ",
+              "const elementId = responseData.value.ELEMENT",
+              "",
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(typeof elementId).to.be.a('string')",
+              "});",
+              "",
+              "pm.variables.set(\"google_maps_input_id\", elementId)"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"using\":\"id\",\"value\":\"google-map-demo\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{chrome_driver_base_url}}/session/{{session_id}}/element",
+          "host": ["{{chrome_driver_base_url}}"],
+          "path": ["session", "{{session_id}}", "element"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "input_location",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "setTimeout(function delay() {",
+              "    console.log(\"2 sec delay\")",
+              "    }, 2000)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"value\":[\"316 2nd avenue new york\"]}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element/{{google_maps_input_id}}/value",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": [
+            "session",
+            "{{session_id}}",
+            "element",
+            "{{google_maps_input_id}}",
+            "value"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "grab_delivery_info_location_dropdown",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const responseData = JSON.parse(responseBody) ",
+              "const elementId = responseData.value.ELEMENT",
+              "",
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(typeof elementId).to.be.a('string')",
+              "});",
+              "",
+              "pm.variables.set(\"google_maps_dropdown_id\", elementId)"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"using\":\"id\",\"value\":\"google-map-demo-option-0\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{chrome_driver_base_url}}/session/{{session_id}}/element",
+          "host": ["{{chrome_driver_base_url}}"],
+          "path": ["session", "{{session_id}}", "element"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "click_auto_complete",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "setTimeout(function delay() {",
+              "    console.log(\"slow down\")",
+              "    }, 100)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element/{{google_maps_dropdown_id}}/click",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": [
+            "session",
+            "{{session_id}}",
+            "element",
+            "{{google_maps_dropdown_id}}",
+            "click"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "grab_delivery_info_suite",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const responseData = JSON.parse(responseBody) ",
+              "const elementId = responseData.value.ELEMENT",
+              "",
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(typeof elementId).to.be.a('string')",
+              "});",
+              "",
+              "pm.variables.set(\"suite_id\", elementId)"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": ["setTimeout(function delay() {", "    }, 200)"],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"using\":\"id\",\"value\":\"suite\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{chrome_driver_base_url}}/session/{{session_id}}/element",
+          "host": ["{{chrome_driver_base_url}}"],
+          "path": ["session", "{{session_id}}", "element"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "input_suite",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": ["setTimeout(function delay() {", "    }, 200)"],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"value\":[\"apt 1a\"]}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element/{{suite_id}}/value",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": [
+            "session",
+            "{{session_id}}",
+            "element",
+            "{{suite_id}}",
+            "value"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "grab_delivery_info_phone",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const responseData = JSON.parse(responseBody) ",
+              "const elementId = responseData.value.ELEMENT",
+              "",
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(typeof elementId).to.be.a('string')",
+              "});",
+              "",
+              "pm.variables.set(\"phone_id\", elementId)"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"using\":\"id\",\"value\":\"phoneNumber\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{chrome_driver_base_url}}/session/{{session_id}}/element",
+          "host": ["{{chrome_driver_base_url}}"],
+          "path": ["session", "{{session_id}}", "element"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "input_phone",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"value\":[\"5126456898\"]}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element/{{phone_id}}/value",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": [
+            "session",
+            "{{session_id}}",
+            "element",
+            "{{phone_id}}",
+            "value"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "grab_delivery_info_submit",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "",
+              "const responseData = JSON.parse(responseBody) ",
+              "const elementId = responseData.value.ELEMENT",
+              "",
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(typeof elementId).to.be.a('string')",
+              "});",
+              "",
+              "pm.variables.set(\"submit_delivery_info_id\", elementId)"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"using\":\"id\",\"value\":\"address\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{chrome_driver_base_url}}/session/{{session_id}}/element",
+          "host": ["{{chrome_driver_base_url}}"],
+          "path": ["session", "{{session_id}}", "element"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "click_delivery_info_submit",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element/{{submit_delivery_info_id}}/click",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": [
+            "session",
+            "{{session_id}}",
+            "element",
+            "{{submit_delivery_info_id}}",
+            "click"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get_stripe_frames",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "const timeToDelay = (()=> {",
+              "    if (pm.environment.get(\"headless\")!== \"headless\"){",
+              "        return pm.environment.get(\"stripe_redirect_time_head\")",
+              "    }",
+              "    else {",
+              "        return pm.environment.get(\"stripe_redirect_time_headless\")",
+              "    }",
+              "})()",
+              "setTimeout(function delay() {",
+              "    }, timeToDelay)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"using\":\"tagName\", \"value\": \"iframe\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{chrome_driver_base_url}}/session/{{session_id}}/elements",
+          "host": ["{{chrome_driver_base_url}}"],
+          "path": ["session", "{{session_id}}", "elements"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "switch_to_stripe_frame",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":1}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{chrome_driver_base_url}}/session/{{session_id}}/frame",
+          "host": ["{{chrome_driver_base_url}}"],
+          "path": ["session", "{{session_id}}", "frame"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get_stripe_card",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const responseData = JSON.parse(responseBody) ",
+              "const elementId = responseData.value.ELEMENT",
+              "",
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(typeof elementId).to.be.a('string')",
+              "});",
+              "",
+              "pm.variables.set(\"stripe_card_id\", elementId)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"using\":\"id\",\"value\":\"Field-numberInput\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": ["session", "{{session_id}}", "element"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "input_stripe_card",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"value\":[\"{{stripe_card_dummy}}\"]}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element/{{stripe_card_id}}/value",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": [
+            "session",
+            "{{session_id}}",
+            "element",
+            "{{stripe_card_id}}",
+            "value"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get_stripe_card_exp",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const responseData = JSON.parse(responseBody) ",
+              "const elementId = responseData.value.ELEMENT",
+              "",
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(typeof elementId).to.be.a('string')",
+              "});",
+              "",
+              "pm.variables.set(\"stripe_card_exp_id\", elementId)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"using\":\"id\",\"value\":\"Field-expiryInput\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": ["session", "{{session_id}}", "element"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "input_stripe_card_exp",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"value\":[\"{{stripe_dummy_expr}}\"]}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element/{{stripe_card_exp_id}}/value",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": [
+            "session",
+            "{{session_id}}",
+            "element",
+            "{{stripe_card_exp_id}}",
+            "value"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get_stripe_card_cvc",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const responseData = JSON.parse(responseBody) ",
+              "const elementId = responseData.value.ELEMENT",
+              "",
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(typeof elementId).to.be.a('string')",
+              "});",
+              "",
+              "pm.variables.set(\"stripe_card_cvv_id\", elementId)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"using\":\"id\",\"value\":\"Field-cvcInput\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": ["session", "{{session_id}}", "element"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "input_stripe_card_cvc",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"value\":[\"{{stripe_dummy_cvv}}\"]}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element/{{stripe_card_cvv_id}}/value",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": [
+            "session",
+            "{{session_id}}",
+            "element",
+            "{{stripe_card_cvv_id}}",
+            "value"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get_stripe_card_zip",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const responseData = JSON.parse(responseBody) ",
+              "const elementId = responseData.value.ELEMENT",
+              "",
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(typeof elementId).to.be.a('string')",
+              "});",
+              "",
+              "pm.variables.set(\"stripe_card_zip_id\", elementId)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"using\":\"id\",\"value\":\"Field-postalCodeInput\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": ["session", "{{session_id}}", "element"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "input_stripe_card_zip",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"value\":[\"{{stripe_dummy_zip}}\"]}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element/{{stripe_card_zip_id}}/value",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": [
+            "session",
+            "{{session_id}}",
+            "element",
+            "{{stripe_card_zip_id}}",
+            "value"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "switch_to_main_frame",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":1}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{chrome_driver_base_url}}/session/{{session_id}}/frame/parent",
+          "host": ["{{chrome_driver_base_url}}"],
+          "path": ["session", "{{session_id}}", "frame", "parent"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get_stripe_submit",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const responseData = JSON.parse(responseBody) ",
+              "const elementId = responseData.value[0].ELEMENT",
+              "",
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(typeof elementId).to.be.a('string')",
+              "});",
+              "",
+              "pm.variables.set(\"stripe_submit_id\", elementId)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"using\":\"tagName\",\"value\":\"button\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/elements",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": ["session", "{{session_id}}", "elements"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "click_stripe_submit",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element/{{stripe_submit_id}}/click",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": [
+            "session",
+            "{{session_id}}",
+            "element",
+            "{{stripe_submit_id}}",
+            "click"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get_edit_delivery_button",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const responseData = JSON.parse(responseBody) ",
+              "const elementId = responseData.value[0].ELEMENT",
+              "",
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(typeof elementId).to.be.a('string')",
+              "});",
+              "",
+              "pm.variables.set(\"edit_delivery_button_id\", elementId)"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "const timeToDelay = (()=> {",
+              "    if (pm.environment.get(\"headless\")!== \"headless\"){",
+              "        return pm.environment.get(\"finish_sign_up_redirect_time_head\")",
+              "    }",
+              "    else {",
+              "        return pm.environment.get(\"finish_sign_up_redirect_time_headless\")",
+              "    }",
+              "})()",
+              "setTimeout(function delay() {",
+              "    }, timeToDelay)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"using\":\"id\",\"value\":\"edit-delivery-button\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/elements",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": ["session", "{{session_id}}", "elements"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "click_edit_delivery_button",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9515/session/{{session_id}}/element/{{edit_delivery_button_id}}/click",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9515",
+          "path": [
+            "session",
+            "{{session_id}}",
+            "element",
+            "{{edit_delivery_button_id}}",
+            "click"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get_staged_client Copy",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const stagedClient = JSON.parse(responseBody)",
+              "",
+              "pm.expect(stagedClient.meal_plan_id).to.equal(pm.variables.get(\"meal_plan_id\"))"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_server_url}}/staged_client/{{staged_client_id}}",
+          "host": ["{{base_server_url}}"],
+          "path": ["staged_client", "{{staged_client_id}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "authenticate_client Copy",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "{{staged_client_id}}",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "{{client_password}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_server_url}}/client/authenticate",
+          "host": ["{{base_server_url}}"],
+          "path": ["client", "authenticate"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get_meal_subscription Copy",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "const mealSubscription = JSON.parse(responseBody) ",
+              "",
+              "const mealSubscriptionId = mealSubscription.id",
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(typeof mealSubscriptionId).to.be.a('string')",
+              "});",
+              "",
+              "pm.variables.set(\"meal_subscription_id\", mealSubscriptionId)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_server_url}}/meal_subscription?client_id={{staged_client_id}}",
+          "host": ["{{base_server_url}}"],
+          "path": ["meal_subscription"],
+          "query": [
+            {
+              "key": "client_id",
+              "value": "{{staged_client_id}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get_meal_subscription_invoices?meal_subscription_id= Copy",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "const mealSubscriptionInvoiceArray = JSON.parse(responseBody)",
+              "",
+              "pm.test(\"Body is an array\", function () {",
+              "    pm.expect(mealSubscriptionInvoiceArray).to.be.an('array')",
+              "});",
+              "for (const mealSubscriptionInvoice of mealSubscriptionInvoiceArray) {",
+              "    pm.expect(mealSubscriptionInvoice.meal_subscription_id).to.equal(pm.variables.get(\"meal_subscription_id\"))",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_server_url}}/meal_subscription_invoice?meal_subscription_id={{meal_subscription_id}}",
+          "host": ["{{base_server_url}}"],
+          "path": ["meal_subscription_invoice"],
+          "query": [
+            {
+              "key": "meal_subscription_id",
+              "value": "{{meal_subscription_id}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get_meal_plan_meals",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "const mealPlanMealArray = JSON.parse(responseBody)",
+              "",
+              "pm.test(\"Body is an array\", function () {",
+              "    pm.expect(mealPlanMealArray).to.be.an('array')",
+              "});",
+              "",
+              "for (const mealPlanMeal of mealPlanMealArray) {",
+              "    pm.expect(mealPlanMeal.meal_plan_id).to.equal(pm.variables.get(\"meal_plan_id\"))",
+              "}",
+              "pm.variables.set(\"meal_plan_meals\", mealPlanMealArray)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_server_url}}/meal_plan_meal?meal_plan_id={{meal_plan_id}}",
+          "host": ["{{base_server_url}}"],
+          "path": ["meal_plan_meal"],
+          "query": [
+            {
+              "key": "meal_plan_id",
+              "value": "{{meal_plan_id}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get_schedule_meals?meal_subscription_id Copy",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [""],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "const scheduleMealArray = JSON.parse(responseBody)",
+              "",
+              "pm.test(\"Body is an array\", function () {",
+              "    pm.expect(scheduleMealArray).to.be.an('array')",
+              "});",
+              "for (const scheduleMeal of scheduleMealArray) {",
+              "    pm.expect(scheduleMeal.meal_subscription_id).to.equal(pm.variables.get(\"meal_subscription_id\"))",
+              "}",
+              "",
+              "const simplifiedMealPlanMealArray = pm.variables.get(\"meal_plan_meals\").map((mealPlanMeal)=> ({meal_id: mealPlanMeal.meal_id}))",
+              "for (const scheduleMeal of scheduleMealArray) {",
+              "    pm.expect(simplifiedMealPlanMealArray).to.deep.include({meal_id: scheduleMeal.meal_id})",
+              "}",
+              "pm.variables.set(\"schedule_meals\", scheduleMealArray)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_server_url}}/schedule_meal?meal_subscription_id={{meal_subscription_id}}",
+          "host": ["{{base_server_url}}"],
+          "path": ["schedule_meal"],
+          "query": [
+            {
+              "key": "meal_subscription_id",
+              "value": "{{meal_subscription_id}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get_scheduled_order_meals?meal_subscription_id= Copy",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "const scheduledOrderMealArray = JSON.parse(responseBody)",
+              "",
+              "pm.test(\"Body is an array\", function () {",
+              "    pm.expect(scheduledOrderMealArray).to.be.an('array')",
+              "});",
+              "",
+              "const simplifiedMealPlanMealArray = pm.variables.get(\"meal_plan_meals\").map((mealPlanMeal)=> ({meal_id: mealPlanMeal.meal_id}))",
+              "",
+              "for (const scheduledOrderMeal of scheduledOrderMealArray) {",
+              "    pm.expect(simplifiedMealPlanMealArray).to.deep.include({meal_id: scheduledOrderMeal.meal_id})",
+              "}",
+              "",
+              "for (const scheduledOrderMeal of scheduledOrderMealArray) {",
+              "    pm.expect(scheduledOrderMeal.meal_subscription_id).to.equal(pm.variables.get(\"meal_subscription_id\"))",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_server_url}}/scheduled_order_meal?meal_subscription_id={{meal_subscription_id}}",
+          "host": ["{{base_server_url}}"],
+          "path": ["scheduled_order_meal"],
+          "query": [
+            {
+              "key": "meal_subscription_id",
+              "value": "{{meal_subscription_id}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get_order_meals Copy",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "const orderMealArray = JSON.parse(responseBody)",
+              "",
+              "pm.test(\"Body is an array\", function () {",
+              "    pm.expect(orderMealArray).to.be.an('array')",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_server_url}}/order_meal?meal_subscription_id={{meal_subscription_id}}",
+          "host": ["{{base_server_url}}"],
+          "path": ["order_meal"],
+          "query": [
+            {
+              "key": "meal_subscription_id",
+              "value": "{{meal_subscription_id}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "if (pm.request.method !== \"GET\" && pm.info.requestName !== \"create_staged_client Copy\" && pm.info.requestName !== \"create_dietitian Copy\") {",
+          "pm.test(\"Status code is ok\", function () {",
+          "    const parsedResponse = JSON.parse(responseBody)",
+          "    const responseStatus = parsedResponse.status",
+          "    pm.expect(responseStatus).to.equal(0)",
+          "});",
+          "}"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "staged_client_id",
+      "value": ""
+    },
+    {
+      "key": "meal_plan_id",
+      "value": ""
+    },
+    {
+      "key": "session_id",
+      "value": ""
+    },
+    {
+      "key": "staged_client_datetime",
+      "value": ""
+    },
+    {
+      "key": "password_input_id",
+      "value": ""
+    },
+    {
+      "key": "confirm_password_input_id",
+      "value": ""
+    },
+    {
+      "key": "password_button_id",
+      "value": ""
+    },
+    {
+      "key": "meal_button_1_id",
+      "value": ""
+    },
+    {
+      "key": "meal_button_2_id",
+      "value": ""
+    },
+    {
+      "key": "first_meal_button_id",
+      "value": ""
+    },
+    {
+      "key": "second_meal_button_id",
+      "value": ""
+    },
+    {
+      "key": "meal_button_id",
+      "value": ""
+    },
+    {
+      "key": "client_meal_submit_button_id",
+      "value": ""
+    },
+    {
+      "key": "first_name_input_id",
+      "value": ""
+    },
+    {
+      "key": "last_name_input_id",
+      "value": ""
+    },
+    {
+      "key": "google_maps_input_id",
+      "value": ""
+    },
+    {
+      "key": "google_maps_dropdown_id",
+      "value": ""
+    },
+    {
+      "key": "suite_id",
+      "value": ""
+    },
+    {
+      "key": "phone_id",
+      "value": ""
+    },
+    {
+      "key": "submit_delivery_info_id",
+      "value": ""
+    },
+    {
+      "key": "stripe_card_id",
+      "value": ""
+    },
+    {
+      "key": "stripe_iframe_id",
+      "value": ""
+    },
+    {
+      "key": "stripe_card_exp_id",
+      "value": ""
+    },
+    {
+      "key": "stripe_card_cvv_id",
+      "value": ""
+    },
+    {
+      "key": "stripe_card_zip_id",
+      "value": ""
+    },
+    {
+      "key": "stripe_submit_id",
+      "value": ""
+    },
+    {
+      "key": "edit_delivery_button_id",
+      "value": ""
+    },
+    {
+      "key": "client_password",
+      "value": ""
+    },
+    {
+      "key": "meal_subscription_id",
+      "value": ""
+    },
+    {
+      "key": "staged_client_first_name",
+      "value": ""
+    },
+    {
+      "key": "meal_plan_meals",
+      "value": ""
+    },
+    {
+      "key": "schedule_meals",
+      "value": ""
+    }
+  ]
+}
