@@ -16,8 +16,25 @@ class Meal_Plan_Repository(Base_Repository):
         )
         return meal_plan
 
+    def get_even_meal_plan(self, odd_meal_plan_id: uuid.UUID) -> Meal_Plan_Model:
+        odd_meal_plan = self.get_meal_plan(meal_plan_id=odd_meal_plan_id)
+        even_meal_plan = (
+            self.db.session.query(Meal_Plan_Model)
+            .filter(Meal_Plan_Model.number == odd_meal_plan.number + 1)
+            .first()
+        )
+        return even_meal_plan
+
     def get_meal_plans(self) -> list[Meal_Plan_Model]:
         meal_plans = self.db.session.query(Meal_Plan_Model).all()
+        return meal_plans
+
+    def get_odd_meal_plans(self) -> list[Meal_Plan_Model]:
+        meal_plans = (
+            self.db.session.query(Meal_Plan_Model)
+            .filter(Meal_Plan_Model.number % 2 == 1)
+            .all()
+        )
         return meal_plans
 
     def initialize_meal_plans(self) -> None:

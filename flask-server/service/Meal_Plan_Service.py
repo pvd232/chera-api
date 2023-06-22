@@ -18,10 +18,25 @@ class Meal_Plan_Service(object):
         )
         return meal_plan
 
+    def get_even_meal_plan(self, odd_meal_plan_id: UUID) -> Meal_Plan_Domain:
+        even_meal_plan = Meal_Plan_Domain(
+            meal_plan_object=self.meal_plan_repository.get_even_meal_plan(
+                odd_meal_plan_id=odd_meal_plan_id
+            )
+        )
+        return even_meal_plan
+
     def get_meal_plans(self) -> list[Meal_Plan_Domain]:
         meal_plan_domains: list[Meal_Plan_Domain] = [
             Meal_Plan_Domain(meal_plan_object=x)
             for x in self.meal_plan_repository.get_meal_plans()
+        ]
+        return meal_plan_domains
+
+    def get_odd_meal_plans(self) -> list[Meal_Plan_Domain]:
+        meal_plan_domains: list[Meal_Plan_Domain] = [
+            Meal_Plan_Domain(meal_plan_object=x)
+            for x in self.meal_plan_repository.get_odd_meal_plans()
         ]
         return meal_plan_domains
 

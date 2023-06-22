@@ -11,5 +11,5 @@ class Meal_Plan_Meal_Domain(Base_Domain):
         self.id: UUID = meal_plan_meal_object.id
         self.meal_id: UUID = meal_plan_meal_object.meal_id
         self.meal_plan_id: UUID = meal_plan_meal_object.meal_plan_id
-        # self.multiplier: float = meal_plan_meal_object.multiplier
+        self.multiplier: float = meal_plan_meal_object.multiplier
         self.active: bool = meal_plan_meal_object.active

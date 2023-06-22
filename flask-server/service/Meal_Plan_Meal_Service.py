@@ -1,16 +1,12 @@
 from domain.Meal_Plan_Meal_Domain import Meal_Plan_Meal_Domain
-from domain.Meal_Plan_Domain import Meal_Plan_Domain
-from domain.Recipe_Ingredient_Domain import Recipe_Ingredient_Domain
 
 from uuid import UUID
 from typing import Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from repository.Meal_Plan_Meal_Repository import Meal_Plan_Meal_Repository
-    from service.Continuity_Service import Continuity_Service
-    from service.Recipe_Ingredient_Service import Recipe_Ingredient_Service
-    from service.USDA_Ingredient_Service import USDA_Ingredient_Service
-    from models import Meal_Plan_Meal_Model, Meal_Plan_Model
+    from service.Meal_Plan_Service import Meal_Plan_Service
+    from models import Meal_Plan_Meal_Model
     from dto.Meal_Plan_Meal_DTO import Meal_Plan_Meal_DTO
 
 
@@ -31,6 +27,16 @@ class Meal_Plan_Meal_Service(object):
         )
         return meal_plan_meal_domain
 
+    def get_even_meal_plan_meal(
+        self, meal_id: UUID, meal_plan_id: UUID
+    ) -> Meal_Plan_Meal_Domain:
+        even_meal_plan_meal = Meal_Plan_Meal_Domain(
+            meal_plan_meal_object=self.meal_plan_meal_repository.get_meal_plan_meal(
+                meal_id=meal_id, meal_plan_id=meal_plan_id
+            )
+        )
+        return even_meal_plan_meal
+
     def get_meal_plan_meals(
         self, meal_plan_id: UUID = None
     ) -> Optional[list[Meal_Plan_Meal_Domain]]:
@@ -49,6 +55,34 @@ class Meal_Plan_Meal_Service(object):
         self.meal_plan_meal_repository.create_meal_plan_meal(
             meal_plan_meal_domain=meal_plan_meal_domain
         )
+        return
+
+    def update_meal_plan_meal(
+        self,
+        meal_plan_meal_dto: "Meal_Plan_Meal_DTO",
+        should_update_even: bool,
+        meal_plan_service: "Meal_Plan_Service" = None,
+    ) -> None:
+        odd_meal_plan_meal_domain: Meal_Plan_Meal_Domain = Meal_Plan_Meal_Domain(
+            meal_plan_meal_object=meal_plan_meal_dto
+        )
+        if should_update_even:
+            even_meal_plan = meal_plan_service.get_even_meal_plan(
+                odd_meal_plan_id=odd_meal_plan_meal_domain.meal_plan_id
+            )
+            even_meal_plan_meal = self.get_even_meal_plan_meal(
+                meal_id=odd_meal_plan_meal_domain.meal_id,
+                meal_plan_id=even_meal_plan.id,
+            )
+            self.meal_plan_meal_repository.update_meal_plan_meal(
+                odd_meal_plan_meal_domain=odd_meal_plan_meal_domain,
+                even_meal_plan_meal_domain=even_meal_plan_meal,
+            )
+        else:
+            self.meal_plan_meal_repository.update_meal_plan_meal(
+                odd_meal_plan_meal_domain=odd_meal_plan_meal_domain,
+                even_meal_plan_meal_domain=None,
+            )
         return
 
     def write_meal_plan_meals(self) -> None:

@@ -1,4 +1,5 @@
 from typing import TYPE_CHECKING
+from uuid import UUID
 
 if TYPE_CHECKING:
     from repository.Imperial_Unit_Repository import Imperial_Unit_Repository
@@ -65,3 +66,13 @@ class Continuity_Repository(object):
         recipe_ingredient_repository.initialize_recipe_ingredients()
         recipe_ingredient_nutrient_repository.initialize_recipe_ingredient_nutrients(),
         discount_repository.initialize_discounts()
+
+    def initialize_meal_plan_meal(
+        self,
+        meal_plan_meal_id: UUID,
+        meal_plan_meal_repository: "Meal_Plan_Meal_Repository",
+    ) -> None:
+        meal_plan_meal_repository.initialize_plan_meal(
+            meal_plan_meal_id=meal_plan_meal_id
+        )
+        return

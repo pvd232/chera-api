@@ -1,27 +1,27 @@
 [
     {
-        "id": "1e1563f0-7d42-4997-9c22-ce4c8e5cd32c",
-        "meal_id": "fd06b323-6165-412a-932a-288ff1574691",
-        "dietary_restriction_id": "vegetarian"
-    },
-    {
-        "id": "52acb879-92f9-43d1-a333-2a6e98d3bbfc",
-        "meal_id": "4a869091-0457-420a-a013-728eb93d8121",
-        "dietary_restriction_id": "vegetarian"
-    },
-    {
         "id": "4019151c-32e5-4b48-8ee4-15845711e02a",
         "meal_id": "73f4765a-aef7-4521-b9f5-a12afccc6401",
         "dietary_restriction_id": "vegetarian"
     },
     {
-        "id": "0d73bf0f-bd06-4c01-af32-95623a71879a",
-        "meal_id": "debe8387-8222-4520-a835-32b4e35acdb9",
+        "id": "72e6fe43-dfa9-4634-8bf1-fdc0e7edd1f4",
+        "meal_id": "cef4232c-e010-4e50-9429-25aa8af64216",
         "dietary_restriction_id": "vegetarian"
     },
     {
-        "id": "efc02f5f-ac8f-4cae-9a6c-532bfff1b7b1",
-        "meal_id": "63f7a4db-690a-4db6-98cc-89b5a677e374",
+        "id": "eeff0b57-3d33-4cb3-9ba1-862192d863ce",
+        "meal_id": "b949aba0-119f-4474-888b-366e069f89c6",
+        "dietary_restriction_id": "vegetarian"
+    },
+    {
+        "id": "c7c1126d-53e5-4ff3-9125-3af232593271",
+        "meal_id": "b4276da4-715a-4775-907b-c068c952ac55",
+        "dietary_restriction_id": "vegetarian"
+    },
+    {
+        "id": "f737b201-e8d3-4edb-b50a-0430252af578",
+        "meal_id": "5a9cdf79-8c8c-476b-8b2b-11f1a1191a57",
         "dietary_restriction_id": "vegetarian"
     }
 ]

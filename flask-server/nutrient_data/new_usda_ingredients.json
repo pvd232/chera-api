@@ -440,17 +440,6 @@
         "active": true
     },
     {
-        "id": "milk_whole",
-        "name": "whole milk",
-        "fdc_id": "746782",
-        "amount_of_grams": 100.0,
-        "k_cal": 251,
-        "k_cal_to_gram_ratio": 2.51,
-        "usda_data_type": "Foundation",
-        "fda_identifier": "746782",
-        "active": true
-    },
-    {
         "id": "cream_cheese",
         "name": "cream cheese",
         "fdc_id": "2341163",
@@ -935,17 +924,6 @@
         "active": true
     },
     {
-        "id": "flour",
-        "name": "flour",
-        "fdc_id": "2003586",
-        "amount_of_grams": 100.0,
-        "k_cal": 366,
-        "k_cal_to_gram_ratio": 3.65610744,
-        "usda_data_type": "Foundation",
-        "fda_identifier": "2003586",
-        "active": true
-    },
-    {
         "id": "bread_crumbs",
         "name": "bread crumbs",
         "fdc_id": "172806",
@@ -1020,17 +998,6 @@
         "k_cal_to_gram_ratio": 6.39,
         "usda_data_type": "Survey (FNDDS)",
         "fda_identifier": "42202000",
-        "active": true
-    },
-    {
-        "id": "coconut_milk",
-        "name": "coconut milk",
-        "fdc_id": "2343044",
-        "amount_of_grams": 100.0,
-        "k_cal": 230,
-        "k_cal_to_gram_ratio": 2.3,
-        "usda_data_type": "Survey (FNDDS)",
-        "fda_identifier": "42401010",
         "active": true
     },
     {
@@ -1361,6 +1328,39 @@
         "k_cal_to_gram_ratio": 0.32,
         "usda_data_type": "SR Legacy",
         "fda_identifier": "170463",
+        "active": true
+    },
+    {
+        "id": "whole_milk",
+        "name": "whole_milk",
+        "fdc_id": "746782",
+        "amount_of_grams": 100.0,
+        "k_cal": 60,
+        "k_cal_to_gram_ratio": 0.6,
+        "usda_data_type": "Foundation",
+        "fda_identifier": "746782",
+        "active": true
+    },
+    {
+        "id": "flour",
+        "name": "flour",
+        "fdc_id": "2003586",
+        "amount_of_grams": 100.0,
+        "k_cal": 366,
+        "k_cal_to_gram_ratio": 3.65610744,
+        "usda_data_type": "Foundation",
+        "fda_identifier": "2003586",
+        "active": true
+    },
+    {
+        "id": "coconut_milk",
+        "name": "coconut milk",
+        "fdc_id": "2085493",
+        "amount_of_grams": 100.0,
+        "k_cal": 39,
+        "k_cal_to_gram_ratio": 0.39,
+        "usda_data_type": "Branded",
+        "fda_identifier": "2085493",
         "active": true
     }
 ]

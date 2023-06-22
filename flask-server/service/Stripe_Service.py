@@ -56,6 +56,15 @@ class Stripe_Service(object):
             stripe_customer.delete()
         return
 
+    def get_payment_methods(self,customer_stripe_id: str):
+        payment_methods = stripe.PaymentMethod.list(
+            customer=customer_stripe_id, type="card"
+        )
+        print(
+            "payment_methods",
+        )
+        return stripe.PaymentMethod.list(customer=customer_stripe_id, type="card")
+
     def get_subscription(self, stripe_subscription_id: str) -> stripe.Subscription:
         return stripe.Subscription.retrieve(stripe_subscription_id)
 

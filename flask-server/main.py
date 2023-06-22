@@ -99,6 +99,15 @@ def setup_table() -> Response:
     return Response(status=200)
 
 
+@app.route("/api/sandbox")
+def sandbox() -> Response:
+    from repository.Continuity_Repository import Continuity_Repository
+    from repository.Meal_Plan_Meal_Repository import Meal_Plan_Meal_Repository
+
+    Meal_Plan_Meal_Repository(db=db).initialize_meal_plan_meals()
+    return Response(status=200)
+
+
 @app.route("/api/continuity/write")
 def continuity_write() -> Response:
     from repository.Continuity_Repository import Continuity_Repository
@@ -268,52 +277,41 @@ def continuity_initialize() -> Response:
     if not check_auth(env=env, db_password=db_password, request=request):
         return Response(status=401)
 
-    live_db_engine = create_engine(live_db_string)
-    test_db_string = os.getenv(
-        "DB_STRING",
-        get_db_connection_string(
-            username=db_username, password=db_password, db_name="nourishdb"
-        ),
-    )
-    test_db_engine = create_engine(test_db_string)
-
-    initialize_db(
-        source_db_engine=live_db_engine,
-        target_db_engine=test_db_engine,
-        drop_tables=True,
-    )
-    # create_state_tax_rates(db=db)
+    db_engine = create_engine(live_db_string)
+    db.drop_all()
+    db.create_all()
+    # initialize_db(
+    #     db_engine=db_engine,
+    #     drop_tables=True,
+    # )
+    create_state_tax_rates(db=db)
     Continuity_Repository().initialize_meal_data(
-        imperial_unit_repository=Imperial_Unit_Repository(engine=test_db_engine),
-        nutrient_repository=Nutrient_Repository(engine=test_db_engine),
-        usda_ingredient_repository=USDA_Ingredient_Repository(engine=test_db_engine),
+        imperial_unit_repository=Imperial_Unit_Repository(engine=db_engine),
+        nutrient_repository=Nutrient_Repository(engine=db_engine),
+        usda_ingredient_repository=USDA_Ingredient_Repository(engine=db_engine),
         usda_ingredient_nutrient_repository=USDA_Ingredient_Nutrient_Repository(
-            engine=test_db_engine
+            engine=db_engine
         ),
         usda_ingredient_portion_repository=USDA_Ingredient_Portion_Repository(
-            engine=test_db_engine
+            engine=db_engine
         ),
         usda_nutrient_daily_value_repository=USDA_Nutrient_Daily_Value_Repository(
-            engine=test_db_engine
+            engine=db_engine
         ),
-        dietary_restriction_repository=Dietary_Restriction_Repository(
-            engine=test_db_engine
-        ),
-        meal_repository=Meal_Repository(engine=test_db_engine),
-        snack_repository=Snack_Repository(engine=test_db_engine),
+        dietary_restriction_repository=Dietary_Restriction_Repository(engine=db_engine),
+        meal_repository=Meal_Repository(engine=db_engine),
+        snack_repository=Snack_Repository(engine=db_engine),
         meal_dietary_restriction_repository=Meal_Dietary_Restriction_Repository(
-            engine=test_db_engine
+            engine=db_engine
         ),
-        meal_plan_repository=Meal_Plan_Repository(engine=test_db_engine),
-        meal_plan_meal_repository=Meal_Plan_Meal_Repository(engine=test_db_engine),
-        meal_plan_snack_repository=Meal_Plan_Snack_Repository(engine=test_db_engine),
-        recipe_ingredient_repository=Recipe_Ingredient_Repository(
-            engine=test_db_engine
-        ),
+        meal_plan_repository=Meal_Plan_Repository(engine=db_engine),
+        meal_plan_meal_repository=Meal_Plan_Meal_Repository(engine=db_engine),
+        meal_plan_snack_repository=Meal_Plan_Snack_Repository(engine=db_engine),
+        recipe_ingredient_repository=Recipe_Ingredient_Repository(engine=db_engine),
         recipe_ingredient_nutrient_repository=Recipe_Ingredient_Nutrient_Repository(
-            engine=test_db_engine
+            engine=db_engine
         ),
-        discount_repository=Discount_Repository(engine=test_db_engine),
+        discount_repository=Discount_Repository(engine=db_engine),
     )
 
     return Response(status=200)
@@ -1861,10 +1859,12 @@ def meal(meal_id: Optional[str]) -> Response:
         return Response(status=405)
 
 
-@app.route("/api/meal_plan_meal", methods=["POST"])
+@app.route("/api/meal_plan_meal", methods=["POST", "PUT"])
 def meal_plan_meal() -> Response:
     from service.Meal_Plan_Meal_Service import Meal_Plan_Meal_Service
+    from service.Meal_Plan_Service import Meal_Plan_Service
     from repository.Meal_Plan_Meal_Repository import Meal_Plan_Meal_Repository
+    from repository.Meal_Plan_Repository import Meal_Plan_Repository
     from dto.Meal_Plan_Meal_DTO import Meal_Plan_Meal_DTO
 
     if request.method == "POST":
@@ -1874,6 +1874,41 @@ def meal_plan_meal() -> Response:
             meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
         ).create_meal_plan_meal(meal_plan_meal_dto=meal_plan_meal_dto)
         return Response(status=201)
+    elif request.method == "PUT":
+        mass_update = request.headers.get("mass-update")
+        if not mass_update:
+            meal_plan_meal = json.loads(request.data)
+            meal_plan_meal_dto = Meal_Plan_Meal_DTO(meal_plan_meal_json=meal_plan_meal)
+
+            Meal_Plan_Meal_Service(
+                meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+            ).update_meal_plan_meal(
+                meal_plan_meal_dto=meal_plan_meal_dto,
+                meal_plan_service=Meal_Plan_Service(
+                    meal_plan_repository=Meal_Plan_Repository(db=db)
+                ),
+            )
+        else:
+            odd_meal_plans = Meal_Plan_Service(
+                meal_plan_repository=Meal_Plan_Repository(db=db)
+            ).get_odd_meal_plans()
+            for meal_plan in odd_meal_plans:
+                associated_meal_plan_meals = Meal_Plan_Meal_Service(
+                    meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+                ).get_meal_plan_meals(meal_plan_id=meal_plan.id)
+
+                for meal_plan_meal in associated_meal_plan_meals:
+                    Meal_Plan_Meal_Service(
+                        meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+                    ).update_meal_plan_meal(
+                        meal_plan_meal_dto=meal_plan_meal,
+                        should_update_even=True,
+                        meal_plan_service=Meal_Plan_Service(
+                            meal_plan_repository=Meal_Plan_Repository(db=db)
+                        ),
+                    )
+            return Response(status=204)
+
     else:
         return Response(status=405)
 
@@ -3296,6 +3331,16 @@ def verify_discount() -> Response:
             return Response(status=404)
     else:
         return Response(status=405)
+
+
+@app.route("/api/stripe/payment_method/<string:client_stripe_id>", methods=["POST"])
+def stripe_payment_methods(client_stripe_id: str) -> Response:
+    from service.Stripe_Service import Stripe_Service
+
+    payment_methods = Stripe_Service().get_payment_methods(
+        client_stripe_id=client_stripe_id
+    )
+    return Response(status=201)
 
 
 @app.route("/api/stripe/payment_intent", methods=["POST"])

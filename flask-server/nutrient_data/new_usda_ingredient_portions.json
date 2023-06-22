@@ -1452,18 +1452,6 @@
         "multiplier": 1.0
     },
     {
-        "id": "0b54b198-766e-4502-86fd-75cbb15f1b84",
-        "usda_ingredient_id": "milk_whole",
-        "fda_portion_id": "187530",
-        "non_metric_unit": "cup",
-        "grams_per_non_metric_unit": 249.0,
-        "portion_description": "",
-        "is_imperial": true,
-        "usda_data_type": "Foundation",
-        "custom_value": false,
-        "multiplier": 1.0
-    },
-    {
         "id": "2b34cb9b-8417-4380-a5d7-0bdfa2408d34",
         "usda_ingredient_id": "cream_cheese",
         "fda_portion_id": "269215",
@@ -3000,18 +2988,6 @@
         "multiplier": 1.0
     },
     {
-        "id": "42330b48-ed27-4faf-bc83-b1dd4600b27f",
-        "usda_ingredient_id": "flour",
-        "fda_portion_id": "85436",
-        "non_metric_unit": "cup",
-        "grams_per_non_metric_unit": 0.0,
-        "portion_description": "based on g in a cup of barley flour from SR Legacy",
-        "is_imperial": true,
-        "usda_data_type": "Foundation",
-        "custom_value": false,
-        "multiplier": 1.0
-    },
-    {
         "id": "1370b747-739d-4a87-b960-5fc67764bce2",
         "usda_ingredient_id": "chickpeas",
         "fda_portion_id": "238249",
@@ -3312,42 +3288,6 @@
         "multiplier": 1.0
     },
     {
-        "id": "cd281f93-9edb-4d12-8aad-950e3f16ebfa",
-        "usda_ingredient_id": "coconut_milk",
-        "fda_portion_id": "276253",
-        "non_metric_unit": "fl oz (no ice)",
-        "grams_per_non_metric_unit": 30.0,
-        "portion_description": "1 fl oz (no ice)",
-        "is_imperial": true,
-        "usda_data_type": "Survey (FNDDS)",
-        "custom_value": false,
-        "multiplier": 1.0
-    },
-    {
-        "id": "fd15c0d2-5946-44dc-afab-6f090a3b9648",
-        "usda_ingredient_id": "coconut_milk",
-        "fda_portion_id": "276255",
-        "non_metric_unit": "fl oz (NFS)",
-        "grams_per_non_metric_unit": 30.0,
-        "portion_description": "1 fl oz (NFS)",
-        "is_imperial": true,
-        "usda_data_type": "Survey (FNDDS)",
-        "custom_value": false,
-        "multiplier": 1.0
-    },
-    {
-        "id": "b79c08b5-1643-4292-8b30-91c2529c2a44",
-        "usda_ingredient_id": "coconut_milk",
-        "fda_portion_id": "276254",
-        "non_metric_unit": "fl oz (with ice)",
-        "grams_per_non_metric_unit": 23.0,
-        "portion_description": "1 fl oz (with ice)",
-        "is_imperial": true,
-        "usda_data_type": "Survey (FNDDS)",
-        "custom_value": false,
-        "multiplier": 1.0
-    },
-    {
         "id": "29a23724-64a2-4ab4-8e19-c529e6bf0b63",
         "usda_ingredient_id": "lime_juice",
         "fda_portion_id": "283621",
@@ -3430,18 +3370,6 @@
         "usda_data_type": "Survey (FNDDS)",
         "custom_value": true,
         "multiplier": 16.0
-    },
-    {
-        "id": "ca8d1646-c29f-4892-a5fb-67f5d9d17ef5",
-        "usda_ingredient_id": "coconut_milk",
-        "fda_portion_id": "276253",
-        "non_metric_unit": "tbsp",
-        "grams_per_non_metric_unit": 60.0,
-        "portion_description": "based on FL oz",
-        "is_imperial": true,
-        "usda_data_type": "Survey (FNDDS)",
-        "custom_value": true,
-        "multiplier": 2.0
     },
     {
         "id": "6b904e58-1fbf-4a48-827d-16dbd8ba6706",
@@ -4608,18 +4536,6 @@
         "multiplier": 0.1575
     },
     {
-        "id": "c1792f42-711c-45cc-95b0-7adf09870f37",
-        "usda_ingredient_id": "milk_whole",
-        "fda_portion_id": "187530",
-        "non_metric_unit": "oz",
-        "grams_per_non_metric_unit": 28.34952,
-        "portion_description": "based on g in cup",
-        "is_imperial": true,
-        "usda_data_type": "Foundation",
-        "custom_value": true,
-        "multiplier": 0.11385
-    },
-    {
         "id": "cc51785e-cb10-40f1-b8b5-a9675b2d561c",
         "usda_ingredient_id": "chia_seeds",
         "fda_portion_id": "238346",
@@ -4750,5 +4666,65 @@
         "usda_data_type": "SR Legacy",
         "custom_value": true,
         "multiplier": 1.0
+    },
+    {
+        "id": "3d3cc099-6f6e-4c87-8395-21e95b39f427",
+        "usda_ingredient_id": "whole_milk",
+        "fda_portion_id": "187530",
+        "non_metric_unit": "cup",
+        "grams_per_non_metric_unit": 249.0,
+        "portion_description": "",
+        "is_imperial": true,
+        "usda_data_type": "Foundation",
+        "custom_value": false,
+        "multiplier": 1.0
+    },
+    {
+        "id": "d1c57947-6e64-4d67-86ad-b0eaba31b6d3",
+        "usda_ingredient_id": "whole_milk",
+        "fda_portion_id": "",
+        "non_metric_unit": "oz",
+        "grams_per_non_metric_unit": 28.34953,
+        "portion_description": "",
+        "is_imperial": true,
+        "usda_data_type": "Foundation",
+        "custom_value": true,
+        "multiplier": 1.0
+    },
+    {
+        "id": "42330b48-ed27-4faf-bc83-b1dd4600b27f",
+        "usda_ingredient_id": "flour",
+        "fda_portion_id": "85436",
+        "non_metric_unit": "cup",
+        "grams_per_non_metric_unit": 148.0,
+        "portion_description": "based on g in a cup of barley flour from SR Legacy",
+        "is_imperial": true,
+        "usda_data_type": "Foundation",
+        "custom_value": false,
+        "multiplier": 1.0
+    },
+    {
+        "id": "995f5879-0684-46f2-8d53-80abbfeaf981",
+        "usda_ingredient_id": "coconut_milk",
+        "fda_portion_id": "267960",
+        "non_metric_unit": "cup",
+        "grams_per_non_metric_unit": 244.0,
+        "portion_description": "based on Survey coconut milk cup",
+        "is_imperial": true,
+        "usda_data_type": "Branded",
+        "custom_value": false,
+        "multiplier": 1.0
+    },
+    {
+        "id": "73af754c-690e-4190-8a08-65912955a98e",
+        "usda_ingredient_id": "coconut_milk",
+        "fda_portion_id": "267960",
+        "non_metric_unit": "tbsp",
+        "grams_per_non_metric_unit": 15.25,
+        "portion_description": "based on Survey coconut milk cup",
+        "is_imperial": true,
+        "usda_data_type": "Branded",
+        "custom_value": true,
+        "multiplier": 0.0625
     }
 ]

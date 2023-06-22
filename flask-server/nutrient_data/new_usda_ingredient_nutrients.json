@@ -6066,150 +6066,6 @@
         "amount": 0.08
     },
     {
-        "id": "584bd7d7-8028-42b0-9caf-ebeb65d0f6ba",
-        "usda_ingredient_id": "milk_whole",
-        "nutrient_id": "protein",
-        "amount": 3.27
-    },
-    {
-        "id": "497bcc7a-8db2-4a26-9697-99f7a02ad948",
-        "usda_ingredient_id": "milk_whole",
-        "nutrient_id": "carb",
-        "amount": 4.63
-    },
-    {
-        "id": "0afffb7f-82b9-4afa-862b-419ac815ac36",
-        "usda_ingredient_id": "milk_whole",
-        "nutrient_id": "dietary_fiber",
-        "amount": 0.0
-    },
-    {
-        "id": "d9a8d16f-027a-4feb-a011-fbc98e161e45",
-        "usda_ingredient_id": "milk_whole",
-        "nutrient_id": "sugars",
-        "amount": 0.0
-    },
-    {
-        "id": "8b50ffd0-d5cf-42d5-95a7-0c8c63a609a0",
-        "usda_ingredient_id": "milk_whole",
-        "nutrient_id": "fat",
-        "amount": 3.2
-    },
-    {
-        "id": "d706cb2d-2593-4b45-bd24-bbf5bbf44834",
-        "usda_ingredient_id": "milk_whole",
-        "nutrient_id": "saturated_fat",
-        "amount": 1.86
-    },
-    {
-        "id": "1d84fbb9-8738-4b86-a997-55652a43c08a",
-        "usda_ingredient_id": "milk_whole",
-        "nutrient_id": "vitamin_d",
-        "amount": 0.96
-    },
-    {
-        "id": "cd2cc25c-7c21-4cbf-8f0a-a98b954c0320",
-        "usda_ingredient_id": "milk_whole",
-        "nutrient_id": "calcium",
-        "amount": 123.0
-    },
-    {
-        "id": "31a46a17-5bdd-4ce6-bbd2-57c789440ec7",
-        "usda_ingredient_id": "milk_whole",
-        "nutrient_id": "iron",
-        "amount": 0.0
-    },
-    {
-        "id": "64110c63-8cbf-4c0c-9f68-97a3e8a902c7",
-        "usda_ingredient_id": "milk_whole",
-        "nutrient_id": "potassium",
-        "amount": 150.0
-    },
-    {
-        "id": "49b953e5-5efc-445d-9511-5e493b47cb59",
-        "usda_ingredient_id": "milk_whole",
-        "nutrient_id": "sodium",
-        "amount": 38.0
-    },
-    {
-        "id": "4b6a1b0d-9300-4a4d-af43-f3f8018d82fb",
-        "usda_ingredient_id": "milk_whole",
-        "nutrient_id": "cholesterol",
-        "amount": 12.0
-    },
-    {
-        "id": "5de86087-fd50-46f4-86ab-37286af406b5",
-        "usda_ingredient_id": "milk_whole",
-        "nutrient_id": "vitamin_c",
-        "amount": 0.0
-    },
-    {
-        "id": "d819e89d-1562-430d-9d70-403db6ea4524",
-        "usda_ingredient_id": "milk_whole",
-        "nutrient_id": "vitamin_b_6",
-        "amount": 0.061
-    },
-    {
-        "id": "3c408f25-3ffc-4006-8aa2-fe7839f410a7",
-        "usda_ingredient_id": "milk_whole",
-        "nutrient_id": "vitamin_b_12",
-        "amount": 0.54
-    },
-    {
-        "id": "c5386a36-15a3-4f97-b7cc-72dd470b16a6",
-        "usda_ingredient_id": "milk_whole",
-        "nutrient_id": "thiamin",
-        "amount": 0.056
-    },
-    {
-        "id": "30f606f1-2bc2-472e-94ce-76199019eb38",
-        "usda_ingredient_id": "milk_whole",
-        "nutrient_id": "riboflavin",
-        "amount": 0.138
-    },
-    {
-        "id": "d791af47-7c25-4c4f-8621-0179c2ff114e",
-        "usda_ingredient_id": "milk_whole",
-        "nutrient_id": "niacin",
-        "amount": 0.105
-    },
-    {
-        "id": "8b0f6993-9462-4d46-8676-7736f9f9f873",
-        "usda_ingredient_id": "milk_whole",
-        "nutrient_id": "folate",
-        "amount": 0.0
-    },
-    {
-        "id": "d0d09255-399c-4a6f-b2d4-d2a43a019cbc",
-        "usda_ingredient_id": "milk_whole",
-        "nutrient_id": "vitamin_k",
-        "amount": 0.0
-    },
-    {
-        "id": "b9f82a8f-c37d-464a-97a1-427859f6ec2b",
-        "usda_ingredient_id": "milk_whole",
-        "nutrient_id": "phosphorus",
-        "amount": 101.0
-    },
-    {
-        "id": "028b07af-dae2-43fe-90b2-8a63c27e5e35",
-        "usda_ingredient_id": "milk_whole",
-        "nutrient_id": "trans_fat",
-        "amount": 0.0
-    },
-    {
-        "id": "8780775c-6751-477c-9c68-b11f71adb312",
-        "usda_ingredient_id": "milk_whole",
-        "nutrient_id": "vitamin_a",
-        "amount": 32.0
-    },
-    {
-        "id": "8d0b5fae-a4a4-4bea-86da-a1940f0b035b",
-        "usda_ingredient_id": "milk_whole",
-        "nutrient_id": "vitamin_e",
-        "amount": 0.05
-    },
-    {
         "id": "fcbc0f16-4499-49fd-ac6d-eca38a0e7cbf",
         "usda_ingredient_id": "cream_cheese",
         "nutrient_id": "protein",
@@ -9556,6 +9412,12 @@
         "usda_ingredient_id": "smoked_ham",
         "nutrient_id": "iron",
         "amount": 0.39
+    },
+    {
+        "id": "ff728069-2806-444b-8bfb-d1cf59c4a231",
+        "usda_ingredient_id": "cumin",
+        "nutrient_id": "protein",
+        "amount": 17.81
     },
     {
         "id": "54cc2b6c-ab85-45e4-b10e-b46854c6e2a3",
@@ -13536,150 +13398,6 @@
         "amount": 9.11
     },
     {
-        "id": "e5252694-9a7b-49cc-86a8-b3ad43c92eae",
-        "usda_ingredient_id": "coconut_milk",
-        "nutrient_id": "protein",
-        "amount": 2.29
-    },
-    {
-        "id": "b80a783f-e0c1-4e75-861b-10d7fb9ab19e",
-        "usda_ingredient_id": "coconut_milk",
-        "nutrient_id": "carb",
-        "amount": 5.54
-    },
-    {
-        "id": "481e291d-002f-47dd-a9c9-a535c9eed845",
-        "usda_ingredient_id": "coconut_milk",
-        "nutrient_id": "dietary_fiber",
-        "amount": 2.2
-    },
-    {
-        "id": "8d07bdc3-0521-4520-89e6-240e395727e8",
-        "usda_ingredient_id": "coconut_milk",
-        "nutrient_id": "sugars",
-        "amount": 3.34
-    },
-    {
-        "id": "0a2456e9-f568-453e-901a-3df9144e6e30",
-        "usda_ingredient_id": "coconut_milk",
-        "nutrient_id": "fat",
-        "amount": 23.8
-    },
-    {
-        "id": "d5ddfb81-898b-498a-91f7-69069b771802",
-        "usda_ingredient_id": "coconut_milk",
-        "nutrient_id": "saturated_fat",
-        "amount": 21.1
-    },
-    {
-        "id": "a31b583f-d15f-4b29-90d5-ad938c825009",
-        "usda_ingredient_id": "coconut_milk",
-        "nutrient_id": "vitamin_d",
-        "amount": 0.0
-    },
-    {
-        "id": "7e96e85d-3add-4c9c-88a4-5f6638a8b8a0",
-        "usda_ingredient_id": "coconut_milk",
-        "nutrient_id": "calcium",
-        "amount": 16.0
-    },
-    {
-        "id": "33aad7a7-671b-4ebc-8a2e-50610d5d65b9",
-        "usda_ingredient_id": "coconut_milk",
-        "nutrient_id": "iron",
-        "amount": 1.64
-    },
-    {
-        "id": "8867874b-af29-4ebe-ac8d-c01e5e3d73de",
-        "usda_ingredient_id": "coconut_milk",
-        "nutrient_id": "potassium",
-        "amount": 263.0
-    },
-    {
-        "id": "923a00f9-935b-4b38-b103-ab4028f494ff",
-        "usda_ingredient_id": "coconut_milk",
-        "nutrient_id": "sodium",
-        "amount": 15.0
-    },
-    {
-        "id": "3c85935e-4cfe-440c-a0d0-3d5de1a372bf",
-        "usda_ingredient_id": "coconut_milk",
-        "nutrient_id": "cholesterol",
-        "amount": 0.0
-    },
-    {
-        "id": "2df74f01-a85f-40ed-9134-a5076d7ca2a6",
-        "usda_ingredient_id": "coconut_milk",
-        "nutrient_id": "vitamin_c",
-        "amount": 2.8
-    },
-    {
-        "id": "7446b41f-d0ab-4ab9-8bac-2c40a65c7e32",
-        "usda_ingredient_id": "coconut_milk",
-        "nutrient_id": "vitamin_b_6",
-        "amount": 0.033
-    },
-    {
-        "id": "232f0d7e-0783-4e93-8e0f-73960075b053",
-        "usda_ingredient_id": "coconut_milk",
-        "nutrient_id": "vitamin_b_12",
-        "amount": 0.0
-    },
-    {
-        "id": "1ddd4d7b-3f03-44a8-a193-903052d4aab2",
-        "usda_ingredient_id": "coconut_milk",
-        "nutrient_id": "thiamin",
-        "amount": 0.026
-    },
-    {
-        "id": "101160c7-fe73-4e10-8b00-5dbeb40d8669",
-        "usda_ingredient_id": "coconut_milk",
-        "nutrient_id": "riboflavin",
-        "amount": 0.0
-    },
-    {
-        "id": "1400df13-9f48-4dbd-bc58-5ed894b6f723",
-        "usda_ingredient_id": "coconut_milk",
-        "nutrient_id": "niacin",
-        "amount": 0.76
-    },
-    {
-        "id": "35b6083c-36d1-4f1d-b8d3-da0bb5306fe8",
-        "usda_ingredient_id": "coconut_milk",
-        "nutrient_id": "folate",
-        "amount": 16.0
-    },
-    {
-        "id": "38ccb8b6-4809-4743-9fdd-52714fdae1fd",
-        "usda_ingredient_id": "coconut_milk",
-        "nutrient_id": "vitamin_k",
-        "amount": 0.1
-    },
-    {
-        "id": "edff9557-b046-403a-aac7-87bf8417b1f2",
-        "usda_ingredient_id": "coconut_milk",
-        "nutrient_id": "phosphorus",
-        "amount": 100.0
-    },
-    {
-        "id": "1439780e-3e85-4067-8a2e-9e21086fc8c4",
-        "usda_ingredient_id": "coconut_milk",
-        "nutrient_id": "trans_fat",
-        "amount": 0.0
-    },
-    {
-        "id": "14a49cee-4dec-4e58-b482-4f00164acee3",
-        "usda_ingredient_id": "coconut_milk",
-        "nutrient_id": "vitamin_a",
-        "amount": 0.0
-    },
-    {
-        "id": "762c7398-7065-4804-8ab6-7a4e542f099a",
-        "usda_ingredient_id": "coconut_milk",
-        "nutrient_id": "vitamin_e",
-        "amount": 0.15
-    },
-    {
         "id": "5d8e0fe5-d9ee-4c6b-a987-870a7422ffa9",
         "usda_ingredient_id": "lime_juice",
         "nutrient_id": "protein",
@@ -13966,12 +13684,6 @@
         "usda_ingredient_id": "sriracha",
         "nutrient_id": "vitamin_e",
         "amount": 0.01
-    },
-    {
-        "id": "ff728069-2806-444b-8bfb-d1cf59c4a231",
-        "usda_ingredient_id": "cumin",
-        "nutrient_id": "protein",
-        "amount": 17.81
     },
     {
         "id": "c8ced396-9931-4d66-919f-d4c21c3be01a",
@@ -15244,6 +14956,12 @@
         "usda_ingredient_id": "carrots",
         "nutrient_id": "phosphorus",
         "amount": 35.0
+    },
+    {
+        "id": "1f279c6b-7ec4-4d40-9657-d303aaf90819",
+        "usda_ingredient_id": "date",
+        "nutrient_id": "vitamin_a",
+        "amount": 0.0
     },
     {
         "id": "37a3c58c-8524-4a97-810e-a4b4eea30321",
@@ -16548,12 +16266,6 @@
         "amount": 0.0
     },
     {
-        "id": "1f279c6b-7ec4-4d40-9657-d303aaf90819",
-        "usda_ingredient_id": "date",
-        "nutrient_id": "vitamin_a",
-        "amount": 0.0
-    },
-    {
         "id": "826ae745-1fa3-48aa-bd8a-1f4cc2aba030",
         "usda_ingredient_id": "date",
         "nutrient_id": "vitamin_e",
@@ -17852,6 +17564,294 @@
     {
         "id": "b0aad22e-1bdd-4e61-b306-b3cc5f440360",
         "usda_ingredient_id": "tomato_sauce",
+        "nutrient_id": "vitamin_e",
+        "amount": 0.0
+    },
+    {
+        "id": "019fa895-b49f-4d2d-b21a-a9a87c10aaec",
+        "usda_ingredient_id": "whole_milk",
+        "nutrient_id": "protein",
+        "amount": 3.27
+    },
+    {
+        "id": "97917d14-b4d5-4782-ac26-744b98f62df9",
+        "usda_ingredient_id": "whole_milk",
+        "nutrient_id": "carb",
+        "amount": 4.63
+    },
+    {
+        "id": "372c2455-c155-492f-b6de-7d432c560a14",
+        "usda_ingredient_id": "whole_milk",
+        "nutrient_id": "dietary_fiber",
+        "amount": 0.0
+    },
+    {
+        "id": "cd35a15b-defd-4e46-b892-761f138f8b0b",
+        "usda_ingredient_id": "whole_milk",
+        "nutrient_id": "sugars",
+        "amount": 0.0
+    },
+    {
+        "id": "51dc43cb-041b-4ef2-bad6-752f77d4c518",
+        "usda_ingredient_id": "whole_milk",
+        "nutrient_id": "fat",
+        "amount": 3.2
+    },
+    {
+        "id": "4db87834-6c8d-461e-800f-d54a09cd78a1",
+        "usda_ingredient_id": "whole_milk",
+        "nutrient_id": "saturated_fat",
+        "amount": 1.86
+    },
+    {
+        "id": "b3136ed5-86fb-48ba-a581-a68770e45a52",
+        "usda_ingredient_id": "whole_milk",
+        "nutrient_id": "vitamin_d",
+        "amount": 0.96
+    },
+    {
+        "id": "bf957ad4-79df-451a-bb4e-c86f49ec966f",
+        "usda_ingredient_id": "whole_milk",
+        "nutrient_id": "calcium",
+        "amount": 123.0
+    },
+    {
+        "id": "ae1be56f-09c6-4700-87b6-a53de796247f",
+        "usda_ingredient_id": "whole_milk",
+        "nutrient_id": "iron",
+        "amount": 0.0
+    },
+    {
+        "id": "4625729f-3043-4cae-8caf-f50b949577cf",
+        "usda_ingredient_id": "whole_milk",
+        "nutrient_id": "potassium",
+        "amount": 150.0
+    },
+    {
+        "id": "02ff032f-f3d0-4516-8f07-def696102b53",
+        "usda_ingredient_id": "whole_milk",
+        "nutrient_id": "sodium",
+        "amount": 38.0
+    },
+    {
+        "id": "39c9dd93-bcc1-4242-9cd6-5d86ccbbed27",
+        "usda_ingredient_id": "whole_milk",
+        "nutrient_id": "cholesterol",
+        "amount": 12.0
+    },
+    {
+        "id": "627ecf0a-aeeb-4d16-9bec-e1f1dbb0ec7c",
+        "usda_ingredient_id": "whole_milk",
+        "nutrient_id": "vitamin_c",
+        "amount": 0.0
+    },
+    {
+        "id": "aa176c67-d31e-489a-b5d3-6316f5a02a0c",
+        "usda_ingredient_id": "whole_milk",
+        "nutrient_id": "vitamin_b_6",
+        "amount": 0.061
+    },
+    {
+        "id": "96fd4256-4764-41e6-b8d6-1ea8a19bd856",
+        "usda_ingredient_id": "whole_milk",
+        "nutrient_id": "vitamin_b_12",
+        "amount": 0.54
+    },
+    {
+        "id": "77962af8-547e-44a3-b1b3-2d3ddf23e837",
+        "usda_ingredient_id": "whole_milk",
+        "nutrient_id": "thiamin",
+        "amount": 0.056
+    },
+    {
+        "id": "44c34d41-e2f6-46b5-8bbf-987e1befda78",
+        "usda_ingredient_id": "whole_milk",
+        "nutrient_id": "riboflavin",
+        "amount": 0.138
+    },
+    {
+        "id": "dd27a1e5-c226-4611-8d0a-2275d374bfb8",
+        "usda_ingredient_id": "whole_milk",
+        "nutrient_id": "niacin",
+        "amount": 0.105
+    },
+    {
+        "id": "5278a2d8-aa98-45c4-895e-d1121eca546a",
+        "usda_ingredient_id": "whole_milk",
+        "nutrient_id": "folate",
+        "amount": 0.0
+    },
+    {
+        "id": "256b19df-3c1e-4095-8a31-cbb79142c319",
+        "usda_ingredient_id": "whole_milk",
+        "nutrient_id": "vitamin_k",
+        "amount": 0.0
+    },
+    {
+        "id": "a468cefc-713e-48fb-b70c-ab36ad919cf8",
+        "usda_ingredient_id": "whole_milk",
+        "nutrient_id": "phosphorus",
+        "amount": 101.0
+    },
+    {
+        "id": "99275813-5903-4cbb-ba19-e226da29b076",
+        "usda_ingredient_id": "whole_milk",
+        "nutrient_id": "trans_fat",
+        "amount": 0.0
+    },
+    {
+        "id": "dca8d7f0-5026-464d-be8f-e704a013d66e",
+        "usda_ingredient_id": "whole_milk",
+        "nutrient_id": "vitamin_a",
+        "amount": 32.0
+    },
+    {
+        "id": "4756c861-358c-47a5-bd3d-31254f8314b7",
+        "usda_ingredient_id": "whole_milk",
+        "nutrient_id": "vitamin_e",
+        "amount": 0.05
+    },
+    {
+        "id": "dcbeee4f-814c-4f9b-b71d-e19b5f80db93",
+        "usda_ingredient_id": "coconut_milk",
+        "nutrient_id": "protein",
+        "amount": 0.0
+    },
+    {
+        "id": "310f129c-bf27-4085-88af-78ae867176ca",
+        "usda_ingredient_id": "coconut_milk",
+        "nutrient_id": "carb",
+        "amount": 6.07
+    },
+    {
+        "id": "b13e2a31-5cca-4eca-9b15-10d9f8beccc6",
+        "usda_ingredient_id": "coconut_milk",
+        "nutrient_id": "dietary_fiber",
+        "amount": 0.0
+    },
+    {
+        "id": "08aa575f-73ae-4aca-8532-1b78c0114cb5",
+        "usda_ingredient_id": "coconut_milk",
+        "nutrient_id": "sugars",
+        "amount": 5.0
+    },
+    {
+        "id": "d1e3a60a-5424-4e91-827f-206fede5104d",
+        "usda_ingredient_id": "coconut_milk",
+        "nutrient_id": "fat",
+        "amount": 1.79
+    },
+    {
+        "id": "c3215100-1e50-416d-9d66-27385ec48092",
+        "usda_ingredient_id": "coconut_milk",
+        "nutrient_id": "saturated_fat",
+        "amount": 1.61
+    },
+    {
+        "id": "d164a5a7-039a-440e-adb0-232bdf9847a1",
+        "usda_ingredient_id": "coconut_milk",
+        "nutrient_id": "vitamin_d",
+        "amount": 0.0
+    },
+    {
+        "id": "8b47c178-b98c-4d37-ad20-62ddca472156",
+        "usda_ingredient_id": "coconut_milk",
+        "nutrient_id": "calcium",
+        "amount": 7.0
+    },
+    {
+        "id": "20b516dc-2fe1-44ac-b4cd-39d9301533e8",
+        "usda_ingredient_id": "coconut_milk",
+        "nutrient_id": "iron",
+        "amount": 0.13
+    },
+    {
+        "id": "9892bc7d-bc55-422f-94cd-42e70e3ef047",
+        "usda_ingredient_id": "coconut_milk",
+        "nutrient_id": "potassium",
+        "amount": 114.0
+    },
+    {
+        "id": "3f8b0cd3-3fc9-4d59-b1cc-be5d762515c5",
+        "usda_ingredient_id": "coconut_milk",
+        "nutrient_id": "sodium",
+        "amount": 23.0
+    },
+    {
+        "id": "4d5334f8-efd7-424b-a0df-40880e17386e",
+        "usda_ingredient_id": "coconut_milk",
+        "nutrient_id": "cholesterol",
+        "amount": 0.0
+    },
+    {
+        "id": "5cca5ef6-882e-4ca9-83bf-371201fc4b16",
+        "usda_ingredient_id": "coconut_milk",
+        "nutrient_id": "vitamin_c",
+        "amount": 0.0
+    },
+    {
+        "id": "38a40066-961d-4597-883a-18562760f72b",
+        "usda_ingredient_id": "coconut_milk",
+        "nutrient_id": "vitamin_b_6",
+        "amount": 0.0
+    },
+    {
+        "id": "2f269680-fc08-4eb2-a099-61fc8dbc449e",
+        "usda_ingredient_id": "coconut_milk",
+        "nutrient_id": "vitamin_b_12",
+        "amount": 0.0
+    },
+    {
+        "id": "67ee5f95-0963-4134-83a2-457bd09e40c2",
+        "usda_ingredient_id": "coconut_milk",
+        "nutrient_id": "thiamin",
+        "amount": 0.0
+    },
+    {
+        "id": "9f1cb2f4-3b71-410c-83ec-b507da201674",
+        "usda_ingredient_id": "coconut_milk",
+        "nutrient_id": "riboflavin",
+        "amount": 0.0
+    },
+    {
+        "id": "9ff095aa-a050-4cdf-b865-b1e17940a61d",
+        "usda_ingredient_id": "coconut_milk",
+        "nutrient_id": "niacin",
+        "amount": 0.0
+    },
+    {
+        "id": "ebc0910b-25d3-4dfc-96b2-e5587677fcfb",
+        "usda_ingredient_id": "coconut_milk",
+        "nutrient_id": "folate",
+        "amount": 0.0
+    },
+    {
+        "id": "cdd2a44b-9bcb-4c09-af9c-854a9c589d38",
+        "usda_ingredient_id": "coconut_milk",
+        "nutrient_id": "vitamin_k",
+        "amount": 0.0
+    },
+    {
+        "id": "6413aa48-80ac-4da6-bf58-b92e9daee53b",
+        "usda_ingredient_id": "coconut_milk",
+        "nutrient_id": "phosphorus",
+        "amount": 0.0
+    },
+    {
+        "id": "23f8fabf-12be-44ba-9b90-56799e618ab5",
+        "usda_ingredient_id": "coconut_milk",
+        "nutrient_id": "trans_fat",
+        "amount": 0.0
+    },
+    {
+        "id": "8ea5be98-40c7-4ece-abc5-4552bfd4046e",
+        "usda_ingredient_id": "coconut_milk",
+        "nutrient_id": "vitamin_a",
+        "amount": 0.0
+    },
+    {
+        "id": "32728977-d429-4b80-91fb-1aa535ca5197",
+        "usda_ingredient_id": "coconut_milk",
         "nutrient_id": "vitamin_e",
         "amount": 0.0
     }

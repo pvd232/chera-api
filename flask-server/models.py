@@ -470,23 +470,21 @@ class Meal_Plan_Meal_Model(db.Model):
         primary_key=True,
         nullable=False,
     )
-    # multiplier = db.Column(db.Float(), default=1.0, nullable=False)
+    multiplier = db.Column(db.Float(), default=1.0, nullable=False)
     active = db.Column(db.Boolean(), default=True, nullable=False)
     recipe = relationship("Recipe_Ingredient_Model", lazy="joined")
     associated_meal = relationship("Meal_Model", lazy="joined")
     associated_meal_plan = relationship("Meal_Plan_Model", lazy="joined")
 
     def __init__(self, meal_plan_meal_domain: "Meal_Plan_Meal_Domain") -> None:
-        self.id = meal_plan_meal_domain.id
-        self.meal_id = meal_plan_meal_domain.meal_id
-        self.meal_plan_id = meal_plan_meal_domain.meal_plan_id
-        self.active = meal_plan_meal_domain.active
+        self.id: UUID = meal_plan_meal_domain.id
+        self.meal_id: UUID = meal_plan_meal_domain.meal_id
+        self.meal_plan_id: UUID = meal_plan_meal_domain.meal_plan_id
+        self.multiplier: float = meal_plan_meal_domain.multiplier
+        self.active: bool = meal_plan_meal_domain.active
 
-    def update(self, meal_plan_meal: "Meal_Plan_Meal_Domain") -> None:
-        self.k_cal = meal_plan_meal.k_cal
-        self.protein_k_cal = meal_plan_meal.protein_k_cal
-        self.carb_k_cal = meal_plan_meal.carb_k_cal
-        self.fat_k_cal = meal_plan_meal.fat_k_cal
+    def update_multiplier(self, meal_plan_meal: "Meal_Plan_Meal_Domain") -> None:
+        self.multiplier = meal_plan_meal.multiplier
 
 
 class Order_Meal_Model(db.Model):
@@ -543,6 +541,7 @@ class Meal_Plan_Snack_Model(db.Model):
         primary_key=True,
         nullable=False,
     )
+    multiplier = db.Column(db.Float(), default=1.0, nullable=False)
     active = db.Column(db.Boolean(), default=True, nullable=False)
     recipe = relationship("Recipe_Ingredient_Model", lazy="joined")
     associated_snack = relationship("Snack_Model", lazy="joined")
@@ -552,13 +551,11 @@ class Meal_Plan_Snack_Model(db.Model):
         self.id = meal_plan_snack_domain.id
         self.snack_id = meal_plan_snack_domain.snack_id
         self.meal_plan_id = meal_plan_snack_domain.meal_plan_id
+        self.multiplier = meal_plan_snack_domain.multiplier
         self.active = meal_plan_snack_domain.active
 
-    def update(self, meal_plan_meal: "Meal_Plan_Snack_Domain") -> None:
-        self.k_cal = meal_plan_meal.k_cal
-        self.protein_k_cal = meal_plan_meal.protein_k_cal
-        self.carb_k_cal = meal_plan_meal.carb_k_cal
-        self.fat_k_cal = meal_plan_meal.fat_k_cal
+    def update_multiplier(self, meal_plan_snack: "Meal_Plan_Snack_Domain") -> None:
+        self.multiplier = meal_plan_snack.multiplier
 
 
 class Order_Snack_Model(db.Model):

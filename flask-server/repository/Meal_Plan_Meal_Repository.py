@@ -5,6 +5,7 @@ from typing import Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from domain.Meal_Plan_Meal_Domain import Meal_Plan_Meal_Domain
+    from domain.Meal_Plan_Domain import Meal_Plan_Domain
 
 
 class Meal_Plan_Meal_Repository(Base_Repository):
@@ -31,6 +32,19 @@ class Meal_Plan_Meal_Repository(Base_Repository):
             )
         return meal_plan_meal
 
+    def get_even_meal_plan_meal(
+        self, meal_id: UUID, meal_plan_id: UUID
+    ) -> Meal_Plan_Meal_Model:
+        even_meal_plan_meal = (
+            self.db.session.query(Meal_Plan_Meal_Model)
+            .filter(
+                Meal_Plan_Meal_Model.meal_id == meal_id,
+                Meal_Plan_Meal_Model.meal_plan_id == meal_plan_id,
+            )
+            .first()
+        )
+        return even_meal_plan_meal
+
     def get_meal_plan_meals(
         self, meal_plan_id: UUID
     ) -> Optional[list[Meal_Plan_Meal_Model]]:
@@ -56,25 +70,25 @@ class Meal_Plan_Meal_Repository(Base_Repository):
 
     def update_meal_plan_meal(
         self,
-        odd_meal_plan_meal: "Meal_Plan_Meal_Domain",
-        even_meal_plan_meal: "Meal_Plan_Meal_Domain",
+        odd_meal_plan_meal_domain: "Meal_Plan_Meal_Domain",
+        even_meal_plan_meal_domain: "Meal_Plan_Meal_Domain" = None,
     ) -> None:
-        odd_meal_plan_meal_to_update: Optional[Meal_Plan_Meal_Model] = (
+        odd_meal_plan_meal: Meal_Plan_Meal_Model = (
             self.db.session.query(Meal_Plan_Meal_Model)
-            .filter(Meal_Plan_Meal_Model.id == odd_meal_plan_meal.id)
+            .filter(Meal_Plan_Meal_Model.id == odd_meal_plan_meal_domain.id)
             .first()
         )
-        if odd_meal_plan_meal_to_update:
-            odd_meal_plan_meal_to_update.update(meal_plan_meal=odd_meal_plan_meal)
-
-        even_meal_plan_meal_to_update = (
-            self.db.session.query(Meal_Plan_Meal_Model)
-            .filter(Meal_Plan_Meal_Model.id == even_meal_plan_meal.id)
-            .first()
-        )
-        if even_meal_plan_meal_to_update:
-            # even meal plan meals will have the same number of calories for meals, only snacks differ, so the odd meal plan values will be cloned
-            even_meal_plan_meal_to_update.update(odd_meal_plan_meal)
+        odd_meal_plan_meal.update_multiplier(meal_plan_meal=odd_meal_plan_meal_domain)
+        # Odd and even meal plans have identical values for meal calories (but snacks will differ), so we can just copy the odd values to the even values
+        if even_meal_plan_meal_domain:
+            even_meal_plan_meal: Meal_Plan_Meal_Model = (
+                self.db.session.query(Meal_Plan_Meal_Model)
+                .filter(Meal_Plan_Meal_Model.id == even_meal_plan_meal_domain.id)
+                .first()
+            )
+            even_meal_plan_meal.update_multiplier(
+                meal_plan_meal=odd_meal_plan_meal_domain
+            )
         self.db.session.commit()
         return
 
@@ -98,5 +112,11 @@ class Meal_Plan_Meal_Repository(Base_Repository):
             meal_plan_meal_model = Meal_Plan_Meal_Model(
                 meal_plan_meal_domain=meal_plan_meal_domain
             )
+            # meal_plan_meal_already_exists = (
+            #     self.db.session.query(Meal_Plan_Meal_Model)
+            #     .filter(Meal_Plan_Meal_Model.id == meal_plan_meal_model.id)
+            #     .first()
+            # )
+            # if not meal_plan_meal_already_exists:
             self.db.session.add(meal_plan_meal_model)
         self.db.session.commit()
