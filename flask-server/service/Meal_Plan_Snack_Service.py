@@ -62,60 +62,16 @@ class Meal_Plan_Snack_Service(object):
         )
         return
 
-    def update_meal_plan_snacks(
+    def update_meal_plan_snack(
         self,
-        meal_plan_snacks: list[dict],
-        recipe_ingredient_service: "Recipe_Ingredient_Service",
-        usda_ingredient_service: "USDA_Ingredient_Service",
-        continuity_service: "Continuity_Service",
+        meal_plan_snack_dto: "Meal_Plan_Snack_DTO",
     ) -> None:
-        meal_plan_snack_domains: list[Meal_Plan_Snack_Domain] = []
-        for meal_plan_snack in meal_plan_snacks:
-            new_domain: Meal_Plan_Snack_Domain = Meal_Plan_Snack_Domain(
-                meal_plan_snack_json=meal_plan_snack
-            )
-            meal_plan_snack_domains.append(new_domain)
-
-        for meal_plan_snack_domain in meal_plan_snack_domains:
-            odd_meal_plan: Meal_Plan_Domain = Meal_Plan_Domain(
-                meal_plan_object=self.db.session.query(Meal_Plan_Model)
-                .filter(Meal_Plan_Model.id == meal_plan_snack_domain.meal_plan_id)
-                .first()
-            )
-            even_meal_plan: Meal_Plan_Domain = Meal_Plan_Domain(
-                meal_plan_object=self.db.session.query(Meal_Plan_Model)
-                .filter(Meal_Plan_Model.number == odd_meal_plan.number + 1)
-                .first()
-            )
-            even_meal_plan_snack: Meal_Plan_Snack_Domain = Meal_Plan_Snack_Domain(
-                meal_plan_snack_object=self.db.session.query(Meal_Plan_Snack_Model)
-                .filter(
-                    Meal_Plan_Snack_Model.meal_id == meal_plan_snack_domain.meal_id,
-                    Meal_Plan_Snack_Model.meal_plan_id == even_meal_plan.id,
-                )
-                .first()
-            )
-
-            self.meal_plan_snack_repository.update_meal_plan_snack(
-                odd_meal_plan_snack=meal_plan_snack_domain,
-                even_meal_plan_snack=even_meal_plan_snack,
-            )
-
-            for recipe_ingredient in meal_plan_snack_domain.recipe:
-                even_recipe_ingredient: Recipe_Ingredient_Domain = [
-                    x
-                    for x in even_meal_plan_snack.recipe
-                    if x.usda_ingredient_id == recipe_ingredient.usda_ingredient_id
-                ][0]
-                recipe_ingredient_service.update_recipe_ingredient(
-                    recipe_ingredient=recipe_ingredient,
-                    even_recipe_ingredient=even_recipe_ingredient,
-                )
-                usda_ingredient_service.update_usda_ingredient(
-                    usda_ingredient_id=recipe_ingredient.usda_ingredient_id,
-                    recipe_ingredient_domain=recipe_ingredient,
-                )
-        continuity_service.write_meal_data()
+        meal_plan_snack_domain = Meal_Plan_Snack_Domain(
+            meal_plan_snack_object=meal_plan_snack_dto
+        )
+        self.meal_plan_snack_repository.update_meal_plan_snack(
+            meal_plan_snack_domain=meal_plan_snack_domain
+        )
 
     def write_meal_plan_snacks(self) -> None:
         from pathlib import Path

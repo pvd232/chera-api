@@ -33,7 +33,7 @@ class Meal_Plan_Meal_Repository(Base_Repository):
         return meal_plan_meal
 
     def get_meal_plan_meals(
-        self, meal_plan_id: UUID
+        self, meal_plan_id: UUID = None
     ) -> Optional[list[Meal_Plan_Meal_Model]]:
         if meal_plan_id:
             meal_plan_meals = (

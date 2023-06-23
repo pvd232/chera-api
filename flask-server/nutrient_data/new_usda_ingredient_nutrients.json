@@ -12066,6 +12066,12 @@
         "amount": 1.32
     },
     {
+        "id": "d7b647c7-86e4-4f7a-a596-26d0f781896f",
+        "usda_ingredient_id": "sage",
+        "nutrient_id": "vitamin_d",
+        "amount": 0.0
+    },
+    {
         "id": "1e28408c-55b9-4f4d-9655-bc7a8be13972",
         "usda_ingredient_id": "poultry_seasoning",
         "nutrient_id": "vitamin_b_12",
@@ -12712,12 +12718,6 @@
         "usda_ingredient_id": "sage",
         "nutrient_id": "saturated_fat",
         "amount": 7.03
-    },
-    {
-        "id": "d7b647c7-86e4-4f7a-a596-26d0f781896f",
-        "usda_ingredient_id": "sage",
-        "nutrient_id": "vitamin_d",
-        "amount": 0.0
     },
     {
         "id": "81ecf6e0-5886-4ec0-ba0a-be383e8ba762",

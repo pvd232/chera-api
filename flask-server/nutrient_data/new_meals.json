@@ -1,32 +1,5 @@
 [
     {
-        "id": "e898f6c3-0bf9-45f9-b4bb-8a033e528195",
-        "meal_time": "dinner",
-        "name": "Mediterranean Turkey Meatballs with Orzo & Roasted Veggies",
-        "description": "Turkey meatballs served with orzo, roasted veggies, and a blend of herbs",
-        "price": 12.0,
-        "image_url": "https://storage.googleapis.com/chera_meal_photos/mediterranean_turkey_meatballs_with_orzo_and_roasted_veggies.jpg",
-        "active": true
-    },
-    {
-        "id": "7953c8b3-0cbf-48ac-98c8-48b3f2ea07f1",
-        "meal_time": "lunch",
-        "name": "Grilled Chicken & Butter Beans",
-        "description": "Grilled chicken with southern style lima beans, smoked ham, seasoned and served in a bed of white rice",
-        "price": 12.0,
-        "image_url": "https://storage.googleapis.com/chera_meal_photos/grilled_chicken_and_butter_beans.jpg",
-        "active": true
-    },
-    {
-        "id": "23e9cea8-42b9-4d6f-88ff-065d0aecb4a7",
-        "meal_time": "dinner",
-        "name": "Grilled Salmon with Rice & Veggies",
-        "description": "Grilled salmon served with basmati rice, veggies, and a blend of seasoning",
-        "price": 12.0,
-        "image_url": "https://storage.googleapis.com/chera_meal_photos/grilled_salmon_with_rice_and_veggies.jpg",
-        "active": true
-    },
-    {
         "id": "73f4765a-aef7-4521-b9f5-a12afccc6401",
         "meal_time": "dinner",
         "name": "Sweet Potato and Black Bean Quesadilla",
@@ -114,6 +87,33 @@
         "description": "Penne pasta tossed in pesto and grilled chicken",
         "price": 12.0,
         "image_url": "https://storage.googleapis.com/chera_meal_photos/chicken_pesto_pasta.jpg",
+        "active": true
+    },
+    {
+        "id": "c90b160f-901e-4ac2-96f3-8086319437b5",
+        "meal_time": "lunch",
+        "name": "Grilled Chicken & Butter Beans",
+        "description": "Grilled chicken with southern style lima beans, smoked ham, seasoned and served in a bed of white rice",
+        "price": 12.0,
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/grilled_chicken_and_butter_beans.jpg",
+        "active": true
+    },
+    {
+        "id": "f21c666e-4418-417c-b995-a21ec1f12996",
+        "meal_time": "dinner",
+        "name": "Mediterranean Turkey Meatballs with Orzo & Roasted Veggies",
+        "description": "Turkey meatballs served with orzo, roasted veggies, and a blend of herbs",
+        "price": 12.0,
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/mediterranean_turkey_meatballs_with_orzo_and_roasted_veggies.jpg",
+        "active": true
+    },
+    {
+        "id": "928408af-6398-469f-b398-df4a73164504",
+        "meal_time": "dinner",
+        "name": "Grilled Salmon with Rice & Veggies",
+        "description": "Grilled salmon served with basmati rice, veggies, and a blend of seasoning",
+        "price": 12.0,
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/grilled_salmon_with_rice_and_veggies.jpg",
         "active": true
     }
 ]

@@ -10,11 +10,12 @@ if TYPE_CHECKING:
 
 class Extended_Meal_Plan_Snack_Service(Meal_Plan_Snack_Service):
     def get_extended_meal_plan_snack(
-        self, meal_plan_snack_id: UUID
+        self, meal_plan_snack_id: UUID = None, meal_plan_id: UUID = None, snack_id: UUID = None
     ) -> Extended_Meal_Plan_Snack_Domain:
+        
         return Extended_Meal_Plan_Snack_Domain(
             meal_plan_snack_model=self.meal_plan_snack_repository.get_meal_plan_snack(
-                meal_plan_snack_id=meal_plan_snack_id
+                meal_plan_snack_id=meal_plan_snack_id, meal_plan_id=meal_plan_id, snack_id=snack_id
             )
         )
 

@@ -27,9 +27,7 @@ class Email_Service(object):
     ) -> None:
         self.host = host_url
         self.theme_color = "#ffa40c"
-        self.logo_url = (
-            "https://storage.googleapis.com/meal-photos/bendito-small-updated.png"
-        )
+        self.logo_url = "https://storage.googleapis.com/chera_logo/chera-logo-3.png"
         self.mailgun_domain = "postmaster@info.cherahealth.com"
         self.mailgun_password = gcp_secret_manager_service.get_secret("MAILGUN_PWD")
 
