@@ -9,7 +9,6 @@ from typing import Optional
 import stripe
 import uuid
 
-
 @app.route("/api/clear_tables")
 def clear_table() -> Response:
     from helpers.check_auth import check_auth
@@ -3008,24 +3007,43 @@ def order_meal() -> Response:
     else:
         return Response(status=405)
 
-# update code below
-@app.route("/api/stripe/price_id/<float:shipping_cost>", methods=["GET"])
+# Description:
+#   - receive shipping_cost from client site
+#   - get
+#   - return stripe_price_id
+@app.route("/api/stripe/price_id/<string:shipping_cost>", methods=["GET"])
 def meal_subscription_stripe_price_id(shipping_cost) -> Response:
+    from service.Stripe_Service import Stripe_Service
     from models import stripe_meal_price_id
 
     if request.method == "GET":
-        response: dict[str, str] = {"stripe_price_id": shipping_cost}
+        target_price = 600
+        # get all active prices from Stripe
+        stripe_prices = Stripe_Service().get_all_active_prices();
+
+        # get stripe_price_id base on shipping_cost
+        def get_price_id(target_price):
+            for price in stripe_prices.data:
+                if price.unit_amount == target_price:
+                    return price.id
+
+        response: dict[str, str] = {"stripe_price_id": get_price_id(target_price)}
         return jsonify(response), 200
     else:
         return Response(status=405)
 
-# update code below
+# Description:
+#   - receive zip_code from client site
+#   - get estimate shipping cost based on zip_code
+#   - return shipping_cost
 @app.route("/api/shipping_cost/<string:zip_code>", methods=["GET"])
-def shipping_cost() -> Response:
-    from models import shipping_cost
+def shipping_cost(zip_code) -> Response:
+    from service.Shippo_Service import Shippo_Service
 
     if request.method == "GET":
-        return jsonify(shipping_cost), 200
+        # get shipping cost 
+        costs = Shippo_Service().get_shipping_costs(zip_code)
+        return jsonify(costs), 200
     else:
         return Response(status=405)
 

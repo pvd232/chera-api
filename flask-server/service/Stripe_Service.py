@@ -233,3 +233,7 @@ class Stripe_Service(object):
             pause_collection="",
         )
         return
+    
+    def get_all_active_prices(self):
+        prices = stripe.Price.list(active=True)
+        return prices

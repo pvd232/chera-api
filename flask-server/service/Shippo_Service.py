@@ -10,14 +10,8 @@ if TYPE_CHECKING:
 
 
 class Shippo_Service(object):
-    def create_shipment(
-        self,
-        meal_subscription_invoice_id: str,
-        client: "Client_Domain",
-        meal_shipment_repository: "Meal_Shipment_Repository",
-    ) -> Optional["Meal_Shipment_Model"]:
-        client_name: str = f"{client.first_name} {client.last_name}"
-        address_from: dict[str, str] = {
+    def __init__(self):
+        self.address_from : dict[str, str] = {
             "name": "Peter Driscoll",
             "street1": "922 E 49th St",
             "city": "Austin",
@@ -25,6 +19,30 @@ class Shippo_Service(object):
             "zip": "78751",
             "country": "US",
         }
+        self.four_meals_parcel: dict = {
+            'length':   12,
+            'width':    9,
+            'height':   4.5,
+            'weight': 10,
+            'distance_unit': "in",
+            'mass_unit': "lb",
+        }
+        self.six_meals_parcel: dict = {
+            'length':   12,
+            'width':    9,
+            'height':   7,
+            'weight': 10,
+            'distance_unit': "in",
+            'mass_unit': "lb",
+        }
+
+    def create_shipment(
+        self,
+        meal_subscription_invoice_id: str,
+        client: "Client_Domain",
+        meal_shipment_repository: "Meal_Shipment_Repository",
+    ) -> Optional["Meal_Shipment_Model"]:
+        client_name: str = f"{client.first_name} {client.last_name}"
         if client.suite != "":
             address_to = {
                 "name": client_name,
@@ -57,10 +75,10 @@ class Shippo_Service(object):
         )
 
         shipment = shippo.Shipment.create(
-            address_from=address_from,
-            address_to=address_to,
-            parcels=parcel,
-            asynchronous=False,
+            address_from    = self.address_from,
+            address_to      = address_to,
+            parcels         = parcel,
+            asynchronous    = False,
         )
 
         # USPS rates are listed 1. priority express /overnight 2. priority 2 day 3. ground
@@ -88,3 +106,25 @@ class Shippo_Service(object):
             return meal_shipment_domain
         else:
             print(transaction.messages)
+    
+    # get estimate shippingcost
+    def get_shipping_costs(self, zip_code):
+        def shipping_cost(parcel):
+            shipment = shippo.Shipment.create(
+                address_from    = self.address_from,
+                address_to      = {'zip': zip_code, 'country' : 'US'},
+                parcels         = [parcel],
+                asynchronous    = False
+            )
+        
+            rates = shipment.rates
+            if rates:
+                return float(rates[1].amount)
+            else:
+                return 0
+        costs : dict[str, float] = {
+            'four_meals': shipping_cost(self.four_meals_parcel),
+            'six_meals': shipping_cost(self.six_meals_parcel)
+        }
+        return costs
+
