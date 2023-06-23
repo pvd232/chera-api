@@ -1453,18 +1453,18 @@ def stripe_subscription_data() -> Response:
         ).verify_discount_code(discount_code=discount_code)
 
         client_stripe_data = Stripe_Service().create_stripe_subscription(
-            number_of_meals=number_of_meals,
-            number_of_snacks=number_of_snacks,
-            client_id=client_id,
-            stripe_one_time_fnce_discounted_meal_price_id=stripe_one_time_fnce_discounted_meal_price_id,
-            stripe_one_time_meal_price_id=stripe_one_time_meal_price_id,
-            stripe_meal_price_id=stripe_meal_price_id,
-            stripe_shipping_price_id=stripe_shipping_price_id,
-            stripe_one_time_shipping_price_id=stripe_one_time_shipping_price_id,
-            stripe_one_time_account_setup_fee=stripe_one_time_account_setup_fee,
-            stripe_snack_price_id=stripe_snack_price_id,
-            stripe_one_time_snack_price_id=stripe_one_time_snack_price_id,
-            stripe_one_time_fnce_discounted_snack_price_id=stripe_one_time_fnce_discounted_snack_price_id,
+            number_of_meals = number_of_meals,
+            number_of_snacks = number_of_snacks,
+            client_id = client_id,
+            stripe_one_time_fnce_discounted_meal_price_id = stripe_one_time_fnce_discounted_meal_price_id,
+            stripe_one_time_meal_price_id = stripe_one_time_meal_price_id,
+            stripe_meal_price_id = stripe_meal_price_id,
+            stripe_shipping_price_id = stripe_shipping_price_id,
+            stripe_one_time_shipping_price_id = stripe_one_time_shipping_price_id,
+            stripe_one_time_account_setup_fee = stripe_one_time_account_setup_fee,
+            stripe_snack_price_id = stripe_snack_price_id,
+            stripe_one_time_snack_price_id = stripe_one_time_snack_price_id,
+            stripe_one_time_fnce_discounted_snack_price_id = stripe_one_time_fnce_discounted_snack_price_id,
             date_service=Date_Service(),
             prepaid=prepaid,
             discount=discount,
@@ -3008,19 +3008,19 @@ def order_meal() -> Response:
     else:
         return Response(status=405)
 
-
-@app.route("/api/stripe/price_id", methods=["GET"])
-def meal_subscription_stripe_price_id() -> Response:
+# update code below
+@app.route("/api/stripe/price_id/<float:shipping_cost>", methods=["GET"])
+def meal_subscription_stripe_price_id(shipping_cost) -> Response:
     from models import stripe_meal_price_id
 
     if request.method == "GET":
-        response: dict[str, str] = {"stripe_price_id": stripe_meal_price_id}
+        response: dict[str, str] = {"stripe_price_id": shipping_cost}
         return jsonify(response), 200
     else:
         return Response(status=405)
 
-
-@app.route("/api/shipping_cost", methods=["GET"])
+# update code below
+@app.route("/api/shipping_cost/<string:zip_code>", methods=["GET"])
 def shipping_cost() -> Response:
     from models import shipping_cost
 
