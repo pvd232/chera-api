@@ -24,7 +24,7 @@
 
 # PSQL setup
 
-# 1. Go to your terminal and enter "psql" to begin a PostgreSQL session
+# 1. Go to your terminal and enter "psql -U postgres" to begin a PostgreSQL session as the postgres superuser
 
 # 2. Enter the following psql command to create a local version of the project database "create database nourishdb;"
 
@@ -32,7 +32,7 @@
 
 # 4. Start the backend by opening the "main.py" file and running it. you should see a message in your console confirming successful startup.
 
-# 5. Input the following url into your browser "localhost:4000/api/setup_tables" and hit enter. This will instantiate the database's tables that are listed in models.py
+# 5. Input the following url into your browser "localhost:4000/api/continuity/initialize" and hit enter. This will populate the database's tables that are listed in models.py
 
 # 6. Confirm successful setup by going back to the terminal window with psql running, and enter the following command "\c nourishdb". You should receive a confirmatory message saying you have connected to the database
 

@@ -10,10 +10,12 @@ class Meal_Plan_Service(object):
     def __init__(self, meal_plan_repository: "Meal_Plan_Repository") -> None:
         self.meal_plan_repository = meal_plan_repository
 
-    def get_meal_plan(self, meal_plan_id: UUID) -> Meal_Plan_Domain:
+    def get_meal_plan(
+        self, meal_plan_id: UUID = None, meal_plan_number: int = None
+    ) -> Meal_Plan_Domain:
         meal_plan = Meal_Plan_Domain(
             meal_plan_object=self.meal_plan_repository.get_meal_plan(
-                meal_plan_id=meal_plan_id
+                meal_plan_id=meal_plan_id, meal_plan_number=meal_plan_number
             )
         )
         return meal_plan

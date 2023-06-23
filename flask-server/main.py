@@ -1875,40 +1875,14 @@ def meal_plan_meal() -> Response:
         ).create_meal_plan_meal(meal_plan_meal_dto=meal_plan_meal_dto)
         return Response(status=201)
     elif request.method == "PUT":
-        mass_update = request.headers.get("mass-update")
-        if not mass_update:
-            meal_plan_meal = json.loads(request.data)
-            meal_plan_meal_dto = Meal_Plan_Meal_DTO(meal_plan_meal_json=meal_plan_meal)
+        meal_plan_meal = json.loads(request.data)
+        meal_plan_meal_dto = Meal_Plan_Meal_DTO(meal_plan_meal_json=meal_plan_meal)
 
-            Meal_Plan_Meal_Service(
-                meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
-            ).update_meal_plan_meal(
-                meal_plan_meal_dto=meal_plan_meal_dto,
-                meal_plan_service=Meal_Plan_Service(
-                    meal_plan_repository=Meal_Plan_Repository(db=db)
-                ),
-            )
-        else:
-            odd_meal_plans = Meal_Plan_Service(
-                meal_plan_repository=Meal_Plan_Repository(db=db)
-            ).get_odd_meal_plans()
-            for meal_plan in odd_meal_plans:
-                associated_meal_plan_meals = Meal_Plan_Meal_Service(
-                    meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
-                ).get_meal_plan_meals(meal_plan_id=meal_plan.id)
+        Meal_Plan_Meal_Service(
+            meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+        ).update_meal_plan_meal(meal_plan_meal_dto=meal_plan_meal_dto),
 
-                for meal_plan_meal in associated_meal_plan_meals:
-                    Meal_Plan_Meal_Service(
-                        meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
-                    ).update_meal_plan_meal(
-                        meal_plan_meal_dto=meal_plan_meal,
-                        should_update_even=True,
-                        meal_plan_service=Meal_Plan_Service(
-                            meal_plan_repository=Meal_Plan_Repository(db=db)
-                        ),
-                    )
-            return Response(status=204)
-
+        return Response(status=204)
     else:
         return Response(status=405)
 
@@ -2969,12 +2943,20 @@ def meal_plan() -> Response:
     from dto.Meal_Plan_DTO import Meal_Plan_DTO
 
     if request.method == "GET":
-        meal_plan_domains = Meal_Plan_Service(
-            Meal_Plan_Repository(db=db)
-        ).get_meal_plans()
-        meal_plan_DTOs = [Meal_Plan_DTO(meal_plan_domain=x) for x in meal_plan_domains]
-        serialized_meal_plan_DTOs = [x.serialize() for x in meal_plan_DTOs]
-        return jsonify(serialized_meal_plan_DTOs), 200
+        meal_plan_number = request.args.get("meal_plan_number")
+        if not meal_plan_number:
+            meal_plan_domains = Meal_Plan_Service(
+                Meal_Plan_Repository(db=db)
+            ).get_meal_plans()
+            meal_plan_DTOs = [Meal_Plan_DTO(meal_plan_domain=x) for x in meal_plan_domains]
+            serialized_meal_plan_DTOs = [x.serialize() for x in meal_plan_DTOs]
+            return jsonify(serialized_meal_plan_DTOs), 200
+        else:
+            meal_plan_domain = Meal_Plan_Service(
+                Meal_Plan_Repository(db=db)
+            ).get_meal_plan(meal_plan_number=meal_plan_number)
+            meal_plan_DTO = Meal_Plan_DTO(meal_plan_domain=meal_plan_domain)
+            return jsonify(meal_plan_DTO.serialize()), 200
 
     else:
         return Response(status=405)
