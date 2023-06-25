@@ -289,6 +289,10 @@ class Client_Model(db.Model):
         self.active = requested_client.active
 
 
+# class Eating_Disorder_Model(db.Model):
+#     __table_name__ = "eating_disorder"
+
+
 class Staged_Client_Model(db.Model):
     __tablename__ = "staged_client"
     id = db.Column(db.String(80), primary_key=True, nullable=False)
@@ -304,6 +308,9 @@ class Staged_Client_Model(db.Model):
     account_created = db.Column(db.Boolean(), default=True, nullable=False)
     active = db.Column(db.Boolean(), default=True, nullable=False)
     waitlisted = db.Column(db.Boolean(), default=False, nullable=False)
+    current_weight = db.Column(db.Float(), nullable=False)
+    # target_weight = db.Column(db.Float(), nullable=False)
+    # eating_disorder_id = db.Column(db.String(80), nullable=False)
     meals_pre_selected = db.Column(db.Boolean(), default=False, nullable=False)
     meals_prepaid = db.Column(db.Boolean(), default=False, nullable=False)
 

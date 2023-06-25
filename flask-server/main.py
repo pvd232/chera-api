@@ -341,6 +341,80 @@ def handle_exception(e) -> HTTPException | Response:
     return Response(status=500, response=json.dumps(res))
 
 
+@app.route("/api/email/sign_up", methods=["POST"])
+def sign_up_email() -> Response:
+    from dto.Staged_Client_DTO import Staged_Client_DTO
+    from service.Email_Service import Email_Service
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+
+    staged_client = Staged_Client_DTO(staged_client_json=json.loads(request.data))
+    Email_Service(
+        host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+    ).send_sign_up_email(staged_client=staged_client)
+    return Response(status=200)
+
+
+@app.route("/api/email/sign_up_confirmation", methods=["POST"])
+def sign_up_email_confirmation() -> Response:
+    from dto.Staged_Client_DTO import Staged_Client_DTO
+    from service.Email_Service import Email_Service
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+    from service.Date_Service import Date_Service
+    import pytz
+    from tzlocal import get_localzone
+
+    staged_client = Staged_Client_DTO(staged_client_json=json.loads(request.data))
+    dt = datetime.now()
+    local_tz = get_localzone()
+    local_dt = dt.astimezone(local_tz)
+    time_str = local_dt.strftime("%I:%M %p %Z")
+    print(time_str)
+    delivery_date = local_dt
+    cutoff_date = local_dt
+    Email_Service(
+        host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+    ).send_confirmation_email(
+        user_type="Client",
+        user=staged_client,
+        delivery_date=delivery_date,
+        cutoff_date=cutoff_date,
+        tracking_url="https://www.google.com",
+    )
+    return Response(status=200)
+
+
+@app.route("/api/email/sign_up_reminder", methods=["POST"])
+def sign_up_email_reminder() -> Response:
+    from dto.Staged_Client_DTO import Staged_Client_DTO
+    from service.Email_Service import Email_Service
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+
+    staged_client = Staged_Client_DTO(staged_client_json=json.loads(request.data))
+
+    Email_Service(
+        host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+    ).send_sign_up_reminder_email(staged_client=staged_client)
+    return Response(status=200)
+
+
+@app.route("/api/email/password_reset", methods=["POST"])
+def password_reset_email() -> Response:
+    from dto.Staged_Client_DTO import Staged_Client_DTO
+    from service.Email_Service import Email_Service
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+
+    staged_client = Staged_Client_DTO(staged_client_json=json.loads(request.data))
+
+    Email_Service(
+        host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+    ).send_password_reset_email(
+        user=staged_client,
+        domain="Client",
+        gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+    )
+    return Response(status=200)
+
+
 @app.route("/api/email/recruiting", methods=["POST"])
 def recruiting_email() -> Response:
     from pathlib import Path
@@ -1079,7 +1153,7 @@ def dietitian() -> Response | Response:
         created_dietitian_domain = Dietitian_Service(
             dietitian_repository=Dietitian_Repository(db=db)
         ).create_dietitian(dietitian_dto=requested_dietitian_dto)
-        if env != "debu":
+        if env != "debug":
             Email_Service(
                 host_url=host_url,
                 gcp_secret_manager_service=GCP_Secret_Manager_Service(),
@@ -2662,10 +2736,12 @@ def extended_meal_plan_snack() -> Response:
             extended_meal_plan_snack = Extended_Meal_Plan_Snack_Service(
                 meal_plan_snack_repository=Meal_Plan_Snack_Repository(db=db)
             ).get_extended_meal_plan_snack(
-                meal_plan_snack_id=None, meal_plan_id = meal_plan_id, snack_id=snack_id
+                meal_plan_snack_id=None, meal_plan_id=meal_plan_id, snack_id=snack_id
             )
             if extended_meal_plan_snack:
-                meal_plan_snack_DTO =  Extended_Meal_Plan_Snack_DTO(extended_meal_plan_snack_domain=extended_meal_plan_snack)
+                meal_plan_snack_DTO = Extended_Meal_Plan_Snack_DTO(
+                    extended_meal_plan_snack_domain=extended_meal_plan_snack
+                )
                 serialized_meal_plan_snack_DTO = meal_plan_snack_DTO.serialize()
                 return jsonify(serialized_meal_plan_snack_DTO), 200
             else:
@@ -3246,8 +3322,10 @@ def meal_subscription_invoice() -> Response:
         )
 
         # Get values needed to send client confirmation email
-        upcoming_delivery_date = Date_Service().get_current_week_delivery_date()
-
+        upcoming_delivery_date = datetime.fromtimestamp(
+            Date_Service().get_current_week_delivery_date(), tz=timezone.utc
+        )
+        delivery_month = Date_Service().months[upcoming_delivery_date.month - 1]
         # Send client confirmation email after creating shipment so as to include the tracking number
         if env != "debug":
             Email_Service(
@@ -3257,8 +3335,8 @@ def meal_subscription_invoice() -> Response:
                 user_type="Client",
                 user=associated_client,
                 delivery_date=upcoming_delivery_date,
+                delivery_month=delivery_month,
                 tracking_url=meal_shipment.tracking_url,
-                date_service=Date_Service(),
             )
 
         new_meal_subscription_invoice_dto = Meal_Subscription_Invoice_DTO(

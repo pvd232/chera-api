@@ -1,0 +1,59 @@
+<html>
+  <div style="height: 100%">
+    <!-- grey background -->
+
+    <div style="width: 100%; height: 100%; background-color: #e8e8e8">
+      <div
+        style="
+          width: 100%;
+          max-width: 500px;
+          margin-top: 0%;
+          margin-bottom: 0%;
+          margin-right: auto;
+          margin-left: auto;
+          background-color: #e8e8e8;
+        "
+      >
+        <!-- mail body, white background -->
+
+        <div
+          style="
+            width: calc(100% - 30px);
+            padding: 30px 30px 60px 30px;
+            background-color: white;
+            height: 100%;
+          "
+        >
+          <!-- logo -->
+          <div
+            style="
+              display: flex;
+              width: 100%;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            <img
+              src="{logo_url}"
+              style="
+                width: 37.5%;
+                height: 9%;
+                margin-left: auto;
+                margin-right: auto;
+              "
+              alt="img"
+            />
+          </div>
+
+          <!-- email text -->
+          <div>
+            <p style="margin-bottom: 30px">Hey {first_name},</p>
+            {content}
+            <br />
+            <footer>— The Chera Team</footer>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</html>
