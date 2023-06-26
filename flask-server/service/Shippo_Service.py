@@ -10,6 +10,46 @@ if TYPE_CHECKING:
 
 
 class Shippo_Service(object):
+    def __init__(
+        self,
+        address_from: dict[str, str],
+        standard_parcel: dict[str, str],
+    ) -> None:
+        self.address_from = address_from
+        self.standard_parcel = standard_parcel
+
+    def get_shipping_rate(self, zipcode: str):
+        address_to = {
+            "zip": zipcode,
+            "country": "US",
+        }
+        standard_parcel = shippo.Parcel.create(
+            length=self.standard_parcel["length"],
+            width=self.standard_parcel["width"],
+            height=self.standard_parcel["height"],
+            distance_unit="in",
+            mass_unit="lb",
+            weight=self.standard_parcel["weight"],
+        )
+     
+
+        six_meal_shipment = shippo.Shipment.create(
+            address_from=self.address_from,
+            address_to=address_to,
+            parcels=standard_parcel,
+            asynchronous=False,
+        )
+
+        six_meal_rates = shippo.Shipment.get_rates(six_meal_shipment.object_id)[
+            "results"
+        ]
+
+        # USPS rates are listed:
+        # 1. Priority Express 
+        # 2. Priority 2 Day 
+        # 3. Ground
+        return six_meal_rates[1]["amount"]
+
     def create_shipment(
         self,
         meal_subscription_invoice_id: str,
@@ -17,35 +57,16 @@ class Shippo_Service(object):
         meal_shipment_repository: "Meal_Shipment_Repository",
     ) -> Optional["Meal_Shipment_Model"]:
         client_name: str = f"{client.first_name} {client.last_name}"
-        address_from: dict[str, str] = {
-            "name": "Peter Driscoll",
-            "street1": "922 E 49th St",
-            "city": "Austin",
-            "state": "TX",
-            "zip": "78751",
+        address_to = {
+            "name": client_name,
+            "street1": client.street,
+            "city": client.city,
+            "state": client.state,
+            "zip": client.zipcode + "-" + client.zipcode_extension,
             "country": "US",
         }
         if client.suite != "":
-            address_to = {
-                "name": client_name,
-                "street1": client.street,
-                "street2": client.suite,
-                "city": client.city,
-                "state": client.state,
-                "zip": client.zipcode + "-" + client.zipcode_extension,
-                "email": client.id,
-                "country": "US",
-            }
-        else:
-            address_to = {
-                "name": client_name,
-                "street1": client.street,
-                "city": client.city,
-                "state": client.state,
-                "zip": client.zipcode + "-" + client.zipcode_extension,
-                "country": "US",
-            }
-
+            address_to["suite"] = client.suite
         # update to cubic
         parcel = shippo.Parcel.create(
             length=12,
@@ -57,7 +78,7 @@ class Shippo_Service(object):
         )
 
         shipment = shippo.Shipment.create(
-            address_from=address_from,
+            address_from=self.address_from,
             address_to=address_to,
             parcels=parcel,
             asynchronous=False,

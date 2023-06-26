@@ -40,6 +40,18 @@ class Stripe_Service(object):
             "stripe_payment_intent_id": intent["id"],
         }
 
+    def get_price(self, cost_per_meal: float) -> stripe.Price:
+        prices = stripe.Price.list(limit=100)
+        target_price = round(cost_per_meal, 1) + 1
+        for price in prices["data"]:
+            if round(price["unit_amount"]) == round(
+                target_price * 100
+            ):  # Stripe uses cents
+                return {
+                    "stripe_price_id": price["id"],
+                    "amount": price["unit_amount"] / 100,
+                }
+
     def get_payment_intent(self, stripe_payment_intent_id: str) -> stripe.PaymentIntent:
         return stripe.PaymentIntent.retrieve(stripe_payment_intent_id)
 
@@ -56,7 +68,7 @@ class Stripe_Service(object):
             stripe_customer.delete()
         return
 
-    def get_payment_methods(self,customer_stripe_id: str):
+    def get_payment_methods(self, customer_stripe_id: str):
         payment_methods = stripe.PaymentMethod.list(
             customer=customer_stripe_id, type="card"
         )
@@ -128,6 +140,7 @@ class Stripe_Service(object):
                     },
                     {"price": stripe_one_time_shipping_price_id, "quantity": 1},
                 ],
+                coupon=stripe.Coupon.create(duration="once", percent_off=50),
             )
 
         # Remove add_invoice_items to prevent immidiate charge on the account, thus the first week is free

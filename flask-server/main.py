@@ -230,6 +230,7 @@ def continuity_initialize() -> Response:
     from helpers.db.initialize_db import initialize_db
     from helpers.db.create_state_tax_rates import create_state_tax_rates
     from helpers.check_auth import check_auth
+    from helpers.db.create_cogs import create_cogs
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
 
     from repository.Continuity_Repository import Continuity_Repository
@@ -271,7 +272,7 @@ def continuity_initialize() -> Response:
     live_db_string = os.getenv(
         "DB_STRING",
         get_db_connection_string(
-            username=db_username, password=db_password, db_name="nourishdb"
+            username=db_username, password=db_password, db_name="testdb"
         ),
     )
     if not check_auth(env=env, db_password=db_password, request=request):
@@ -285,6 +286,7 @@ def continuity_initialize() -> Response:
     #     drop_tables=True,
     # )
     create_state_tax_rates(db=db)
+    create_cogs(db=db)
     Continuity_Repository().initialize_meal_data(
         imperial_unit_repository=Imperial_Unit_Repository(engine=db_engine),
         nutrient_repository=Nutrient_Repository(engine=db_engine),
@@ -3117,6 +3119,8 @@ def order_meal() -> Response:
 def meal_subscription_stripe_price_id() -> Response:
     from models import stripe_meal_price_id
 
+    meal_cost = request.args.get("meal_cost")
+    # Stripe service get appropriate price using cost param
     if request.method == "GET":
         response: dict[str, str] = {"stripe_price_id": stripe_meal_price_id}
         return jsonify(response), 200
@@ -3124,20 +3128,51 @@ def meal_subscription_stripe_price_id() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/shipping_cost", methods=["GET"])
-def shipping_cost() -> Response:
-    from models import shipping_cost
+@app.route("/api/cogs", methods=["GET"])
+def cogs() -> Response:
+    from repository.COGS_Repository import COGS_Repository
+    from service.COGS_Service import COGS_Service
+    from dto.COGS_DTO import COGS_DTO
 
     if request.method == "GET":
-        return jsonify(shipping_cost), 200
+        cogs_list = COGS_Service(cogs_repository=COGS_Repository(db=db)).get_cogs()
+        cogs_dtos = [COGS_DTO(cogs_domain=x) for x in cogs_list]
+        serialized_cogs = [x.serialize() for x in cogs_dtos]
+        return jsonify(serialized_cogs), 200
+    else:
+        return Response(status=405)
+
+
+@app.route("/api/shippo/shipping_cost", methods=["GET"])
+def shipping_cost() -> Response:
+    from service.Shippo_Service import Shippo_Service
+
+    zipcode = request.args.get("zipcode")
+    shipping_rate = Shippo_Service(
+        address_from={
+            "name": "Peter Driscoll",
+            "street1": "525 hopkins ln",
+            "city": "Haddonfield",
+            "state": "NJ",
+            "zip": "08033-1128",
+            "country": "US",
+        },
+        standard_parcel={
+            "length": 12,
+            "width": 9,
+            "height": 8,
+            "weight": 15,
+        },
+    ).get_shipping_rate(zipcode=zipcode)
+    if request.method == "GET":
+        return jsonify(shipping_rate), 200
     else:
         return Response(status=405)
 
 
 @app.route("/api/meal_price", methods=["GET"])
 def meal_price() -> Response:
-    from models import meal_price
-
+    cost_per_meal = request.args.get("cost_per_meal")
     if request.method == "GET":
         return jsonify(meal_price), 200
     else:

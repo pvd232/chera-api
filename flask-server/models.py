@@ -14,6 +14,7 @@ from typing import TYPE_CHECKING
 from helpers.db.get_db_connection_string import get_db_connection_string
 
 if TYPE_CHECKING:
+    from domain.COGS_Domain import COGS_Domain
     from domain.Dietary_Restriction_Domain import Dietary_Restriction_Domain
     from domain.USDA_Ingredient_Domain import USDA_Ingredient_Domain
     from domain.Meal_Plan_Domain import Meal_Plan_Domain
@@ -60,7 +61,7 @@ password = os.getenv(
 )
 connection_string = os.getenv(
     "DB_STRING",
-    get_db_connection_string(username=username, password=password, db_name="nourishdb"),
+    get_db_connection_string(username=username, password=password, db_name="testdb"),
 )
 
 app.config["SQLALCHEMY_DATABASE_URI"] = connection_string
@@ -212,10 +213,6 @@ stripe_invoice_endpoint_secret = os.getenv(
 # full stripe fee is .029 * total + .3 per transaction
 stripe_fee_percentage = 0.029
 
-# inclusive of stripe fees. minimum order is 60, plus .3 fixed fee, divided by 1 - .29 = 62.1. divide this by 6 to get price inclusive of stripe fee
-meal_price = 12.0
-snack_price = 6.0
-shipping_cost = 14.0
 
 db = SQLAlchemy(app)
 
@@ -293,6 +290,30 @@ class Client_Model(db.Model):
 #     __table_name__ = "eating_disorder"
 
 
+class COGS_Model(db.Model):
+    __tablename__ = "shipping_cost"
+    num_meals = db.Column(db.Integer(), primary_key=True, nullable=False)
+    is_local = db.Column(db.Boolean(), primary_key=True, nullable=False)
+    ingredient = db.Column(db.Float(), nullable=False)
+    core_packaging = db.Column(db.Float(), nullable=False)
+    kitchen = db.Column(db.Float(), nullable=False)
+    chef = db.Column(db.Float(), nullable=False)
+    box = db.Column(db.Float(), nullable=False)
+    ice = db.Column(db.Float(), nullable=False)
+    num_boxes = db.Column(db.Integer(), nullable=False)
+
+    def __init__(self, cogs_domain: "COGS_Domain") -> None:
+        self.num_meals = cogs_domain.num_meals
+        self.is_local = cogs_domain.is_local
+        self.ingredient = cogs_domain.ingredient
+        self.core_packaging = cogs_domain.core_packaging
+        self.kitchen = cogs_domain.kitchen
+        self.chef = cogs_domain.chef
+        self.box = cogs_domain.box
+        self.ice = cogs_domain.ice
+        self.num_boxes = cogs_domain.num_boxes
+
+
 class Staged_Client_Model(db.Model):
     __tablename__ = "staged_client"
     id = db.Column(db.String(80), primary_key=True, nullable=False)
@@ -308,7 +329,7 @@ class Staged_Client_Model(db.Model):
     account_created = db.Column(db.Boolean(), default=True, nullable=False)
     active = db.Column(db.Boolean(), default=True, nullable=False)
     waitlisted = db.Column(db.Boolean(), default=False, nullable=False)
-    current_weight = db.Column(db.Float(), nullable=False)
+    # current_weight = db.Column(db.Float(), nullable=False)
     # target_weight = db.Column(db.Float(), nullable=False)
     # eating_disorder_id = db.Column(db.String(80), nullable=False)
     meals_pre_selected = db.Column(db.Boolean(), default=False, nullable=False)
