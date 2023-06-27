@@ -16,10 +16,6 @@ from jose import jwt
 
 load_dotenv()
 
-AUTH0_DOMAIN = 'dev-tclvp1ebrcvlu1zs.us.auth0.com'
-API_IDENTIFIER = 'https://test'
-ALGORITHMS = ["RS256"]
-
 ######################################################################################
 #Error Handler
 class AuthError(Exception):
