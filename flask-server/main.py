@@ -3333,14 +3333,18 @@ def verify_discount() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/stripe/payment_method/<string:client_stripe_id>", methods=["POST"])
+@app.route("/api/stripe/payment_method/<string:client_stripe_id>", methods=["GET"])
 def stripe_payment_methods(client_stripe_id: str) -> Response:
     from service.Stripe_Service import Stripe_Service
+    
+    print(client_stripe_id)
 
     payment_methods = Stripe_Service().get_payment_methods(
         client_stripe_id=client_stripe_id
     )
-    return Response(status=201)
+    print(payment_methods.data[0].card.last4)
+    return jsonify(payment_methods.data[0].card.last4), 200
+    # return Response(status=201)
 
 
 @app.route("/api/stripe/payment_intent", methods=["POST"])
