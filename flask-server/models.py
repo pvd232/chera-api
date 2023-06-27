@@ -61,7 +61,7 @@ password = os.getenv(
 )
 connection_string = os.getenv(
     "DB_STRING",
-    get_db_connection_string(username=username, password=password, db_name="testdb"),
+    get_db_connection_string(username=username, password=password, db_name="nourishdb"),
 )
 
 app.config["SQLALCHEMY_DATABASE_URI"] = connection_string
