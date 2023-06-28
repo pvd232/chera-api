@@ -898,6 +898,7 @@ def stripe_webhook() -> Response:
     from models import stripe_invoice_endpoint_secret
     from stripe import Event
 
+    print("stripe_invoice_endpoint_secret", stripe_invoice_endpoint_secret)
     event = None
     payload: bytes = request.data
 
@@ -973,7 +974,9 @@ def stripe_webhook() -> Response:
         stripe_invoice_id = event["data"]["object"]["id"]
         stripe_subscription_id = event["data"]["object"]["subscription"]
         stripe_payment_intent_id = event["data"]["object"]["payment_intent"]
-
+        print()
+        event
+        print("event", event)
         meal_subscription: Optional[
             Meal_Subscription_Domain
         ] = Meal_Subscription_Service(
@@ -3382,6 +3385,7 @@ def meal_subscription_invoice() -> Response:
         from service.COGS_Service import COGS_Service
 
         meal_subscription_invoice_data = json.loads(request.data)
+        print("meal_subscription_invoice_data", meal_subscription_invoice_data)
         discount_code: Optional[str] = request.headers.get("discount_code")
         discount_percentage = False
         if discount_code:
