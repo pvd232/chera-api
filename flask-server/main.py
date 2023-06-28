@@ -263,7 +263,7 @@ def continuity_initialize() -> Response:
     live_db_string = os.getenv(
         "DB_STRING",
         get_db_connection_string(
-            username=db_username, password=db_password, db_name="testdb"
+            username=db_username, password=db_password, db_name="nourishdb"
         ),
     )
     if not check_auth(env=env, db_password=db_password, request=request):
@@ -1533,7 +1533,6 @@ def stripe_subscription_data() -> Response:
 
     if request.method == "POST":
         stripe_subscription_data = json.loads(request.data)
-        print("stripe_subscription_data", stripe_subscription_data)
         client_id: str = stripe_subscription_data["client_id"]
         number_of_meals: int = int(stripe_subscription_data["number_of_meals"])
         number_of_snacks: int = int(stripe_subscription_data["number_of_snacks"])
@@ -3379,7 +3378,6 @@ def meal_subscription_invoice() -> Response:
         associated_schedule_meals = Schedule_Meal_Service(
             schedule_meal_repository=Schedule_Meal_Repository(db=db)
         ).get_schedule_meals(meal_subscription_id=associated_meal_subscription.id)
-
         associated_schedule_snacks = Schedule_Snack_Service(
             schedule_snack_repository=Schedule_Snack_Repository(db=db)
         ).get_schedule_snacks(
