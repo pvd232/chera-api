@@ -1,37 +1,37 @@
 [
-    {
-        "id": "5da87dd8-a858-46a8-8726-c7452e1f1a46",
-        "name": "Puff Pastry with Roasted Broccoli and Cauliflower",
-        "description": "Roasted broccoli and cauliflower baked in flaky puff pastry with cheddar cheese and herbs",
-        "image_url": "https://storage.googleapis.com/chera_meal_photos/puff_pastry_with_roasted_broccoli_and_cauliflower.jpg",
-        "active": true
-    },
-    {
-        "id": "a800cb44-d599-4ba8-9918-57c187c4f88c",
-        "name": "Empanada de Guava & Cream Cheese",
-        "description": "Puerto Rican classic - guava and cream cheese filling enclosed in an empanada pastry",
-        "image_url": "https://storage.googleapis.com/chera_meal_photos/empanada_de_guava_and_cream_cheese.jpg",
-        "active": true
-    },
-    {
-        "id": "24fa39d6-b33b-4835-8e82-4b57bdbea31a",
-        "name": "Beef Empanada",
-        "description": "Empanada filled with cooked ground beef and served with tomato sauce",
-        "image_url": "https://storage.googleapis.com/chera_meal_photos/beef_empanada.jpg",
-        "active": true
-    },
-    {
-        "id": "99e04846-7e04-4668-bdb0-74ea9d64ce26",
-        "name": "Chicken Empanada",
-        "description": "Empanada filled with cooked ground beef and served with tomato sauce",
-        "image_url": "https://storage.googleapis.com/chera_meal_photos/chicken_empanada.jpg",
-        "active": true
-    },
-    {
-        "id": "10652d01-fb15-4287-a5ba-a733319ecc8c",
-        "name": "Mushroom Goat Cheese Puff Pastry Bites",
-        "description": "Puff pastry bites filled with saut\u00e9ed mushrooms, onions, garlic, and a blended goat cheese",
-        "image_url": "https://storage.googleapis.com/chera_meal_photos/mushroom_goat_cheese_puff_pastry_bites.jpg",
-        "active": true
-    }
+  {
+    "id": "5da87dd8-a858-46a8-8726-c7452e1f1a46",
+    "name": "Puff Pastry with Roasted Broccoli and Cauliflower",
+    "description": "Roasted broccoli and cauliflower baked in flaky puff pastry with cheddar cheese and herbs",
+    "image_url": "https://storage.googleapis.com/chera_meal_photos/puff_pastry_with_roasted_broccoli_and_cauliflower_2.jpg",
+    "active": true
+  },
+  {
+    "id": "a800cb44-d599-4ba8-9918-57c187c4f88c",
+    "name": "Empanada de Guava & Cream Cheese",
+    "description": "Puerto Rican classic - guava and cream cheese filling enclosed in an empanada pastry",
+    "image_url": "https://storage.googleapis.com/chera_meal_photos/empanada_de_guava_and_cream_cheese.jpg",
+    "active": true
+  },
+  {
+    "id": "24fa39d6-b33b-4835-8e82-4b57bdbea31a",
+    "name": "Beef Empanada",
+    "description": "Empanada filled with cooked ground beef and served with tomato sauce",
+    "image_url": "https://storage.googleapis.com/chera_meal_photos/beef_empanada.jpg",
+    "active": true
+  },
+  {
+    "id": "99e04846-7e04-4668-bdb0-74ea9d64ce26",
+    "name": "Chicken Empanada",
+    "description": "Empanada filled with cooked ground beef and served with tomato sauce",
+    "image_url": "https://storage.googleapis.com/chera_meal_photos/chicken_empanada.jpg",
+    "active": true
+  },
+  {
+    "id": "10652d01-fb15-4287-a5ba-a733319ecc8c",
+    "name": "Mushroom Goat Cheese Puff Pastry Bites",
+    "description": "Puff pastry bites filled with saut\u00e9ed mushrooms, onions, garlic, and a blended goat cheese",
+    "image_url": "https://storage.googleapis.com/chera_meal_photos/mushroom_goat_cheese_puff_pastry_bites_2.jpg",
+    "active": true
+  }
 ]
