@@ -347,21 +347,17 @@ def sign_up_email() -> Response:
     return Response(status=200)
 
 
-@app.route("/api/email/sign_up_confirmation", methods=["POST"])
-def sign_up_email_confirmation() -> Response:
+@app.route("/api/email/sign_up_confirmation/staged_client", methods=["POST"])
+def sign_up_email_confirmation_client() -> Response:
     from dto.Staged_Client_DTO import Staged_Client_DTO
     from service.Email_Service import Email_Service
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
-    from service.Date_Service import Date_Service
-    import pytz
     from tzlocal import get_localzone
 
     staged_client = Staged_Client_DTO(staged_client_json=json.loads(request.data))
     dt = datetime.now()
     local_tz = get_localzone()
     local_dt = dt.astimezone(local_tz)
-    time_str = local_dt.strftime("%I:%M %p %Z")
-    print(time_str)
     delivery_date = local_dt
     cutoff_date = local_dt
     Email_Service(
@@ -369,6 +365,35 @@ def sign_up_email_confirmation() -> Response:
     ).send_confirmation_email(
         user_type="Client",
         user=staged_client,
+        delivery_date=delivery_date,
+        cutoff_date=cutoff_date,
+        tracking_url="https://www.google.com",
+    )
+    return Response(status=200)
+
+
+@app.route("/api/email/sign_up_confirmation/dietitian", methods=["POST"])
+def sign_up_email_confirmation_dietitian() -> Response:
+    from dto.Dietitian_DTO import Dietitian_DTO
+    from service.Email_Service import Email_Service
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+    from service.Date_Service import Date_Service
+    from tzlocal import get_localzone
+
+    dietitian = Dietitian_DTO(
+        gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+        dietitian_json=json.loads(request.data),
+    )
+    dt = datetime.now()
+    local_tz = get_localzone()
+    local_dt = dt.astimezone(local_tz)
+    delivery_date = local_dt
+    cutoff_date = local_dt
+    Email_Service(
+        host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+    ).send_confirmation_email(
+        user_type="Dietitian",
+        user=dietitian,
         delivery_date=delivery_date,
         cutoff_date=cutoff_date,
         tracking_url="https://www.google.com",
