@@ -107,14 +107,14 @@ class Meal_Subscription_Invoice_Service(object):
             meal_subscription_invoice_object=meal_subscription_invoice_dto
         )
 
-       
-      
         invoice_order_data = order_calc_service.get_order_calc(
             num_items=num_items,
             meal_price=meal_price,
             shipping_cost=shipping_cost,
             discount_percentage=discount_percentage,
         )
+        print("invoice_order_data", invoice_order_data)
+
         meal_subscription_invoice_domain.set_invoice_order_data(
             order_properties=invoice_order_data
         )
@@ -152,7 +152,6 @@ class Meal_Subscription_Invoice_Service(object):
             stripe_payment_intent_id
         )
 
-       
         invoice_order_data = order_calc_service.get_order_calc(
             num_items=num_items,
             meal_price=meal_price,
