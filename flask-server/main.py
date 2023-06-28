@@ -99,9 +99,6 @@ def setup_table() -> Response:
     return Response(status=200)
 
 
-
-
-
 @app.route("/api/continuity/write")
 def continuity_write() -> Response:
     from repository.Continuity_Repository import Continuity_Repository
@@ -967,8 +964,7 @@ def stripe_webhook() -> Response:
             staged_client_repository=Staged_Client_Repository(db=db)
         ).get_staged_client(staged_client_id=meal_subscription.client_id)
 
-        # If staged_client.account_created is True and stripe_payment_intent_id is not None:
-        # Regularly scheduled invoice on delivery day cutoff (Wed) - excluding invoice for first week
+        # Modifying stripe subscription will generate a new invoice with a null payment intent id
         if (
             staged_client.account_created is True
             and stripe_payment_intent_id is not None
@@ -1094,7 +1090,7 @@ def stripe_webhook() -> Response:
                 ).create_order_snack(order_snack_domain=order_snack_domain)
 
         # Invoice created when client first signs up
-        else:
+        elif staged_client.account_created is False:
             from service.Staged_Client_Service import Staged_Client_Service
             from service.Meal_Subscription_Invoice_Service import (
                 Meal_Subscription_Invoice_Service,
@@ -1123,6 +1119,8 @@ def stripe_webhook() -> Response:
             Staged_Client_Service(
                 staged_client_repository=Staged_Client_Repository(db=db)
             ).update_staged_client_account_status(staged_client_id=staged_client.id)
+        else:
+            print("Unhandled invoice event {}".format(event["type"]))
 
     else:
         # Unexpected event type, payment failes etc... lots of work to be done here
@@ -1535,6 +1533,7 @@ def stripe_subscription_data() -> Response:
 
     if request.method == "POST":
         stripe_subscription_data = json.loads(request.data)
+        print("stripe_subscription_data", stripe_subscription_data)
         client_id: str = stripe_subscription_data["client_id"]
         number_of_meals: int = int(stripe_subscription_data["number_of_meals"])
         number_of_snacks: int = int(stripe_subscription_data["number_of_snacks"])
@@ -1704,22 +1703,21 @@ def staged_client(staged_client_id: Optional[str]) -> Response:
         new_staged_client_domain = Staged_Client_Service(
             staged_client_repository=Staged_Client_Repository(db=db)
         ).create_staged_client(staged_client_dto=staged_client_dto)
-        if env != "debug":
-            Email_Service(
-                host_url=host_url,
-                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
-            ).send_sign_up_email(staged_client=new_staged_client_domain)
-            Email_Service(
-                host_url=host_url,
-                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
-            ).send_new_user_sign_up_notification(
-                first_name="Peter",
-                email="patardriscoll@gmail.com",
-                user_type="Staged_Client",
-                user=new_staged_client_domain,
-                env=env,
-                zipcode=None,
-            )
+        Email_Service(
+            host_url=host_url,
+            gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+        ).send_sign_up_email(staged_client=new_staged_client_domain)
+        Email_Service(
+            host_url=host_url,
+            gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+        ).send_new_user_sign_up_notification(
+            first_name="Peter",
+            email="patardriscoll@gmail.com",
+            user_type="Staged_Client",
+            user=new_staged_client_domain,
+            env=env,
+            zipcode=None,
+        )
         return Response(status=201)
 
     elif request.method == "PUT":
@@ -3550,8 +3548,11 @@ def create_stripe_payment_intent() -> Response:
                 .get_discount(discount_code=discount_code)
                 .discount_percentage
             )
+        shipping_rate = Shippo_Service().get_shipping_rate(zipcode=zipcode)
         meal_cost = COGS_Service(cogs_repository=COGS_Repository(db=db)).get_meal_cost(
-            num_meals=number_of_meals, num_snacks=number_of_snacks
+            num_meals=number_of_meals,
+            num_snacks=number_of_snacks,
+            shipping_rate=shipping_rate,
         )
         meal_price = COGS_Service(
             cogs_repository=COGS_Repository(db=db)

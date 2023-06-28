@@ -125,12 +125,38 @@ class Scheduled_Order_Meal_Service(object):
         )
         return
 
+    def requires_new_scheduled_order_meals(
+        self, meal_subscription_id: UUID, cutoff_date: datetime
+    ) -> bool:
+        upcoming_scheduled_order_meals = [
+            Scheduled_Order_Meal_Domain(
+                scheduled_order_meal_object=x,
+                schedule_meal_object=None,
+                scheduled_order_meal_id=None,
+                delivery_date=None,
+                is_paused=None,
+            )
+            for x in self.get_upcoming_scheduled_order_meals(
+                meal_subscription_id=meal_subscription_id
+            )
+        ]
+        weekly_meals = len(upcoming_scheduled_order_meals) / 4
+        if weekly_meals < 4:
+            return True
+        elif weekly_meals == 4:
+            if cutoff_date < datetime.now(timezone.utc).timestamp():
+                return False
+            else:
+                return True
+        else:
+            return False
+
     def get_upcoming_scheduled_order_meals(
         self, meal_subscription_id: UUID
     ) -> Optional[list[Scheduled_Order_Meal_Domain]]:
         scheduled_order_meals: Optional[
             list["Scheduled_Order_Meal_Model"]
-        ] = self.scheduled_order_meal_repository.get_scheduled_order_meals(
+        ] = self.scheduled_order_meal_repository.get_upcoming_scheduled_order_meals(
             meal_subscription_id=meal_subscription_id
         )
         if scheduled_order_meals:

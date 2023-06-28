@@ -84,119 +84,21 @@ if env == "debug":
 
     CORS(app)
 
-    # --> MEALS <--
-
-    # $12 / week
-    stripe_meal_price_id = "price_1MEKY0FseFjpsgWvnbtiZYuZ"
-
-    # $12
-    stripe_one_time_meal_price_id = "price_1MEKb4FseFjpsgWvRqYXFawF"
-
-    # $6
-    stripe_one_time_fnce_discounted_meal_price_id = "price_1MEKh0FseFjpsgWvxgj4nR0T"
-
-    # --> SNACKS <--
-
-    # $6 / week
-    stripe_snack_price_id = "price_1N1Tb4FseFjpsgWvnbpfAAIX"
-
-    # $6
-    stripe_one_time_snack_price_id = "price_1N1TfrFseFjpsgWvpuP9hhx3"
-
-    # $3
-    stripe_one_time_fnce_discounted_snack_price_id = "price_1N1Th8FseFjpsgWvzgqVuMPJ"
-
-    # --> SHIPPING <--
-
-    # $14 / week
-    stripe_shipping_price_id = "price_1MEKYVFseFjpsgWv6vuzKoqV"
-
-    # $14
-    stripe_one_time_shipping_price_id = "price_1MEKavFseFjpsgWvWl5cWMbp"
-
     # $0.5
     stripe_one_time_account_setup_fee = "price_1MJ07mFseFjpsgWvsQToDJFu"
 
 else:
     STRIPE_API_KEY = GCP_Secret_Manager_Service().get_secret("STRIPE_KEY")
+    # $0.5
+    stripe_one_time_account_setup_fee = "price_1MJ06nFseFjpsgWv16WGfto4"
 
     if env == "staging":
         host_url = "https://staging.cherahealth.com"
         SHIPPO_API_KEY = GCP_Secret_Manager_Service().get_secret("SHIPPO_TEST_KEY")
 
-        # --> MEALS <--
-
-        # $1.1 / week
-        stripe_meal_price_id = "price_1MFOinFseFjpsgWvgPHNHzaq"
-
-        # $1.1
-        stripe_one_time_meal_price_id = "price_1MFOjqFseFjpsgWvyJ8eWfxw"
-
-        # $1
-        stripe_one_time_fnce_discounted_meal_price_id = "price_1LauS8FseFjpsgWvFp0xZNAU"
-
-        # --> SNACKS <--
-
-        # $0.6 / week
-        stripe_snack_price_id = "price_1N1TrGFseFjpsgWvkL7onf2k"
-
-        # $0.6
-        stripe_one_time_snack_price_id = "price_1N1Ts4FseFjpsgWvW4heb5Oq"
-
-        # $0.5
-        stripe_one_time_fnce_discounted_snack_price_id = (
-            "price_1N1TsOFseFjpsgWvWjsqserh"
-        )
-
-        # --> SHIPPING <--
-
-        # $1.2 / week
-        stripe_shipping_price_id = "price_1MFOlBFseFjpsgWvgQ8qnLZM"
-
-        # $1.2
-        stripe_one_time_shipping_price_id = "price_1MFOlHFseFjpsgWvfGZsC1Dm"
-
-        # $0.5
-        stripe_one_time_account_setup_fee = "price_1MJ06nFseFjpsgWv16WGfto4"
-
     elif env == "production":
         host_url = "https://cherahealth.com"
         SHIPPO_API_KEY = GCP_Secret_Manager_Service().get_secret("SHIPPO_KEY")
-
-        # --> MEALS <--
-
-        # $12 / week
-        stripe_meal_price_id = "price_1MFLb4FseFjpsgWv9kHmHCMg"
-
-        # $12
-        stripe_one_time_meal_price_id = "price_1MFLd7FseFjpsgWvKZckcfMX"
-
-        # $6
-        stripe_one_time_fnce_discounted_meal_price_id = "price_1MMdGsFseFjpsgWvsJjAELxk"
-
-        # --> SNACKS <--
-
-        # $6 / week
-        stripe_snack_price_id = "price_1N1TtmFseFjpsgWvED8ZSvW1"
-
-        # $6
-        stripe_one_time_snack_price_id = "price_1N1TtxFseFjpsgWvluWLxfxV"
-
-        # $3
-        stripe_one_time_fnce_discounted_snack_price_id = (
-            "price_1N1TuBFseFjpsgWvVa2vYm1K"
-        )
-
-        # --> SHIPPING <--
-
-        # $14 / week
-        stripe_shipping_price_id = "price_1MFLbYFseFjpsgWvhkesuznl"
-
-        # $14
-        stripe_one_time_shipping_price_id = "price_1MFLcvFseFjpsgWvfPAcFUHx"
-
-        # $0.5
-        stripe_one_time_account_setup_fee = "price_1MJ06nFseFjpsgWv16WGfto4"
 
 stripe.api_key = STRIPE_API_KEY
 shippo.config.api_key = SHIPPO_API_KEY
@@ -630,8 +532,7 @@ class Meal_Subscription_Invoice_Model(db.Model):
     shipping_total = db.Column(db.Float(), nullable=False)
     stripe_fee_total = db.Column(db.Float(), nullable=False)
     stripe_invoice_id = db.Column(db.String(200), nullable=False)
-    # Modifying stripe subscription will generate a new invoice with a null payment intent id
-    stripe_payment_intent_id = db.Column(db.String(200), default="", nullable=False)
+    stripe_payment_intent_id = db.Column(db.String(200), nullable=False)
     total = db.Column(db.Float(), nullable=False)
     datetime = db.Column(db.Float(), nullable=False)
     delivery_date = db.Column(db.Float(), nullable=False)

@@ -244,7 +244,7 @@ class Email_Service(object):
                 delivery_month=delivery_date.strftime("%B"),
                 delivery_date=delivery_date.day,
                 cutoff_day=cutoff_date.strftime("%A"),
-                cutoff_time=cutoff_date.strftime("%I:%M %p"),
+                cutoff_time=cutoff_date.strftime("%I:%M %p %Z"),
                 tracking_url=tracking_url,
             )
         else:
@@ -337,12 +337,7 @@ class Email_Service(object):
             s.quit()
 
     def send_sign_up_email(self, staged_client: "Staged_Client_Domain") -> None:
-        if self.env == "debug":
-            button_url = f"https://cherahealth.com"
-        else:
-            button_url = (
-                f"{self.host}/client-sign-up?staged_client_id={staged_client.id}"
-            )
+        button_url = f"{self.host}/client-sign-up?staged_client_id={staged_client.id}"
         if staged_client.meals_prepaid:
             email_template_name = "sign_up_prepaid_meals.html"
         else:

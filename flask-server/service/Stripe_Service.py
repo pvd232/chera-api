@@ -182,7 +182,7 @@ class Stripe_Service(object):
         stripe.Subscription.modify(
             stripe_subscription_id,
             cancel_at_period_end=False,
-            proration_behavior="create_prorations",
+            proration_behavior="none",
             items=[
                 {
                     "id": subscription["items"]["data"][0].id,

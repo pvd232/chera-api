@@ -47,6 +47,8 @@ class COGS_Service(object):
     # Get the lowest common denominator of meals and snacks (costs are calculated per meal, and are proportional to underlying num_meals range of 8-14)
     def get_lcd_num_items(self, num_meals: int, num_snacks: int) -> int:
         num_items = self.get_num_items(num_meals=num_meals, num_snacks=num_snacks)
+        # Prepaid meals triggers no value for lcd_num_items
+        # lcd_num_items = num_items
         max_items_per_box = self.cogs_repository.get_cogs()[0].num_meals
         upper_bound = (max_items_per_box * 2) - 2
 
@@ -54,9 +56,8 @@ class COGS_Service(object):
             lcd_num_items = num_items
 
         elif num_items > upper_bound:
-            times_divisible = num_items // max_items_per_box
             remainder = num_items % max_items_per_box
-            lcd_num_items = times_divisible + remainder
+            lcd_num_items = max_items_per_box + remainder
 
         return int(lcd_num_items)
 
