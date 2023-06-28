@@ -90,7 +90,7 @@ if env == "debug":
 else:
     STRIPE_API_KEY = GCP_Secret_Manager_Service().get_secret("STRIPE_KEY")
     # $0.5
-    stripe_one_time_account_setup_fee = "price_1MJ06nFseFjpsgWv16WGfto4"
+    stripe_one_time_account_setup_fee = "price_1NO5JyFseFjpsgWvp0VOYr3a"
 
     if env == "staging":
         host_url = "https://staging.cherahealth.com"
