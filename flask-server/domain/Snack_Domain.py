@@ -8,6 +8,5 @@ class Snack_Domain(Base_Domain):
         self.id = snack_object.id
         self.name = snack_object.name
         self.description = snack_object.description
-        self.price = snack_object.price
         self.image_url = snack_object.image_url
         self.active = snack_object.active

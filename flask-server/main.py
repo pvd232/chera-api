@@ -99,13 +99,7 @@ def setup_table() -> Response:
     return Response(status=200)
 
 
-@app.route("/api/sandbox")
-def sandbox() -> Response:
-    from repository.Continuity_Repository import Continuity_Repository
-    from repository.Meal_Plan_Meal_Repository import Meal_Plan_Meal_Repository
 
-    Meal_Plan_Meal_Repository(db=db).initialize_meal_plan_meals()
-    return Response(status=200)
 
 
 @app.route("/api/continuity/write")
@@ -903,32 +897,33 @@ def stripe_webhook() -> Response:
             return Response(status=400)
 
     if event and event["type"] == "invoice.paid":
-        from models import meal_price, snack_price, shipping_cost
         from repository.Client_Repository import Client_Repository
         from repository.Meal_Subscription_Repository import Meal_Subscription_Repository
         from repository.Meal_Subscription_Invoice_Repository import (
             Meal_Subscription_Invoice_Repository,
         )
+        from repository.Schedule_Meal_Repository import Schedule_Meal_Repository
+        from repository.Schedule_Snack_Repository import Schedule_Snack_Repository
         from repository.Scheduled_Order_Meal_Repository import (
             Scheduled_Order_Meal_Repository,
         )
         from repository.Scheduled_Order_Snack_Repository import (
             Scheduled_Order_Snack_Repository,
         )
-        from repository.Meal_Repository import Meal_Repository
-        from repository.Snack_Repository import Snack_Repository
         from repository.Staged_Client_Repository import Staged_Client_Repository
         from repository.Order_Meal_Repository import Order_Meal_Repository
         from repository.Order_Snack_Repository import Order_Snack_Repository
-        from repository.Meal_Repository import Meal_Repository
         from repository.Meal_Shipment_Repository import Meal_Shipment_Repository
+        from repository.COGS_Repository import COGS_Repository
 
         from service.Staged_Client_Service import Staged_Client_Service
         from service.Client_Service import Client_Service
+
+        from service.Schedule_Meal_Service import Schedule_Meal_Service
+        from service.Schedule_Snack_Service import Schedule_Snack_Service
         from service.Scheduled_Order_Meal_Service import Scheduled_Order_Meal_Service
         from service.Scheduled_Order_Snack_Service import Scheduled_Order_Snack_Service
-        from service.Meal_Service import Meal_Service
-        from service.Snack_Service import Snack_Service
+
         from service.Meal_Subscription_Service import Meal_Subscription_Service
         from service.Meal_Subscription_Invoice_Service import (
             Meal_Subscription_Invoice_Service,
@@ -940,7 +935,7 @@ def stripe_webhook() -> Response:
         from service.Shippo_Service import Shippo_Service
         from service.Stripe_Service import Stripe_Service
         from service.Order_Calc_Service import Order_Calc_Service
-
+        from service.COGS_Service import COGS_Service
         from domain.Meal_Subscription_Domain import Meal_Subscription_Domain
         from domain.Scheduled_Order_Meal_Domain import Scheduled_Order_Meal_Domain
         from domain.Scheduled_Order_Snack_Domain import Scheduled_Order_Snack_Domain
@@ -972,10 +967,51 @@ def stripe_webhook() -> Response:
             staged_client_repository=Staged_Client_Repository(db=db)
         ).get_staged_client(staged_client_id=meal_subscription.client_id)
 
+        # If staged_client.account_created is True and stripe_payment_intent_id is not None:
         # Regularly scheduled invoice on delivery day cutoff (Wed) - excluding invoice for first week
-        if staged_client.account_created is True:
+        if (
+            staged_client.account_created is True
+            and stripe_payment_intent_id is not None
+        ):
             meal_subscription_invoice_dto = Meal_Subscription_Invoice_DTO()
-            meal_subscription_invoice_dto.datetime = datetime.now(timezone.utc)
+            meal_subscription_invoice_dto.datetime = datetime.now(
+                timezone.utc
+            ).timestamp()
+            num_meals = len(
+                Schedule_Meal_Service(
+                    schedule_meal_repository=Schedule_Meal_Repository(db=db)
+                ).get_schedule_meals(meal_subscription_id=meal_subscription.id)
+            )
+            schedule_snacks = Schedule_Snack_Service(
+                schedule_snack_repository=Schedule_Snack_Repository(db=db)
+            ).get_schedule_snacks(meal_subscription_id=meal_subscription.id)
+            if schedule_snacks:
+                num_snacks = len(schedule_snacks)
+            else:
+                num_snacks = 0
+
+            cost_per_meal = COGS_Service(
+                cogs_repository=COGS_Repository(db=db)
+            ).get_meal_cost(
+                num_meals=num_meals,
+                num_snacks=num_snacks,
+                shipping_rate=meal_subscription.shipping_rate,
+            )
+            meal_price = COGS_Service(
+                cogs_repository=COGS_Repository(db=db)
+            ).get_meal_price(meal_cost=cost_per_meal)
+
+            num_items = COGS_Service(
+                cogs_repository=COGS_Repository(db=db)
+            ).get_num_items(num_meals=num_meals, num_snacks=num_snacks)
+
+            shipping_cost = COGS_Service(
+                cogs_repository=COGS_Repository(db=db)
+            ).get_shipping_cost(
+                num_meals=num_meals,
+                num_snacks=num_snacks,
+                shipping_rate=meal_subscription.shipping_rate,
+            )
             new_invoice = Meal_Subscription_Invoice_Service(
                 meal_subscription_invoice_repository=Meal_Subscription_Invoice_Repository(
                     db=db
@@ -986,20 +1022,8 @@ def stripe_webhook() -> Response:
                 stripe_invoice_id=stripe_invoice_id,
                 stripe_payment_intent_id=stripe_payment_intent_id,
                 meal_price=meal_price,
-                snack_price=snack_price,
                 shipping_cost=shipping_cost,
-                scheduled_order_meal_service=Scheduled_Order_Meal_Service(
-                    scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(
-                        db=db
-                    )
-                ),
-                scheduled_order_snack_service=Scheduled_Order_Snack_Service(
-                    scheduled_order_snack_repository=Scheduled_Order_Snack_Repository(
-                        db=db
-                    )
-                ),
-                meal_service=Meal_Service(meal_repository=Meal_Repository(db=db)),
-                snack_service=Snack_Service(snack_repository=Snack_Repository(db=db)),
+                num_items=num_items,
                 order_calc_service=Order_Calc_Service(),
             )
 
@@ -1027,17 +1051,19 @@ def stripe_webhook() -> Response:
             for scheduled_order_meal in this_weeks_scheduled_order_meals:
                 order_meal_id = uuid.uuid4()
                 scheduled_order_meal_id = scheduled_order_meal.id
+
+                # DTO is expecting strings for id's
                 order_meal_json = {
-                    "id": order_meal_id,
-                    "scheduled_order_meal_id": scheduled_order_meal_id,
-                    "meal_subscription_invoice_id": new_invoice.id,
+                    "id": str(order_meal_id),
+                    "scheduled_order_meal_id": str(scheduled_order_meal_id),
+                    "meal_subscription_invoice_id": str(new_invoice.id),
                 }
 
                 order_meal_dto = Order_Meal_DTO(order_meal_json=order_meal_json)
                 order_meal_domain = Order_Meal_Domain(order_meal_object=order_meal_dto)
                 Order_Meal_Service(
                     order_meal_repository=Order_Meal_Repository(db=db)
-                ).create_order_meal(order_meal=order_meal_domain)
+                ).create_order_meal(order_meal_domain=order_meal_domain)
 
             # Get scheduled order snacks for this week
             this_weeks_scheduled_order_snacks: list[
@@ -1054,9 +1080,9 @@ def stripe_webhook() -> Response:
                 order_snack_id = uuid.uuid4()
                 scheduled_order_snack_id = scheduled_order_snack.id
                 order_snack_json = {
-                    "id": order_snack_id,
-                    "scheduled_order_snack_id": scheduled_order_snack_id,
-                    "meal_subscription_invoice_id": new_invoice.id,
+                    "id": str(order_snack_id),
+                    "scheduled_order_snack_id": str(scheduled_order_snack_id),
+                    "meal_subscription_invoice_id": str(new_invoice.id),
                 }
 
                 order_snack_dto = Order_Snack_DTO(order_snack_json=order_snack_json)
@@ -1065,7 +1091,7 @@ def stripe_webhook() -> Response:
                 )
                 Order_Snack_Service(
                     order_snack_repository=Order_Snack_Repository(db=db)
-                ).create_order_snack(order_snack=order_snack_domain)
+                ).create_order_snack(order_snack_domain=order_snack_domain)
 
         # Invoice created when client first signs up
         else:
@@ -1435,11 +1461,11 @@ def client() -> Response:
             client_repository=Client_Repository(db=db)
         ).get_client(client_id=requested_client_dto.id)
         if check_previous_client:
-            Client_Service(client_repository=Client_Repository(db=db)).update_client(
-                client_dto=requested_client_dto
-            )
+            returned_client = Client_Service(
+                client_repository=Client_Repository(db=db)
+            ).update_client(client_dto=requested_client_dto)
         else:
-            returned_client: Optional[Client_Domain] = Client_Service(
+            returned_client = Client_Service(
                 client_repository=Client_Repository(db=db)
             ).create_client(client_dto=requested_client_dto)
 
@@ -1496,29 +1522,23 @@ def delete_stripe_invoice(customer_id: str) -> Response:
 
 @app.route("/api/stripe/subscription", methods=["POST", "PUT", "GET", "DELETE"])
 def stripe_subscription_data() -> Response:
+    from models import stripe_one_time_account_setup_fee
+    from repository.COGS_Repository import COGS_Repository
+    from service.COGS_Service import COGS_Service
+    from service.Shippo_Service import Shippo_Service
     from service.Meal_Subscription_Service import Meal_Subscription_Service
     from service.Stripe_Service import Stripe_Service
     from service.Discount_Service import Discount_Service
     from service.Date_Service import Date_Service
     from repository.Discount_Repository import Discount_Repository
     from repository.Meal_Subscription_Repository import Meal_Subscription_Repository
-    from models import (
-        stripe_meal_price_id,
-        stripe_one_time_meal_price_id,
-        stripe_one_time_fnce_discounted_meal_price_id,
-        stripe_snack_price_id,
-        stripe_one_time_snack_price_id,
-        stripe_one_time_fnce_discounted_snack_price_id,
-        stripe_shipping_price_id,
-        stripe_one_time_shipping_price_id,
-        stripe_one_time_account_setup_fee,
-    )
 
     if request.method == "POST":
         stripe_subscription_data = json.loads(request.data)
         client_id: str = stripe_subscription_data["client_id"]
-        number_of_meals: int = stripe_subscription_data["number_of_meals"]
-        number_of_snacks: int = stripe_subscription_data["number_of_snacks"]
+        number_of_meals: int = int(stripe_subscription_data["number_of_meals"])
+        number_of_snacks: int = int(stripe_subscription_data["number_of_snacks"])
+        zipcode: str = stripe_subscription_data["zipcode"]
         discount_code: str = stripe_subscription_data["discount_code"]
         prepaid: bool = stripe_subscription_data["prepaid"]
 
@@ -1526,19 +1546,28 @@ def stripe_subscription_data() -> Response:
             discount_repository=Discount_Repository(db=db)
         ).verify_discount_code(discount_code=discount_code)
 
+        shipping_rate = Shippo_Service().get_shipping_rate(zipcode=zipcode)
+
+        cost_per_meal = COGS_Service(
+            cogs_repository=COGS_Repository(db=db)
+        ).get_meal_cost(
+            num_meals=number_of_meals,
+            num_snacks=number_of_snacks,
+            shipping_rate=shipping_rate,
+        )
+        meal_price = COGS_Service(
+            cogs_repository=COGS_Repository(db=db)
+        ).get_meal_price(meal_cost=cost_per_meal)
+
+        num_items = COGS_Service(cogs_repository=COGS_Repository(db=db)).get_num_items(
+            num_meals=number_of_meals, num_snacks=number_of_snacks
+        )
+
         client_stripe_data = Stripe_Service().create_stripe_subscription(
-            number_of_meals=number_of_meals,
-            number_of_snacks=number_of_snacks,
+            num_items=num_items,
+            meal_price=meal_price,
             client_id=client_id,
-            stripe_one_time_fnce_discounted_meal_price_id=stripe_one_time_fnce_discounted_meal_price_id,
-            stripe_one_time_meal_price_id=stripe_one_time_meal_price_id,
-            stripe_meal_price_id=stripe_meal_price_id,
-            stripe_shipping_price_id=stripe_shipping_price_id,
-            stripe_one_time_shipping_price_id=stripe_one_time_shipping_price_id,
-            stripe_one_time_account_setup_fee=stripe_one_time_account_setup_fee,
-            stripe_snack_price_id=stripe_snack_price_id,
-            stripe_one_time_snack_price_id=stripe_one_time_snack_price_id,
-            stripe_one_time_fnce_discounted_snack_price_id=stripe_one_time_fnce_discounted_snack_price_id,
+            stripe_one_time_account_setup_fee_price_id=stripe_one_time_account_setup_fee,
             date_service=Date_Service(),
             prepaid=prepaid,
             discount=discount,
@@ -1547,19 +1576,36 @@ def stripe_subscription_data() -> Response:
     elif request.method == "PUT":
         meal_subscription_id = request.args.get("meal_subscription_id")
 
-        number_of_meals = request.headers.get("number-of-meals")
-        number_of_snacks = request.headers.get("number-of-snacks")
+        number_of_meals = int(request.headers.get("number-of-meals"))
+        number_of_snacks = int(request.headers.get("number-of-snacks"))
 
         client_subscription = Meal_Subscription_Service(
             meal_subscription_repository=Meal_Subscription_Repository(db=db)
         ).get_meal_subscription(meal_subscription_id=meal_subscription_id)
 
+        shipping_rate = client_subscription.shipping_rate
+
+        cost_per_meal = COGS_Service(
+            cogs_repository=COGS_Repository(db=db)
+        ).get_meal_cost(
+            num_meals=number_of_meals,
+            num_snacks=number_of_snacks,
+            shipping_rate=shipping_rate,
+        )
+        meal_price = COGS_Service(
+            cogs_repository=COGS_Repository(db=db)
+        ).get_meal_price(meal_cost=cost_per_meal)
+        stripe_meal_price_id = Stripe_Service().get_price(
+            meal_price=meal_price,
+            recurring=True,
+        )["price_id"]
+        number_of_items = COGS_Service(
+            cogs_repository=COGS_Repository(db=db)
+        ).get_num_items(num_meals=number_of_meals, num_snacks=number_of_snacks)
         Stripe_Service().update_subscription(
             stripe_subscription_id=client_subscription.stripe_subscription_id,
-            number_of_meals=number_of_meals,
-            number_of_snacks=number_of_snacks,
+            num_items=number_of_items,
             stripe_meal_price_id=stripe_meal_price_id,
-            stripe_snack_price_id=stripe_snack_price_id,
         )
         return Response(status=204)
 
@@ -2847,7 +2893,6 @@ def extended_staged_schedule_snack() -> Response:
 
 @app.route("/api/dietitian_prepayment", methods=["POST"])
 def dietitian_prepayment() -> Response:
-    from models import meal_price, snack_price, shipping_cost
     from repository.Dietitian_Prepayment_Repository import (
         Dietitian_Prepayment_Repository,
     )
@@ -2855,10 +2900,13 @@ def dietitian_prepayment() -> Response:
     from repository.Prepaid_Order_Discount_Repository import (
         Prepaid_Order_Discount_Repository,
     )
+    from repository.COGS_Repository import COGS_Repository
 
     from service.Dietitian_Prepayment_Service import Dietitian_Prepayment_Service
     from service.Discount_Service import Discount_Service
     from service.Prepaid_Order_Discount_Service import Prepaid_Order_Discount_Service
+    from service.COGS_Service import COGS_Service
+    from service.Shippo_Service import Shippo_Service
 
     if request.method == "POST":
         prepayment_data = json.loads(request.data)
@@ -2869,6 +2917,29 @@ def dietitian_prepayment() -> Response:
         staged_client_id = prepayment_data["staged_client_id"]
         dietitian_id = prepayment_data["dietitian_id"]
         stripe_payment_intent_id = prepayment_data["stripe_payment_intent_id"]
+        zipcode = prepayment_data["zipcode"]
+
+        shipping_rate = Shippo_Service().get_shipping_rate(zipcode=zipcode)
+        cost_per_meal = COGS_Service(
+            cogs_repository=COGS_Repository(db=db)
+        ).get_meal_cost(
+            num_meals=num_meals,
+            num_snacks=num_snacks,
+            shipping_rate=shipping_rate,
+        )
+        meal_price = COGS_Service(
+            cogs_repository=COGS_Repository(db=db)
+        ).get_meal_price(meal_cost=cost_per_meal)
+        snack_price = COGS_Service(
+            cogs_repository=COGS_Repository(db=db)
+        ).get_snack_price(meal_price=meal_price)
+        shipping_cost = COGS_Service(
+            cogs_repository=COGS_Repository(db=db)
+        ).get_shipping_cost(
+            num_meals=num_meals,
+            num_snacks=num_snacks,
+            shipping_rate=shipping_rate,
+        )
 
         Dietitian_Prepayment_Service(
             dietitian_prepayment_repository=Dietitian_Prepayment_Repository(db=db)
@@ -2899,7 +2970,7 @@ def dietitian_prepayment() -> Response:
 @app.route(
     "/api/meal_subscription/<string:meal_subscription_id>", methods=["GET", "PUT"]
 )
-def update_meal_subscription(meal_subscription_id: str) -> Response:
+def specific_meal_subscription(meal_subscription_id: str) -> Response:
     from repository.Meal_Subscription_Repository import Meal_Subscription_Repository
     from service.Meal_Subscription_Service import Meal_Subscription_Service
     from service.Stripe_Service import Stripe_Service
@@ -2934,6 +3005,7 @@ def update_meal_subscription(meal_subscription_id: str) -> Response:
                 meal_subscription_id=meal_subscription_id,
                 stripe_service=Stripe_Service(),
             )
+
         return Response(status=204)
 
     else:
@@ -2942,7 +3014,6 @@ def update_meal_subscription(meal_subscription_id: str) -> Response:
 
 @app.route("/api/meal_subscription", methods=["POST", "GET"])
 def meal_subscription() -> Response:
-    from models import shipping_cost
     from repository.Meal_Subscription_Repository import Meal_Subscription_Repository
     from service.Meal_Subscription_Service import Meal_Subscription_Service
     from domain.Meal_Subscription_Domain import Meal_Subscription_Domain
@@ -2966,10 +3037,7 @@ def meal_subscription() -> Response:
         else:
             created_meal_subscription_domain = Meal_Subscription_Service(
                 meal_subscription_repository=Meal_Subscription_Repository(db=db)
-            ).create_meal_subscription(
-                meal_subscription_dto=meal_subscription_DTO,
-                shipping_cost=shipping_cost,
-            )
+            ).create_meal_subscription(meal_subscription_dto=meal_subscription_DTO)
         created_meal_subscription_dto = Meal_Subscription_DTO(
             meal_subscription_domain=created_meal_subscription_domain
         )
@@ -3143,27 +3211,12 @@ def cogs() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/shippo/shipping_cost", methods=["GET"])
+@app.route("/api/shippo/shipping_rate", methods=["GET"])
 def shipping_cost() -> Response:
     from service.Shippo_Service import Shippo_Service
 
     zipcode = request.args.get("zipcode")
-    shipping_rate = Shippo_Service(
-        address_from={
-            "name": "Peter Driscoll",
-            "street1": "525 hopkins ln",
-            "city": "Haddonfield",
-            "state": "NJ",
-            "zip": "08033-1128",
-            "country": "US",
-        },
-        standard_parcel={
-            "length": 12,
-            "width": 9,
-            "height": 8,
-            "weight": 15,
-        },
-    ).get_shipping_rate(zipcode=zipcode)
+    shipping_rate = Shippo_Service().get_shipping_rate(zipcode=zipcode)
     if request.method == "GET":
         return jsonify(shipping_rate), 200
     else:
@@ -3253,25 +3306,21 @@ def skip_week() -> Response:
 
 @app.route("/api/meal_subscription_invoice", methods=["GET", "POST"])
 def meal_subscription_invoice() -> Response:
-    from models import meal_price, snack_price, shipping_cost
-
     from repository.Client_Repository import Client_Repository
     from repository.Meal_Subscription_Invoice_Repository import (
         Meal_Subscription_Invoice_Repository,
     )
     from repository.Meal_Subscription_Repository import Meal_Subscription_Repository
-    from repository.Scheduled_Order_Meal_Repository import (
-        Scheduled_Order_Meal_Repository,
+    from repository.Schedule_Meal_Repository import (
+        Schedule_Meal_Repository,
     )
-    from repository.Scheduled_Order_Snack_Repository import (
-        Scheduled_Order_Snack_Repository,
-    )
+    from repository.Schedule_Snack_Repository import Schedule_Snack_Repository
     from repository.Meal_Shipment_Repository import Meal_Shipment_Repository
     from repository.Discount_Repository import Discount_Repository
 
     from service.Client_Service import Client_Service
-    from service.Scheduled_Order_Meal_Service import Scheduled_Order_Meal_Service
-    from service.Scheduled_Order_Snack_Service import Scheduled_Order_Snack_Service
+    from service.Schedule_Meal_Service import Schedule_Meal_Service
+    from service.Schedule_Snack_Service import Schedule_Snack_Service
     from service.Meal_Subscription_Invoice_Service import (
         Meal_Subscription_Invoice_Service,
     )
@@ -3307,6 +3356,9 @@ def meal_subscription_invoice() -> Response:
             return Response(status=404)
 
     elif request.method == "POST":
+        from repository.COGS_Repository import COGS_Repository
+        from service.COGS_Service import COGS_Service
+
         meal_subscription_invoice_data = json.loads(request.data)
         discount_code: Optional[str] = request.headers.get("discount_code")
         discount_percentage = False
@@ -3320,7 +3372,43 @@ def meal_subscription_invoice() -> Response:
         meal_subscription_invoice_dto = Meal_Subscription_Invoice_DTO(
             meal_subscription_invoice_json=meal_subscription_invoice_data
         )
+        associated_meal_subscription = Meal_Subscription_Service(
+            meal_subscription_repository=Meal_Subscription_Repository(db=db)
+        ).get_meal_subscription(
+            meal_subscription_id=meal_subscription_invoice_dto.meal_subscription_id
+        )
 
+        associated_schedule_meals = Schedule_Meal_Service(
+            schedule_meal_repository=Schedule_Meal_Repository(db=db)
+        ).get_schedule_meals(meal_subscription_id=associated_meal_subscription.id)
+
+        associated_schedule_snacks = Schedule_Snack_Service(
+            schedule_snack_repository=Schedule_Snack_Repository(db=db)
+        ).get_schedule_snacks(
+            meal_subscription_id=associated_meal_subscription.id,
+        )
+
+        cost_per_meal = COGS_Service(
+            cogs_repository=COGS_Repository(db=db)
+        ).get_meal_cost(
+            num_meals=len(associated_schedule_meals),
+            num_snacks=len(associated_schedule_snacks),
+            shipping_rate=associated_meal_subscription.shipping_rate,
+        )
+        meal_price = COGS_Service(
+            cogs_repository=COGS_Repository(db=db)
+        ).get_meal_price(meal_cost=cost_per_meal)
+        num_items = COGS_Service(cogs_repository=COGS_Repository(db=db)).get_num_items(
+            num_meals=len(associated_schedule_meals),
+            num_snacks=len(associated_schedule_snacks),
+        )
+        shipping_cost = COGS_Service(
+            cogs_repository=COGS_Repository(db=db)
+        ).get_shipping_cost(
+            num_meals=len(associated_schedule_meals),
+            num_snacks=len(associated_schedule_snacks),
+            shipping_rate=associated_meal_subscription.shipping_rate,
+        )
         new_meal_subscription_invoice = Meal_Subscription_Invoice_Service(
             meal_subscription_invoice_repository=Meal_Subscription_Invoice_Repository(
                 db=db
@@ -3328,28 +3416,16 @@ def meal_subscription_invoice() -> Response:
         ).create_meal_subscription_invoice(
             meal_subscription_invoice_dto=meal_subscription_invoice_dto,
             meal_price=meal_price,
-            snack_price=snack_price,
             shipping_cost=shipping_cost,
-            scheduled_order_meal_service=Scheduled_Order_Meal_Service(
-                scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(db=db)
-            ),
-            scheduled_order_snack_service=Scheduled_Order_Snack_Service(
-                scheduled_order_snack_repository=Scheduled_Order_Snack_Repository(db=db)
-            ),
+            num_items=num_items,
             order_calc_service=Order_Calc_Service(),
             discount_percentage=discount_percentage,
         )
 
-        associated_meal_subscription = Meal_Subscription_Service(
-            meal_subscription_repository=Meal_Subscription_Repository(db=db)
-        ).get_meal_subscription(
-            meal_subscription_id=new_meal_subscription_invoice.meal_subscription_id
-        )
+        # Create meal_shipment, using Shippo service because our meal_shipment is dependent on values generated during Shippo shipment creation
         associated_client = Client_Service(
             client_repository=Client_Repository(db=db)
         ).get_client(client_id=associated_meal_subscription.client_id)
-        # Create meal_shipment, using Shippo service because our meal_shipment is dependent on values generated during Shippo shipment creation
-
         meal_shipment = Shippo_Service().create_shipment(
             meal_subscription_invoice_id=new_meal_subscription_invoice.id,
             client=associated_client,
@@ -3451,19 +3527,20 @@ def stripe_payment_methods(client_stripe_id: str) -> Response:
 
 @app.route("/api/stripe/payment_intent", methods=["POST"])
 def create_stripe_payment_intent() -> Response:
-    from models import meal_price, snack_price, shipping_cost
-
     from repository.Discount_Repository import Discount_Repository
+    from repository.COGS_Repository import COGS_Repository
 
     from service.Discount_Service import Discount_Service
+    from service.COGS_Service import COGS_Service
     from service.Stripe_Service import Stripe_Service
     from service.Order_Calc_Service import Order_Calc_Service
+    from service.Shippo_Service import Shippo_Service
 
     if request.method == "POST":
         number_of_meals = request.headers.get("number_of_meals")
         number_of_snacks = request.headers.get("number_of_snacks")
         discount_code = request.headers.get("discount_code")
-
+        zipcode = request.headers.get("zipcode")
         # If no discount code is provided, set to False so that it is not passed to Stripe_Service
         if discount_code == "":
             discount_percentage = False
@@ -3473,7 +3550,24 @@ def create_stripe_payment_intent() -> Response:
                 .get_discount(discount_code=discount_code)
                 .discount_percentage
             )
+        meal_cost = COGS_Service(cogs_repository=COGS_Repository(db=db)).get_meal_cost(
+            num_meals=number_of_meals, num_snacks=number_of_snacks
+        )
+        meal_price = COGS_Service(
+            cogs_repository=COGS_Repository(db=db)
+        ).get_meal_price(meal_cost=meal_cost)
+        snack_price = COGS_Service(
+            cogs_repository=COGS_Repository(db=db)
+        ).get_snack_price(meal_price=meal_price)
 
+        shipping_rate = Shippo_Service().get_shipping_rate(zipcode=zipcode)
+        shipping_cost = COGS_Service(
+            cogs_repository=COGS_Repository(db=db)
+        ).get_shipping_cost(
+            num_meals=number_of_meals,
+            num_snacks=number_of_snacks,
+            shipping_rate=shipping_rate,
+        )
         stripe_secret = Stripe_Service().create_payment_intent(
             number_of_meals=number_of_meals,
             number_of_snacks=number_of_snacks,

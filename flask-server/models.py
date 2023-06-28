@@ -267,23 +267,23 @@ class Client_Model(db.Model):
         self.datetime = client_domain.datetime
         self.active = client_domain.active
 
-    def update(self, requested_client: "Client_Domain") -> None:
-        self.password = requested_client.password
-        self.dietitian_id = requested_client.dietitian_id
-        self.meal_plan_id = requested_client.meal_plan_id
-        self.stripe_id = requested_client.stripe_id
-        self.first_name = requested_client.first_name
-        self.last_name = requested_client.last_name
-        self.street = requested_client.street
-        self.city = requested_client.city
-        self.state = requested_client.state
-        self.zipcode = requested_client.zipcode
-        self.zipcode_extension = requested_client.zipcode_extension
-        self.address = requested_client.address
-        self.phone_number = requested_client.phone_number
-        self.notes = requested_client.notes
-        self.datetime = requested_client.datetime
-        self.active = requested_client.active
+    def update(self, client_domain: "Client_Domain") -> None:
+        self.password = client_domain.password
+        self.dietitian_id = client_domain.dietitian_id
+        self.meal_plan_id = client_domain.meal_plan_id
+        self.stripe_id = client_domain.stripe_id
+        self.first_name = client_domain.first_name
+        self.last_name = client_domain.last_name
+        self.street = client_domain.street
+        self.city = client_domain.city
+        self.state = client_domain.state
+        self.zipcode = client_domain.zipcode
+        self.zipcode_extension = client_domain.zipcode_extension
+        self.address = client_domain.address
+        self.phone_number = client_domain.phone_number
+        self.notes = client_domain.notes
+        self.datetime = client_domain.datetime
+        self.active = client_domain.active
 
 
 # class Eating_Disorder_Model(db.Model):
@@ -291,7 +291,7 @@ class Client_Model(db.Model):
 
 
 class COGS_Model(db.Model):
-    __tablename__ = "shipping_cost"
+    __tablename__ = "cogs"
     num_meals = db.Column(db.Integer(), primary_key=True, nullable=False)
     is_local = db.Column(db.Boolean(), primary_key=True, nullable=False)
     ingredient = db.Column(db.Float(), nullable=False)
@@ -466,7 +466,6 @@ class Meal_Model(db.Model):
     meal_time = db.Column(db.String(80), nullable=False)
     name = db.Column(db.String(80), unique=True, nullable=False)
     description = db.Column(db.String(200), nullable=False)
-    price = db.Column(db.Float(), nullable=False)
     image_url = db.Column(db.String(200), nullable=False)
     active = db.Column(db.Boolean(), default=True, nullable=False)
 
@@ -477,13 +476,8 @@ class Meal_Model(db.Model):
         self.meal_time = meal_domain.meal_time
         self.name = meal_domain.name
         self.description = meal_domain.description
-        self.price = meal_domain.price
         self.image_url = meal_domain.image_url
         self.active = meal_domain.active
-
-    @property
-    def lower_case_name(self) -> str:
-        return self.name.lower()
 
 
 class Meal_Plan_Meal_Model(db.Model):
@@ -540,7 +534,6 @@ class Snack_Model(db.Model):
     id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
     name = db.Column(db.String(80), unique=True, nullable=False)
     description = db.Column(db.String(200), nullable=False)
-    price = db.Column(db.Float(), nullable=False)
     image_url = db.Column(db.String(200), nullable=False)
     active = db.Column(db.Boolean(), default=True, nullable=False)
 
@@ -548,13 +541,8 @@ class Snack_Model(db.Model):
         self.id = snack_domain.id
         self.name = snack_domain.name
         self.description = snack_domain.description
-        self.price = snack_domain.price
         self.image_url = snack_domain.image_url
         self.active = snack_domain.active
-
-    @property
-    def lower_case_name(self) -> str:
-        return self.name.lower()
 
 
 class Meal_Plan_Snack_Model(db.Model):
@@ -642,7 +630,8 @@ class Meal_Subscription_Invoice_Model(db.Model):
     shipping_total = db.Column(db.Float(), nullable=False)
     stripe_fee_total = db.Column(db.Float(), nullable=False)
     stripe_invoice_id = db.Column(db.String(200), nullable=False)
-    stripe_payment_intent_id = db.Column(db.String(200), nullable=False)
+    # Modifying stripe subscription will generate a new invoice with a null payment intent id
+    stripe_payment_intent_id = db.Column(db.String(200), default="", nullable=False)
     total = db.Column(db.Float(), nullable=False)
     datetime = db.Column(db.Float(), nullable=False)
     delivery_date = db.Column(db.Float(), nullable=False)
@@ -802,8 +791,9 @@ class Meal_Subscription_Model(db.Model):
         db.String(80), db.ForeignKey("dietitian.id"), nullable=False
     )
     stripe_subscription_id = db.Column(db.String(80), unique=True, nullable=False)
+    shipping_rate = db.Column(db.Float(), nullable=False)
     datetime = db.Column(db.Float(), nullable=False)
-    shipping_cost = db.Column(db.Float(), nullable=False)
+
     paused = db.Column(db.Boolean(), default=False, nullable=False)
     active = db.Column(db.Boolean(), default=True, nullable=False)
 
@@ -812,8 +802,9 @@ class Meal_Subscription_Model(db.Model):
         self.client_id = meal_subscription.client_id
         self.dietitian_id = meal_subscription.dietitian_id
         self.stripe_subscription_id = meal_subscription.stripe_subscription_id
+        self.shipping_rate = meal_subscription.shipping_rate
         self.datetime = meal_subscription.datetime
-        self.shipping_cost = meal_subscription.shipping_cost
+
         self.active = meal_subscription.active
         self.paused = meal_subscription.paused
 
@@ -821,7 +812,7 @@ class Meal_Subscription_Model(db.Model):
         self.dietitian_id = meal_subscription_domain.dietitian_id
         self.stripe_subscription_id = meal_subscription_domain.stripe_subscription_id
         self.datetime = meal_subscription_domain.datetime
-        self.shipping_cost = meal_subscription_domain.shipping_cost
+        self.shipping_rate = meal_subscription_domain.shipping_rate
         self.active = meal_subscription_domain.active
         self.paused = meal_subscription_domain.paused
 

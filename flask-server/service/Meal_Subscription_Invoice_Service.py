@@ -98,10 +98,8 @@ class Meal_Subscription_Invoice_Service(object):
         self,
         meal_subscription_invoice_dto: "Meal_Subscription_Invoice_DTO",
         meal_price: float,
-        snack_price: float,
         shipping_cost: float,
-        scheduled_order_meal_service: "Scheduled_Order_Meal_Service",
-        scheduled_order_snack_service: "Scheduled_Order_Snack_Service",
+        num_items: int,
         order_calc_service: "Order_Calc_Service",
         discount_percentage: float = None,
     ) -> Meal_Subscription_Invoice_Domain:
@@ -109,21 +107,11 @@ class Meal_Subscription_Invoice_Service(object):
             meal_subscription_invoice_object=meal_subscription_invoice_dto
         )
 
-        associated_scheduled_order_meals = scheduled_order_meal_service.get_scheduled_order_meals_for_week(
-            meal_subscription_id=meal_subscription_invoice_domain.meal_subscription_id,
-            delivery_date=meal_subscription_invoice_domain.delivery_date,
-        )
-
-        associated_scheduled_order_snacks = scheduled_order_snack_service.get_scheduled_order_snacks_for_week(
-            meal_subscription_id=meal_subscription_invoice_domain.meal_subscription_id,
-            delivery_date=meal_subscription_invoice_domain.delivery_date,
-        )
-
+       
+      
         invoice_order_data = order_calc_service.get_order_calc(
-            num_meals=len(associated_scheduled_order_meals),
-            num_snacks=len(associated_scheduled_order_snacks),
+            num_items=num_items,
             meal_price=meal_price,
-            snack_price=snack_price,
             shipping_cost=shipping_cost,
             discount_percentage=discount_percentage,
         )
@@ -151,10 +139,8 @@ class Meal_Subscription_Invoice_Service(object):
         stripe_invoice_id: str,
         stripe_payment_intent_id: str,
         meal_price: float,
-        snack_price: float,
         shipping_cost: float,
-        scheduled_order_meal_service: "Scheduled_Order_Meal_Service",
-        scheduled_order_snack_service: "Scheduled_Order_Snack_Service",
+        num_items: int,
         order_calc_service: "Order_Calc_Service",
     ) -> Meal_Subscription_Invoice_Domain:
         new_meal_subscription_invoice_domain = Meal_Subscription_Invoice_Domain(
@@ -166,21 +152,10 @@ class Meal_Subscription_Invoice_Service(object):
             stripe_payment_intent_id
         )
 
-        associated_scheduled_order_meals = scheduled_order_meal_service.get_scheduled_order_meals_for_week(
-            meal_subscription_id=new_meal_subscription_invoice_domain.meal_subscription_id,
-            delivery_date=new_meal_subscription_invoice_domain.delivery_date,
-        )
-
-        associated_scheduled_order_snacks = scheduled_order_snack_service.get_scheduled_order_snacks_for_week(
-            meal_subscription_id=new_meal_subscription_invoice_domain.meal_subscription_id,
-            delivery_date=new_meal_subscription_invoice_domain.delivery_date,
-        )
-
+       
         invoice_order_data = order_calc_service.get_order_calc(
-            num_meals=len(associated_scheduled_order_meals),
-            num_snacks=len(associated_scheduled_order_snacks),
+            num_items=num_items,
             meal_price=meal_price,
-            snack_price=snack_price,
             shipping_cost=shipping_cost,
             discount_percentage=False,
         )
@@ -189,7 +164,7 @@ class Meal_Subscription_Invoice_Service(object):
             order_properties=invoice_order_data
         )
 
-        created_meal_subscription_invoice: "Meal_Subscription_Invoice_Model" = (
+        created_meal_subscription_invoice = (
             self.meal_subscription_invoice_repository.create_meal_subscription_invoice(
                 meal_subscription_invoice_domain=new_meal_subscription_invoice_domain
             )

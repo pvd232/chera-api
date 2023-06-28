@@ -15,3 +15,13 @@ class COGS_Domain(Base_Domain):
         self.box: float = cogs_object.box
         self.ice: float = cogs_object.ice
         self.num_boxes: int = cogs_object.num_boxes
+
+    def get_total_cost_per_meal(self) -> float:
+        return (
+            self.ingredient
+            + self.core_packaging
+            + self.kitchen
+            + self.chef
+            + self.box
+            + self.ice
+        )

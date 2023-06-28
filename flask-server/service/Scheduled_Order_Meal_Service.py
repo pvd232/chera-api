@@ -192,7 +192,7 @@ class Scheduled_Order_Meal_Service(object):
         else:
             return None
 
-    def get_current_scheduled_order_meal_delivery_dates(
+    def get_scheduled_order_meals_dates(
         self, meal_subscription_id: UUID
     ) -> Optional[list[float]]:
         scheduled_order_meals: Optional[
@@ -246,7 +246,7 @@ class Scheduled_Order_Meal_Service(object):
         return
 
     def check_if_first_week_of_meals(self, meal_subscription_id: UUID) -> bool:
-        delivery_dates = self.get_current_scheduled_order_meal_delivery_dates(
+        delivery_dates = self.get_scheduled_order_meals_dates(
             meal_subscription_id=meal_subscription_id
         )
         today = datetime.now(timezone.utc)

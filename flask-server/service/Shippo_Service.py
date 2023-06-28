@@ -12,11 +12,29 @@ if TYPE_CHECKING:
 class Shippo_Service(object):
     def __init__(
         self,
-        address_from: dict[str, str],
-        standard_parcel: dict[str, str],
+        address_from: dict[str, str] = None,
+        standard_parcel: dict[str, str] = None,
     ) -> None:
-        self.address_from = address_from
-        self.standard_parcel = standard_parcel
+        if address_from:
+            self.address_from = address_from
+        else:
+            self.address_from = {
+                "name": "Peter Driscoll",
+                "street1": "525 hopkins ln",
+                "city": "Haddonfield",
+                "state": "NJ",
+                "zip": "08033-1128",
+                "country": "US",
+            }
+        if standard_parcel:
+            self.standard_parcel = standard_parcel
+        else:
+            self.standard_parcel = {
+                "length": 12,
+                "width": 9,
+                "height": 8,
+                "weight": 15,
+            }
 
     def get_shipping_rate(self, zipcode: str):
         address_to = {
@@ -31,24 +49,21 @@ class Shippo_Service(object):
             mass_unit="lb",
             weight=self.standard_parcel["weight"],
         )
-     
 
-        six_meal_shipment = shippo.Shipment.create(
+        meal_shipment = shippo.Shipment.create(
             address_from=self.address_from,
             address_to=address_to,
             parcels=standard_parcel,
             asynchronous=False,
         )
 
-        six_meal_rates = shippo.Shipment.get_rates(six_meal_shipment.object_id)[
-            "results"
-        ]
+        shipment_rates = shippo.Shipment.get_rates(meal_shipment.object_id)["results"]
 
         # USPS rates are listed:
-        # 1. Priority Express 
-        # 2. Priority 2 Day 
+        # 1. Priority Express
+        # 2. Priority 2 Day
         # 3. Ground
-        return six_meal_rates[1]["amount"]
+        return float(shipment_rates[1]["amount"])
 
     def create_shipment(
         self,
