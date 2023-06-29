@@ -3208,6 +3208,19 @@ def cogs() -> Response:
     else:
         return Response(status=405)
 
+@app.route("/api/eating_disorder", methods=["GET"])
+def eating_disorder() -> Response:
+    from repository.Eating_Disorder_Repository import Eating_Disorder_Repository
+    from service.Eating_Disorder_Service import Eating_Disorder_Service
+    from dto.Eating_Disorder_DTO import Eating_Disorder_DTO
+
+    if request.method == "GET":
+        eating_disorder_list = Eating_Disorder_Service(eating_disorder_repository=Eating_Disorder_Repository(db=db)).get_eating_disorders()
+        eating_disorder_dtos = [Eating_Disorder_DTO(eating_disorder_domain=x) for x in eating_disorder_list]
+        serialized_eating_disorder= [x.serialize() for x in eating_disorder_dtos]
+        return jsonify(serialized_eating_disorder), 200
+    else:
+        return Response(status=405)
 
 @app.route("/api/shippo/shipping_rate", methods=["GET"])
 def shipping_cost() -> Response:
