@@ -1,99 +1,29 @@
-<div style="height: 100%">
-  <!-- grey background -->
-  <div style="width: 100%; height: 100%;"">
-    <div
-      style="
-        width: 100%;
-        max-width: 500px;
-        height: 80vh;
-        margin-top: 0%;
-        margin-bottom: 10%;
-        margin-right: auto;
-        margin-left: auto;
-        background-color: #e8e8e8;
-      "
-    >
+<p>
+  Welcome to Chera! We're honored you've chosen us as a partner in your recovery
+  journey.
+</p>
+<p style="margin-top: 15px">
+  Your first order will be delivered
+  <b>{delivery_day}, {delivery_month} {delivery_date}, between 2PM - 8PM </b>.
+  Click <a href="{tracking_url}">here</a> to track it at anytime.
+</p>
+<p style="margin-top: 15px">
+  The shipment is discreet. {delivery_instructions}
+</p>
+<p style="margin-top: 15px">
+  Put your meals in the fridge when you receive them to preserve freshness.
+</p>
 
-      <!-- mail body, white background -->
-      <div
-        style="
-          width: calc(100% - 30px);
-          height: 70vh;
-          padding: 30px 30px 30px 30px;
-          background-color: white;
-          margin-top: auto;
-          margin-bottom: auto;
-        "
-      >
-        <!-- logo -->
-        <div
-          style="
-            display: flex;
-            width: 100%;
-            justify-content: center;
-            align-items: center;
-          "
-        >
-          <img
-            src="{logo_url}"
-            style="
-              width: 25%;
-              height: 6%;
-              margin-left: auto;
-              margin-right: auto;
-            "
-            alt="img"
-          />
-        </div>
-        <br />
-
-        <!-- email text -->
-        <div style="margin-bottom: 30px; margin-top: 30px">
-          <p style="margin-bottom: 0px">Hey {first_name},</p>
-          <br />
-          <p>
-            Welcome to Chera! We're excited to send you some delicous meals!
-          </p>
-          <p style="margin-bottom: 15px">
-            Your
-            <b>
-              first order will be delivered Sunday, {delivery_day}
-              {delivery_month} sometime 2PM - 8PM </b
-            >. You will receive another confirmation email when it ships that
-            Friday. Click <a href="{tracking_url}">here</a> to track it at
-            anytime.
-          </p>
-          <p style="margin-top: 15px; margin-bottom: 15px">
-            The shipment is <b>discreet</b>. Look for a plain brown box, 1 foot
-            tall. Inside it will be a silver insulated lining with a letter on
-            top bearing our logo.
-          </p>
-          <p style="margin-top: 15px">
-            <b> Put your meals in the fridge or freezer ASAP </b> to preserve
-            freshness.
-          </p>
-
-          <p style="margin-bottom: 15px">
-            If you want to make any changes to future weekly meals, including
-            skipping the week, you can do so on your dashboard up until 5
-            o'clock on Wednesday of that week, which is also when you are
-            charged for that week's meals.
-          </p>
-          <p style="margin-bottom: 15px">
-            Your weekly meals will remain the same each week by default.
-            However, your dashboard allows you to modify the meals for any of
-            your upcoming 4 delivery dates, as long as the total number of meals
-            for that week stays the same.
-          </p>
-          <p style="margin-top: 15px">
-            Ok, that's everything! If you have any questions, please email us at
-            contact@cherahealth.com and we will reply within an hour or less!
-          </p>
-          <br />
-          <p style="margin-top: 0px">Cheers,</p>
-          <p>- The Chera Team</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<p style="margin-bottom: 15px">
+  Subscription changes for a given week can be made until {cutoff_time} on
+  {cutoff_day} of that week.
+</p>
+<p style="margin-bottom: 15px">
+  Your weekly meals will remain the same each week by default. However, your
+  dashboard allows you to modify the meals for any of your upcoming 4 delivery
+  dates, as long as the total number of meals for that week stays the same.
+</p>
+<p style="margin-top: 15px">
+  Ok, that's everything! If you have any questions, please email us at
+  contact@cherahealth.com.
+</p>

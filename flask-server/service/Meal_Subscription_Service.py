@@ -77,13 +77,12 @@ class Meal_Subscription_Service(object):
         return active_meal_subscription_domains
 
     def create_meal_subscription(
-        self, meal_subscription_dto: "Meal_Subscription_DTO", shipping_cost: float
+        self, meal_subscription_dto: "Meal_Subscription_DTO"
     ) -> Meal_Subscription_Domain:
         requested_meal_subscription = Meal_Subscription_Domain(
             meal_subscription_object=meal_subscription_dto
         )
 
-        requested_meal_subscription.shipping_cost = shipping_cost
         self.meal_subscription_repository.create_meal_subscription(
             meal_subscription_domain=requested_meal_subscription
         )

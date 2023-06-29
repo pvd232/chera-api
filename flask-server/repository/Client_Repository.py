@@ -1,7 +1,6 @@
 from .Base_Repository import Base_Repository
 from models import Client_Model, Staged_Client_Model
 from werkzeug.security import generate_password_hash, check_password_hash
-from uuid import UUID
 from typing import Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
