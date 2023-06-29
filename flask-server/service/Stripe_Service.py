@@ -11,20 +11,14 @@ if TYPE_CHECKING:
 class Stripe_Service(object):
     def create_payment_intent(
         self,
-        number_of_meals: int,
-        number_of_snacks: int,
+        num_items: int,
         meal_price: float,
-        snack_price: float,
-        shipping_cost: float,
         order_calc_service: "Order_Calc_Service" = None,
         discount_percentage: float = False,
     ) -> dict:
         stripe_order_total = order_calc_service.get_stripe_order_total(
-            num_meals=number_of_meals,
-            num_snacks=number_of_snacks,
+            num_items=num_items,
             meal_price=meal_price,
-            snack_price=snack_price,
-            shipping_cost=shipping_cost,
             discount_percentage=discount_percentage,
         )
 
@@ -40,17 +34,29 @@ class Stripe_Service(object):
             "stripe_payment_intent_id": intent["id"],
         }
 
-    def get_price(self, cost_per_meal: float) -> stripe.Price:
+    def get_price(self, meal_price: float, recurring: bool) -> dict:
+        print("meal_price", meal_price)
         prices = stripe.Price.list(limit=100)
-        target_price = round(cost_per_meal, 1) + 1
+        print("prices", prices)
         for price in prices["data"]:
-            if round(price["unit_amount"]) == round(
-                target_price * 100
-            ):  # Stripe uses cents
-                return {
-                    "stripe_price_id": price["id"],
-                    "amount": price["unit_amount"] / 100,
-                }
+            if recurring:
+                if (
+                    round(price["unit_amount"]) == round(meal_price * 100)
+                    and price["type"] == "recurring"
+                ):  # Stripe uses cents
+                    return {
+                        "price_id": price["id"],
+                        "amount": price["unit_amount"] / 100,
+                    }
+            else:
+                if (
+                    round(price["unit_amount"]) == round(meal_price * 100)
+                    and price["type"] == "one_time"
+                ):  # Stripe uses cents
+                    return {
+                        "price_id": price["id"],
+                        "amount": price["unit_amount"] / 100,
+                    }
 
     def get_payment_intent(self, stripe_payment_intent_id: str) -> stripe.PaymentIntent:
         return stripe.PaymentIntent.retrieve(stripe_payment_intent_id)
@@ -79,69 +85,67 @@ class Stripe_Service(object):
 
     def create_stripe_subscription(
         self,
-        number_of_meals: int,
-        number_of_snacks: int,
+        num_items: int,
+        meal_price: int,
         client_id: str,
-        stripe_meal_price_id: str,
-        stripe_one_time_meal_price_id: str,
-        stripe_one_time_fnce_discounted_meal_price_id: str,
-        stripe_snack_price_id: str,
-        stripe_one_time_snack_price_id: str,
-        stripe_one_time_fnce_discounted_snack_price_id: str,
-        stripe_shipping_price_id: str,
-        stripe_one_time_shipping_price_id: str,
-        stripe_one_time_account_setup_fee: float,
+        stripe_one_time_account_setup_fee_price_id: str,
         date_service: "Date_Service",
         discount: "Discount_Domain" = None,
         prepaid=False,
     ) -> dict:
         trial_end = int(date_service.get_stripe_delivery_date_anchor())
-        if discount:
-            stripe_meal_one_time_price_id_to_use = (
-                stripe_one_time_fnce_discounted_meal_price_id
-            )
-            stripe_snack_one_time_price_id_to_use = (
-                stripe_one_time_fnce_discounted_snack_price_id
-            )
-        else:
-            stripe_meal_one_time_price_id_to_use = stripe_one_time_meal_price_id
-            stripe_snack_one_time_price_id_to_use = stripe_one_time_snack_price_id
 
         stripe_customer: stripe.Customer = self.create_stripe_customer(
             client_id=client_id
         )
+        stripe_price = self.get_price(meal_price=meal_price, recurring=True)
+        stripe_meal_one_time_price = self.get_price(
+            meal_price=meal_price, recurring=False
+        )
 
         # Current week will be paid for and invoiced immidiately, subsequent invoice will be upcoming wednesday, the billing anchor, and will be discounted 100% to account for up front payment of first week
         if not prepaid:
-            subscription = stripe.Subscription.create(
-                customer=stripe_customer.id,
-                items=[
-                    {
-                        "price": stripe_meal_price_id,
-                        "quantity": number_of_meals,
-                    },
-                    {
-                        "price": stripe_snack_price_id,
-                        "quantity": number_of_snacks,
-                    },
-                    {"price": stripe_shipping_price_id, "quantity": 1},
-                ],
-                payment_behavior="default_incomplete",
-                expand=["latest_invoice.payment_intent"],
-                trial_end=trial_end,
-                add_invoice_items=[
-                    {
-                        "price": stripe_meal_one_time_price_id_to_use,
-                        "quantity": number_of_meals,
-                    },
-                    {
-                        "price": stripe_snack_one_time_price_id_to_use,
-                        "quantity": number_of_snacks,
-                    },
-                    {"price": stripe_one_time_shipping_price_id, "quantity": 1},
-                ],
-                coupon=stripe.Coupon.create(duration="once", percent_off=50),
-            )
+            if discount:
+                subscription = stripe.Subscription.create(
+                    customer=stripe_customer.id,
+                    items=[
+                        {
+                            "price": stripe_price["price_id"],
+                            "quantity": num_items,
+                        },
+                    ],
+                    payment_behavior="default_incomplete",
+                    expand=["latest_invoice.payment_intent"],
+                    trial_end=trial_end,
+                    add_invoice_items=[
+                        {
+                            "price": stripe_meal_one_time_price["price_id"],
+                            "quantity": num_items,
+                        }
+                    ],
+                    coupon=stripe.Coupon.create(
+                        duration="once", percent_off=discount.discount_percentage * 100
+                    ),
+                )
+            else:
+                subscription = stripe.Subscription.create(
+                    customer=stripe_customer.id,
+                    items=[
+                        {
+                            "price": stripe_price["price_id"],
+                            "quantity": num_items,
+                        },
+                    ],
+                    payment_behavior="default_incomplete",
+                    expand=["latest_invoice.payment_intent"],
+                    trial_end=trial_end,
+                    add_invoice_items=[
+                        {
+                            "price": stripe_meal_one_time_price["price_id"],
+                            "quantity": num_items,
+                        }
+                    ],
+                )
 
         # Remove add_invoice_items to prevent immidiate charge on the account, thus the first week is free
         else:
@@ -149,20 +153,15 @@ class Stripe_Service(object):
                 customer=stripe_customer.id,
                 items=[
                     {
-                        "price": stripe_meal_price_id,
-                        "quantity": number_of_meals,
+                        "price": stripe_price["price_id"],
+                        "quantity": num_items,
                     },
-                    {
-                        "price": stripe_snack_price_id,
-                        "quantity": number_of_snacks,
-                    },
-                    {"price": stripe_shipping_price_id, "quantity": 1},
                 ],
                 payment_behavior="default_incomplete",
                 expand=["latest_invoice.payment_intent"],
                 trial_end=trial_end,
                 add_invoice_items=[
-                    {"price": stripe_one_time_account_setup_fee, "quantity": 1}
+                    {"price": stripe_one_time_account_setup_fee_price_id, "quantity": 1}
                 ],
             )
         return {
@@ -174,10 +173,8 @@ class Stripe_Service(object):
     def update_subscription(
         self,
         stripe_subscription_id: str,
-        number_of_meals: int,
-        number_of_snacks: int,
+        num_items: int,
         stripe_meal_price_id: str,
-        stripe_snack_price_id: str,
     ) -> None:
         subscription: stripe.Subscription = stripe.Subscription.retrieve(
             stripe_subscription_id
@@ -187,17 +184,12 @@ class Stripe_Service(object):
         stripe.Subscription.modify(
             stripe_subscription_id,
             cancel_at_period_end=False,
-            proration_behavior="create_prorations",
+            proration_behavior="none",
             items=[
                 {
                     "id": subscription["items"]["data"][0].id,
                     "price": stripe_meal_price_id,
-                    "quantity": number_of_meals,
-                },
-                {
-                    "id": subscription["items"]["data"][1].id,
-                    "price": stripe_snack_price_id,
-                    "quantity": number_of_snacks,
+                    "quantity": num_items,
                 },
             ],
         )

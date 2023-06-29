@@ -9,6 +9,5 @@ class Meal_Domain(Base_Domain):
         self.meal_time = meal_object.meal_time
         self.name = meal_object.name
         self.description = meal_object.description
-        self.price = meal_object.price
         self.image_url = meal_object.image_url
         self.active = meal_object.active

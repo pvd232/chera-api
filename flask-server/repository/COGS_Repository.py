@@ -7,10 +7,10 @@ class COGS_Repository(Base_Repository):
         cogs_list = self.db.session.query(COGS_Model).all()
         return cogs_list
 
-    def get_specific_cogs(self, num_meals: int, is_local: bool) -> COGS_Model:
+    def get_specific_cogs(self, num_items: int, is_local: bool) -> COGS_Model:
         cogs = (
             self.db.session.query(COGS_Model)
-            .filter(COGS_Model.num_meals == num_meals, COGS_Model.is_local == is_local)
+            .filter(COGS_Model.num_meals == num_items, COGS_Model.is_local == is_local)
             .first()
         )
         return cogs

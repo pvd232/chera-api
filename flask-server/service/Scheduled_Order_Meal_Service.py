@@ -125,12 +125,38 @@ class Scheduled_Order_Meal_Service(object):
         )
         return
 
+    def requires_new_scheduled_order_meals(
+        self, meal_subscription_id: UUID, cutoff_date: datetime
+    ) -> bool:
+        upcoming_scheduled_order_meals = [
+            Scheduled_Order_Meal_Domain(
+                scheduled_order_meal_object=x,
+                schedule_meal_object=None,
+                scheduled_order_meal_id=None,
+                delivery_date=None,
+                is_paused=None,
+            )
+            for x in self.get_upcoming_scheduled_order_meals(
+                meal_subscription_id=meal_subscription_id
+            )
+        ]
+        weekly_meals = len(upcoming_scheduled_order_meals) / 4
+        if weekly_meals < 4:
+            return True
+        elif weekly_meals == 4:
+            if cutoff_date < datetime.now(timezone.utc).timestamp():
+                return False
+            else:
+                return True
+        else:
+            return False
+
     def get_upcoming_scheduled_order_meals(
         self, meal_subscription_id: UUID
     ) -> Optional[list[Scheduled_Order_Meal_Domain]]:
         scheduled_order_meals: Optional[
             list["Scheduled_Order_Meal_Model"]
-        ] = self.scheduled_order_meal_repository.get_scheduled_order_meals(
+        ] = self.scheduled_order_meal_repository.get_upcoming_scheduled_order_meals(
             meal_subscription_id=meal_subscription_id
         )
         if scheduled_order_meals:
@@ -192,7 +218,7 @@ class Scheduled_Order_Meal_Service(object):
         else:
             return None
 
-    def get_current_scheduled_order_meal_delivery_dates(
+    def get_scheduled_order_meals_dates(
         self, meal_subscription_id: UUID
     ) -> Optional[list[float]]:
         scheduled_order_meals: Optional[
@@ -246,7 +272,7 @@ class Scheduled_Order_Meal_Service(object):
         return
 
     def check_if_first_week_of_meals(self, meal_subscription_id: UUID) -> bool:
-        delivery_dates = self.get_current_scheduled_order_meal_delivery_dates(
+        delivery_dates = self.get_scheduled_order_meals_dates(
             meal_subscription_id=meal_subscription_id
         )
         today = datetime.now(timezone.utc)
