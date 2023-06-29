@@ -222,8 +222,10 @@ def continuity_initialize() -> Response:
     from helpers.db.create_state_tax_rates import create_state_tax_rates
     from helpers.check_auth import check_auth
     from helpers.db.create_cogs import create_cogs
+    from helpers.db.create_eating_disorder import create_eating_disorder
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
 
+    # import repository
     from repository.Continuity_Repository import Continuity_Repository
     from repository.Discount_Repository import Discount_Repository
     from repository.Imperial_Unit_Repository import Imperial_Unit_Repository
@@ -278,6 +280,7 @@ def continuity_initialize() -> Response:
     # )
     create_state_tax_rates(db=db)
     create_cogs(db=db)
+    create_eating_disorder(db=db)
     Continuity_Repository().initialize_meal_data(
         imperial_unit_repository=Imperial_Unit_Repository(engine=db_engine),
         nutrient_repository=Nutrient_Repository(engine=db_engine),

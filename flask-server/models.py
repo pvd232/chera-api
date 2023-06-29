@@ -15,6 +15,7 @@ from helpers.db.get_db_connection_string import get_db_connection_string
 
 if TYPE_CHECKING:
     from domain.COGS_Domain import COGS_Domain
+    from domain.Eating_Disorder_Domain import Eating_Disorder_Domain
     from domain.Dietary_Restriction_Domain import Dietary_Restriction_Domain
     from domain.USDA_Ingredient_Domain import USDA_Ingredient_Domain
     from domain.Meal_Plan_Domain import Meal_Plan_Domain
@@ -193,6 +194,12 @@ class Eating_Disorder_Model(db.Model):
     id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
     name = db.Column(db.String(80), nullable=False)
     
+    staged_client = relationship("Staged_Client_Model", lazy="joined")
+    
+    def __init__(self, eating_disorder_domain: "Eating_Disorder_Domain") -> None:
+        self.id = eating_disorder_domain.id
+        self.name = eating_disorder_domain.name
+    
 class COGS_Model(db.Model):
     __tablename__ = "cogs"
     num_meals = db.Column(db.Integer(), primary_key=True, nullable=False)
@@ -226,6 +233,9 @@ class Staged_Client_Model(db.Model):
     meal_plan_id = db.Column(
         UUID(as_uuid=True), db.ForeignKey("meal_plan.id"), nullable=False
     )
+    eating_disorder_id = db.Column(
+        UUID(as_uuid=True), db.ForeignKey("eating_disorder.id"), nullable=False
+    )
     # personal information
     first_name = db.Column(db.String(80), nullable=False)
     current_weight = db.Column(db.Integer(), nullable=False)
@@ -234,9 +244,6 @@ class Staged_Client_Model(db.Model):
     gender = db.Column(db.Integer(), nullable=False)
     target_weight = db.Column(db.Float(), nullable=False)
     notes = db.Column(db.String(500), default="")
-    eating_disorder_id = db.Column(
-        UUID(as_uuid=True), db.ForeignKey("eating_disorder.id"), nullable=False
-    )
     # account information
     datetime = db.Column(db.Float(), nullable=False)
     account_created = db.Column(db.Boolean(), default=True, nullable=False)
