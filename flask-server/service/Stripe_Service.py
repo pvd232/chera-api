@@ -35,7 +35,9 @@ class Stripe_Service(object):
         }
 
     def get_price(self, meal_price: float, recurring: bool) -> dict:
+        print("meal_price", meal_price)
         prices = stripe.Price.list(limit=100)
+        print("prices", prices)
         for price in prices["data"]:
             if recurring:
                 if (

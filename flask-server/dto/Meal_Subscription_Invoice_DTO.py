@@ -13,6 +13,7 @@ class Meal_Subscription_Invoice_DTO(Base_DTO):
         meal_subscription_invoice_domain: "Meal_Subscription_Invoice_Domain" = None,
     ) -> None:
         if meal_subscription_invoice_json:
+            print("meal_subscription_invoice_json", meal_subscription_invoice_json)
             self.id: UUID = UUID(meal_subscription_invoice_json["id"])
             self.meal_subscription_id: UUID = UUID(
                 meal_subscription_invoice_json["meal_subscription_id"]

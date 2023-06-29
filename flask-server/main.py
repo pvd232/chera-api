@@ -263,7 +263,7 @@ def continuity_initialize() -> Response:
     live_db_string = os.getenv(
         "DB_STRING",
         get_db_connection_string(
-            username=db_username, password=db_password, db_name="testdb"
+            username=db_username, password=db_password, db_name="nourishdb"
         ),
     )
     if not check_auth(env=env, db_password=db_password, request=request):
@@ -347,21 +347,17 @@ def sign_up_email() -> Response:
     return Response(status=200)
 
 
-@app.route("/api/email/sign_up_confirmation", methods=["POST"])
-def sign_up_email_confirmation() -> Response:
+@app.route("/api/email/sign_up_confirmation/staged_client", methods=["POST"])
+def sign_up_email_confirmation_client() -> Response:
     from dto.Staged_Client_DTO import Staged_Client_DTO
     from service.Email_Service import Email_Service
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
-    from service.Date_Service import Date_Service
-    import pytz
     from tzlocal import get_localzone
 
     staged_client = Staged_Client_DTO(staged_client_json=json.loads(request.data))
     dt = datetime.now()
     local_tz = get_localzone()
     local_dt = dt.astimezone(local_tz)
-    time_str = local_dt.strftime("%I:%M %p %Z")
-    print(time_str)
     delivery_date = local_dt
     cutoff_date = local_dt
     Email_Service(
@@ -369,6 +365,35 @@ def sign_up_email_confirmation() -> Response:
     ).send_confirmation_email(
         user_type="Client",
         user=staged_client,
+        delivery_date=delivery_date,
+        cutoff_date=cutoff_date,
+        tracking_url="https://www.google.com",
+    )
+    return Response(status=200)
+
+
+@app.route("/api/email/sign_up_confirmation/dietitian", methods=["POST"])
+def sign_up_email_confirmation_dietitian() -> Response:
+    from dto.Dietitian_DTO import Dietitian_DTO
+    from service.Email_Service import Email_Service
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+    from service.Date_Service import Date_Service
+    from tzlocal import get_localzone
+
+    dietitian = Dietitian_DTO(
+        gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+        dietitian_json=json.loads(request.data),
+    )
+    dt = datetime.now()
+    local_tz = get_localzone()
+    local_dt = dt.astimezone(local_tz)
+    delivery_date = local_dt
+    cutoff_date = local_dt
+    Email_Service(
+        host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+    ).send_confirmation_email(
+        user_type="Dietitian",
+        user=dietitian,
         delivery_date=delivery_date,
         cutoff_date=cutoff_date,
         tracking_url="https://www.google.com",
@@ -873,6 +898,7 @@ def stripe_webhook() -> Response:
     from models import stripe_invoice_endpoint_secret
     from stripe import Event
 
+    print("stripe_invoice_endpoint_secret", stripe_invoice_endpoint_secret)
     event = None
     payload: bytes = request.data
 
@@ -948,7 +974,9 @@ def stripe_webhook() -> Response:
         stripe_invoice_id = event["data"]["object"]["id"]
         stripe_subscription_id = event["data"]["object"]["subscription"]
         stripe_payment_intent_id = event["data"]["object"]["payment_intent"]
-
+        print()
+        event
+        # print("event", event)
         meal_subscription: Optional[
             Meal_Subscription_Domain
         ] = Meal_Subscription_Service(
@@ -1179,23 +1207,20 @@ def dietitian() -> Response | Response:
         created_dietitian_domain = Dietitian_Service(
             dietitian_repository=Dietitian_Repository(db=db)
         ).create_dietitian(dietitian_dto=requested_dietitian_dto)
-        if env != "debug":
-            Email_Service(
-                host_url=host_url,
-                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
-            ).send_confirmation_email(
-                user_type="Dietitian", user=created_dietitian_domain
-            )
-            Email_Service(
-                host_url=host_url,
-                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
-            ).send_new_user_sign_up_notification(
-                first_name="Peter",
-                email="patardriscoll@gmail.com",
-                user_type="Dietitian",
-                user=created_dietitian_domain,
-                env=env,
-            )
+        Email_Service(
+            host_url=host_url,
+            gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+        ).send_confirmation_email(user_type="Dietitian", user=created_dietitian_domain)
+        Email_Service(
+            host_url=host_url,
+            gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+        ).send_new_user_sign_up_notification(
+            first_name="Peter",
+            email="patardriscoll@gmail.com",
+            user_type="Dietitian",
+            user=created_dietitian_domain,
+            env=env,
+        )
 
         dietitian_dto = Dietitian_DTO(
             gcp_secret_manager_service=GCP_Secret_Manager_Service(),
@@ -1467,18 +1492,17 @@ def client() -> Response:
                 client_repository=Client_Repository(db=db)
             ).create_client(client_dto=requested_client_dto)
 
-        if env != "debug":
-            Email_Service(
-                host_url=host_url,
-                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
-            ).send_new_user_sign_up_notification(
-                first_name="Peter",
-                email="patardriscoll@gmail.com",
-                user_type="Client",
-                user=returned_client,
-                env=env,
-                zipcode=returned_client.zipcode,
-            )
+        Email_Service(
+            host_url=host_url,
+            gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+        ).send_new_user_sign_up_notification(
+            first_name="Peter",
+            email="patardriscoll@gmail.com",
+            user_type="Client",
+            user=returned_client,
+            env=env,
+            zipcode=returned_client.zipcode,
+        )
         returned_client_dto = Client_DTO(client_domain=returned_client)
 
         return jsonify(returned_client_dto.serialize()), 201
@@ -1533,7 +1557,6 @@ def stripe_subscription_data() -> Response:
 
     if request.method == "POST":
         stripe_subscription_data = json.loads(request.data)
-        print("stripe_subscription_data", stripe_subscription_data)
         client_id: str = stripe_subscription_data["client_id"]
         number_of_meals: int = int(stripe_subscription_data["number_of_meals"])
         number_of_snacks: int = int(stripe_subscription_data["number_of_snacks"])
@@ -3371,6 +3394,7 @@ def meal_subscription_invoice() -> Response:
         from service.COGS_Service import COGS_Service
 
         meal_subscription_invoice_data = json.loads(request.data)
+        print("meal_subscription_invoice_data", meal_subscription_invoice_data)
         discount_code: Optional[str] = request.headers.get("discount_code")
         discount_percentage = False
         if discount_code:
@@ -3392,7 +3416,6 @@ def meal_subscription_invoice() -> Response:
         associated_schedule_meals = Schedule_Meal_Service(
             schedule_meal_repository=Schedule_Meal_Repository(db=db)
         ).get_schedule_meals(meal_subscription_id=associated_meal_subscription.id)
-
         associated_schedule_snacks = Schedule_Snack_Service(
             schedule_snack_repository=Schedule_Snack_Repository(db=db)
         ).get_schedule_snacks(
@@ -3406,13 +3429,16 @@ def meal_subscription_invoice() -> Response:
             num_snacks=len(associated_schedule_snacks),
             shipping_rate=associated_meal_subscription.shipping_rate,
         )
+        print("cost_per_meal", cost_per_meal)
         meal_price = COGS_Service(
             cogs_repository=COGS_Repository(db=db)
         ).get_meal_price(meal_cost=cost_per_meal)
+        print("meal_price", meal_price)
         num_items = COGS_Service(cogs_repository=COGS_Repository(db=db)).get_num_items(
             num_meals=len(associated_schedule_meals),
             num_snacks=len(associated_schedule_snacks),
         )
+        print("num_items", num_items)
         shipping_cost = COGS_Service(
             cogs_repository=COGS_Repository(db=db)
         ).get_shipping_cost(
@@ -3420,6 +3446,7 @@ def meal_subscription_invoice() -> Response:
             num_snacks=len(associated_schedule_snacks),
             shipping_rate=associated_meal_subscription.shipping_rate,
         )
+        print("shipping_cost", shipping_cost)
         new_meal_subscription_invoice = Meal_Subscription_Invoice_Service(
             meal_subscription_invoice_repository=Meal_Subscription_Invoice_Repository(
                 db=db
@@ -3444,22 +3471,27 @@ def meal_subscription_invoice() -> Response:
         )
 
         # Get values needed to send client confirmation email
-        upcoming_delivery_date = datetime.fromtimestamp(
-            Date_Service().get_current_week_delivery_date(), tz=timezone.utc
+        upcoming_delivery_date = Date_Service().get_current_week_delivery_date()
+
+        cutoff_date = datetime.fromtimestamp(
+            Date_Service().get_current_week_cutoff(
+                current_delivery_date=upcoming_delivery_date
+            ),
+            tz=timezone.utc,
         )
-        delivery_month = Date_Service().months[upcoming_delivery_date.month - 1]
         # Send client confirmation email after creating shipment so as to include the tracking number
-        if env != "debug":
-            Email_Service(
-                host_url=host_url,
-                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
-            ).send_confirmation_email(
-                user_type="Client",
-                user=associated_client,
-                delivery_date=upcoming_delivery_date,
-                delivery_month=delivery_month,
-                tracking_url=meal_shipment.tracking_url,
-            )
+        Email_Service(
+            host_url=host_url,
+            gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+        ).send_confirmation_email(
+            user_type="Client",
+            user=associated_client,
+            delivery_date=datetime.fromtimestamp(
+                upcoming_delivery_date, tz=timezone.utc
+            ),
+            cutoff_date=cutoff_date,
+            tracking_url=meal_shipment.tracking_url,
+        )
 
         new_meal_subscription_invoice_dto = Meal_Subscription_Invoice_DTO(
             meal_subscription_invoice_domain=new_meal_subscription_invoice
