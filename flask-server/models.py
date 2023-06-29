@@ -190,11 +190,9 @@ class Client_Model(db.Model):
 
 
 class Eating_Disorder_Model(db.Model):
-    __table_name__ = "eating_disorder"
+    __tablename__ = "eating_disorder"
     id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
     name = db.Column(db.String(80), nullable=False)
-    
-    staged_client = relationship("Staged_Client_Model", lazy="joined")
     
     def __init__(self, eating_disorder_domain: "Eating_Disorder_Domain") -> None:
         self.id = eating_disorder_domain.id
