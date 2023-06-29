@@ -216,9 +216,8 @@ def continuity_write() -> Response:
 
 @app.route("/api/continuity/initialize")
 def continuity_initialize() -> Response:
-    from sqlalchemy import create_engine, MetaData
+    from sqlalchemy import create_engine
     from helpers.db.get_db_connection_string import get_db_connection_string
-    from helpers.db.initialize_db import initialize_db
     from helpers.db.create_state_tax_rates import create_state_tax_rates
     from helpers.check_auth import check_auth
     from helpers.db.create_cogs import create_cogs
@@ -898,7 +897,6 @@ def stripe_webhook() -> Response:
     from models import stripe_invoice_endpoint_secret
     from stripe import Event
 
-    print("stripe_invoice_endpoint_secret", stripe_invoice_endpoint_secret)
     event = None
     payload: bytes = request.data
 
@@ -974,9 +972,7 @@ def stripe_webhook() -> Response:
         stripe_invoice_id = event["data"]["object"]["id"]
         stripe_subscription_id = event["data"]["object"]["subscription"]
         stripe_payment_intent_id = event["data"]["object"]["payment_intent"]
-        print()
-        event
-        # print("event", event)
+
         meal_subscription: Optional[
             Meal_Subscription_Domain
         ] = Meal_Subscription_Service(
@@ -3381,7 +3377,6 @@ def meal_subscription_invoice() -> Response:
         from service.COGS_Service import COGS_Service
 
         meal_subscription_invoice_data = json.loads(request.data)
-        print("meal_subscription_invoice_data", meal_subscription_invoice_data)
         discount_code: Optional[str] = request.headers.get("discount_code")
         discount_percentage = False
         if discount_code:
@@ -3409,31 +3404,32 @@ def meal_subscription_invoice() -> Response:
             meal_subscription_id=associated_meal_subscription.id,
         )
 
+        if associated_schedule_snacks:
+            num_snacks = len(associated_schedule_snacks)
+        else:
+            num_snacks = 0
+
         cost_per_meal = COGS_Service(
             cogs_repository=COGS_Repository(db=db)
         ).get_meal_cost(
             num_meals=len(associated_schedule_meals),
-            num_snacks=len(associated_schedule_snacks),
+            num_snacks=num_snacks,
             shipping_rate=associated_meal_subscription.shipping_rate,
         )
-        print("cost_per_meal", cost_per_meal)
         meal_price = COGS_Service(
             cogs_repository=COGS_Repository(db=db)
         ).get_meal_price(meal_cost=cost_per_meal)
-        print("meal_price", meal_price)
         num_items = COGS_Service(cogs_repository=COGS_Repository(db=db)).get_num_items(
             num_meals=len(associated_schedule_meals),
-            num_snacks=len(associated_schedule_snacks),
+            num_snacks=num_snacks,
         )
-        print("num_items", num_items)
         shipping_cost = COGS_Service(
             cogs_repository=COGS_Repository(db=db)
         ).get_shipping_cost(
             num_meals=len(associated_schedule_meals),
-            num_snacks=len(associated_schedule_snacks),
+            num_snacks=num_snacks,
             shipping_rate=associated_meal_subscription.shipping_rate,
         )
-        print("shipping_cost", shipping_cost)
         new_meal_subscription_invoice = Meal_Subscription_Invoice_Service(
             meal_subscription_invoice_repository=Meal_Subscription_Invoice_Repository(
                 db=db
