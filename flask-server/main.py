@@ -653,6 +653,57 @@ def offer_notification() -> Response:
     return Response(status=200)
 
 
+from uuid import UUID
+import os
+from models import app, db, env, host_url
+from datetime import datetime, timezone
+from flask import Response, request, jsonify
+import json
+from werkzeug.exceptions import HTTPException
+from typing import Optional
+import stripe
+import uuid
+
+
+@app.errorhandler(500)
+def handle_exception(e) -> HTTPException | Response:
+    print()
+    print("500 error exception", e)
+    print()
+    if isinstance(e, HTTPException):
+        return e
+
+    res = {
+        "code": 500,
+        "errorType": "Internal Server Error",
+        "errorMessage": "Something went really wrong!",
+    }
+    if env == "debug":
+        res["errorMessage"] = e.message if hasattr(e, "message") else f"{e}"
+    return Response(status=500, response=json.dumps(res))
+
+
+@app.route("/api/test_dietetic", methods=["POST"])
+def validate_dietetic_registration_number() -> Response:
+    import requests
+
+    dietetic_registration_number = json.loads(request.data)
+    headers = {"Content-Type": "application/json"}
+    response = requests.post(
+        "https://secure.eatright.org/v14pgmlib/lansaweb?w=CDRVFYS&r=CREDSEARCH&vlweb=1&part=prd&lang=ENG&_T=1683030503817",
+        json={
+            "webroutine": {"fields": {"CRID#": {"value": dietetic_registration_number}}}
+        },
+        headers=headers,
+    )
+    response_data = response.json()
+    entries = response_data["webroutine"]["lists"]["CREDCUST"]["entries"]
+    if len(entries) > 0:
+        return Response(status=200)
+    else:
+        return Response(status=404)
+
+
 @app.route("/api/usda_ingredient_portion", methods=["POST", "PUT"])
 def usda_ingredient_portion() -> Response:
     if request.method == "POST":
