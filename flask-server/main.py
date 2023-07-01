@@ -3336,15 +3336,42 @@ def verify_discount() -> Response:
 @app.route("/api/stripe/payment_method/<string:client_stripe_id>", methods=["GET"])
 def stripe_payment_methods(client_stripe_id: str) -> Response:
     from service.Stripe_Service import Stripe_Service
-    
-    print(client_stripe_id)
-
     payment_methods = Stripe_Service().get_payment_methods(
         client_stripe_id=client_stripe_id
     )
-    print(payment_methods.data[0].card.last4)
     return jsonify(payment_methods.data[0].card.last4), 200
     # return Response(status=201)
+    
+@app.route("/api/stripe/update_payment_method/<string:customer_id>/<string:subscription_id>/<string:new_card_token>", methods=["POST"]) 
+def update_subscription_card(customer_id, subscription_id, new_card_token):
+    try:
+        # Retrieve the customer
+        customer = stripe.Customer.retrieve(customer_id)
+
+        # Update the default payment source with the new card token
+        customer.source = new_card_token
+        customer.invoice_settings.default_payment_method = new_card_token
+        customer.save()
+        print("Successfully updated the card");
+        
+
+        # Retrieve the subscription associated with the customer
+        subscription = stripe.Subscription.retrieve(subscription_id)
+        
+        print(subscription)
+        print(subscription.default_payment_method)
+        
+        # Update the subscription with the new card source
+        subscription.default_payment_method = new_card_token
+        subscription.save()
+        
+        print("Successfully updated the card");
+
+        return {"success": True, "message": "Card updated successfully"}
+    except stripe.error.StripeError as e:
+        # Handle any errors from Stripe
+        error_message = e.user_message or str(e)
+        return False, error_message
 
 
 @app.route("/api/stripe/payment_intent", methods=["POST"])
