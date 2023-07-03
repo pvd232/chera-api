@@ -170,7 +170,6 @@ class Client_Model(db.Model):
         self.active = client_domain.active
 
     def update(self, client_domain: "Client_Domain") -> None:
-        self.password = client_domain.password
         self.dietitian_id = client_domain.dietitian_id
         self.meal_plan_id = client_domain.meal_plan_id
         self.stripe_id = client_domain.stripe_id

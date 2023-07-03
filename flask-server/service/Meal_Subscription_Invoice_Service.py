@@ -113,7 +113,6 @@ class Meal_Subscription_Invoice_Service(object):
             shipping_cost=shipping_cost,
             discount_percentage=discount_percentage,
         )
-        print("invoice_order_data", invoice_order_data)
 
         meal_subscription_invoice_domain.set_invoice_order_data(
             order_properties=invoice_order_data
