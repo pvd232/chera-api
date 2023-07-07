@@ -1,8 +1,8 @@
 from uuid import UUID
 import os
-from models import app, db, env, host_url
+from models import app, db, env, host_url, oauth
 from datetime import datetime, timezone
-from flask import Response, request, jsonify, _request_ctx_stack
+from flask import Response, request, jsonify, _request_ctx_stack, url_for, session, redirect
 import json
 from werkzeug.exceptions import HTTPException
 from typing import Optional
@@ -110,6 +110,24 @@ def requires_auth(f):
 
 
 ######################################################################################
+
+@app.route("/client_sign_up/<string:staged_client_id>")
+def client_signup(staged_client_id: str):
+    return oauth.auth0.authorize_redirect(
+        redirect_uri=url_for("callback", _external=True),
+        audience=os.getenv("AUTH0_AUDIENCE"), 
+        screen_hint="signup",
+        response_type="code",
+        state=staged_client_id
+    )
+
+@app.route("/callback", methods=["GET", "POST"])
+def callback():
+    staged_client_id = request.args.get("state")
+    token = oauth.auth0.authorize_access_token()
+    session["user"] = token
+    redirect_signup_url = f"{host_url}/client-sign-up?staged_client_id={staged_client_id}"
+    return redirect(redirect_signup_url)
 
 @app.route("/api/clear_tables")
 def clear_table() -> Response:
@@ -2122,7 +2140,6 @@ def dietary_restrictions() -> Response:
 
 @app.route("/api/meal/<string:meal_id>", methods=["DELETE"])
 @app.route("/api/meal", defaults={"meal_id": None}, methods=["GET", "POST"])
-@requires_auth
 def meal(meal_id: Optional[str]) -> Response:
     from repository.Meal_Repository import Meal_Repository
     from service.Meal_Service import Meal_Service
