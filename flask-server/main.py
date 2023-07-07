@@ -66,7 +66,7 @@ def requires_auth(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         token = get_token_auth_header()
-        jsonurl = urlopen("https://"+AUTH0_DOMAIN+"/.well-known/jwks.json")
+        jsonurl = urlopen("https://"+os.getenv(AUTH0_DOMAIN)+"/.well-known/jwks.json")
         jwks = json.loads(jsonurl.read())
         unverified_header = jwt.get_unverified_header(token)
         rsa_key = {}
@@ -84,9 +84,9 @@ def requires_auth(f):
                 payload = jwt.decode(
                     token,
                     rsa_key,
-                    algorithms=ALGORITHMS,
-                    audience=API_IDENTIFIER,
-                    issuer="https://"+AUTH0_DOMAIN+"/"
+                    algorithms=os.getenv(ALGORITHMS),
+                    audience=os.getenv(AUTH0_AUDIENCE),
+                    issuer="https://"+os.getenv(AUTH0_DOMAIN)+"/"
                 )
             except jwt.ExpiredSignatureError:
                 raise AuthError({"code": "token_expired",
