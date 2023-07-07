@@ -338,8 +338,8 @@ class Email_Service(object):
             s.quit()
 
     def send_sign_up_email(self, staged_client: "Staged_Client_Domain") -> None:
-        hostname_url = request.host
-        button_url = f"http://{hostname_url}/client_sign_up/{staged_client.id}"
+        server_url = request.host
+        button_url = f"http://{server_url}/client_sign_up/{staged_client.id}"
         if staged_client.meals_prepaid:
             email_template_name = "sign_up_prepaid_meals.html"
         else:
