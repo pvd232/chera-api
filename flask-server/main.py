@@ -3331,8 +3331,7 @@ def verify_discount() -> Response:
             return Response(status=404)
     else:
         return Response(status=405)
-
-
+    
 @app.route("/api/stripe/payment_method/<string:client_stripe_id>", methods=["GET"])
 def stripe_payment_methods(client_stripe_id: str) -> Response:
     from service.Stripe_Service import Stripe_Service
@@ -3341,38 +3340,53 @@ def stripe_payment_methods(client_stripe_id: str) -> Response:
     )
     return jsonify(payment_methods.data[0].card.last4), 200
     # return Response(status=201)
-    
-@app.route("/api/stripe/update_payment_method/<string:customer_id>/<string:subscription_id>/<string:new_card_token>", methods=["POST"]) 
-def update_subscription_card(customer_id, subscription_id, new_card_token):
+
+
+@app.route("/api/stripe/update_payment_method/<string:customer_id>/<string:subscription_id>/<string:payment_method>", methods=["POST"])
+def update_subscription_card(customer_id, subscription_id, payment_method):
     try:
-        # Retrieve the customer
-        customer = stripe.Customer.retrieve(customer_id)
+        stripe.PaymentMethod.attach(
+            payment_method,
+            customer=customer_id,
+        )
 
-        # Update the default payment source with the new card token
-        customer.source = new_card_token
-        customer.invoice_settings.default_payment_method = new_card_token
-        customer.save()
-        print("Successfully updated the card");
-        
+        stripe.Customer.modify(
+            customer_id,
+            invoice_settings={
+                "default_payment_method": payment_method
+            },
+        )
 
-        # Retrieve the subscription associated with the customer
-        subscription = stripe.Subscription.retrieve(subscription_id)
-        
-        print(subscription)
-        print(subscription.default_payment_method)
-        
-        # Update the subscription with the new card source
-        subscription.default_payment_method = new_card_token
-        subscription.save()
-        
-        print("Successfully updated the card");
+        stripe.Subscription.modify(
+            subscription_id,
+            default_payment_method=payment_method,
+        )
 
-        return {"success": True, "message": "Card updated successfully"}
+        return jsonify("Card updated successfully"), 200
     except stripe.error.StripeError as e:
-        # Handle any errors from Stripe
+        print(e)
+        error_message = e.user_message or str(e)
+        return jsonify({'success': False, 'error': error_message}), 400
+
+
+@app.route("/api/stripe/get_subscription_details/<string:subscription_id>/", methods=["GET"])
+def get_subscription_details(subscription_id):
+    try:
+        subscription = stripe.Subscription.retrieve(subscription_id)
+        return jsonify(subscription), 200
+    except stripe.error.StripeError as e:
         error_message = e.user_message or str(e)
         return False, error_message
 
+
+@app.route("/api/stripe/get_customer_details/<string:customer_id>/", methods=["GET"])
+def get_customer_details(customer_id):
+    try:
+        customer = stripe.Customer.retrieve(customer_id)
+        return jsonify(customer), 200
+    except stripe.error.StripeError as e:
+        error_message = e.user_message or str(e)
+        return False, error_message
 
 @app.route("/api/stripe/payment_intent", methods=["POST"])
 def create_stripe_payment_intent() -> Response:
