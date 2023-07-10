@@ -61,6 +61,15 @@ class Client_Repository(Base_Repository):
         client_to_update.update(client_domain=client_domain)
         self.db.session.commit()
 
+    def update_client_address(self, client_domain: "Client_Domain"):
+        client_to_update: Client_Model = (
+            self.db.session.query(Client_Model)
+            .filter(Client_Model.id == client_domain.id)
+            .first()
+        )
+        client_to_update.update_client_address(client_domain=client_domain)
+        self.db.session.commit()
+        
     def update_client_meal_plan(self, client_domain: "Client_Domain") -> None:
         client_to_update = (
             self.db.session.query(Client_Model)

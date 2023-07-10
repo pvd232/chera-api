@@ -186,6 +186,15 @@ class Client_Model(db.Model):
         self.notes = client_domain.notes
         self.datetime = client_domain.datetime
         self.active = client_domain.active
+    
+    def update_client_address(self, client_domain: "Client_Domain") -> None:
+        self.suite = client_domain.suite
+        self.street = client_domain.street
+        self.city = client_domain.city
+        self.state = client_domain.state
+        self.zipcode = client_domain.zipcode
+        self.zipcode_extension = client_domain.zipcode_extension
+        self.address = client_domain.address
 
 
 # class Eating_Disorder_Model(db.Model):

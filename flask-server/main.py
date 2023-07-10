@@ -3614,7 +3614,23 @@ def create_stripe_payment_intent() -> Response:
         return jsonify(stripe_secret), 200
     else:
         return Response(status=405)
+    
+#Endpoint for Changing Address on Profile Page
+@app.route("/api/client/update_address", methods=["PUT"])
+def update_client_address() -> Response:
+    from service.Client_Service import Client_Service
+    from repository.Client_Repository import Client_Repository
+    from domain.Client_Domain import Client_Domain
+    from dto.Client_DTO import Client_DTO
+    if request.method == "PUT":
+        client_dto: Client_DTO = Client_DTO(client_json=json.loads(request.data))
+        Client_Service(
+            client_repository=Client_Repository(db=db)
+        ).update_client_address(client_dto=client_dto)
+        return Response(status=201)
 
+    else:
+        return Response(status=405)
 
 if env == "debug":
     debug = True
