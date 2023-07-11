@@ -14,9 +14,13 @@ class Recipe_Ingredient_Domain(Base_Domain):
         self.meal_plan_meal_id: Optional[
             UUID
         ] = recipe_ingredient_object.meal_plan_meal_id
+        if self.meal_plan_meal_id == "":
+            self.meal_plan_meal_id = None
         self.meal_plan_snack_id: Optional[
             UUID
         ] = recipe_ingredient_object.meal_plan_snack_id
+        if self.meal_plan_snack_id == "":
+            self.meal_plan_snack_id = None
         self.usda_ingredient_portion_id: UUID = (
             recipe_ingredient_object.usda_ingredient_portion_id
         )

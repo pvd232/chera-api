@@ -8,13 +8,23 @@ if TYPE_CHECKING:
 
 
 class Meal_Plan_Repository(Base_Repository):
-    def get_meal_plan(self, meal_plan_id: uuid.UUID) -> Meal_Plan_Model:
-        meal_plan = (
-            self.db.session.query(Meal_Plan_Model)
-            .filter(Meal_Plan_Model.id == meal_plan_id)
-            .first()
-        )
-        return meal_plan
+    def get_meal_plan(
+        self, meal_plan_id: uuid.UUID = None, meal_plan_number: int = None
+    ) -> Meal_Plan_Model:
+        if meal_plan_id and not meal_plan_number:
+            meal_plan = (
+                self.db.session.query(Meal_Plan_Model)
+                .filter(Meal_Plan_Model.id == meal_plan_id)
+                .first()
+            )
+            return meal_plan
+        else:
+            meal_plan = (
+                self.db.session.query(Meal_Plan_Model)
+                .filter(Meal_Plan_Model.number == meal_plan_number)
+                .first()
+            )
+            return meal_plan
 
     def get_even_meal_plan(self, odd_meal_plan_id: uuid.UUID) -> Meal_Plan_Model:
         odd_meal_plan = self.get_meal_plan(meal_plan_id=odd_meal_plan_id)

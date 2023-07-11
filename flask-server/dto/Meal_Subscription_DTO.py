@@ -19,7 +19,7 @@ class Meal_Subscription_DTO(Base_DTO):
             self.stripe_subscription_id: str = meal_subscription_json[
                 "stripe_subscription_id"
             ]
-            self.shipping_cost: float = float(meal_subscription_json["shipping_cost"])
+            self.shipping_rate: float = float(meal_subscription_json["shipping_rate"])
             self.datetime: float = float(meal_subscription_json["datetime"])
             self.paused: bool = meal_subscription_json["paused"]
             self.active: bool = meal_subscription_json["active"]
@@ -30,7 +30,7 @@ class Meal_Subscription_DTO(Base_DTO):
             self.stripe_subscription_id: str = (
                 meal_subscription_domain.stripe_subscription_id
             )
-            self.shipping_cost: float = meal_subscription_domain.shipping_cost
+            self.shipping_rate: float = meal_subscription_domain.shipping_rate
             self.datetime: float = meal_subscription_domain.datetime
             self.paused: bool = meal_subscription_domain.paused
             self.active: bool = meal_subscription_domain.active

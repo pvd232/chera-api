@@ -60,28 +60,12 @@ class Meal_Plan_Meal_Service(object):
     def update_meal_plan_meal(
         self,
         meal_plan_meal_dto: "Meal_Plan_Meal_DTO",
-        should_update_even: bool,
-        meal_plan_service: "Meal_Plan_Service" = None,
     ) -> None:
-        odd_meal_plan_meal_domain: Meal_Plan_Meal_Domain = Meal_Plan_Meal_Domain(
+        meal_plan_meal_domain: Meal_Plan_Meal_Domain = Meal_Plan_Meal_Domain(
             meal_plan_meal_object=meal_plan_meal_dto
         )
-        if should_update_even:
-            even_meal_plan = meal_plan_service.get_even_meal_plan(
-                odd_meal_plan_id=odd_meal_plan_meal_domain.meal_plan_id
-            )
-            even_meal_plan_meal = self.get_even_meal_plan_meal(
-                meal_id=odd_meal_plan_meal_domain.meal_id,
-                meal_plan_id=even_meal_plan.id,
-            )
-            self.meal_plan_meal_repository.update_meal_plan_meal(
-                odd_meal_plan_meal_domain=odd_meal_plan_meal_domain,
-                even_meal_plan_meal_domain=even_meal_plan_meal,
-            )
-        else:
-            self.meal_plan_meal_repository.update_meal_plan_meal(
-                odd_meal_plan_meal_domain=odd_meal_plan_meal_domain,
-                even_meal_plan_meal_domain=None,
+        self.meal_plan_meal_repository.update_meal_plan_meal(
+                meal_plan_meal_domain=meal_plan_meal_domain,
             )
         return
 

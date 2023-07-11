@@ -49,45 +49,52 @@
         "active": true
     },
     {
-        "id": "51246f83-bc17-4190-9564-f0482b243697",
-        "meal_id": "7953c8b3-0cbf-48ac-98c8-48b3f2ea07f1",
+        "id": "a6765e10-a49d-4614-aca9-0aa33af18ed0",
+        "meal_id": "c90b160f-901e-4ac2-96f3-8086319437b5",
         "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
-        "multiplier": 1.0,
+        "multiplier": 0.8,
         "active": true
     },
     {
-        "id": "259b2019-b372-4c0d-b14c-bce1e1e2cc53",
-        "meal_id": "7953c8b3-0cbf-48ac-98c8-48b3f2ea07f1",
-        "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
-        "multiplier": 1.0,
+        "id": "3cbf9025-7706-40e4-8bca-c226021b4fa4",
+        "meal_id": "c90b160f-901e-4ac2-96f3-8086319437b5",
+        "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
+        "multiplier": 0.8,
         "active": true
     },
     {
-        "id": "b0b2fe20-fcfd-447f-bd2f-d2fa12858e4c",
-        "meal_id": "7953c8b3-0cbf-48ac-98c8-48b3f2ea07f1",
+        "id": "21394918-ea7f-4f96-924f-2ba9b24f4e64",
+        "meal_id": "c90b160f-901e-4ac2-96f3-8086319437b5",
         "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
-        "multiplier": 1.0,
+        "multiplier": 1.2,
         "active": true
     },
     {
-        "id": "821ba8c2-7b2d-4a47-9ada-09d437798836",
-        "meal_id": "7953c8b3-0cbf-48ac-98c8-48b3f2ea07f1",
+        "id": "8e00a6b3-93fb-4401-86cb-2d4bf4ebd538",
+        "meal_id": "c90b160f-901e-4ac2-96f3-8086319437b5",
+        "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+        "multiplier": 1.2,
+        "active": true
+    },
+    {
+        "id": "ab31118c-e018-4e8e-8630-fdd6d0656831",
+        "meal_id": "c90b160f-901e-4ac2-96f3-8086319437b5",
         "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
-        "multiplier": 1.0,
+        "multiplier": 1.4,
         "active": true
     },
     {
-        "id": "c9dfedfe-39ff-4ead-88c8-41823c62714a",
-        "meal_id": "7953c8b3-0cbf-48ac-98c8-48b3f2ea07f1",
-        "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
-        "multiplier": 1.0,
-        "active": true
-    },
-    {
-        "id": "3b317273-0767-4eed-9dfc-b64f03d89733",
-        "meal_id": "23e9cea8-42b9-4d6f-88ff-065d0aecb4a7",
+        "id": "5c411a49-7c27-4202-8e69-fcbfc56e0e56",
+        "meal_id": "928408af-6398-469f-b398-df4a73164504",
         "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
-        "multiplier": 1.0,
+        "multiplier": 0.4,
+        "active": true
+    },
+    {
+        "id": "1ef113c4-4a74-464d-ab25-f1b6799dacb8",
+        "meal_id": "c90b160f-901e-4ac2-96f3-8086319437b5",
+        "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
+        "multiplier": 1.4,
         "active": true
     },
     {
@@ -98,17 +105,17 @@
         "active": true
     },
     {
-        "id": "966e43e1-1801-4244-9599-398b9922e866",
-        "meal_id": "23e9cea8-42b9-4d6f-88ff-065d0aecb4a7",
+        "id": "9d81017c-1c8e-4548-990b-bbf5b1ab327b",
+        "meal_id": "928408af-6398-469f-b398-df4a73164504",
         "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
-        "multiplier": 1.0,
+        "multiplier": 0.4,
         "active": true
     },
     {
-        "id": "86a8e661-8144-4a7e-b174-94f7beb97d42",
-        "meal_id": "23e9cea8-42b9-4d6f-88ff-065d0aecb4a7",
+        "id": "8d11ce03-b0d2-499c-afc1-42cd7e702250",
+        "meal_id": "928408af-6398-469f-b398-df4a73164504",
         "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
-        "multiplier": 1.0,
+        "multiplier": 0.5,
         "active": true
     },
     {
@@ -119,17 +126,17 @@
         "active": true
     },
     {
-        "id": "fa0a4fcd-e72a-4e23-a699-df6f7adfaef7",
-        "meal_id": "23e9cea8-42b9-4d6f-88ff-065d0aecb4a7",
+        "id": "40cfec79-3932-4464-9103-6b7e253817c6",
+        "meal_id": "928408af-6398-469f-b398-df4a73164504",
         "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
-        "multiplier": 1.0,
+        "multiplier": 0.5,
         "active": true
     },
     {
-        "id": "95ba11fa-e4e7-4388-81d6-4bda77c97389",
-        "meal_id": "23e9cea8-42b9-4d6f-88ff-065d0aecb4a7",
+        "id": "03493a7e-f571-4344-8e19-525873767d2c",
+        "meal_id": "928408af-6398-469f-b398-df4a73164504",
         "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
-        "multiplier": 1.0,
+        "multiplier": 0.6,
         "active": true
     },
     {
@@ -140,17 +147,10 @@
         "active": true
     },
     {
-        "id": "00c1fc26-28aa-474f-8aa5-66fdf92f2904",
-        "meal_id": "23e9cea8-42b9-4d6f-88ff-065d0aecb4a7",
+        "id": "d2ff8923-c0cc-4747-a034-30a87048ee66",
+        "meal_id": "928408af-6398-469f-b398-df4a73164504",
         "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
-        "multiplier": 1.0,
-        "active": true
-    },
-    {
-        "id": "3c47735f-f097-4041-8892-401b46021bb4",
-        "meal_id": "23e9cea8-42b9-4d6f-88ff-065d0aecb4a7",
-        "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
-        "multiplier": 1.0,
+        "multiplier": 0.6,
         "active": true
     },
     {
@@ -161,17 +161,17 @@
         "active": true
     },
     {
-        "id": "eba8b628-2662-4a95-ba6e-1ce203e0fcf5",
-        "meal_id": "23e9cea8-42b9-4d6f-88ff-065d0aecb4a7",
-        "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
-        "multiplier": 1.0,
+        "id": "941be3ea-4ad3-493c-90a0-708d410dc49f",
+        "meal_id": "928408af-6398-469f-b398-df4a73164504",
+        "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
+        "multiplier": 0.7,
         "active": true
     },
     {
-        "id": "5cb0ac62-e37d-41ca-9e85-689c29a56058",
-        "meal_id": "23e9cea8-42b9-4d6f-88ff-065d0aecb4a7",
-        "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
-        "multiplier": 1.0,
+        "id": "3130199d-e100-4525-923e-5f6d7511a475",
+        "meal_id": "928408af-6398-469f-b398-df4a73164504",
+        "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
+        "multiplier": 0.7,
         "active": true
     },
     {
@@ -182,10 +182,17 @@
         "active": true
     },
     {
-        "id": "a403068b-d804-4f0b-938f-81fe302fbf03",
-        "meal_id": "23e9cea8-42b9-4d6f-88ff-065d0aecb4a7",
+        "id": "ff59c461-2843-4137-8203-5efdce6a294d",
+        "meal_id": "928408af-6398-469f-b398-df4a73164504",
+        "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
+        "multiplier": 0.8,
+        "active": true
+    },
+    {
+        "id": "921f3ae9-f894-47d1-86d3-63a36e2b48f4",
+        "meal_id": "928408af-6398-469f-b398-df4a73164504",
         "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
-        "multiplier": 1.0,
+        "multiplier": 0.8,
         "active": true
     },
     {
@@ -255,7 +262,7 @@
         "id": "cf43b496-a22f-4318-a3ae-3a089d62aebf",
         "meal_id": "5a9cdf79-8c8c-476b-8b2b-11f1a1191a57",
         "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
-        "multiplier": 1.0,
+        "multiplier": 0.6,
         "active": true
     },
     {
@@ -269,7 +276,7 @@
         "id": "89d1e0b4-7d34-477f-af9b-bc3e5ecb9d4e",
         "meal_id": "5a9cdf79-8c8c-476b-8b2b-11f1a1191a57",
         "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
-        "multiplier": 1.0,
+        "multiplier": 0.8,
         "active": true
     },
     {
@@ -283,7 +290,7 @@
         "id": "78f5384f-5afd-4fca-b2eb-0bf91b18e2eb",
         "meal_id": "5a9cdf79-8c8c-476b-8b2b-11f1a1191a57",
         "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
-        "multiplier": 1.0,
+        "multiplier": 0.9,
         "active": true
     },
     {
@@ -297,7 +304,7 @@
         "id": "846ca552-b209-4d99-8572-10c83b259e15",
         "meal_id": "5a9cdf79-8c8c-476b-8b2b-11f1a1191a57",
         "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
-        "multiplier": 1.0,
+        "multiplier": 1.1,
         "active": true
     },
     {
@@ -311,7 +318,7 @@
         "id": "0bd7b7f6-a64b-43cb-83f8-0306fcdbe828",
         "meal_id": "5a9cdf79-8c8c-476b-8b2b-11f1a1191a57",
         "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
-        "multiplier": 1.0,
+        "multiplier": 1.2,
         "active": true
     },
     {
@@ -325,7 +332,7 @@
         "id": "c36ca0a4-45ae-43bc-8e4b-fba89126a5dd",
         "meal_id": "797db94b-126a-4b93-bfdc-20ef7d80b73d",
         "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
-        "multiplier": 1.0,
+        "multiplier": 0.5,
         "active": true
     },
     {
@@ -339,7 +346,7 @@
         "id": "346992c0-87d5-435a-a385-3fe1c48be784",
         "meal_id": "797db94b-126a-4b93-bfdc-20ef7d80b73d",
         "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
-        "multiplier": 1.0,
+        "multiplier": 0.7,
         "active": true
     },
     {
@@ -353,7 +360,14 @@
         "id": "f1f4e983-a6dc-422a-bccd-8c0829ce49e4",
         "meal_id": "b4276da4-715a-4775-907b-c068c952ac55",
         "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
-        "multiplier": 1.0,
+        "multiplier": 0.6,
+        "active": true
+    },
+    {
+        "id": "92957e09-3834-422e-affb-226708154d67",
+        "meal_id": "f21c666e-4418-417c-b995-a21ec1f12996",
+        "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
+        "multiplier": 0.6,
         "active": true
     },
     {
@@ -367,7 +381,7 @@
         "id": "6379e9b2-65f7-4334-8e91-79d9a83dde9b",
         "meal_id": "b4276da4-715a-4775-907b-c068c952ac55",
         "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
-        "multiplier": 1.0,
+        "multiplier": 0.7,
         "active": true
     },
     {
@@ -381,7 +395,7 @@
         "id": "9b7f840b-3244-49cb-8145-33bc841713d6",
         "meal_id": "b4276da4-715a-4775-907b-c068c952ac55",
         "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
-        "multiplier": 1.0,
+        "multiplier": 0.8,
         "active": true
     },
     {
@@ -409,47 +423,47 @@
         "id": "bcf0ff08-bf35-4588-92a3-bb40abd42bc6",
         "meal_id": "73f4765a-aef7-4521-b9f5-a12afccc6401",
         "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
-        "multiplier": 1.0,
+        "multiplier": 1.3,
         "active": true
     },
     {
         "id": "1219c372-e406-4bc0-859c-8298c00a7916",
         "meal_id": "73f4765a-aef7-4521-b9f5-a12afccc6401",
         "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
-        "multiplier": 1.0,
+        "multiplier": 1.5,
         "active": true
     },
     {
         "id": "90ba105c-e704-4fb4-9f56-db5bafaff9d7",
         "meal_id": "73f4765a-aef7-4521-b9f5-a12afccc6401",
         "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
-        "multiplier": 1.0,
+        "multiplier": 1.7,
         "active": true
     },
     {
         "id": "06265a9a-f041-47d0-acd6-8b69b82d3cbd",
         "meal_id": "73f4765a-aef7-4521-b9f5-a12afccc6401",
         "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
-        "multiplier": 1.0,
+        "multiplier": 2.0,
         "active": true
     },
     {
-        "id": "48c550d8-d994-433b-9032-3d14b7fba506",
-        "meal_id": "e898f6c3-0bf9-45f9-b4bb-8a033e528195",
-        "meal_plan_id": "7dd7d754-4d5d-48b7-9731-45a5c7e70f06",
+        "id": "3b7a651b-4141-43b5-b927-5a78be6a87d2",
+        "meal_id": "f21c666e-4418-417c-b995-a21ec1f12996",
+        "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
         "multiplier": 0.6,
         "active": true
     },
     {
-        "id": "5a5edf96-cef9-4d33-93da-64460ae7a09e",
-        "meal_id": "e898f6c3-0bf9-45f9-b4bb-8a033e528195",
-        "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
-        "multiplier": 1.0,
+        "id": "e59c48b4-327a-48a3-82e8-63ab2c24f9ec",
+        "meal_id": "c90b160f-901e-4ac2-96f3-8086319437b5",
+        "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
+        "multiplier": 1.6,
         "active": true
     },
     {
-        "id": "7e600eb6-85dd-4d76-a584-76edbd914bf9",
-        "meal_id": "e898f6c3-0bf9-45f9-b4bb-8a033e528195",
+        "id": "de5d2335-b163-4d79-ac16-c659ba72881f",
+        "meal_id": "f21c666e-4418-417c-b995-a21ec1f12996",
         "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
         "multiplier": 0.7,
         "active": true
@@ -462,73 +476,101 @@
         "active": true
     },
     {
-        "id": "2728462b-7e1e-4870-8346-1ab3123b6569",
-        "meal_id": "e898f6c3-0bf9-45f9-b4bb-8a033e528195",
-        "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
-        "multiplier": 1.0,
+        "id": "f151fca6-193f-4df2-b252-cd21c044a70e",
+        "meal_id": "c90b160f-901e-4ac2-96f3-8086319437b5",
+        "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+        "multiplier": 1.6,
         "active": true
     },
     {
-        "id": "bcaefb80-c9f4-42c3-93ec-3a6d10dc13fe",
-        "meal_id": "e898f6c3-0bf9-45f9-b4bb-8a033e528195",
+        "id": "730777a2-df91-49a8-a112-e5416677601e",
+        "meal_id": "f21c666e-4418-417c-b995-a21ec1f12996",
+        "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
+        "multiplier": 0.7,
+        "active": true
+    },
+    {
+        "id": "80e35c17-3243-4f51-900e-51ee6018e27f",
+        "meal_id": "f21c666e-4418-417c-b995-a21ec1f12996",
         "meal_plan_id": "c2e2203a-6752-4523-8cd6-0f8c8a50bbfe",
         "multiplier": 0.9,
         "active": true
     },
     {
-        "id": "2a818606-115b-4b0a-b074-b8000403dda9",
-        "meal_id": "e898f6c3-0bf9-45f9-b4bb-8a033e528195",
+        "id": "01aa22bb-dcce-4a23-aabe-bc3de4de98cc",
+        "meal_id": "f21c666e-4418-417c-b995-a21ec1f12996",
         "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
-        "multiplier": 1.0,
+        "multiplier": 0.9,
         "active": true
     },
     {
-        "id": "fd3501a7-1745-40e4-858e-bfe5c76540a1",
-        "meal_id": "e898f6c3-0bf9-45f9-b4bb-8a033e528195",
+        "id": "b3238822-64cd-4611-bab2-3ac410609427",
+        "meal_id": "f21c666e-4418-417c-b995-a21ec1f12996",
         "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
         "multiplier": 1.0,
         "active": true
     },
     {
-        "id": "322d2ac5-d32d-4955-8778-ff9ee14aee28",
-        "meal_id": "e898f6c3-0bf9-45f9-b4bb-8a033e528195",
+        "id": "00652cbd-821b-4312-804f-ce7f8a3272ba",
+        "meal_id": "f21c666e-4418-417c-b995-a21ec1f12996",
         "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
         "multiplier": 1.0,
         "active": true
     },
     {
-        "id": "c3605e89-2b33-4eed-8808-a292600af720",
-        "meal_id": "e898f6c3-0bf9-45f9-b4bb-8a033e528195",
+        "id": "5efa04a1-d0d8-4af2-afda-bcfa7c2bb4a4",
+        "meal_id": "f21c666e-4418-417c-b995-a21ec1f12996",
         "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
-        "multiplier": 1.2,
+        "multiplier": 1.1,
         "active": true
     },
     {
-        "id": "e0675e6b-25c4-4cc6-a704-241a0f65e2d9",
-        "meal_id": "e898f6c3-0bf9-45f9-b4bb-8a033e528195",
-        "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
-        "multiplier": 1.0,
+        "id": "0d274a39-2057-4834-b2de-2414acccf4f4",
+        "meal_id": "b949aba0-119f-4474-888b-366e069f89c6",
+        "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+        "multiplier": 0.8,
         "active": true
     },
     {
         "id": "6aed4403-4d49-4a39-bd23-051e0d3328a1",
         "meal_id": "b4276da4-715a-4775-907b-c068c952ac55",
         "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
-        "multiplier": 1.0,
+        "multiplier": 1.1,
+        "active": true
+    },
+    {
+        "id": "03532011-828e-441e-9b2f-0d4093ac7ddf",
+        "meal_id": "b949aba0-119f-4474-888b-366e069f89c6",
+        "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
+        "multiplier": 0.6,
+        "active": true
+    },
+    {
+        "id": "ac669c0c-7c0a-4e8c-a20a-4bbe6ecdd531",
+        "meal_id": "f21c666e-4418-417c-b995-a21ec1f12996",
+        "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+        "multiplier": 1.1,
+        "active": true
+    },
+    {
+        "id": "be5d55aa-c4a7-4d91-b38f-0b8b0ad96573",
+        "meal_id": "b949aba0-119f-4474-888b-366e069f89c6",
+        "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
+        "multiplier": 0.7,
         "active": true
     },
     {
         "id": "633f48ba-a645-458c-8d71-7695f09e0c97",
         "meal_id": "b4276da4-715a-4775-907b-c068c952ac55",
         "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
-        "multiplier": 1.0,
+        "multiplier": 1.1,
         "active": true
     },
     {
         "id": "e01e8fb3-cdb6-4815-a2c3-936d2ae1aab8",
         "meal_id": "1dc1d29f-9b05-4d84-9223-2ec1c2395c23",
         "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
-        "multiplier": 1.0,
+        "multiplier": 0.8,
         "active": true
     },
     {
@@ -556,49 +598,49 @@
         "id": "5cb445ac-7842-4c90-960c-daabe4d6cf82",
         "meal_id": "1dc1d29f-9b05-4d84-9223-2ec1c2395c23",
         "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
-        "multiplier": 1.0,
+        "multiplier": 1.2,
         "active": true
     },
     {
-        "id": "b7d067ae-05b7-4c90-a7e1-46519492fb20",
-        "meal_id": "7953c8b3-0cbf-48ac-98c8-48b3f2ea07f1",
+        "id": "2e7ae454-eb2f-4e03-837f-d1ea475a5c6d",
+        "meal_id": "76ae5530-46b7-455f-ab95-f273a99cabb1",
         "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
-        "multiplier": 1.0,
+        "multiplier": 0.7,
         "active": true
     },
     {
-        "id": "ecac5554-bbdc-4ae8-85e3-7410c59b117a",
-        "meal_id": "7953c8b3-0cbf-48ac-98c8-48b3f2ea07f1",
+        "id": "1b9aa257-8918-4219-9e93-090d0f50e92a",
+        "meal_id": "76ae5530-46b7-455f-ab95-f273a99cabb1",
         "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
-        "multiplier": 1.0,
+        "multiplier": 0.9,
         "active": true
     },
     {
-        "id": "591f25e7-263b-4090-8a05-a51d99d93db4",
-        "meal_id": "7953c8b3-0cbf-48ac-98c8-48b3f2ea07f1",
-        "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
-        "multiplier": 1.0,
-        "active": true
-    },
-    {
-        "id": "a03c6d3b-d8f4-46c9-bddc-cbb552878f64",
-        "meal_id": "7953c8b3-0cbf-48ac-98c8-48b3f2ea07f1",
+        "id": "0be5af71-d0e6-476f-80bd-9bb2e72184c7",
+        "meal_id": "76ae5530-46b7-455f-ab95-f273a99cabb1",
         "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
-        "multiplier": 1.0,
+        "multiplier": 1.3,
         "active": true
     },
     {
-        "id": "c6b05da4-748e-4542-889e-72033a12a3cf",
-        "meal_id": "7953c8b3-0cbf-48ac-98c8-48b3f2ea07f1",
+        "id": "6dab8735-249d-464e-b324-008224b84ba1",
+        "meal_id": "76ae5530-46b7-455f-ab95-f273a99cabb1",
         "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
-        "multiplier": 1.0,
+        "multiplier": 1.4,
+        "active": true
+    },
+    {
+        "id": "0f24ee95-5e37-4f52-b127-bbddbb78c22d",
+        "meal_id": "76ae5530-46b7-455f-ab95-f273a99cabb1",
+        "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
+        "multiplier": 1.1,
         "active": true
     },
     {
         "id": "764188f1-0153-417a-840d-fff1a10ffde7",
         "meal_id": "797db94b-126a-4b93-bfdc-20ef7d80b73d",
         "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
-        "multiplier": 1.0,
+        "multiplier": 0.8,
         "active": true
     },
     {
@@ -612,7 +654,7 @@
         "id": "093e6a8c-3d8a-4424-a23f-85ead416e1c2",
         "meal_id": "797db94b-126a-4b93-bfdc-20ef7d80b73d",
         "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
-        "multiplier": 1.0,
+        "multiplier": 0.9,
         "active": true
     },
     {
@@ -633,42 +675,42 @@
         "id": "ed1e54ed-dd01-4d8d-bd76-3e2175ffe5dc",
         "meal_id": "0db1d251-2a99-4f1b-936e-2d0fed28f9ea",
         "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
-        "multiplier": 1.0,
+        "multiplier": 0.5,
         "active": true
     },
     {
         "id": "2eb0882c-2311-4633-a128-a7c3b8c9d07d",
         "meal_id": "0db1d251-2a99-4f1b-936e-2d0fed28f9ea",
         "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
-        "multiplier": 1.0,
+        "multiplier": 0.6,
         "active": true
     },
     {
         "id": "e8408538-975b-43bd-b182-e248011ecefb",
         "meal_id": "0db1d251-2a99-4f1b-936e-2d0fed28f9ea",
         "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
-        "multiplier": 1.0,
+        "multiplier": 0.7,
         "active": true
     },
     {
         "id": "544fb716-7e1f-429f-86ad-6ca06e226c8c",
         "meal_id": "cef4232c-e010-4e50-9429-25aa8af64216",
         "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
-        "multiplier": 1.0,
+        "multiplier": 0.6,
         "active": true
     },
     {
         "id": "82d22370-0a30-4e64-a75a-6da0ded454b4",
         "meal_id": "cef4232c-e010-4e50-9429-25aa8af64216",
         "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
-        "multiplier": 1.0,
+        "multiplier": 0.7,
         "active": true
     },
     {
         "id": "0dcc35a3-0bee-4d92-beec-47c5a4eeacb2",
         "meal_id": "cef4232c-e010-4e50-9429-25aa8af64216",
         "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
-        "multiplier": 1.0,
+        "multiplier": 0.8,
         "active": true
     },
     {
@@ -689,7 +731,7 @@
         "id": "51113312-b95d-4796-b561-e90806268c25",
         "meal_id": "cef4232c-e010-4e50-9429-25aa8af64216",
         "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
-        "multiplier": 1.0,
+        "multiplier": 1.1,
         "active": true
     },
     {
@@ -700,13 +742,6 @@
         "active": true
     },
     {
-        "id": "2e7ae454-eb2f-4e03-837f-d1ea475a5c6d",
-        "meal_id": "76ae5530-46b7-455f-ab95-f273a99cabb1",
-        "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
-        "multiplier": 1.0,
-        "active": true
-    },
-    {
         "id": "eb6a0ded-2fc9-4e18-b570-193d59140993",
         "meal_id": "76ae5530-46b7-455f-ab95-f273a99cabb1",
         "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
@@ -714,17 +749,10 @@
         "active": true
     },
     {
-        "id": "1b9aa257-8918-4219-9e93-090d0f50e92a",
-        "meal_id": "76ae5530-46b7-455f-ab95-f273a99cabb1",
-        "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
-        "multiplier": 1.0,
-        "active": true
-    },
-    {
         "id": "107f18b2-e7d4-4666-a767-c72d431bc9c7",
         "meal_id": "0db1d251-2a99-4f1b-936e-2d0fed28f9ea",
         "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
-        "multiplier": 1.0,
+        "multiplier": 0.8,
         "active": true
     },
     {
@@ -735,13 +763,6 @@
         "active": true
     },
     {
-        "id": "0f24ee95-5e37-4f52-b127-bbddbb78c22d",
-        "meal_id": "76ae5530-46b7-455f-ab95-f273a99cabb1",
-        "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
-        "multiplier": 1.0,
-        "active": true
-    },
-    {
         "id": "a1e31d65-1142-4444-97a3-e62da4e2d173",
         "meal_id": "76ae5530-46b7-455f-ab95-f273a99cabb1",
         "meal_plan_id": "c7d6d287-fe4e-46f0-a9c3-0f36dd786519",
@@ -749,24 +770,10 @@
         "active": true
     },
     {
-        "id": "0be5af71-d0e6-476f-80bd-9bb2e72184c7",
-        "meal_id": "76ae5530-46b7-455f-ab95-f273a99cabb1",
-        "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
-        "multiplier": 1.0,
-        "active": true
-    },
-    {
         "id": "b017cbf8-1bd7-4307-b28a-73b15bbbeaa1",
         "meal_id": "76ae5530-46b7-455f-ab95-f273a99cabb1",
         "meal_plan_id": "1a5acd70-8869-4064-b5d3-98cc8a84e5e5",
         "multiplier": 1.4,
-        "active": true
-    },
-    {
-        "id": "6dab8735-249d-464e-b324-008224b84ba1",
-        "meal_id": "76ae5530-46b7-455f-ab95-f273a99cabb1",
-        "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
-        "multiplier": 1.0,
         "active": true
     },
     {
@@ -780,7 +787,7 @@
         "id": "2f65fe19-6add-4579-8d0b-8a9e53219717",
         "meal_id": "0db1d251-2a99-4f1b-936e-2d0fed28f9ea",
         "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
-        "multiplier": 1.0,
+        "multiplier": 0.9,
         "active": true
     },
     {
@@ -794,7 +801,7 @@
         "id": "94d52e61-c0a5-4363-8613-33598c93e9e5",
         "meal_id": "381cbf70-a6ec-48d7-8942-2447d8086dcc",
         "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
-        "multiplier": 1.0,
+        "multiplier": 0.5,
         "active": true
     },
     {
@@ -808,7 +815,7 @@
         "id": "5749eb81-a719-4ddd-8f3d-daa8ae5d68ca",
         "meal_id": "381cbf70-a6ec-48d7-8942-2447d8086dcc",
         "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
-        "multiplier": 1.0,
+        "multiplier": 0.6,
         "active": true
     },
     {
@@ -822,7 +829,7 @@
         "id": "0f91c37f-1e16-41c8-a2cd-1014ceb21ec8",
         "meal_id": "381cbf70-a6ec-48d7-8942-2447d8086dcc",
         "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
-        "multiplier": 1.0,
+        "multiplier": 0.7,
         "active": true
     },
     {
@@ -836,7 +843,7 @@
         "id": "a5492eff-a270-4b24-8ac8-67ae58e3209c",
         "meal_id": "381cbf70-a6ec-48d7-8942-2447d8086dcc",
         "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
-        "multiplier": 1.0,
+        "multiplier": 0.8,
         "active": true
     },
     {
@@ -850,28 +857,7 @@
         "id": "3234162d-d7e5-458e-950b-00bcde7a6b32",
         "meal_id": "381cbf70-a6ec-48d7-8942-2447d8086dcc",
         "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
-        "multiplier": 1.0,
-        "active": true
-    },
-    {
-        "id": "03532011-828e-441e-9b2f-0d4093ac7ddf",
-        "meal_id": "b949aba0-119f-4474-888b-366e069f89c6",
-        "meal_plan_id": "457c22e2-7fcd-4e87-9f1b-f981e8d63ad5",
-        "multiplier": 1.0,
-        "active": true
-    },
-    {
-        "id": "be5d55aa-c4a7-4d91-b38f-0b8b0ad96573",
-        "meal_id": "b949aba0-119f-4474-888b-366e069f89c6",
-        "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
-        "multiplier": 1.0,
-        "active": true
-    },
-    {
-        "id": "0d274a39-2057-4834-b2de-2414acccf4f4",
-        "meal_id": "b949aba0-119f-4474-888b-366e069f89c6",
-        "meal_plan_id": "81654969-f4a1-4e02-9210-9f2e0009bc74",
-        "multiplier": 1.0,
+        "multiplier": 0.9,
         "active": true
     },
     {
@@ -899,13 +885,27 @@
         "id": "f1d6b4b5-6af9-4f63-a4c8-f214f4ee408e",
         "meal_id": "1dc1d29f-9b05-4d84-9223-2ec1c2395c23",
         "meal_plan_id": "1dd68d4e-15f1-4318-9f8d-5521dc7a4749",
-        "multiplier": 1.0,
+        "multiplier": 1.3,
         "active": true
     },
     {
         "id": "98ad0183-7abb-4b9e-9ff9-931236995bbd",
         "meal_id": "1dc1d29f-9b05-4d84-9223-2ec1c2395c23",
         "meal_plan_id": "a4cfecdc-50f7-45b4-9e04-68ff0e699318",
+        "multiplier": 1.5,
+        "active": true
+    },
+    {
+        "id": "371d0812-48fa-47c7-83ad-4bf6bc8aaf78",
+        "meal_id": "c90b160f-901e-4ac2-96f3-8086319437b5",
+        "meal_plan_id": "36e18b0f-ae84-4b26-a139-1e4dd965bfef",
+        "multiplier": 1.0,
+        "active": true
+    },
+    {
+        "id": "23db6a63-8624-4f6b-abfe-07fddc01d4d7",
+        "meal_id": "c90b160f-901e-4ac2-96f3-8086319437b5",
+        "meal_plan_id": "a3ed838d-d18f-4495-9f72-09bc47828068",
         "multiplier": 1.0,
         "active": true
     }

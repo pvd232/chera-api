@@ -12,7 +12,6 @@ class Meal_DTO(Base_DTO):
             self.meal_time: str = meal_json["meal_time"]
             self.name: str = meal_json["name"]
             self.description: str = meal_json["description"]
-            self.price: float = meal_json["price"]
             self.image_url: str = meal_json["image_url"]
             self.active: bool = meal_json["active"]
 
@@ -21,6 +20,5 @@ class Meal_DTO(Base_DTO):
             self.meal_time: str = meal_domain.meal_time
             self.name: str = meal_domain.name
             self.description: str = meal_domain.description
-            self.price: float = meal_domain.price
             self.image_url: str = meal_domain.image_url
             self.active: bool = meal_domain.active

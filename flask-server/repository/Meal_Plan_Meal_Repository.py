@@ -32,21 +32,8 @@ class Meal_Plan_Meal_Repository(Base_Repository):
             )
         return meal_plan_meal
 
-    def get_even_meal_plan_meal(
-        self, meal_id: UUID, meal_plan_id: UUID
-    ) -> Meal_Plan_Meal_Model:
-        even_meal_plan_meal = (
-            self.db.session.query(Meal_Plan_Meal_Model)
-            .filter(
-                Meal_Plan_Meal_Model.meal_id == meal_id,
-                Meal_Plan_Meal_Model.meal_plan_id == meal_plan_id,
-            )
-            .first()
-        )
-        return even_meal_plan_meal
-
     def get_meal_plan_meals(
-        self, meal_plan_id: UUID
+        self, meal_plan_id: UUID = None
     ) -> Optional[list[Meal_Plan_Meal_Model]]:
         if meal_plan_id:
             meal_plan_meals = (
@@ -70,25 +57,15 @@ class Meal_Plan_Meal_Repository(Base_Repository):
 
     def update_meal_plan_meal(
         self,
-        odd_meal_plan_meal_domain: "Meal_Plan_Meal_Domain",
-        even_meal_plan_meal_domain: "Meal_Plan_Meal_Domain" = None,
+        meal_plan_meal_domain: "Meal_Plan_Meal_Domain",
     ) -> None:
         odd_meal_plan_meal: Meal_Plan_Meal_Model = (
             self.db.session.query(Meal_Plan_Meal_Model)
-            .filter(Meal_Plan_Meal_Model.id == odd_meal_plan_meal_domain.id)
+            .filter(Meal_Plan_Meal_Model.id == meal_plan_meal_domain.id)
             .first()
         )
-        odd_meal_plan_meal.update_multiplier(meal_plan_meal=odd_meal_plan_meal_domain)
+        odd_meal_plan_meal.update_multiplier(meal_plan_meal=meal_plan_meal_domain)
         # Odd and even meal plans have identical values for meal calories (but snacks will differ), so we can just copy the odd values to the even values
-        if even_meal_plan_meal_domain:
-            even_meal_plan_meal: Meal_Plan_Meal_Model = (
-                self.db.session.query(Meal_Plan_Meal_Model)
-                .filter(Meal_Plan_Meal_Model.id == even_meal_plan_meal_domain.id)
-                .first()
-            )
-            even_meal_plan_meal.update_multiplier(
-                meal_plan_meal=odd_meal_plan_meal_domain
-            )
         self.db.session.commit()
         return
 

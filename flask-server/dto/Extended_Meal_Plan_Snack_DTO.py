@@ -21,7 +21,7 @@ class Extended_Meal_Plan_Snack_DTO(Meal_Plan_Snack_DTO):
         self.associated_snack = Snack_DTO(
             snack_domain=extended_meal_plan_snack_domain.associated_snack
         )
-        self.associated_snack_plan = Extended_Meal_Plan_DTO(
+        self.associated_meal_plan = Extended_Meal_Plan_DTO(
             extended_meal_plan_domain=extended_meal_plan_snack_domain.associated_meal_plan
         )
 

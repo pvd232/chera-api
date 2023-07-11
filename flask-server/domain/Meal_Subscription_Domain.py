@@ -12,7 +12,7 @@ class Meal_Subscription_Domain(Base_Domain):
         self.client_id = meal_subscription_object.client_id
         self.dietitian_id = meal_subscription_object.dietitian_id
         self.stripe_subscription_id = meal_subscription_object.stripe_subscription_id
-        self.shipping_cost = meal_subscription_object.shipping_cost
+        self.shipping_rate = meal_subscription_object.shipping_rate
         self.datetime = meal_subscription_object.datetime
         self.paused = meal_subscription_object.paused
         self.active = meal_subscription_object.active
