@@ -19,3 +19,4 @@ class Dietitian_Domain(Base_Domain):
         self.clinic_url: str = dietitian_object.clinic_url
         self.datetime: float = dietitian_object.datetime
         self.active: bool = dietitian_object.active
+        self.got_sample: bool = dietitian_object.got_sample

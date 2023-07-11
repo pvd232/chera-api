@@ -213,15 +213,17 @@ class Client_Model(db.Model):
         self.zipcode_extension = client_domain.zipcode_extension
         self.address = client_domain.address
 
+
 class Eating_Disorder_Model(db.Model):
     __tablename__ = "eating_disorder"
     id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
     name = db.Column(db.String(80), nullable=False)
-    
+
     def __init__(self, eating_disorder_domain: "Eating_Disorder_Domain") -> None:
         self.id = eating_disorder_domain.id
         self.name = eating_disorder_domain.name
-    
+
+
 class COGS_Model(db.Model):
     __tablename__ = "cogs"
     num_meals = db.Column(db.Integer(), primary_key=True, nullable=False)
@@ -273,12 +275,11 @@ class Staged_Client_Model(db.Model):
     waitlisted = db.Column(db.Boolean(), default=False, nullable=False)
     meals_pre_selected = db.Column(db.Boolean(), default=False, nullable=False)
     meals_prepaid = db.Column(db.Boolean(), default=False, nullable=False)
-    
+
     # relationships
     meal_plan = relationship("Meal_Plan_Model", lazy="joined")
     eating_disorder = relationship("Eating_Disorder_Model", lazy="joined")
-    
-    
+
     def __init__(self, staged_client_domain: "Staged_Client_Domain") -> None:
         self.id = staged_client_domain.id
         # personal information
@@ -299,6 +300,7 @@ class Staged_Client_Model(db.Model):
         self.meals_pre_selected = staged_client_domain.meals_pre_selected
         self.meals_prepaid = staged_client_domain.meals_prepaid
 
+
 class Dietitian_Model(db.Model):
     __tablename__ = "dietitian"
     id = db.Column(db.String(80), primary_key=True, unique=True, nullable=False)
@@ -310,8 +312,8 @@ class Dietitian_Model(db.Model):
     clinic_state = db.Column(db.String(2), nullable=False)
     clinic_address = db.Column(db.String(200), nullable=False)
     clinic_url = db.Column(db.String(80), nullable=False)
-
     datetime = db.Column(db.Float(), nullable=False)
+    got_sample = db.Column(db.Boolean(), default=False, nullable=False)
     active = db.Column(db.Boolean(), default=True, nullable=False)
 
     clients = relationship("Client_Model", lazy=True)
@@ -330,6 +332,7 @@ class Dietitian_Model(db.Model):
         self.clinic_address = dietitian_domain.clinic_address
         self.clinic_url = dietitian_domain.clinic_url
         self.datetime = dietitian_domain.datetime
+        self.got_sample = dietitian_domain.got_sample
         self.active = dietitian_domain.active
 
 
