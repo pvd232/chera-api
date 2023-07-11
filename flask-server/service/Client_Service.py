@@ -53,6 +53,11 @@ class Client_Service(object):
         self.client_repository.update_client(client_domain=client_domain)
         return client_domain
 
+    def update_client_address(self, client_dto: "Client_DTO")-> Client_Domain:
+        client_domain = Client_Domain(client_object=client_dto)
+        self.client_repository.update_client_address(client_domain=client_domain)
+        return client_domain
+    
     def update_client_meal_plan(self, client_dto: "Client_DTO") -> None:
         updated_client: Client_Domain = Client_Domain(client_object=client_dto)
         return self.client_repository.update_client_meal_plan(
