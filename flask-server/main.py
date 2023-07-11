@@ -3606,17 +3606,62 @@ def verify_discount() -> Response:
             return Response(status=404)
     else:
         return Response(status=405)
-
-
-@app.route("/api/stripe/payment_method/<string:client_stripe_id>", methods=["POST"])
+    
+@app.route("/api/stripe/payment_method/<string:client_stripe_id>", methods=["GET"])
 def stripe_payment_methods(client_stripe_id: str) -> Response:
     from service.Stripe_Service import Stripe_Service
-
     payment_methods = Stripe_Service().get_payment_methods(
         client_stripe_id=client_stripe_id
     )
-    return Response(status=201)
+    return jsonify(payment_methods.data[0].card.last4), 200
+    # return Response(status=201)
 
+
+@app.route("/api/stripe/update_payment_method/<string:customer_id>/<string:subscription_id>/<string:payment_method>", methods=["POST"])
+def update_subscription_card(customer_id, subscription_id, payment_method):
+    try:
+        stripe.PaymentMethod.attach(
+            payment_method,
+            customer=customer_id,
+        )
+
+        stripe.Customer.modify(
+            customer_id,
+            invoice_settings={
+                "default_payment_method": payment_method
+            },
+        )
+
+        stripe.Subscription.modify(
+            subscription_id,
+            default_payment_method=payment_method,
+        )
+
+        return jsonify("Card updated successfully"), 200
+    except stripe.error.StripeError as e:
+        print(e)
+        error_message = e.user_message or str(e)
+        return jsonify({'success': False, 'error': error_message}), 400
+
+
+@app.route("/api/stripe/get_subscription_details/<string:subscription_id>/", methods=["GET"])
+def get_subscription_details(subscription_id):
+    try:
+        subscription = stripe.Subscription.retrieve(subscription_id)
+        return jsonify(subscription), 200
+    except stripe.error.StripeError as e:
+        error_message = e.user_message or str(e)
+        return False, error_message
+
+
+@app.route("/api/stripe/get_customer_details/<string:customer_id>/", methods=["GET"])
+def get_customer_details(customer_id):
+    try:
+        customer = stripe.Customer.retrieve(customer_id)
+        return jsonify(customer), 200
+    except stripe.error.StripeError as e:
+        error_message = e.user_message or str(e)
+        return False, error_message
 
 @app.route("/api/stripe/payment_intent", methods=["POST"])
 def create_stripe_payment_intent() -> Response:
