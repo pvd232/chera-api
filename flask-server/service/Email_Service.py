@@ -8,6 +8,7 @@ from domain.Client_Domain import Client_Domain
 from domain.Dietitian_Domain import Dietitian_Domain
 from typing import Optional
 from models import env
+from flask import request
 
 if TYPE_CHECKING:
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
@@ -337,7 +338,9 @@ class Email_Service(object):
             s.quit()
 
     def send_sign_up_email(self, staged_client: "Staged_Client_Domain") -> None:
-        button_url = f"{self.host}/client-sign-up?staged_client_id={staged_client.id}"
+        self.host = request.host
+        scheme = request.scheme
+        button_url = f"{scheme}://{self.host}/client_sign_up/{staged_client.id}"
         if staged_client.meals_prepaid:
             email_template_name = "sign_up_prepaid_meals.html"
         else:

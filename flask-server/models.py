@@ -12,6 +12,7 @@ import stripe
 import shippo
 from typing import TYPE_CHECKING
 from helpers.db.get_db_connection_string import get_db_connection_string
+from authlib.integrations.flask_client import OAuth
 
 if TYPE_CHECKING:
     from domain.COGS_Domain import COGS_Domain
@@ -56,6 +57,22 @@ if TYPE_CHECKING:
 load_dotenv()
 
 app = Flask(__name__)
+
+################### Auth0 ###################
+oauth = OAuth(app)
+app.secret_key = os.getenv("APP_SECRET_KEY")
+
+oauth.register(
+    "auth0",
+    client_id=os.getenv("AUTH0_CLIENT_ID"),
+    client_secret=os.getenv("AUTH0_CLIENT_SECRET"),
+    client_kwargs={
+        "scope": "openid profile email",
+    },
+    server_metadata_url=f'https://{os.getenv("AUTH0_DOMAIN")}/.well-known/openid-configuration',
+)
+#############################################
+
 username = os.getenv("DB_USER", GCP_Secret_Manager_Service().get_secret("DB_USER"))
 password = os.getenv(
     "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
