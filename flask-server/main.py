@@ -2,7 +2,15 @@ from uuid import UUID
 import os
 from models import app, db, env, host_url, oauth
 from datetime import datetime, timezone
-from flask import Response, request, jsonify, _request_ctx_stack, url_for, session, redirect
+from flask import (
+    Response,
+    request,
+    jsonify,
+    url_for,
+    session,
+    redirect,
+)
+import flask
 import json
 from werkzeug.exceptions import HTTPException
 from typing import Optional
@@ -10,18 +18,20 @@ import stripe
 import uuid
 
 from functools import wraps
-from six.moves.urllib.request import urlopen
+import six
 from dotenv import load_dotenv
 from jose import jwt
 
 load_dotenv()
 
+
 ######################################################################################
-#Error Handler
+# Error Handler
 class AuthError(Exception):
     def __init__(self, error, status_code):
         self.error = error
         self.status_code = status_code
+
 
 @app.errorhandler(AuthError)
 def handle_auth_error(ex):
@@ -29,44 +39,60 @@ def handle_auth_error(ex):
     response.status_code = ex.status_code
     return response
 
-#Format error response and append status code
+
+# Format error response and append status code
 def get_token_auth_header():
     """
     Obtains the Access Token from the Authorization Header
     """
     auth = request.headers.get("Authorization", None)
     if not auth:
-        raise AuthError({"code": "authorization_header_missing",
-                        "description":
-                            "Authorization header is expected"}, 401)
+        raise AuthError(
+            {
+                "code": "authorization_header_missing",
+                "description": "Authorization header is expected",
+            },
+            401,
+        )
 
     parts = auth.split()
 
     if parts[0].lower() != "bearer":
-        raise AuthError({"code": "invalid_header",
-                        "description":
-                            "Authorization header must start with"
-                            " Bearer"}, 401)
+        raise AuthError(
+            {
+                "code": "invalid_header",
+                "description": "Authorization header must start with" " Bearer",
+            },
+            401,
+        )
     elif len(parts) == 1:
-        raise AuthError({"code": "invalid_header",
-                        "description": "Token not found"}, 401)
+        raise AuthError(
+            {"code": "invalid_header", "description": "Token not found"}, 401
+        )
     elif len(parts) > 2:
-        raise AuthError({"code": "invalid_header",
-                        "description":
-                            "Authorization header must be"
-                            " Bearer token"}, 401)
+        raise AuthError(
+            {
+                "code": "invalid_header",
+                "description": "Authorization header must be" " Bearer token",
+            },
+            401,
+        )
 
     token = parts[1]
     return token
+
 
 def requires_auth(f):
     """
     Determines if the Access Token is valid
     """
+
     @wraps(f)
     def decorated(*args, **kwargs):
         token = get_token_auth_header()
-        jsonurl = urlopen("https://"+os.getenv(AUTH0_DOMAIN)+"/.well-known/jwks.json")
+        jsonurl = six.moves.urllib.request.urlopen(
+            "https://" + os.getenv("AUTH0_DOMAIN") + "/.well-known/jwks.json"
+        )
         jwks = json.loads(jsonurl.read())
         unverified_header = jwt.get_unverified_header(token)
         rsa_key = {}
@@ -77,57 +103,73 @@ def requires_auth(f):
                     "kid": key["kid"],
                     "use": key["use"],
                     "n": key["n"],
-                    "e": key["e"]
+                    "e": key["e"],
                 }
         if rsa_key:
             try:
                 payload = jwt.decode(
                     token,
                     rsa_key,
-                    algorithms=os.getenv(ALGORITHMS),
-                    audience=os.getenv(AUTH0_AUDIENCE),
-                    issuer="https://"+os.getenv(AUTH0_DOMAIN)+"/"
+                    algorithms=os.getenv("ALGORITHMS"),
+                    audience=os.getenv("AUTH0_AUDIENCE"),
+                    issuer="https://" + os.getenv("AUTH0_DOMAIN") + "/",
                 )
             except jwt.ExpiredSignatureError:
-                raise AuthError({"code": "token_expired",
-                                "description": "token is expired"}, 401)
+                raise AuthError(
+                    {"code": "token_expired", "description": "token is expired"}, 401
+                )
             except jwt.JWTClaimsError:
-                raise AuthError({"code": "invalid_claims",
-                                "description":
-                                    "incorrect claims,"
-                                    "please check the audience and issuer"}, 401)
+                raise AuthError(
+                    {
+                        "code": "invalid_claims",
+                        "description": "incorrect claims,"
+                        "please check the audience and issuer",
+                    },
+                    401,
+                )
             except Exception:
-                raise AuthError({"code": "invalid_header",
-                                "description":
-                                    "Unable to parse authentication"
-                                    " token."}, 401)
+                raise AuthError(
+                    {
+                        "code": "invalid_header",
+                        "description": "Unable to parse authentication" " token.",
+                    },
+                    401,
+                )
 
-            _request_ctx_stack.top.current_user = payload
+            flask._request_ctx_stack.top.current_user = payload
             return f(*args, **kwargs)
-        raise AuthError({"code": "invalid_header",
-                        "description": "Unable to find appropriate key"}, 401)
+        raise AuthError(
+            {"code": "invalid_header", "description": "Unable to find appropriate key"},
+            401,
+        )
+
     return decorated
 
 
 ######################################################################################
 
+
 @app.route("/client_sign_up/<string:staged_client_id>")
 def client_signup(staged_client_id: str):
     return oauth.auth0.authorize_redirect(
         redirect_uri=url_for("callback", _external=True),
-        audience=os.getenv("AUTH0_AUDIENCE"), 
+        audience=os.getenv("AUTH0_AUDIENCE"),
         screen_hint="signup",
         response_type="code",
-        state=staged_client_id
+        state=staged_client_id,
     )
+
 
 @app.route("/callback", methods=["GET", "POST"])
 def callback():
     staged_client_id = request.args.get("state")
     token = oauth.auth0.authorize_access_token()
     session["user"] = token
-    redirect_signup_url = f"{host_url}/client-sign-up?staged_client_id={staged_client_id}"
+    redirect_signup_url = (
+        f"{host_url}/client-sign-up?staged_client_id={staged_client_id}"
+    )
     return redirect(redirect_signup_url)
+
 
 @app.route("/api/clear_tables")
 def clear_table() -> Response:
@@ -3400,6 +3442,7 @@ def cogs() -> Response:
     else:
         return Response(status=405)
 
+
 @app.route("/api/eating_disorder", methods=["GET"])
 def eating_disorder() -> Response:
     from repository.Eating_Disorder_Repository import Eating_Disorder_Repository
@@ -3407,12 +3450,17 @@ def eating_disorder() -> Response:
     from dto.Eating_Disorder_DTO import Eating_Disorder_DTO
 
     if request.method == "GET":
-        eating_disorder_list = Eating_Disorder_Service(eating_disorder_repository=Eating_Disorder_Repository(db=db)).get_eating_disorders()
-        eating_disorder_dtos = [Eating_Disorder_DTO(eating_disorder_domain=x) for x in eating_disorder_list]
-        serialized_eating_disorder= [x.serialize() for x in eating_disorder_dtos]
+        eating_disorder_list = Eating_Disorder_Service(
+            eating_disorder_repository=Eating_Disorder_Repository(db=db)
+        ).get_eating_disorders()
+        eating_disorder_dtos = [
+            Eating_Disorder_DTO(eating_disorder_domain=x) for x in eating_disorder_list
+        ]
+        serialized_eating_disorder = [x.serialize() for x in eating_disorder_dtos]
         return jsonify(serialized_eating_disorder), 200
     else:
         return Response(status=405)
+
 
 @app.route("/api/shippo/shipping_rate", methods=["GET"])
 def shipping_cost() -> Response:
@@ -3725,10 +3773,12 @@ def verify_discount() -> Response:
             return Response(status=404)
     else:
         return Response(status=405)
-    
+
+
 @app.route("/api/stripe/payment_method/<string:client_stripe_id>", methods=["GET"])
 def stripe_payment_methods(client_stripe_id: str) -> Response:
     from service.Stripe_Service import Stripe_Service
+
     payment_methods = Stripe_Service().get_payment_methods(
         client_stripe_id=client_stripe_id
     )
@@ -3736,7 +3786,10 @@ def stripe_payment_methods(client_stripe_id: str) -> Response:
     # return Response(status=201)
 
 
-@app.route("/api/stripe/update_payment_method/<string:customer_id>/<string:subscription_id>/<string:payment_method>", methods=["POST"])
+@app.route(
+    "/api/stripe/update_payment_method/<string:customer_id>/<string:subscription_id>/<string:payment_method>",
+    methods=["POST"],
+)
 def update_subscription_card(customer_id, subscription_id, payment_method):
     try:
         stripe.PaymentMethod.attach(
@@ -3746,9 +3799,7 @@ def update_subscription_card(customer_id, subscription_id, payment_method):
 
         stripe.Customer.modify(
             customer_id,
-            invoice_settings={
-                "default_payment_method": payment_method
-            },
+            invoice_settings={"default_payment_method": payment_method},
         )
 
         stripe.Subscription.modify(
@@ -3760,10 +3811,12 @@ def update_subscription_card(customer_id, subscription_id, payment_method):
     except stripe.error.StripeError as e:
         print(e)
         error_message = e.user_message or str(e)
-        return jsonify({'success': False, 'error': error_message}), 400
+        return jsonify({"success": False, "error": error_message}), 400
 
 
-@app.route("/api/stripe/get_subscription_details/<string:subscription_id>/", methods=["GET"])
+@app.route(
+    "/api/stripe/get_subscription_details/<string:subscription_id>/", methods=["GET"]
+)
 def get_subscription_details(subscription_id):
     try:
         subscription = stripe.Subscription.retrieve(subscription_id)
@@ -3781,6 +3834,7 @@ def get_customer_details(customer_id):
     except stripe.error.StripeError as e:
         error_message = e.user_message or str(e)
         return False, error_message
+
 
 @app.route("/api/stripe/payment_intent", methods=["POST"])
 def create_stripe_payment_intent() -> Response:
@@ -3842,12 +3896,14 @@ def create_stripe_payment_intent() -> Response:
     else:
         return Response(status=405)
 
-@app.route("/api/client/update_address",methods=["PUT"])
+
+@app.route("/api/client/update_address", methods=["PUT"])
 def update_client_address() -> Response:
     from service.Client_Service import Client_Service
     from repository.Client_Repository import Client_Repository
     from domain.Client_Domain import Client_Domain
     from dto.Client_DTO import Client_DTO
+
     if request.method == "PUT":
         client_dto: Client_DTO = Client_DTO(client_json=json.loads(request.data))
         Client_Service(
@@ -3857,6 +3913,7 @@ def update_client_address() -> Response:
 
     else:
         return Response(status=405)
+
 
 if env == "debug":
     debug = True
