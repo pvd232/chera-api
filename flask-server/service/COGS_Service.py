@@ -8,6 +8,7 @@ if TYPE_CHECKING:
 class COGS_Service(object):
     def __init__(self, cogs_repository: "COGS_Repository") -> None:
         self.cogs_repository = cogs_repository
+        self.meal_profit_premium = 2
 
     def get_cogs(self) -> list[COGS_Domain]:
         return self.cogs_repository.get_cogs()
@@ -91,7 +92,7 @@ class COGS_Service(object):
         return meal_cost
 
     def get_meal_price(self, meal_cost: float) -> float:
-        return float(round(meal_cost) + 1)
+        return float(round(meal_cost) + self.meal_profit_premium)
 
     def get_snack_price(self, meal_price: float) -> float:
         return meal_price / 2

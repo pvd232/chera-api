@@ -1,6 +1,5 @@
 from typing import TYPE_CHECKING
 from .Base_DTO import Base_DTO
-import os
 
 if TYPE_CHECKING:
     from domain.Dietitian_Domain import Dietitian_Domain
@@ -27,7 +26,9 @@ class Dietitian_DTO(Base_DTO):
             self.clinic_address: str = dietitian_json["clinic_address"]
             self.clinic_url: str = dietitian_json["clinic_url"]
             self.datetime: float = float(dietitian_json["datetime"])
+            self.got_sample: bool = dietitian_json["got_sample"]
             self.active: bool = dietitian_json["active"]
+
             if self.id == gcp_secret_manager_service.get_secret("ADMIN_ID"):
                 self.admin = True
             else:
@@ -46,6 +47,7 @@ class Dietitian_DTO(Base_DTO):
             self.clinic_address: str = dietitian_domain.clinic_address
             self.clinic_url: str = dietitian_domain.clinic_url
             self.datetime: float = dietitian_domain.datetime
+            self.got_sample: bool = dietitian_domain.got_sample
             self.active: bool = dietitian_domain.active
             if self.id == "patardriscoll@gmail.com":
                 self.admin = True

@@ -168,3 +168,7 @@ pip-selfcheck.json
 .DS_Store
 .eslintrc.json
 package-lock.json
+
+# Chrome driver
+/chromedriver*/
+*chromedriver_*/

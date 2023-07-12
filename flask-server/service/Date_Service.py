@@ -28,19 +28,42 @@ class Date_Service(object):
         ]
 
         # Delivery times are in UTC (CST + 5)
+
+        # Monday 2pm CST
         self.delivery_day_index = 0
         self.delivery_hour_index = 19
-        self.shipping_day_index = 5
-        self.shipping_hour_index = 16
+
+        # Saturday 10am CST
+        self.shipping_day_index = 6
+        self.shipping_hour_index = 15
+
+        # Tuesday 10pm CST
         self.delivery_cutoff_day_index = 3
         self.delivery_cutoff_hour_index = 3
-        self.first_email_day_index = self.delivery_cutoff_day_index
-        self.first_email_hour_index = 12
-        self.first_email_cutoff_difference = (
-            self.delivery_cutoff_hour_index - self.first_email_hour_index
-        )
-        self.second_email_day_index = self.delivery_cutoff_day_index
-        self.second_email_hour_index = self.delivery_cutoff_hour_index + 1
+
+        self.sample_cutoff_hour_index = 11
+
+        # Fri 6am CST
+        self.normal_sample_cutoff_day_index = 4
+
+        # Tues 6am CST
+        self.alternate_sample_cutoff_day_index = 1
+
+        # Batch with meals for the upcoming delivery date
+        self.normal_sample_shipping_day_index = self.shipping_day_index
+        self.normal_sample_shipping_hour_index = self.shipping_hour_index
+
+        # Wed 10am CST
+        self.alternate_sample_shipping_day_index = 2
+        self.alternate_sample_shipping_hour_index = self.shipping_hour_index
+
+        # Batch with meals for the upcoming delivery date
+        self.normal_sample_delivery_day_index = self.delivery_day_index
+        self.normal_sample_delivery_hour_index = self.delivery_hour_index
+
+        # Fri 2pm CST
+        self.alternate_sample_delivery_day_index = 4
+        self.alternate_sample_delivery_hour_index = self.delivery_hour_index
 
         # Compute the difference by subtracting the delivery day index from the shipping day index
         # The upcoming delivery date is independent, while the shipping date is dependent on the delivery date
@@ -78,6 +101,38 @@ class Date_Service(object):
             days_until_delivery_day == 0 and hours_until_delivery_day <= 0
         ):
             days_until_delivery_day += 7
+        current_week_delivery_date = datetime(
+            year=today.year,
+            month=today.month,
+            day=today.day,
+            hour=self.delivery_hour_index,
+            tzinfo=timezone.utc,
+        ) + timedelta(days=days_until_delivery_day)
+        return current_week_delivery_date.timestamp()
+
+    def get_current_week_sample_delivery_date(self, today: datetime) -> float:
+        if today.weekday() < self.normal_sample_cutoff_day_index:
+            if today.weekday() > self.alternate_sample_cutoff_day_index:
+                delivery_day_index_to_use = self.normal_sample_delivery_day_index
+            elif today.weekday() == self.alternate_sample_cutoff_day_index:
+                if today.hour > self.sample_cutoff_hour_index:
+                    delivery_day_index_to_use = self.normal_sample_delivery_day_index
+                else:
+                    delivery_day_index_to_use = self.alternate_sample_delivery_day_index
+            else:
+                delivery_day_index_to_use = self.alternate_sample_delivery_day_index
+        elif today.weekday() == self.normal_sample_cutoff_day_index:
+            if today.hour < self.sample_cutoff_hour_index:
+                delivery_day_index_to_use = self.normal_sample_delivery_day_index
+            else:
+                delivery_day_index_to_use = self.alternate_sample_delivery_day_index
+        else:
+            delivery_day_index_to_use = self.alternate_sample_delivery_day_index
+
+        days_until_delivery_day = delivery_day_index_to_use - today.weekday()
+        if days_until_delivery_day <= 0:
+            days_until_delivery_day += 7
+
         current_week_delivery_date = datetime(
             year=today.year,
             month=today.month,

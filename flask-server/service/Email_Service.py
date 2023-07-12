@@ -3,16 +3,14 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from datetime import datetime
-from typing import TYPE_CHECKING
 from domain.Client_Domain import Client_Domain
 from domain.Dietitian_Domain import Dietitian_Domain
-from typing import Optional
-from models import env
 from flask import request
+from typing import TYPE_CHECKING
+from typing import Optional
 
 if TYPE_CHECKING:
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
-    from service.Date_Service import Date_Service
     from domain.Extended_Meal_Subscription_Invoice_Domain import (
         Extended_Meal_Subscription_Invoice_Domain,
     )
@@ -25,9 +23,10 @@ if TYPE_CHECKING:
 
 class Email_Service(object):
     def __init__(
-        self, host_url, gcp_secret_manager_service: "GCP_Secret_Manager_Service"
+        self, gcp_secret_manager_service: "GCP_Secret_Manager_Service"
     ) -> None:
-        self.host = host_url
+        self.host = request.host
+        self.scheme = request.scheme
         self.theme_color = "#ffa40c"
         self.logo_url = (
             "https://storage.googleapis.com/chera_logo/chera_logo_300x300.png"
@@ -37,7 +36,6 @@ class Email_Service(object):
             "MAILGUN_PASSWORD"
         )
         self.template_email_file = Path(".", "email_templates", "template.html")
-        self.env = env
 
     def send_fnce_lead_email(self, fnce_lead: "FNCE_Lead_Domain") -> None:
         # creates SMTP
@@ -234,7 +232,7 @@ class Email_Service(object):
         cutoff_date: datetime = None,
         tracking_url: str = None,
     ) -> None:
-        delivery_instructions = "Look for a plain white box, 1 foot tall."
+        delivery_instructions = "Look for a plain white box, about 1 ft tall."
         email_file_name = Path(".").joinpath(
             "email_templates", user_type.lower(), "sign_up_confirmation.html"
         )
@@ -266,7 +264,10 @@ class Email_Service(object):
         message["To"] = email
 
         # The subject line
-        message["Subject"] = "Welcome to Chera - Your First Delivery is on the Way!"
+        if user_type == "Client":
+            message["Subject"] = "Welcome to Chera - Your First Delivery is on the Way!"
+        else:
+            message["Subject"] = "Welcome to Chera"
         message.attach(MIMEText(complete_email, "html"))
         s = smtplib.SMTP("smtp.mailgun.org", 587)
 
@@ -338,9 +339,7 @@ class Email_Service(object):
             s.quit()
 
     def send_sign_up_email(self, staged_client: "Staged_Client_Domain") -> None:
-        self.host = request.host
-        scheme = request.scheme
-        button_url = f"{scheme}://{self.host}/client_sign_up/{staged_client.id}"
+        button_url = f"{self.scheme}://{self.host}/client_sign_up/{staged_client.id}"
         if staged_client.meals_prepaid:
             email_template_name = "sign_up_prepaid_meals.html"
         else:
@@ -389,15 +388,54 @@ class Email_Service(object):
         s.sendmail(message["From"], message["To"], message.as_string())
         s.quit()
 
+    def send_sample_order_confirmation_email(
+        self,
+        dietitian: Dietitian_Domain,
+        delivery_date: datetime,
+        tracking_url: str,
+        meal_sample_names: list[str],
+    ) -> None:
+        delivery_instructions = "Look for a plain white box, about 6 in. tall."
+        email_file_name = Path(".").joinpath(
+            "email_templates", "dietitian", "meal_sample_confirmation.html"
+        )
+        mail_content = email_file_name.read_text().format(
+            delivery_instructions=delivery_instructions,
+            delivery_day=delivery_date.strftime("%A"),
+            delivery_month=delivery_date.strftime("%B"),
+            delivery_date=delivery_date.day,
+            tracking_url=tracking_url,
+            first_meal_sample_name=meal_sample_names[0],
+            second_meal_sample_name=meal_sample_names[1],
+        )
+
+        complete_email = self.template_email_file.read_text().format(
+            logo_url=self.logo_url,
+            first_name=dietitian.first_name.capitalize(),
+            content=mail_content,
+        )
+        # The body and the attachments for the mail
+        sender_address = "Chera@support.cherahealth.com"
+        email = dietitian.id
+
+        # Setup the MIME
+        message = MIMEMultipart()
+        message["From"] = sender_address
+        message["To"] = email
+
+        # The subject line
+        message["Subject"] = "Your Samples are on the Way!"
+        message.attach(MIMEText(complete_email, "html"))
+        s = smtplib.SMTP("smtp.mailgun.org", 587)
+
+        s.login(self.mailgun_domain, self.mailgun_password)
+        s.sendmail(message["From"], message["To"], message.as_string())
+        s.quit()
+
     def send_sign_up_reminder_email(
         self, staged_client: "Staged_Client_Domain"
     ) -> None:
-        if self.env == "debug":
-            button_url = f"https://cherahealth.com"
-        else:
-            button_url = (
-                f"{self.host}/client-sign-up?staged_client_id={staged_client.id}"
-            )
+        button_url = f"{self.scheme}://{self.host}/client_sign_up/{staged_client.id}"
         sign_up_button = (
             Path(".")
             .joinpath("email_templates", "round_button.html")
@@ -433,70 +471,6 @@ class Email_Service(object):
             message["Subject"] = "Reminder - Claim Your Prepaid First Week of Meals"
         else:
             message["Subject"] = "Reminder - Create Your Chera Account"
-        # The body and the attachments for the mail
-        message.attach(MIMEText(complete_email, "html"))
-        s = smtplib.SMTP("smtp.mailgun.org", 587)
-        # this password was generated ay the domain settings page on mailgun. its a really shitty confusing service.
-        s.login(self.mailgun_domain, self.mailgun_password)
-        s.sendmail(message["From"], message["To"], message.as_string())
-        s.quit()
-
-    def send_password_reset_email(
-        self,
-        user: Client_Domain | Dietitian_Domain,
-        domain: str,
-        gcp_secret_manager_service: "GCP_Secret_Manager_Service",
-    ) -> None:
-        import jwt
-        from time import time
-        import os
-
-        # Create an encrypted expiration timestamp using 30 minutes from now
-        expires_in = 30 * 60
-        pwd_token = jwt.encode(
-            {"reset_password": user.id, "exp": time() + expires_in},
-            os.environ.get(
-                "JWT_SECRET", gcp_secret_manager_service.get_secret("JWT_SECRET")
-            ),
-            algorithm="HS256",
-        )
-        # Append the expiration timestamp to the reset link
-        if self.env == "debug":
-            button_url = f"https://cherahealth.com"
-        else:
-            button_url = f"{self.host}/reset-{domain}-password?{domain}_id={user.id}&reset_password_token={pwd_token.decode('utf-8')}"
-        reset_password_button = (
-            Path(".")
-            .joinpath("email_templates", "round_button.html")
-            .read_text()
-            .format(button_url=button_url, button_text="Reset password")
-        )
-        mail_content = (
-            Path(".")
-            .joinpath("email_templates", "password_reset_request.html")
-            .read_text()
-            .format(
-                reset_password_button=reset_password_button,
-                user_email=user.id,
-            )
-        )
-        complete_email = self.template_email_file.read_text().format(
-            logo_url=self.logo_url,
-            first_name=user.first_name.capitalize(),
-            content=mail_content,
-        )
-
-        sender_address = "Chera@support.cherahealth.com"
-        email = user.id
-
-        # Setup the MIME
-        message = MIMEMultipart()
-        message["From"] = sender_address
-        message["To"] = email
-
-        # The subject line
-        message["Subject"] = "Reset Your Chera Password"
-
         # The body and the attachments for the mail
         message.attach(MIMEText(complete_email, "html"))
         s = smtplib.SMTP("smtp.mailgun.org", 587)

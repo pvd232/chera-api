@@ -17,6 +17,12 @@ class Meal_Service(object):
         ]
         return meal_domains
 
+    def get_meal_samples(self) -> list[Meal_Domain]:
+        meal_domains = [
+            Meal_Domain(meal_object=x) for x in self.meal_repository.get_meal_samples()
+        ]
+        return meal_domains
+
     def get_meal(self, meal_id: UUID) -> Optional[Meal_Domain]:
         requested_meal_domain = self.meal_repository.get_meal(meal_id=meal_id)
         if requested_meal_domain:

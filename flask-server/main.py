@@ -505,7 +505,7 @@ def sign_up_email() -> Response:
 
     staged_client = Staged_Client_DTO(staged_client_json=json.loads(request.data))
     Email_Service(
-        host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+        gcp_secret_manager_service=GCP_Secret_Manager_Service()
     ).send_sign_up_email(staged_client=staged_client)
     return Response(status=200)
 
@@ -524,7 +524,7 @@ def sign_up_email_confirmation_client() -> Response:
     delivery_date = local_dt
     cutoff_date = local_dt
     Email_Service(
-        host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+        gcp_secret_manager_service=GCP_Secret_Manager_Service()
     ).send_confirmation_email(
         user_type="Client",
         user=staged_client,
@@ -540,7 +540,6 @@ def sign_up_email_confirmation_dietitian() -> Response:
     from dto.Dietitian_DTO import Dietitian_DTO
     from service.Email_Service import Email_Service
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
-    from service.Date_Service import Date_Service
     from tzlocal import get_localzone
 
     dietitian = Dietitian_DTO(
@@ -553,7 +552,7 @@ def sign_up_email_confirmation_dietitian() -> Response:
     delivery_date = local_dt
     cutoff_date = local_dt
     Email_Service(
-        host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+        gcp_secret_manager_service=GCP_Secret_Manager_Service()
     ).send_confirmation_email(
         user_type="Dietitian",
         user=dietitian,
@@ -573,7 +572,7 @@ def sign_up_email_reminder() -> Response:
     staged_client = Staged_Client_DTO(staged_client_json=json.loads(request.data))
 
     Email_Service(
-        host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+        gcp_secret_manager_service=GCP_Secret_Manager_Service()
     ).send_sign_up_reminder_email(staged_client=staged_client)
     return Response(status=200)
 
@@ -587,7 +586,7 @@ def password_reset_email() -> Response:
     staged_client = Staged_Client_DTO(staged_client_json=json.loads(request.data))
 
     Email_Service(
-        host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+        gcp_secret_manager_service=GCP_Secret_Manager_Service()
     ).send_password_reset_email(
         user=staged_client,
         domain="Client",
@@ -636,7 +635,6 @@ def recruiting_email() -> Response:
     if not testing:
         for candidate in candidate_list:
             Email_Service(
-                host_url=host_url,
                 gcp_secret_manager_service=GCP_Secret_Manager_Service(),
             ).send_recruiting_email(
                 first_name=candidate["first_name"],
@@ -648,7 +646,7 @@ def recruiting_email() -> Response:
             )
     else:
         Email_Service(
-            host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+            gcp_secret_manager_service=GCP_Secret_Manager_Service()
         ).send_recruiting_email(
             first_name=candidate_list[0]["first_name"],
             email=candidate_list[0]["email"],
@@ -692,7 +690,6 @@ def pause_recruiting_email() -> Response:
     if not testing:
         for candidate in candidate_list:
             Email_Service(
-                host_url=host_url,
                 gcp_secret_manager_service=GCP_Secret_Manager_Service(),
             ).send_pause_recruiting_email(
                 first_name=candidate["first_name"],
@@ -701,7 +698,7 @@ def pause_recruiting_email() -> Response:
             )
     else:
         Email_Service(
-            host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+            gcp_secret_manager_service=GCP_Secret_Manager_Service()
         ).send_pause_recruiting_email(
             first_name=candidate_list[0]["first_name"],
             email=candidate_list[0]["email"],
@@ -743,7 +740,6 @@ def hiring_status_update() -> Response:
     if not testing:
         for candidate in candidate_list:
             Email_Service(
-                host_url=host_url,
                 gcp_secret_manager_service=GCP_Secret_Manager_Service(),
             ).send_hiring_status_update_email(
                 first_name=candidate["first_name"],
@@ -752,7 +748,7 @@ def hiring_status_update() -> Response:
             )
     else:
         Email_Service(
-            host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+            gcp_secret_manager_service=GCP_Secret_Manager_Service()
         ).send_hiring_status_update_email(
             first_name=candidate_list[0]["first_name"],
             email=candidate_list[0]["email"],
@@ -796,7 +792,6 @@ def offer_notification() -> Response:
     if not testing:
         for candidate in candidate_list:
             Email_Service(
-                host_url=host_url,
                 gcp_secret_manager_service=GCP_Secret_Manager_Service(),
             ).send_offer_notification_email(
                 first_name=candidate["first_name"],
@@ -806,7 +801,6 @@ def offer_notification() -> Response:
             )
     else:
         Email_Service(
-            host_url=host_url,
             gcp_secret_manager_service=GCP_Secret_Manager_Service(),
         ).send_offer_notification_email(
             first_name=candidate["first_name"],
@@ -1093,7 +1087,7 @@ def email_webhook(email_number: int) -> Response:
 
         first_week_email_datetime = Date_Service().get_first_email_datetime()
         Email_Service(
-            host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+            gcp_secret_manager_service=GCP_Secret_Manager_Service()
         ).send_upcoming_deliveries_email(
             delivery_date=datetime.utcfromtimestamp(current_week_delivery_date).replace(
                 tzinfo=timezone.utc
@@ -1396,18 +1390,24 @@ def send_reminder() -> Response:
         staged_client_repository=Staged_Client_Repository(db=db)
     ).get_staged_client(staged_client_id=staged_client_id)
     Email_Service(
-        host_url=host_url, gcp_secret_manager_service=GCP_Secret_Manager_Service()
+        gcp_secret_manager_service=GCP_Secret_Manager_Service()
     ).send_sign_up_reminder_email(staged_client=staged_client)
     return Response(status=204)
 
 
 @app.route("/api/dietitian", methods=["POST"])
 def dietitian() -> Response | Response:
+    from repository.Meal_Repository import Meal_Repository
+    from repository.Meal_Sample_Repository import Meal_Sample_Repository
     from service.Dietitian_Service import Dietitian_Service
     from service.Email_Service import Email_Service
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+    from service.Meal_Service import Meal_Service
+    from service.Meal_Sample_Service import Meal_Sample_Service
+    from service.Shippo_Service import Shippo_Service
     from repository.Dietitian_Repository import Dietitian_Repository
     from dto.Dietitian_DTO import Dietitian_DTO
+    from dto.Meal_Sample_DTO import Meal_Sample_DTO
 
     if request.method == "POST":
         requested_dietitian = json.loads(request.data)
@@ -1419,11 +1419,29 @@ def dietitian() -> Response | Response:
             dietitian_repository=Dietitian_Repository(db=db)
         ).create_dietitian(dietitian_dto=requested_dietitian_dto)
         Email_Service(
-            host_url=host_url,
             gcp_secret_manager_service=GCP_Secret_Manager_Service(),
         ).send_confirmation_email(user_type="Dietitian", user=created_dietitian_domain)
+        if created_dietitian_domain.got_sample:
+            # shipping_address =
+            dietitian_meal_sample_dtos = []
+            meal_samples = Meal_Service(
+                meal_repository=Meal_Repository(db=db)
+            ).get_meal_samples()
+            for meal in meal_samples:
+                meal_sample_json = {
+                    "id": uuid.uuid4(),
+                    "meal_id": meal.id,
+                    "dietitian_id": created_dietitian_domain.id,
+                }
+                dietitian_meal_sample_dto = Meal_Sample_DTO(
+                    meal_sample_json=meal_sample_json
+                )
+                dietitian_meal_sample_dtos.append(dietitian_meal_sample_dto)
+            Meal_Sample_Service(
+                meal_sample_repository=Meal_Sample_Repository(db=db)
+            ).create_meal_samples(meal_sample_dtos=dietitian_meal_sample_dtos)
+
         Email_Service(
-            host_url=host_url,
             gcp_secret_manager_service=GCP_Secret_Manager_Service(),
         ).send_new_user_sign_up_notification(
             first_name="Peter",
@@ -1441,6 +1459,83 @@ def dietitian() -> Response | Response:
         return jsonify(serialized_dietitian_dto), 201
     else:
         return Response(status=405)
+
+
+@app.route("/api/shippo/meal_sample_shipment", methods=["POST"])
+def create_meal_sample_shipment() -> Response:
+    from repository.Meal_Repository import Meal_Repository
+    from repository.Meal_Sample_Shipment_Repository import (
+        Meal_Sample_Shipment_Repository,
+    )
+    from service.Meal_Service import Meal_Service
+    from service.Meal_Sample_Shipment_Service import Meal_Sample_Shipment_Service
+    from service.Email_Service import Email_Service
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+    from service.Date_Service import Date_Service
+    from service.Shippo_Service import Shippo_Service
+    from dto.Dietitian_DTO import Dietitian_DTO
+
+    request_data = json.loads(request.data)
+    dietitian = Dietitian_DTO(
+        gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+        dietitian_json=request_data["dietitian"],
+    )
+    shipping_address = request_data["shipping_address"]
+    Shippo_Service().create_sample_shipment(
+        dietitian=dietitian,
+        shipping_address=shipping_address,
+        meal_sample_shipment_repository=Meal_Sample_Shipment_Repository(db=db),
+    )
+    return Response(status=200)
+
+
+@app.route("/api/email/meal_sample", methods=["POST"])
+def sample_order_confirmation() -> Response:
+    from repository.Meal_Repository import Meal_Repository
+    from repository.Meal_Sample_Shipment_Repository import (
+        Meal_Sample_Shipment_Repository,
+    )
+    from service.Meal_Service import Meal_Service
+    from service.Meal_Sample_Shipment_Service import Meal_Sample_Shipment_Service
+    from service.Email_Service import Email_Service
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+    from service.Date_Service import Date_Service
+    from dto.Dietitian_DTO import Dietitian_DTO
+    from tzlocal import get_localzone
+
+    dietitian = Dietitian_DTO(
+        gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+        dietitian_json=json.loads(request.data),
+    )
+    meal_samples = Meal_Service(
+        meal_repository=Meal_Repository(db=db)
+    ).get_meal_samples()
+    meal_sample_names = [meal_sample.name for meal_sample in meal_samples]
+
+    meal_sample_delivery_date_timestamp = (
+        Date_Service().get_current_week_sample_delivery_date(
+        today = datetime.now(timezone.utc)            
+        )
+    )
+    meal_sample_delivery_date = datetime.utcfromtimestamp(
+        meal_sample_delivery_date_timestamp
+    ).replace(tzinfo=timezone.utc)
+    local_tz = get_localzone()
+    local_dt = meal_sample_delivery_date.astimezone(local_tz)
+
+    meal_sample_shipment = Meal_Sample_Shipment_Service(
+        meal_sample_shipment_repository=Meal_Sample_Shipment_Repository(db=db)
+    ).get_meal_sample_shipment(dietitian_id=dietitian.id)
+
+    Email_Service(
+        gcp_secret_manager_service=GCP_Secret_Manager_Service()
+    ).send_sample_order_confirmation_email(
+        dietitian=dietitian,
+        delivery_date=local_dt,
+        tracking_url=meal_sample_shipment.tracking_url,
+        meal_sample_names=meal_sample_names,
+    )
+    return Response(status=200)
 
 
 @app.route("/api/dietitian/<string:dietitian_id>", methods=["GET"])
@@ -1550,7 +1645,6 @@ def dietitian_password() -> Response:
         ).get_dietitian(dietitian_id=dietitian_id)
         if requested_dietitian:
             Email_Service(
-                host_url=host_url,
                 gcp_secret_manager_service=GCP_Secret_Manager_Service(),
             ).send_password_reset_email(user=requested_dietitian, domain="Dietitian")
             return Response(status=204)
@@ -1592,7 +1686,6 @@ def client_password() -> Response:
         ).get_client(client_id=client_id)
         if requested_client:
             Email_Service(
-                host_url=host_url,
                 gcp_secret_manager_service=GCP_Secret_Manager_Service(),
             ).send_password_reset_email(user=requested_client, domain="Client")
             return Response(status=204)
@@ -1704,7 +1797,6 @@ def client() -> Response:
             ).create_client(client_dto=requested_client_dto)
 
         Email_Service(
-            host_url=host_url,
             gcp_secret_manager_service=GCP_Secret_Manager_Service(),
         ).send_new_user_sign_up_notification(
             first_name="Peter",
@@ -1938,11 +2030,9 @@ def staged_client(staged_client_id: Optional[str]) -> Response:
             staged_client_repository=Staged_Client_Repository(db=db)
         ).create_staged_client(staged_client_dto=staged_client_dto)
         Email_Service(
-            host_url=host_url,
             gcp_secret_manager_service=GCP_Secret_Manager_Service(),
         ).send_sign_up_email(staged_client=new_staged_client_domain)
         Email_Service(
-            host_url=host_url,
             gcp_secret_manager_service=GCP_Secret_Manager_Service(),
         ).send_new_user_sign_up_notification(
             first_name="Peter",
@@ -3698,7 +3788,6 @@ def meal_subscription_invoice() -> Response:
         )
         # Send client confirmation email after creating shipment so as to include the tracking number
         Email_Service(
-            host_url=host_url,
             gcp_secret_manager_service=GCP_Secret_Manager_Service(),
         ).send_confirmation_email(
             user_type="Client",
