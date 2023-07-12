@@ -16,6 +16,7 @@ from authlib.integrations.flask_client import OAuth
 
 if TYPE_CHECKING:
     from domain.COGS_Domain import COGS_Domain
+    from domain.Eating_Disorder_Domain import Eating_Disorder_Domain
     from domain.Dietary_Restriction_Domain import Dietary_Restriction_Domain
     from domain.USDA_Ingredient_Domain import USDA_Ingredient_Domain
     from domain.Meal_Plan_Domain import Meal_Plan_Domain
@@ -203,11 +204,24 @@ class Client_Model(db.Model):
         self.datetime = client_domain.datetime
         self.active = client_domain.active
 
+    def update_client_address(self, client_domain: "Client_Domain") -> None:
+        self.suite = client_domain.suite
+        self.street = client_domain.street
+        self.city = client_domain.city
+        self.state = client_domain.state
+        self.zipcode = client_domain.zipcode
+        self.zipcode_extension = client_domain.zipcode_extension
+        self.address = client_domain.address
 
-# class Eating_Disorder_Model(db.Model):
-#     __table_name__ = "eating_disorder"
-
-
+class Eating_Disorder_Model(db.Model):
+    __tablename__ = "eating_disorder"
+    id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
+    name = db.Column(db.String(80), nullable=False)
+    
+    def __init__(self, eating_disorder_domain: "Eating_Disorder_Domain") -> None:
+        self.id = eating_disorder_domain.id
+        self.name = eating_disorder_domain.name
+    
 class COGS_Model(db.Model):
     __tablename__ = "cogs"
     num_meals = db.Column(db.Integer(), primary_key=True, nullable=False)
@@ -241,33 +255,49 @@ class Staged_Client_Model(db.Model):
     meal_plan_id = db.Column(
         UUID(as_uuid=True), db.ForeignKey("meal_plan.id"), nullable=False
     )
+    eating_disorder_id = db.Column(
+        UUID(as_uuid=True), db.ForeignKey("eating_disorder.id"), nullable=False
+    )
+    # personal information
     first_name = db.Column(db.String(80), nullable=False)
+    current_weight = db.Column(db.Integer(), nullable=False)
+    target_weight = db.Column(db.Integer(), nullable=False)
+    age = db.Column(db.Integer(), nullable=False)
+    gender = db.Column(db.Integer(), nullable=False)
+    target_weight = db.Column(db.Float(), nullable=False)
     notes = db.Column(db.String(500), default="")
+    # account information
     datetime = db.Column(db.Float(), nullable=False)
     account_created = db.Column(db.Boolean(), default=True, nullable=False)
     active = db.Column(db.Boolean(), default=True, nullable=False)
     waitlisted = db.Column(db.Boolean(), default=False, nullable=False)
-    # current_weight = db.Column(db.Float(), nullable=False)
-    # target_weight = db.Column(db.Float(), nullable=False)
-    # eating_disorder_id = db.Column(db.String(80), nullable=False)
     meals_pre_selected = db.Column(db.Boolean(), default=False, nullable=False)
     meals_prepaid = db.Column(db.Boolean(), default=False, nullable=False)
-
+    
+    # relationships
     meal_plan = relationship("Meal_Plan_Model", lazy="joined")
-
+    eating_disorder = relationship("Eating_Disorder_Model", lazy="joined")
+    
+    
     def __init__(self, staged_client_domain: "Staged_Client_Domain") -> None:
         self.id = staged_client_domain.id
+        # personal information
         self.first_name = staged_client_domain.first_name
+        self.current_weight = staged_client_domain.current_weight
+        self.target_weight = staged_client_domain.target_weight
+        self.age = staged_client_domain.age
+        self.gender = staged_client_domain.gender
+        self.notes = staged_client_domain.notes
+        self.eating_disorder_id = staged_client_domain.eating_disorder_id
+        # Account information
         self.dietitian_id = staged_client_domain.dietitian_id
         self.meal_plan_id = staged_client_domain.meal_plan_id
-        self.notes = staged_client_domain.notes
         self.datetime = staged_client_domain.datetime
         self.account_created = staged_client_domain.account_created
         self.active = staged_client_domain.active
         self.waitlisted = staged_client_domain.waitlisted
         self.meals_pre_selected = staged_client_domain.meals_pre_selected
         self.meals_prepaid = staged_client_domain.meals_prepaid
-
 
 class Dietitian_Model(db.Model):
     __tablename__ = "dietitian"

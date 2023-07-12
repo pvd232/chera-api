@@ -170,6 +170,7 @@ def callback():
     )
     return redirect(redirect_signup_url)
 
+
 @app.route("/api/clear_tables")
 def clear_table() -> Response:
     from helpers.check_auth import check_auth
@@ -381,8 +382,10 @@ def continuity_initialize() -> Response:
     from helpers.db.create_state_tax_rates import create_state_tax_rates
     from helpers.check_auth import check_auth
     from helpers.db.create_cogs import create_cogs
+    from helpers.db.create_eating_disorder import create_eating_disorder
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
 
+    # import repository
     from repository.Continuity_Repository import Continuity_Repository
     from repository.Discount_Repository import Discount_Repository
     from repository.Imperial_Unit_Repository import Imperial_Unit_Repository
@@ -437,6 +440,7 @@ def continuity_initialize() -> Response:
     # )
     create_state_tax_rates(db=db)
     create_cogs(db=db)
+    create_eating_disorder(db=db)
     Continuity_Repository().initialize_meal_data(
         imperial_unit_repository=Imperial_Unit_Repository(engine=db_engine),
         nutrient_repository=Nutrient_Repository(engine=db_engine),
@@ -3445,6 +3449,25 @@ def cogs() -> Response:
         return Response(status=405)
 
 
+@app.route("/api/eating_disorder", methods=["GET"])
+def eating_disorder() -> Response:
+    from repository.Eating_Disorder_Repository import Eating_Disorder_Repository
+    from service.Eating_Disorder_Service import Eating_Disorder_Service
+    from dto.Eating_Disorder_DTO import Eating_Disorder_DTO
+
+    if request.method == "GET":
+        eating_disorder_list = Eating_Disorder_Service(
+            eating_disorder_repository=Eating_Disorder_Repository(db=db)
+        ).get_eating_disorders()
+        eating_disorder_dtos = [
+            Eating_Disorder_DTO(eating_disorder_domain=x) for x in eating_disorder_list
+        ]
+        serialized_eating_disorder = [x.serialize() for x in eating_disorder_dtos]
+        return jsonify(serialized_eating_disorder), 200
+    else:
+        return Response(status=405)
+
+
 @app.route("/api/shippo/shipping_rate", methods=["GET"])
 def shipping_cost() -> Response:
     from service.Shippo_Service import Shippo_Service
@@ -3758,14 +3781,65 @@ def verify_discount() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/stripe/payment_method/<string:client_stripe_id>", methods=["POST"])
+@app.route("/api/stripe/payment_method/<string:client_stripe_id>", methods=["GET"])
 def stripe_payment_methods(client_stripe_id: str) -> Response:
     from service.Stripe_Service import Stripe_Service
 
     payment_methods = Stripe_Service().get_payment_methods(
         client_stripe_id=client_stripe_id
     )
-    return Response(status=201)
+    return jsonify(payment_methods.data[0].card.last4), 200
+    # return Response(status=201)
+
+
+@app.route(
+    "/api/stripe/update_payment_method/<string:customer_id>/<string:subscription_id>/<string:payment_method>",
+    methods=["POST"],
+)
+def update_subscription_card(customer_id, subscription_id, payment_method):
+    try:
+        stripe.PaymentMethod.attach(
+            payment_method,
+            customer=customer_id,
+        )
+
+        stripe.Customer.modify(
+            customer_id,
+            invoice_settings={"default_payment_method": payment_method},
+        )
+
+        stripe.Subscription.modify(
+            subscription_id,
+            default_payment_method=payment_method,
+        )
+
+        return jsonify("Card updated successfully"), 200
+    except stripe.error.StripeError as e:
+        print(e)
+        error_message = e.user_message or str(e)
+        return jsonify({"success": False, "error": error_message}), 400
+
+
+@app.route(
+    "/api/stripe/get_subscription_details/<string:subscription_id>/", methods=["GET"]
+)
+def get_subscription_details(subscription_id):
+    try:
+        subscription = stripe.Subscription.retrieve(subscription_id)
+        return jsonify(subscription), 200
+    except stripe.error.StripeError as e:
+        error_message = e.user_message or str(e)
+        return False, error_message
+
+
+@app.route("/api/stripe/get_customer_details/<string:customer_id>/", methods=["GET"])
+def get_customer_details(customer_id):
+    try:
+        customer = stripe.Customer.retrieve(customer_id)
+        return jsonify(customer), 200
+    except stripe.error.StripeError as e:
+        error_message = e.user_message or str(e)
+        return False, error_message
 
 
 @app.route("/api/stripe/payment_intent", methods=["POST"])
@@ -3825,6 +3899,24 @@ def create_stripe_payment_intent() -> Response:
         )
 
         return jsonify(stripe_secret), 200
+    else:
+        return Response(status=405)
+
+
+@app.route("/api/client/update_address", methods=["PUT"])
+def update_client_address() -> Response:
+    from service.Client_Service import Client_Service
+    from repository.Client_Repository import Client_Repository
+    from domain.Client_Domain import Client_Domain
+    from dto.Client_DTO import Client_DTO
+
+    if request.method == "PUT":
+        client_dto: Client_DTO = Client_DTO(client_json=json.loads(request.data))
+        Client_Service(
+            client_repository=Client_Repository(db=db)
+        ).update_client_address(client_dto=client_dto)
+        return Response(status=201)
+
     else:
         return Response(status=405)
 
