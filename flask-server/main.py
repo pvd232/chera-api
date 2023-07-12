@@ -1363,6 +1363,7 @@ def stripe_webhook() -> Response:
 
 
 @app.route("/api/delivery_date", methods=["GET"])
+@requires_auth
 def delivery_date() -> None:
     from service.Date_Service import Date_Service
     from flask import jsonify
@@ -2208,6 +2209,7 @@ def recipe_ingredient_nutrient() -> Response:
 
 
 @app.route("/api/extended_meal", methods=["GET"])
+@requires_auth
 def extended_meal() -> Response:
     from service.Extended_Meal_Service import Extended_Meal_Service
     from repository.Meal_Repository import Meal_Repository
@@ -2550,6 +2552,7 @@ def scheduled_order_meal() -> Response:
 
 
 @app.route("/api/extended_schedule_meal", methods=["GET"])
+@requires_auth
 def extended_schedule_meal() -> Response:
     from service.Extended_Schedule_Meal_Service import Extended_Schedule_Meal_Service
     from service.Client_Service import Client_Service
@@ -2740,6 +2743,7 @@ def staged_schedule_meal() -> Response:
 # ---> Snacks <--- #
 @app.route("/api/snack/<string:snack_id>", methods=["DELETE"])
 @app.route("/api/snack", defaults={"snack_id": None}, methods=["GET", "POST"])
+@requires_auth
 def snack(snack_id: Optional[str]) -> Response:
     from repository.Snack_Repository import Snack_Repository
     from service.Snack_Service import Snack_Service
@@ -3335,6 +3339,7 @@ def specific_meal_subscription(meal_subscription_id: str) -> Response:
 
 
 @app.route("/api/meal_subscription", methods=["POST", "GET"])
+@requires_auth
 def meal_subscription() -> Response:
     from repository.Meal_Subscription_Repository import Meal_Subscription_Repository
     from service.Meal_Subscription_Service import Meal_Subscription_Service
@@ -3413,6 +3418,7 @@ def meal_subscription() -> Response:
 
 
 @app.route("/api/meal_plan", methods=["GET"])
+@requires_auth
 def meal_plan() -> Response:
     from service.Meal_Plan_Service import Meal_Plan_Service
     from repository.Meal_Plan_Repository import Meal_Plan_Repository
