@@ -540,7 +540,6 @@ def sign_up_email_confirmation_dietitian() -> Response:
     from dto.Dietitian_DTO import Dietitian_DTO
     from service.Email_Service import Email_Service
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
-    from service.Date_Service import Date_Service
     from tzlocal import get_localzone
 
     dietitian = Dietitian_DTO(
@@ -1398,11 +1397,17 @@ def send_reminder() -> Response:
 
 @app.route("/api/dietitian", methods=["POST"])
 def dietitian() -> Response | Response:
+    from repository.Meal_Repository import Meal_Repository
+    from repository.Meal_Sample_Repository import Meal_Sample_Repository
     from service.Dietitian_Service import Dietitian_Service
     from service.Email_Service import Email_Service
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+    from service.Meal_Service import Meal_Service
+    from service.Meal_Sample_Service import Meal_Sample_Service
+    from service.Shippo_Service import Shippo_Service
     from repository.Dietitian_Repository import Dietitian_Repository
     from dto.Dietitian_DTO import Dietitian_DTO
+    from dto.Meal_Sample_DTO import Meal_Sample_DTO
 
     if request.method == "POST":
         requested_dietitian = json.loads(request.data)
@@ -1416,6 +1421,26 @@ def dietitian() -> Response | Response:
         Email_Service(
             gcp_secret_manager_service=GCP_Secret_Manager_Service(),
         ).send_confirmation_email(user_type="Dietitian", user=created_dietitian_domain)
+        if created_dietitian_domain.got_sample:
+            # shipping_address =
+            dietitian_meal_sample_dtos = []
+            meal_samples = Meal_Service(
+                meal_repository=Meal_Repository(db=db)
+            ).get_meal_samples()
+            for meal in meal_samples:
+                meal_sample_json = {
+                    "id": uuid.uuid4(),
+                    "meal_id": meal.id,
+                    "dietitian_id": created_dietitian_domain.id,
+                }
+                dietitian_meal_sample_dto = Meal_Sample_DTO(
+                    meal_sample_json=meal_sample_json
+                )
+                dietitian_meal_sample_dtos.append(dietitian_meal_sample_dto)
+            Meal_Sample_Service(
+                meal_sample_repository=Meal_Sample_Repository(db=db)
+            ).create_meal_samples(meal_sample_dtos=dietitian_meal_sample_dtos)
+
         Email_Service(
             gcp_secret_manager_service=GCP_Secret_Manager_Service(),
         ).send_new_user_sign_up_notification(
@@ -1434,6 +1459,83 @@ def dietitian() -> Response | Response:
         return jsonify(serialized_dietitian_dto), 201
     else:
         return Response(status=405)
+
+
+@app.route("/api/shippo/meal_sample_shipment", methods=["POST"])
+def create_meal_sample_shipment() -> Response:
+    from repository.Meal_Repository import Meal_Repository
+    from repository.Meal_Sample_Shipment_Repository import (
+        Meal_Sample_Shipment_Repository,
+    )
+    from service.Meal_Service import Meal_Service
+    from service.Meal_Sample_Shipment_Service import Meal_Sample_Shipment_Service
+    from service.Email_Service import Email_Service
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+    from service.Date_Service import Date_Service
+    from service.Shippo_Service import Shippo_Service
+    from dto.Dietitian_DTO import Dietitian_DTO
+
+    request_data = json.loads(request.data)
+    dietitian = Dietitian_DTO(
+        gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+        dietitian_json=request_data["dietitian"],
+    )
+    shipping_address = request_data["shipping_address"]
+    Shippo_Service().create_sample_shipment(
+        dietitian=dietitian,
+        shipping_address=shipping_address,
+        meal_sample_shipment_repository=Meal_Sample_Shipment_Repository(db=db),
+    )
+    return Response(status=200)
+
+
+@app.route("/api/email/meal_sample", methods=["POST"])
+def sample_order_confirmation() -> Response:
+    from repository.Meal_Repository import Meal_Repository
+    from repository.Meal_Sample_Shipment_Repository import (
+        Meal_Sample_Shipment_Repository,
+    )
+    from service.Meal_Service import Meal_Service
+    from service.Meal_Sample_Shipment_Service import Meal_Sample_Shipment_Service
+    from service.Email_Service import Email_Service
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+    from service.Date_Service import Date_Service
+    from dto.Dietitian_DTO import Dietitian_DTO
+    from tzlocal import get_localzone
+
+    dietitian = Dietitian_DTO(
+        gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+        dietitian_json=json.loads(request.data),
+    )
+    meal_samples = Meal_Service(
+        meal_repository=Meal_Repository(db=db)
+    ).get_meal_samples()
+    meal_sample_names = [meal_sample.name for meal_sample in meal_samples]
+
+    meal_sample_delivery_date_timestamp = (
+        Date_Service().get_current_week_sample_delivery_date(
+        today = datetime.now(timezone.utc)            
+        )
+    )
+    meal_sample_delivery_date = datetime.utcfromtimestamp(
+        meal_sample_delivery_date_timestamp
+    ).replace(tzinfo=timezone.utc)
+    local_tz = get_localzone()
+    local_dt = meal_sample_delivery_date.astimezone(local_tz)
+
+    meal_sample_shipment = Meal_Sample_Shipment_Service(
+        meal_sample_shipment_repository=Meal_Sample_Shipment_Repository(db=db)
+    ).get_meal_sample_shipment(dietitian_id=dietitian.id)
+
+    Email_Service(
+        gcp_secret_manager_service=GCP_Secret_Manager_Service()
+    ).send_sample_order_confirmation_email(
+        dietitian=dietitian,
+        delivery_date=local_dt,
+        tracking_url=meal_sample_shipment.tracking_url,
+        meal_sample_names=meal_sample_names,
+    )
+    return Response(status=200)
 
 
 @app.route("/api/dietitian/<string:dietitian_id>", methods=["GET"])

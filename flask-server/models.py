@@ -15,6 +15,8 @@ from helpers.db.get_db_connection_string import get_db_connection_string
 from authlib.integrations.flask_client import OAuth
 
 if TYPE_CHECKING:
+    from domain.Meal_Sample_Shipment_Domain import Meal_Sample_Shipment_Domain
+    from domain.Meal_Sample_Domain import Meal_Sample_Domain
     from domain.COGS_Domain import COGS_Domain
     from domain.Eating_Disorder_Domain import Eating_Disorder_Domain
     from domain.Dietary_Restriction_Domain import Dietary_Restriction_Domain
@@ -469,7 +471,7 @@ class Order_Meal_Model(db.Model):
         nullable=False,
     )
     scheduled_order_meal_id = db.Column(
-        UUID(as_uuid=True), db.ForeignKey("scheduled_order_meal.id"), nullable=True
+        UUID(as_uuid=True), db.ForeignKey("scheduled_order_meal.id"), nullable=False
     )
     # Relationships
     scheduled_order_meal = relationship("Scheduled_Order_Meal_Model", lazy="joined")
@@ -478,6 +480,22 @@ class Order_Meal_Model(db.Model):
         self.id = order_meal.id
         self.meal_subscription_invoice_id = order_meal.meal_subscription_invoice_id
         self.scheduled_order_meal_id = order_meal.scheduled_order_meal_id
+
+
+class Meal_Sample_Model(db.Model):
+    __tablename__ = "meal_sample"
+    id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
+    meal_id = db.Column(UUID(as_uuid=True), db.ForeignKey("meal.id"), nullable=False)
+    dietitian_id = db.Column(
+        db.String(80),
+        db.ForeignKey("dietitian.id"),
+        nullable=False,
+    )
+
+    def __init__(self, meal_sample_domain: "Meal_Sample_Domain") -> None:
+        self.id = meal_sample_domain.id
+        self.meal_id = meal_sample_domain.meal_id
+        self.dietitian_id = meal_sample_domain.dietitian_id
 
 
 class Snack_Model(db.Model):
@@ -534,7 +552,7 @@ class Order_Snack_Model(db.Model):
         nullable=False,
     )
     scheduled_order_snack_id = db.Column(
-        UUID(as_uuid=True), db.ForeignKey("scheduled_order_snack.id"), nullable=True
+        UUID(as_uuid=True), db.ForeignKey("scheduled_order_snack.id"), nullable=False
     )
     # Relationships
     scheduled_order_snack = relationship("Scheduled_Order_Snack_Model", lazy="joined")
@@ -543,6 +561,31 @@ class Order_Snack_Model(db.Model):
         self.id = order_snack.id
         self.meal_subscription_invoice_id = order_snack.meal_subscription_invoice_id
         self.scheduled_order_snack_id = order_snack.scheduled_order_snack_id
+
+
+class Meal_Sample_Shipment_Model(db.Model):
+    __tablename__ = "meal_sample_shipment"
+
+    id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
+    dietitian_id = db.Column(
+        db.String(80),
+        db.ForeignKey("dietitian.id"),
+        nullable=False,
+    )
+    shippo_transaction_id = db.Column(db.String(200), nullable=False)
+    label_url = db.Column(db.String(200), nullable=False)
+    tracking_number = db.Column(db.String(200), nullable=False)
+    tracking_url = db.Column(db.String(200), nullable=False)
+
+    def __init__(
+        self, meal_sample_shipment_domain: "Meal_Sample_Shipment_Domain"
+    ) -> None:
+        self.id = meal_sample_shipment_domain.id
+        self.dietitian_id = meal_sample_shipment_domain.dietitian_id
+        self.shippo_transaction_id = meal_sample_shipment_domain.shippo_transaction_id
+        self.label_url = meal_sample_shipment_domain.label_url
+        self.tracking_number = meal_sample_shipment_domain.tracking_number
+        self.tracking_url = meal_sample_shipment_domain.tracking_url
 
 
 class Meal_Shipment_Model(db.Model):

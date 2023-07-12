@@ -2,6 +2,7 @@ from repository.Base_Repository import Base_Repository
 from models import Meal_Model
 from uuid import UUID
 from typing import Optional, TYPE_CHECKING
+from sqlalchemy import or_
 
 if TYPE_CHECKING:
     from domain.Meal_Domain import Meal_Domain
@@ -17,6 +18,19 @@ class Meal_Repository(Base_Repository):
     def get_meals(self) -> Optional[list[Meal_Model]]:
         meals = self.db.session.query(Meal_Model).all()
         return meals
+
+    def get_meal_samples(self) -> Optional[list[Meal_Model]]:
+        meal_samples = (
+            self.db.session.query(Meal_Model)
+            .filter(
+                or_(
+                    Meal_Model.name == "Chicken Pesto Pasta",
+                    Meal_Model.name == "Peanut Noodles with Tofu",
+                )
+            )
+            .all()
+        )
+        return meal_samples
 
     def create_meal(self, meal_domain: "Meal_Domain") -> None:
         new_meal_model = Meal_Model(meal_domain=meal_domain)
