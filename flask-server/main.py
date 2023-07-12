@@ -2,7 +2,15 @@ from uuid import UUID
 import os
 from models import app, db, env, host_url, oauth
 from datetime import datetime, timezone
-from flask import Response, request, jsonify, _request_ctx_stack, url_for, session, redirect
+from flask import (
+    Response,
+    request,
+    jsonify,
+    url_for,
+    session,
+    redirect,
+)
+import flask
 import json
 from werkzeug.exceptions import HTTPException
 from typing import Optional
@@ -10,18 +18,20 @@ import stripe
 import uuid
 
 from functools import wraps
-from six.moves.urllib.request import urlopen
+import six
 from dotenv import load_dotenv
 from jose import jwt
 
 load_dotenv()
 
+
 ######################################################################################
-#Error Handler
+# Error Handler
 class AuthError(Exception):
     def __init__(self, error, status_code):
         self.error = error
         self.status_code = status_code
+
 
 @app.errorhandler(AuthError)
 def handle_auth_error(ex):
@@ -29,44 +39,60 @@ def handle_auth_error(ex):
     response.status_code = ex.status_code
     return response
 
-#Format error response and append status code
+
+# Format error response and append status code
 def get_token_auth_header():
     """
     Obtains the Access Token from the Authorization Header
     """
     auth = request.headers.get("Authorization", None)
     if not auth:
-        raise AuthError({"code": "authorization_header_missing",
-                        "description":
-                            "Authorization header is expected"}, 401)
+        raise AuthError(
+            {
+                "code": "authorization_header_missing",
+                "description": "Authorization header is expected",
+            },
+            401,
+        )
 
     parts = auth.split()
 
     if parts[0].lower() != "bearer":
-        raise AuthError({"code": "invalid_header",
-                        "description":
-                            "Authorization header must start with"
-                            " Bearer"}, 401)
+        raise AuthError(
+            {
+                "code": "invalid_header",
+                "description": "Authorization header must start with" " Bearer",
+            },
+            401,
+        )
     elif len(parts) == 1:
-        raise AuthError({"code": "invalid_header",
-                        "description": "Token not found"}, 401)
+        raise AuthError(
+            {"code": "invalid_header", "description": "Token not found"}, 401
+        )
     elif len(parts) > 2:
-        raise AuthError({"code": "invalid_header",
-                        "description":
-                            "Authorization header must be"
-                            " Bearer token"}, 401)
+        raise AuthError(
+            {
+                "code": "invalid_header",
+                "description": "Authorization header must be" " Bearer token",
+            },
+            401,
+        )
 
     token = parts[1]
     return token
+
 
 def requires_auth(f):
     """
     Determines if the Access Token is valid
     """
+
     @wraps(f)
     def decorated(*args, **kwargs):
         token = get_token_auth_header()
-        jsonurl = urlopen("https://"+os.getenv(AUTH0_DOMAIN)+"/.well-known/jwks.json")
+        jsonurl = six.moves.urllib.request.urlopen(
+            "https://" + os.getenv("AUTH0_DOMAIN") + "/.well-known/jwks.json"
+        )
         jwks = json.loads(jsonurl.read())
         unverified_header = jwt.get_unverified_header(token)
         rsa_key = {}
@@ -77,56 +103,71 @@ def requires_auth(f):
                     "kid": key["kid"],
                     "use": key["use"],
                     "n": key["n"],
-                    "e": key["e"]
+                    "e": key["e"],
                 }
         if rsa_key:
             try:
                 payload = jwt.decode(
                     token,
                     rsa_key,
-                    algorithms=os.getenv(ALGORITHMS),
-                    audience=os.getenv(AUTH0_AUDIENCE),
-                    issuer="https://"+os.getenv(AUTH0_DOMAIN)+"/"
+                    algorithms=os.getenv("ALGORITHMS"),
+                    audience=os.getenv("AUTH0_AUDIENCE"),
+                    issuer="https://" + os.getenv("AUTH0_DOMAIN") + "/",
                 )
             except jwt.ExpiredSignatureError:
-                raise AuthError({"code": "token_expired",
-                                "description": "token is expired"}, 401)
+                raise AuthError(
+                    {"code": "token_expired", "description": "token is expired"}, 401
+                )
             except jwt.JWTClaimsError:
-                raise AuthError({"code": "invalid_claims",
-                                "description":
-                                    "incorrect claims,"
-                                    "please check the audience and issuer"}, 401)
+                raise AuthError(
+                    {
+                        "code": "invalid_claims",
+                        "description": "incorrect claims,"
+                        "please check the audience and issuer",
+                    },
+                    401,
+                )
             except Exception:
-                raise AuthError({"code": "invalid_header",
-                                "description":
-                                    "Unable to parse authentication"
-                                    " token."}, 401)
+                raise AuthError(
+                    {
+                        "code": "invalid_header",
+                        "description": "Unable to parse authentication" " token.",
+                    },
+                    401,
+                )
 
-            _request_ctx_stack.top.current_user = payload
+            flask._request_ctx_stack.top.current_user = payload
             return f(*args, **kwargs)
-        raise AuthError({"code": "invalid_header",
-                        "description": "Unable to find appropriate key"}, 401)
+        raise AuthError(
+            {"code": "invalid_header", "description": "Unable to find appropriate key"},
+            401,
+        )
+
     return decorated
 
 
 ######################################################################################
 
+
 @app.route("/client_sign_up/<string:staged_client_id>")
 def client_signup(staged_client_id: str):
     return oauth.auth0.authorize_redirect(
         redirect_uri=url_for("callback", _external=True),
-        audience=os.getenv("AUTH0_AUDIENCE"), 
+        audience=os.getenv("AUTH0_AUDIENCE"),
         screen_hint="signup",
         response_type="code",
-        state=staged_client_id
+        state=staged_client_id,
     )
+
 
 @app.route("/callback", methods=["GET", "POST"])
 def callback():
     staged_client_id = request.args.get("state")
     token = oauth.auth0.authorize_access_token()
     session["user"] = token
-    redirect_signup_url = f"{host_url}/client-sign-up?staged_client_id={staged_client_id}"
+    redirect_signup_url = (
+        f"{host_url}/client-sign-up?staged_client_id={staged_client_id}"
+    )
     return redirect(redirect_signup_url)
 
 @app.route("/api/clear_tables")
@@ -1324,6 +1365,7 @@ def stripe_webhook() -> Response:
 
 
 @app.route("/api/delivery_date", methods=["GET"])
+@requires_auth
 def delivery_date() -> None:
     from service.Date_Service import Date_Service
     from flask import jsonify
@@ -2073,6 +2115,7 @@ def recipe_ingredient_nutrient() -> Response:
 
 
 @app.route("/api/extended_meal", methods=["GET"])
+@requires_auth
 def extended_meal() -> Response:
     from service.Extended_Meal_Service import Extended_Meal_Service
     from repository.Meal_Repository import Meal_Repository
@@ -2415,6 +2458,7 @@ def scheduled_order_meal() -> Response:
 
 
 @app.route("/api/extended_schedule_meal", methods=["GET"])
+@requires_auth
 def extended_schedule_meal() -> Response:
     from service.Extended_Schedule_Meal_Service import Extended_Schedule_Meal_Service
     from service.Client_Service import Client_Service
@@ -2605,6 +2649,7 @@ def staged_schedule_meal() -> Response:
 # ---> Snacks <--- #
 @app.route("/api/snack/<string:snack_id>", methods=["DELETE"])
 @app.route("/api/snack", defaults={"snack_id": None}, methods=["GET", "POST"])
+@requires_auth
 def snack(snack_id: Optional[str]) -> Response:
     from repository.Snack_Repository import Snack_Repository
     from service.Snack_Service import Snack_Service
@@ -3200,6 +3245,7 @@ def specific_meal_subscription(meal_subscription_id: str) -> Response:
 
 
 @app.route("/api/meal_subscription", methods=["POST", "GET"])
+@requires_auth
 def meal_subscription() -> Response:
     from repository.Meal_Subscription_Repository import Meal_Subscription_Repository
     from service.Meal_Subscription_Service import Meal_Subscription_Service
@@ -3278,6 +3324,7 @@ def meal_subscription() -> Response:
 
 
 @app.route("/api/meal_plan", methods=["GET"])
+@requires_auth
 def meal_plan() -> Response:
     from service.Meal_Plan_Service import Meal_Plan_Service
     from repository.Meal_Plan_Repository import Meal_Plan_Repository
