@@ -1514,7 +1514,7 @@ def sample_order_confirmation() -> Response:
 
     meal_sample_delivery_date_timestamp = (
         Date_Service().get_current_week_sample_delivery_date(
-        today = datetime.now(timezone.utc)            
+            today=datetime.now(timezone.utc)
         )
     )
     meal_sample_delivery_date = datetime.utcfromtimestamp(
