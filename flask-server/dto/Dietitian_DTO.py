@@ -15,7 +15,6 @@ class Dietitian_DTO(Base_DTO):
     ) -> None:
         if dietitian_json:
             self.id: str = dietitian_json["id"]
-            self.password: str = dietitian_json["password"]
             self.first_name: str = dietitian_json["first_name"]
             self.last_name: str = dietitian_json["last_name"]
             self.dietetic_registration_number: str = dietitian_json[
@@ -36,7 +35,6 @@ class Dietitian_DTO(Base_DTO):
 
         elif dietitian_domain:
             self.id: str = dietitian_domain.id
-            self.password: str = dietitian_domain.password
             self.first_name: str = dietitian_domain.first_name
             self.last_name: str = dietitian_domain.last_name
             self.dietetic_registration_number: str = (

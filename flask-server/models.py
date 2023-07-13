@@ -7,7 +7,6 @@ from sqlalchemy.dialects.postgresql import UUID
 import os
 from sqlalchemy.schema import DropTable, CheckConstraint
 from sqlalchemy.ext.compiler import compiles
-from werkzeug.security import generate_password_hash
 import stripe
 import shippo
 from typing import TYPE_CHECKING
@@ -145,7 +144,6 @@ db = SQLAlchemy(app)
 class Client_Model(db.Model):
     __tablename__ = "client"
     id = db.Column(db.String(80), primary_key=True, unique=True, nullable=False)
-    password = db.Column(db.String(200), nullable=False)
     dietitian_id = db.Column(
         db.String(80), db.ForeignKey("dietitian.id"), nullable=False
     )
@@ -175,7 +173,6 @@ class Client_Model(db.Model):
 
     def __init__(self, client_domain: "Client_Domain") -> None:
         self.id = client_domain.id
-        self.password = generate_password_hash(client_domain.password)
         self.dietitian_id = client_domain.dietitian_id
         self.meal_plan_id = client_domain.meal_plan_id
         self.stripe_id = client_domain.stripe_id
@@ -309,7 +306,6 @@ class Staged_Client_Model(db.Model):
 class Dietitian_Model(db.Model):
     __tablename__ = "dietitian"
     id = db.Column(db.String(80), primary_key=True, unique=True, nullable=False)
-    password = db.Column(db.String(200), nullable=False)
     first_name = db.Column(db.String(80), nullable=False)
     last_name = db.Column(db.String(80), nullable=False)
     dietetic_registration_number = db.Column(db.String(12), nullable=False)
@@ -326,7 +322,6 @@ class Dietitian_Model(db.Model):
 
     def __init__(self, dietitian_domain: "Dietitian_Domain") -> None:
         self.id = dietitian_domain.id
-        self.password = generate_password_hash(dietitian_domain.password)
         self.first_name = dietitian_domain.first_name
         self.last_name = dietitian_domain.last_name
         self.dietetic_registration_number = (

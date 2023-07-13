@@ -7,7 +7,6 @@ from datetime import datetime
 class Dietitian_Domain(Base_Domain):
     def __init__(self, dietitian_object: Dietitian_Model | Dietitian_DTO) -> None:
         self.id: str = dietitian_object.id
-        self.password: str = dietitian_object.password
         self.first_name: str = dietitian_object.first_name
         self.last_name: str = dietitian_object.last_name
         self.dietetic_registration_number: str = (

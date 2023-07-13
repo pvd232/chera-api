@@ -7,7 +7,6 @@ from dto.Client_DTO import Client_DTO
 class Client_Domain(Base_Domain):
     def __init__(self, client_object: Client_Model | Client_DTO) -> None:
         self.id: str = client_object.id
-        self.password: str = client_object.password
         self.dietitian_id: str = client_object.dietitian_id
         self.meal_plan_id: UUID = client_object.meal_plan_id
         self.stripe_id: str = client_object.stripe_id

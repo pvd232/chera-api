@@ -1,6 +1,5 @@
 from .Base_Repository import Base_Repository
 from models import Client_Model, Staged_Client_Model
-from werkzeug.security import generate_password_hash, check_password_hash
 from typing import Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -69,7 +68,7 @@ class Client_Repository(Base_Repository):
         )
         client_to_update.update_client_address(client_domain=client_domain)
         self.db.session.commit()
-    
+
     def update_client_meal_plan(self, client_domain: "Client_Domain") -> None:
         client_to_update = (
             self.db.session.query(Client_Model)
@@ -81,48 +80,11 @@ class Client_Repository(Base_Repository):
         self.db.session.commit()
         return
 
-    def update_client_password(self, client_id: str, new_password: str) -> Client_Model:
-        client_to_update: Client_Model = self.get_client(client_id=client_id)
-        client_to_update.password = generate_password_hash(new_password)
-        self.db.session.commit()
-        return client_to_update
-
     def deactivate_client(self, client_id: str) -> None:
         client_to_update: Client_Model = self.get_client(client_id=client_id)
         client_to_update.active = False
         self.db.session.commit()
         return
-
-    def authenticate_client(
-        self, client_id: str, password: str
-    ) -> Optional[Client_Model]:
-        for client in self.db.session.query(Client_Model).all():
-            if client.id == client_id and check_password_hash(
-                client.password, password
-            ):
-                return client
-        else:
-            return None
-
-    def validate_username(self, username: str, hashed_username: str) -> bool:
-        # if a username is passed then we query the db to verify it, if the hashed version is passed then we use the check_password_hash to verify it
-        if username and not hashed_username:
-            client = (
-                self.db.session.query(Client_Model)
-                .filter(Client_Model.id == username)
-                .first()
-            )
-            if client:
-                return True
-            else:
-                return False
-        elif not username and hashed_username:
-            for client in self.db.session.query(Client_Model):
-                if check_password_hash(hashed_username, client.id):
-                    return True
-            return False
-        else:
-            return False
 
     def delete_all_clients(self) -> None:
         self.db.session.query(Client_Model).delete()

@@ -12,7 +12,6 @@ class Client_DTO(Base_DTO):
     ) -> None:
         if client_json:
             self.id: UUID = client_json["id"]
-            self.password: str = client_json["password"]
             self.dietitian_id: str = client_json["dietitian_id"]
             self.meal_plan_id: UUID = UUID(client_json["meal_plan_id"])
             self.stripe_id: str = client_json["stripe_id"]
@@ -33,7 +32,6 @@ class Client_DTO(Base_DTO):
 
         elif client_domain:
             self.id: str = client_domain.id
-            self.password: str = client_domain.password
             self.dietitian_id: str = client_domain.dietitian_id
             self.meal_plan_id: UUID = client_domain.meal_plan_id
             self.stripe_id: str = client_domain.stripe_id
