@@ -1,3 +1,6 @@
+from models import env
+
+
 def requires_auth(f):
     """
     Determines if the Access Token is valid
@@ -10,12 +13,19 @@ def requires_auth(f):
     from jose import jwt
     from .get_token_auth_header import get_token_auth_header
     from .Auth_Error import Auth_Error
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
 
     @wraps(f)
     def decorated(*args, **kwargs):
+        audience = os.getenv(
+            "AUTH0_AUDIENCE"
+        ) or GCP_Secret_Manager_Service().get_secret(f"{env.upper()}_AUTH0_AUDIENCE")
+        auth0_domain = os.getenv(
+            "AUTH0_DOMAIN"
+        ) or GCP_Secret_Manager_Service().get_secret(f"{env.upper()}_AUTH0_DOMAIN")
         token = get_token_auth_header()
         jsonurl = six.moves.urllib.request.urlopen(
-            "https://" + os.getenv("AUTH0_DOMAIN") + "/.well-known/jwks.json"
+            "https://" + auth0_domain + "/.well-known/jwks.json"
         )
         jwks = json.loads(jsonurl.read())
         unverified_header = jwt.get_unverified_header(token)
@@ -35,8 +45,8 @@ def requires_auth(f):
                     token,
                     rsa_key,
                     algorithms=os.getenv("ALGORITHMS"),
-                    audience=os.getenv("AUTH0_AUDIENCE"),
-                    issuer="https://" + os.getenv("AUTH0_DOMAIN") + "/",
+                    audience=audience,
+                    issuer="https://" + auth0_domain + "/",
                 )
             except jwt.ExpiredSignatureError:
                 raise Auth_Error(
