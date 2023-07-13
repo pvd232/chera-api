@@ -1,0 +1,12 @@
+[
+  {
+    "origin": [
+      "https://development-chera.us.auth0.com",
+      "https://staging-chera.us.auth0.com",
+      "https://production-chera.us.auth0.com"
+    ],
+    "method": ["GET"],
+    "responseHeader": ["Content-Type"],
+    "maxAgeSeconds": 3600
+  }
+]

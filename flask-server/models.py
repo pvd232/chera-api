@@ -60,20 +60,6 @@ load_dotenv()
 
 app = Flask(__name__)
 
-################### Auth0 ###################
-oauth = OAuth(app)
-app.secret_key = os.getenv("APP_SECRET_KEY")
-
-oauth.register(
-    "auth0",
-    client_id=os.getenv("AUTH0_CLIENT_ID"),
-    client_secret=os.getenv("AUTH0_CLIENT_SECRET"),
-    client_kwargs={
-        "scope": "openid profile email",
-    },
-    server_metadata_url=f'https://{os.getenv("AUTH0_DOMAIN")}/.well-known/openid-configuration',
-)
-#############################################
 
 username = os.getenv("DB_USER", GCP_Secret_Manager_Service().get_secret("DB_USER"))
 password = os.getenv(
@@ -93,6 +79,23 @@ USDA_api_key = os.getenv(
 
 env = os.getenv("DEPLOYMENT_ENV", "debug")
 
+################### Auth0 ###################
+oauth = OAuth(app)
+app.secret_key = os.getenv(
+    "APP_SECRET_KEY", GCP_Secret_Manager_Service().get_secret("APP_SECRET_KEY")
+)
+oauth.register(
+    "auth0",
+    client_id=os.getenv("AUTH0_CLIENT_ID")
+    or GCP_Secret_Manager_Service().get_secret(f"{env.upper()}_AUTH0_CLIENT_ID"),
+    client_secret=os.getenv("AUTH0_CLIENT_SECRET")
+    or GCP_Secret_Manager_Service().get_secret(f"{env.upper()}_AUTH0_CLIENT_SECRET"),
+    client_kwargs={
+        "scope": "openid profile email",
+    },
+    server_metadata_url=f'https://{os.getenv("AUTH0_DOMAIN") or GCP_Secret_Manager_Service().get_secret(f"{env.upper()}_AUTH0_DOMAIN")}/.well-known/openid-configuration',
+)
+#############################################
 
 host_url = ""
 if env == "debug":

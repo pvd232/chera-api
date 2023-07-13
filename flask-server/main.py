@@ -10,143 +10,23 @@ from flask import (
     session,
     redirect,
 )
-import flask
 import json
 from werkzeug.exceptions import HTTPException
 from typing import Optional
 import stripe
 import uuid
-
-from functools import wraps
-import six
 from dotenv import load_dotenv
-from jose import jwt
 
 load_dotenv()
 
-
-######################################################################################
-# Error Handler
-class AuthError(Exception):
-    def __init__(self, error, status_code):
-        self.error = error
-        self.status_code = status_code
+from helpers.Auth_Error import Auth_Error
 
 
-@app.errorhandler(AuthError)
+@app.errorhandler(Auth_Error)
 def handle_auth_error(ex):
     response = jsonify(ex.error)
     response.status_code = ex.status_code
     return response
-
-
-# Format error response and append status code
-def get_token_auth_header():
-    """
-    Obtains the Access Token from the Authorization Header
-    """
-    auth = request.headers.get("Authorization", None)
-    if not auth:
-        raise AuthError(
-            {
-                "code": "authorization_header_missing",
-                "description": "Authorization header is expected",
-            },
-            401,
-        )
-
-    parts = auth.split()
-
-    if parts[0].lower() != "bearer":
-        raise AuthError(
-            {
-                "code": "invalid_header",
-                "description": "Authorization header must start with" " Bearer",
-            },
-            401,
-        )
-    elif len(parts) == 1:
-        raise AuthError(
-            {"code": "invalid_header", "description": "Token not found"}, 401
-        )
-    elif len(parts) > 2:
-        raise AuthError(
-            {
-                "code": "invalid_header",
-                "description": "Authorization header must be" " Bearer token",
-            },
-            401,
-        )
-
-    token = parts[1]
-    return token
-
-
-def requires_auth(f):
-    """
-    Determines if the Access Token is valid
-    """
-
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        token = get_token_auth_header()
-        jsonurl = six.moves.urllib.request.urlopen(
-            "https://" + os.getenv("AUTH0_DOMAIN") + "/.well-known/jwks.json"
-        )
-        jwks = json.loads(jsonurl.read())
-        unverified_header = jwt.get_unverified_header(token)
-        rsa_key = {}
-        for key in jwks["keys"]:
-            if key["kid"] == unverified_header["kid"]:
-                rsa_key = {
-                    "kty": key["kty"],
-                    "kid": key["kid"],
-                    "use": key["use"],
-                    "n": key["n"],
-                    "e": key["e"],
-                }
-        if rsa_key:
-            try:
-                payload = jwt.decode(
-                    token,
-                    rsa_key,
-                    algorithms=os.getenv("ALGORITHMS"),
-                    audience=os.getenv("AUTH0_AUDIENCE"),
-                    issuer="https://" + os.getenv("AUTH0_DOMAIN") + "/",
-                )
-            except jwt.ExpiredSignatureError:
-                raise AuthError(
-                    {"code": "token_expired", "description": "token is expired"}, 401
-                )
-            except jwt.JWTClaimsError:
-                raise AuthError(
-                    {
-                        "code": "invalid_claims",
-                        "description": "incorrect claims,"
-                        "please check the audience and issuer",
-                    },
-                    401,
-                )
-            except Exception:
-                raise AuthError(
-                    {
-                        "code": "invalid_header",
-                        "description": "Unable to parse authentication" " token.",
-                    },
-                    401,
-                )
-
-            flask._request_ctx_stack.top.current_user = payload
-            return f(*args, **kwargs)
-        raise AuthError(
-            {"code": "invalid_header", "description": "Unable to find appropriate key"},
-            401,
-        )
-
-    return decorated
-
-
-######################################################################################
 
 
 @app.route("/client_sign_up/<string:staged_client_id>")
@@ -1363,7 +1243,7 @@ def stripe_webhook() -> Response:
 
 
 @app.route("/api/delivery_date", methods=["GET"])
-@requires_auth
+# @requires_auth
 def delivery_date() -> None:
     from service.Date_Service import Date_Service
     from flask import jsonify
@@ -1515,7 +1395,7 @@ def sample_order_confirmation() -> Response:
 
     meal_sample_delivery_date_timestamp = (
         Date_Service().get_current_week_sample_delivery_date(
-        today = datetime.now(timezone.utc)            
+            today=datetime.now(timezone.utc)
         )
     )
     meal_sample_delivery_date = datetime.utcfromtimestamp(
@@ -1625,82 +1505,6 @@ def authenticate_client() -> Response:
             return jsonify(client_dto.serialize()), 200
         else:
             return Response(status=401)
-    else:
-        return Response(status=405)
-
-
-@app.route("/api/dietitian/reset_password", methods=["PUT", "GET"])
-def dietitian_password() -> Response:
-    from service.Dietitian_Service import Dietitian_Service
-    from service.Email_Service import Email_Service
-    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
-    from repository.Dietitian_Repository import Dietitian_Repository
-    from domain.Dietitian_Domain import Dietitian_Domain
-    from dto.Dietitian_DTO import Dietitian_DTO
-
-    if request.method == "GET":
-        dietitian_id: str | None = request.headers.get("dietitian-id")
-        # email service check if email exists and then send reset email
-        requested_dietitian: Optional[Dietitian_Domain] = Dietitian_Service(
-            dietitian_repository=Dietitian_Repository(db=db)
-        ).get_dietitian(dietitian_id=dietitian_id)
-        if requested_dietitian:
-            Email_Service(
-                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
-            ).send_password_reset_email(user=requested_dietitian, domain="Dietitian")
-            return Response(status=204)
-        else:
-            return Response(status=401)
-
-    elif request.method == "PUT":
-        new_data = json.loads(request.data)
-        updated_dietitian: Dietitian_Domain = Dietitian_Service(
-            dietitian_repository=Dietitian_Repository(db=db)
-        ).update_dietitian_password(
-            dietitian_id=new_data["id"], new_password=new_data["password"]
-        )
-        updated_dietitian_dto: Dietitian_DTO = Dietitian_DTO(
-            gcp_secret_manager_service=GCP_Secret_Manager_Service(),
-            dietitian_domain=updated_dietitian,
-        )
-        serialized_dietitian_dto = updated_dietitian_dto.serialize()
-        return jsonify(serialized_dietitian_dto), 200
-
-    else:
-        return Response(status=405)
-
-
-@app.route("/api/client/reset_password", methods=["PUT", "GET"])
-def client_password() -> Response:
-    from service.Client_Service import Client_Service
-    from service.Email_Service import Email_Service
-    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
-    from repository.Client_Repository import Client_Repository
-    from domain.Client_Domain import Client_Domain
-    from dto.Client_DTO import Client_DTO
-
-    if request.method == "GET":
-        client_id: str | None = request.headers.get("client-id")
-        # email service check if email exists and then send reset email
-        requested_client: Optional[Client_Domain] = Client_Service(
-            client_repository=Client_Repository(db=db)
-        ).get_client(client_id=client_id)
-        if requested_client:
-            Email_Service(
-                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
-            ).send_password_reset_email(user=requested_client, domain="Client")
-            return Response(status=204)
-        else:
-            return Response(status=401)
-    elif request.method == "PUT":
-        new_data = json.loads(request.data)
-        updated_client: Client_Domain = Client_Service(
-            client_repository=Client_Repository(db=db)
-        ).update_client_password(
-            client_id=new_data["id"], new_password=new_data["password"]
-        )
-        updated_client_dto: Client_DTO = Client_DTO(client_domain=updated_client)
-        return jsonify(updated_client_dto.serialize()), 200
     else:
         return Response(status=405)
 
@@ -2209,7 +2013,7 @@ def recipe_ingredient_nutrient() -> Response:
 
 
 @app.route("/api/extended_meal", methods=["GET"])
-@requires_auth
+# @requires_auth
 def extended_meal() -> Response:
     from service.Extended_Meal_Service import Extended_Meal_Service
     from repository.Meal_Repository import Meal_Repository
@@ -2308,9 +2112,7 @@ def meal(meal_id: Optional[str]) -> Response:
 @app.route("/api/meal_plan_meal", methods=["POST", "PUT"])
 def meal_plan_meal() -> Response:
     from service.Meal_Plan_Meal_Service import Meal_Plan_Meal_Service
-    from service.Meal_Plan_Service import Meal_Plan_Service
     from repository.Meal_Plan_Meal_Repository import Meal_Plan_Meal_Repository
-    from repository.Meal_Plan_Repository import Meal_Plan_Repository
     from dto.Meal_Plan_Meal_DTO import Meal_Plan_Meal_DTO
 
     if request.method == "POST":
@@ -2552,7 +2354,7 @@ def scheduled_order_meal() -> Response:
 
 
 @app.route("/api/extended_schedule_meal", methods=["GET"])
-@requires_auth
+# @requires_auth
 def extended_schedule_meal() -> Response:
     from service.Extended_Schedule_Meal_Service import Extended_Schedule_Meal_Service
     from service.Client_Service import Client_Service
@@ -2743,7 +2545,7 @@ def staged_schedule_meal() -> Response:
 # ---> Snacks <--- #
 @app.route("/api/snack/<string:snack_id>", methods=["DELETE"])
 @app.route("/api/snack", defaults={"snack_id": None}, methods=["GET", "POST"])
-@requires_auth
+# @requires_auth
 def snack(snack_id: Optional[str]) -> Response:
     from repository.Snack_Repository import Snack_Repository
     from service.Snack_Service import Snack_Service
@@ -3339,7 +3141,7 @@ def specific_meal_subscription(meal_subscription_id: str) -> Response:
 
 
 @app.route("/api/meal_subscription", methods=["POST", "GET"])
-@requires_auth
+# @requires_auth
 def meal_subscription() -> Response:
     from repository.Meal_Subscription_Repository import Meal_Subscription_Repository
     from service.Meal_Subscription_Service import Meal_Subscription_Service
@@ -3418,7 +3220,7 @@ def meal_subscription() -> Response:
 
 
 @app.route("/api/meal_plan", methods=["GET"])
-@requires_auth
+# @requires_auth
 def meal_plan() -> Response:
     from service.Meal_Plan_Service import Meal_Plan_Service
     from repository.Meal_Plan_Repository import Meal_Plan_Repository
