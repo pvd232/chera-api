@@ -15,9 +15,31 @@ from werkzeug.exceptions import HTTPException
 from typing import Optional
 import stripe
 import uuid
-from dotenv import load_dotenv
 
-load_dotenv()
+
+@app.errorhandler(404)
+def not_found(e) -> str:
+    print("requested url:", request.path, "\n", "error:", e)
+    return Response(status=404)
+
+
+@app.errorhandler(500)
+def handle_exception(e) -> HTTPException | Response:
+    print()
+    print("500 error exception", e)
+    print()
+    if isinstance(e, HTTPException):
+        return e
+
+    res = {
+        "code": 500,
+        "errorType": "Internal Server Error",
+        "errorMessage": "Something went really wrong!",
+    }
+    if env == "debug":
+        res["errorMessage"] = e.message if hasattr(e, "message") else f"{e}"
+    return Response(status=500, response=json.dumps(res))
+
 
 from helpers.Auth_Error import Auth_Error
 
@@ -353,30 +375,6 @@ def continuity_initialize() -> Response:
     return Response(status=200)
 
 
-@app.errorhandler(404)
-def not_found(e) -> str:
-    print("requested url:", request.path, "\n", "error:", e)
-    return Response(status=404)
-
-
-@app.errorhandler(500)
-def handle_exception(e) -> HTTPException | Response:
-    print()
-    print("500 error exception", e)
-    print()
-    if isinstance(e, HTTPException):
-        return e
-
-    res = {
-        "code": 500,
-        "errorType": "Internal Server Error",
-        "errorMessage": "Something went really wrong!",
-    }
-    if env == "debug":
-        res["errorMessage"] = e.message if hasattr(e, "message") else f"{e}"
-    return Response(status=500, response=json.dumps(res))
-
-
 @app.route("/api/email/sign_up", methods=["POST"])
 def sign_up_email() -> Response:
     from dto.Staged_Client_DTO import Staged_Client_DTO
@@ -455,270 +453,6 @@ def sign_up_email_reminder() -> Response:
         gcp_secret_manager_service=GCP_Secret_Manager_Service()
     ).send_sign_up_reminder_email(staged_client=staged_client)
     return Response(status=200)
-
-
-@app.route("/api/email/password_reset", methods=["POST"])
-def password_reset_email() -> Response:
-    from dto.Staged_Client_DTO import Staged_Client_DTO
-    from service.Email_Service import Email_Service
-    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
-
-    staged_client = Staged_Client_DTO(staged_client_json=json.loads(request.data))
-
-    Email_Service(
-        gcp_secret_manager_service=GCP_Secret_Manager_Service()
-    ).send_password_reset_email(
-        user=staged_client,
-        domain="Client",
-        gcp_secret_manager_service=GCP_Secret_Manager_Service(),
-    )
-    return Response(status=200)
-
-
-@app.route("/api/email/recruiting", methods=["POST"])
-def recruiting_email() -> Response:
-    from pathlib import Path
-    from service.Email_Service import Email_Service
-    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
-
-    def format_file_name(role: str) -> str:
-        return "_".join(role.split(" ")).lower()
-
-    if env != "debug":
-        return Response(status=401)
-
-    request_data = json.loads(request.data)
-
-    calendly_link = request_data["calendly_link"]
-    role = request_data["role"]
-    file_name_no_extension = format_file_name(role=role)
-    excel_file_name = f"{format_file_name(role=role)}.csv"
-    testing = request_data["testing"]
-    # Get email list from excel sheet
-    import pandas as pd
-
-    # Create data frame
-    df: pd.DataFrame = pd.read_csv(
-        Path(".").joinpath("excel_data").joinpath(excel_file_name)
-    )
-
-    candidate_emails: list[str] = df["Email"].to_list()
-    candidate_first_name_series: list[str] = df["First Name"].to_list()
-    candidate_list = []
-
-    for i in range(len(candidate_emails)):
-        candidate = {
-            "email": candidate_emails[i],
-            "first_name": candidate_first_name_series[i].capitalize(),
-        }
-        candidate_list.append(candidate)
-    if not testing:
-        for candidate in candidate_list:
-            Email_Service(
-                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
-            ).send_recruiting_email(
-                first_name=candidate["first_name"],
-                email=candidate["email"],
-                role=role,
-                calendly_link=calendly_link,
-                testing=testing,
-                file_name=file_name_no_extension,
-            )
-    else:
-        Email_Service(
-            gcp_secret_manager_service=GCP_Secret_Manager_Service()
-        ).send_recruiting_email(
-            first_name=candidate_list[0]["first_name"],
-            email=candidate_list[0]["email"],
-            role=role,
-            calendly_link=calendly_link,
-            testing=testing,
-            file_name=file_name_no_extension,
-        )
-    return Response(status=200)
-
-
-@app.route("/api/email/pause_hiring", methods=["POST"])
-def pause_recruiting_email() -> Response:
-    from pathlib import Path
-    from service.Email_Service import Email_Service
-    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
-
-    if env != "debug":
-        return Response(status=401)
-    request_data = json.loads(request.data)
-    excel_file_name = "pause_hiring.csv"
-    testing = request_data["testing"]
-    # Get email list from excel sheet
-    import pandas as pd
-
-    # Create data frame
-    df: pd.DataFrame = pd.read_csv(
-        Path(".").joinpath("excel_data").joinpath(excel_file_name)
-    )
-
-    candidate_emails: list[str] = df["Email"].to_list()
-    candidate_first_name_series: list[str] = df["First Name"].to_list()
-    candidate_list = []
-
-    for i in range(len(candidate_emails)):
-        candidate = {
-            "email": candidate_emails[i],
-            "first_name": candidate_first_name_series[i].capitalize(),
-        }
-        candidate_list.append(candidate)
-    if not testing:
-        for candidate in candidate_list:
-            Email_Service(
-                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
-            ).send_pause_recruiting_email(
-                first_name=candidate["first_name"],
-                email=candidate["email"],
-                testing=testing,
-            )
-    else:
-        Email_Service(
-            gcp_secret_manager_service=GCP_Secret_Manager_Service()
-        ).send_pause_recruiting_email(
-            first_name=candidate_list[0]["first_name"],
-            email=candidate_list[0]["email"],
-            testing=testing,
-        )
-    return Response(status=200)
-
-
-@app.route("/api/email/hiring_status_update", methods=["POST"])
-def hiring_status_update() -> Response:
-    from pathlib import Path
-    from service.Email_Service import Email_Service
-    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
-
-    if env != "debug":
-        return Response(status=401)
-    request_data = json.loads(request.data)
-    excel_file_name = "hiring_status_update.csv"
-    testing = request_data["testing"]
-
-    # Get email list from excel sheet
-    import pandas as pd
-
-    # Create data frame
-    df: pd.DataFrame = pd.read_csv(
-        Path(".").joinpath("excel_data").joinpath(excel_file_name)
-    )
-
-    candidate_emails: list[str] = df["Email"].to_list()
-    candidate_first_name_series: list[str] = df["First Name"].to_list()
-    candidate_list = []
-
-    for i in range(len(candidate_emails)):
-        candidate = {
-            "email": candidate_emails[i],
-            "first_name": candidate_first_name_series[i].capitalize(),
-        }
-        candidate_list.append(candidate)
-    if not testing:
-        for candidate in candidate_list:
-            Email_Service(
-                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
-            ).send_hiring_status_update_email(
-                first_name=candidate["first_name"],
-                email=candidate["email"],
-                testing=testing,
-            )
-    else:
-        Email_Service(
-            gcp_secret_manager_service=GCP_Secret_Manager_Service()
-        ).send_hiring_status_update_email(
-            first_name=candidate_list[0]["first_name"],
-            email=candidate_list[0]["email"],
-            testing=testing,
-        )
-    return Response(status=200)
-
-
-@app.route("/api/email/offer_notification", methods=["POST"])
-def offer_notification() -> Response:
-    from pathlib import Path
-    from service.Email_Service import Email_Service
-    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
-
-    if env != "debug":
-        return Response(status=401)
-    request_data = json.loads(request.data)
-    excel_file_name = request_data["file_name"]
-    testing = request_data["testing"]
-
-    # Get email list from excel sheet
-    import pandas as pd
-
-    # Create data frame
-    df: pd.DataFrame = pd.read_csv(
-        Path(".").joinpath("excel_data").joinpath(excel_file_name)
-    )
-
-    candidate_email_series: list[str] = df["Email"].to_list()
-    candidate_first_name_series: list[str] = df["First Name"].to_list()
-    candidate_role_series: list[str] = df["Role"].to_list()
-    candidate_list = []
-
-    for i in range(len(candidate_email_series)):
-        candidate = {
-            "email": candidate_email_series[i],
-            "first_name": candidate_first_name_series[i].capitalize(),
-            "role": candidate_role_series[i],
-        }
-        candidate_list.append(candidate)
-    if not testing:
-        for candidate in candidate_list:
-            Email_Service(
-                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
-            ).send_offer_notification_email(
-                first_name=candidate["first_name"],
-                email=candidate["email"],
-                role=candidate["role"],
-                testing=testing,
-            )
-    else:
-        Email_Service(
-            gcp_secret_manager_service=GCP_Secret_Manager_Service(),
-        ).send_offer_notification_email(
-            first_name=candidate["first_name"],
-            email=candidate["email"],
-            role=candidate["role"],
-            testing=testing,
-        )
-    return Response(status=200)
-
-
-from uuid import UUID
-import os
-from models import app, db, env, host_url
-from datetime import datetime, timezone
-from flask import Response, request, jsonify
-import json
-from werkzeug.exceptions import HTTPException
-from typing import Optional
-import stripe
-import uuid
-
-
-@app.errorhandler(500)
-def handle_exception(e) -> HTTPException | Response:
-    print()
-    print("500 error exception", e)
-    print()
-    if isinstance(e, HTTPException):
-        return e
-
-    res = {
-        "code": 500,
-        "errorType": "Internal Server Error",
-        "errorMessage": "Something went really wrong!",
-    }
-    if env == "debug":
-        res["errorMessage"] = e.message if hasattr(e, "message") else f"{e}"
-    return Response(status=500, response=json.dumps(res))
 
 
 @app.route("/api/test_dietetic", methods=["POST"])
