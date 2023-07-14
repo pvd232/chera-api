@@ -23,5 +23,10 @@
         "id": "f737b201-e8d3-4edb-b50a-0430252af578",
         "meal_id": "5a9cdf79-8c8c-476b-8b2b-11f1a1191a57",
         "dietary_restriction_id": "vegetarian"
+    },
+    {
+        "id": "8367b88b-ffc7-428f-bf0b-747b6b5265a9",
+        "meal_id": "381cbf70-a6ec-48d7-8942-2447d8086dcc",
+        "dietary_restriction_id": "vegetarian"
     }
 ]

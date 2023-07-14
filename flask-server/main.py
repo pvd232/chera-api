@@ -2584,12 +2584,7 @@ def order_snack() -> Response:
 @app.route("/api/meal_plan_snack", methods=["PUT", "POST"])
 def meal_plan_snack() -> Response:
     from service.Meal_Plan_Snack_Service import Meal_Plan_Snack_Service
-    from service.Recipe_Ingredient_Service import Recipe_Ingredient_Service
-    from service.USDA_Ingredient_Service import USDA_Ingredient_Service
-    from service.Continuity_Service import Continuity_Service
     from repository.Meal_Plan_Snack_Repository import Meal_Plan_Snack_Repository
-    from repository.Recipe_Ingredient_Repository import Recipe_Ingredient_Repository
-    from repository.USDA_Ingredient_Repository import USDA_Ingredient_Repository
     from dto.Meal_Plan_Snack_DTO import Meal_Plan_Snack_DTO
 
     if request.method == "GET":
@@ -3579,7 +3574,6 @@ def create_stripe_payment_intent() -> Response:
 def update_client_address() -> Response:
     from service.Client_Service import Client_Service
     from repository.Client_Repository import Client_Repository
-    from domain.Client_Domain import Client_Domain
     from dto.Client_DTO import Client_DTO
 
     if request.method == "PUT":
