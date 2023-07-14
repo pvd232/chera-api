@@ -2137,8 +2137,10 @@ def meal_plan_meal() -> Response:
 
 @app.route("/api/extended_meal_plan_meal", methods=["GET", "PUT"])
 def extended_meal_plan_meal() -> Response:
-    from service.Extended_Meal_Plan_Meal_Service import Extended_Meal_Plan_Meal_Service
     from repository.Meal_Plan_Meal_Repository import Meal_Plan_Meal_Repository
+    from repository.Meal_Plan_Repository import Meal_Plan_Repository
+    from service.Extended_Meal_Plan_Meal_Service import Extended_Meal_Plan_Meal_Service
+    from service.Meal_Plan_Service import Meal_Plan_Service
     from domain.Extended_Meal_Plan_Meal_Domain import Extended_Meal_Plan_Meal_Domain
     from dto.Extended_Meal_Plan_Meal_DTO import Extended_Meal_Plan_Meal_DTO
     from dto.Recipe_Ingredient_DTO import Recipe_Ingredient_DTO
@@ -2146,6 +2148,27 @@ def extended_meal_plan_meal() -> Response:
     if request.method == "GET":
         meal_plan_id = request.args.get("meal_plan_id")
         meal_id = request.args.get("meal_id")
+        meal_plan_number = request.args.get("meal_plan_number")
+        if meal_plan_number:
+            associated_meal_plan = Meal_Plan_Service(
+                meal_plan_repository=Meal_Plan_Repository(db=db)
+            ).get_meal_plan(meal_plan_number=meal_plan_number)
+            extended_meal_plan_meals = Extended_Meal_Plan_Meal_Service(
+                meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+            ).get_specific_extended_meal_plan_meals(
+                meal_plan_id=associated_meal_plan.id
+            )
+            if extended_meal_plan_meals:
+                meal_plan_meal_DTOs = [
+                    Extended_Meal_Plan_Meal_DTO(extended_meal_plan_meal_domain=x)
+                    for x in extended_meal_plan_meals
+                ]
+                serialized_meal_plan_meal_DTOs = [
+                    x.serialize() for x in meal_plan_meal_DTOs
+                ]
+                return jsonify(serialized_meal_plan_meal_DTOs), 200
+            else:
+                return Response(status=404)
         if not meal_plan_id and not meal_id:
             extended_meal_plan_meals: Optional[
                 list[Extended_Meal_Plan_Meal_Domain]
@@ -2861,10 +2884,12 @@ def meal_plan_snack() -> Response:
 
 @app.route("/api/extended_meal_plan_snack", methods=["GET", "PUT"])
 def extended_meal_plan_snack() -> Response:
+    from repository.Meal_Plan_Snack_Repository import Meal_Plan_Snack_Repository
+    from repository.Meal_Plan_Repository import Meal_Plan_Repository
     from service.Extended_Meal_Plan_Snack_Service import (
         Extended_Meal_Plan_Snack_Service,
     )
-    from repository.Meal_Plan_Snack_Repository import Meal_Plan_Snack_Repository
+    from service.Meal_Plan_Service import Meal_Plan_Service
     from domain.Extended_Meal_Plan_Snack_Domain import Extended_Meal_Plan_Snack_Domain
     from dto.Extended_Meal_Plan_Snack_DTO import Extended_Meal_Plan_Snack_DTO
     from dto.Recipe_Ingredient_DTO import Recipe_Ingredient_DTO
@@ -2872,6 +2897,28 @@ def extended_meal_plan_snack() -> Response:
     if request.method == "GET":
         meal_plan_id = request.args.get("meal_plan_id")
         snack_id = request.args.get("snack_id")
+        meal_plan_number = request.args.get("meal_plan_number")
+        if meal_plan_number:
+            associated_meal_plan = Meal_Plan_Service(
+                meal_plan_repository=Meal_Plan_Repository(db=db)
+            ).get_meal_plan(meal_plan_number=meal_plan_number)
+            extended_meal_plan_snack_domains: Optional[
+                list[Extended_Meal_Plan_Snack_Domain]
+            ] = Extended_Meal_Plan_Snack_Service(
+                meal_plan_snack_repository=Meal_Plan_Snack_Repository(db=db)
+            ).get_specific_extended_meal_plan_snacks(
+                meal_plan_id=associated_meal_plan.id
+            )
+            if extended_meal_plan_snack_domains:
+                extended_meal_plan_snack_dtos = [
+                    Extended_Meal_Plan_Snack_DTO(
+                        extended_meal_plan_snack_domain=x
+                    ).serialize()
+                    for x in extended_meal_plan_snack_domains
+                ]
+                return jsonify(extended_meal_plan_snack_dtos), 200
+            else:
+                return Response(status=204)
         if not meal_plan_id and not snack_id:
             extended_meal_plan_snacks: Optional[
                 list[Extended_Meal_Plan_Snack_Domain]
