@@ -109,4 +109,4 @@ class USDA_Ingredient_Service(object):
                 usda_ingredient_portion_service.create_usda_ingredient_portion(
                     usda_ingredient_portion_dto=portion
                 )
-            print("after add everything")
+            print("after adding portions")
