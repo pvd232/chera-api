@@ -170,7 +170,5 @@ pip-selfcheck.json
 package-lock.json
 
 # Chrome driver
-/chromedriver*/
-*chromedriver_*/
-
+*chromedriver_*
 nutrient_data
