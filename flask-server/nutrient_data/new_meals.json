@@ -1,0 +1,106 @@
+[
+    {
+        "id": "73f4765a-aef7-4521-b9f5-a12afccc6401",
+        "meal_time": "dinner",
+        "name": "Sweet Potato and Black Bean Quesadilla",
+        "description": "A house favorite, prepared with black beans, sofrito, sweet potato, garlic, cheddar cheese, and topped with salsa verde",
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/sweet_potato_and_black_bean_quesadilla.jpg",
+        "active": true
+    },
+    {
+        "id": "cef4232c-e010-4e50-9429-25aa8af64216",
+        "meal_time": "breakfast",
+        "name": "Mashed Banana Overnight Oats",
+        "description": "Old fashioned oats, fresh mashed bananas, oats, milk, walnuts, honey, chia seeds, cinnamon, and dates",
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/mashed_banana_overnight_oats.jpg",
+        "active": true
+    },
+    {
+        "id": "76ae5530-46b7-455f-ab95-f273a99cabb1",
+        "meal_time": "lunch",
+        "name": "Burrito Bowl",
+        "description": "Drawing on our texan roots, prepared with seasoned ground beef, our house made sofrito, rice, topped with avocado crema, veggies, and green olives",
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/burrito_bowl.jpg",
+        "active": true
+    },
+    {
+        "id": "381cbf70-a6ec-48d7-8942-2447d8086dcc",
+        "meal_time": "breakfast",
+        "name": "Chocolate Chip Pancakes",
+        "description": "Buttermilk pancakes infused with chocolate chips, chocolate protein powder, and topped with maple syrup",
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/chocolate_chip_pancakes.jpg",
+        "active": true
+    },
+    {
+        "id": "b949aba0-119f-4474-888b-366e069f89c6",
+        "meal_time": "dinner",
+        "name": "Chickpea Meatloaf",
+        "description": "Our take on meatloaf, made with chickpeas, rice, spinach, mushrooms, seasoned with thyme and paprika, and served with onion gravy",
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/chickpea_meatloaf.jpg",
+        "active": true
+    },
+    {
+        "id": "b4276da4-715a-4775-907b-c068c952ac55",
+        "meal_time": "lunch",
+        "name": "Peanut Noodles with Tofu",
+        "description": "Vietnamese rice noodles tossed in our house made peanut sauce, with a hint of lime and spice",
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/peanut_noodles_with_tofu.jpg",
+        "active": true
+    },
+    {
+        "id": "1dc1d29f-9b05-4d84-9223-2ec1c2395c23",
+        "meal_time": "dinner",
+        "name": "Beef & Broccoli Stir Fry",
+        "description": "Flank steak strips, wok-fried in soy sauce, served with broccoli and mushrooms",
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/beef_and_broccoli_stir_fry.jpg",
+        "active": true
+    },
+    {
+        "id": "5a9cdf79-8c8c-476b-8b2b-11f1a1191a57",
+        "meal_time": "breakfast",
+        "name": "French Toast",
+        "description": "Golden-brown bread, soaked in a mixture of egg, milk, and cinnamon, served hot with maple syrup",
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/french_toast.jpg",
+        "active": true
+    },
+    {
+        "id": "797db94b-126a-4b93-bfdc-20ef7d80b73d",
+        "meal_time": "dinner",
+        "name": "Spaghetti Bolognese",
+        "description": "Prepared with seasoned ground beef and Italian pork sausage, served with vegetables in a house made marinara sauce",
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/spaghetti_bolognese.jpg",
+        "active": true
+    },
+    {
+        "id": "0db1d251-2a99-4f1b-936e-2d0fed28f9ea",
+        "meal_time": "lunch",
+        "name": "Chicken Pesto Pasta",
+        "description": "Penne pasta tossed in pesto and grilled chicken",
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/chicken_pesto_pasta.jpg",
+        "active": true
+    },
+    {
+        "id": "c90b160f-901e-4ac2-96f3-8086319437b5",
+        "meal_time": "lunch",
+        "name": "Grilled Chicken & Butter Beans",
+        "description": "Grilled chicken with southern style lima beans, smoked ham, seasoned and served in a bed of white rice",
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/grilled_chicken_and_butter_beans.jpg",
+        "active": true
+    },
+    {
+        "id": "f21c666e-4418-417c-b995-a21ec1f12996",
+        "meal_time": "dinner",
+        "name": "Mediterranean Turkey Meatballs with Orzo & Roasted Veggies",
+        "description": "Turkey meatballs served with orzo, roasted veggies, and a blend of herbs",
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/mediterranean_turkey_meatballs_with_orzo_and_roasted_veggies.jpg",
+        "active": true
+    },
+    {
+        "id": "928408af-6398-469f-b398-df4a73164504",
+        "meal_time": "dinner",
+        "name": "Grilled Salmon with Rice & Veggies",
+        "description": "Grilled salmon served with basmati rice, veggies, and a blend of seasoning",
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/grilled_salmon_with_rice_and_veggies.jpg",
+        "active": true
+    }
+]

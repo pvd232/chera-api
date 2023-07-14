@@ -313,6 +313,9 @@ class Dietitian_Model(db.Model):
     clinic_state = db.Column(db.String(2), nullable=False)
     clinic_address = db.Column(db.String(200), nullable=False)
     clinic_url = db.Column(db.String(80), nullable=False)
+    number_of_ed_clients = db.Column(db.Integer(), nullable=False)
+    percent_intensive_outpatient = db.Column(db.Float(), nullable=False)
+    percent_regular_outpatient = db.Column(db.Float(), nullable=False)
     datetime = db.Column(db.Float(), nullable=False)
     got_sample = db.Column(db.Boolean(), default=False, nullable=False)
     active = db.Column(db.Boolean(), default=True, nullable=False)
@@ -331,6 +334,11 @@ class Dietitian_Model(db.Model):
         self.clinic_state = dietitian_domain.clinic_state
         self.clinic_address = dietitian_domain.clinic_address
         self.clinic_url = dietitian_domain.clinic_url
+        self.number_of_ed_clients = dietitian_domain.number_of_ed_clients
+        self.percent_intensive_outpatient = (
+            dietitian_domain.percent_intensive_outpatient
+        )
+        self.percent_regular_outpatient = dietitian_domain.percent_regular_outpatient
         self.datetime = dietitian_domain.datetime
         self.got_sample = dietitian_domain.got_sample
         self.active = dietitian_domain.active

@@ -16,6 +16,13 @@ class Dietitian_Domain(Base_Domain):
         self.clinic_state: str = dietitian_object.clinic_state
         self.clinic_address: str = dietitian_object.clinic_address
         self.clinic_url: str = dietitian_object.clinic_url
+        self.number_of_ed_clients: int = dietitian_object.number_of_ed_clients
+        self.percent_intensive_outpatient: float = (
+            dietitian_object.percent_intensive_outpatient
+        )
+        self.percent_regular_outpatient: float = (
+            dietitian_object.percent_regular_outpatient
+        )
         self.datetime: float = dietitian_object.datetime
         self.active: bool = dietitian_object.active
         self.got_sample: bool = dietitian_object.got_sample
