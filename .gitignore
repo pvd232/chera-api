@@ -172,3 +172,5 @@ package-lock.json
 # Chrome driver
 /chromedriver*/
 *chromedriver_*/
+
+/nutrient_data
