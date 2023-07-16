@@ -12,13 +12,25 @@ class Meal_Nutrient_Stats_DTO(Food_Nutrient_Stats_DTO):
         food_id: UUID,
         food_name: str,
         meal_plan_id: UUID,
+        recipe: list[str],
         nutrients: list["Nutrient_Daily_Value_DTO"],
+        k_cal: float,
+        protein_k_cal: float,
+        fat_k_cal: float,
+        carb_k_cal: float,
+        grams: float,
         meal_time: str,
     ):
         super().__init__(
             food_id=food_id,
             food_name=food_name,
             meal_plan_id=meal_plan_id,
+            recipe=recipe,
             nutrients=nutrients,
+            k_cal=k_cal,
+            protein_k_cal=protein_k_cal,
+            fat_k_cal=fat_k_cal,
+            carb_k_cal=carb_k_cal,
+            grams=grams,
         )
         self.meal_time = meal_time

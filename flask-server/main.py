@@ -3594,7 +3594,6 @@ def sample_trial_period() -> Response:
         return Response(status=405)
 
 
-# Make necessary updates to data structures in dietitian menu
 @app.route("/api/extended_meal_plan_meal/v2", methods=["GET"])
 def extended_meal_plan_meal_v2() -> Response:
     from repository.Meal_Plan_Meal_Repository import Meal_Plan_Meal_Repository
@@ -3620,7 +3619,12 @@ def extended_meal_plan_meal_v2() -> Response:
                 ).get_specific_extended_meal_plan_meals(
                     meal_plan_id=associated_meal_plan.id
                 )
-                if not extended_meal_plan_meals:
+                if extended_meal_plan_meals:
+                    meal_plan_meal_DTOs = [
+                        Extended_Meal_Plan_Meal_DTO(extended_meal_plan_meal_domain=x)
+                        for x in extended_meal_plan_meals
+                    ]
+                else:
                     return Response(status=404)
             elif not meal_plan_id and not meal_id:
                 extended_meal_plan_meals: Optional[
@@ -3629,28 +3633,39 @@ def extended_meal_plan_meal_v2() -> Response:
                     meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
                 ).get_extended_meal_plan_meals()
                 if extended_meal_plan_meals:
-                    if not extended_meal_plan_meals:
-                        return Response(status=404)
+                    meal_plan_meal_DTOs = [
+                        Extended_Meal_Plan_Meal_DTO(extended_meal_plan_meal_domain=x)
+                        for x in extended_meal_plan_meals
+                    ]
+
+                else:
+                    return Response(status=404)
             elif meal_plan_id and not meal_id:
                 extended_meal_plan_meals = Extended_Meal_Plan_Meal_Service(
                     meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
                 ).get_specific_extended_meal_plan_meals(meal_plan_id=meal_plan_id)
+                if extended_meal_plan_meals:
+                    meal_plan_meal_DTOs = [
+                        Extended_Meal_Plan_Meal_DTO(extended_meal_plan_meal_domain=x)
+                        for x in extended_meal_plan_meals
+                    ]
 
-                if not extended_meal_plan_meals:
+                else:
                     return Response(status=404)
-
-            # Return minimalist meal plan meals
+            # Return compressed meal plan meals
             food_nutrient_stats_dtos: list[Food_Nutrient_Stats_DTO] = []
-            for meal_plan_meal in extended_meal_plan_meals:
+            for meal_plan_meal_dto in meal_plan_meal_DTOs:
                 food_nutrient_stats_dtos.append(
                     Food_Nutrient_Stats_Service().extract_nutrient_stats(
-                        extended_meal_plan_food=meal_plan_meal
+                        extended_meal_plan_food=meal_plan_meal_dto
                     )
                 )
             serialized_food_nutrient_stats_dtos = [
                 x.serialize() for x in food_nutrient_stats_dtos
             ]
             return jsonify(serialized_food_nutrient_stats_dtos), 200
+
+        # Make sure this method doesn't need to be updated to compressed format
         else:
             extended_meal_plan_meal = Extended_Meal_Plan_Meal_Service(
                 meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
