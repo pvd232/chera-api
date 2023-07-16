@@ -1883,58 +1883,57 @@ def extended_meal_plan_meal() -> Response:
         meal_plan_id = request.args.get("meal_plan_id")
         meal_id = request.args.get("meal_id")
         meal_plan_number = request.args.get("meal_plan_number")
-        if meal_plan_number:
-            associated_meal_plan = Meal_Plan_Service(
-                meal_plan_repository=Meal_Plan_Repository(db=db)
-            ).get_meal_plan(meal_plan_number=meal_plan_number)
-            extended_meal_plan_meals = Extended_Meal_Plan_Meal_Service(
-                meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
-            ).get_specific_extended_meal_plan_meals(
-                meal_plan_id=associated_meal_plan.id
-            )
-            if extended_meal_plan_meals:
-                meal_plan_meal_DTOs = [
-                    Extended_Meal_Plan_Meal_DTO(extended_meal_plan_meal_domain=x)
-                    for x in extended_meal_plan_meals
-                ]
-                serialized_meal_plan_meal_DTOs = [
-                    x.serialize() for x in meal_plan_meal_DTOs
-                ]
-                return jsonify(serialized_meal_plan_meal_DTOs), 200
-            else:
-                return Response(status=404)
-        if not meal_plan_id and not meal_id:
-            extended_meal_plan_meals: Optional[
-                list[Extended_Meal_Plan_Meal_Domain]
-            ] = Extended_Meal_Plan_Meal_Service(
-                meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
-            ).get_extended_meal_plan_meals()
-            if extended_meal_plan_meals:
-                meal_plan_meal_DTOs = [
-                    Extended_Meal_Plan_Meal_DTO(extended_meal_plan_meal_domain=x)
-                    for x in extended_meal_plan_meals
-                ]
-                serialized_meal_plan_meal_DTOs = [
-                    x.serialize() for x in meal_plan_meal_DTOs
-                ]
-                return jsonify(serialized_meal_plan_meal_DTOs), 200
-            else:
-                return Response(status=404)
-        elif meal_plan_id and not meal_id:
-            extended_meal_plan_meals = Extended_Meal_Plan_Meal_Service(
-                meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
-            ).get_specific_extended_meal_plan_meals(meal_plan_id=meal_plan_id)
-            if extended_meal_plan_meals:
-                meal_plan_meal_DTOs = [
-                    Extended_Meal_Plan_Meal_DTO(extended_meal_plan_meal_domain=x)
-                    for x in extended_meal_plan_meals
-                ]
-                serialized_meal_plan_meal_DTOs = [
-                    x.serialize() for x in meal_plan_meal_DTOs
-                ]
-                return jsonify(serialized_meal_plan_meal_DTOs), 200
-            else:
-                return Response(status=404)
+        if not meal_id:
+            if meal_plan_number:
+                associated_meal_plan = Meal_Plan_Service(
+                    meal_plan_repository=Meal_Plan_Repository(db=db)
+                ).get_meal_plan(meal_plan_number=meal_plan_number)
+                extended_meal_plan_meals = Extended_Meal_Plan_Meal_Service(
+                    meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+                ).get_specific_extended_meal_plan_meals(
+                    meal_plan_id=associated_meal_plan.id
+                )
+                if extended_meal_plan_meals:
+                    meal_plan_meal_DTOs = [
+                        Extended_Meal_Plan_Meal_DTO(extended_meal_plan_meal_domain=x)
+                        for x in extended_meal_plan_meals
+                    ]
+                    serialized_meal_plan_meal_DTOs = [
+                        x.serialize() for x in meal_plan_meal_DTOs
+                    ]
+                else:
+                    return Response(status=404)
+            elif not meal_plan_id and not meal_id:
+                extended_meal_plan_meals: Optional[
+                    list[Extended_Meal_Plan_Meal_Domain]
+                ] = Extended_Meal_Plan_Meal_Service(
+                    meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+                ).get_extended_meal_plan_meals()
+                if extended_meal_plan_meals:
+                    meal_plan_meal_DTOs = [
+                        Extended_Meal_Plan_Meal_DTO(extended_meal_plan_meal_domain=x)
+                        for x in extended_meal_plan_meals
+                    ]
+                    serialized_meal_plan_meal_DTOs = [
+                        x.serialize() for x in meal_plan_meal_DTOs
+                    ]
+                else:
+                    return Response(status=404)
+            elif meal_plan_id and not meal_id:
+                extended_meal_plan_meals = Extended_Meal_Plan_Meal_Service(
+                    meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+                ).get_specific_extended_meal_plan_meals(meal_plan_id=meal_plan_id)
+                if extended_meal_plan_meals:
+                    meal_plan_meal_DTOs = [
+                        Extended_Meal_Plan_Meal_DTO(extended_meal_plan_meal_domain=x)
+                        for x in extended_meal_plan_meals
+                    ]
+                    serialized_meal_plan_meal_DTOs = [
+                        x.serialize() for x in meal_plan_meal_DTOs
+                    ]
+                else:
+                    return Response(status=404)
+            return jsonify(serialized_meal_plan_meal_DTOs), 200
         else:
             extended_meal_plan_meal = Extended_Meal_Plan_Meal_Service(
                 meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
@@ -3591,6 +3590,83 @@ def update_client_address() -> Response:
 def sample_trial_period() -> Response:
     if request.method == "GET":
         return jsonify(True), 200
+    else:
+        return Response(status=405)
+
+
+# Make necessary updates to data structures in dietitian menu
+@app.route("/api/extended_meal_plan_meal/v2", methods=["GET"])
+def extended_meal_plan_meal_v2() -> Response:
+    from repository.Meal_Plan_Meal_Repository import Meal_Plan_Meal_Repository
+    from repository.Meal_Plan_Repository import Meal_Plan_Repository
+    from service.Extended_Meal_Plan_Meal_Service import Extended_Meal_Plan_Meal_Service
+    from service.Meal_Plan_Service import Meal_Plan_Service
+    from service.Food_Nutrient_Stats_Service import Food_Nutrient_Stats_Service
+    from domain.Extended_Meal_Plan_Meal_Domain import Extended_Meal_Plan_Meal_Domain
+    from dto.Extended_Meal_Plan_Meal_DTO import Extended_Meal_Plan_Meal_DTO
+    from dto.Food_Nutrient_Stats_DTO import Food_Nutrient_Stats_DTO
+
+    if request.method == "GET":
+        meal_plan_id = request.args.get("meal_plan_id")
+        meal_id = request.args.get("meal_id")
+        meal_plan_number = request.args.get("meal_plan_number")
+        if not meal_id:
+            if meal_plan_number:
+                associated_meal_plan = Meal_Plan_Service(
+                    meal_plan_repository=Meal_Plan_Repository(db=db)
+                ).get_meal_plan(meal_plan_number=meal_plan_number)
+                extended_meal_plan_meals = Extended_Meal_Plan_Meal_Service(
+                    meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+                ).get_specific_extended_meal_plan_meals(
+                    meal_plan_id=associated_meal_plan.id
+                )
+                if not extended_meal_plan_meals:
+                    return Response(status=404)
+            elif not meal_plan_id and not meal_id:
+                extended_meal_plan_meals: Optional[
+                    list[Extended_Meal_Plan_Meal_Domain]
+                ] = Extended_Meal_Plan_Meal_Service(
+                    meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+                ).get_extended_meal_plan_meals()
+                if extended_meal_plan_meals:
+                    if not extended_meal_plan_meals:
+                        return Response(status=404)
+            elif meal_plan_id and not meal_id:
+                extended_meal_plan_meals = Extended_Meal_Plan_Meal_Service(
+                    meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+                ).get_specific_extended_meal_plan_meals(meal_plan_id=meal_plan_id)
+
+                if not extended_meal_plan_meals:
+                    return Response(status=404)
+
+            # Return minimalist meal plan meals
+            food_nutrient_stats_dtos: list[Food_Nutrient_Stats_DTO] = []
+            for meal_plan_meal in extended_meal_plan_meals:
+                food_nutrient_stats_dtos.append(
+                    Food_Nutrient_Stats_Service().extract_nutrient_stats(
+                        extended_meal_plan_food=meal_plan_meal
+                    )
+                )
+            serialized_food_nutrient_stats_dtos = [
+                x.serialize() for x in food_nutrient_stats_dtos
+            ]
+            return jsonify(serialized_food_nutrient_stats_dtos), 200
+        else:
+            extended_meal_plan_meal = Extended_Meal_Plan_Meal_Service(
+                meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+            ).get_extended_meal_plan_meal(
+                meal_plan_meal_id=None, meal_plan_id=meal_plan_id, meal_id=meal_id
+            )
+            if extended_meal_plan_meal:
+                meal_plan_meal_DTO = Extended_Meal_Plan_Meal_DTO(
+                    extended_meal_plan_meal_domain=extended_meal_plan_meal
+                )
+
+                serialized_meal_plan_meal_DTO = meal_plan_meal_DTO.serialize()
+                return jsonify(serialized_meal_plan_meal_DTO), 200
+            else:
+                return jsonify([]), 200
+
     else:
         return Response(status=405)
 
