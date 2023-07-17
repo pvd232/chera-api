@@ -634,6 +634,7 @@ class Meal_Subscription_Invoice_Model(db.Model):
     total = db.Column(db.Float(), nullable=False)
     datetime = db.Column(db.Float(), nullable=False)
     delivery_date = db.Column(db.Float(), nullable=False)
+    payment_successful = db.Column(db.Boolean(), default=True, nullable=False)
 
     def __init__(
         self, meal_subscription_invoice_domain: "Meal_Subscription_Invoice_Domain"
@@ -656,6 +657,7 @@ class Meal_Subscription_Invoice_Model(db.Model):
         self.total = meal_subscription_invoice_domain.total
         self.datetime = meal_subscription_invoice_domain.datetime
         self.delivery_date = meal_subscription_invoice_domain.delivery_date
+        self.payment_successful = True
 
     order_meals: Mapped[list[Order_Meal_Model]] = relationship(
         "Order_Meal_Model", lazy=True
