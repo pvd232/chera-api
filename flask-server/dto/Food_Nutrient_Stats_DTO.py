@@ -5,13 +5,6 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .Nutrient_Daily_Value_DTO import Nutrient_Daily_Value_DTO
 
-    # serialized_attributes["k_cal"] = round(self.get_k_cal())
-    # serialized_attributes["protein_k_cal"] = round(
-    #     self.get_adjusted_protein_k_cal()
-    # )
-    # serialized_attributes["fat_k_cal"] = round(self.get_adjusted_fat_k_cal())
-    # serialized_attributes["carb_k_cal"] = round(self.get_adjusted_carb_k_cal())
-
 
 class Food_Nutrient_Stats_DTO(Base_DTO):
     def __init__(

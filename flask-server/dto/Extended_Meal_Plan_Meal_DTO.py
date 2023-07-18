@@ -26,7 +26,9 @@ class Extended_Meal_Plan_Meal_DTO(Meal_Plan_Meal_DTO):
         )
 
         self.nutrients: dict[str, Compressed_Nutrient_Data_DTO] = {}
+        self.weight = 0
         for recipe_ingredient in self.recipe:
+            self.weight += recipe_ingredient.amount_of_grams
             for nutrient in recipe_ingredient.nutrients:
                 if nutrient.nutrient_id in self.nutrients:
                     self.nutrients[nutrient.nutrient_id].amount += nutrient.amount
