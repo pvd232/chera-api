@@ -24,15 +24,11 @@ class Dietitian_DTO(Base_DTO):
             self.clinic_state: str = dietitian_json["clinic_state"]
             self.clinic_address: str = dietitian_json["clinic_address"]
             self.clinic_url: str = dietitian_json["clinic_url"]
-            self.number_of_ed_clients: int = dietitian_json["number_of_ed_clients"]
-            self.percent_intensive_outpatient: float = dietitian_json[
-                "percent_intensive_outpatient"
-            ]
-            self.percent_regular_outpatient: float = dietitian_json[
-                "percent_regular_outpatient"
-            ]
+            self.number_of_ed_clients: int = 0
+            self.percent_intensive_outpatient: float = 0
+            self.percent_regular_outpatient: float = 0
             self.datetime: float = float(dietitian_json["datetime"])
-            self.got_sample: bool = dietitian_json["got_sample"]
+            self.got_sample: bool = True
             self.active: bool = dietitian_json["active"]
 
             if self.id == gcp_secret_manager_service.get_secret("ADMIN_ID"):
@@ -51,14 +47,10 @@ class Dietitian_DTO(Base_DTO):
             self.clinic_state: str = dietitian_domain.clinic_state
             self.clinic_address: str = dietitian_domain.clinic_address
             self.clinic_url: str = dietitian_domain.clinic_url
-            self.number_of_ed_clients: int = dietitian_domain.number_of_ed_clients
-            self.percent_intensive_outpatient: float = (
-                dietitian_domain.percent_intensive_outpatient
-            )
-            self.percent_regular_outpatient: float = (
-                dietitian_domain.percent_regular_outpatient
-            )
+            self.number_of_ed_clients: int = 0
+            self.percent_intensive_outpatient: float = 0
+            self.percent_regular_outpatient: float = 0
             self.datetime: float = dietitian_domain.datetime
-            self.got_sample: bool = dietitian_domain.got_sample
+            self.got_sample: bool = True
             self.active: bool = dietitian_domain.active
             self.admin = False

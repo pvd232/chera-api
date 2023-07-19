@@ -267,7 +267,7 @@ class Staged_Client_Model(db.Model):
     current_weight = db.Column(db.Integer(), nullable=False)
     target_weight = db.Column(db.Integer(), nullable=False)
     age = db.Column(db.Integer(), nullable=False)
-    gender = db.Column(db.Integer(), nullable=False)
+    gender = db.Column(db.String(80), nullable=False)
     target_weight = db.Column(db.Float(), nullable=False)
     notes = db.Column(db.String(500), default="")
     # account information
@@ -334,13 +334,11 @@ class Dietitian_Model(db.Model):
         self.clinic_state = dietitian_domain.clinic_state
         self.clinic_address = dietitian_domain.clinic_address
         self.clinic_url = dietitian_domain.clinic_url
-        self.number_of_ed_clients = dietitian_domain.number_of_ed_clients
-        self.percent_intensive_outpatient = (
-            dietitian_domain.percent_intensive_outpatient
-        )
-        self.percent_regular_outpatient = dietitian_domain.percent_regular_outpatient
+        self.number_of_ed_clients = 0
+        self.percent_intensive_outpatient = 0
+        self.percent_regular_outpatient = 0
         self.datetime = dietitian_domain.datetime
-        self.got_sample = dietitian_domain.got_sample
+        self.got_sample = True
         self.active = dietitian_domain.active
 
 
