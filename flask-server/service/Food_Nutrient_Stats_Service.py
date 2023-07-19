@@ -4,7 +4,7 @@ from dto.Nutrient_Daily_Value_DTO import Nutrient_Daily_Value_DTO
 if TYPE_CHECKING:
     from dto.Extended_Meal_Plan_Meal_DTO import Extended_Meal_Plan_Meal_DTO
     from dto.Extended_Meal_Plan_Snack_DTO import Extended_Meal_Plan_Snack_DTO
-    from dto.Food_Nutrient_Stats_DTO import Food_Nutrient_Stats_DTO
+    from dto.Snack_Nutrient_Stats_DTO import Snack_Nutrient_Stats_DTO
     from dto.Meal_Nutrient_Stats_DTO import Meal_Nutrient_Stats_DTO
 
 
@@ -13,12 +13,13 @@ class Food_Nutrient_Stats_Service:
         self,
         extended_meal_plan_food: "Extended_Meal_Plan_Meal_DTO"
         | "Extended_Meal_Plan_Snack_DTO",
-    ) -> Meal_Nutrient_Stats_DTO | Food_Nutrient_Stats_DTO:
+    ) -> Meal_Nutrient_Stats_DTO | Snack_Nutrient_Stats_DTO:
         nutrient_list = []
         for nutrient in extended_meal_plan_food.nutrients.values():
             nutrient_daily_value_dto = Nutrient_Daily_Value_DTO(
                 nutrient_id=nutrient.nutrient_id,
-                daily_value=nutrient.amount / nutrient.usda_nutrient_daily_value_amount,
+                usda_nutrient_daily_value_amount=nutrient.amount
+                / nutrient.usda_nutrient_daily_value_amount,
                 nutrient_unit=nutrient.nutrient_unit,
             )
             nutrient_list.append(nutrient_daily_value_dto)
@@ -43,7 +44,7 @@ class Food_Nutrient_Stats_Service:
                 meal_time=extended_meal_plan_food.associated_meal.meal_time,
             )
         else:
-            return Food_Nutrient_Stats_DTO(
+            return Snack_Nutrient_Stats_DTO(
                 food_id=extended_meal_plan_food.id,
                 food_name=extended_meal_plan_food.associated_snack.name,
                 meal_plan_id=extended_meal_plan_food.meal_plan_id,

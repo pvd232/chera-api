@@ -6,9 +6,9 @@ class Nutrient_Daily_Value_DTO(Base_DTO):
     def __init__(
         self,
         nutrient_id: str,
-        daily_value: float,
+        usda_nutrient_daily_value_amount: float,
         nutrient_unit: str,
     ):
         self.nutrient_id = nutrient_id
-        self.daily_value = daily_value
+        self.usda_nutrient_daily_value_amount = usda_nutrient_daily_value_amount
         self.nutrient_unit = nutrient_unit

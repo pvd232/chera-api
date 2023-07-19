@@ -3088,19 +3088,6 @@ def order_meal() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/stripe/price_id", methods=["GET"])
-def meal_subscription_stripe_price_id() -> Response:
-    from models import stripe_meal_price_id
-
-    meal_cost = request.args.get("meal_cost")
-    # Stripe service get appropriate price using cost param
-    if request.method == "GET":
-        response: dict[str, str] = {"stripe_price_id": stripe_meal_price_id}
-        return jsonify(response), 200
-    else:
-        return Response(status=405)
-
-
 @app.route("/api/cogs", methods=["GET"])
 def cogs() -> Response:
     from repository.COGS_Repository import COGS_Repository
@@ -3143,25 +3130,6 @@ def shipping_cost() -> Response:
     shipping_rate = Shippo_Service().get_shipping_rate(zipcode=zipcode)
     if request.method == "GET":
         return jsonify(shipping_rate), 200
-    else:
-        return Response(status=405)
-
-
-@app.route("/api/meal_price", methods=["GET"])
-def meal_price() -> Response:
-    cost_per_meal = request.args.get("cost_per_meal")
-    if request.method == "GET":
-        return jsonify(meal_price), 200
-    else:
-        return Response(status=405)
-
-
-@app.route("/api/snack_price", methods=["GET"])
-def snack_price() -> Response:
-    from models import snack_price
-
-    if request.method == "GET":
-        return jsonify(snack_price), 200
     else:
         return Response(status=405)
 
@@ -3594,7 +3562,7 @@ def sample_trial_period() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/extended_meal_plan_meal/v2", methods=["GET"])
+@app.route("/api/food_data_nutrient", methods=["GET"])
 def extended_meal_plan_meal_v2() -> Response:
     from repository.Meal_Plan_Meal_Repository import Meal_Plan_Meal_Repository
     from repository.Meal_Plan_Repository import Meal_Plan_Repository
