@@ -849,7 +849,7 @@ class Dietary_Restriction_Model(db.Model):
 class USDA_Ingredient_Model(db.Model):
     __tablename__ = "usda_ingredient"
 
-    id = db.Column(db.String(30), primary_key=True, unique=True, nullable=False)
+    id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
     name = db.Column(db.String(80), unique=True, nullable=False)
     fdc_id = db.Column(db.String(80), unique=True, nullable=False)
     fda_identifier = db.Column(db.String(80), unique=True, nullable=False)
@@ -913,7 +913,7 @@ class Recipe_Ingredient_Model(db.Model):
     )
     id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
     usda_ingredient_id = db.Column(
-        db.String(80),
+        UUID(as_uuid=True),
         db.ForeignKey("usda_ingredient.id"),
         primary_key=True,
         nullable=False,
@@ -957,7 +957,7 @@ class USDA_Ingredient_Portion_Model(db.Model):
     __tablename__ = "usda_ingredient_portion"
     id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
     usda_ingredient_id = db.Column(
-        db.String(80), db.ForeignKey("usda_ingredient.id"), nullable=False
+        UUID(as_uuid=True), db.ForeignKey("usda_ingredient.id"), nullable=False
     )
     fda_portion_id = db.Column(db.String(80), nullable=False)
     non_metric_unit = db.Column(db.String(80), nullable=False)
@@ -1028,7 +1028,7 @@ class USDA_Ingredient_Nutrient_Model(db.Model):
     __tablename__ = "usda_ingredient_nutrient"
     id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
     usda_ingredient_id = db.Column(
-        db.String(80), db.ForeignKey("usda_ingredient.id"), nullable=False
+        UUID(as_uuid=True), db.ForeignKey("usda_ingredient.id"), nullable=False
     )
     nutrient_id = db.Column(db.String(30), db.ForeignKey("nutrient.id"), nullable=False)
     amount = db.Column(db.Float(), nullable=False)

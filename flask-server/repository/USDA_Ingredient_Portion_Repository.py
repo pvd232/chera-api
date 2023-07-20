@@ -1,5 +1,5 @@
 from repository.Base_Repository import Base_Repository
-from models import USDA_Ingredient_Portion_Model
+from models import USDA_Ingredient_Portion_Model, USDA_Ingredient_Model
 from uuid import UUID
 from typing import Optional, TYPE_CHECKING
 
@@ -74,11 +74,13 @@ class USDA_Ingredient_Portion_Repository(Base_Repository):
             "grams_per_non_metric_unit"
         ]
         portion_to_update.multiplier = usda_ingredient_portion_data["multiplier"]
-        portion_to_update.non_metric_unit = usda_ingredient_portion_data["non_metric_unit"]
+        portion_to_update.non_metric_unit = usda_ingredient_portion_data[
+            "non_metric_unit"
+        ]
 
         self.db.session.commit()
 
-    def delete_usda_ingredient_portions(self, usda_ingredient_id: str) -> None:
+    def delete_usda_ingredient_portions(self, usda_ingredient_id: UUID) -> None:
         portions = (
             self.db.session.query(USDA_Ingredient_Portion_Model)
             .filter(
@@ -103,24 +105,15 @@ class USDA_Ingredient_Portion_Repository(Base_Repository):
             filename=usda_ingredient_portion_json_file
         )
 
-        # Only initialize custom values, not USDA values which are initialized alongside USDA_Ingredient_Models
         for usda_ingredient_portion_json in usda_ingredient_portions_data:
-            test_if_exists = (
-                self.db.session.query(USDA_Ingredient_Portion_Model).filter(
-                    USDA_Ingredient_Portion_Model.id
-                    == usda_ingredient_portion_json["id"]
-                )
-            ).first()
-            if not test_if_exists:
-                usda_ingredient_portion_dto = USDA_Ingredient_Portion_DTO(
-                    usda_ingredient_portion_json=usda_ingredient_portion_json
-                )
-                usda_ingredient_portion_domain = USDA_Ingredient_Portion_Domain(
-                    usda_ingredient_portion_object=usda_ingredient_portion_dto
-                )
-
-                new_usda_ingredient_portion_model = USDA_Ingredient_Portion_Model(
-                    usda_ingredient_portion_domain=usda_ingredient_portion_domain
-                )
-                self.db.session.add(new_usda_ingredient_portion_model)
+            usda_ingredient_portion_dto = USDA_Ingredient_Portion_DTO(
+                usda_ingredient_portion_json=usda_ingredient_portion_json
+            )
+            usda_ingredient_portion_domain = USDA_Ingredient_Portion_Domain(
+                usda_ingredient_portion_object=usda_ingredient_portion_dto
+            )
+            new_usda_ingredient_portion_model = USDA_Ingredient_Portion_Model(
+                usda_ingredient_portion_domain=usda_ingredient_portion_domain
+            )
+            self.db.session.add(new_usda_ingredient_portion_model)
         self.db.session.commit()

@@ -544,7 +544,7 @@ def usda_ingredient_portion() -> Response:
 @app.route(
     "/api/usda_ingredient", defaults={"usda_ingredient_id": None}, methods=["POST"]
 )
-def usda_ingredient(usda_ingredient_id: Optional[str]) -> Response:
+def usda_ingredient(usda_ingredient_id: Optional[UUID]) -> Response:
     from models import USDA_api_key
     from repository.Imperial_Unit_Repository import Imperial_Unit_Repository
     from repository.Nutrient_Repository import Nutrient_Repository

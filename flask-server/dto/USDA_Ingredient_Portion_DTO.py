@@ -14,7 +14,7 @@ class USDA_Ingredient_Portion_DTO(Base_DTO):
     ) -> None:
         if usda_ingredient_portion_json:
             self.id: UUID = UUID(usda_ingredient_portion_json["id"])
-            self.usda_ingredient_id: str = usda_ingredient_portion_json[
+            self.usda_ingredient_id: UUID = usda_ingredient_portion_json[
                 "usda_ingredient_id"
             ]
             self.fda_portion_id: str = str(
@@ -33,7 +33,7 @@ class USDA_Ingredient_Portion_DTO(Base_DTO):
             self.multiplier: float = float(usda_ingredient_portion_json["multiplier"])
         elif usda_ingredient_portion_domain:
             self.id: UUID = usda_ingredient_portion_domain.id
-            self.usda_ingredient_id: str = (
+            self.usda_ingredient_id: UUID = (
                 usda_ingredient_portion_domain.usda_ingredient_id
             )
             self.fda_portion_id: str = usda_ingredient_portion_domain.fda_portion_id

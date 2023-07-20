@@ -1,4 +1,4 @@
-from uuid import uuid4
+from uuid import uuid4, UUID
 from domain.USDA_Ingredient_Portion_Domain import USDA_Ingredient_Portion_Domain
 from domain.Imperial_Unit_Domain import Imperial_Unit_Domain
 from dto.Nutrient_DTO import Nutrient_DTO
@@ -8,7 +8,7 @@ from dto.USDA_Ingredient_Nutrient_DTO import USDA_Ingredient_Nutrient_DTO
 
 def get_nutrients(
     nutrient_list: list[Nutrient_DTO],
-    usda_ingredient_id: str,
+    usda_ingredient_id: UUID,
     usda_nutrient_data: list[dict],
 ) -> list[USDA_Ingredient_Nutrient_DTO]:
     nutrients_to_return = []
@@ -52,7 +52,7 @@ def get_nutrients(
 def get_portions(
     portion_list: list[dict],
     imperial_units: list[Imperial_Unit_Domain],
-    usda_ingredient_id: str,
+    usda_ingredient_id: UUID,
     usda_data_type: str,
 ) -> list[USDA_Ingredient_Portion_DTO]:
     is_imperial = True
@@ -137,7 +137,7 @@ def get_portions(
 class USDA_Nutrient_Mapper_DTO(object):
     def __init__(
         self,
-        usda_ingredient_id: str,
+        usda_ingredient_id: UUID,
         usda_ingredient_name: str,
         fdc_id: str,
         usda_ingredient_data: list[dict],

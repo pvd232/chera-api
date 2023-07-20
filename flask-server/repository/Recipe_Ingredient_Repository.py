@@ -1,5 +1,5 @@
 from repository.Base_Repository import Base_Repository
-from models import Recipe_Ingredient_Model
+from models import Recipe_Ingredient_Model, USDA_Ingredient_Model
 from uuid import UUID
 from typing import Optional, TYPE_CHECKING
 
@@ -51,7 +51,6 @@ class Recipe_Ingredient_Repository(Base_Repository):
         for recipe_ingredient_json in recipe_ingredients_data:
             recipe_ingredient_dto = Recipe_Ingredient_DTO(recipe_ingredient_json=recipe_ingredient_json)
             recipe_ingredient_domain = Recipe_Ingredient_Domain(recipe_ingredient_object=recipe_ingredient_dto)
-
             new_recipe_ingredient_model = Recipe_Ingredient_Model(recipe_ingredient_domain=recipe_ingredient_domain)
             self.db.session.add(new_recipe_ingredient_model)
         self.db.session.commit()
