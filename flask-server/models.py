@@ -304,7 +304,7 @@ class Dietitian_Model(db.Model):
     id = db.Column(db.String(80), primary_key=True, unique=True, nullable=False)
     first_name = db.Column(db.String(80), nullable=False)
     last_name = db.Column(db.String(80), nullable=False)
-    dietetic_registration_number = db.Column(db.String(12), nullable=False)
+    dietetic_registration_number = db.Column(db.String(20), nullable=False)
     clinic_city = db.Column(db.String(40), nullable=False)
     clinic_state = db.Column(db.String(2), nullable=False)
     clinic_address = db.Column(db.String(200), nullable=False)
