@@ -1033,9 +1033,12 @@ def dietitian() -> Response | Response:
         created_dietitian_domain = Dietitian_Service(
             dietitian_repository=Dietitian_Repository(db=db)
         ).create_dietitian(dietitian_dto=requested_dietitian_dto)
-        Email_Service(
-            gcp_secret_manager_service=GCP_Secret_Manager_Service(),
-        ).send_confirmation_email(user_type="Dietitian", user=created_dietitian_domain)
+        if created_dietitian_domain.id != "myvidanutrition@gmail.com":
+            Email_Service(
+                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+            ).send_confirmation_email(
+                user_type="Dietitian", user=created_dietitian_domain
+            )
         if created_dietitian_domain.got_sample:
             # shipping_address =
             dietitian_meal_sample_dtos = []
