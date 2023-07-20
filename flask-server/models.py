@@ -154,18 +154,15 @@ class Client_Model(db.Model):
     first_name = db.Column(db.String(80), nullable=False)
     last_name = db.Column(db.String(80), nullable=False)
     street = db.Column(db.String(100), nullable=False)
-    suite = db.Column(db.String(80), nullable=False)
-    city = db.Column(db.String(80), nullable=False)
-    state = db.Column(db.String(80), nullable=False)
+    suite = db.Column(db.String(20), nullable=False)
+    city = db.Column(db.String(40), nullable=False)
+    state = db.Column(db.String(13), nullable=False)
     zipcode = db.Column(db.String(5), nullable=False)
     zipcode_extension = db.Column(db.String(4), nullable=False)
     address = db.Column(db.String(200), nullable=False)
     phone_number = db.Column(db.String(20), nullable=False)
     datetime = db.Column(db.Float(), nullable=False)
     active = db.Column(db.Boolean(), default=True, nullable=False)
-    dietitian_id = db.Column(
-        db.String(80), db.ForeignKey("dietitian.id"), nullable=False
-    )
     notes = db.Column(db.String(500), default="")
 
     meal_plan = relationship("Meal_Plan_Model", lazy=True)
@@ -267,16 +264,15 @@ class Staged_Client_Model(db.Model):
     current_weight = db.Column(db.Integer(), nullable=False)
     target_weight = db.Column(db.Integer(), nullable=False)
     age = db.Column(db.Integer(), nullable=False)
-    gender = db.Column(db.Integer(), nullable=False)
-    target_weight = db.Column(db.Float(), nullable=False)
+    gender = db.Column(db.String(20), nullable=False)
     notes = db.Column(db.String(500), default="")
     # account information
     datetime = db.Column(db.Float(), nullable=False)
     account_created = db.Column(db.Boolean(), default=True, nullable=False)
-    active = db.Column(db.Boolean(), default=True, nullable=False)
     waitlisted = db.Column(db.Boolean(), default=False, nullable=False)
     meals_pre_selected = db.Column(db.Boolean(), default=False, nullable=False)
     meals_prepaid = db.Column(db.Boolean(), default=False, nullable=False)
+    active = db.Column(db.Boolean(), default=True, nullable=False)
 
     # relationships
     meal_plan = relationship("Meal_Plan_Model", lazy="joined")
@@ -309,7 +305,7 @@ class Dietitian_Model(db.Model):
     first_name = db.Column(db.String(80), nullable=False)
     last_name = db.Column(db.String(80), nullable=False)
     dietetic_registration_number = db.Column(db.String(12), nullable=False)
-    clinic_city = db.Column(db.String(80), nullable=False)
+    clinic_city = db.Column(db.String(40), nullable=False)
     clinic_state = db.Column(db.String(2), nullable=False)
     clinic_address = db.Column(db.String(200), nullable=False)
     clinic_url = db.Column(db.String(80), nullable=False)
@@ -346,7 +342,7 @@ class Dietitian_Model(db.Model):
 
 class State_Sales_Tax_Model(db.Model):
     __tablename__ = "state_sales_tax"
-    state = db.Column(db.String(80), primary_key=True, unique=True, nullable=False)
+    state = db.Column(db.String(13), primary_key=True, unique=True, nullable=False)
     sales_tax_percentage = db.Column(db.Float(), nullable=False)
     stripe_tax_id = db.Column(db.String(80), nullable=False)
 
@@ -422,7 +418,7 @@ class Meal_Plan_Model(db.Model):
 class Meal_Model(db.Model):
     __tablename__ = "meal"
     id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
-    meal_time = db.Column(db.String(80), nullable=False)
+    meal_time = db.Column(db.String(15), nullable=False)
     name = db.Column(db.String(80), unique=True, nullable=False)
     description = db.Column(db.String(200), nullable=False)
     image_url = db.Column(db.String(200), nullable=False)
@@ -578,9 +574,9 @@ class Meal_Sample_Shipment_Model(db.Model):
         db.ForeignKey("dietitian.id"),
         nullable=False,
     )
-    shippo_transaction_id = db.Column(db.String(200), nullable=False)
+    shippo_transaction_id = db.Column(db.String(80), nullable=False)
     label_url = db.Column(db.String(200), nullable=False)
-    tracking_number = db.Column(db.String(200), nullable=False)
+    tracking_number = db.Column(db.String(80), nullable=False)
     tracking_url = db.Column(db.String(200), nullable=False)
 
     def __init__(
@@ -853,15 +849,14 @@ class Dietary_Restriction_Model(db.Model):
 class USDA_Ingredient_Model(db.Model):
     __tablename__ = "usda_ingredient"
 
-    id = db.Column(db.String(80), primary_key=True, unique=True, nullable=False)
+    id = db.Column(db.String(30), primary_key=True, unique=True, nullable=False)
     name = db.Column(db.String(80), unique=True, nullable=False)
     fdc_id = db.Column(db.String(80), unique=True, nullable=False)
     fda_identifier = db.Column(db.String(80), unique=True, nullable=False)
     amount_of_grams = db.Column(db.Float(), nullable=False)
     k_cal = db.Column(db.Integer(), nullable=False)
     k_cal_to_gram_ratio = db.Column(db.Float(), nullable=False)
-    usda_data_type = db.Column(db.String(80), nullable=False)
-    # usda_description = db.Column(db.String(80), default="", nullable=False)
+    usda_data_type = db.Column(db.String(20), nullable=False)
     active = db.Column(db.Boolean(), default=True, nullable=False)
 
     portions = relationship("USDA_Ingredient_Portion_Model", lazy="joined")
@@ -964,12 +959,12 @@ class USDA_Ingredient_Portion_Model(db.Model):
     usda_ingredient_id = db.Column(
         db.String(80), db.ForeignKey("usda_ingredient.id"), nullable=False
     )
-    fda_portion_id = db.Column(db.String(80), nullable=False)
-    non_metric_unit = db.Column(db.String(80), nullable=False)
+    fda_portion_id = db.Column(db.String(20), nullable=False)
+    non_metric_unit = db.Column(db.String(20), nullable=False)
     grams_per_non_metric_unit = db.Column(db.Float(), nullable=False)
     portion_description = db.Column(db.String(80), nullable=False)
     is_imperial = db.Column(db.Boolean(), default=True, nullable=False)
-    usda_data_type = db.Column(db.String(80), nullable=False)
+    usda_data_type = db.Column(db.String(20), nullable=False)
     custom_value = db.Column(db.Boolean(), default=False, nullable=False)
     multiplier = db.Column(db.Float(), default=1, nullable=False)
 
@@ -1003,10 +998,10 @@ class Imperial_Unit_Model(db.Model):
 
 class Nutrient_Model(db.Model):
     __tablename__ = "nutrient"
-    id = db.Column(db.String(80), primary_key=True, unique=True, nullable=False)
-    unit = db.Column(db.String(80), nullable=False)
-    name = db.Column(db.String(80), primary_key=True, unique=True, nullable=False)
-    usda_id = db.Column(db.String(80), unique=True, nullable=False)
+    id = db.Column(db.String(20), primary_key=True, unique=True, nullable=False)
+    unit = db.Column(db.String(5), nullable=False)
+    name = db.Column(db.String(20), primary_key=True, unique=True, nullable=False)
+    usda_id = db.Column(db.String(10), unique=True, nullable=False)
     has_daily_value = db.Column(db.Boolean(), default=True, nullable=False)
 
     def __init__(
@@ -1035,7 +1030,7 @@ class USDA_Ingredient_Nutrient_Model(db.Model):
     usda_ingredient_id = db.Column(
         db.String(80), db.ForeignKey("usda_ingredient.id"), nullable=False
     )
-    nutrient_id = db.Column(db.String(80), db.ForeignKey("nutrient.id"), nullable=False)
+    nutrient_id = db.Column(db.String(20), db.ForeignKey("nutrient.id"), nullable=False)
     amount = db.Column(db.Float(), nullable=False)
 
     def __init__(
@@ -1054,7 +1049,7 @@ class Recipe_Ingredient_Nutrient_Model(db.Model):
     recipe_ingredient_id = db.Column(
         UUID(as_uuid=True), db.ForeignKey("recipe_ingredient.id"), nullable=False
     )
-    nutrient_id = db.Column(db.String(80), db.ForeignKey("nutrient.id"), nullable=False)
+    nutrient_id = db.Column(db.String(20), db.ForeignKey("nutrient.id"), nullable=False)
     usda_nutrient_daily_value_amount = db.Column(db.Float(), nullable=False)
     amount = db.Column(db.Float(), nullable=False)
 
@@ -1078,7 +1073,7 @@ class USDA_Nutrient_Daily_Value_Model(db.Model):
     __tablename__ = "usda_nutrient_daily_value"
     id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
     nutrient_id = db.Column(
-        db.String(80), db.ForeignKey("nutrient.id"), primary_key=True, nullable=False
+        db.String(20), db.ForeignKey("nutrient.id"), primary_key=True, nullable=False
     )
     meal_plan_id = db.Column(
         UUID(as_uuid=True),
