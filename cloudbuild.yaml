@@ -7,7 +7,7 @@ steps:
     args: [
             'build',
             '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/$_SERVICE_NAME:latest',
-            '--cache-from', 'gcr.io/$PROJECT_ID/$_SERVICE_NAME:latest',
+            '--cache-from', 'gcr.io/$PROJECT_ID/$PROJECT_ID/$_SERVICE_NAME:latest',
             '.'
         ]
   # Push the container image to Container Registry
