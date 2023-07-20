@@ -1033,14 +1033,10 @@ def dietitian() -> Response | Response:
         created_dietitian_domain = Dietitian_Service(
             dietitian_repository=Dietitian_Repository(db=db)
         ).create_dietitian(dietitian_dto=requested_dietitian_dto)
-        if created_dietitian_domain.id != "myvidanutrition@gmail.com":
-            Email_Service(
-                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
-            ).send_confirmation_email(
-                user_type="Dietitian", user=created_dietitian_domain
-            )
+        Email_Service(
+            gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+        ).send_confirmation_email(user_type="Dietitian", user=created_dietitian_domain)
         if created_dietitian_domain.got_sample:
-            # shipping_address =
             dietitian_meal_sample_dtos = []
             meal_samples = Meal_Service(
                 meal_repository=Meal_Repository(db=db)
@@ -3087,19 +3083,6 @@ def order_meal() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/stripe/price_id", methods=["GET"])
-def meal_subscription_stripe_price_id() -> Response:
-    from models import stripe_meal_price_id
-
-    meal_cost = request.args.get("meal_cost")
-    # Stripe service get appropriate price using cost param
-    if request.method == "GET":
-        response: dict[str, str] = {"stripe_price_id": stripe_meal_price_id}
-        return jsonify(response), 200
-    else:
-        return Response(status=405)
-
-
 @app.route("/api/cogs", methods=["GET"])
 def cogs() -> Response:
     from repository.COGS_Repository import COGS_Repository
@@ -3142,25 +3125,6 @@ def shipping_cost() -> Response:
     shipping_rate = Shippo_Service().get_shipping_rate(zipcode=zipcode)
     if request.method == "GET":
         return jsonify(shipping_rate), 200
-    else:
-        return Response(status=405)
-
-
-@app.route("/api/meal_price", methods=["GET"])
-def meal_price() -> Response:
-    cost_per_meal = request.args.get("cost_per_meal")
-    if request.method == "GET":
-        return jsonify(meal_price), 200
-    else:
-        return Response(status=405)
-
-
-@app.route("/api/snack_price", methods=["GET"])
-def snack_price() -> Response:
-    from models import snack_price
-
-    if request.method == "GET":
-        return jsonify(snack_price), 200
     else:
         return Response(status=405)
 
