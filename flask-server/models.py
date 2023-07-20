@@ -625,8 +625,8 @@ class Meal_Subscription_Invoice_Model(db.Model):
     sales_tax_total = db.Column(db.Float(), nullable=False)
     shipping_total = db.Column(db.Float(), nullable=False)
     stripe_fee_total = db.Column(db.Float(), nullable=False)
-    stripe_invoice_id = db.Column(db.String(200), nullable=False)
-    stripe_payment_intent_id = db.Column(db.String(200), nullable=False)
+    stripe_invoice_id = db.Column(db.String(100), nullable=False)
+    stripe_payment_intent_id = db.Column(db.String(100), nullable=False)
     total = db.Column(db.Float(), nullable=False)
     datetime = db.Column(db.Float(), nullable=False)
     delivery_date = db.Column(db.Float(), nullable=False)
@@ -959,8 +959,8 @@ class USDA_Ingredient_Portion_Model(db.Model):
     usda_ingredient_id = db.Column(
         db.String(80), db.ForeignKey("usda_ingredient.id"), nullable=False
     )
-    fda_portion_id = db.Column(db.String(20), nullable=False)
-    non_metric_unit = db.Column(db.String(20), nullable=False)
+    fda_portion_id = db.Column(db.String(80), nullable=False)
+    non_metric_unit = db.Column(db.String(80), nullable=False)
     grams_per_non_metric_unit = db.Column(db.Float(), nullable=False)
     portion_description = db.Column(db.String(80), nullable=False)
     is_imperial = db.Column(db.Boolean(), default=True, nullable=False)
@@ -998,10 +998,10 @@ class Imperial_Unit_Model(db.Model):
 
 class Nutrient_Model(db.Model):
     __tablename__ = "nutrient"
-    id = db.Column(db.String(20), primary_key=True, unique=True, nullable=False)
-    unit = db.Column(db.String(5), nullable=False)
-    name = db.Column(db.String(20), primary_key=True, unique=True, nullable=False)
-    usda_id = db.Column(db.String(10), unique=True, nullable=False)
+    id = db.Column(db.String(30), primary_key=True, unique=True, nullable=False)
+    unit = db.Column(db.String(10), nullable=False)
+    name = db.Column(db.String(30), primary_key=True, unique=True, nullable=False)
+    usda_id = db.Column(db.String(20), unique=True, nullable=False)
     has_daily_value = db.Column(db.Boolean(), default=True, nullable=False)
 
     def __init__(
@@ -1030,7 +1030,7 @@ class USDA_Ingredient_Nutrient_Model(db.Model):
     usda_ingredient_id = db.Column(
         db.String(80), db.ForeignKey("usda_ingredient.id"), nullable=False
     )
-    nutrient_id = db.Column(db.String(20), db.ForeignKey("nutrient.id"), nullable=False)
+    nutrient_id = db.Column(db.String(30), db.ForeignKey("nutrient.id"), nullable=False)
     amount = db.Column(db.Float(), nullable=False)
 
     def __init__(
@@ -1049,7 +1049,7 @@ class Recipe_Ingredient_Nutrient_Model(db.Model):
     recipe_ingredient_id = db.Column(
         UUID(as_uuid=True), db.ForeignKey("recipe_ingredient.id"), nullable=False
     )
-    nutrient_id = db.Column(db.String(20), db.ForeignKey("nutrient.id"), nullable=False)
+    nutrient_id = db.Column(db.String(30), db.ForeignKey("nutrient.id"), nullable=False)
     usda_nutrient_daily_value_amount = db.Column(db.Float(), nullable=False)
     amount = db.Column(db.Float(), nullable=False)
 
@@ -1073,7 +1073,7 @@ class USDA_Nutrient_Daily_Value_Model(db.Model):
     __tablename__ = "usda_nutrient_daily_value"
     id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
     nutrient_id = db.Column(
-        db.String(20), db.ForeignKey("nutrient.id"), primary_key=True, nullable=False
+        db.String(30), db.ForeignKey("nutrient.id"), primary_key=True, nullable=False
     )
     meal_plan_id = db.Column(
         UUID(as_uuid=True),
@@ -1219,7 +1219,7 @@ class Dietitian_Prepayment_Model(db.Model):
     sales_tax_total = db.Column(db.Float(), nullable=False)
     shipping_total = db.Column(db.Float(), nullable=False)
     stripe_fee_total = db.Column(db.Float(), nullable=False)
-    stripe_payment_intent_id = db.Column(db.String(200), nullable=False)
+    stripe_payment_intent_id = db.Column(db.String(100), nullable=False)
     total = db.Column(db.Float(), nullable=False)
     datetime = db.Column(db.Float(), nullable=False)
 
