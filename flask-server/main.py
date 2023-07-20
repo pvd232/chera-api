@@ -1081,15 +1081,10 @@ def dietitian() -> Response | Response:
 
 @app.route("/api/shippo/meal_sample_shipment", methods=["POST"])
 def create_meal_sample_shipment() -> Response:
-    from repository.Meal_Repository import Meal_Repository
     from repository.Meal_Sample_Shipment_Repository import (
         Meal_Sample_Shipment_Repository,
     )
-    from service.Meal_Service import Meal_Service
-    from service.Meal_Sample_Shipment_Service import Meal_Sample_Shipment_Service
-    from service.Email_Service import Email_Service
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
-    from service.Date_Service import Date_Service
     from service.Shippo_Service import Shippo_Service
     from dto.Dietitian_DTO import Dietitian_DTO
 
