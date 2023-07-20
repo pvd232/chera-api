@@ -1483,6 +1483,11 @@ def stripe_subscription_data() -> Response:
         return Response(status=405)
 
 
+@app.route("/api/hello", methods=["GET"])
+def hello():
+    return jsonify({"hello": "world"}), 200
+
+
 @app.route("/api/extended_staged_client", methods=["GET"])
 def extended_staged_client() -> Response:
     from service.Extended_Staged_Client_Service import Extended_Staged_Client_Service
