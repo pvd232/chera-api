@@ -60,28 +60,28 @@ load_dotenv()
 app = Flask(__name__)
 
 
-username = os.getenv("DB_USER", GCP_Secret_Manager_Service().get_secret("DB_USER"))
-password = os.getenv(
-    "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
+username = os.getenv("DB_USER") or GCP_Secret_Manager_Service().get_secret("DB_USER")
+password = os.getenv("DB_PASSWORD") or GCP_Secret_Manager_Service().get_secret(
+    "DB_PASSWORD"
 )
-connection_string = os.getenv(
-    "DB_STRING",
-    get_db_connection_string(username=username, password=password, db_name="nourishdb"),
+
+connection_string = os.getenv("DB_STRING") or get_db_connection_string(
+    username=username, password=password, db_name="nourishdb"
 )
 
 app.config["SQLALCHEMY_DATABASE_URI"] = connection_string
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 
-USDA_api_key = os.getenv(
-    "USDA_API_KEY", GCP_Secret_Manager_Service().get_secret("USDA_API_KEY")
+USDA_api_key = os.getenv("USDA_API_KEY") or GCP_Secret_Manager_Service().get_secret(
+    "USDA_API_KEY"
 )
 
-env = os.getenv("DEPLOYMENT_ENV", "debug")
+env = os.getenv("DEPLOYMENT_ENV") or "debug"
 
 ################### Auth0 ###################
 oauth = OAuth(app)
-app.secret_key = os.getenv(
-    "APP_SECRET_KEY", GCP_Secret_Manager_Service().get_secret("APP_SECRET_KEY")
+app.secret_key = os.getenv("APP_SECRET_KEY") or GCP_Secret_Manager_Service().get_secret(
+    "APP_SECRET_KEY"
 )
 oauth.register(
     "auth0",
@@ -126,13 +126,13 @@ stripe.api_key = STRIPE_API_KEY
 shippo.config.api_key = SHIPPO_API_KEY
 
 
-jwt_secret = os.getenv(
-    "JWT_SECRET", GCP_Secret_Manager_Service().get_secret("JWT_SECRET")
+jwt_secret = os.getenv("JWT_SECRET") or GCP_Secret_Manager_Service().get_secret(
+    "JWT_SECRET"
 )
+
 stripe_invoice_endpoint_secret = os.getenv(
-    "STRIPE_INVOICE_ENDPOINT_SECRET",
-    GCP_Secret_Manager_Service().get_secret("STRIPE_INVOICE_ENDPOINT_SECRET"),
-)
+    "STRIPE_INVOICE_ENDPOINT_SECRET"
+) or GCP_Secret_Manager_Service().get_secret("STRIPE_INVOICE_ENDPOINT_SECRET")
 
 # full stripe fee is .029 * total + .3 per transaction
 stripe_fee_percentage = 0.029

@@ -318,18 +318,16 @@ def continuity_initialize() -> Response:
     from repository.Dietary_Restriction_Repository import Dietary_Restriction_Repository
 
     db_username = os.getenv(
-        "DB_USER", GCP_Secret_Manager_Service().get_secret("DB_USER")
-    )
+        "DB_USER") or GCP_Secret_Manager_Service().get_secret("DB_USER")
+    
     db_password = os.getenv(
-        "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
-    )
+        "DB_PASSWORD") or  GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
+    
 
-    live_db_string = os.getenv(
-        "DB_STRING",
-        get_db_connection_string(
+    live_db_string = os.getenv("DB_STRING") or get_db_connection_string(
             username=db_username, password=db_password, db_name="nourishdb"
         ),
-    )
+
     if not check_auth(env=env, db_password=db_password, request=request):
         return Response(status=401)
 
