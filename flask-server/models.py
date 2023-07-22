@@ -76,6 +76,7 @@ USDA_api_key = os.getenv("USDA_API_KEY") or GCP_Secret_Manager_Service().get_sec
     "USDA_API_KEY"
 )
 
+# Env var from cloud run
 env = os.getenv("DEPLOYMENT_ENV") or "debug"
 
 ################### Auth0 ###################
