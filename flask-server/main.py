@@ -3562,7 +3562,7 @@ def sample_trial_period() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/food_data_nutrient", methods=["GET"])
+@app.route("/api/meal_nutrient_stats", methods=["GET"])
 def extended_meal_plan_meal_v2() -> Response:
     from repository.Meal_Plan_Meal_Repository import Meal_Plan_Meal_Repository
     from repository.Meal_Plan_Repository import Meal_Plan_Repository
@@ -3635,6 +3635,7 @@ def extended_meal_plan_meal_v2() -> Response:
 
         # Make sure this method doesn't need to be updated to compressed format
         else:
+            # Only returning single meal plan meal
             extended_meal_plan_meal = Extended_Meal_Plan_Meal_Service(
                 meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
             ).get_extended_meal_plan_meal(
