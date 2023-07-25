@@ -3642,7 +3642,7 @@ def extended_meal_plan_meal_v2() -> Response:
         return Response(status=405)
 
 
-@app.route("/test_secret")
+@app.route("/api/test_secret")
 def test_secret():
     from .service import GCP_Secret_Manager_Service
 
