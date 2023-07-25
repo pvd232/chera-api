@@ -3644,7 +3644,7 @@ def extended_meal_plan_meal_v2() -> Response:
 
 @app.route("/api/test_secret")
 def test_secret():
-    from .service import GCP_Secret_Manager_Service
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
 
     db_username = os.getenv("DB_USER") or GCP_Secret_Manager_Service().get_secret(
         "DB_USER"
