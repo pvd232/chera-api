@@ -73,23 +73,6 @@ def callback():
     return redirect(redirect_signup_url)
 
 
-@app.route("/api/clear_tables")
-def clear_table() -> Response:
-    from helpers.check_auth import check_auth
-    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
-
-    db_password = os.getenv(
-        "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
-    )
-
-    if not check_auth(env=env, db_password=db_password, request=request):
-        return Response(status=401)
-
-    db.metadata.drop_all(db.engine)
-    db.metadata.create_all(db.engine)
-    return Response(status=200)
-
-
 @app.route("/api/update_table")
 def update_table() -> Response:
     from models import connection_string
@@ -97,15 +80,14 @@ def update_table() -> Response:
     from helpers.check_auth import check_auth
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
 
-    db_password = os.getenv(
-        "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
+    db_password = os.getenv("DB_PASSWORD") or GCP_Secret_Manager_Service().get_secret(
+        "DB_PASSWORD"
     )
 
     if not check_auth(env=env, db_password=db_password, request=request):
         return Response(status=401)
 
-    table_name = request.args.get("table_name")
-    update_table(database_url=connection_string, table_name=table_name)
+    update_table(database_url=connection_string, query=request.args.get("query"))
     db.metadata.create_all(db.engine)
     return Response(status=204)
 
@@ -117,8 +99,8 @@ def drop_table() -> Response:
     from helpers.check_auth import check_auth
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
 
-    db_password = os.getenv(
-        "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
+    db_password = os.getenv("DB_PASSWORD") or GCP_Secret_Manager_Service().get_secret(
+        "DB_PASSWORD"
     )
 
     if not check_auth(env=env, db_password=db_password, request=request):
@@ -135,8 +117,8 @@ def create_table() -> Response:
     from helpers.check_auth import check_auth
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
 
-    db_password = os.getenv(
-        "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
+    db_password = os.getenv("DB_PASSWORD") or GCP_Secret_Manager_Service().get_secret(
+        "DB_PASSWORD"
     )
 
     if not check_auth(env=env, db_password=db_password, request=request):
@@ -151,8 +133,8 @@ def setup_table() -> Response:
     from helpers.check_auth import check_auth
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
 
-    db_password = os.getenv(
-        "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
+    db_password = os.getenv("DB_PASSWORD") or GCP_Secret_Manager_Service().get_secret(
+        "DB_PASSWORD"
     )
 
     if not check_auth(env=env, db_password=db_password, request=request):
@@ -164,9 +146,7 @@ def setup_table() -> Response:
 
 @app.route("/api/continuity/write")
 def continuity_write() -> Response:
-    from repository.Continuity_Repository import Continuity_Repository
     from repository.Discount_Repository import Discount_Repository
-    from repository.Imperial_Unit_Repository import Imperial_Unit_Repository
     from repository.Nutrient_Repository import Nutrient_Repository
     from repository.USDA_Ingredient_Repository import USDA_Ingredient_Repository
     from repository.USDA_Ingredient_Nutrient_Repository import (
@@ -317,16 +297,20 @@ def continuity_initialize() -> Response:
     )
     from repository.Dietary_Restriction_Repository import Dietary_Restriction_Repository
 
-    db_username = os.getenv(
-        "DB_USER") or GCP_Secret_Manager_Service().get_secret("DB_USER")
-    
-    db_password = os.getenv(
-        "DB_PASSWORD") or  GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
-    
+    db_username = os.getenv("DB_USER") or GCP_Secret_Manager_Service().get_secret(
+        "DB_USER"
+    )
 
-    live_db_string = os.getenv("DB_STRING") or get_db_connection_string(
+    db_password = os.getenv("DB_PASSWORD") or GCP_Secret_Manager_Service().get_secret(
+        "DB_PASSWORD"
+    )
+
+    live_db_string = (
+        os.getenv("DB_STRING")
+        or get_db_connection_string(
             username=db_username, password=db_password, db_name="nourishdb"
         ),
+    )
 
     if not check_auth(env=env, db_password=db_password, request=request):
         return Response(status=401)
@@ -641,8 +625,11 @@ def weekly_update() -> Response:
     username: str = message.split(":")[0]
     password: str = message.split(":")[1]
     if (
-        GCP_Secret_Manager_Service().get_secret("WEBHOOK_USR") == username
-        and GCP_Secret_Manager_Service().get_secret("WEBHOOK_PWD") == password
+        os.getenv("WEBHOOK_USR")
+        or GCP_Secret_Manager_Service().get_secret("WEBHOOK_USR")
+    ) == username and (
+        os.getenv("WEBHOOK_PWD")
+        or GCP_Secret_Manager_Service().get_secret("WEBHOOK_PWD") == password
     ):
         # Create new scheduled order meals for the 5 weeks in the future
         Meal_Subscription_Service(
@@ -683,8 +670,11 @@ def email_webhook(email_number: int) -> Response:
     username: str = message.split(":")[0]
     password: str = message.split(":")[1]
     if (
-        GCP_Secret_Manager_Service().get_secret("WEBHOOK_USR") == username
-        and GCP_Secret_Manager_Service().get_secret("WEBHOOK_PWD") == password
+        os.getenv("WEBHOOK_USR")
+        or GCP_Secret_Manager_Service().get_secret("WEBHOOK_USR")
+    ) == username and (
+        os.getenv("WEBHOOK_PWD")
+        or GCP_Secret_Manager_Service().get_secret("WEBHOOK_PWD") == password
     ):
         current_week_delivery_date = Date_Service().get_current_week_delivery_date()
 
@@ -1880,58 +1870,57 @@ def extended_meal_plan_meal() -> Response:
         meal_plan_id = request.args.get("meal_plan_id")
         meal_id = request.args.get("meal_id")
         meal_plan_number = request.args.get("meal_plan_number")
-        if meal_plan_number:
-            associated_meal_plan = Meal_Plan_Service(
-                meal_plan_repository=Meal_Plan_Repository(db=db)
-            ).get_meal_plan(meal_plan_number=meal_plan_number)
-            extended_meal_plan_meals = Extended_Meal_Plan_Meal_Service(
-                meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
-            ).get_specific_extended_meal_plan_meals(
-                meal_plan_id=associated_meal_plan.id
-            )
-            if extended_meal_plan_meals:
-                meal_plan_meal_DTOs = [
-                    Extended_Meal_Plan_Meal_DTO(extended_meal_plan_meal_domain=x)
-                    for x in extended_meal_plan_meals
-                ]
-                serialized_meal_plan_meal_DTOs = [
-                    x.serialize() for x in meal_plan_meal_DTOs
-                ]
-                return jsonify(serialized_meal_plan_meal_DTOs), 200
-            else:
-                return Response(status=404)
-        if not meal_plan_id and not meal_id:
-            extended_meal_plan_meals: Optional[
-                list[Extended_Meal_Plan_Meal_Domain]
-            ] = Extended_Meal_Plan_Meal_Service(
-                meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
-            ).get_extended_meal_plan_meals()
-            if extended_meal_plan_meals:
-                meal_plan_meal_DTOs = [
-                    Extended_Meal_Plan_Meal_DTO(extended_meal_plan_meal_domain=x)
-                    for x in extended_meal_plan_meals
-                ]
-                serialized_meal_plan_meal_DTOs = [
-                    x.serialize() for x in meal_plan_meal_DTOs
-                ]
-                return jsonify(serialized_meal_plan_meal_DTOs), 200
-            else:
-                return Response(status=404)
-        elif meal_plan_id and not meal_id:
-            extended_meal_plan_meals = Extended_Meal_Plan_Meal_Service(
-                meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
-            ).get_specific_extended_meal_plan_meals(meal_plan_id=meal_plan_id)
-            if extended_meal_plan_meals:
-                meal_plan_meal_DTOs = [
-                    Extended_Meal_Plan_Meal_DTO(extended_meal_plan_meal_domain=x)
-                    for x in extended_meal_plan_meals
-                ]
-                serialized_meal_plan_meal_DTOs = [
-                    x.serialize() for x in meal_plan_meal_DTOs
-                ]
-                return jsonify(serialized_meal_plan_meal_DTOs), 200
-            else:
-                return Response(status=404)
+        if not meal_id:
+            if meal_plan_number:
+                associated_meal_plan = Meal_Plan_Service(
+                    meal_plan_repository=Meal_Plan_Repository(db=db)
+                ).get_meal_plan(meal_plan_number=meal_plan_number)
+                extended_meal_plan_meals = Extended_Meal_Plan_Meal_Service(
+                    meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+                ).get_specific_extended_meal_plan_meals(
+                    meal_plan_id=associated_meal_plan.id
+                )
+                if extended_meal_plan_meals:
+                    meal_plan_meal_DTOs = [
+                        Extended_Meal_Plan_Meal_DTO(extended_meal_plan_meal_domain=x)
+                        for x in extended_meal_plan_meals
+                    ]
+                    serialized_meal_plan_meal_DTOs = [
+                        x.serialize() for x in meal_plan_meal_DTOs
+                    ]
+                else:
+                    return Response(status=404)
+            elif not meal_plan_id and not meal_id:
+                extended_meal_plan_meals: Optional[
+                    list[Extended_Meal_Plan_Meal_Domain]
+                ] = Extended_Meal_Plan_Meal_Service(
+                    meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+                ).get_extended_meal_plan_meals()
+                if extended_meal_plan_meals:
+                    meal_plan_meal_DTOs = [
+                        Extended_Meal_Plan_Meal_DTO(extended_meal_plan_meal_domain=x)
+                        for x in extended_meal_plan_meals
+                    ]
+                    serialized_meal_plan_meal_DTOs = [
+                        x.serialize() for x in meal_plan_meal_DTOs
+                    ]
+                else:
+                    return Response(status=404)
+            elif meal_plan_id and not meal_id:
+                extended_meal_plan_meals = Extended_Meal_Plan_Meal_Service(
+                    meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+                ).get_specific_extended_meal_plan_meals(meal_plan_id=meal_plan_id)
+                if extended_meal_plan_meals:
+                    meal_plan_meal_DTOs = [
+                        Extended_Meal_Plan_Meal_DTO(extended_meal_plan_meal_domain=x)
+                        for x in extended_meal_plan_meals
+                    ]
+                    serialized_meal_plan_meal_DTOs = [
+                        x.serialize() for x in meal_plan_meal_DTOs
+                    ]
+                else:
+                    return Response(status=404)
+            return jsonify(serialized_meal_plan_meal_DTOs), 200
         else:
             extended_meal_plan_meal = Extended_Meal_Plan_Meal_Service(
                 meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
@@ -3556,6 +3545,99 @@ def update_client_address() -> Response:
 def sample_trial_period() -> Response:
     if request.method == "GET":
         return jsonify(True), 200
+    else:
+        return Response(status=405)
+
+
+@app.route("/api/meal_nutrient_stats", methods=["GET"])
+def extended_meal_plan_meal_v2() -> Response:
+    from repository.Meal_Plan_Meal_Repository import Meal_Plan_Meal_Repository
+    from repository.Meal_Plan_Repository import Meal_Plan_Repository
+    from service.Extended_Meal_Plan_Meal_Service import Extended_Meal_Plan_Meal_Service
+    from service.Meal_Plan_Service import Meal_Plan_Service
+    from service.Food_Nutrient_Stats_Service import Food_Nutrient_Stats_Service
+    from domain.Extended_Meal_Plan_Meal_Domain import Extended_Meal_Plan_Meal_Domain
+    from dto.Extended_Meal_Plan_Meal_DTO import Extended_Meal_Plan_Meal_DTO
+    from dto.Food_Nutrient_Stats_DTO import Food_Nutrient_Stats_DTO
+
+    if request.method == "GET":
+        meal_plan_id = request.args.get("meal_plan_id")
+        meal_id = request.args.get("meal_id")
+        meal_plan_number = request.args.get("meal_plan_number")
+        if not meal_id:
+            if meal_plan_number:
+                associated_meal_plan = Meal_Plan_Service(
+                    meal_plan_repository=Meal_Plan_Repository(db=db)
+                ).get_meal_plan(meal_plan_number=meal_plan_number)
+                extended_meal_plan_meals = Extended_Meal_Plan_Meal_Service(
+                    meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+                ).get_specific_extended_meal_plan_meals(
+                    meal_plan_id=associated_meal_plan.id
+                )
+                if extended_meal_plan_meals:
+                    meal_plan_meal_DTOs = [
+                        Extended_Meal_Plan_Meal_DTO(extended_meal_plan_meal_domain=x)
+                        for x in extended_meal_plan_meals
+                    ]
+                else:
+                    return Response(status=404)
+            elif not meal_plan_id and not meal_id:
+                extended_meal_plan_meals: Optional[
+                    list[Extended_Meal_Plan_Meal_Domain]
+                ] = Extended_Meal_Plan_Meal_Service(
+                    meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+                ).get_extended_meal_plan_meals()
+                if extended_meal_plan_meals:
+                    meal_plan_meal_DTOs = [
+                        Extended_Meal_Plan_Meal_DTO(extended_meal_plan_meal_domain=x)
+                        for x in extended_meal_plan_meals
+                    ]
+
+                else:
+                    return Response(status=404)
+            elif meal_plan_id and not meal_id:
+                extended_meal_plan_meals = Extended_Meal_Plan_Meal_Service(
+                    meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+                ).get_specific_extended_meal_plan_meals(meal_plan_id=meal_plan_id)
+                if extended_meal_plan_meals:
+                    meal_plan_meal_DTOs = [
+                        Extended_Meal_Plan_Meal_DTO(extended_meal_plan_meal_domain=x)
+                        for x in extended_meal_plan_meals
+                    ]
+
+                else:
+                    return Response(status=404)
+            # Return compressed meal plan meals
+            food_nutrient_stats_dtos: list[Food_Nutrient_Stats_DTO] = []
+            for meal_plan_meal_dto in meal_plan_meal_DTOs:
+                food_nutrient_stats_dtos.append(
+                    Food_Nutrient_Stats_Service().extract_nutrient_stats(
+                        extended_meal_plan_food=meal_plan_meal_dto
+                    )
+                )
+            serialized_food_nutrient_stats_dtos = [
+                x.serialize() for x in food_nutrient_stats_dtos
+            ]
+            return jsonify(serialized_food_nutrient_stats_dtos), 200
+
+        # Make sure this method doesn't need to be updated to compressed format
+        else:
+            # Only returning single meal plan meal
+            extended_meal_plan_meal = Extended_Meal_Plan_Meal_Service(
+                meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+            ).get_extended_meal_plan_meal(
+                meal_plan_meal_id=None, meal_plan_id=meal_plan_id, meal_id=meal_id
+            )
+            if extended_meal_plan_meal:
+                meal_plan_meal_DTO = Extended_Meal_Plan_Meal_DTO(
+                    extended_meal_plan_meal_domain=extended_meal_plan_meal
+                )
+
+                serialized_meal_plan_meal_DTO = meal_plan_meal_DTO.serialize()
+                return jsonify(serialized_meal_plan_meal_DTO), 200
+            else:
+                return jsonify([]), 200
+
     else:
         return Response(status=405)
 

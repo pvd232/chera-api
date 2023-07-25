@@ -17,7 +17,7 @@ class GCP_Secret_Manager_Service(object):
         # Build the resource name of the secret version.
         name = f"projects/{self.project_id}/secrets/{secret_id}/versions/latest"
 
-        # Get the secret version.
+        # Get the latest secret version.
         response = client.get_secret_version(request={"name": name})
 
         # Parse the response.
