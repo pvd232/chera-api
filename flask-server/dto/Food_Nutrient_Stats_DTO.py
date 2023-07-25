@@ -1,10 +1,10 @@
 from .Base_DTO import Base_DTO
 from typing import TYPE_CHECKING
+from dto.Meal_Plan_DTO import Meal_Plan_DTO
 
 if TYPE_CHECKING:
     from .Nutrient_Daily_Value_DTO import Nutrient_Daily_Value_DTO
-    from domain.Extended_Meal_Plan_Domain import Extended_Meal_Plan_Domain
-    from dto.Extended_Meal_Plan_DTO import Extended_Meal_Plan_DTO
+    from domain.Meal_Plan_Domain import Meal_Plan_Domain
 
 
 class Food_Nutrient_Stats_DTO(Base_DTO):
@@ -17,7 +17,7 @@ class Food_Nutrient_Stats_DTO(Base_DTO):
         fat_k_cal: float,
         carb_k_cal: float,
         weight: float,
-        associated_meal_plan: Extended_Meal_Plan_Domain,
+        associated_meal_plan: "Meal_Plan_Domain",
     ):
         self.recipe = recipe
         self.nutrients = nutrients
@@ -26,6 +26,4 @@ class Food_Nutrient_Stats_DTO(Base_DTO):
         self.fat_k_cal = fat_k_cal
         self.carb_k_cal = carb_k_cal
         self.weight = weight
-        self.associated_meal_plan = Extended_Meal_Plan_DTO(
-            extended_meal_plan_domain=associated_meal_plan
-        )
+        self.associated_meal_plan = Meal_Plan_DTO(meal_plan_domain=associated_meal_plan)

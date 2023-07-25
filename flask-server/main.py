@@ -3642,6 +3642,17 @@ def extended_meal_plan_meal_v2() -> Response:
         return Response(status=405)
 
 
+@app.route("/api/test_secret")
+def test_secret():
+    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+
+    db_username = os.getenv("DB_USER") or GCP_Secret_Manager_Service().get_secret(
+        "DB_USER"
+    )
+    print("db_username", db_username)
+    return Response(status=200)
+
+
 if env == "debug":
     debug = True
 else:
