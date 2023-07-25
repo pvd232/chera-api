@@ -8,10 +8,7 @@ from typing import Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from repository.Meal_Plan_Snack_Repository import Meal_Plan_Snack_Repository
-    from service.Continuity_Service import Continuity_Service
-    from service.Recipe_Ingredient_Service import Recipe_Ingredient_Service
-    from service.USDA_Ingredient_Service import USDA_Ingredient_Service
-    from models import Meal_Plan_Snack_Model, Meal_Plan_Model
+    from models import Meal_Plan_Snack_Model
     from dto.Meal_Plan_Snack_DTO import Meal_Plan_Snack_DTO
 
 
@@ -50,6 +47,15 @@ class Meal_Plan_Snack_Service(object):
             return meal_plan_snack_domains
         else:
             return False
+
+    def get_standard_meal_plan_snacks(self):
+        meal_plan_snacks = (
+            self.meal_plan_snack_repository.get_standard_meal_plan_snacks()
+        )
+        meal_plan_snack_domains: list[Meal_Plan_Snack_Domain] = [
+            Meal_Plan_Snack_Domain(meal_plan_snack_object=x) for x in meal_plan_snacks
+        ]
+        return meal_plan_snack_domains
 
     def create_meal_plan_snack(
         self, meal_plan_snack_dto: "Meal_Plan_Snack_DTO"

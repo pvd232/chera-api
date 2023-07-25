@@ -370,7 +370,6 @@ class Meal_Plan_Model(db.Model):
     number_of_snacks = db.Column(db.Float(), nullable=False)
     per_snack_caloric_lower_bound = db.Column(db.Integer(), nullable=False)
     per_snack_caloric_upper_bound = db.Column(db.Integer(), nullable=False)
-    # multiplier = db.Column(db.Float(), default = 1.0, nullable=False)
     usda_nutrient_daily_values = relationship(
         "USDA_Nutrient_Daily_Value_Model", lazy=True
     )

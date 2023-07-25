@@ -47,6 +47,18 @@ class Meal_Plan_Snack_Repository(Base_Repository):
             else:
                 return None
 
+    def get_standard_meal_plan_snacks(self) -> Optional[list[Meal_Plan_Snack_Model]]:
+        meal_plan_snacks: Optional[list[Meal_Plan_Snack_Model]] = (
+            self.db.session.query(Meal_Plan_Snack_Model)
+            .filter(Meal_Plan_Snack_Model.associated_meal_plan.has(number=3))
+            .all()
+        )
+
+        if meal_plan_snacks:
+            return meal_plan_snacks
+        else:
+            return None
+
     def create_meal_plan_snack(
         self, meal_plan_snack_domain: "Meal_Plan_Snack_Domain"
     ) -> None:
