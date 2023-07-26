@@ -1,7 +1,6 @@
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from service.Imperial_Unit_Service import Imperial_Unit_Service
     from service.Nutrient_Service import Nutrient_Service
     from service.USDA_Ingredient_Service import USDA_Ingredient_Service
     from service.USDA_Ingredient_Nutrient_Service import (
@@ -46,8 +45,8 @@ class Continuity_Service(object):
         recipe_ingredient_nutrient_service: "Recipe_Ingredient_Nutrient_Service",
         discount_service: "Discount_Service",
     ) -> None:
-        nutrient_service.write_nutrients()
         usda_ingredient_service.write_usda_ingredients()
+        nutrient_service.write_nutrients()
         usda_ingredient_nutrient_service.write_usda_ingredient_nutrients()
         usda_ingredient_portion_service.write_usda_ingredient_portions()
         usda_nutrient_daily_value_service.write_usda_nutrient_daily_values()

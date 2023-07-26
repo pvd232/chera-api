@@ -1,6 +1,7 @@
 from repository.Base_Repository import Base_Repository
-from models import USDA_Ingredient_Nutrient_Model
+from models import USDA_Ingredient_Nutrient_Model, USDA_Ingredient_Model
 from typing import TYPE_CHECKING
+from uuid import UUID
 
 if TYPE_CHECKING:
     from domain.USDA_Ingredient_Nutrient_Domain import USDA_Ingredient_Nutrient_Domain
@@ -8,7 +9,7 @@ if TYPE_CHECKING:
 
 class USDA_Ingredient_Nutrient_Repository(Base_Repository):
     def get_usda_ingredient_nutrients(
-        self, usda_ingredient_id: str
+        self, usda_ingredient_id: UUID
     ) -> list[USDA_Ingredient_Nutrient_Model]:
         usda_ingredient_nutrients = (
             self.db.session.query(USDA_Ingredient_Nutrient_Model)
@@ -46,7 +47,7 @@ class USDA_Ingredient_Nutrient_Repository(Base_Repository):
             self.db.session.add(new_usda_ingredient_nutrient)
         self.db.session.commit()
 
-    def delete_usda_ingredient_nutrients(self, usda_ingredient_id: str) -> None:
+    def delete_usda_ingredient_nutrients(self, usda_ingredient_id: UUID) -> None:
         self.db.session.query(USDA_Ingredient_Nutrient_Model).filter(
             USDA_Ingredient_Nutrient_Model.usda_ingredient_id == usda_ingredient_id
         ).delete()
@@ -75,7 +76,6 @@ class USDA_Ingredient_Nutrient_Repository(Base_Repository):
             usda_ingredient_nutrient_domain = USDA_Ingredient_Nutrient_Domain(
                 usda_ingredient_nutrient_object=usda_ingredient_nutrient_dto
             )
-
             new_usda_ingredient_nutrient_model = USDA_Ingredient_Nutrient_Model(
                 usda_ingredient_nutrient_domain=usda_ingredient_nutrient_domain
             )

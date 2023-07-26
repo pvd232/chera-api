@@ -11,7 +11,9 @@ class USDA_Ingredient_Portion_Domain(Base_Domain):
         | USDA_Ingredient_Portion_DTO,
     ) -> None:
         self.id: UUID = usda_ingredient_portion_object.id
-        self.usda_ingredient_id: str = usda_ingredient_portion_object.usda_ingredient_id
+        self.usda_ingredient_id: UUID = (
+            usda_ingredient_portion_object.usda_ingredient_id
+        )
         self.fda_portion_id: str = usda_ingredient_portion_object.fda_portion_id
         self.non_metric_unit: str = usda_ingredient_portion_object.non_metric_unit
         self.grams_per_non_metric_unit: float = (

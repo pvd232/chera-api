@@ -1,9 +1,10 @@
 from flask_sqlalchemy import SQLAlchemy
 from models import USDA_Ingredient_Model, USDA_Ingredient_Nutrient_Model
+from uuid import UUID
 
 
 def wipe_all_usda_ingredient_related_data(
-    db: SQLAlchemy, usda_ingredient_id: str
+    db: SQLAlchemy, usda_ingredient_id: UUID
 ) -> None:
     usda_ingredient = (
         db.session.query(USDA_Ingredient_Model)

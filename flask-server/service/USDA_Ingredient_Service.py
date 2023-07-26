@@ -1,5 +1,7 @@
 from domain.USDA_Ingredient_Domain import USDA_Ingredient_Domain
+from dto.USDA_Ingredient_DTO import USDA_Ingredient_DTO
 from typing import TYPE_CHECKING
+from uuid import UUID
 
 if TYPE_CHECKING:
     from repository.USDA_Ingredient_Repository import USDA_Ingredient_Repository
@@ -33,7 +35,7 @@ class USDA_Ingredient_Service(object):
         ]
         return usda_ingredient_domains
 
-    def get_usda_ingredient(self, usda_ingredient_id: str) -> USDA_Ingredient_Domain:
+    def get_usda_ingredient(self, usda_ingredient_id: UUID) -> USDA_Ingredient_Domain:
         return USDA_Ingredient_Domain(
             usda_ingredient_object=self.usda_ingredient_repository.get_usda_ingredient(
                 usda_ingredient_id=usda_ingredient_id
@@ -42,7 +44,7 @@ class USDA_Ingredient_Service(object):
 
     def update_usda_ingredient(
         self,
-        usda_ingredient_id: str,
+        usda_ingredient_id: UUID,
         usda_ingredient_mapper_dto: "USDA_Nutrient_Mapper_DTO",
     ) -> None:
         self.usda_ingredient_repository.update_usda_ingredient(
@@ -59,9 +61,6 @@ class USDA_Ingredient_Service(object):
         )
         with open(json_file_path, "r+") as outfile:
             usda_ingredient_dicts = [x.serialize() for x in self.get_usda_ingredients()]
-            for ingredient_dict in usda_ingredient_dicts:
-                if ingredient_dict["id"] == "olive oil":
-                    ingredient_dict["id"] = "olive_oil"
             write_json(outfile=outfile, dicts=usda_ingredient_dicts)
 
     def recreate_usda_ingredients(

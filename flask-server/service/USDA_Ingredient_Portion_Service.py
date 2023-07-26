@@ -82,7 +82,7 @@ class USDA_Ingredient_Portion_Service(object):
         )
         return usda_ingredient_portion_domain
 
-    def delete_usda_ingredient_portions(self, usda_ingredient_id: str) -> None:
+    def delete_usda_ingredient_portions(self, usda_ingredient_id: UUID) -> None:
         self.usda_ingredient_portion_repository.delete_usda_ingredient_portions(
             usda_ingredient_id=usda_ingredient_id
         )

@@ -1,7 +1,7 @@
 [
     {
         "id": "4ba36cb9-dab8-42f9-9fbc-7ce44a5c1669",
-        "usda_ingredient_id": "tortilla",
+        "usda_ingredient_id": "9b249fe9-c586-4837-a59f-1e87f51ee3df",
         "fda_portion_id": "247551",
         "non_metric_unit": "extra large",
         "grams_per_non_metric_unit": 65.0,
@@ -13,7 +13,7 @@
     },
     {
         "id": "e86867fa-8987-47a6-8109-be3bb1b4bcd4",
-        "usda_ingredient_id": "tortilla",
+        "usda_ingredient_id": "9b249fe9-c586-4837-a59f-1e87f51ee3df",
         "fda_portion_id": "248186",
         "non_metric_unit": "large",
         "grams_per_non_metric_unit": 44.0,
@@ -25,7 +25,7 @@
     },
     {
         "id": "0f4b91ba-c1c3-4d3f-8810-00918125e24d",
-        "usda_ingredient_id": "tortilla",
+        "usda_ingredient_id": "9b249fe9-c586-4837-a59f-1e87f51ee3df",
         "fda_portion_id": "249242",
         "non_metric_unit": "medium",
         "grams_per_non_metric_unit": 28.0,
@@ -37,7 +37,7 @@
     },
     {
         "id": "b722b2c3-9c9a-4184-90a9-9188c6112479",
-        "usda_ingredient_id": "tortilla",
+        "usda_ingredient_id": "9b249fe9-c586-4837-a59f-1e87f51ee3df",
         "fda_portion_id": "252061",
         "non_metric_unit": "small",
         "grams_per_non_metric_unit": 18.0,
@@ -49,7 +49,7 @@
     },
     {
         "id": "73319a2b-8800-45bf-b986-940f0c0accfd",
-        "usda_ingredient_id": "egg",
+        "usda_ingredient_id": "ea7528d4-6586-4b05-9315-5e8f0e1c0e6a",
         "fda_portion_id": "238089",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 135.0,
@@ -61,7 +61,7 @@
     },
     {
         "id": "8b2023ab-5052-4cb0-9842-3ed430375d4d",
-        "usda_ingredient_id": "egg",
+        "usda_ingredient_id": "ea7528d4-6586-4b05-9315-5e8f0e1c0e6a",
         "fda_portion_id": "247429",
         "non_metric_unit": "egg",
         "grams_per_non_metric_unit": 55.0,
@@ -73,7 +73,7 @@
     },
     {
         "id": "9c5b077c-7a4d-42d0-8e05-0cfba55d1102",
-        "usda_ingredient_id": "black_beans",
+        "usda_ingredient_id": "f7d0d6a5-f03c-40ab-a959-60ad9ebff480",
         "fda_portion_id": "238201",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 180.0,
@@ -85,7 +85,7 @@
     },
     {
         "id": "aa1335f4-2211-40ef-b713-20794f5b29ff",
-        "usda_ingredient_id": "bell_pepper",
+        "usda_ingredient_id": "735a8966-a7a4-411f-9757-990131d4f2c7",
         "fda_portion_id": "239941",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 155.0,
@@ -97,7 +97,7 @@
     },
     {
         "id": "24a965ba-e99b-426e-bd48-2201c345f919",
-        "usda_ingredient_id": "bell_pepper",
+        "usda_ingredient_id": "735a8966-a7a4-411f-9757-990131d4f2c7",
         "fda_portion_id": "250145",
         "non_metric_unit": "miniature",
         "grams_per_non_metric_unit": 30.0,
@@ -109,7 +109,7 @@
     },
     {
         "id": "732034cf-7fc0-402d-91c0-bb2730b0ebc8",
-        "usda_ingredient_id": "bell_pepper",
+        "usda_ingredient_id": "735a8966-a7a4-411f-9757-990131d4f2c7",
         "fda_portion_id": "250885",
         "non_metric_unit": "piece",
         "grams_per_non_metric_unit": 10.0,
@@ -121,7 +121,7 @@
     },
     {
         "id": "193bef1f-f706-40e8-b133-2ad8252b5174",
-        "usda_ingredient_id": "bell_pepper",
+        "usda_ingredient_id": "735a8966-a7a4-411f-9757-990131d4f2c7",
         "fda_portion_id": "253520",
         "non_metric_unit": "regular",
         "grams_per_non_metric_unit": 120.0,
@@ -133,7 +133,7 @@
     },
     {
         "id": "f0f70c7b-d4d2-474a-af91-9d7302299de5",
-        "usda_ingredient_id": "cheddar_cheese",
+        "usda_ingredient_id": "909b71fb-f084-4388-a375-5aa824c7a961",
         "fda_portion_id": "235575",
         "non_metric_unit": "cup, NFS",
         "grams_per_non_metric_unit": 113.0,
@@ -145,7 +145,7 @@
     },
     {
         "id": "2079fb1e-3db5-41bb-834d-c97ab42ddd3e",
-        "usda_ingredient_id": "cheddar_cheese",
+        "usda_ingredient_id": "909b71fb-f084-4388-a375-5aa824c7a961",
         "fda_portion_id": "236666",
         "non_metric_unit": "cup, diced",
         "grams_per_non_metric_unit": 132.0,
@@ -157,7 +157,7 @@
     },
     {
         "id": "8607a081-a783-46f5-9548-aa4018308e70",
-        "usda_ingredient_id": "cheddar_cheese",
+        "usda_ingredient_id": "909b71fb-f084-4388-a375-5aa824c7a961",
         "fda_portion_id": "236910",
         "non_metric_unit": "cup, melted",
         "grams_per_non_metric_unit": 244.0,
@@ -169,7 +169,7 @@
     },
     {
         "id": "c2daf7da-8055-478a-98fd-172e8315cca8",
-        "usda_ingredient_id": "cheddar_cheese",
+        "usda_ingredient_id": "909b71fb-f084-4388-a375-5aa824c7a961",
         "fda_portion_id": "236996",
         "non_metric_unit": "cup, shredded",
         "grams_per_non_metric_unit": 113.0,
@@ -181,7 +181,7 @@
     },
     {
         "id": "7b9a6540-4695-4179-806f-b702d2187cfe",
-        "usda_ingredient_id": "cheddar_cheese",
+        "usda_ingredient_id": "909b71fb-f084-4388-a375-5aa824c7a961",
         "fda_portion_id": "240508",
         "non_metric_unit": "cup, cubed",
         "grams_per_non_metric_unit": 132.0,
@@ -193,7 +193,7 @@
     },
     {
         "id": "e06f31ae-e385-422e-bb24-21cef455e60f",
-        "usda_ingredient_id": "cheddar_cheese",
+        "usda_ingredient_id": "909b71fb-f084-4388-a375-5aa824c7a961",
         "fda_portion_id": "244853",
         "non_metric_unit": "cubic inch",
         "grams_per_non_metric_unit": 17.0,
@@ -205,7 +205,7 @@
     },
     {
         "id": "118940a8-f5ac-4f8b-90c0-e7cfd1ec4625",
-        "usda_ingredient_id": "cheddar_cheese",
+        "usda_ingredient_id": "909b71fb-f084-4388-a375-5aa824c7a961",
         "fda_portion_id": "251571",
         "non_metric_unit": "slice",
         "grams_per_non_metric_unit": 21.0,
@@ -217,7 +217,7 @@
     },
     {
         "id": "1e11d43e-da26-4c15-a309-cb770d65fc21",
-        "usda_ingredient_id": "cheddar_cheese",
+        "usda_ingredient_id": "909b71fb-f084-4388-a375-5aa824c7a961",
         "fda_portion_id": "252867",
         "non_metric_unit": "stick",
         "grams_per_non_metric_unit": 28.35,
@@ -229,7 +229,7 @@
     },
     {
         "id": "00b33293-0d02-40f6-ab35-11c9a47b3219",
-        "usda_ingredient_id": "cheddar_cheese",
+        "usda_ingredient_id": "909b71fb-f084-4388-a375-5aa824c7a961",
         "fda_portion_id": "255296",
         "non_metric_unit": "cracker-size slice",
         "grams_per_non_metric_unit": 9.0,
@@ -241,7 +241,7 @@
     },
     {
         "id": "797dba13-c875-408b-b646-6228eaecb44e",
-        "usda_ingredient_id": "rolled_oats",
+        "usda_ingredient_id": "44e4f9b2-cd2d-4c6a-bb28-f58913bd300d",
         "fda_portion_id": "280753",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 80.0,
@@ -253,7 +253,7 @@
     },
     {
         "id": "70c5a2c0-9ed4-4486-90f5-0ef1d5d3e1b4",
-        "usda_ingredient_id": "soy_milk",
+        "usda_ingredient_id": "6cd1e609-917d-4019-bd35-cdc08daa8b63",
         "fda_portion_id": "237102",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 244.0,
@@ -265,7 +265,7 @@
     },
     {
         "id": "797a2f88-48d9-4abd-ac93-0864809d1edf",
-        "usda_ingredient_id": "soy_milk",
+        "usda_ingredient_id": "6cd1e609-917d-4019-bd35-cdc08daa8b63",
         "fda_portion_id": "241049",
         "non_metric_unit": "fl oz",
         "grams_per_non_metric_unit": 30.5,
@@ -277,7 +277,7 @@
     },
     {
         "id": "a827dd1d-b8d7-4580-a306-7b73b34bdb86",
-        "usda_ingredient_id": "chia_seeds",
+        "usda_ingredient_id": "885a1a9d-2290-4ac1-a814-e27e901c4685",
         "fda_portion_id": "238346",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 168.0,
@@ -289,7 +289,7 @@
     },
     {
         "id": "0945bb2a-a357-4da9-86df-cd497e1b8cce",
-        "usda_ingredient_id": "mixed_berries",
+        "usda_ingredient_id": "f3a109eb-89bd-4c2b-9568-5c18968de977",
         "fda_portion_id": "239267",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 150.0,
@@ -301,7 +301,7 @@
     },
     {
         "id": "89be8e44-6914-4142-98a0-ec668d42e6f3",
-        "usda_ingredient_id": "maple_syrup",
+        "usda_ingredient_id": "9ba51eb5-9d78-428a-aca9-14381eb197b3",
         "fda_portion_id": "240257",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 320.0,
@@ -313,7 +313,7 @@
     },
     {
         "id": "1d6b204b-5d7c-4ea5-a6db-6d0f6aa838db",
-        "usda_ingredient_id": "maple_syrup",
+        "usda_ingredient_id": "9ba51eb5-9d78-428a-aca9-14381eb197b3",
         "fda_portion_id": "256021",
         "non_metric_unit": "single serving container",
         "grams_per_non_metric_unit": 60.0,
@@ -325,7 +325,7 @@
     },
     {
         "id": "fc4c2099-7bc5-4e55-b91f-95d27dae578d",
-        "usda_ingredient_id": "protein_powder",
+        "usda_ingredient_id": "126e7862-deeb-401c-aaa5-1335818ed669",
         "fda_portion_id": "256221",
         "non_metric_unit": "scoop",
         "grams_per_non_metric_unit": 31.0,
@@ -337,7 +337,7 @@
     },
     {
         "id": "4ea499e2-0878-48fd-98cc-58e27130aaee",
-        "usda_ingredient_id": "pancake",
+        "usda_ingredient_id": "8b460fa8-b4d1-4124-8847-b7109121d174",
         "fda_portion_id": "246037",
         "non_metric_unit": "surface inch",
         "grams_per_non_metric_unit": 1.9,
@@ -349,7 +349,7 @@
     },
     {
         "id": "9b25f58d-1a5d-4993-908a-e66f8bf17ef6",
-        "usda_ingredient_id": "pancake",
+        "usda_ingredient_id": "8b460fa8-b4d1-4124-8847-b7109121d174",
         "fda_portion_id": "256230",
         "non_metric_unit": "silver dollar pancake",
         "grams_per_non_metric_unit": 20.0,
@@ -361,7 +361,7 @@
     },
     {
         "id": "256657a0-38b5-4cca-9afa-d74632bb3835",
-        "usda_ingredient_id": "pancake",
+        "usda_ingredient_id": "8b460fa8-b4d1-4124-8847-b7109121d174",
         "fda_portion_id": "259252",
         "non_metric_unit": "medium pancake",
         "grams_per_non_metric_unit": 50.0,
@@ -373,7 +373,7 @@
     },
     {
         "id": "5bd72c5b-44ff-4bea-a895-8927203451ea",
-        "usda_ingredient_id": "pancake",
+        "usda_ingredient_id": "8b460fa8-b4d1-4124-8847-b7109121d174",
         "fda_portion_id": "259113",
         "non_metric_unit": "extra large pancake",
         "grams_per_non_metric_unit": 150.0,
@@ -385,7 +385,7 @@
     },
     {
         "id": "73a5efe2-4768-4250-8d3e-8ca836ac3059",
-        "usda_ingredient_id": "pancake",
+        "usda_ingredient_id": "8b460fa8-b4d1-4124-8847-b7109121d174",
         "fda_portion_id": "259235",
         "non_metric_unit": "small pancake",
         "grams_per_non_metric_unit": 20.0,
@@ -397,7 +397,7 @@
     },
     {
         "id": "c8c0a863-93da-4caf-8e01-a28bd4824e9f",
-        "usda_ingredient_id": "pancake",
+        "usda_ingredient_id": "8b460fa8-b4d1-4124-8847-b7109121d174",
         "fda_portion_id": "259095",
         "non_metric_unit": "miniature/bite size pancake",
         "grams_per_non_metric_unit": 10.0,
@@ -409,7 +409,7 @@
     },
     {
         "id": "62fd807f-0d1c-4419-bce6-0c93c71e4f38",
-        "usda_ingredient_id": "pancake",
+        "usda_ingredient_id": "8b460fa8-b4d1-4124-8847-b7109121d174",
         "fda_portion_id": "259269",
         "non_metric_unit": "large pancake",
         "grams_per_non_metric_unit": 90.0,
@@ -421,7 +421,7 @@
     },
     {
         "id": "0b98be10-7170-4170-adb8-bdecbd4cc48c",
-        "usda_ingredient_id": "blueberry",
+        "usda_ingredient_id": "ff3c7706-364a-48a7-9874-d6978154f7d4",
         "fda_portion_id": "239270",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 150.0,
@@ -433,7 +433,7 @@
     },
     {
         "id": "0a2bf497-4157-46c7-95e5-f7281e7163ba",
-        "usda_ingredient_id": "blueberry",
+        "usda_ingredient_id": "ff3c7706-364a-48a7-9874-d6978154f7d4",
         "fda_portion_id": "246562",
         "non_metric_unit": "berry",
         "grams_per_non_metric_unit": 2.0,
@@ -445,7 +445,7 @@
     },
     {
         "id": "c6b79e86-85df-4e4c-a52d-51cbd6f99f5a",
-        "usda_ingredient_id": "butter",
+        "usda_ingredient_id": "d3142bd1-da59-4e90-b71c-8622ca3d618e",
         "fda_portion_id": "240169",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 224.0,
@@ -457,7 +457,7 @@
     },
     {
         "id": "146061ed-aee7-422d-835d-e7b57a423040",
-        "usda_ingredient_id": "butter",
+        "usda_ingredient_id": "d3142bd1-da59-4e90-b71c-8622ca3d618e",
         "fda_portion_id": "250528",
         "non_metric_unit": "pat",
         "grams_per_non_metric_unit": 7.0,
@@ -469,7 +469,7 @@
     },
     {
         "id": "cabe2b17-a366-4219-bcdb-6b6509ce8f9e",
-        "usda_ingredient_id": "butter",
+        "usda_ingredient_id": "d3142bd1-da59-4e90-b71c-8622ca3d618e",
         "fda_portion_id": "252908",
         "non_metric_unit": "stick",
         "grams_per_non_metric_unit": 113.0,
@@ -481,7 +481,7 @@
     },
     {
         "id": "199defde-bac5-460e-ae00-663dbabcdfba",
-        "usda_ingredient_id": "butter",
+        "usda_ingredient_id": "d3142bd1-da59-4e90-b71c-8622ca3d618e",
         "fda_portion_id": "258335",
         "non_metric_unit": "Guideline amount on regular sandwich",
         "grams_per_non_metric_unit": 14.0,
@@ -493,7 +493,7 @@
     },
     {
         "id": "70e53c47-acd7-4d12-b0c0-ded607d0840e",
-        "usda_ingredient_id": "butter",
+        "usda_ingredient_id": "d3142bd1-da59-4e90-b71c-8622ca3d618e",
         "fda_portion_id": "258401",
         "non_metric_unit": "Guideline amount on large sandwich",
         "grams_per_non_metric_unit": 28.0,
@@ -505,7 +505,7 @@
     },
     {
         "id": "7ec8144d-2ca7-4260-be52-b1008333645f",
-        "usda_ingredient_id": "turkey_sausage",
+        "usda_ingredient_id": "01fc5d5b-51f9-45be-be0f-aedb828c65bc",
         "fda_portion_id": "235632",
         "non_metric_unit": "cup, NFS",
         "grams_per_non_metric_unit": 138.0,
@@ -517,7 +517,7 @@
     },
     {
         "id": "f5134106-167a-4416-84f5-7d9e8ba1bd4e",
-        "usda_ingredient_id": "turkey_sausage",
+        "usda_ingredient_id": "01fc5d5b-51f9-45be-be0f-aedb828c65bc",
         "fda_portion_id": "243491",
         "non_metric_unit": "oz, cooked",
         "grams_per_non_metric_unit": 28.35,
@@ -529,7 +529,7 @@
     },
     {
         "id": "3b89ce79-b73b-4c9e-af63-535cf3fb1307",
-        "usda_ingredient_id": "turkey_sausage",
+        "usda_ingredient_id": "01fc5d5b-51f9-45be-be0f-aedb828c65bc",
         "fda_portion_id": "244926",
         "non_metric_unit": "cubic inch",
         "grams_per_non_metric_unit": 18.0,
@@ -541,7 +541,7 @@
     },
     {
         "id": "db2538a5-405b-4b93-afea-ac1c58adf640",
-        "usda_ingredient_id": "turkey_sausage",
+        "usda_ingredient_id": "01fc5d5b-51f9-45be-be0f-aedb828c65bc",
         "fda_portion_id": "250556",
         "non_metric_unit": "patty",
         "grams_per_non_metric_unit": 35.0,
@@ -553,7 +553,7 @@
     },
     {
         "id": "8ec88a9b-57a2-4945-91da-9dffb7079e18",
-        "usda_ingredient_id": "turkey_sausage",
+        "usda_ingredient_id": "01fc5d5b-51f9-45be-be0f-aedb828c65bc",
         "fda_portion_id": "250754",
         "non_metric_unit": "piece",
         "grams_per_non_metric_unit": 75.0,
@@ -565,7 +565,7 @@
     },
     {
         "id": "280e6382-1242-44d9-a8e2-55689e26b959",
-        "usda_ingredient_id": "turkey_sausage",
+        "usda_ingredient_id": "01fc5d5b-51f9-45be-be0f-aedb828c65bc",
         "fda_portion_id": "251655",
         "non_metric_unit": "slice",
         "grams_per_non_metric_unit": 15.0,
@@ -577,7 +577,7 @@
     },
     {
         "id": "a30657e5-e6f1-4281-a4a6-2baab2b3e432",
-        "usda_ingredient_id": "turkey_sausage",
+        "usda_ingredient_id": "01fc5d5b-51f9-45be-be0f-aedb828c65bc",
         "fda_portion_id": "256858",
         "non_metric_unit": "breakfast size link",
         "grams_per_non_metric_unit": 20.0,
@@ -589,7 +589,7 @@
     },
     {
         "id": "d2b54a67-0d77-4ddb-95ca-bf2fd7a065e8",
-        "usda_ingredient_id": "turkey_sausage",
+        "usda_ingredient_id": "01fc5d5b-51f9-45be-be0f-aedb828c65bc",
         "fda_portion_id": "256840",
         "non_metric_unit": "cocktail or miniature link",
         "grams_per_non_metric_unit": 10.0,
@@ -601,7 +601,7 @@
     },
     {
         "id": "a7e416e2-3cf0-4c70-9083-e3cf533853fe",
-        "usda_ingredient_id": "turkey_sausage",
+        "usda_ingredient_id": "01fc5d5b-51f9-45be-be0f-aedb828c65bc",
         "fda_portion_id": "256878",
         "non_metric_unit": "bun-size or griller link",
         "grams_per_non_metric_unit": 75.0,
@@ -613,7 +613,7 @@
     },
     {
         "id": "7c8d448c-8b91-4cb5-a017-669f602e52ee",
-        "usda_ingredient_id": "quinoa",
+        "usda_ingredient_id": "70dadba6-b303-445d-b3d2-48873aee04cf",
         "fda_portion_id": "235922",
         "non_metric_unit": "cup, cooked",
         "grams_per_non_metric_unit": 170.0,
@@ -625,7 +625,7 @@
     },
     {
         "id": "50452937-af51-475c-885e-70f059aa0754",
-        "usda_ingredient_id": "fried_chicken",
+        "usda_ingredient_id": "33662ab1-6862-41ab-b7f9-057356801164",
         "fda_portion_id": "236199",
         "non_metric_unit": "cup, cooked, diced",
         "grams_per_non_metric_unit": 135.0,
@@ -637,7 +637,7 @@
     },
     {
         "id": "1ccf9fb6-3531-4f1d-9b24-65f9bd707908",
-        "usda_ingredient_id": "fried_chicken",
+        "usda_ingredient_id": "33662ab1-6862-41ab-b7f9-057356801164",
         "fda_portion_id": "243354",
         "non_metric_unit": "oz, cooked",
         "grams_per_non_metric_unit": 28.35,
@@ -649,7 +649,7 @@
     },
     {
         "id": "5395169e-e19b-4e86-b773-abe3e0a1f177",
-        "usda_ingredient_id": "fried_chicken",
+        "usda_ingredient_id": "33662ab1-6862-41ab-b7f9-057356801164",
         "fda_portion_id": "250737",
         "non_metric_unit": "piece",
         "grams_per_non_metric_unit": 50.0,
@@ -661,7 +661,7 @@
     },
     {
         "id": "88d588d4-3969-404b-a0fa-6b321581faac",
-        "usda_ingredient_id": "fried_chicken",
+        "usda_ingredient_id": "33662ab1-6862-41ab-b7f9-057356801164",
         "fda_portion_id": "251633",
         "non_metric_unit": "slice",
         "grams_per_non_metric_unit": 60.0,
@@ -673,7 +673,7 @@
     },
     {
         "id": "4a4fdcd1-a2a0-4a9c-bd7a-9a689dce1fa1",
-        "usda_ingredient_id": "sweet_potato",
+        "usda_ingredient_id": "6cc84036-95f4-40bf-b54b-cf8051b06d39",
         "fda_portion_id": "236882",
         "non_metric_unit": "cup, mashed",
         "grams_per_non_metric_unit": 250.0,
@@ -685,7 +685,7 @@
     },
     {
         "id": "e7ea1c35-90a2-40b0-bb30-c755a8fcaf32",
-        "usda_ingredient_id": "sweet_potato",
+        "usda_ingredient_id": "6cc84036-95f4-40bf-b54b-cf8051b06d39",
         "fda_portion_id": "243755",
         "non_metric_unit": "oz, raw, yields",
         "grams_per_non_metric_unit": 25.0,
@@ -697,7 +697,7 @@
     },
     {
         "id": "05f80c6a-27b3-4f7b-9285-adc4bcf60f3f",
-        "usda_ingredient_id": "sweet_potato",
+        "usda_ingredient_id": "6cc84036-95f4-40bf-b54b-cf8051b06d39",
         "fda_portion_id": "248352",
         "non_metric_unit": "large",
         "grams_per_non_metric_unit": 235.0,
@@ -709,7 +709,7 @@
     },
     {
         "id": "7a5eea52-0b2e-48e9-8f6c-5ce44b306a1d",
-        "usda_ingredient_id": "maple_syrup",
+        "usda_ingredient_id": "9ba51eb5-9d78-428a-aca9-14381eb197b3",
         "fda_portion_id": "240932",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 20.0,
@@ -721,7 +721,7 @@
     },
     {
         "id": "e9069724-84ac-4d39-bc75-6c911465c5d2",
-        "usda_ingredient_id": "sweet_potato",
+        "usda_ingredient_id": "6cc84036-95f4-40bf-b54b-cf8051b06d39",
         "fda_portion_id": "249400",
         "non_metric_unit": "medium",
         "grams_per_non_metric_unit": 150.0,
@@ -733,7 +733,7 @@
     },
     {
         "id": "917b34f0-50cb-4987-9b71-cbad4e255be5",
-        "usda_ingredient_id": "sweet_potato",
+        "usda_ingredient_id": "6cc84036-95f4-40bf-b54b-cf8051b06d39",
         "fda_portion_id": "252223",
         "non_metric_unit": "small",
         "grams_per_non_metric_unit": 80.0,
@@ -745,7 +745,7 @@
     },
     {
         "id": "a6bd3ac9-7205-4b70-a3e4-e95f154922f5",
-        "usda_ingredient_id": "broccoli",
+        "usda_ingredient_id": "0c5ff3c3-248b-4192-aed4-917b7744b1bd",
         "fda_portion_id": "285468",
         "non_metric_unit": "spear",
         "grams_per_non_metric_unit": 40.0,
@@ -757,7 +757,7 @@
     },
     {
         "id": "e8ca078c-5c12-4000-ba4b-891db4f62f41",
-        "usda_ingredient_id": "broccoli",
+        "usda_ingredient_id": "0c5ff3c3-248b-4192-aed4-917b7744b1bd",
         "fda_portion_id": "285465",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 160.0,
@@ -769,7 +769,7 @@
     },
     {
         "id": "a3c09357-97b6-4fb8-823c-1a5b696bddba",
-        "usda_ingredient_id": "broccoli",
+        "usda_ingredient_id": "0c5ff3c3-248b-4192-aed4-917b7744b1bd",
         "fda_portion_id": "285466",
         "non_metric_unit": "piece",
         "grams_per_non_metric_unit": 10.0,
@@ -781,7 +781,7 @@
     },
     {
         "id": "3d53f970-6939-4cc0-9c65-dcfe4022c6d4",
-        "usda_ingredient_id": "broccoli",
+        "usda_ingredient_id": "0c5ff3c3-248b-4192-aed4-917b7744b1bd",
         "fda_portion_id": "285467",
         "non_metric_unit": "floweret",
         "grams_per_non_metric_unit": 10.0,
@@ -793,7 +793,7 @@
     },
     {
         "id": "72240bae-1ce5-44f5-b0f9-5a57fcc61571",
-        "usda_ingredient_id": "chickpeas",
+        "usda_ingredient_id": "65557c57-4fb8-49c5-bd1b-4bf8df899e83",
         "fda_portion_id": "238249",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 180.0,
@@ -805,7 +805,7 @@
     },
     {
         "id": "9733dedc-81dc-4a4d-a296-0c59be98ccfe",
-        "usda_ingredient_id": "chickpeas",
+        "usda_ingredient_id": "65557c57-4fb8-49c5-bd1b-4bf8df899e83",
         "fda_portion_id": "256191",
         "non_metric_unit": "pea",
         "grams_per_non_metric_unit": 2.0,
@@ -817,7 +817,7 @@
     },
     {
         "id": "e5fe7b38-9e1b-4cda-ab5c-2d42a376dbe3",
-        "usda_ingredient_id": "sauteed_chicken",
+        "usda_ingredient_id": "24326d07-bee0-4476-ac18-aa3b36299683",
         "fda_portion_id": "236221",
         "non_metric_unit": "cup, cooked, diced",
         "grams_per_non_metric_unit": 135.0,
@@ -829,7 +829,7 @@
     },
     {
         "id": "1513f670-4ee4-44ca-adbd-0f6eacd55f69",
-        "usda_ingredient_id": "sauteed_chicken",
+        "usda_ingredient_id": "24326d07-bee0-4476-ac18-aa3b36299683",
         "fda_portion_id": "243376",
         "non_metric_unit": "oz, cooked",
         "grams_per_non_metric_unit": 28.35,
@@ -841,7 +841,7 @@
     },
     {
         "id": "f37d7155-d83f-4735-bb5a-59a663181fe7",
-        "usda_ingredient_id": "sauteed_chicken",
+        "usda_ingredient_id": "24326d07-bee0-4476-ac18-aa3b36299683",
         "fda_portion_id": "248729",
         "non_metric_unit": "large or thick slice",
         "grams_per_non_metric_unit": 85.0,
@@ -853,7 +853,7 @@
     },
     {
         "id": "328dfce8-15bb-42aa-b9bf-07e1ebcc75ca",
-        "usda_ingredient_id": "sauteed_chicken",
+        "usda_ingredient_id": "24326d07-bee0-4476-ac18-aa3b36299683",
         "fda_portion_id": "249867",
         "non_metric_unit": "medium slice",
         "grams_per_non_metric_unit": 60.0,
@@ -865,7 +865,7 @@
     },
     {
         "id": "4055cd0d-2f13-4d76-8959-7796bc35b784",
-        "usda_ingredient_id": "sauteed_chicken",
+        "usda_ingredient_id": "24326d07-bee0-4476-ac18-aa3b36299683",
         "fda_portion_id": "252591",
         "non_metric_unit": "small or thin slice",
         "grams_per_non_metric_unit": 30.0,
@@ -877,7 +877,7 @@
     },
     {
         "id": "c9f09f14-5f21-49fc-8647-3c64089f1216",
-        "usda_ingredient_id": "sauteed_chicken",
+        "usda_ingredient_id": "24326d07-bee0-4476-ac18-aa3b36299683",
         "fda_portion_id": "259662",
         "non_metric_unit": "small breast",
         "grams_per_non_metric_unit": 105.0,
@@ -889,7 +889,7 @@
     },
     {
         "id": "072b5b49-1868-40b9-b498-285d83304181",
-        "usda_ingredient_id": "sauteed_chicken",
+        "usda_ingredient_id": "24326d07-bee0-4476-ac18-aa3b36299683",
         "fda_portion_id": "259704",
         "non_metric_unit": "large breast",
         "grams_per_non_metric_unit": 135.0,
@@ -901,7 +901,7 @@
     },
     {
         "id": "6dcbe906-f61a-470f-a6b1-ab36c3921911",
-        "usda_ingredient_id": "sauteed_chicken",
+        "usda_ingredient_id": "24326d07-bee0-4476-ac18-aa3b36299683",
         "fda_portion_id": "259646",
         "non_metric_unit": "breast, NS as to size",
         "grams_per_non_metric_unit": 120.0,
@@ -913,7 +913,7 @@
     },
     {
         "id": "fd321bcf-17c7-4e3e-9f50-22e4e47e06f1",
-        "usda_ingredient_id": "sauteed_chicken",
+        "usda_ingredient_id": "24326d07-bee0-4476-ac18-aa3b36299683",
         "fda_portion_id": "259683",
         "non_metric_unit": "medium breast",
         "grams_per_non_metric_unit": 120.0,
@@ -925,7 +925,7 @@
     },
     {
         "id": "c78c4ea1-5e65-4536-8bee-600a072c18ad",
-        "usda_ingredient_id": "parmesan_cheese",
+        "usda_ingredient_id": "b629a99b-c124-44fc-8fe6-bf4d0e3e0391",
         "fda_portion_id": "237323",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 100.0,
@@ -937,7 +937,7 @@
     },
     {
         "id": "6529b6f9-725d-4fb3-8375-195d45bc3631",
-        "usda_ingredient_id": "rice_noodles",
+        "usda_ingredient_id": "c6910413-e220-42ef-87d7-ab2bc3b786cb",
         "fda_portion_id": "235833",
         "non_metric_unit": "cup, cooked",
         "grams_per_non_metric_unit": 175.0,
@@ -949,7 +949,7 @@
     },
     {
         "id": "58443717-bd1f-4900-8c87-5633ee54c8bd",
-        "usda_ingredient_id": "rice_noodles",
+        "usda_ingredient_id": "c6910413-e220-42ef-87d7-ab2bc3b786cb",
         "fda_portion_id": "243552",
         "non_metric_unit": "oz, dry, yields",
         "grams_per_non_metric_unit": 100.0,
@@ -961,7 +961,7 @@
     },
     {
         "id": "f59f1d8e-5730-42a8-be84-670c145ba390",
-        "usda_ingredient_id": "crushed_peanut",
+        "usda_ingredient_id": "3ed2eebd-83ed-4bca-a61e-03ba3592076c",
         "fda_portion_id": "235659",
         "non_metric_unit": "cup, NFS",
         "grams_per_non_metric_unit": 146.0,
@@ -973,7 +973,7 @@
     },
     {
         "id": "1bf88d9f-9767-4db2-933e-5b9c001b7d1a",
-        "usda_ingredient_id": "crushed_peanut",
+        "usda_ingredient_id": "3ed2eebd-83ed-4bca-a61e-03ba3592076c",
         "fda_portion_id": "236829",
         "non_metric_unit": "cup, in shell, yields",
         "grams_per_non_metric_unit": 51.0,
@@ -985,7 +985,7 @@
     },
     {
         "id": "b35b3df5-ff63-436e-8a86-dda7cf70c1b7",
-        "usda_ingredient_id": "crushed_peanut",
+        "usda_ingredient_id": "3ed2eebd-83ed-4bca-a61e-03ba3592076c",
         "fda_portion_id": "240532",
         "non_metric_unit": "cup, without shell, NS as to form",
         "grams_per_non_metric_unit": 146.0,
@@ -997,7 +997,7 @@
     },
     {
         "id": "ce577d0b-88c6-4af1-9e6d-16734df28492",
-        "usda_ingredient_id": "crushed_peanut",
+        "usda_ingredient_id": "3ed2eebd-83ed-4bca-a61e-03ba3592076c",
         "fda_portion_id": "243664",
         "non_metric_unit": "oz, in shell, yields",
         "grams_per_non_metric_unit": 21.0,
@@ -1009,7 +1009,7 @@
     },
     {
         "id": "86d39c1c-b109-46e5-86b1-051486426df4",
-        "usda_ingredient_id": "crushed_peanut",
+        "usda_ingredient_id": "3ed2eebd-83ed-4bca-a61e-03ba3592076c",
         "fda_portion_id": "244812",
         "non_metric_unit": "oz, NFS",
         "grams_per_non_metric_unit": 28.35,
@@ -1021,7 +1021,7 @@
     },
     {
         "id": "4a794b89-c5f3-46d5-885b-ee3dcb24751e",
-        "usda_ingredient_id": "crushed_peanut",
+        "usda_ingredient_id": "3ed2eebd-83ed-4bca-a61e-03ba3592076c",
         "fda_portion_id": "244830",
         "non_metric_unit": "oz, without shell, NS as to form",
         "grams_per_non_metric_unit": 28.35,
@@ -1033,7 +1033,7 @@
     },
     {
         "id": "f19a7472-3ae6-482f-99ae-45789cb7763c",
-        "usda_ingredient_id": "crushed_peanut",
+        "usda_ingredient_id": "3ed2eebd-83ed-4bca-a61e-03ba3592076c",
         "fda_portion_id": "250333",
         "non_metric_unit": "package",
         "grams_per_non_metric_unit": 50.0,
@@ -1045,7 +1045,7 @@
     },
     {
         "id": "f33aeac8-f7b5-4e7b-bc49-14dd46d84408",
-        "usda_ingredient_id": "crushed_peanut",
+        "usda_ingredient_id": "3ed2eebd-83ed-4bca-a61e-03ba3592076c",
         "fda_portion_id": "255724",
         "non_metric_unit": "peanut in shell, yields",
         "grams_per_non_metric_unit": 2.0,
@@ -1057,7 +1057,7 @@
     },
     {
         "id": "44f73aeb-13f2-4bd0-bb0a-3aa97d69445d",
-        "usda_ingredient_id": "crushed_peanut",
+        "usda_ingredient_id": "3ed2eebd-83ed-4bca-a61e-03ba3592076c",
         "fda_portion_id": "255717",
         "non_metric_unit": "peanut, without shell",
         "grams_per_non_metric_unit": 1.0,
@@ -1069,7 +1069,7 @@
     },
     {
         "id": "d8753d57-7dfc-4abc-bd41-fc789c2f3f91",
-        "usda_ingredient_id": "crushed_peanut",
+        "usda_ingredient_id": "3ed2eebd-83ed-4bca-a61e-03ba3592076c",
         "fda_portion_id": "259468",
         "non_metric_unit": "peanut, NFS",
         "grams_per_non_metric_unit": 1.0,
@@ -1081,7 +1081,7 @@
     },
     {
         "id": "d343dfa1-4bc3-4ee4-9ff5-b4534bbe8608",
-        "usda_ingredient_id": "ground_beef",
+        "usda_ingredient_id": "5883e36e-7309-476d-869a-3cf9a1397999",
         "fda_portion_id": "235770",
         "non_metric_unit": "cup, cooked",
         "grams_per_non_metric_unit": 125.0,
@@ -1093,7 +1093,7 @@
     },
     {
         "id": "1a4ce99a-642b-4675-b80c-387f6c9dfaf3",
-        "usda_ingredient_id": "ground_beef",
+        "usda_ingredient_id": "5883e36e-7309-476d-869a-3cf9a1397999",
         "fda_portion_id": "243315",
         "non_metric_unit": "oz, cooked",
         "grams_per_non_metric_unit": 28.35,
@@ -1105,7 +1105,7 @@
     },
     {
         "id": "4f04dcbb-b8d7-41f4-9f34-8864f6aed38e",
-        "usda_ingredient_id": "ground_beef",
+        "usda_ingredient_id": "5883e36e-7309-476d-869a-3cf9a1397999",
         "fda_portion_id": "243685",
         "non_metric_unit": "oz, raw (yield after cooking)",
         "grams_per_non_metric_unit": 20.0,
@@ -1117,7 +1117,7 @@
     },
     {
         "id": "3cf12c56-051f-4643-8912-e0f670847548",
-        "usda_ingredient_id": "ground_beef",
+        "usda_ingredient_id": "5883e36e-7309-476d-869a-3cf9a1397999",
         "fda_portion_id": "245638",
         "non_metric_unit": "cubic inch, cooked",
         "grams_per_non_metric_unit": 15.0,
@@ -1129,7 +1129,7 @@
     },
     {
         "id": "78c8fddb-5490-47e7-97da-e626dccfa4c9",
-        "usda_ingredient_id": "beef",
+        "usda_ingredient_id": "c44efee1-051c-4b64-9268-79040c9dd4ac",
         "fda_portion_id": "237368",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 107.0,
@@ -1141,7 +1141,7 @@
     },
     {
         "id": "945c7ea5-c504-4521-bd98-2ab4a6f367a4",
-        "usda_ingredient_id": "beef",
+        "usda_ingredient_id": "c44efee1-051c-4b64-9268-79040c9dd4ac",
         "fda_portion_id": "243684",
         "non_metric_unit": "oz, raw (yield after cooking)",
         "grams_per_non_metric_unit": 21.0,
@@ -1153,7 +1153,7 @@
     },
     {
         "id": "8068d999-3e87-4310-a54a-46095326935d",
-        "usda_ingredient_id": "beef",
+        "usda_ingredient_id": "c44efee1-051c-4b64-9268-79040c9dd4ac",
         "fda_portion_id": "251469",
         "non_metric_unit": "sandwich steak",
         "grams_per_non_metric_unit": 41.0,
@@ -1165,7 +1165,7 @@
     },
     {
         "id": "51e19573-ed2a-4b3d-a6fb-41865e381848",
-        "usda_ingredient_id": "sesame_sauce",
+        "usda_ingredient_id": "d7668a6b-aa70-47ea-939d-b2e6a2f6433b",
         "fda_portion_id": "287581",
         "non_metric_unit": "packet",
         "grams_per_non_metric_unit": 44.0,
@@ -1177,7 +1177,7 @@
     },
     {
         "id": "85bf98e2-f951-40f2-bb90-fa59370f820d",
-        "usda_ingredient_id": "sesame_sauce",
+        "usda_ingredient_id": "d7668a6b-aa70-47ea-939d-b2e6a2f6433b",
         "fda_portion_id": "287578",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 235.0,
@@ -1189,7 +1189,7 @@
     },
     {
         "id": "290f7466-9e62-417f-9cb8-d014e823ea9b",
-        "usda_ingredient_id": "cashews",
+        "usda_ingredient_id": "39f8e7e7-0191-4523-afcd-b4fceac07b50",
         "fda_portion_id": "238311",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 130.0,
@@ -1201,7 +1201,7 @@
     },
     {
         "id": "33322c13-b01a-400a-be2e-987aae47db9c",
-        "usda_ingredient_id": "cashews",
+        "usda_ingredient_id": "39f8e7e7-0191-4523-afcd-b4fceac07b50",
         "fda_portion_id": "242206",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.35,
@@ -1213,7 +1213,7 @@
     },
     {
         "id": "0c43848e-b5ef-405c-b4fc-2690d5efd5e3",
-        "usda_ingredient_id": "cashews",
+        "usda_ingredient_id": "39f8e7e7-0191-4523-afcd-b4fceac07b50",
         "fda_portion_id": "250260",
         "non_metric_unit": "nut",
         "grams_per_non_metric_unit": 1.5,
@@ -1225,7 +1225,7 @@
     },
     {
         "id": "6b5cd75d-81f7-46a2-bcc1-076478af4cf0",
-        "usda_ingredient_id": "cashews",
+        "usda_ingredient_id": "39f8e7e7-0191-4523-afcd-b4fceac07b50",
         "fda_portion_id": "250319",
         "non_metric_unit": "package",
         "grams_per_non_metric_unit": 50.0,
@@ -1237,7 +1237,7 @@
     },
     {
         "id": "2ac08afa-6530-4dd1-af55-3f98f796396a",
-        "usda_ingredient_id": "scallions",
+        "usda_ingredient_id": "0ff1c14f-7e29-44e3-ad87-2b427da794a9",
         "fda_portion_id": "239917",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 225.0,
@@ -1249,7 +1249,7 @@
     },
     {
         "id": "63b5c065-97b1-4f78-bfd7-ac5c94405d58",
-        "usda_ingredient_id": "scallions",
+        "usda_ingredient_id": "0ff1c14f-7e29-44e3-ad87-2b427da794a9",
         "fda_portion_id": "253317",
         "non_metric_unit": "whole",
         "grams_per_non_metric_unit": 15.0,
@@ -1261,7 +1261,7 @@
     },
     {
         "id": "bbe05efe-ba5d-4007-b4df-9c2aba88a6f7",
-        "usda_ingredient_id": "roasted_vegetables",
+        "usda_ingredient_id": "3db954c9-c1d8-4b3e-b528-74492213a3e1",
         "fda_portion_id": "239985",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 185.0,
@@ -1273,7 +1273,7 @@
     },
     {
         "id": "f70b232d-014c-4e44-828c-f93bbfb2f856",
-        "usda_ingredient_id": "ground_turkey_meatballs",
+        "usda_ingredient_id": "1af401c5-84f5-4fe7-88ed-068649a0b4a9",
         "fda_portion_id": "235779",
         "non_metric_unit": "cup, cooked",
         "grams_per_non_metric_unit": 130.0,
@@ -1285,7 +1285,7 @@
     },
     {
         "id": "665786f4-cbdc-48ac-bf18-e08b5e0911c0",
-        "usda_ingredient_id": "ground_turkey_meatballs",
+        "usda_ingredient_id": "1af401c5-84f5-4fe7-88ed-068649a0b4a9",
         "fda_portion_id": "243461",
         "non_metric_unit": "oz, cooked",
         "grams_per_non_metric_unit": 28.35,
@@ -1297,7 +1297,7 @@
     },
     {
         "id": "723216fc-3522-4114-b223-88b54d0d91a1",
-        "usda_ingredient_id": "ground_turkey_meatballs",
+        "usda_ingredient_id": "1af401c5-84f5-4fe7-88ed-068649a0b4a9",
         "fda_portion_id": "250543",
         "non_metric_unit": "patty",
         "grams_per_non_metric_unit": 60.0,
@@ -1309,7 +1309,7 @@
     },
     {
         "id": "4893f0f3-f5b4-43a6-805a-c47f7d548bd1",
-        "usda_ingredient_id": "feta",
+        "usda_ingredient_id": "db9fa3f3-be13-4b4e-aeaa-12ab1ec438ac",
         "fda_portion_id": "236649",
         "non_metric_unit": "cup, crumbled",
         "grams_per_non_metric_unit": 150.0,
@@ -1321,7 +1321,7 @@
     },
     {
         "id": "e567c97d-4fdc-475e-b744-e582eda61b69",
-        "usda_ingredient_id": "feta",
+        "usda_ingredient_id": "db9fa3f3-be13-4b4e-aeaa-12ab1ec438ac",
         "fda_portion_id": "244858",
         "non_metric_unit": "cubic inch",
         "grams_per_non_metric_unit": 17.0,
@@ -1333,7 +1333,7 @@
     },
     {
         "id": "d0b0af06-47b1-4b63-b455-2abc4cee89f1",
-        "usda_ingredient_id": "feta",
+        "usda_ingredient_id": "db9fa3f3-be13-4b4e-aeaa-12ab1ec438ac",
         "fda_portion_id": "253258",
         "non_metric_unit": "wedge (1.33 oz)",
         "grams_per_non_metric_unit": 38.0,
@@ -1345,7 +1345,7 @@
     },
     {
         "id": "aa689886-8ea4-4321-99fd-cc65fed773ad",
-        "usda_ingredient_id": "tzatziki",
+        "usda_ingredient_id": "8dcaa491-d63c-42e2-80ce-56044928f4b0",
         "fda_portion_id": "247810",
         "non_metric_unit": "individual container",
         "grams_per_non_metric_unit": 70.0,
@@ -1357,7 +1357,7 @@
     },
     {
         "id": "9cfd65ce-f2e7-411f-9719-2a95c008f0ea",
-        "usda_ingredient_id": "tahini_dressing",
+        "usda_ingredient_id": "80d66d7e-bbe1-4129-8adf-c745ff7a85e8",
         "fda_portion_id": "240651",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 15.0,
@@ -1369,7 +1369,7 @@
     },
     {
         "id": "8573be04-9e6a-493f-8a15-d3a3fb0c86eb",
-        "usda_ingredient_id": "basil_pesto",
+        "usda_ingredient_id": "c0abb181-ba9b-47e4-b254-20f78d92c278",
         "fda_portion_id": "240868",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 16.0,
@@ -1381,7 +1381,7 @@
     },
     {
         "id": "c3875d2c-fbb6-4359-90bd-c25b41166b22",
-        "usda_ingredient_id": "marinara_sauce",
+        "usda_ingredient_id": "5386233d-cdb5-4071-9cf7-75f517da41cd",
         "fda_portion_id": "239690",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 260.0,
@@ -1393,7 +1393,7 @@
     },
     {
         "id": "7612b677-4073-496d-98d6-cce87c596a78",
-        "usda_ingredient_id": "teriyaki_sauce",
+        "usda_ingredient_id": "06b228c8-51a7-4930-914c-5448c1a194ba",
         "fda_portion_id": "247895",
         "non_metric_unit": "individual packet",
         "grams_per_non_metric_unit": 9.0,
@@ -1405,7 +1405,7 @@
     },
     {
         "id": "e79308ec-1307-40dc-b243-c32c582fefb4",
-        "usda_ingredient_id": "sesame_seeds",
+        "usda_ingredient_id": "1158123c-6074-4680-9058-7f29aee8ec05",
         "fda_portion_id": "238343",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 128.0,
@@ -1417,7 +1417,7 @@
     },
     {
         "id": "54b7414c-f932-444d-a0c4-6778de76d439",
-        "usda_ingredient_id": "rice",
+        "usda_ingredient_id": "eb1f6c66-4ce0-4f9c-8373-3e02b284790a",
         "fda_portion_id": "235947",
         "non_metric_unit": "cup, cooked",
         "grams_per_non_metric_unit": 174.0,
@@ -1429,7 +1429,7 @@
     },
     {
         "id": "24029ec1-af68-4938-9c8e-ff4e9a29de0f",
-        "usda_ingredient_id": "garlic_minced",
+        "usda_ingredient_id": "f5946ab6-1b3b-442f-8901-db0054addb00",
         "fda_portion_id": "285993",
         "non_metric_unit": "clove",
         "grams_per_non_metric_unit": 3.0,
@@ -1441,7 +1441,7 @@
     },
     {
         "id": "9a3fe303-097b-4f02-9160-c78654dbbe52",
-        "usda_ingredient_id": "garlic_minced",
+        "usda_ingredient_id": "f5946ab6-1b3b-442f-8901-db0054addb00",
         "fda_portion_id": "285995",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 135.0,
@@ -1453,7 +1453,7 @@
     },
     {
         "id": "2b34cb9b-8417-4380-a5d7-0bdfa2408d34",
-        "usda_ingredient_id": "cream_cheese",
+        "usda_ingredient_id": "5474270c-8b38-4e73-a7f5-cad33428cd48",
         "fda_portion_id": "269215",
         "non_metric_unit": "individual container",
         "grams_per_non_metric_unit": 28.35,
@@ -1465,7 +1465,7 @@
     },
     {
         "id": "d36648a2-7c98-422b-9540-67dfcb3aaf59",
-        "usda_ingredient_id": "cream_cheese",
+        "usda_ingredient_id": "5474270c-8b38-4e73-a7f5-cad33428cd48",
         "fda_portion_id": "269213",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 240.0,
@@ -1477,7 +1477,7 @@
     },
     {
         "id": "d02eb30b-3cb9-499d-99fc-0562a17a6915",
-        "usda_ingredient_id": "spinach",
+        "usda_ingredient_id": "e81458a4-c124-48a6-9cab-cdf7e5baa704",
         "fda_portion_id": "285381",
         "non_metric_unit": "leaf",
         "grams_per_non_metric_unit": 10.0,
@@ -1489,7 +1489,7 @@
     },
     {
         "id": "c825324f-416e-4cea-8156-36951fd2afb3",
-        "usda_ingredient_id": "spinach",
+        "usda_ingredient_id": "e81458a4-c124-48a6-9cab-cdf7e5baa704",
         "fda_portion_id": "285380",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 25.0,
@@ -1501,7 +1501,7 @@
     },
     {
         "id": "6d1048b2-fb5c-4bba-9e99-d449dd355478",
-        "usda_ingredient_id": "spinach",
+        "usda_ingredient_id": "e81458a4-c124-48a6-9cab-cdf7e5baa704",
         "fda_portion_id": "285383",
         "non_metric_unit": "Guideline amount in salad",
         "grams_per_non_metric_unit": 50.0,
@@ -1513,7 +1513,7 @@
     },
     {
         "id": "2b260bc4-e2d8-4e69-8b2b-8b67b63cd8a3",
-        "usda_ingredient_id": "spinach",
+        "usda_ingredient_id": "e81458a4-c124-48a6-9cab-cdf7e5baa704",
         "fda_portion_id": "285382",
         "non_metric_unit": "baby leaf",
         "grams_per_non_metric_unit": 0.6,
@@ -1525,7 +1525,7 @@
     },
     {
         "id": "31cc53fa-af99-4875-bcb7-ead9d80ce356",
-        "usda_ingredient_id": "olive_oil",
+        "usda_ingredient_id": "71fe5e2e-a2ff-44a0-9bc1-48d07c413239",
         "fda_portion_id": "287470",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 224.0,
@@ -1537,7 +1537,7 @@
     },
     {
         "id": "61a6650a-544e-4fb7-86ee-50cdbc8ce8f8",
-        "usda_ingredient_id": "red_pepper_flakes",
+        "usda_ingredient_id": "ccfaa3b1-aede-4b17-9767-021d4610a737",
         "fda_portion_id": "87565",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 5.3,
@@ -1549,7 +1549,7 @@
     },
     {
         "id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
-        "usda_ingredient_id": "red_pepper_flakes",
+        "usda_ingredient_id": "ccfaa3b1-aede-4b17-9767-021d4610a737",
         "fda_portion_id": "87564",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 1.8,
@@ -1561,7 +1561,7 @@
     },
     {
         "id": "26b6feef-4495-440d-92a0-75029006c0fc",
-        "usda_ingredient_id": "steak",
+        "usda_ingredient_id": "8988873e-6ca8-46f5-bae9-991f682d46ec",
         "fda_portion_id": "269482",
         "non_metric_unit": "oz yields",
         "grams_per_non_metric_unit": 20.0,
@@ -1573,7 +1573,7 @@
     },
     {
         "id": "8c773366-bb83-4dfe-9361-e9d44b1748b1",
-        "usda_ingredient_id": "steak",
+        "usda_ingredient_id": "8988873e-6ca8-46f5-bae9-991f682d46ec",
         "fda_portion_id": "269483",
         "non_metric_unit": "cubic inch",
         "grams_per_non_metric_unit": 17.0,
@@ -1585,7 +1585,7 @@
     },
     {
         "id": "0248efa7-0bdf-4fdb-a44b-238ec4976798",
-        "usda_ingredient_id": "steak",
+        "usda_ingredient_id": "8988873e-6ca8-46f5-bae9-991f682d46ec",
         "fda_portion_id": "269479",
         "non_metric_unit": "thin",
         "grams_per_non_metric_unit": 120.0,
@@ -1597,7 +1597,7 @@
     },
     {
         "id": "ce480137-048e-4399-a6e1-182e6a25cf1a",
-        "usda_ingredient_id": "steak",
+        "usda_ingredient_id": "8988873e-6ca8-46f5-bae9-991f682d46ec",
         "fda_portion_id": "269480",
         "non_metric_unit": "regular",
         "grams_per_non_metric_unit": 160.0,
@@ -1609,7 +1609,7 @@
     },
     {
         "id": "61767ee2-da09-4c07-8cb4-f5ccebd7e4b4",
-        "usda_ingredient_id": "steak",
+        "usda_ingredient_id": "8988873e-6ca8-46f5-bae9-991f682d46ec",
         "fda_portion_id": "269478",
         "non_metric_unit": "piece/slice, any size",
         "grams_per_non_metric_unit": 30.0,
@@ -1621,7 +1621,7 @@
     },
     {
         "id": "74a04054-aab7-4c64-b2d1-8aeb11eabdcb",
-        "usda_ingredient_id": "steak",
+        "usda_ingredient_id": "8988873e-6ca8-46f5-bae9-991f682d46ec",
         "fda_portion_id": "269481",
         "non_metric_unit": "thick",
         "grams_per_non_metric_unit": 240.0,
@@ -1633,7 +1633,7 @@
     },
     {
         "id": "25745e0a-b5b7-46e9-9bc8-e0fa571fd440",
-        "usda_ingredient_id": "steak",
+        "usda_ingredient_id": "8988873e-6ca8-46f5-bae9-991f682d46ec",
         "fda_portion_id": "269484",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 135.0,
@@ -1645,7 +1645,7 @@
     },
     {
         "id": "14ad82c6-19d3-4dc3-bb85-bd34dce36a62",
-        "usda_ingredient_id": "garlic_minced",
+        "usda_ingredient_id": "f5946ab6-1b3b-442f-8901-db0054addb00",
         "fda_portion_id": "285994",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 1.6664999999999999,
@@ -1657,7 +1657,7 @@
     },
     {
         "id": "5669f29c-edf0-4a26-92ba-c2b2f988980f",
-        "usda_ingredient_id": "garlic_minced",
+        "usda_ingredient_id": "f5946ab6-1b3b-442f-8901-db0054addb00",
         "fda_portion_id": "285994",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 5.0,
@@ -1669,7 +1669,7 @@
     },
     {
         "id": "b5d2b8c1-e9f5-4624-9966-04a292023c3a",
-        "usda_ingredient_id": "goya_mojo",
+        "usda_ingredient_id": "f2e3ad82-4233-48ce-8eaf-d5835693ccd9",
         "fda_portion_id": "",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 14.7868,
@@ -1681,7 +1681,7 @@
     },
     {
         "id": "04719f46-d666-4e79-be52-718d284ad11e",
-        "usda_ingredient_id": "soy_sauce",
+        "usda_ingredient_id": "7133feec-e5cc-4f92-8490-8a0003bcf3bc",
         "fda_portion_id": "275735",
         "non_metric_unit": "individual packet",
         "grams_per_non_metric_unit": 9.0,
@@ -1693,7 +1693,7 @@
     },
     {
         "id": "16b02bd1-f118-4db5-b72a-b2c2ad7077a9",
-        "usda_ingredient_id": "beef_stock",
+        "usda_ingredient_id": "7b7d6c09-c86a-42f2-90bc-939f30b5c1c1",
         "fda_portion_id": "91630",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 240.0,
@@ -1705,7 +1705,7 @@
     },
     {
         "id": "ff66c542-1d1c-4697-b404-09efe10e50d6",
-        "usda_ingredient_id": "black_pepper",
+        "usda_ingredient_id": "3b589f72-2138-4604-94f8-8a5999fd58aa",
         "fda_portion_id": "87561",
         "non_metric_unit": "tbsp, ground",
         "grams_per_non_metric_unit": 6.9,
@@ -1717,7 +1717,7 @@
     },
     {
         "id": "5252e936-f4ea-4628-9a22-5b6ee4c3bcf4",
-        "usda_ingredient_id": "black_pepper",
+        "usda_ingredient_id": "3b589f72-2138-4604-94f8-8a5999fd58aa",
         "fda_portion_id": "87563",
         "non_metric_unit": "dash",
         "grams_per_non_metric_unit": 0.1,
@@ -1729,7 +1729,7 @@
     },
     {
         "id": "ce3c7638-26ba-4f81-bb03-ba48fcd80910",
-        "usda_ingredient_id": "black_pepper",
+        "usda_ingredient_id": "3b589f72-2138-4604-94f8-8a5999fd58aa",
         "fda_portion_id": "87560",
         "non_metric_unit": "tsp, ground",
         "grams_per_non_metric_unit": 2.3,
@@ -1741,7 +1741,7 @@
     },
     {
         "id": "c509c903-95b5-4686-b154-1ffc28c03685",
-        "usda_ingredient_id": "black_pepper",
+        "usda_ingredient_id": "3b589f72-2138-4604-94f8-8a5999fd58aa",
         "fda_portion_id": "87562",
         "non_metric_unit": "tsp, whole",
         "grams_per_non_metric_unit": 2.9,
@@ -1753,7 +1753,7 @@
     },
     {
         "id": "0393d6f2-7ff7-4267-bc17-5a7421277452",
-        "usda_ingredient_id": "garlic_powder",
+        "usda_ingredient_id": "656e4e65-fbb5-4f29-a579-46dc52bcb0d7",
         "fda_portion_id": "88440",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 9.7,
@@ -1765,7 +1765,7 @@
     },
     {
         "id": "ad7a9425-384a-4ce7-9d75-94ac75547bc6",
-        "usda_ingredient_id": "garlic_powder",
+        "usda_ingredient_id": "656e4e65-fbb5-4f29-a579-46dc52bcb0d7",
         "fda_portion_id": "88439",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 3.1,
@@ -1777,7 +1777,7 @@
     },
     {
         "id": "cc4cfd5d-0bd5-429c-ace9-28957d685d1c",
-        "usda_ingredient_id": "sauce",
+        "usda_ingredient_id": "b351e913-18b4-4acf-91ed-3e9d2792d6ce",
         "fda_portion_id": "240771",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 16.0,
@@ -1789,7 +1789,7 @@
     },
     {
         "id": "aa17b159-2ba9-44eb-9ae8-3c9bd66d9f85",
-        "usda_ingredient_id": "teriyaki_sauce",
+        "usda_ingredient_id": "06b228c8-51a7-4930-914c-5448c1a194ba",
         "fda_portion_id": "240633",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 16.0,
@@ -1801,7 +1801,7 @@
     },
     {
         "id": "d27093ba-421e-4538-8666-8609572db341",
-        "usda_ingredient_id": "cream_cheese",
+        "usda_ingredient_id": "5474270c-8b38-4e73-a7f5-cad33428cd48",
         "fda_portion_id": "269214",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 15.0,
@@ -1813,7 +1813,7 @@
     },
     {
         "id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
-        "usda_ingredient_id": "olive_oil",
+        "usda_ingredient_id": "71fe5e2e-a2ff-44a0-9bc1-48d07c413239",
         "fda_portion_id": "287471",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 14.0,
@@ -1825,7 +1825,7 @@
     },
     {
         "id": "fefb944d-7eb1-4f88-873b-f07118ed0cf8",
-        "usda_ingredient_id": "worcestershire_sauce",
+        "usda_ingredient_id": "878a1ca6-432f-4b12-9d9f-8f218e009136",
         "fda_portion_id": "275753",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 16.0,
@@ -1837,7 +1837,7 @@
     },
     {
         "id": "83fe3278-f610-4e1b-b250-94e7240ebff0",
-        "usda_ingredient_id": "soy_sauce",
+        "usda_ingredient_id": "7133feec-e5cc-4f92-8490-8a0003bcf3bc",
         "fda_portion_id": "275734",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 16.0,
@@ -1849,7 +1849,7 @@
     },
     {
         "id": "79a9e862-a429-43a0-ab27-96b3382c7b19",
-        "usda_ingredient_id": "onion_powder",
+        "usda_ingredient_id": "8ba84f4c-6b8b-43a7-b456-772ef24749a7",
         "fda_portion_id": "88444",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 6.9,
@@ -1861,7 +1861,7 @@
     },
     {
         "id": "37be0e4a-98e8-49f1-9d0b-1af823967d33",
-        "usda_ingredient_id": "onion_powder",
+        "usda_ingredient_id": "8ba84f4c-6b8b-43a7-b456-772ef24749a7",
         "fda_portion_id": "88443",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 2.4,
@@ -1873,7 +1873,7 @@
     },
     {
         "id": "981eb028-85b5-48d2-ae60-46401f58d32c",
-        "usda_ingredient_id": "adobo",
+        "usda_ingredient_id": "ea8df0b4-1071-4758-8fe7-47b3a7bf1af5",
         "fda_portion_id": "",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 4.0,
@@ -1885,7 +1885,7 @@
     },
     {
         "id": "63182750-b08d-46a7-a91f-c4a6efec3192",
-        "usda_ingredient_id": "sesame_oil",
+        "usda_ingredient_id": "610aa5cb-63f4-466c-9bf6-a1e93ba271b3",
         "fda_portion_id": "287482",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 224.0,
@@ -1897,7 +1897,7 @@
     },
     {
         "id": "40fa4921-1ca1-4659-871f-c6b1105df527",
-        "usda_ingredient_id": "white_pepper",
+        "usda_ingredient_id": "0701a30a-493b-4613-82e8-7089a90bffaa",
         "fda_portion_id": "87567",
         "non_metric_unit": "tbsp, ground",
         "grams_per_non_metric_unit": 7.1,
@@ -1909,7 +1909,7 @@
     },
     {
         "id": "cc225707-b74c-4b70-9c2b-ab1720df74c9",
-        "usda_ingredient_id": "white_pepper",
+        "usda_ingredient_id": "0701a30a-493b-4613-82e8-7089a90bffaa",
         "fda_portion_id": "87566",
         "non_metric_unit": "tsp, ground",
         "grams_per_non_metric_unit": 2.4,
@@ -1921,7 +1921,7 @@
     },
     {
         "id": "53ab9830-6189-4852-b2ad-21a3af09ce50",
-        "usda_ingredient_id": "cornstarch",
+        "usda_ingredient_id": "a47d8052-f277-4b53-890b-297181de5018",
         "fda_portion_id": "85370",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 128.0,
@@ -1933,7 +1933,7 @@
     },
     {
         "id": "8ee9c171-690b-48c4-8e14-41ba58e44f09",
-        "usda_ingredient_id": "onion_raw",
+        "usda_ingredient_id": "da704027-b234-44c5-b4ae-7c39e9d4607b",
         "fda_portion_id": "286031",
         "non_metric_unit": "whole",
         "grams_per_non_metric_unit": 148.0,
@@ -1945,7 +1945,7 @@
     },
     {
         "id": "a97da0f3-a603-435e-b83e-4e02443c5dfe",
-        "usda_ingredient_id": "onion_raw",
+        "usda_ingredient_id": "da704027-b234-44c5-b4ae-7c39e9d4607b",
         "fda_portion_id": "286030",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 160.0,
@@ -1957,7 +1957,7 @@
     },
     {
         "id": "1b2518b4-23d7-47e3-b21f-c15635880457",
-        "usda_ingredient_id": "onion_raw",
+        "usda_ingredient_id": "da704027-b234-44c5-b4ae-7c39e9d4607b",
         "fda_portion_id": "286028",
         "non_metric_unit": "slice",
         "grams_per_non_metric_unit": 15.0,
@@ -1969,7 +1969,7 @@
     },
     {
         "id": "ed6ccefc-3b08-4d59-9522-af9b020ab3db",
-        "usda_ingredient_id": "onion_raw",
+        "usda_ingredient_id": "da704027-b234-44c5-b4ae-7c39e9d4607b",
         "fda_portion_id": "286029",
         "non_metric_unit": "ring",
         "grams_per_non_metric_unit": 5.0,
@@ -1981,7 +1981,7 @@
     },
     {
         "id": "81970654-9612-4d22-a85d-b805e2a5d3e1",
-        "usda_ingredient_id": "ginger_root_raw",
+        "usda_ingredient_id": "94a253fe-af8e-463a-a136-70bd2231c89c",
         "fda_portion_id": "84484",
         "non_metric_unit": "slices (1\" dia)",
         "grams_per_non_metric_unit": 11.0,
@@ -1993,7 +1993,7 @@
     },
     {
         "id": "8a0f79da-731e-4737-b3e3-3fd1b0d458fd",
-        "usda_ingredient_id": "ginger_root_raw",
+        "usda_ingredient_id": "94a253fe-af8e-463a-a136-70bd2231c89c",
         "fda_portion_id": "84483",
         "non_metric_unit": "cup slices (1\" dia)",
         "grams_per_non_metric_unit": 24.0,
@@ -2005,7 +2005,7 @@
     },
     {
         "id": "04b6d588-4772-416a-bd11-3d4f55ab21dc",
-        "usda_ingredient_id": "ginger_root_raw",
+        "usda_ingredient_id": "94a253fe-af8e-463a-a136-70bd2231c89c",
         "fda_portion_id": "84482",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 2.0,
@@ -2017,7 +2017,7 @@
     },
     {
         "id": "bd69d774-538b-48c8-8df7-14289ece257c",
-        "usda_ingredient_id": "soy_sauce",
+        "usda_ingredient_id": "7133feec-e5cc-4f92-8490-8a0003bcf3bc",
         "fda_portion_id": "275753",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 5.3328,
@@ -2029,7 +2029,7 @@
     },
     {
         "id": "719306cd-d043-44ff-b1b4-1f74f33ae31c",
-        "usda_ingredient_id": "balsamic_vinegar",
+        "usda_ingredient_id": "2194346d-517a-427e-b457-68de850c8426",
         "fda_portion_id": "90145",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 16.0,
@@ -2041,7 +2041,7 @@
     },
     {
         "id": "5face6f1-5cde-412e-9fbb-b4ef71b10131",
-        "usda_ingredient_id": "balsamic_vinegar",
+        "usda_ingredient_id": "2194346d-517a-427e-b457-68de850c8426",
         "fda_portion_id": "90147",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 5.3,
@@ -2053,7 +2053,7 @@
     },
     {
         "id": "5b07c257-2c74-46e5-a26c-d0998c59d995",
-        "usda_ingredient_id": "balsamic_vinegar",
+        "usda_ingredient_id": "2194346d-517a-427e-b457-68de850c8426",
         "fda_portion_id": "90146",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 255.0,
@@ -2065,7 +2065,7 @@
     },
     {
         "id": "71bd62ec-b446-4cd5-a608-51118a03941d",
-        "usda_ingredient_id": "white_rice_cooked",
+        "usda_ingredient_id": "92986ece-29b1-423f-abc4-e80e14800b15",
         "fda_portion_id": "235930",
         "non_metric_unit": "cup, cooked",
         "grams_per_non_metric_unit": 158.0,
@@ -2077,7 +2077,7 @@
     },
     {
         "id": "7713750e-2f4e-4301-ac55-41f1efcdbd4b",
-        "usda_ingredient_id": "sugar",
+        "usda_ingredient_id": "588514d2-3dad-4428-9e93-3fc33eb9656c",
         "fda_portion_id": "287774",
         "non_metric_unit": "individual packet",
         "grams_per_non_metric_unit": 3.5,
@@ -2089,7 +2089,7 @@
     },
     {
         "id": "bb059fb0-ccfe-471c-ade9-47d02ef2b8aa",
-        "usda_ingredient_id": "sugar",
+        "usda_ingredient_id": "588514d2-3dad-4428-9e93-3fc33eb9656c",
         "fda_portion_id": "287776",
         "non_metric_unit": "cube",
         "grams_per_non_metric_unit": 2.3,
@@ -2101,7 +2101,7 @@
     },
     {
         "id": "5429414b-8a3e-4777-b327-1f4ae695e968",
-        "usda_ingredient_id": "sugar",
+        "usda_ingredient_id": "588514d2-3dad-4428-9e93-3fc33eb9656c",
         "fda_portion_id": "287772",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 200.0,
@@ -2113,7 +2113,7 @@
     },
     {
         "id": "0f6e8454-0c5b-4b25-9629-fbe8713232f5",
-        "usda_ingredient_id": "cornstarch",
+        "usda_ingredient_id": "a47d8052-f277-4b53-890b-297181de5018",
         "fda_portion_id": "85370",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 8.0,
@@ -2125,7 +2125,7 @@
     },
     {
         "id": "589252e3-b72c-4299-b452-24eb0b6b6416",
-        "usda_ingredient_id": "steak",
+        "usda_ingredient_id": "8988873e-6ca8-46f5-bae9-991f682d46ec",
         "fda_portion_id": "269482",
         "non_metric_unit": "lb",
         "grams_per_non_metric_unit": 320.0,
@@ -2137,7 +2137,7 @@
     },
     {
         "id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
-        "usda_ingredient_id": "salt",
+        "usda_ingredient_id": "4410b6c0-961f-40ce-ac90-6f5d1050b12a",
         "fda_portion_id": "187521",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 6.1,
@@ -2149,7 +2149,7 @@
     },
     {
         "id": "71486006-c9da-4b34-915d-54bfafc47828",
-        "usda_ingredient_id": "sugar",
+        "usda_ingredient_id": "588514d2-3dad-4428-9e93-3fc33eb9656c",
         "fda_portion_id": "287773",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 4.2,
@@ -2161,7 +2161,7 @@
     },
     {
         "id": "3f0f8616-d874-457f-99dc-6192728d41ad",
-        "usda_ingredient_id": "protein_powder",
+        "usda_ingredient_id": "126e7862-deeb-401c-aaa5-1335818ed669",
         "fda_portion_id": "240984",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 15.5,
@@ -2173,7 +2173,7 @@
     },
     {
         "id": "b0c58c9b-d68c-4a9b-9512-78e315e90bc5",
-        "usda_ingredient_id": "almond_butter",
+        "usda_ingredient_id": "5e42b57c-42db-4098-8548-47a6773bab6c",
         "fda_portion_id": "240638",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 16.0,
@@ -2185,7 +2185,7 @@
     },
     {
         "id": "102bd68e-c388-4153-a2a1-7fdddd627b5b",
-        "usda_ingredient_id": "butter",
+        "usda_ingredient_id": "d3142bd1-da59-4e90-b71c-8622ca3d618e",
         "fda_portion_id": "240840",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 14.0,
@@ -2197,7 +2197,7 @@
     },
     {
         "id": "c0f4b3c7-e69b-422f-83e5-1491d27f2e04",
-        "usda_ingredient_id": "parmesan_cheese",
+        "usda_ingredient_id": "b629a99b-c124-44fc-8fe6-bf4d0e3e0391",
         "fda_portion_id": "240571",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 6.2,
@@ -2209,7 +2209,7 @@
     },
     {
         "id": "da2cdf86-0bd0-4016-b088-73e07a7574e8",
-        "usda_ingredient_id": "sesame_sauce",
+        "usda_ingredient_id": "d7668a6b-aa70-47ea-939d-b2e6a2f6433b",
         "fda_portion_id": "287579",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 14.7,
@@ -2221,7 +2221,7 @@
     },
     {
         "id": "0267d510-fee7-4d54-b2fe-4e65672a237f",
-        "usda_ingredient_id": "tzatziki",
+        "usda_ingredient_id": "8dcaa491-d63c-42e2-80ce-56044928f4b0",
         "fda_portion_id": "240543",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 15.0,
@@ -2233,7 +2233,7 @@
     },
     {
         "id": "24fe9b17-4622-4ee2-900e-0ece75e7d58d",
-        "usda_ingredient_id": "sauteed_chicken",
+        "usda_ingredient_id": "24326d07-bee0-4476-ac18-aa3b36299683",
         "fda_portion_id": "243376",
         "non_metric_unit": "lb, cooked",
         "grams_per_non_metric_unit": 453.6,
@@ -2245,7 +2245,7 @@
     },
     {
         "id": "50b34dba-1eec-40e9-bf65-187b5dd191f7",
-        "usda_ingredient_id": "onion_raw",
+        "usda_ingredient_id": "da704027-b234-44c5-b4ae-7c39e9d4607b",
         "fda_portion_id": "286031",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.34952,
@@ -2257,7 +2257,7 @@
     },
     {
         "id": "a158a823-503b-434a-9ada-7d903b474334",
-        "usda_ingredient_id": "ginger_root_raw",
+        "usda_ingredient_id": "94a253fe-af8e-463a-a136-70bd2231c89c",
         "fda_portion_id": "84483",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.34952,
@@ -2269,7 +2269,7 @@
     },
     {
         "id": "03171774-88ee-4be9-94f9-de63b105620f",
-        "usda_ingredient_id": "broccoli",
+        "usda_ingredient_id": "0c5ff3c3-248b-4192-aed4-917b7744b1bd",
         "fda_portion_id": "285467",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.34952,
@@ -2281,7 +2281,7 @@
     },
     {
         "id": "2028f0ba-ddf2-468c-b7b1-b1f683d98b11",
-        "usda_ingredient_id": "sesame_oil",
+        "usda_ingredient_id": "610aa5cb-63f4-466c-9bf6-a1e93ba271b3",
         "fda_portion_id": "287483",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 14.0,
@@ -2293,7 +2293,7 @@
     },
     {
         "id": "4a6997b1-9786-4075-96d0-132135cb903b",
-        "usda_ingredient_id": "oyster_sauce",
+        "usda_ingredient_id": "13668e00-bab1-411b-a804-11fddd3111e6",
         "fda_portion_id": "274859",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 16.0,
@@ -2305,7 +2305,7 @@
     },
     {
         "id": "a556c1b4-c8c8-4870-89f5-74d5f1f63c61",
-        "usda_ingredient_id": "sesame_oil",
+        "usda_ingredient_id": "610aa5cb-63f4-466c-9bf6-a1e93ba271b3",
         "fda_portion_id": "287483",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 4.66662,
@@ -2317,7 +2317,7 @@
     },
     {
         "id": "a71dbb33-8036-4101-bd20-18d40ac5acd5",
-        "usda_ingredient_id": "smoked_ham",
+        "usda_ingredient_id": "1ebcaab6-d9a3-47a1-9cb3-b6bd8cfc10cf",
         "fda_portion_id": "94661",
         "non_metric_unit": "oz (1 serving)",
         "grams_per_non_metric_unit": 55.0,
@@ -2329,7 +2329,7 @@
     },
     {
         "id": "363796d0-5ac8-4ab3-acd6-7e220a2d6bca",
-        "usda_ingredient_id": "smoked_ham",
+        "usda_ingredient_id": "1ebcaab6-d9a3-47a1-9cb3-b6bd8cfc10cf",
         "fda_portion_id": "94661",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.3505154625,
@@ -2341,7 +2341,7 @@
     },
     {
         "id": "6fe6c2b0-7fde-45f3-be5a-fd54b242660f",
-        "usda_ingredient_id": "butter_beans",
+        "usda_ingredient_id": "ebae624d-4233-404c-bf06-c25a33d20d5c",
         "fda_portion_id": "275544",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 185.0,
@@ -2353,7 +2353,7 @@
     },
     {
         "id": "abff4dec-d888-4c23-b5a2-33e066eb8a33",
-        "usda_ingredient_id": "butter_beans",
+        "usda_ingredient_id": "ebae624d-4233-404c-bf06-c25a33d20d5c",
         "fda_portion_id": "275544",
         "non_metric_unit": "lb",
         "grams_per_non_metric_unit": 453.592000065,
@@ -2365,7 +2365,7 @@
     },
     {
         "id": "915f1a9d-2fe7-4e69-9879-89f5a88dba79",
-        "usda_ingredient_id": "bay_leaves",
+        "usda_ingredient_id": "46f5082b-84aa-40b0-83bd-0523c5feaae4",
         "fda_portion_id": "87533",
         "non_metric_unit": "tbsp, crumbled",
         "grams_per_non_metric_unit": 1.8,
@@ -2377,7 +2377,7 @@
     },
     {
         "id": "97a20851-7d9a-4ec5-8a1c-c2bd15ea5770",
-        "usda_ingredient_id": "bay_leaves",
+        "usda_ingredient_id": "46f5082b-84aa-40b0-83bd-0523c5feaae4",
         "fda_portion_id": "87532",
         "non_metric_unit": "tsp, crumbled",
         "grams_per_non_metric_unit": 0.6,
@@ -2389,7 +2389,7 @@
     },
     {
         "id": "faced4e8-321e-47dd-9903-60a34440b299",
-        "usda_ingredient_id": "sofrito",
+        "usda_ingredient_id": "b6763975-6ea3-4f1d-908d-beb98a2d303e",
         "fda_portion_id": "88114",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 103.0,
@@ -2401,7 +2401,7 @@
     },
     {
         "id": "712df539-6851-421b-bbe9-b4b3a691d919",
-        "usda_ingredient_id": "hot_sauce_tabasco",
+        "usda_ingredient_id": "f9dee936-60e5-4fa8-8f40-631302234075",
         "fda_portion_id": "286957",
         "non_metric_unit": "packet",
         "grams_per_non_metric_unit": 9.0,
@@ -2413,7 +2413,7 @@
     },
     {
         "id": "5bafc958-85c4-4bb0-b44a-740db45bf5a6",
-        "usda_ingredient_id": "hot_sauce_tabasco",
+        "usda_ingredient_id": "f9dee936-60e5-4fa8-8f40-631302234075",
         "fda_portion_id": "286956",
         "non_metric_unit": "tablespoon",
         "grams_per_non_metric_unit": 16.0,
@@ -2425,7 +2425,7 @@
     },
     {
         "id": "91473758-13d3-4df0-a841-2ff596f4be9f",
-        "usda_ingredient_id": "hot_sauce_tabasco",
+        "usda_ingredient_id": "f9dee936-60e5-4fa8-8f40-631302234075",
         "fda_portion_id": "286958",
         "non_metric_unit": "drops",
         "grams_per_non_metric_unit": 0.8,
@@ -2437,7 +2437,7 @@
     },
     {
         "id": "a92faa94-860a-4bca-a35c-c53d8e3a12dd",
-        "usda_ingredient_id": "liquid_smoke",
+        "usda_ingredient_id": "54928889-875e-4066-97bf-598ef9db2398",
         "fda_portion_id": "",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 4.92892,
@@ -2449,7 +2449,7 @@
     },
     {
         "id": "5d7baee0-b741-47c9-9cf2-99558edb2f29",
-        "usda_ingredient_id": "honey",
+        "usda_ingredient_id": "0a792fe1-e0ad-4f78-a2d9-893dc7d87699",
         "fda_portion_id": "287872",
         "non_metric_unit": "tablespoon",
         "grams_per_non_metric_unit": 20.0,
@@ -2461,7 +2461,7 @@
     },
     {
         "id": "6df1d544-8ddd-44cc-b13d-03291a4396a3",
-        "usda_ingredient_id": "honey",
+        "usda_ingredient_id": "0a792fe1-e0ad-4f78-a2d9-893dc7d87699",
         "fda_portion_id": "287873",
         "non_metric_unit": "single serving container",
         "grams_per_non_metric_unit": 14.0,
@@ -2473,7 +2473,7 @@
     },
     {
         "id": "3c0bf584-781c-4289-a9c4-fe293249370f",
-        "usda_ingredient_id": "honey",
+        "usda_ingredient_id": "0a792fe1-e0ad-4f78-a2d9-893dc7d87699",
         "fda_portion_id": "287874",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 320.0,
@@ -2485,7 +2485,7 @@
     },
     {
         "id": "1deccd46-e392-44b7-9d21-897d9514a93e",
-        "usda_ingredient_id": "herbs_de_provence",
+        "usda_ingredient_id": "d812d905-cb51-458a-849c-66a0f8eeaf08",
         "fda_portion_id": "",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 4.92892,
@@ -2497,7 +2497,7 @@
     },
     {
         "id": "3a8e485d-8698-45a4-8353-80794db6a903",
-        "usda_ingredient_id": "bay_leaves",
+        "usda_ingredient_id": "46f5082b-84aa-40b0-83bd-0523c5feaae4",
         "fda_portion_id": "87532",
         "non_metric_unit": "leaf",
         "grams_per_non_metric_unit": 0.199998,
@@ -2509,7 +2509,7 @@
     },
     {
         "id": "38680978-3adc-4fda-97be-558c4329ec64",
-        "usda_ingredient_id": "sofrito",
+        "usda_ingredient_id": "b6763975-6ea3-4f1d-908d-beb98a2d303e",
         "fda_portion_id": "88114",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 6.4375,
@@ -2521,7 +2521,7 @@
     },
     {
         "id": "5426a19e-6d44-41b4-8a1b-2481e70cd24f",
-        "usda_ingredient_id": "hot_sauce_tabasco",
+        "usda_ingredient_id": "f9dee936-60e5-4fa8-8f40-631302234075",
         "fda_portion_id": "286956",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 5.33328,
@@ -2533,7 +2533,7 @@
     },
     {
         "id": "c9861f6b-0ab9-4133-b9ae-c59df95ce30c",
-        "usda_ingredient_id": "honey",
+        "usda_ingredient_id": "0a792fe1-e0ad-4f78-a2d9-893dc7d87699",
         "fda_portion_id": "287872",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 6.666600000000001,
@@ -2545,7 +2545,7 @@
     },
     {
         "id": "fad5ccfe-3e4e-4f3b-a851-edf6105227bd",
-        "usda_ingredient_id": "salmon_grilled",
+        "usda_ingredient_id": "050564e6-592a-45de-b833-5e3192ff6366",
         "fda_portion_id": "272131",
         "non_metric_unit": "small/regular fillet",
         "grams_per_non_metric_unit": 140.0,
@@ -2557,7 +2557,7 @@
     },
     {
         "id": "b68064b0-e1db-4149-95d4-95ce177ec03c",
-        "usda_ingredient_id": "salmon_grilled",
+        "usda_ingredient_id": "050564e6-592a-45de-b833-5e3192ff6366",
         "fda_portion_id": "272136",
         "non_metric_unit": "cubic inch",
         "grams_per_non_metric_unit": 17.0,
@@ -2569,7 +2569,7 @@
     },
     {
         "id": "91cd5d29-c9c0-497c-88b3-2560643503ea",
-        "usda_ingredient_id": "salmon_grilled",
+        "usda_ingredient_id": "050564e6-592a-45de-b833-5e3192ff6366",
         "fda_portion_id": "272134",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 135.0,
@@ -2581,7 +2581,7 @@
     },
     {
         "id": "a0655ad4-b8ae-44e3-97cc-e2939f55c39e",
-        "usda_ingredient_id": "salmon_grilled",
+        "usda_ingredient_id": "050564e6-592a-45de-b833-5e3192ff6366",
         "fda_portion_id": "272133",
         "non_metric_unit": "steak",
         "grams_per_non_metric_unit": 210.0,
@@ -2593,7 +2593,7 @@
     },
     {
         "id": "fd418b3a-38d2-4ce0-94b6-5ad1d4285075",
-        "usda_ingredient_id": "salmon_grilled",
+        "usda_ingredient_id": "050564e6-592a-45de-b833-5e3192ff6366",
         "fda_portion_id": "272132",
         "non_metric_unit": "large fillet",
         "grams_per_non_metric_unit": 210.0,
@@ -2605,7 +2605,7 @@
     },
     {
         "id": "77541109-b563-4c36-ab08-a933dec1a640",
-        "usda_ingredient_id": "salmon_grilled",
+        "usda_ingredient_id": "050564e6-592a-45de-b833-5e3192ff6366",
         "fda_portion_id": "272135",
         "non_metric_unit": "oz yields",
         "grams_per_non_metric_unit": 20.0,
@@ -2617,7 +2617,7 @@
     },
     {
         "id": "2e02d13a-ccf1-4fe0-94b5-4123162d8a6d",
-        "usda_ingredient_id": "sugar_brown",
+        "usda_ingredient_id": "c404a72d-1bf3-4b65-bf5f-ccd129ab5856",
         "fda_portion_id": "287788",
         "non_metric_unit": "teaspoon, NFS",
         "grams_per_non_metric_unit": 4.6,
@@ -2629,7 +2629,7 @@
     },
     {
         "id": "2120b18d-caf3-4edf-b32d-f08b775ab366",
-        "usda_ingredient_id": "sugar_brown",
+        "usda_ingredient_id": "c404a72d-1bf3-4b65-bf5f-ccd129ab5856",
         "fda_portion_id": "287787",
         "non_metric_unit": "cup, NFS",
         "grams_per_non_metric_unit": 220.0,
@@ -2641,7 +2641,7 @@
     },
     {
         "id": "7b796aca-2bab-4632-96b3-479e75e33fed",
-        "usda_ingredient_id": "sugar_brown",
+        "usda_ingredient_id": "c404a72d-1bf3-4b65-bf5f-ccd129ab5856",
         "fda_portion_id": "287788",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 13.799999999999999,
@@ -2653,7 +2653,7 @@
     },
     {
         "id": "61f2f586-95a1-4025-8776-16c1770e59e6",
-        "usda_ingredient_id": "mustard",
+        "usda_ingredient_id": "a2150b36-0e70-4ac2-89e7-15f8276630f5",
         "fda_portion_id": "286933",
         "non_metric_unit": "packet",
         "grams_per_non_metric_unit": 5.0,
@@ -2665,7 +2665,7 @@
     },
     {
         "id": "5d9473fe-c30f-495f-a3a1-e24255605def",
-        "usda_ingredient_id": "mustard",
+        "usda_ingredient_id": "a2150b36-0e70-4ac2-89e7-15f8276630f5",
         "fda_portion_id": "286934",
         "non_metric_unit": "Guideline amount on regular sandwich",
         "grams_per_non_metric_unit": 5.0,
@@ -2677,7 +2677,7 @@
     },
     {
         "id": "13d6f779-0c83-499f-bcc5-6aec2f9d5697",
-        "usda_ingredient_id": "mustard",
+        "usda_ingredient_id": "a2150b36-0e70-4ac2-89e7-15f8276630f5",
         "fda_portion_id": "286935",
         "non_metric_unit": "Guideline amount on large sandwich",
         "grams_per_non_metric_unit": 10.0,
@@ -2689,7 +2689,7 @@
     },
     {
         "id": "653e2eec-6296-4b1f-be2e-b3b064851006",
-        "usda_ingredient_id": "mustard",
+        "usda_ingredient_id": "a2150b36-0e70-4ac2-89e7-15f8276630f5",
         "fda_portion_id": "286932",
         "non_metric_unit": "tablespoon",
         "grams_per_non_metric_unit": 15.0,
@@ -2701,7 +2701,7 @@
     },
     {
         "id": "990592c2-241b-4be6-b4ad-56acec06020b",
-        "usda_ingredient_id": "paprika",
+        "usda_ingredient_id": "edfc515b-2a64-44bd-9bda-4e5e93adf9fa",
         "fda_portion_id": "88448",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 6.8,
@@ -2713,7 +2713,7 @@
     },
     {
         "id": "ebfdeb55-2aef-47a1-93b9-5c078d2e2d87",
-        "usda_ingredient_id": "paprika",
+        "usda_ingredient_id": "edfc515b-2a64-44bd-9bda-4e5e93adf9fa",
         "fda_portion_id": "88447",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 2.3,
@@ -2725,7 +2725,7 @@
     },
     {
         "id": "a81d783c-e9b9-477a-b894-102e2a282e62",
-        "usda_ingredient_id": "thyme",
+        "usda_ingredient_id": "78d4ed7c-9b83-44ba-99d8-48f82b162658",
         "fda_portion_id": "87578",
         "non_metric_unit": "tsp, leaves",
         "grams_per_non_metric_unit": 1.0,
@@ -2737,7 +2737,7 @@
     },
     {
         "id": "e17cbe6b-744f-4cbc-98df-5604dea4c1ff",
-        "usda_ingredient_id": "thyme",
+        "usda_ingredient_id": "78d4ed7c-9b83-44ba-99d8-48f82b162658",
         "fda_portion_id": "87581",
         "non_metric_unit": "tbsp, ground",
         "grams_per_non_metric_unit": 4.3,
@@ -2749,7 +2749,7 @@
     },
     {
         "id": "b52d54ca-a85c-487e-9028-b0dc3c9cd434",
-        "usda_ingredient_id": "thyme",
+        "usda_ingredient_id": "78d4ed7c-9b83-44ba-99d8-48f82b162658",
         "fda_portion_id": "87579",
         "non_metric_unit": "tbsp, leaves",
         "grams_per_non_metric_unit": 2.7,
@@ -2761,7 +2761,7 @@
     },
     {
         "id": "c8309959-f635-422d-8030-daa5fd4b1acd",
-        "usda_ingredient_id": "thyme",
+        "usda_ingredient_id": "78d4ed7c-9b83-44ba-99d8-48f82b162658",
         "fda_portion_id": "87580",
         "non_metric_unit": "tsp, ground",
         "grams_per_non_metric_unit": 1.4,
@@ -2773,7 +2773,7 @@
     },
     {
         "id": "c3f23ebd-2731-412f-8b8f-e3b61066f395",
-        "usda_ingredient_id": "yellow_onion",
+        "usda_ingredient_id": "7678d0fc-8160-4780-99f3-c8d283b8c57c",
         "fda_portion_id": "85877",
         "non_metric_unit": "cup chopped",
         "grams_per_non_metric_unit": 87.0,
@@ -2785,7 +2785,7 @@
     },
     {
         "id": "58f65ca6-f729-48ee-b59f-8169651c55a5",
-        "usda_ingredient_id": "zucchini_green_raw",
+        "usda_ingredient_id": "69051d8a-b5be-4d1d-b144-125f2f8d193e",
         "fda_portion_id": "286082",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 115.0,
@@ -2797,7 +2797,7 @@
     },
     {
         "id": "1c758348-81c2-463d-aa39-810d844c2659",
-        "usda_ingredient_id": "zucchini_green_raw",
+        "usda_ingredient_id": "69051d8a-b5be-4d1d-b144-125f2f8d193e",
         "fda_portion_id": "286081",
         "non_metric_unit": "whole",
         "grams_per_non_metric_unit": 200.0,
@@ -2809,7 +2809,7 @@
     },
     {
         "id": "cbac34df-c18b-4701-b91b-6e8c1a943582",
-        "usda_ingredient_id": "zucchini_green_raw",
+        "usda_ingredient_id": "69051d8a-b5be-4d1d-b144-125f2f8d193e",
         "fda_portion_id": "286080",
         "non_metric_unit": "slice",
         "grams_per_non_metric_unit": 10.0,
@@ -2821,7 +2821,7 @@
     },
     {
         "id": "d3b1072e-7e5b-450f-8b70-cd4a14373b11",
-        "usda_ingredient_id": "yellow_corn_canned",
+        "usda_ingredient_id": "a8e7d5f9-a7d5-4819-988c-d63a4f5b67af",
         "fda_portion_id": "286467",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 170.0,
@@ -2833,7 +2833,7 @@
     },
     {
         "id": "de76f981-2b78-4c74-aa47-3e4d9a9915db",
-        "usda_ingredient_id": "yellow_corn_canned",
+        "usda_ingredient_id": "a8e7d5f9-a7d5-4819-988c-d63a4f5b67af",
         "fda_portion_id": "286468",
         "non_metric_unit": "baby corn",
         "grams_per_non_metric_unit": 8.0,
@@ -2845,7 +2845,7 @@
     },
     {
         "id": "6622f821-c7b4-43b0-8f87-c91751bec29d",
-        "usda_ingredient_id": "sesame_seeds",
+        "usda_ingredient_id": "1158123c-6074-4680-9058-7f29aee8ec05",
         "fda_portion_id": "238343",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 2.66624,
@@ -2857,7 +2857,7 @@
     },
     {
         "id": "008d69c3-bb09-418b-9aef-8d1da386a73f",
-        "usda_ingredient_id": "mustard",
+        "usda_ingredient_id": "a2150b36-0e70-4ac2-89e7-15f8276630f5",
         "fda_portion_id": "286932",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 4.99995,
@@ -2869,7 +2869,7 @@
     },
     {
         "id": "a4416876-74af-496b-8ac5-35c995715b9f",
-        "usda_ingredient_id": "spinach",
+        "usda_ingredient_id": "e81458a4-c124-48a6-9cab-cdf7e5baa704",
         "fda_portion_id": "285381",
         "non_metric_unit": "small bunch",
         "grams_per_non_metric_unit": 200.0,
@@ -2881,7 +2881,7 @@
     },
     {
         "id": "dd49a2d0-ca42-45ca-8280-5473bdeaa15b",
-        "usda_ingredient_id": "poultry_seasoning",
+        "usda_ingredient_id": "642b513c-638e-475b-ac6a-1254e7bbd819",
         "fda_portion_id": "88451",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 1.5,
@@ -2893,7 +2893,7 @@
     },
     {
         "id": "b6299b90-ee79-4529-9276-1db1e5385479",
-        "usda_ingredient_id": "poultry_seasoning",
+        "usda_ingredient_id": "642b513c-638e-475b-ac6a-1254e7bbd819",
         "fda_portion_id": "88452",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 4.4,
@@ -2905,7 +2905,7 @@
     },
     {
         "id": "12b55065-9d17-4e9f-9cb8-26167b34038b",
-        "usda_ingredient_id": "walnuts",
+        "usda_ingredient_id": "b7570d5c-d3a9-4db6-8c95-174dd100ef4c",
         "fda_portion_id": "276131",
         "non_metric_unit": "package",
         "grams_per_non_metric_unit": 50.0,
@@ -2917,7 +2917,7 @@
     },
     {
         "id": "b0cf62e8-122b-499d-9388-5f3071ac2c6d",
-        "usda_ingredient_id": "walnuts",
+        "usda_ingredient_id": "b7570d5c-d3a9-4db6-8c95-174dd100ef4c",
         "fda_portion_id": "276129",
         "non_metric_unit": "nut",
         "grams_per_non_metric_unit": 2.0,
@@ -2929,7 +2929,7 @@
     },
     {
         "id": "983f909e-3ba4-44bb-902c-6c17253f4739",
-        "usda_ingredient_id": "walnuts",
+        "usda_ingredient_id": "b7570d5c-d3a9-4db6-8c95-174dd100ef4c",
         "fda_portion_id": "276132",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.35,
@@ -2941,7 +2941,7 @@
     },
     {
         "id": "6815ae1f-78ea-450c-8dfc-3a89e6da5a76",
-        "usda_ingredient_id": "walnuts",
+        "usda_ingredient_id": "b7570d5c-d3a9-4db6-8c95-174dd100ef4c",
         "fda_portion_id": "276130",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 120.0,
@@ -2953,7 +2953,7 @@
     },
     {
         "id": "f3559e25-a97f-4cf3-9bfc-7b6c1c2feac2",
-        "usda_ingredient_id": "vinegar_cider",
+        "usda_ingredient_id": "93968bd5-07a5-401f-9604-da8279629e65",
         "fda_portion_id": "92600",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 5.0,
@@ -2965,7 +2965,7 @@
     },
     {
         "id": "7d0c47c0-ec4a-4ec9-beb8-eef03e8bb75b",
-        "usda_ingredient_id": "vinegar_cider",
+        "usda_ingredient_id": "93968bd5-07a5-401f-9604-da8279629e65",
         "fda_portion_id": "92598",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 14.9,
@@ -2977,7 +2977,7 @@
     },
     {
         "id": "994c50a3-1bfb-4d3f-9977-ce4d47806ab2",
-        "usda_ingredient_id": "vinegar_cider",
+        "usda_ingredient_id": "93968bd5-07a5-401f-9604-da8279629e65",
         "fda_portion_id": "92599",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 239.0,
@@ -2989,7 +2989,7 @@
     },
     {
         "id": "1370b747-739d-4a87-b960-5fc67764bce2",
-        "usda_ingredient_id": "chickpeas",
+        "usda_ingredient_id": "65557c57-4fb8-49c5-bd1b-4bf8df899e83",
         "fda_portion_id": "238249",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.34952,
@@ -3001,7 +3001,7 @@
     },
     {
         "id": "364c5a9d-b0fe-4bf8-a4dc-ee2a0c6e72cc",
-        "usda_ingredient_id": "bread_crumbs",
+        "usda_ingredient_id": "c877173a-f950-4a73-a777-5e1b9288e2c8",
         "fda_portion_id": "91444",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 120.0,
@@ -3013,7 +3013,7 @@
     },
     {
         "id": "8c070dee-f941-4a66-9e18-12104f93c45f",
-        "usda_ingredient_id": "bread_crumbs",
+        "usda_ingredient_id": "c877173a-f950-4a73-a777-5e1b9288e2c8",
         "fda_portion_id": "91443",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.35,
@@ -3025,7 +3025,7 @@
     },
     {
         "id": "95494ae9-a2da-46bf-8c16-9d310e8126c6",
-        "usda_ingredient_id": "oregano",
+        "usda_ingredient_id": "a0591abb-c21e-4601-8584-5aa26893d8fe",
         "fda_portion_id": "88445",
         "non_metric_unit": "tsp, leaves",
         "grams_per_non_metric_unit": 1.0,
@@ -3037,7 +3037,7 @@
     },
     {
         "id": "e466181d-6d01-43fa-bc18-a297cf2e8621",
-        "usda_ingredient_id": "oregano",
+        "usda_ingredient_id": "a0591abb-c21e-4601-8584-5aa26893d8fe",
         "fda_portion_id": "88446",
         "non_metric_unit": "tsp, ground",
         "grams_per_non_metric_unit": 1.8,
@@ -3049,7 +3049,7 @@
     },
     {
         "id": "2e60c8d9-3d82-422f-b170-fdebde20bac2",
-        "usda_ingredient_id": "sage",
+        "usda_ingredient_id": "d8034b30-48d9-4977-a1ae-9b732994b77a",
         "fda_portion_id": "87570",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 0.7,
@@ -3061,7 +3061,7 @@
     },
     {
         "id": "c91f583a-878a-4f7a-bcdc-b22e617043df",
-        "usda_ingredient_id": "sage",
+        "usda_ingredient_id": "d8034b30-48d9-4977-a1ae-9b732994b77a",
         "fda_portion_id": "87571",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 2.0,
@@ -3073,7 +3073,7 @@
     },
     {
         "id": "d9f82f64-d0d1-4215-985a-9ea8cda87c18",
-        "usda_ingredient_id": "buttery_steakhouse",
+        "usda_ingredient_id": "9b63f45d-6ac4-46f3-95a4-1f9858d89adc",
         "fda_portion_id": "",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 4.0,
@@ -3085,7 +3085,7 @@
     },
     {
         "id": "af82d9c1-bbd7-47f2-8285-020c54947341",
-        "usda_ingredient_id": "lemon_juice",
+        "usda_ingredient_id": "90b481f8-ab5e-4d9b-a0d1-b6e4bfe139dd",
         "fda_portion_id": "283587",
         "non_metric_unit": "drop",
         "grams_per_non_metric_unit": 0.1,
@@ -3097,7 +3097,7 @@
     },
     {
         "id": "6f39a356-be8a-4219-8030-5cc67eded975",
-        "usda_ingredient_id": "lemon_juice",
+        "usda_ingredient_id": "90b481f8-ab5e-4d9b-a0d1-b6e4bfe139dd",
         "fda_portion_id": "283586",
         "non_metric_unit": "fl oz (NFS)",
         "grams_per_non_metric_unit": 31.0,
@@ -3109,7 +3109,7 @@
     },
     {
         "id": "3bc81487-64b1-44f2-8762-736ffbc5634d",
-        "usda_ingredient_id": "lemon_juice",
+        "usda_ingredient_id": "90b481f8-ab5e-4d9b-a0d1-b6e4bfe139dd",
         "fda_portion_id": "283584",
         "non_metric_unit": "fl oz (no ice)",
         "grams_per_non_metric_unit": 31.0,
@@ -3121,7 +3121,7 @@
     },
     {
         "id": "4bbcb959-ab56-4527-b92a-e404cca990ee",
-        "usda_ingredient_id": "lemon_juice",
+        "usda_ingredient_id": "90b481f8-ab5e-4d9b-a0d1-b6e4bfe139dd",
         "fda_portion_id": "283585",
         "non_metric_unit": "fl oz (with ice)",
         "grams_per_non_metric_unit": 23.0,
@@ -3133,7 +3133,7 @@
     },
     {
         "id": "645c2c97-9b55-4e89-8361-98ebdb614066",
-        "usda_ingredient_id": "ground_turkey_meatballs",
+        "usda_ingredient_id": "1af401c5-84f5-4fe7-88ed-068649a0b4a9",
         "fda_portion_id": "243461",
         "non_metric_unit": "lb",
         "grams_per_non_metric_unit": 453.6,
@@ -3145,7 +3145,7 @@
     },
     {
         "id": "d207db2e-f70e-49f3-8995-c71c3bdb9e76",
-        "usda_ingredient_id": "pasta_varieties_cooked",
+        "usda_ingredient_id": "03b8f0c6-38dd-4797-b367-c6ad3ae3ca59",
         "fda_portion_id": "89736",
         "non_metric_unit": "cup spaghetti packed",
         "grams_per_non_metric_unit": 151.0,
@@ -3157,7 +3157,7 @@
     },
     {
         "id": "631d325c-eb8a-41ad-93ab-304820975fd4",
-        "usda_ingredient_id": "pasta_varieties_cooked",
+        "usda_ingredient_id": "03b8f0c6-38dd-4797-b367-c6ad3ae3ca59",
         "fda_portion_id": "89737",
         "non_metric_unit": "cup elbows not packed",
         "grams_per_non_metric_unit": 120.0,
@@ -3169,7 +3169,7 @@
     },
     {
         "id": "1d3f0d91-8d56-47e1-9dc6-d63b441589cb",
-        "usda_ingredient_id": "pasta_varieties_cooked",
+        "usda_ingredient_id": "03b8f0c6-38dd-4797-b367-c6ad3ae3ca59",
         "fda_portion_id": "89735",
         "non_metric_unit": "cup spaghetti not packed",
         "grams_per_non_metric_unit": 124.0,
@@ -3181,7 +3181,7 @@
     },
     {
         "id": "39ac4cbc-29cc-44f8-9a45-3a6b2f0f013c",
-        "usda_ingredient_id": "pasta_varieties_cooked",
+        "usda_ingredient_id": "03b8f0c6-38dd-4797-b367-c6ad3ae3ca59",
         "fda_portion_id": "89741",
         "non_metric_unit": "cup farfalle",
         "grams_per_non_metric_unit": 107.0,
@@ -3193,7 +3193,7 @@
     },
     {
         "id": "54e23073-62c6-4fd4-bf09-7ae0670970c4",
-        "usda_ingredient_id": "pasta_varieties_cooked",
+        "usda_ingredient_id": "03b8f0c6-38dd-4797-b367-c6ad3ae3ca59",
         "fda_portion_id": "89739",
         "non_metric_unit": "cup penne",
         "grams_per_non_metric_unit": 107.0,
@@ -3205,7 +3205,7 @@
     },
     {
         "id": "27097a0d-82da-44f9-a6f8-37dfc2eed839",
-        "usda_ingredient_id": "pasta_varieties_cooked",
+        "usda_ingredient_id": "03b8f0c6-38dd-4797-b367-c6ad3ae3ca59",
         "fda_portion_id": "89742",
         "non_metric_unit": "cup shells",
         "grams_per_non_metric_unit": 105.0,
@@ -3217,7 +3217,7 @@
     },
     {
         "id": "69c14c39-5767-49d6-8227-dcf18928e9da",
-        "usda_ingredient_id": "pasta_varieties_cooked",
+        "usda_ingredient_id": "03b8f0c6-38dd-4797-b367-c6ad3ae3ca59",
         "fda_portion_id": "89738",
         "non_metric_unit": "cup elbows packed",
         "grams_per_non_metric_unit": 132.0,
@@ -3229,7 +3229,7 @@
     },
     {
         "id": "c95ed870-f546-4dca-9b25-e1f659b39c77",
-        "usda_ingredient_id": "pasta_varieties_cooked",
+        "usda_ingredient_id": "03b8f0c6-38dd-4797-b367-c6ad3ae3ca59",
         "fda_portion_id": "89743",
         "non_metric_unit": "cup lasagne",
         "grams_per_non_metric_unit": 116.0,
@@ -3241,7 +3241,7 @@
     },
     {
         "id": "2325eaa1-b796-4abe-995d-604de30a6ef9",
-        "usda_ingredient_id": "pasta_varieties_cooked",
+        "usda_ingredient_id": "03b8f0c6-38dd-4797-b367-c6ad3ae3ca59",
         "fda_portion_id": "89740",
         "non_metric_unit": "cup rotini",
         "grams_per_non_metric_unit": 107.0,
@@ -3253,7 +3253,7 @@
     },
     {
         "id": "02e0f95d-8588-4fd0-a5e2-468f3c6bafce",
-        "usda_ingredient_id": "lemon_juice",
+        "usda_ingredient_id": "90b481f8-ab5e-4d9b-a0d1-b6e4bfe139dd",
         "fda_portion_id": "283586",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 62.0,
@@ -3265,7 +3265,7 @@
     },
     {
         "id": "f93aff77-3c79-4bc3-9886-4ec81f8a6a77",
-        "usda_ingredient_id": "peanut_butter",
+        "usda_ingredient_id": "5ebd4b9e-7ff9-442b-a3d2-eb84392b2d8e",
         "fda_portion_id": "276154",
         "non_metric_unit": "single serving",
         "grams_per_non_metric_unit": 45.0,
@@ -3277,7 +3277,7 @@
     },
     {
         "id": "b102acd3-97f5-4e0e-a91e-453e17cd7c9d",
-        "usda_ingredient_id": "peanut_butter",
+        "usda_ingredient_id": "5ebd4b9e-7ff9-442b-a3d2-eb84392b2d8e",
         "fda_portion_id": "276153",
         "non_metric_unit": "tablespoon",
         "grams_per_non_metric_unit": 16.0,
@@ -3289,7 +3289,7 @@
     },
     {
         "id": "29a23724-64a2-4ab4-8e19-c529e6bf0b63",
-        "usda_ingredient_id": "lime_juice",
+        "usda_ingredient_id": "811c8e50-232a-4a8e-9c95-7eb4f0373e19",
         "fda_portion_id": "283621",
         "non_metric_unit": "fl oz (NFS)",
         "grams_per_non_metric_unit": 31.0,
@@ -3301,7 +3301,7 @@
     },
     {
         "id": "271928fc-ffa0-4def-9dc0-b1d1f9169668",
-        "usda_ingredient_id": "lime_juice",
+        "usda_ingredient_id": "811c8e50-232a-4a8e-9c95-7eb4f0373e19",
         "fda_portion_id": "283620",
         "non_metric_unit": "fl oz (with ice)",
         "grams_per_non_metric_unit": 23.0,
@@ -3313,7 +3313,7 @@
     },
     {
         "id": "60f537b6-b462-4f9f-8c4d-ed7ae30c4157",
-        "usda_ingredient_id": "lime_juice",
+        "usda_ingredient_id": "811c8e50-232a-4a8e-9c95-7eb4f0373e19",
         "fda_portion_id": "283622",
         "non_metric_unit": "drop",
         "grams_per_non_metric_unit": 0.1,
@@ -3325,7 +3325,7 @@
     },
     {
         "id": "f72cb0db-aad6-4d9e-a783-00cb5c10265f",
-        "usda_ingredient_id": "lime_juice",
+        "usda_ingredient_id": "811c8e50-232a-4a8e-9c95-7eb4f0373e19",
         "fda_portion_id": "283619",
         "non_metric_unit": "fl oz (no ice)",
         "grams_per_non_metric_unit": 31.0,
@@ -3337,7 +3337,7 @@
     },
     {
         "id": "d2a003e6-f8af-495b-bd36-633b26c38d7a",
-        "usda_ingredient_id": "sriracha",
+        "usda_ingredient_id": "ef03b723-fbda-4780-a9e4-c3ff7c0860cc",
         "fda_portion_id": "285844",
         "non_metric_unit": "packet",
         "grams_per_non_metric_unit": 9.0,
@@ -3349,7 +3349,7 @@
     },
     {
         "id": "bbaf5d75-8a2f-40f7-a3fe-b7ce1899c590",
-        "usda_ingredient_id": "sriracha",
+        "usda_ingredient_id": "ef03b723-fbda-4780-a9e4-c3ff7c0860cc",
         "fda_portion_id": "285843",
         "non_metric_unit": "tablespoon",
         "grams_per_non_metric_unit": 16.0,
@@ -3361,7 +3361,7 @@
     },
     {
         "id": "3ffb7e7c-fd84-4c76-99e0-7cef6858b7d9",
-        "usda_ingredient_id": "peanut_butter",
+        "usda_ingredient_id": "5ebd4b9e-7ff9-442b-a3d2-eb84392b2d8e",
         "fda_portion_id": "276153",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 256.0,
@@ -3373,7 +3373,7 @@
     },
     {
         "id": "6b904e58-1fbf-4a48-827d-16dbd8ba6706",
-        "usda_ingredient_id": "lime_juice",
+        "usda_ingredient_id": "811c8e50-232a-4a8e-9c95-7eb4f0373e19",
         "fda_portion_id": "283621",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 62.0,
@@ -3385,7 +3385,7 @@
     },
     {
         "id": "5745b490-b5c0-43a4-a969-2b96b5d19761",
-        "usda_ingredient_id": "sriracha",
+        "usda_ingredient_id": "ef03b723-fbda-4780-a9e4-c3ff7c0860cc",
         "fda_portion_id": "285843",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 5.33328,
@@ -3397,7 +3397,7 @@
     },
     {
         "id": "78ae42e7-c9fc-4501-afae-54431053f4ce",
-        "usda_ingredient_id": "cumin",
+        "usda_ingredient_id": "f9dea742-1153-4529-a52e-3372adf3510b",
         "fda_portion_id": "87544",
         "non_metric_unit": "tsp, whole",
         "grams_per_non_metric_unit": 2.1,
@@ -3409,7 +3409,7 @@
     },
     {
         "id": "5130e939-a792-4202-9c37-d09edafb67df",
-        "usda_ingredient_id": "cumin",
+        "usda_ingredient_id": "f9dea742-1153-4529-a52e-3372adf3510b",
         "fda_portion_id": "87545",
         "non_metric_unit": "tbsp, whole",
         "grams_per_non_metric_unit": 6.0,
@@ -3421,7 +3421,7 @@
     },
     {
         "id": "faeb625d-ae6a-4fc6-9a75-6a3c56eb7e7e",
-        "usda_ingredient_id": "tofu",
+        "usda_ingredient_id": "f2d6bb52-1893-402b-bb3c-08aebb2f0555",
         "fda_portion_id": "93260",
         "non_metric_unit": "3 oz",
         "grams_per_non_metric_unit": 84.0,
@@ -3433,7 +3433,7 @@
     },
     {
         "id": "8a641257-6e9e-4600-b2a9-1c9822437e08",
-        "usda_ingredient_id": "tofu",
+        "usda_ingredient_id": "f2d6bb52-1893-402b-bb3c-08aebb2f0555",
         "fda_portion_id": "93259",
         "non_metric_unit": "2 oz",
         "grams_per_non_metric_unit": 56.0,
@@ -3445,7 +3445,7 @@
     },
     {
         "id": "020c633f-3ac8-40d2-b20a-260060117969",
-        "usda_ingredient_id": "tofu",
+        "usda_ingredient_id": "f2d6bb52-1893-402b-bb3c-08aebb2f0555",
         "fda_portion_id": "93259",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.0,
@@ -3457,7 +3457,7 @@
     },
     {
         "id": "0a390577-127e-483b-8a46-5b3ad5f82a42",
-        "usda_ingredient_id": "taco_seasoning",
+        "usda_ingredient_id": "d44737bd-e47b-4ff9-90fb-fe4b36a9e78f",
         "fda_portion_id": "90149",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 5.7,
@@ -3469,7 +3469,7 @@
     },
     {
         "id": "ebebba7e-04d8-4e4b-a0c8-5c0e411df26f",
-        "usda_ingredient_id": "wine_cooking",
+        "usda_ingredient_id": "dc85d00b-24ac-4e56-8861-5c90457525f8",
         "fda_portion_id": "289846",
         "non_metric_unit": "fl oz",
         "grams_per_non_metric_unit": 30.0,
@@ -3481,7 +3481,7 @@
     },
     {
         "id": "f8ee7489-5908-4fda-a95e-336855632c86",
-        "usda_ingredient_id": "wine_cooking",
+        "usda_ingredient_id": "dc85d00b-24ac-4e56-8861-5c90457525f8",
         "fda_portion_id": "289848",
         "non_metric_unit": "glass",
         "grams_per_non_metric_unit": 180.0,
@@ -3493,7 +3493,7 @@
     },
     {
         "id": "bcd99519-60f1-4f59-b0be-6953bdb29235",
-        "usda_ingredient_id": "green_olives",
+        "usda_ingredient_id": "7b04e6a9-b17e-4747-9340-eb3ae1659e40",
         "fda_portion_id": "286946",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 135.0,
@@ -3505,7 +3505,7 @@
     },
     {
         "id": "e85dc81b-ce40-419d-9529-23f28b9f0635",
-        "usda_ingredient_id": "green_olives",
+        "usda_ingredient_id": "7b04e6a9-b17e-4747-9340-eb3ae1659e40",
         "fda_portion_id": "286945",
         "non_metric_unit": "olive",
         "grams_per_non_metric_unit": 4.0,
@@ -3517,7 +3517,7 @@
     },
     {
         "id": "74656f22-92af-4d4b-9623-9899116e2244",
-        "usda_ingredient_id": "avocado_crema",
+        "usda_ingredient_id": "704480d5-f79f-45f1-9b92-9f5b0cc850b5",
         "fda_portion_id": "287568",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 245.0,
@@ -3529,7 +3529,7 @@
     },
     {
         "id": "4044ff53-27ba-46d6-9a84-34a6e015f7e1",
-        "usda_ingredient_id": "avocado_crema",
+        "usda_ingredient_id": "704480d5-f79f-45f1-9b92-9f5b0cc850b5",
         "fda_portion_id": "287569",
         "non_metric_unit": "tablespoon",
         "grams_per_non_metric_unit": 15.3,
@@ -3541,7 +3541,7 @@
     },
     {
         "id": "b0b9bf62-c4ad-4f4e-a1fa-274b6e7065b6",
-        "usda_ingredient_id": "onion_raw",
+        "usda_ingredient_id": "da704027-b234-44c5-b4ae-7c39e9d4607b",
         "fda_portion_id": "286030",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 10.0,
@@ -3553,7 +3553,7 @@
     },
     {
         "id": "48d2a76c-69d7-445a-8cfe-a15d86acca83",
-        "usda_ingredient_id": "wine_cooking",
+        "usda_ingredient_id": "dc85d00b-24ac-4e56-8861-5c90457525f8",
         "fda_portion_id": "289846",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 60.0,
@@ -3565,7 +3565,7 @@
     },
     {
         "id": "19882a37-2e60-40db-b9af-b76f19f1aa6e",
-        "usda_ingredient_id": "salsa_verde",
+        "usda_ingredient_id": "ff8d48eb-763c-4fd4-903d-0cf0e6c27cc7",
         "fda_portion_id": "285840",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 246.0,
@@ -3577,7 +3577,7 @@
     },
     {
         "id": "6a5d494f-84c2-48a7-b26e-20f89979a429",
-        "usda_ingredient_id": "salsa_verde",
+        "usda_ingredient_id": "ff8d48eb-763c-4fd4-903d-0cf0e6c27cc7",
         "fda_portion_id": "285842",
         "non_metric_unit": "tablespoon",
         "grams_per_non_metric_unit": 15.0,
@@ -3589,7 +3589,7 @@
     },
     {
         "id": "2b3de402-756b-494d-a291-af83203afbc5",
-        "usda_ingredient_id": "italian_pork_sausage",
+        "usda_ingredient_id": "1759ede9-9c6a-4ab8-8118-56baf306efe7",
         "fda_portion_id": "187526",
         "non_metric_unit": "link",
         "grams_per_non_metric_unit": 86.6,
@@ -3601,7 +3601,7 @@
     },
     {
         "id": "f88b79fe-4da7-4368-9909-17328417f0d5",
-        "usda_ingredient_id": "rice_noodles",
+        "usda_ingredient_id": "c6910413-e220-42ef-87d7-ab2bc3b786cb",
         "fda_portion_id": "235833",
         "non_metric_unit": "oz, cooked",
         "grams_per_non_metric_unit": 28.34952,
@@ -3613,7 +3613,7 @@
     },
     {
         "id": "a4f305e8-4d11-436a-8cf2-bace9762d4dd",
-        "usda_ingredient_id": "carrots",
+        "usda_ingredient_id": "78438877-ef98-4703-a41d-c2a3dbd9327b",
         "fda_portion_id": "285527",
         "non_metric_unit": "baby carrot",
         "grams_per_non_metric_unit": 10.0,
@@ -3625,7 +3625,7 @@
     },
     {
         "id": "f3d89c92-7b86-44ff-a640-c0a8d0de9818",
-        "usda_ingredient_id": "carrots",
+        "usda_ingredient_id": "78438877-ef98-4703-a41d-c2a3dbd9327b",
         "fda_portion_id": "285529",
         "non_metric_unit": "strip/stick",
         "grams_per_non_metric_unit": 10.0,
@@ -3637,7 +3637,7 @@
     },
     {
         "id": "af795297-e1cc-474d-8448-76f6af18be78",
-        "usda_ingredient_id": "carrots",
+        "usda_ingredient_id": "78438877-ef98-4703-a41d-c2a3dbd9327b",
         "fda_portion_id": "285530",
         "non_metric_unit": "piece/slice",
         "grams_per_non_metric_unit": 5.0,
@@ -3649,7 +3649,7 @@
     },
     {
         "id": "7aa71c3f-cb7f-4941-b85c-fba09b8533ec",
-        "usda_ingredient_id": "celery",
+        "usda_ingredient_id": "e3ec83e6-0b6f-4726-ae27-ade3e729684b",
         "fda_portion_id": "285966",
         "non_metric_unit": "stalk",
         "grams_per_non_metric_unit": 40.0,
@@ -3661,7 +3661,7 @@
     },
     {
         "id": "42ab7484-1a26-4f9e-8fd3-e2907fe2882d",
-        "usda_ingredient_id": "celery",
+        "usda_ingredient_id": "e3ec83e6-0b6f-4726-ae27-ade3e729684b",
         "fda_portion_id": "285965",
         "non_metric_unit": "stick",
         "grams_per_non_metric_unit": 4.0,
@@ -3673,7 +3673,7 @@
     },
     {
         "id": "62df51c7-4653-41f4-806d-7ab5dddfaa4d",
-        "usda_ingredient_id": "tomato",
+        "usda_ingredient_id": "e8eaee90-6dbc-43e3-8ffb-ca9d1967410d",
         "fda_portion_id": "285755",
         "non_metric_unit": "plum tomato",
         "grams_per_non_metric_unit": 60.0,
@@ -3685,7 +3685,7 @@
     },
     {
         "id": "308f12d4-5451-4487-a3d5-943d7b7b30f8",
-        "usda_ingredient_id": "tomato",
+        "usda_ingredient_id": "e8eaee90-6dbc-43e3-8ffb-ca9d1967410d",
         "fda_portion_id": "285756",
         "non_metric_unit": "whole",
         "grams_per_non_metric_unit": 125.0,
@@ -3697,7 +3697,7 @@
     },
     {
         "id": "727c8982-dafc-4bdd-a87e-19da392a1088",
-        "usda_ingredient_id": "tomato",
+        "usda_ingredient_id": "e8eaee90-6dbc-43e3-8ffb-ca9d1967410d",
         "fda_portion_id": "285753",
         "non_metric_unit": "cherry",
         "grams_per_non_metric_unit": 17.0,
@@ -3709,7 +3709,7 @@
     },
     {
         "id": "120f4df9-8979-4ac7-b13d-c85bcea1c7bc",
-        "usda_ingredient_id": "italian_pork_sausage",
+        "usda_ingredient_id": "1759ede9-9c6a-4ab8-8118-56baf306efe7",
         "fda_portion_id": "187526",
         "non_metric_unit": "oz, cooked",
         "grams_per_non_metric_unit": 28.34952,
@@ -3721,7 +3721,7 @@
     },
     {
         "id": "864f12f9-9daf-4400-8b82-e053cf9a3e4e",
-        "usda_ingredient_id": "carrots",
+        "usda_ingredient_id": "78438877-ef98-4703-a41d-c2a3dbd9327b",
         "fda_portion_id": "285531",
         "non_metric_unit": "single serving bag",
         "grams_per_non_metric_unit": 80.0,
@@ -3733,7 +3733,7 @@
     },
     {
         "id": "3076f4e5-b5da-4747-8e34-3d3daefa39d0",
-        "usda_ingredient_id": "carrots",
+        "usda_ingredient_id": "78438877-ef98-4703-a41d-c2a3dbd9327b",
         "fda_portion_id": "285526",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 120.0,
@@ -3745,7 +3745,7 @@
     },
     {
         "id": "2e1a4df1-d701-44f4-8743-25c8a50a38e1",
-        "usda_ingredient_id": "carrots",
+        "usda_ingredient_id": "78438877-ef98-4703-a41d-c2a3dbd9327b",
         "fda_portion_id": "285528",
         "non_metric_unit": "regular carrot",
         "grams_per_non_metric_unit": 60.0,
@@ -3757,7 +3757,7 @@
     },
     {
         "id": "88b79332-fa9c-409c-888d-78a4b2457386",
-        "usda_ingredient_id": "celery",
+        "usda_ingredient_id": "e3ec83e6-0b6f-4726-ae27-ade3e729684b",
         "fda_portion_id": "285967",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 120.0,
@@ -3769,7 +3769,7 @@
     },
     {
         "id": "94a5ec66-5e0e-4f3b-b4b0-20bdf8cb7d03",
-        "usda_ingredient_id": "celery",
+        "usda_ingredient_id": "e3ec83e6-0b6f-4726-ae27-ade3e729684b",
         "fda_portion_id": "285964",
         "non_metric_unit": "piece",
         "grams_per_non_metric_unit": 4.0,
@@ -3781,7 +3781,7 @@
     },
     {
         "id": "4ed4dc32-21bf-4a44-ba03-7b7eb9850956",
-        "usda_ingredient_id": "tomato",
+        "usda_ingredient_id": "e8eaee90-6dbc-43e3-8ffb-ca9d1967410d",
         "fda_portion_id": "285757",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 180.0,
@@ -3793,7 +3793,7 @@
     },
     {
         "id": "0d9fa206-19e2-458b-a941-67f753cab846",
-        "usda_ingredient_id": "tomato",
+        "usda_ingredient_id": "e8eaee90-6dbc-43e3-8ffb-ca9d1967410d",
         "fda_portion_id": "285752",
         "non_metric_unit": "grape tomato",
         "grams_per_non_metric_unit": 8.0,
@@ -3805,7 +3805,7 @@
     },
     {
         "id": "7801ae53-fc93-4bc6-9a87-f17488109479",
-        "usda_ingredient_id": "tomato",
+        "usda_ingredient_id": "e8eaee90-6dbc-43e3-8ffb-ca9d1967410d",
         "fda_portion_id": "285754",
         "non_metric_unit": "Italian tomato",
         "grams_per_non_metric_unit": 60.0,
@@ -3817,7 +3817,7 @@
     },
     {
         "id": "e1893d49-8899-4627-b02a-98e1f8b76cf2",
-        "usda_ingredient_id": "tomato",
+        "usda_ingredient_id": "e8eaee90-6dbc-43e3-8ffb-ca9d1967410d",
         "fda_portion_id": "285751",
         "non_metric_unit": "slice",
         "grams_per_non_metric_unit": 20.0,
@@ -3829,7 +3829,7 @@
     },
     {
         "id": "9fdea158-2546-4e71-af50-856d24930ceb",
-        "usda_ingredient_id": "beef_broth",
+        "usda_ingredient_id": "ec1a53ab-10a1-4bb0-a445-7d00100dd67e",
         "fda_portion_id": "274707",
         "non_metric_unit": "can (10.5 oz), prepared to directions",
         "grams_per_non_metric_unit": 586.0,
@@ -3841,7 +3841,7 @@
     },
     {
         "id": "6b009aa6-e596-4f71-a5a9-5b65e57d283b",
-        "usda_ingredient_id": "beef_broth",
+        "usda_ingredient_id": "ec1a53ab-10a1-4bb0-a445-7d00100dd67e",
         "fda_portion_id": "274708",
         "non_metric_unit": "can (14 oz), ready-to-serve",
         "grams_per_non_metric_unit": 397.0,
@@ -3853,7 +3853,7 @@
     },
     {
         "id": "a2326d37-df54-45d7-b5b5-65bb0f644423",
-        "usda_ingredient_id": "beef_broth",
+        "usda_ingredient_id": "ec1a53ab-10a1-4bb0-a445-7d00100dd67e",
         "fda_portion_id": "274706",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 240.0,
@@ -3865,7 +3865,7 @@
     },
     {
         "id": "0071b4b0-8c24-4c0a-80b4-80effed86de3",
-        "usda_ingredient_id": "italian_pork_sausage",
+        "usda_ingredient_id": "1759ede9-9c6a-4ab8-8118-56baf306efe7",
         "fda_portion_id": "187526",
         "non_metric_unit": "lb, cooked",
         "grams_per_non_metric_unit": 453.59174799999994,
@@ -3877,7 +3877,7 @@
     },
     {
         "id": "988d6a5a-478b-4138-8b51-af3a8db1effd",
-        "usda_ingredient_id": "ground_beef",
+        "usda_ingredient_id": "5883e36e-7309-476d-869a-3cf9a1397999",
         "fda_portion_id": "243685",
         "non_metric_unit": "lb, raw (yield after cooking)",
         "grams_per_non_metric_unit": 320.0,
@@ -3889,7 +3889,7 @@
     },
     {
         "id": "06bc1951-2d63-4e3b-b2fc-303ada2c5fc5",
-        "usda_ingredient_id": "wine_cooking",
+        "usda_ingredient_id": "dc85d00b-24ac-4e56-8861-5c90457525f8",
         "fda_portion_id": "289846",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 240.0,
@@ -3901,7 +3901,7 @@
     },
     {
         "id": "59793cb8-0884-4985-a2da-7a1c0a570436",
-        "usda_ingredient_id": "cinnamon",
+        "usda_ingredient_id": "bb176dc3-ed20-40d6-95a8-e4ec6f20423e",
         "fda_portion_id": "88429",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 2.6,
@@ -3913,7 +3913,7 @@
     },
     {
         "id": "6507861e-c4e9-4946-a726-58eafb4ef3a3",
-        "usda_ingredient_id": "cinnamon",
+        "usda_ingredient_id": "bb176dc3-ed20-40d6-95a8-e4ec6f20423e",
         "fda_portion_id": "88430",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 7.8,
@@ -3925,7 +3925,7 @@
     },
     {
         "id": "5915509b-c9f9-40ee-9e7c-ee1c527b7ea6",
-        "usda_ingredient_id": "white_bread",
+        "usda_ingredient_id": "cd77e7ad-7f22-476a-af1c-d856eb2217ba",
         "fda_portion_id": "276401",
         "non_metric_unit": "slice, crust not eaten",
         "grams_per_non_metric_unit": 13.0,
@@ -3937,7 +3937,7 @@
     },
     {
         "id": "f1d0a1a8-0212-420c-941c-7efa0adac6cf",
-        "usda_ingredient_id": "white_bread",
+        "usda_ingredient_id": "cd77e7ad-7f22-476a-af1c-d856eb2217ba",
         "fda_portion_id": "276398",
         "non_metric_unit": "small or thin/very thin slice",
         "grams_per_non_metric_unit": 24.0,
@@ -3949,7 +3949,7 @@
     },
     {
         "id": "d9bcffd8-110f-49c2-9de4-9eeb1604d7cb",
-        "usda_ingredient_id": "white_bread",
+        "usda_ingredient_id": "cd77e7ad-7f22-476a-af1c-d856eb2217ba",
         "fda_portion_id": "276399",
         "non_metric_unit": "medium or regular slice",
         "grams_per_non_metric_unit": 28.0,
@@ -3961,7 +3961,7 @@
     },
     {
         "id": "7a4e6b67-184a-4de6-a7fc-227af59b21b1",
-        "usda_ingredient_id": "white_bread",
+        "usda_ingredient_id": "cd77e7ad-7f22-476a-af1c-d856eb2217ba",
         "fda_portion_id": "276402",
         "non_metric_unit": "slice, snack-size",
         "grams_per_non_metric_unit": 10.0,
@@ -3973,7 +3973,7 @@
     },
     {
         "id": "08a280f2-f0d3-4c31-b094-8727c30c6ff8",
-        "usda_ingredient_id": "white_bread",
+        "usda_ingredient_id": "cd77e7ad-7f22-476a-af1c-d856eb2217ba",
         "fda_portion_id": "276400",
         "non_metric_unit": "large or thick slice",
         "grams_per_non_metric_unit": 43.0,
@@ -3985,7 +3985,7 @@
     },
     {
         "id": "1bf35dc0-a927-42d4-aa68-509df0659042",
-        "usda_ingredient_id": "white_bread",
+        "usda_ingredient_id": "cd77e7ad-7f22-476a-af1c-d856eb2217ba",
         "fda_portion_id": "276403",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 40.0,
@@ -3997,7 +3997,7 @@
     },
     {
         "id": "da966dd9-90f7-4173-ad03-e211226a0f97",
-        "usda_ingredient_id": "white_bread",
+        "usda_ingredient_id": "cd77e7ad-7f22-476a-af1c-d856eb2217ba",
         "fda_portion_id": "276404",
         "non_metric_unit": "cubic inch",
         "grams_per_non_metric_unit": 2.8,
@@ -4009,7 +4009,7 @@
     },
     {
         "id": "c6bbac46-c746-4798-9d7a-bc27ba60e557",
-        "usda_ingredient_id": "butter",
+        "usda_ingredient_id": "d3142bd1-da59-4e90-b71c-8622ca3d618e",
         "fda_portion_id": "240840",
         "non_metric_unit": "tsp",
         "grams_per_non_metric_unit": 4.66662,
@@ -4021,7 +4021,7 @@
     },
     {
         "id": "65219328-0b77-4bd3-8972-9b0e3d7960d3",
-        "usda_ingredient_id": "old_fashioned_oats",
+        "usda_ingredient_id": "cf19cdab-8958-43a3-8d33-db9a1301e0c2",
         "fda_portion_id": "93454",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 81.0,
@@ -4033,7 +4033,7 @@
     },
     {
         "id": "a63100a3-ca3b-48bc-a8a2-ee562266c1d2",
-        "usda_ingredient_id": "banana",
+        "usda_ingredient_id": "cfbc0758-4115-4328-a3e4-582b5f09898b",
         "fda_portion_id": "283781",
         "non_metric_unit": "cup, mashed",
         "grams_per_non_metric_unit": 225.0,
@@ -4045,7 +4045,7 @@
     },
     {
         "id": "023dd64c-39a2-47b9-8437-98980b4f0a5b",
-        "usda_ingredient_id": "banana",
+        "usda_ingredient_id": "cfbc0758-4115-4328-a3e4-582b5f09898b",
         "fda_portion_id": "283778",
         "non_metric_unit": "banana",
         "grams_per_non_metric_unit": 126.0,
@@ -4057,7 +4057,7 @@
     },
     {
         "id": "05ef8be2-dcf4-4342-bd42-06cecb782db9",
-        "usda_ingredient_id": "banana",
+        "usda_ingredient_id": "cfbc0758-4115-4328-a3e4-582b5f09898b",
         "fda_portion_id": "283779",
         "non_metric_unit": "slice",
         "grams_per_non_metric_unit": 6.0,
@@ -4069,7 +4069,7 @@
     },
     {
         "id": "af41b9cf-304a-4f2f-a060-1e16089bb9a9",
-        "usda_ingredient_id": "banana",
+        "usda_ingredient_id": "cfbc0758-4115-4328-a3e4-582b5f09898b",
         "fda_portion_id": "283782",
         "non_metric_unit": "linear inch",
         "grams_per_non_metric_unit": 15.0,
@@ -4081,7 +4081,7 @@
     },
     {
         "id": "0b985f9e-16f5-46c6-9dd0-d4f8fe927e8e",
-        "usda_ingredient_id": "banana",
+        "usda_ingredient_id": "cfbc0758-4115-4328-a3e4-582b5f09898b",
         "fda_portion_id": "283780",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 150.0,
@@ -4093,7 +4093,7 @@
     },
     {
         "id": "29524fe6-db03-4a7b-ab46-25f548ee7a1d",
-        "usda_ingredient_id": "date",
+        "usda_ingredient_id": "ad6098bd-d393-480f-8a16-a063d0b17755",
         "fda_portion_id": "283702",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 160.0,
@@ -4105,7 +4105,7 @@
     },
     {
         "id": "e93c0081-f8e0-4c4c-ac10-34adb694e2ca",
-        "usda_ingredient_id": "date",
+        "usda_ingredient_id": "ad6098bd-d393-480f-8a16-a063d0b17755",
         "fda_portion_id": "283701",
         "non_metric_unit": "date",
         "grams_per_non_metric_unit": 8.0,
@@ -4117,7 +4117,7 @@
     },
     {
         "id": "d785af41-0a00-4bab-aa3e-2520e2e8f457",
-        "usda_ingredient_id": "date",
+        "usda_ingredient_id": "ad6098bd-d393-480f-8a16-a063d0b17755",
         "fda_portion_id": "283702",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 10.0,
@@ -4129,7 +4129,7 @@
     },
     {
         "id": "df9d3ff6-d1ad-4138-8c65-370f1cf9d547",
-        "usda_ingredient_id": "chocolate_chips",
+        "usda_ingredient_id": "1fbea76b-7b3d-49a9-89c1-f73ba6f5e5ce",
         "fda_portion_id": "288086",
         "non_metric_unit": "piece",
         "grams_per_non_metric_unit": 1.0,
@@ -4141,7 +4141,7 @@
     },
     {
         "id": "20fe52d2-c831-4957-a53f-738c8348e6b0",
-        "usda_ingredient_id": "chocolate_chips",
+        "usda_ingredient_id": "1fbea76b-7b3d-49a9-89c1-f73ba6f5e5ce",
         "fda_portion_id": "288087",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 225.0,
@@ -4153,7 +4153,7 @@
     },
     {
         "id": "a7285440-4b60-4832-8a80-de1a1d818c11",
-        "usda_ingredient_id": "empanada_dough",
+        "usda_ingredient_id": "c5c12854-5fa7-425c-ac62-b695a4cb8fe6",
         "fda_portion_id": "",
         "non_metric_unit": "empanada",
         "grams_per_non_metric_unit": 40.0,
@@ -4165,7 +4165,7 @@
     },
     {
         "id": "2de5408a-06a8-4926-99f9-79456a7df989",
-        "usda_ingredient_id": "cauliflower",
+        "usda_ingredient_id": "cabdc229-d2bc-4687-93eb-8cc4cb07d1c3",
         "fda_portion_id": "285961",
         "non_metric_unit": "floweret",
         "grams_per_non_metric_unit": 13.0,
@@ -4177,7 +4177,7 @@
     },
     {
         "id": "4358a2a1-3952-4705-8364-b2889bd55f11",
-        "usda_ingredient_id": "cauliflower",
+        "usda_ingredient_id": "cabdc229-d2bc-4687-93eb-8cc4cb07d1c3",
         "fda_portion_id": "285962",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 110.0,
@@ -4189,7 +4189,7 @@
     },
     {
         "id": "0ed36d30-aae1-4026-b2bc-52a30bdcd94f",
-        "usda_ingredient_id": "cauliflower",
+        "usda_ingredient_id": "cabdc229-d2bc-4687-93eb-8cc4cb07d1c3",
         "fda_portion_id": "285960",
         "non_metric_unit": "piece",
         "grams_per_non_metric_unit": 13.0,
@@ -4201,7 +4201,7 @@
     },
     {
         "id": "c3d279d3-df77-4213-ab37-89273fc03f4c",
-        "usda_ingredient_id": "vegetable_broth",
+        "usda_ingredient_id": "3a2502e7-f64c-4665-834e-86f5ff9557b1",
         "fda_portion_id": "287098",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 240.0,
@@ -4213,7 +4213,7 @@
     },
     {
         "id": "2577b904-53fa-4a99-a04a-0ac8cae6a2f4",
-        "usda_ingredient_id": "puff_pastry",
+        "usda_ingredient_id": "f9f8f2a7-7b9a-4c27-ab80-420e4ee762ab",
         "fda_portion_id": "278666",
         "non_metric_unit": "pastry",
         "grams_per_non_metric_unit": 11.0,
@@ -4225,7 +4225,7 @@
     },
     {
         "id": "2edd9884-f94d-4770-9c18-1428b34b577b",
-        "usda_ingredient_id": "puff_pastry",
+        "usda_ingredient_id": "f9f8f2a7-7b9a-4c27-ab80-420e4ee762ab",
         "fda_portion_id": "278667",
         "non_metric_unit": "patty shell",
         "grams_per_non_metric_unit": 47.0,
@@ -4237,7 +4237,7 @@
     },
     {
         "id": "503cd8cd-fbb0-44cc-8dd3-53818e7ee826",
-        "usda_ingredient_id": "vegetable_broth",
+        "usda_ingredient_id": "3a2502e7-f64c-4665-834e-86f5ff9557b1",
         "fda_portion_id": "287098",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 15.0,
@@ -4249,7 +4249,7 @@
     },
     {
         "id": "225ded7d-2c47-4298-a968-e36f22c739ba",
-        "usda_ingredient_id": "cheddar_cheese",
+        "usda_ingredient_id": "909b71fb-f084-4388-a375-5aa824c7a961",
         "fda_portion_id": "236996",
         "non_metric_unit": "tbsp, shredded",
         "grams_per_non_metric_unit": 7.0625,
@@ -4261,7 +4261,7 @@
     },
     {
         "id": "369817b2-44ef-41e7-b9ec-748ab684e15c",
-        "usda_ingredient_id": "egg",
+        "usda_ingredient_id": "ea7528d4-6586-4b05-9315-5e8f0e1c0e6a",
         "fda_portion_id": "238089",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 8.4375,
@@ -4273,7 +4273,7 @@
     },
     {
         "id": "47c9fdb6-493c-4b49-a68e-776ed9bae0f4",
-        "usda_ingredient_id": "guava_paste",
+        "usda_ingredient_id": "4033d0e8-b91d-4841-8aa7-fa18a4feb534",
         "fda_portion_id": "287961",
         "non_metric_unit": "tablespoon",
         "grams_per_non_metric_unit": 20.0,
@@ -4285,7 +4285,7 @@
     },
     {
         "id": "4c66a052-6f4a-4db5-824b-03738b9828ee",
-        "usda_ingredient_id": "guava_paste",
+        "usda_ingredient_id": "4033d0e8-b91d-4841-8aa7-fa18a4feb534",
         "fda_portion_id": "287963",
         "non_metric_unit": "medium piece",
         "grams_per_non_metric_unit": 32.0,
@@ -4297,7 +4297,7 @@
     },
     {
         "id": "7b3ed59b-86f8-4514-8e44-672ccffeb896",
-        "usda_ingredient_id": "guava_paste",
+        "usda_ingredient_id": "4033d0e8-b91d-4841-8aa7-fa18a4feb534",
         "fda_portion_id": "287962",
         "non_metric_unit": "cubic inch",
         "grams_per_non_metric_unit": 21.0,
@@ -4309,7 +4309,7 @@
     },
     {
         "id": "0ab554ca-c7d0-464b-bccf-583495768d62",
-        "usda_ingredient_id": "guava_paste",
+        "usda_ingredient_id": "4033d0e8-b91d-4841-8aa7-fa18a4feb534",
         "fda_portion_id": "287964",
         "non_metric_unit": "small piece",
         "grams_per_non_metric_unit": 16.0,
@@ -4321,7 +4321,7 @@
     },
     {
         "id": "bb42817b-4101-4277-87c9-9f866105b1a6",
-        "usda_ingredient_id": "goat_cheese",
+        "usda_ingredient_id": "3b7fd048-0834-4c9c-a936-0b829c53a06e",
         "fda_portion_id": "268999",
         "non_metric_unit": "cup, crumbled",
         "grams_per_non_metric_unit": 140.0,
@@ -4333,7 +4333,7 @@
     },
     {
         "id": "43997f36-c2a5-467d-88cf-65e51c46c8ba",
-        "usda_ingredient_id": "goat_cheese",
+        "usda_ingredient_id": "3b7fd048-0834-4c9c-a936-0b829c53a06e",
         "fda_portion_id": "269000",
         "non_metric_unit": "cubic inch",
         "grams_per_non_metric_unit": 25.0,
@@ -4345,7 +4345,7 @@
     },
     {
         "id": "ca69fedc-8c8b-451d-8834-0c3ca940ec24",
-        "usda_ingredient_id": "yellow_corn_canned",
+        "usda_ingredient_id": "a8e7d5f9-a7d5-4819-988c-d63a4f5b67af",
         "fda_portion_id": "286467",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.34952,
@@ -4357,7 +4357,7 @@
     },
     {
         "id": "b5668b4b-95fa-4a8e-a081-c4b3d1ad1cc0",
-        "usda_ingredient_id": "white_button_mushrooms",
+        "usda_ingredient_id": "b63af742-cec9-47d4-8bcf-bb00aef39f76",
         "fda_portion_id": "",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.34952,
@@ -4369,7 +4369,7 @@
     },
     {
         "id": "d4439be8-e6f3-424f-8d63-0b5a54e72307",
-        "usda_ingredient_id": "white_rice_cooked",
+        "usda_ingredient_id": "92986ece-29b1-423f-abc4-e80e14800b15",
         "fda_portion_id": "235930",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.34952,
@@ -4381,7 +4381,7 @@
     },
     {
         "id": "792a5492-62fa-4f31-8ad4-ae7747d8a6ee",
-        "usda_ingredient_id": "pasta_varieties_cooked",
+        "usda_ingredient_id": "03b8f0c6-38dd-4797-b367-c6ad3ae3ca59",
         "fda_portion_id": "89740",
         "non_metric_unit": "oz orzo",
         "grams_per_non_metric_unit": 28.34952,
@@ -4393,7 +4393,7 @@
     },
     {
         "id": "96965df6-1e3f-42b7-b45c-4ffb4c2f097f",
-        "usda_ingredient_id": "cream_cheese",
+        "usda_ingredient_id": "5474270c-8b38-4e73-a7f5-cad33428cd48",
         "fda_portion_id": "",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.34952,
@@ -4405,7 +4405,7 @@
     },
     {
         "id": "70addd0e-0682-48d7-a546-50700ca7c845",
-        "usda_ingredient_id": "crimini_mushroom",
+        "usda_ingredient_id": "7beba010-7f72-43a5-b0af-14f89cad8ca6",
         "fda_portion_id": "",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.34952,
@@ -4417,7 +4417,7 @@
     },
     {
         "id": "c9572f3b-01fe-4c96-90be-5c460ebfa736",
-        "usda_ingredient_id": "goat_cheese",
+        "usda_ingredient_id": "3b7fd048-0834-4c9c-a936-0b829c53a06e",
         "fda_portion_id": "",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.34952,
@@ -4429,7 +4429,7 @@
     },
     {
         "id": "dbfc7048-ff8a-4d8f-8cc4-58da3db292ae",
-        "usda_ingredient_id": "pasta_varieties_cooked",
+        "usda_ingredient_id": "03b8f0c6-38dd-4797-b367-c6ad3ae3ca59",
         "fda_portion_id": "89739",
         "non_metric_unit": "oz penne",
         "grams_per_non_metric_unit": 28.34952,
@@ -4441,7 +4441,7 @@
     },
     {
         "id": "27dd8ea6-d998-4b22-87ed-eb9c464e6146",
-        "usda_ingredient_id": "tzatziki",
+        "usda_ingredient_id": "8dcaa491-d63c-42e2-80ce-56044928f4b0",
         "fda_portion_id": "240543",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.34952,
@@ -4453,7 +4453,7 @@
     },
     {
         "id": "7e5c852a-6fc0-4d00-8e51-c558e1bf03db",
-        "usda_ingredient_id": "avocado_crema",
+        "usda_ingredient_id": "704480d5-f79f-45f1-9b92-9f5b0cc850b5",
         "fda_portion_id": "287568",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.34952,
@@ -4465,7 +4465,7 @@
     },
     {
         "id": "79dfd080-7055-4fea-96b1-71d3bb8b9f6f",
-        "usda_ingredient_id": "green_olives",
+        "usda_ingredient_id": "7b04e6a9-b17e-4747-9340-eb3ae1659e40",
         "fda_portion_id": "286946",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.34952,
@@ -4477,7 +4477,7 @@
     },
     {
         "id": "16299a02-6c53-47e0-b002-56d01862b394",
-        "usda_ingredient_id": "bell_pepper",
+        "usda_ingredient_id": "735a8966-a7a4-411f-9757-990131d4f2c7",
         "fda_portion_id": "239941",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.34952,
@@ -4489,7 +4489,7 @@
     },
     {
         "id": "4c479b8e-f986-4568-a96b-31dbc20252dc",
-        "usda_ingredient_id": "black_beans",
+        "usda_ingredient_id": "f7d0d6a5-f03c-40ab-a959-60ad9ebff480",
         "fda_portion_id": "238201",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.34952,
@@ -4501,7 +4501,7 @@
     },
     {
         "id": "0fed07ce-87cc-498b-8340-e66924068f81",
-        "usda_ingredient_id": "cheddar_cheese",
+        "usda_ingredient_id": "909b71fb-f084-4388-a375-5aa824c7a961",
         "fda_portion_id": "236996",
         "non_metric_unit": "oz, shredded",
         "grams_per_non_metric_unit": 28.34952,
@@ -4513,7 +4513,7 @@
     },
     {
         "id": "5f6b59e0-6486-405f-a9e4-30387690b123",
-        "usda_ingredient_id": "salsa_verde",
+        "usda_ingredient_id": "ff8d48eb-763c-4fd4-903d-0cf0e6c27cc7",
         "fda_portion_id": "285840",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.34952,
@@ -4525,7 +4525,7 @@
     },
     {
         "id": "ae256258-8537-490b-bf9e-12777c7b7f82",
-        "usda_ingredient_id": "tomato",
+        "usda_ingredient_id": "e8eaee90-6dbc-43e3-8ffb-ca9d1967410d",
         "fda_portion_id": "285757",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.34952,
@@ -4537,7 +4537,7 @@
     },
     {
         "id": "cc51785e-cb10-40f1-b8b5-a9675b2d561c",
-        "usda_ingredient_id": "chia_seeds",
+        "usda_ingredient_id": "885a1a9d-2290-4ac1-a814-e27e901c4685",
         "fda_portion_id": "238346",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.34952,
@@ -4549,7 +4549,7 @@
     },
     {
         "id": "ccd58f6e-f557-4bb2-a3f6-005a41d46470",
-        "usda_ingredient_id": "cauliflower",
+        "usda_ingredient_id": "cabdc229-d2bc-4687-93eb-8cc4cb07d1c3",
         "fda_portion_id": "285962",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.34952,
@@ -4561,7 +4561,7 @@
     },
     {
         "id": "17c8acae-ec42-45b4-af39-7cf9d7353f51",
-        "usda_ingredient_id": "guava_paste",
+        "usda_ingredient_id": "4033d0e8-b91d-4841-8aa7-fa18a4feb534",
         "fda_portion_id": "287961",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.34952,
@@ -4573,7 +4573,7 @@
     },
     {
         "id": "7073ff6b-bb4e-4298-88b4-c8b381f9fd46",
-        "usda_ingredient_id": "broccoli_raw",
+        "usda_ingredient_id": "8aeacc67-5930-4408-aa20-86ea92a25fab",
         "fda_portion_id": "285446",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 90.0,
@@ -4585,7 +4585,7 @@
     },
     {
         "id": "0e43ae7c-4883-438d-8c4e-52d6ee3ffe02",
-        "usda_ingredient_id": "broccoli_raw",
+        "usda_ingredient_id": "8aeacc67-5930-4408-aa20-86ea92a25fab",
         "fda_portion_id": "285447",
         "non_metric_unit": "piece",
         "grams_per_non_metric_unit": 10.0,
@@ -4597,7 +4597,7 @@
     },
     {
         "id": "c0caa9ad-cb24-4ca7-82de-5c62a8ae52c1",
-        "usda_ingredient_id": "broccoli_raw",
+        "usda_ingredient_id": "8aeacc67-5930-4408-aa20-86ea92a25fab",
         "fda_portion_id": "285448",
         "non_metric_unit": "floweret",
         "grams_per_non_metric_unit": 10.0,
@@ -4609,7 +4609,7 @@
     },
     {
         "id": "6d68f883-9f84-4fc9-bb45-f577ba9e1cc1",
-        "usda_ingredient_id": "broccoli_raw",
+        "usda_ingredient_id": "8aeacc67-5930-4408-aa20-86ea92a25fab",
         "fda_portion_id": "",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.34953,
@@ -4621,7 +4621,7 @@
     },
     {
         "id": "74aed614-7f2a-4524-8c0e-9ca1527e44b1",
-        "usda_ingredient_id": "tomato_sauce",
+        "usda_ingredient_id": "5e23711c-5fee-42fb-85ae-5ef38b2654ee",
         "fda_portion_id": "86704",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 244.0,
@@ -4633,7 +4633,7 @@
     },
     {
         "id": "9691801e-d12a-4931-9a7b-ffe29fbc50c1",
-        "usda_ingredient_id": "tomato_sauce",
+        "usda_ingredient_id": "5e23711c-5fee-42fb-85ae-5ef38b2654ee",
         "fda_portion_id": "86705",
         "non_metric_unit": "can, 15 oz (303 x 406)",
         "grams_per_non_metric_unit": 425.0,
@@ -4645,7 +4645,7 @@
     },
     {
         "id": "a54f22c2-47f8-4527-9831-8a6a8d09e9b4",
-        "usda_ingredient_id": "tomato_sauce",
+        "usda_ingredient_id": "5e23711c-5fee-42fb-85ae-5ef38b2654ee",
         "fda_portion_id": "86704",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 15.25,
@@ -4657,7 +4657,7 @@
     },
     {
         "id": "bf646ae7-fc6d-4a77-808f-aaafebd9a3ee",
-        "usda_ingredient_id": "tomato_sauce",
+        "usda_ingredient_id": "5e23711c-5fee-42fb-85ae-5ef38b2654ee",
         "fda_portion_id": "",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.34953,
@@ -4669,7 +4669,7 @@
     },
     {
         "id": "3d3cc099-6f6e-4c87-8395-21e95b39f427",
-        "usda_ingredient_id": "whole_milk",
+        "usda_ingredient_id": "5f8d19d4-136f-452c-8b9a-da07431b9f6d",
         "fda_portion_id": "187530",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 249.0,
@@ -4681,7 +4681,7 @@
     },
     {
         "id": "d1c57947-6e64-4d67-86ad-b0eaba31b6d3",
-        "usda_ingredient_id": "whole_milk",
+        "usda_ingredient_id": "5f8d19d4-136f-452c-8b9a-da07431b9f6d",
         "fda_portion_id": "",
         "non_metric_unit": "oz",
         "grams_per_non_metric_unit": 28.34953,
@@ -4693,7 +4693,7 @@
     },
     {
         "id": "42330b48-ed27-4faf-bc83-b1dd4600b27f",
-        "usda_ingredient_id": "flour",
+        "usda_ingredient_id": "57786d27-ede7-47e7-a592-561d75bb72d4",
         "fda_portion_id": "85436",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 148.0,
@@ -4705,7 +4705,7 @@
     },
     {
         "id": "995f5879-0684-46f2-8d53-80abbfeaf981",
-        "usda_ingredient_id": "coconut_milk",
+        "usda_ingredient_id": "bbb3255d-71f0-4e0a-98c3-4baf5c8e08ca",
         "fda_portion_id": "267960",
         "non_metric_unit": "cup",
         "grams_per_non_metric_unit": 244.0,
@@ -4717,7 +4717,7 @@
     },
     {
         "id": "73af754c-690e-4190-8a08-65912955a98e",
-        "usda_ingredient_id": "coconut_milk",
+        "usda_ingredient_id": "bbb3255d-71f0-4e0a-98c3-4baf5c8e08ca",
         "fda_portion_id": "267960",
         "non_metric_unit": "tbsp",
         "grams_per_non_metric_unit": 15.25,

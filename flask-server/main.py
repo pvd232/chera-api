@@ -73,23 +73,6 @@ def callback():
     return redirect(redirect_signup_url)
 
 
-@app.route("/api/clear_tables")
-def clear_table() -> Response:
-    from helpers.check_auth import check_auth
-    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
-
-    db_password = os.getenv(
-        "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
-    )
-
-    if not check_auth(env=env, db_password=db_password, request=request):
-        return Response(status=401)
-
-    db.metadata.drop_all(db.engine)
-    db.metadata.create_all(db.engine)
-    return Response(status=200)
-
-
 @app.route("/api/update_table")
 def update_table() -> Response:
     from models import connection_string
@@ -97,15 +80,14 @@ def update_table() -> Response:
     from helpers.check_auth import check_auth
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
 
-    db_password = os.getenv(
-        "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
+    db_password = os.getenv("DB_PASSWORD") or GCP_Secret_Manager_Service().get_secret(
+        "DB_PASSWORD"
     )
 
     if not check_auth(env=env, db_password=db_password, request=request):
         return Response(status=401)
 
-    table_name = request.args.get("table_name")
-    update_table(database_url=connection_string, table_name=table_name)
+    update_table(database_url=connection_string, query=request.args.get("query"))
     db.metadata.create_all(db.engine)
     return Response(status=204)
 
@@ -117,8 +99,8 @@ def drop_table() -> Response:
     from helpers.check_auth import check_auth
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
 
-    db_password = os.getenv(
-        "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
+    db_password = os.getenv("DB_PASSWORD") or GCP_Secret_Manager_Service().get_secret(
+        "DB_PASSWORD"
     )
 
     if not check_auth(env=env, db_password=db_password, request=request):
@@ -135,8 +117,8 @@ def create_table() -> Response:
     from helpers.check_auth import check_auth
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
 
-    db_password = os.getenv(
-        "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
+    db_password = os.getenv("DB_PASSWORD") or GCP_Secret_Manager_Service().get_secret(
+        "DB_PASSWORD"
     )
 
     if not check_auth(env=env, db_password=db_password, request=request):
@@ -151,8 +133,8 @@ def setup_table() -> Response:
     from helpers.check_auth import check_auth
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
 
-    db_password = os.getenv(
-        "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
+    db_password = os.getenv("DB_PASSWORD") or GCP_Secret_Manager_Service().get_secret(
+        "DB_PASSWORD"
     )
 
     if not check_auth(env=env, db_password=db_password, request=request):
@@ -164,9 +146,7 @@ def setup_table() -> Response:
 
 @app.route("/api/continuity/write")
 def continuity_write() -> Response:
-    from repository.Continuity_Repository import Continuity_Repository
     from repository.Discount_Repository import Discount_Repository
-    from repository.Imperial_Unit_Repository import Imperial_Unit_Repository
     from repository.Nutrient_Repository import Nutrient_Repository
     from repository.USDA_Ingredient_Repository import USDA_Ingredient_Repository
     from repository.USDA_Ingredient_Nutrient_Repository import (
@@ -317,19 +297,21 @@ def continuity_initialize() -> Response:
     )
     from repository.Dietary_Restriction_Repository import Dietary_Restriction_Repository
 
-    db_username = os.getenv(
-        "DB_USER", GCP_Secret_Manager_Service().get_secret("DB_USER")
-    )
-    db_password = os.getenv(
-        "DB_PASSWORD", GCP_Secret_Manager_Service().get_secret("DB_PASSWORD")
+    db_username = os.getenv("DB_USER") or GCP_Secret_Manager_Service().get_secret(
+        "DB_USER"
     )
 
-    live_db_string = os.getenv(
-        "DB_STRING",
-        get_db_connection_string(
+    db_password = os.getenv("DB_PASSWORD") or GCP_Secret_Manager_Service().get_secret(
+        "DB_PASSWORD"
+    )
+
+    live_db_string = (
+        os.getenv("DB_STRING")
+        or get_db_connection_string(
             username=db_username, password=db_password, db_name="nourishdb"
         ),
     )
+
     if not check_auth(env=env, db_password=db_password, request=request):
         return Response(status=401)
 
@@ -544,7 +526,7 @@ def usda_ingredient_portion() -> Response:
 @app.route(
     "/api/usda_ingredient", defaults={"usda_ingredient_id": None}, methods=["POST"]
 )
-def usda_ingredient(usda_ingredient_id: Optional[str]) -> Response:
+def usda_ingredient(usda_ingredient_id: Optional[UUID]) -> Response:
     from models import USDA_api_key
     from repository.Imperial_Unit_Repository import Imperial_Unit_Repository
     from repository.Nutrient_Repository import Nutrient_Repository
@@ -643,8 +625,11 @@ def weekly_update() -> Response:
     username: str = message.split(":")[0]
     password: str = message.split(":")[1]
     if (
-        GCP_Secret_Manager_Service().get_secret("WEBHOOK_USR") == username
-        and GCP_Secret_Manager_Service().get_secret("WEBHOOK_PWD") == password
+        os.getenv("WEBHOOK_USR")
+        or GCP_Secret_Manager_Service().get_secret("WEBHOOK_USR")
+    ) == username and (
+        os.getenv("WEBHOOK_PWD")
+        or GCP_Secret_Manager_Service().get_secret("WEBHOOK_PWD") == password
     ):
         # Create new scheduled order meals for the 5 weeks in the future
         Meal_Subscription_Service(
@@ -685,8 +670,11 @@ def email_webhook(email_number: int) -> Response:
     username: str = message.split(":")[0]
     password: str = message.split(":")[1]
     if (
-        GCP_Secret_Manager_Service().get_secret("WEBHOOK_USR") == username
-        and GCP_Secret_Manager_Service().get_secret("WEBHOOK_PWD") == password
+        os.getenv("WEBHOOK_USR")
+        or GCP_Secret_Manager_Service().get_secret("WEBHOOK_USR")
+    ) == username and (
+        os.getenv("WEBHOOK_PWD")
+        or GCP_Secret_Manager_Service().get_secret("WEBHOOK_PWD") == password
     ):
         current_week_delivery_date = Date_Service().get_current_week_delivery_date()
 
@@ -1037,7 +1025,6 @@ def dietitian() -> Response | Response:
             gcp_secret_manager_service=GCP_Secret_Manager_Service(),
         ).send_confirmation_email(user_type="Dietitian", user=created_dietitian_domain)
         if created_dietitian_domain.got_sample:
-            # shipping_address =
             dietitian_meal_sample_dtos = []
             meal_samples = Meal_Service(
                 meal_repository=Meal_Repository(db=db)
@@ -1078,15 +1065,10 @@ def dietitian() -> Response | Response:
 
 @app.route("/api/shippo/meal_sample_shipment", methods=["POST"])
 def create_meal_sample_shipment() -> Response:
-    from repository.Meal_Repository import Meal_Repository
     from repository.Meal_Sample_Shipment_Repository import (
         Meal_Sample_Shipment_Repository,
     )
-    from service.Meal_Service import Meal_Service
-    from service.Meal_Sample_Shipment_Service import Meal_Sample_Shipment_Service
-    from service.Email_Service import Email_Service
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
-    from service.Date_Service import Date_Service
     from service.Shippo_Service import Shippo_Service
     from dto.Dietitian_DTO import Dietitian_DTO
 
@@ -1487,6 +1469,11 @@ def stripe_subscription_data() -> Response:
         return Response(status=204)
     else:
         return Response(status=405)
+
+
+@app.route("/api/hello", methods=["GET"])
+def hello():
+    return jsonify({"hello": "world"}), 200
 
 
 @app.route("/api/extended_staged_client", methods=["GET"])
@@ -3653,7 +3640,6 @@ def extended_meal_plan_meal_v2() -> Response:
 
     else:
         return Response(status=405)
-
 
 @app.route("/api/snack_nutrient_stats", methods=["GET"])
 def extended_meal_plan_snack_v2() -> Response:
