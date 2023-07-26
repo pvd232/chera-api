@@ -1246,6 +1246,18 @@ class Dietitian_Prepayment_Model(db.Model):
         self.datetime = dietitian_prepayment_domain.datetime
 
 
+class NYSAND_Lead(db.Model):
+    __tablename__ = "nysand_lead"
+    id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
+    dietitian_id = db.Column(
+        db.String(80), db.ForeignKey("dietitian.id"), primary_key=True, nullable=False
+    )
+
+    def __init__(self,id: UUID, dietitian_id:str):
+        self.id = id
+        self.dietitian_id = dietitian_id
+
+
 # Allows for db.drop_all() to work by setting universal cascade
 @compiles(DropTable, "postgresql")
 def _compile_drop_table(element, compiler, **kwargs):

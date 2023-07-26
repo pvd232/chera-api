@@ -129,7 +129,7 @@ def drop_table() -> Response:
     return Response(status=204)
 
 
-@app.route("/api/create_table")
+@app.route("/api/create_tables")
 def create_table() -> Response:
     from models import db
     from helpers.check_auth import check_auth
@@ -3707,15 +3707,16 @@ def extended_meal_plan_snack_v2() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/test_secret")
-def test_secret():
-    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
+@app.route("/api/nysand_lead", methods=["POST"])
+def nysand_lead() -> Response:
+    if request.method == "POST":
+        from repository.NYSAND_Lead_Repository import NYSAND_Lead_Repository
 
-    db_username = os.getenv("DB_USER") or GCP_Secret_Manager_Service().get_secret(
-        "DB_USER"
-    )
-    print("db_username", db_username)
-    return Response(status=200)
+        dietitian_id = json.loads(request.data)["dietitian_id"]
+        NYSAND_Lead_Repository(db=db).create_nysand_lead(dietitian_id=dietitian_id)
+        return Response(status=200)
+    else:
+        return Response(status=405)
 
 
 if env == "debug":
