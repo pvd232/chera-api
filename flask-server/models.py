@@ -367,7 +367,6 @@ class Meal_Plan_Model(db.Model):
     number_of_snacks = db.Column(db.Float(), nullable=False)
     per_snack_caloric_lower_bound = db.Column(db.Integer(), nullable=False)
     per_snack_caloric_upper_bound = db.Column(db.Integer(), nullable=False)
-    # multiplier = db.Column(db.Float(), default = 1.0, nullable=False)
     usda_nutrient_daily_values = relationship(
         "USDA_Nutrient_Daily_Value_Model", lazy=True
     )
@@ -1241,6 +1240,18 @@ class Dietitian_Prepayment_Model(db.Model):
         )
         self.total = dietitian_prepayment_domain.total
         self.datetime = dietitian_prepayment_domain.datetime
+
+
+class NYSAND_Lead(db.Model):
+    __tablename__ = "nysand_lead"
+    id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
+    dietitian_id = db.Column(
+        db.String(80), db.ForeignKey("dietitian.id"), primary_key=True, nullable=False
+    )
+
+    def __init__(self,id: UUID, dietitian_id:str):
+        self.id = id
+        self.dietitian_id = dietitian_id
 
 
 # Allows for db.drop_all() to work by setting universal cascade

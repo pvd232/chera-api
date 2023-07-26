@@ -111,7 +111,7 @@ def drop_table() -> Response:
     return Response(status=204)
 
 
-@app.route("/api/create_table")
+@app.route("/api/create_tables")
 def create_table() -> Response:
     from models import db
     from helpers.check_auth import check_auth
@@ -3641,16 +3641,68 @@ def extended_meal_plan_meal_v2() -> Response:
     else:
         return Response(status=405)
 
-
-@app.route("/api/test_secret")
-def test_secret():
-    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
-
-    db_username = os.getenv("DB_USER") or GCP_Secret_Manager_Service().get_secret(
-        "DB_USER"
+@app.route("/api/snack_nutrient_stats", methods=["GET"])
+def extended_meal_plan_snack_v2() -> Response:
+    from repository.Meal_Plan_Snack_Repository import Meal_Plan_Snack_Repository
+    from service.Extended_Meal_Plan_Snack_Service import (
+        Extended_Meal_Plan_Snack_Service,
     )
-    print("db_username", db_username)
-    return Response(status=200)
+    from service.Food_Nutrient_Stats_Service import Food_Nutrient_Stats_Service
+    from domain.Extended_Meal_Plan_Snack_Domain import Extended_Meal_Plan_Snack_Domain
+    from dto.Extended_Meal_Plan_Snack_DTO import Extended_Meal_Plan_Snack_DTO
+    from dto.Food_Nutrient_Stats_DTO import Food_Nutrient_Stats_DTO
+
+    if request.method == "GET":
+        snack_id = request.args.get("snack_id")
+        if snack_id:
+            extended_meal_plan_snack = Extended_Meal_Plan_Snack_Service(
+                meal_plan_snack_repository=Meal_Plan_Snack_Repository(db=db)
+            ).get_extended_meal_plan_snack(snack_id=snack_id)
+            if extended_meal_plan_snack:
+                meal_plan_snack_DTO = Extended_Meal_Plan_Snack_DTO(
+                    extended_meal_plan_snack_domain=extended_meal_plan_snack
+                )
+
+                serialized_meal_plan_snack_DTO = meal_plan_snack_DTO.serialize()
+                return jsonify(serialized_meal_plan_snack_DTO), 200
+            else:
+                return jsonify([]), 200
+        else:
+            extended_meal_plan_snacks = (
+                extended_meal_plan_snack
+            ) = Extended_Meal_Plan_Snack_Service(
+                meal_plan_snack_repository=Meal_Plan_Snack_Repository(db=db)
+            ).get_standard_extended_meal_plan_snacks()
+            extended_meal_plan_snack_DTOs = [
+                Extended_Meal_Plan_Snack_DTO(extended_meal_plan_snack_domain=x)
+                for x in extended_meal_plan_snacks
+            ]
+            food_nutrient_stats_dtos: list[Food_Nutrient_Stats_DTO] = []
+            for meal_plan_snack_dto in extended_meal_plan_snack_DTOs:
+                food_nutrient_stats_dtos.append(
+                    Food_Nutrient_Stats_Service().extract_nutrient_stats(
+                        extended_meal_plan_food=meal_plan_snack_dto
+                    )
+                )
+            serialized_food_nutrient_stats_dtos = [
+                x.serialize() for x in food_nutrient_stats_dtos
+            ]
+            return jsonify(serialized_food_nutrient_stats_dtos), 200
+
+    else:
+        return Response(status=405)
+
+
+@app.route("/api/nysand_lead", methods=["POST"])
+def nysand_lead() -> Response:
+    if request.method == "POST":
+        from repository.NYSAND_Lead_Repository import NYSAND_Lead_Repository
+
+        dietitian_id = json.loads(request.data)["dietitian_id"]
+        NYSAND_Lead_Repository(db=db).create_nysand_lead(dietitian_id=dietitian_id)
+        return Response(status=200)
+    else:
+        return Response(status=405)
 
 
 if env == "debug":
