@@ -3662,7 +3662,6 @@ def extended_meal_plan_snack_v2() -> Response:
         Extended_Meal_Plan_Snack_Service,
     )
     from service.Food_Nutrient_Stats_Service import Food_Nutrient_Stats_Service
-    from domain.Extended_Meal_Plan_Snack_Domain import Extended_Meal_Plan_Snack_Domain
     from dto.Extended_Meal_Plan_Snack_DTO import Extended_Meal_Plan_Snack_DTO
     from dto.Food_Nutrient_Stats_DTO import Food_Nutrient_Stats_DTO
 

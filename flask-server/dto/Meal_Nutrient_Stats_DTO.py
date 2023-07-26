@@ -5,7 +5,6 @@ from uuid import UUID
 
 if TYPE_CHECKING:
     from domain.Extended_Meal_Domain import Extended_Meal_Domain
-    from domain.Extended_Meal_Plan_Domain import Extended_Meal_Plan_Domain
     from .Nutrient_Daily_Value_DTO import Nutrient_Daily_Value_DTO
     from dto.Extended_Meal_DTO import Extended_Meal_DTO
 
@@ -13,6 +12,8 @@ if TYPE_CHECKING:
 class Meal_Nutrient_Stats_DTO(Food_Nutrient_Stats_DTO):
     def __init__(
         self,
+        id: UUID,
+        meal_plan_id: UUID,
         recipe: list[str],
         nutrients: list["Nutrient_Daily_Value_DTO"],
         k_cal: float,
@@ -20,10 +21,11 @@ class Meal_Nutrient_Stats_DTO(Food_Nutrient_Stats_DTO):
         fat_k_cal: float,
         carb_k_cal: float,
         weight: float,
-        meal_plan_id: UUID,
+        active: bool,
         associated_meal: "Extended_Meal_Domain",
     ):
         super().__init__(
+            id=id,
             meal_plan_id=meal_plan_id,
             recipe=recipe,
             nutrients=nutrients,
@@ -32,5 +34,6 @@ class Meal_Nutrient_Stats_DTO(Food_Nutrient_Stats_DTO):
             fat_k_cal=fat_k_cal,
             carb_k_cal=carb_k_cal,
             weight=weight,
+            active=active,
         )
         self.associated_meal = Extended_Meal_DTO(extended_meal_domain=associated_meal)
