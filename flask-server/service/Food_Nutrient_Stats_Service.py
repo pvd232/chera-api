@@ -34,6 +34,9 @@ class Food_Nutrient_Stats_Service:
         serialized_food = extended_meal_plan_food.serialize()
         if hasattr(extended_meal_plan_food, "associated_meal"):
             return Meal_Nutrient_Stats_DTO(
+                meal_plan_id=extended_meal_plan_food.associated_meal_plan.id,
+                recipe=recipe_list,
+                nutrients=nutrient_list,
                 recipe=recipe_list,
                 nutrients=nutrient_list,
                 k_cal=serialized_food["k_cal"],
@@ -41,11 +44,11 @@ class Food_Nutrient_Stats_Service:
                 fat_k_cal=serialized_food["fat_k_cal"],
                 carb_k_cal=serialized_food["carb_k_cal"],
                 weight=total_grams,
-                associated_meal_plan=extended_meal_plan_food.associated_meal_plan,
                 associated_meal=extended_meal_plan_food.associated_meal,
             )
         else:
             return Snack_Nutrient_Stats_DTO(
+                meal_plan_id=extended_meal_plan_food.associated_meal_plan.id,
                 recipe=recipe_list,
                 nutrients=nutrient_list,
                 k_cal=serialized_food["k_cal"],
@@ -53,6 +56,5 @@ class Food_Nutrient_Stats_Service:
                 fat_k_cal=serialized_food["fat_k_cal"],
                 carb_k_cal=serialized_food["carb_k_cal"],
                 weight=total_grams,
-                associated_meal_plan=extended_meal_plan_food.associated_meal_plan,
                 associated_snack=extended_meal_plan_food.associated_snack,
             )
