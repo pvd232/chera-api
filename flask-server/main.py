@@ -305,11 +305,8 @@ def continuity_initialize() -> Response:
         "DB_PASSWORD"
     )
 
-    live_db_string = (
-        os.getenv("DB_STRING")
-        or get_db_connection_string(
-            username=db_username, password=db_password, db_name="nourishdb"
-        ),
+    live_db_string = os.getenv("DB_STRING") or get_db_connection_string(
+        username=db_username, password=db_password, db_name="nourishdb"
     )
 
     if not check_auth(env=env, db_password=db_password, request=request):
@@ -3640,6 +3637,7 @@ def extended_meal_plan_meal_v2() -> Response:
 
     else:
         return Response(status=405)
+
 
 @app.route("/api/snack_nutrient_stats", methods=["GET"])
 def extended_meal_plan_snack_v2() -> Response:
