@@ -1,6 +1,7 @@
 from repository.Base_Repository import Base_Repository
 from models import USDA_Ingredient_Model
 from typing import TYPE_CHECKING
+from uuid import UUID, uuid4
 
 if TYPE_CHECKING:
     from domain.Recipe_Ingredient_Domain import Recipe_Ingredient_Domain
@@ -22,7 +23,7 @@ class USDA_Ingredient_Repository(Base_Repository):
         return usda_ingredients
 
     def get_usda_ingredient(
-        self, usda_ingredient_id: str
+        self, usda_ingredient_id: UUID
     ) -> USDA_Ingredient_Model | None:
         usda_ingredient = (
             self.db.session.query(USDA_Ingredient_Model)
@@ -33,7 +34,7 @@ class USDA_Ingredient_Repository(Base_Repository):
 
     def update_usda_ingredient(
         self,
-        usda_ingredient_id: str,
+        usda_ingredient_id: UUID,
         usda_nutrient_mapper_dto: "USDA_Nutrient_Mapper_DTO",
     ) -> None:
         usda_ingredient_to_update: USDA_Ingredient_Model = (

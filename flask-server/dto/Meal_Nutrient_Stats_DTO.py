@@ -5,9 +5,7 @@ from uuid import UUID
 
 if TYPE_CHECKING:
     from domain.Extended_Meal_Domain import Extended_Meal_Domain
-    from domain.Extended_Meal_Plan_Domain import Extended_Meal_Plan_Domain
     from .Nutrient_Daily_Value_DTO import Nutrient_Daily_Value_DTO
-    from dto.Extended_Meal_DTO import Extended_Meal_DTO
 
 
 class Meal_Nutrient_Stats_DTO(Food_Nutrient_Stats_DTO):

@@ -1,5 +1,6 @@
 from domain.USDA_Ingredient_Nutrient_Domain import USDA_Ingredient_Nutrient_Domain
 from typing import TYPE_CHECKING
+from uuid import UUID
 
 if TYPE_CHECKING:
     from repository.USDA_Ingredient_Nutrient_Repository import (
@@ -34,7 +35,7 @@ class USDA_Ingredient_Nutrient_Service(object):
         )
 
     def get_usda_ingredient_nutrients(
-        self, usda_ingredient_id: str
+        self, usda_ingredient_id: UUID
     ) -> list[USDA_Ingredient_Nutrient_Domain]:
         usda_ingredient_nutrient_domains: list[USDA_Ingredient_Nutrient_Domain] = [
             USDA_Ingredient_Nutrient_Domain(usda_ingredient_nutrient_object=x)
@@ -52,7 +53,7 @@ class USDA_Ingredient_Nutrient_Service(object):
             for x in self.usda_ingredient_nutrient_repository.get_all_usda_ingredient_nutrients()
         ]
 
-    def delete_usda_ingredient_nutrients(self, usda_ingredient_id: str) -> None:
+    def delete_usda_ingredient_nutrients(self, usda_ingredient_id: UUID) -> None:
         self.usda_ingredient_nutrient_repository.delete_usda_ingredient_nutrients(
             usda_ingredient_id=usda_ingredient_id
         )
@@ -69,7 +70,4 @@ class USDA_Ingredient_Nutrient_Service(object):
             usda_ingredient_nutrient_dicts = [
                 x.serialize() for x in self.get_all_usda_ingredient_nutrients()
             ]
-            for usda_ingredient_nutrient_dict in usda_ingredient_nutrient_dicts:
-                if usda_ingredient_nutrient_dict["usda_ingredient_id"] == "olive oil":
-                    usda_ingredient_nutrient_dict["usda_ingredient_id"] = "olive_oil"
             write_json(outfile=outfile, dicts=usda_ingredient_nutrient_dicts)

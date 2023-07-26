@@ -15,7 +15,7 @@ class Recipe_Ingredient_DTO(Base_DTO):
     ) -> None:
         if recipe_ingredient_json:
             self.id: UUID = UUID(recipe_ingredient_json["id"])
-            self.usda_ingredient_id: str = recipe_ingredient_json["usda_ingredient_id"]
+            self.usda_ingredient_id: UUID = recipe_ingredient_json["usda_ingredient_id"]
             self.meal_plan_meal_id: Optional[UUID] = recipe_ingredient_json[
                 "meal_plan_meal_id"
             ]
@@ -43,7 +43,7 @@ class Recipe_Ingredient_DTO(Base_DTO):
 
         elif recipe_ingredient_domain:
             self.id: UUID = recipe_ingredient_domain.id
-            self.usda_ingredient_id: str = recipe_ingredient_domain.usda_ingredient_id
+            self.usda_ingredient_id: UUID = recipe_ingredient_domain.usda_ingredient_id
             self.meal_plan_meal_id: Optional[
                 UUID
             ] = recipe_ingredient_domain.meal_plan_meal_id

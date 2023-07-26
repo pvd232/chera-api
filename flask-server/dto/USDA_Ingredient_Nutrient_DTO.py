@@ -14,14 +14,14 @@ class USDA_Ingredient_Nutrient_DTO(Base_DTO):
     ) -> None:
         if usda_ingredient_nutrient_json:
             self.id: UUID = usda_ingredient_nutrient_json["id"]
-            self.usda_ingredient_id: str = usda_ingredient_nutrient_json[
+            self.usda_ingredient_id: UUID = usda_ingredient_nutrient_json[
                 "usda_ingredient_id"
             ]
             self.nutrient_id: str = usda_ingredient_nutrient_json["nutrient_id"]
             self.amount: float = usda_ingredient_nutrient_json["amount"]
         elif usda_ingredient_nutrient_domain:
             self.id: UUID = UUID(usda_ingredient_nutrient_domain.id)
-            self.usda_ingredient_id: str = (
+            self.usda_ingredient_id: UUID = (
                 usda_ingredient_nutrient_domain.usda_ingredient_id
             )
             self.nutrient_id: str = usda_ingredient_nutrient_domain.nutrient_id

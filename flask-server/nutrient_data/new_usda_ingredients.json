@@ -1,6 +1,6 @@
 [
     {
-        "id": "tortilla",
+        "id": "9b249fe9-c586-4837-a59f-1e87f51ee3df",
         "name": "tortilla",
         "fdc_id": "1100856",
         "amount_of_grams": 100.0,
@@ -11,7 +11,7 @@
         "active": true
     },
     {
-        "id": "egg",
+        "id": "ea7528d4-6586-4b05-9315-5e8f0e1c0e6a",
         "name": "egg",
         "fdc_id": "1100235",
         "amount_of_grams": 100.0,
@@ -22,7 +22,7 @@
         "active": true
     },
     {
-        "id": "black_beans",
+        "id": "f7d0d6a5-f03c-40ab-a959-60ad9ebff480",
         "name": "black beans",
         "fdc_id": "1100378",
         "amount_of_grams": 100.0,
@@ -33,7 +33,7 @@
         "active": true
     },
     {
-        "id": "bell_pepper",
+        "id": "735a8966-a7a4-411f-9757-990131d4f2c7",
         "name": "bell pepper",
         "fdc_id": "1103562",
         "amount_of_grams": 100.0,
@@ -44,7 +44,7 @@
         "active": true
     },
     {
-        "id": "cheddar_cheese",
+        "id": "909b71fb-f084-4388-a375-5aa824c7a961",
         "name": "cheddar cheese",
         "fdc_id": "1098007",
         "amount_of_grams": 100.0,
@@ -55,7 +55,7 @@
         "active": true
     },
     {
-        "id": "rolled_oats",
+        "id": "44e4f9b2-cd2d-4c6a-bb28-f58913bd300d",
         "name": "rolled oats",
         "fdc_id": "2343973",
         "amount_of_grams": 100.0,
@@ -66,7 +66,7 @@
         "active": true
     },
     {
-        "id": "soy_milk",
+        "id": "6cd1e609-917d-4019-bd35-cdc08daa8b63",
         "name": "soy milk",
         "fdc_id": "1097542",
         "amount_of_grams": 100.0,
@@ -77,7 +77,7 @@
         "active": true
     },
     {
-        "id": "chia_seeds",
+        "id": "885a1a9d-2290-4ac1-a814-e27e901c4685",
         "name": "chia seeds",
         "fdc_id": "1100612",
         "amount_of_grams": 100.0,
@@ -88,7 +88,7 @@
         "active": true
     },
     {
-        "id": "mixed_berries",
+        "id": "f3a109eb-89bd-4c2b-9568-5c18968de977",
         "name": "mixed berries",
         "fdc_id": "1102699",
         "amount_of_grams": 100.0,
@@ -99,7 +99,7 @@
         "active": true
     },
     {
-        "id": "maple_syrup",
+        "id": "9ba51eb5-9d78-428a-aca9-14381eb197b3",
         "name": "maple syrup",
         "fdc_id": "1103948",
         "amount_of_grams": 100.0,
@@ -110,7 +110,7 @@
         "active": true
     },
     {
-        "id": "protein_powder",
+        "id": "126e7862-deeb-401c-aaa5-1335818ed669",
         "name": "protein powder",
         "fdc_id": "1104535",
         "amount_of_grams": 100.0,
@@ -121,7 +121,7 @@
         "active": true
     },
     {
-        "id": "pancake",
+        "id": "8b460fa8-b4d1-4124-8847-b7109121d174",
         "name": "pancake",
         "fdc_id": "1101460",
         "amount_of_grams": 100.0,
@@ -132,7 +132,7 @@
         "active": true
     },
     {
-        "id": "blueberry",
+        "id": "ff3c7706-364a-48a7-9874-d6978154f7d4",
         "name": "blueberry",
         "fdc_id": "1102702",
         "amount_of_grams": 100.0,
@@ -143,7 +143,7 @@
         "active": true
     },
     {
-        "id": "butter",
+        "id": "d3142bd1-da59-4e90-b71c-8622ca3d618e",
         "name": "butter",
         "fdc_id": "1103823",
         "amount_of_grams": 100.0,
@@ -154,7 +154,7 @@
         "active": true
     },
     {
-        "id": "turkey_sausage",
+        "id": "01fc5d5b-51f9-45be-be0f-aedb828c65bc",
         "name": "turkey sausage",
         "fdc_id": "1098715",
         "amount_of_grams": 100.0,
@@ -165,7 +165,7 @@
         "active": true
     },
     {
-        "id": "quinoa",
+        "id": "70dadba6-b303-445d-b3d2-48873aee04cf",
         "name": "quinoa",
         "fdc_id": "1101617",
         "amount_of_grams": 100.0,
@@ -176,7 +176,7 @@
         "active": true
     },
     {
-        "id": "fried_chicken",
+        "id": "33662ab1-6862-41ab-b7f9-057356801164",
         "name": "fried chicken",
         "fdc_id": "1098439",
         "amount_of_grams": 100.0,
@@ -187,7 +187,7 @@
         "active": true
     },
     {
-        "id": "sweet_potato",
+        "id": "6cc84036-95f4-40bf-b54b-cf8051b06d39",
         "name": "sweet potato",
         "fdc_id": "1103247",
         "amount_of_grams": 100.0,
@@ -198,7 +198,7 @@
         "active": true
     },
     {
-        "id": "broccoli",
+        "id": "0c5ff3c3-248b-4192-aed4-917b7744b1bd",
         "name": "broccoli",
         "fdc_id": "2345155",
         "amount_of_grams": 100.0,
@@ -209,7 +209,7 @@
         "active": true
     },
     {
-        "id": "chickpeas",
+        "id": "65557c57-4fb8-49c5-bd1b-4bf8df899e83",
         "name": "chickpeas",
         "fdc_id": "1100433",
         "amount_of_grams": 100.0,
@@ -220,7 +220,7 @@
         "active": true
     },
     {
-        "id": "sauteed_chicken",
+        "id": "24326d07-bee0-4476-ac18-aa3b36299683",
         "name": "chicken",
         "fdc_id": "1098461",
         "amount_of_grams": 100.0,
@@ -231,7 +231,7 @@
         "active": true
     },
     {
-        "id": "parmesan_cheese",
+        "id": "b629a99b-c124-44fc-8fe6-bf4d0e3e0391",
         "name": "parmesan cheese",
         "fdc_id": "1098026",
         "amount_of_grams": 100.0,
@@ -242,7 +242,7 @@
         "active": true
     },
     {
-        "id": "rice_noodles",
+        "id": "c6910413-e220-42ef-87d7-ab2bc3b786cb",
         "name": "rice noodles",
         "fdc_id": "1101528",
         "amount_of_grams": 100.0,
@@ -253,7 +253,7 @@
         "active": true
     },
     {
-        "id": "crushed_peanut",
+        "id": "3ed2eebd-83ed-4bca-a61e-03ba3592076c",
         "name": "crushed peanut",
         "fdc_id": "1100536",
         "amount_of_grams": 100.0,
@@ -264,7 +264,7 @@
         "active": true
     },
     {
-        "id": "ground_beef",
+        "id": "5883e36e-7309-476d-869a-3cf9a1397999",
         "name": "ground beef",
         "fdc_id": "1098213",
         "amount_of_grams": 100.0,
@@ -275,7 +275,7 @@
         "active": true
     },
     {
-        "id": "beef",
+        "id": "c44efee1-051c-4b64-9268-79040c9dd4ac",
         "name": "beef",
         "fdc_id": "1098211",
         "amount_of_grams": 100.0,
@@ -286,7 +286,7 @@
         "active": true
     },
     {
-        "id": "sesame_sauce",
+        "id": "d7668a6b-aa70-47ea-939d-b2e6a2f6433b",
         "name": "sesame sauce",
         "fdc_id": "2345768",
         "amount_of_grams": 100.0,
@@ -297,7 +297,7 @@
         "active": true
     },
     {
-        "id": "cashews",
+        "id": "39f8e7e7-0191-4523-afcd-b4fceac07b50",
         "name": "cashews",
         "fdc_id": "1100519",
         "amount_of_grams": 100.0,
@@ -308,7 +308,7 @@
         "active": true
     },
     {
-        "id": "scallions",
+        "id": "0ff1c14f-7e29-44e3-ad87-2b427da794a9",
         "name": "scallions",
         "fdc_id": "1103538",
         "amount_of_grams": 100.0,
@@ -319,7 +319,7 @@
         "active": true
     },
     {
-        "id": "roasted_vegetables",
+        "id": "3db954c9-c1d8-4b3e-b528-74492213a3e1",
         "name": "roasted vegetables",
         "fdc_id": "1103608",
         "amount_of_grams": 100.0,
@@ -330,7 +330,7 @@
         "active": true
     },
     {
-        "id": "ground_turkey_meatballs",
+        "id": "1af401c5-84f5-4fe7-88ed-068649a0b4a9",
         "name": "ground turkey meatballs",
         "fdc_id": "1098625",
         "amount_of_grams": 100.0,
@@ -341,7 +341,7 @@
         "active": true
     },
     {
-        "id": "feta",
+        "id": "db9fa3f3-be13-4b4e-aeaa-12ab1ec438ac",
         "name": "feta",
         "fdc_id": "1098012",
         "amount_of_grams": 100.0,
@@ -352,7 +352,7 @@
         "active": true
     },
     {
-        "id": "tzatziki",
+        "id": "8dcaa491-d63c-42e2-80ce-56044928f4b0",
         "name": "tzatziki",
         "fdc_id": "1097588",
         "amount_of_grams": 100.0,
@@ -363,7 +363,7 @@
         "active": true
     },
     {
-        "id": "tahini_dressing",
+        "id": "80d66d7e-bbe1-4129-8adf-c745ff7a85e8",
         "name": "tahini dressing",
         "fdc_id": "1100609",
         "amount_of_grams": 100.0,
@@ -374,7 +374,7 @@
         "active": true
     },
     {
-        "id": "basil_pesto",
+        "id": "c0abb181-ba9b-47e4-b254-20f78d92c278",
         "name": "basil pesto",
         "fdc_id": "1103851",
         "amount_of_grams": 100.0,
@@ -385,7 +385,7 @@
         "active": true
     },
     {
-        "id": "marinara_sauce",
+        "id": "5386233d-cdb5-4071-9cf7-75f517da41cd",
         "name": "marinara sauce",
         "fdc_id": "1103302",
         "amount_of_grams": 100.0,
@@ -396,7 +396,7 @@
         "active": true
     },
     {
-        "id": "teriyaki_sauce",
+        "id": "06b228c8-51a7-4930-914c-5448c1a194ba",
         "name": "teriyaki sauce",
         "fdc_id": "1100459",
         "amount_of_grams": 100.0,
@@ -407,7 +407,7 @@
         "active": true
     },
     {
-        "id": "sesame_seeds",
+        "id": "1158123c-6074-4680-9058-7f29aee8ec05",
         "name": "sesame seeds",
         "fdc_id": "1100608",
         "amount_of_grams": 100.0,
@@ -418,7 +418,7 @@
         "active": true
     },
     {
-        "id": "rice",
+        "id": "eb1f6c66-4ce0-4f9c-8373-3e02b284790a",
         "name": "rice",
         "fdc_id": "1101643",
         "amount_of_grams": 100.0,
@@ -429,7 +429,7 @@
         "active": true
     },
     {
-        "id": "garlic_minced",
+        "id": "f5946ab6-1b3b-442f-8901-db0054addb00",
         "name": "garlic",
         "fdc_id": "2345306",
         "amount_of_grams": 100.0,
@@ -440,7 +440,7 @@
         "active": true
     },
     {
-        "id": "cream_cheese",
+        "id": "5474270c-8b38-4e73-a7f5-cad33428cd48",
         "name": "cream cheese",
         "fdc_id": "2341163",
         "amount_of_grams": 100.0,
@@ -451,7 +451,7 @@
         "active": true
     },
     {
-        "id": "spinach",
+        "id": "e81458a4-c124-48a6-9cab-cdf7e5baa704",
         "name": "spinach",
         "fdc_id": "2345120",
         "amount_of_grams": 100.0,
@@ -462,7 +462,7 @@
         "active": true
     },
     {
-        "id": "olive_oil",
+        "id": "71fe5e2e-a2ff-44a0-9bc1-48d07c413239",
         "name": "extra virgin olive oil",
         "fdc_id": "2345743",
         "amount_of_grams": 100.0,
@@ -473,7 +473,7 @@
         "active": true
     },
     {
-        "id": "red_pepper_flakes",
+        "id": "ccfaa3b1-aede-4b17-9767-021d4610a737",
         "name": "red chili pepper flakes",
         "fdc_id": "170932",
         "amount_of_grams": 100.0,
@@ -484,7 +484,7 @@
         "active": true
     },
     {
-        "id": "steak",
+        "id": "8988873e-6ca8-46f5-bae9-991f682d46ec",
         "name": "flank steak",
         "fdc_id": "2341232",
         "amount_of_grams": 100.0,
@@ -495,7 +495,7 @@
         "active": true
     },
     {
-        "id": "goya_mojo",
+        "id": "f2e3ad82-4233-48ce-8eaf-d5835693ccd9",
         "name": "goya mojo criollo marinade",
         "fdc_id": "2529355",
         "amount_of_grams": 100.0,
@@ -506,7 +506,7 @@
         "active": true
     },
     {
-        "id": "soy_sauce",
+        "id": "7133feec-e5cc-4f92-8490-8a0003bcf3bc",
         "name": "soy sauce",
         "fdc_id": "2342917",
         "amount_of_grams": 100.0,
@@ -517,7 +517,7 @@
         "active": true
     },
     {
-        "id": "beef_stock",
+        "id": "7b7d6c09-c86a-42f2-90bc-939f30b5c1c1",
         "name": "beef stock",
         "fdc_id": "172883",
         "amount_of_grams": 100.0,
@@ -528,7 +528,7 @@
         "active": true
     },
     {
-        "id": "black_pepper",
+        "id": "3b589f72-2138-4604-94f8-8a5999fd58aa",
         "name": "black pepper",
         "fdc_id": "170931",
         "amount_of_grams": 100.0,
@@ -539,7 +539,7 @@
         "active": true
     },
     {
-        "id": "garlic_powder",
+        "id": "656e4e65-fbb5-4f29-a579-46dc52bcb0d7",
         "name": "garlic powder",
         "fdc_id": "171325",
         "amount_of_grams": 100.0,
@@ -550,7 +550,7 @@
         "active": true
     },
     {
-        "id": "sauce",
+        "id": "b351e913-18b4-4acf-91ed-3e9d2792d6ce",
         "name": "sauce",
         "fdc_id": "1103299",
         "amount_of_grams": 100.0,
@@ -561,7 +561,7 @@
         "active": true
     },
     {
-        "id": "worcestershire_sauce",
+        "id": "878a1ca6-432f-4b12-9d9f-8f218e009136",
         "name": "worcestershire sauce",
         "fdc_id": "2342922",
         "amount_of_grams": 100.0,
@@ -572,7 +572,7 @@
         "active": true
     },
     {
-        "id": "onion_powder",
+        "id": "8ba84f4c-6b8b-43a7-b456-772ef24749a7",
         "name": "onion powder",
         "fdc_id": "171327",
         "amount_of_grams": 100.0,
@@ -583,7 +583,7 @@
         "active": true
     },
     {
-        "id": "adobo",
+        "id": "ea8df0b4-1071-4758-8fe7-47b3a7bf1af5",
         "name": "adobo",
         "fdc_id": "2548485",
         "amount_of_grams": 100.0,
@@ -594,7 +594,7 @@
         "active": true
     },
     {
-        "id": "sesame_oil",
+        "id": "610aa5cb-63f4-466c-9bf6-a1e93ba271b3",
         "name": "sesame oil",
         "fdc_id": "2345747",
         "amount_of_grams": 100.0,
@@ -605,7 +605,7 @@
         "active": true
     },
     {
-        "id": "white_pepper",
+        "id": "0701a30a-493b-4613-82e8-7089a90bffaa",
         "name": "white pepper",
         "fdc_id": "170933",
         "amount_of_grams": 100.0,
@@ -616,7 +616,7 @@
         "active": true
     },
     {
-        "id": "cornstarch",
+        "id": "a47d8052-f277-4b53-890b-297181de5018",
         "name": "cornstarch",
         "fdc_id": "169698",
         "amount_of_grams": 100.0,
@@ -627,7 +627,7 @@
         "active": true
     },
     {
-        "id": "onion_raw",
+        "id": "da704027-b234-44c5-b4ae-7c39e9d4607b",
         "name": "onion",
         "fdc_id": "2345315",
         "amount_of_grams": 100.0,
@@ -638,7 +638,7 @@
         "active": true
     },
     {
-        "id": "ginger_root_raw",
+        "id": "94a253fe-af8e-463a-a136-70bd2231c89c",
         "name": "ginger root",
         "fdc_id": "169231",
         "amount_of_grams": 100.0,
@@ -649,7 +649,7 @@
         "active": true
     },
     {
-        "id": "balsamic_vinegar",
+        "id": "2194346d-517a-427e-b457-68de850c8426",
         "name": "balsamic vinegar",
         "fdc_id": "172241",
         "amount_of_grams": 100.0,
@@ -660,7 +660,7 @@
         "active": true
     },
     {
-        "id": "white_rice_cooked",
+        "id": "92986ece-29b1-423f-abc4-e80e14800b15",
         "name": "white rice",
         "fdc_id": "1101625",
         "amount_of_grams": 100.0,
@@ -671,7 +671,7 @@
         "active": true
     },
     {
-        "id": "sugar",
+        "id": "588514d2-3dad-4428-9e93-3fc33eb9656c",
         "name": "sugar",
         "fdc_id": "2345817",
         "amount_of_grams": 100.0,
@@ -682,7 +682,7 @@
         "active": true
     },
     {
-        "id": "salt",
+        "id": "4410b6c0-961f-40ce-ac90-6f5d1050b12a",
         "name": "salt",
         "fdc_id": "746775",
         "amount_of_grams": 100.0,
@@ -693,7 +693,7 @@
         "active": true
     },
     {
-        "id": "almond_butter",
+        "id": "5e42b57c-42db-4098-8548-47a6773bab6c",
         "name": "almond butter",
         "fdc_id": "1100555",
         "amount_of_grams": 100.0,
@@ -704,7 +704,7 @@
         "active": true
     },
     {
-        "id": "oyster_sauce",
+        "id": "13668e00-bab1-411b-a804-11fddd3111e6",
         "name": "oyster sauce",
         "fdc_id": "2342625",
         "amount_of_grams": 100.0,
@@ -715,7 +715,7 @@
         "active": true
     },
     {
-        "id": "smoked_ham",
+        "id": "1ebcaab6-d9a3-47a1-9cb3-b6bd8cfc10cf",
         "name": "smoked ham",
         "fdc_id": "174611",
         "amount_of_grams": 100.0,
@@ -726,7 +726,7 @@
         "active": true
     },
     {
-        "id": "butter_beans",
+        "id": "ebae624d-4233-404c-bf06-c25a33d20d5c",
         "name": "butter beans",
         "fdc_id": "2342843",
         "amount_of_grams": 100.0,
@@ -737,7 +737,7 @@
         "active": true
     },
     {
-        "id": "bay_leaves",
+        "id": "46f5082b-84aa-40b0-83bd-0523c5feaae4",
         "name": "bay leaves",
         "fdc_id": "170917",
         "amount_of_grams": 100.0,
@@ -748,7 +748,7 @@
         "active": true
     },
     {
-        "id": "sofrito",
+        "id": "b6763975-6ea3-4f1d-908d-beb98a2d303e",
         "name": "sofrito",
         "fdc_id": "171174",
         "amount_of_grams": 100.0,
@@ -759,7 +759,7 @@
         "active": true
     },
     {
-        "id": "hot_sauce_tabasco",
+        "id": "f9dee936-60e5-4fa8-8f40-631302234075",
         "name": "hot sauce",
         "fdc_id": "2345620",
         "amount_of_grams": 100.0,
@@ -770,7 +770,7 @@
         "active": true
     },
     {
-        "id": "liquid_smoke",
+        "id": "54928889-875e-4066-97bf-598ef9db2398",
         "name": "liquid smoke",
         "fdc_id": "2036665",
         "amount_of_grams": 100.0,
@@ -781,7 +781,7 @@
         "active": true
     },
     {
-        "id": "honey",
+        "id": "0a792fe1-e0ad-4f78-a2d9-893dc7d87699",
         "name": "honey",
         "fdc_id": "2345841",
         "amount_of_grams": 100.0,
@@ -792,7 +792,7 @@
         "active": true
     },
     {
-        "id": "herbs_de_provence",
+        "id": "d812d905-cb51-458a-849c-66a0f8eeaf08",
         "name": "herbs de provence",
         "fdc_id": "2548664",
         "amount_of_grams": 100.0,
@@ -803,7 +803,7 @@
         "active": true
     },
     {
-        "id": "salmon_grilled",
+        "id": "050564e6-592a-45de-b833-5e3192ff6366",
         "name": "grilled salmon",
         "fdc_id": "2341702",
         "amount_of_grams": 100.0,
@@ -814,7 +814,7 @@
         "active": true
     },
     {
-        "id": "sugar_brown",
+        "id": "c404a72d-1bf3-4b65-bf5f-ccd129ab5856",
         "name": "brown sugar",
         "fdc_id": "2345820",
         "amount_of_grams": 100.0,
@@ -825,7 +825,7 @@
         "active": true
     },
     {
-        "id": "mustard",
+        "id": "a2150b36-0e70-4ac2-89e7-15f8276630f5",
         "name": "dijon mustard",
         "fdc_id": "2345612",
         "amount_of_grams": 100.0,
@@ -836,7 +836,7 @@
         "active": true
     },
     {
-        "id": "paprika",
+        "id": "edfc515b-2a64-44bd-9bda-4e5e93adf9fa",
         "name": "paprika",
         "fdc_id": "171329",
         "amount_of_grams": 100.0,
@@ -847,7 +847,7 @@
         "active": true
     },
     {
-        "id": "thyme",
+        "id": "78d4ed7c-9b83-44ba-99d8-48f82b162658",
         "name": "thyme",
         "fdc_id": "170938",
         "amount_of_grams": 100.0,
@@ -858,7 +858,7 @@
         "active": true
     },
     {
-        "id": "yellow_onion",
+        "id": "7678d0fc-8160-4780-99f3-c8d283b8c57c",
         "name": "sweet yellow onion",
         "fdc_id": "170004",
         "amount_of_grams": 100.0,
@@ -869,7 +869,7 @@
         "active": true
     },
     {
-        "id": "zucchini_green_raw",
+        "id": "69051d8a-b5be-4d1d-b144-125f2f8d193e",
         "name": "zucchini",
         "fdc_id": "2345328",
         "amount_of_grams": 100.0,
@@ -880,7 +880,7 @@
         "active": true
     },
     {
-        "id": "yellow_corn_canned",
+        "id": "a8e7d5f9-a7d5-4819-988c-d63a4f5b67af",
         "name": "yellow corn",
         "fdc_id": "2345444",
         "amount_of_grams": 100.0,
@@ -891,7 +891,7 @@
         "active": true
     },
     {
-        "id": "poultry_seasoning",
+        "id": "642b513c-638e-475b-ac6a-1254e7bbd819",
         "name": "poultry seasoning",
         "fdc_id": "171331",
         "amount_of_grams": 100.0,
@@ -902,7 +902,7 @@
         "active": true
     },
     {
-        "id": "walnuts",
+        "id": "b7570d5c-d3a9-4db6-8c95-174dd100ef4c",
         "name": "walnuts",
         "fdc_id": "2343008",
         "amount_of_grams": 100.0,
@@ -913,7 +913,7 @@
         "active": true
     },
     {
-        "id": "vinegar_cider",
+        "id": "93968bd5-07a5-401f-9604-da8279629e65",
         "name": "apple cider vinegar",
         "fdc_id": "173469",
         "amount_of_grams": 100.0,
@@ -924,7 +924,7 @@
         "active": true
     },
     {
-        "id": "bread_crumbs",
+        "id": "c877173a-f950-4a73-a777-5e1b9288e2c8",
         "name": "bread crumbs",
         "fdc_id": "172806",
         "amount_of_grams": 100.0,
@@ -935,7 +935,7 @@
         "active": true
     },
     {
-        "id": "oregano",
+        "id": "a0591abb-c21e-4601-8584-5aa26893d8fe",
         "name": "oregano",
         "fdc_id": "171328",
         "amount_of_grams": 100.0,
@@ -946,7 +946,7 @@
         "active": true
     },
     {
-        "id": "sage",
+        "id": "d8034b30-48d9-4977-a1ae-9b732994b77a",
         "name": "sage",
         "fdc_id": "170935",
         "amount_of_grams": 100.0,
@@ -957,7 +957,7 @@
         "active": true
     },
     {
-        "id": "buttery_steakhouse",
+        "id": "9b63f45d-6ac4-46f3-95a4-1f9858d89adc",
         "name": "buttery steakhouse",
         "fdc_id": "1936138",
         "amount_of_grams": 100.0,
@@ -968,7 +968,7 @@
         "active": true
     },
     {
-        "id": "lemon_juice",
+        "id": "90b481f8-ab5e-4d9b-a0d1-b6e4bfe139dd",
         "name": "lemon juice",
         "fdc_id": "2344675",
         "amount_of_grams": 100.0,
@@ -979,7 +979,7 @@
         "active": true
     },
     {
-        "id": "pasta_varieties_cooked",
+        "id": "03b8f0c6-38dd-4797-b367-c6ad3ae3ca59",
         "name": "cooked pasta",
         "fdc_id": "172014",
         "amount_of_grams": 100.0,
@@ -990,7 +990,7 @@
         "active": true
     },
     {
-        "id": "peanut_butter",
+        "id": "5ebd4b9e-7ff9-442b-a3d2-eb84392b2d8e",
         "name": "peanut butter",
         "fdc_id": "2343014",
         "amount_of_grams": 100.0,
@@ -1001,7 +1001,7 @@
         "active": true
     },
     {
-        "id": "lime_juice",
+        "id": "811c8e50-232a-4a8e-9c95-7eb4f0373e19",
         "name": "lime_juice",
         "fdc_id": "2344680",
         "amount_of_grams": 100.0,
@@ -1012,7 +1012,7 @@
         "active": true
     },
     {
-        "id": "sriracha",
+        "id": "ef03b723-fbda-4780-a9e4-c3ff7c0860cc",
         "name": "sriracha",
         "fdc_id": "2345257",
         "amount_of_grams": 100.0,
@@ -1023,7 +1023,7 @@
         "active": true
     },
     {
-        "id": "cumin",
+        "id": "f9dea742-1153-4529-a52e-3372adf3510b",
         "name": "cumin",
         "fdc_id": "170923",
         "amount_of_grams": 100.0,
@@ -1034,7 +1034,7 @@
         "active": true
     },
     {
-        "id": "tofu",
+        "id": "f2d6bb52-1893-402b-bb3c-08aebb2f0555",
         "name": "tofu",
         "fdc_id": "173788",
         "amount_of_grams": 100.0,
@@ -1045,7 +1045,7 @@
         "active": true
     },
     {
-        "id": "taco_seasoning",
+        "id": "d44737bd-e47b-4ff9-90fb-fe4b36a9e78f",
         "name": "taco seasoning",
         "fdc_id": "172243",
         "amount_of_grams": 100.0,
@@ -1056,7 +1056,7 @@
         "active": true
     },
     {
-        "id": "wine_cooking",
+        "id": "dc85d00b-24ac-4e56-8861-5c90457525f8",
         "name": "cooking wine",
         "fdc_id": "2346185",
         "amount_of_grams": 100.0,
@@ -1067,7 +1067,7 @@
         "active": true
     },
     {
-        "id": "green_olives",
+        "id": "7b04e6a9-b17e-4747-9340-eb3ae1659e40",
         "name": "green olives",
         "fdc_id": "2345616",
         "amount_of_grams": 100.0,
@@ -1078,7 +1078,7 @@
         "active": true
     },
     {
-        "id": "avocado_crema",
+        "id": "704480d5-f79f-45f1-9b92-9f5b0cc850b5",
         "name": "avocado crema",
         "fdc_id": "2345765",
         "amount_of_grams": 100.0,
@@ -1089,7 +1089,7 @@
         "active": true
     },
     {
-        "id": "salsa_verde",
+        "id": "ff8d48eb-763c-4fd4-903d-0cf0e6c27cc7",
         "name": "salsa verde",
         "fdc_id": "2345256",
         "amount_of_grams": 100.0,
@@ -1100,7 +1100,7 @@
         "active": true
     },
     {
-        "id": "italian_pork_sausage",
+        "id": "1759ede9-9c6a-4ab8-8118-56baf306efe7",
         "name": "italian pork sausage",
         "fdc_id": "746780",
         "amount_of_grams": 100.0,
@@ -1111,7 +1111,7 @@
         "active": true
     },
     {
-        "id": "carrots",
+        "id": "78438877-ef98-4703-a41d-c2a3dbd9327b",
         "name": "carrots",
         "fdc_id": "2345173",
         "amount_of_grams": 100.0,
@@ -1122,7 +1122,7 @@
         "active": true
     },
     {
-        "id": "celery",
+        "id": "e3ec83e6-0b6f-4726-ae27-ade3e729684b",
         "name": "celery",
         "fdc_id": "2345298",
         "amount_of_grams": 100.0,
@@ -1133,7 +1133,7 @@
         "active": true
     },
     {
-        "id": "tomato",
+        "id": "e8eaee90-6dbc-43e3-8ffb-ca9d1967410d",
         "name": "tomato",
         "fdc_id": "2345232",
         "amount_of_grams": 100.0,
@@ -1144,7 +1144,7 @@
         "active": true
     },
     {
-        "id": "beef_broth",
+        "id": "ec1a53ab-10a1-4bb0-a445-7d00100dd67e",
         "name": "beef broth",
         "fdc_id": "2342568",
         "amount_of_grams": 100.0,
@@ -1155,7 +1155,7 @@
         "active": true
     },
     {
-        "id": "cinnamon",
+        "id": "bb176dc3-ed20-40d6-95a8-e4ec6f20423e",
         "name": "cinnamon",
         "fdc_id": "171320",
         "amount_of_grams": 100.0,
@@ -1166,7 +1166,7 @@
         "active": true
     },
     {
-        "id": "white_bread",
+        "id": "cd77e7ad-7f22-476a-af1c-d856eb2217ba",
         "name": "white bread",
         "fdc_id": "2343073",
         "amount_of_grams": 100.0,
@@ -1177,7 +1177,7 @@
         "active": true
     },
     {
-        "id": "old_fashioned_oats",
+        "id": "cf19cdab-8958-43a3-8d33-db9a1301e0c2",
         "name": "old fashioned oats",
         "fdc_id": "2346396",
         "amount_of_grams": 100.0,
@@ -1188,7 +1188,7 @@
         "active": true
     },
     {
-        "id": "banana",
+        "id": "cfbc0758-4115-4328-a3e4-582b5f09898b",
         "name": "banana",
         "fdc_id": "2344720",
         "amount_of_grams": 100.0,
@@ -1199,7 +1199,7 @@
         "active": true
     },
     {
-        "id": "date",
+        "id": "ad6098bd-d393-480f-8a16-a063d0b17755",
         "name": "date",
         "fdc_id": "2344698",
         "amount_of_grams": 100.0,
@@ -1210,7 +1210,7 @@
         "active": true
     },
     {
-        "id": "chocolate_chips",
+        "id": "1fbea76b-7b3d-49a9-89c1-f73ba6f5e5ce",
         "name": "chocolate chips",
         "fdc_id": "2345893",
         "amount_of_grams": 100.0,
@@ -1221,7 +1221,7 @@
         "active": true
     },
     {
-        "id": "empanada_dough",
+        "id": "c5c12854-5fa7-425c-ac62-b695a4cb8fe6",
         "name": "empanada dough",
         "fdc_id": "2079820",
         "amount_of_grams": 100.0,
@@ -1232,7 +1232,7 @@
         "active": true
     },
     {
-        "id": "cauliflower",
+        "id": "cabdc229-d2bc-4687-93eb-8cc4cb07d1c3",
         "name": "cauliflower",
         "fdc_id": "2345297",
         "amount_of_grams": 100.0,
@@ -1243,7 +1243,7 @@
         "active": true
     },
     {
-        "id": "vegetable_broth",
+        "id": "3a2502e7-f64c-4665-834e-86f5ff9557b1",
         "name": "vegetable broth",
         "fdc_id": "2345664",
         "amount_of_grams": 100.0,
@@ -1254,7 +1254,7 @@
         "active": true
     },
     {
-        "id": "puff_pastry",
+        "id": "f9f8f2a7-7b9a-4c27-ab80-420e4ee762ab",
         "name": "puff pastry",
         "fdc_id": "2343536",
         "amount_of_grams": 100.0,
@@ -1265,7 +1265,7 @@
         "active": true
     },
     {
-        "id": "guava_paste",
+        "id": "4033d0e8-b91d-4841-8aa7-fa18a4feb534",
         "name": "guava paste",
         "fdc_id": "2345867",
         "amount_of_grams": 100.0,
@@ -1276,7 +1276,7 @@
         "active": true
     },
     {
-        "id": "goat_cheese",
+        "id": "3b7fd048-0834-4c9c-a936-0b829c53a06e",
         "name": "goat_cheese",
         "fdc_id": "2341119",
         "amount_of_grams": 100.0,
@@ -1287,7 +1287,7 @@
         "active": true
     },
     {
-        "id": "white_button_mushrooms",
+        "id": "b63af742-cec9-47d4-8bcf-bb00aef39f76",
         "name": "white button mushrooms",
         "fdc_id": "1999629",
         "amount_of_grams": 100.0,
@@ -1298,7 +1298,7 @@
         "active": true
     },
     {
-        "id": "crimini_mushroom",
+        "id": "7beba010-7f72-43a5-b0af-14f89cad8ca6",
         "name": "crimini mushroom",
         "fdc_id": "2003601",
         "amount_of_grams": 100.0,
@@ -1309,7 +1309,7 @@
         "active": true
     },
     {
-        "id": "broccoli_raw",
+        "id": "8aeacc67-5930-4408-aa20-86ea92a25fab",
         "name": "broccoli raw",
         "fdc_id": "2345151",
         "amount_of_grams": 100.0,
@@ -1320,7 +1320,7 @@
         "active": true
     },
     {
-        "id": "tomato_sauce",
+        "id": "5e23711c-5fee-42fb-85ae-5ef38b2654ee",
         "name": "tomato sauce",
         "fdc_id": "170463",
         "amount_of_grams": 100.0,
@@ -1331,7 +1331,7 @@
         "active": true
     },
     {
-        "id": "whole_milk",
+        "id": "5f8d19d4-136f-452c-8b9a-da07431b9f6d",
         "name": "whole_milk",
         "fdc_id": "746782",
         "amount_of_grams": 100.0,
@@ -1342,7 +1342,7 @@
         "active": true
     },
     {
-        "id": "flour",
+        "id": "57786d27-ede7-47e7-a592-561d75bb72d4",
         "name": "flour",
         "fdc_id": "2003586",
         "amount_of_grams": 100.0,
@@ -1353,7 +1353,7 @@
         "active": true
     },
     {
-        "id": "coconut_milk",
+        "id": "bbb3255d-71f0-4e0a-98c3-4baf5c8e08ca",
         "name": "coconut milk",
         "fdc_id": "2085493",
         "amount_of_grams": 100.0,

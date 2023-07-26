@@ -4,7 +4,9 @@ from dto.USDA_Ingredient_DTO import USDA_Ingredient_DTO
 
 
 class USDA_Ingredient_Domain(Base_Domain):
-    def __init__(self, usda_ingredient_object: USDA_Ingredient_Model | USDA_Ingredient_DTO) -> None:
+    def __init__(
+        self, usda_ingredient_object: USDA_Ingredient_Model | USDA_Ingredient_DTO
+    ) -> None:
         self.id: str = usda_ingredient_object.id
         self.name: str = usda_ingredient_object.name
         self.fdc_id: str = usda_ingredient_object.fdc_id
