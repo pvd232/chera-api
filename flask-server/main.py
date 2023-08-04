@@ -10,11 +10,136 @@ from flask import (
     session,
     redirect,
 )
+import flask
 import json
 from werkzeug.exceptions import HTTPException
 from typing import Optional
 import stripe
 import uuid
+
+from functools import wraps
+import six
+from dotenv import load_dotenv
+from jose import jwt
+
+load_dotenv()
+
+######################################################################################
+# Error Handler
+class AuthError(Exception):
+    def __init__(self, error, status_code):
+        self.error = error
+        self.status_code = status_code
+
+
+@app.errorhandler(AuthError)
+def handle_auth_error(ex):
+    response = jsonify(ex.error)
+    response.status_code = ex.status_code
+    return response
+
+
+# Format error response and append status code
+def get_token_auth_header():
+    """
+    Obtains the Access Token from the Authorization Header
+    """
+    auth = request.headers.get("Authorization", None)
+    if not auth:
+        raise AuthError(
+            {
+                "code": "authorization_header_missing",
+                "description": "Authorization header is expected",
+            },
+            401,
+        )
+    parts = auth.split()
+    if parts[0].lower() != "bearer":
+        raise AuthError(
+            {
+                "code": "invalid_header",
+                "description": "Authorization header must start with" " Bearer",
+            },
+            401,
+        )
+    elif len(parts) == 1:
+        raise AuthError(
+            {"code": "invalid_header", "description": "Token not found"}, 401
+        )
+    elif len(parts) > 2:
+        raise AuthError(
+            {
+                "code": "invalid_header",
+                "description": "Authorization header must be" " Bearer token",
+            },
+            401,
+        )
+    token = parts[1]
+    return token
+
+
+def requires_auth(f):
+    """
+    Determines if the Access Token is valid
+    """
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = get_token_auth_header()
+        jsonurl = six.moves.urllib.request.urlopen(
+            "https://" + os.getenv("AUTH0_DOMAIN") + "/.well-known/jwks.json"
+        )
+        jwks = json.loads(jsonurl.read())
+        unverified_header = jwt.get_unverified_header(token)
+        rsa_key = {}
+        for key in jwks["keys"]:
+            if key["kid"] == unverified_header["kid"]:
+                rsa_key = {
+                    "kty": key["kty"],
+                    "kid": key["kid"],
+                    "use": key["use"],
+                    "n": key["n"],
+                    "e": key["e"],
+                }
+        if rsa_key:
+            try:
+                payload = jwt.decode(
+                    token,
+                    rsa_key,
+                    algorithms=os.getenv("ALGORITHMS"),
+                    audience=os.getenv("AUTH0_AUDIENCE"),
+                    issuer="https://" + os.getenv("AUTH0_DOMAIN") + "/",
+                )
+            except jwt.ExpiredSignatureError:
+                raise AuthError(
+                    {"code": "token_expired", "description": "token is expired"}, 401
+                )
+            except jwt.JWTClaimsError:
+                raise AuthError(
+                    {
+                        "code": "invalid_claims",
+                        "description": "incorrect claims,"
+                        "please check the audience and issuer",
+                    },
+                    401,
+                )
+            except Exception:
+                raise AuthError(
+                    {
+                        "code": "invalid_header",
+                        "description": "Unable to parse authentication" " token.",
+                    },
+                    401,
+                )
+
+            flask._request_ctx_stack.top.current_user = payload
+            return f(*args, **kwargs)
+        raise AuthError(
+            {"code": "invalid_header", "description": "Unable to find appropriate key"},
+            401,
+        )
+
+    return decorated
+######################################################################################
 
 
 @app.errorhandler(404)
@@ -435,6 +560,7 @@ def sign_up_email_reminder() -> Response:
 
 
 @app.route("/api/test_dietetic", methods=["POST"])
+@requires_auth
 def validate_dietetic_registration_number() -> Response:
     import requests
 
@@ -962,7 +1088,7 @@ def stripe_webhook() -> Response:
 
 
 @app.route("/api/delivery_date", methods=["GET"])
-# @requires_auth
+@requires_auth
 def delivery_date() -> None:
     from service.Date_Service import Date_Service
     from flask import jsonify
@@ -979,6 +1105,7 @@ def delivery_date() -> None:
 
 
 @app.route("/api/staged_client/reminder", methods=["GET"])
+@requires_auth
 def send_reminder() -> Response:
     from service.Staged_Client_Service import Staged_Client_Service
     from service.Email_Service import Email_Service
@@ -996,6 +1123,7 @@ def send_reminder() -> Response:
 
 
 @app.route("/api/dietitian", methods=["POST"])
+@requires_auth
 def dietitian() -> Response | Response:
     from repository.Meal_Repository import Meal_Repository
     from repository.Meal_Sample_Repository import Meal_Sample_Repository
@@ -1061,6 +1189,7 @@ def dietitian() -> Response | Response:
 
 
 @app.route("/api/shippo/meal_sample_shipment", methods=["POST"])
+@requires_auth
 def create_meal_sample_shipment() -> Response:
     from repository.Meal_Sample_Shipment_Repository import (
         Meal_Sample_Shipment_Repository,
@@ -1084,6 +1213,7 @@ def create_meal_sample_shipment() -> Response:
 
 
 @app.route("/api/email/meal_sample", methods=["POST"])
+@requires_auth
 def sample_order_confirmation() -> Response:
     from repository.Meal_Repository import Meal_Repository
     from repository.Meal_Sample_Shipment_Repository import (
@@ -1223,6 +1353,7 @@ def authenticate_client() -> Response:
 
 
 @app.route("/api/extended_client", methods=["GET"])
+@requires_auth
 def extended_clients() -> Response:
     from service.Extended_Client_Service import Extended_Client_Service
     from repository.Client_Repository import Client_Repository
@@ -1254,6 +1385,7 @@ def extended_clients() -> Response:
 
 
 @app.route("/api/client/<string:client_id>", methods=["GET", "PUT"])
+@requires_auth
 def update_client(client_id: str) -> Response:
     from repository.Client_Repository import Client_Repository
     from service.Client_Service import Client_Service
@@ -1278,6 +1410,7 @@ def update_client(client_id: str) -> Response:
 
 
 @app.route("/api/client", methods=["GET", "POST", "PUT"])
+@requires_auth
 def client() -> Response:
     from service.Client_Service import Client_Service
     from service.Email_Service import Email_Service
@@ -1353,6 +1486,7 @@ def get_stripe_invoice() -> Response:
 
 
 @app.route("/api/stripe/customer/<string:customer_id>", methods=["DELETE"])
+@requires_auth
 def delete_stripe_invoice(customer_id: str) -> Response:
     from service.Stripe_Service import Stripe_Service
 
@@ -1364,6 +1498,7 @@ def delete_stripe_invoice(customer_id: str) -> Response:
 
 
 @app.route("/api/stripe/subscription", methods=["POST", "PUT", "GET", "DELETE"])
+@requires_auth
 def stripe_subscription_data() -> Response:
     from models import stripe_one_time_account_setup_fee
     from repository.COGS_Repository import COGS_Repository
@@ -1474,6 +1609,7 @@ def hello():
 
 
 @app.route("/api/extended_staged_client", methods=["GET"])
+@requires_auth
 def extended_staged_client() -> Response:
     from service.Extended_Staged_Client_Service import Extended_Staged_Client_Service
     from repository.Staged_Client_Repository import Staged_Client_Repository
@@ -1510,6 +1646,7 @@ def extended_staged_client() -> Response:
     defaults={"staged_client_id": None},
     methods=["GET", "POST", "PUT"],
 )
+@requires_auth
 def staged_client(staged_client_id: Optional[str]) -> Response:
     from service.Staged_Client_Service import Staged_Client_Service
     from service.Email_Service import Email_Service
@@ -1731,7 +1868,7 @@ def recipe_ingredient_nutrient() -> Response:
 
 
 @app.route("/api/extended_meal", methods=["GET"])
-# @requires_auth
+@requires_auth
 def extended_meal() -> Response:
     from service.Extended_Meal_Service import Extended_Meal_Service
     from repository.Meal_Repository import Meal_Repository
@@ -1956,6 +2093,7 @@ def extended_meal_plan_meal() -> Response:
 
 
 @app.route("/api/extended_scheduled_order_meal", methods=["GET"])
+@requires_auth
 def extended_scheduled_order_meal() -> Response:
     from service.Extended_Scheduled_Order_Meal_Service import (
         Extended_Scheduled_Order_Meal_Service,
@@ -1997,6 +2135,7 @@ def extended_scheduled_order_meal() -> Response:
 
 
 @app.route("/api/scheduled_order_meal", methods=["GET", "POST", "PUT", "DELETE"])
+@requires_auth
 def scheduled_order_meal() -> Response:
     from service.Date_Service import Date_Service
     from service.Scheduled_Order_Meal_Service import Scheduled_Order_Meal_Service
@@ -2094,7 +2233,7 @@ def scheduled_order_meal() -> Response:
 
 
 @app.route("/api/extended_schedule_meal", methods=["GET"])
-# @requires_auth
+@requires_auth
 def extended_schedule_meal() -> Response:
     from service.Extended_Schedule_Meal_Service import Extended_Schedule_Meal_Service
     from service.Client_Service import Client_Service
@@ -2148,6 +2287,7 @@ def extended_schedule_meal() -> Response:
 
 
 @app.route("/api/schedule_meal", methods=["GET", "POST", "DELETE"])
+@requires_auth
 def schedule_meal() -> Response:
     from service.Schedule_Meal_Service import Schedule_Meal_Service
     from service.Client_Service import Client_Service
@@ -2211,6 +2351,7 @@ def schedule_meal() -> Response:
 
 
 @app.route("/api/extended_staged_schedule_meal", methods=["GET"])
+@requires_auth
 def extended_staged_schedule_meal() -> Response:
     from service.Extended_Staged_Schedule_Meal_Service import (
         Extended_Staged_Schedule_Meal_Service,
@@ -2248,6 +2389,7 @@ def extended_staged_schedule_meal() -> Response:
 
 
 @app.route("/api/staged_schedule_meal", methods=["GET", "POST"])
+@requires_auth
 def staged_schedule_meal() -> Response:
     from repository.Staged_Schedule_Meal_Repository import (
         Staged_Schedule_Meal_Repository,
@@ -2285,7 +2427,7 @@ def staged_schedule_meal() -> Response:
 # ---> Snacks <--- #
 @app.route("/api/snack/<string:snack_id>", methods=["DELETE"])
 @app.route("/api/snack", defaults={"snack_id": None}, methods=["GET", "POST"])
-# @requires_auth
+@requires_auth
 def snack(snack_id: Optional[str]) -> Response:
     from repository.Snack_Repository import Snack_Repository
     from service.Snack_Service import Snack_Service
@@ -2317,6 +2459,7 @@ def snack(snack_id: Optional[str]) -> Response:
 
 
 @app.route("/api/schedule_snack", methods=["GET", "POST", "DELETE"])
+@requires_auth
 def schedule_snack() -> Response:
     from service.Schedule_Snack_Service import Schedule_Snack_Service
     from service.Client_Service import Client_Service
@@ -2388,6 +2531,7 @@ def schedule_snack() -> Response:
 
 
 @app.route("/api/scheduled_order_snack", methods=["GET", "POST", "PUT", "DELETE"])
+@requires_auth
 def scheduled_order_snack() -> Response:
     from service.Date_Service import Date_Service
     from service.Scheduled_Order_Snack_Service import Scheduled_Order_Snack_Service
@@ -2488,6 +2632,7 @@ def scheduled_order_snack() -> Response:
 
 
 @app.route("/api/extended_scheduled_order_snack", methods=["GET"])
+@requires_auth
 def extended_scheduled_order_snack() -> Response:
     from service.Extended_Scheduled_Order_Snack_Service import (
         Extended_Scheduled_Order_Snack_Service,
@@ -2531,6 +2676,7 @@ def extended_scheduled_order_snack() -> Response:
 
 
 @app.route("/api/order_snack", methods=["POST", "GET"])
+@requires_auth
 def order_snack() -> Response:
     from service.Order_Snack_Service import Order_Snack_Service
     from repository.Order_Snack_Repository import Order_Snack_Repository
@@ -2705,6 +2851,7 @@ def extended_meal_plan_snack() -> Response:
 
 
 @app.route("/api/staged_schedule_snack", methods=["POST", "GET"])
+@requires_auth
 def staged_schedule_snack() -> Response:
     from repository.Staged_Schedule_Snack_Repository import (
         Staged_Schedule_Snack_Repository,
@@ -2779,6 +2926,7 @@ def extended_staged_schedule_snack() -> Response:
 
 
 @app.route("/api/dietitian_prepayment", methods=["POST"])
+@requires_auth
 def dietitian_prepayment() -> Response:
     from repository.Dietitian_Prepayment_Repository import (
         Dietitian_Prepayment_Repository,
@@ -2857,6 +3005,7 @@ def dietitian_prepayment() -> Response:
 @app.route(
     "/api/meal_subscription/<string:meal_subscription_id>", methods=["GET", "PUT"]
 )
+@requires_auth
 def specific_meal_subscription(meal_subscription_id: str) -> Response:
     from repository.Meal_Subscription_Repository import Meal_Subscription_Repository
     from service.Meal_Subscription_Service import Meal_Subscription_Service
@@ -2900,7 +3049,7 @@ def specific_meal_subscription(meal_subscription_id: str) -> Response:
 
 
 @app.route("/api/meal_subscription", methods=["POST", "GET"])
-# @requires_auth
+@requires_auth
 def meal_subscription() -> Response:
     from repository.Meal_Subscription_Repository import Meal_Subscription_Repository
     from service.Meal_Subscription_Service import Meal_Subscription_Service
@@ -2979,7 +3128,7 @@ def meal_subscription() -> Response:
 
 
 @app.route("/api/meal_plan", methods=["GET"])
-# @requires_auth
+@requires_auth
 def meal_plan() -> Response:
     from service.Meal_Plan_Service import Meal_Plan_Service
     from repository.Meal_Plan_Repository import Meal_Plan_Repository
@@ -3041,6 +3190,7 @@ def extended_order_meal() -> Response:
 
 
 @app.route("/api/order_meal", methods=["POST", "GET"])
+@requires_auth
 def order_meal() -> Response:
     from service.Order_Meal_Service import Order_Meal_Service
     from repository.Order_Meal_Repository import Order_Meal_Repository
@@ -3088,6 +3238,7 @@ def cogs() -> Response:
 
 
 @app.route("/api/eating_disorder", methods=["GET"])
+@requires_auth
 def eating_disorder() -> Response:
     from repository.Eating_Disorder_Repository import Eating_Disorder_Repository
     from service.Eating_Disorder_Service import Eating_Disorder_Service
@@ -3121,6 +3272,7 @@ def shipping_cost() -> Response:
 @app.route(
     "/api/meal_subscription/<string:meal_subscription_id>/first_week", methods=["GET"]
 )
+@requires_auth
 def is_first_week(meal_subscription_id: UUID) -> Response:
     from service.Scheduled_Order_Meal_Service import Scheduled_Order_Meal_Service
     from repository.Scheduled_Order_Meal_Repository import (
@@ -3137,6 +3289,7 @@ def is_first_week(meal_subscription_id: UUID) -> Response:
 
 
 @app.route("/api/meal_subscription/skip_week", methods=["PUT"])
+@requires_auth
 def skip_week() -> Response:
     from service.Date_Service import Date_Service
     from service.Scheduled_Order_Meal_Service import Scheduled_Order_Meal_Service
@@ -3181,6 +3334,7 @@ def skip_week() -> Response:
 
 
 @app.route("/api/meal_subscription_invoice", methods=["GET", "POST"])
+@requires_auth
 def meal_subscription_invoice() -> Response:
     from repository.Client_Repository import Client_Repository
     from repository.Meal_Subscription_Invoice_Repository import (
@@ -3364,6 +3518,7 @@ def sales_tax() -> Response:
 
 
 @app.route("/api/order_discount", methods=["POST"])
+@requires_auth
 def order_discount() -> Response:
     from service.Order_Discount_Service import Order_Discount_Service
     from repository.Order_Discount_Repository import Order_Discount_Repository
@@ -3379,6 +3534,7 @@ def order_discount() -> Response:
 
 
 @app.route("/api/discount", methods=["GET"])
+@requires_auth
 def verify_discount() -> Response:
     from service.Discount_Service import Discount_Service
     from repository.Discount_Repository import Discount_Repository
@@ -3461,6 +3617,7 @@ def get_customer_details(customer_id):
 
 
 @app.route("/api/stripe/payment_intent", methods=["POST"])
+@requires_auth
 def create_stripe_payment_intent() -> Response:
     from repository.Discount_Repository import Discount_Repository
     from repository.COGS_Repository import COGS_Repository
@@ -3522,6 +3679,7 @@ def create_stripe_payment_intent() -> Response:
 
 
 @app.route("/api/client/update_address", methods=["PUT"])
+@requires_auth
 def update_client_address() -> Response:
     from service.Client_Service import Client_Service
     from repository.Client_Repository import Client_Repository
@@ -3539,6 +3697,7 @@ def update_client_address() -> Response:
 
 
 @app.route("/api/dietitian/sample_trial_period", methods=["GET"])
+@requires_auth
 def sample_trial_period() -> Response:
     if request.method == "GET":
         return jsonify(True), 200
@@ -3547,6 +3706,7 @@ def sample_trial_period() -> Response:
 
 
 @app.route("/api/meal_nutrient_stats", methods=["GET"])
+@requires_auth
 def extended_meal_plan_meal_v2() -> Response:
     from repository.Meal_Plan_Meal_Repository import Meal_Plan_Meal_Repository
     from repository.Meal_Plan_Repository import Meal_Plan_Repository
@@ -3691,6 +3851,7 @@ def extended_meal_plan_snack_v2() -> Response:
 
 
 @app.route("/api/nysand_lead", methods=["POST"])
+@requires_auth
 def nysand_lead() -> Response:
     if request.method == "POST":
         from repository.NYSAND_Lead_Repository import NYSAND_Lead_Repository
