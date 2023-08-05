@@ -21,7 +21,6 @@ class Meal_Nutrient_Stats_DTO(Food_Nutrient_Stats_DTO):
         carb_k_cal: float,
         weight: float,
         active: bool,
-        # associated_meal: "Extended_Meal_Domain",
         meal_id: UUID,
     ):
         super().__init__(
