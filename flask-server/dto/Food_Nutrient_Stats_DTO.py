@@ -1,15 +1,16 @@
 from .Base_DTO import Base_DTO
 from typing import TYPE_CHECKING
-from dto.Meal_Plan_DTO import Meal_Plan_DTO
+from uuid import UUID
 
 if TYPE_CHECKING:
     from .Nutrient_Daily_Value_DTO import Nutrient_Daily_Value_DTO
-    from domain.Meal_Plan_Domain import Meal_Plan_Domain
 
 
 class Food_Nutrient_Stats_DTO(Base_DTO):
     def __init__(
         self,
+        id: UUID,
+        meal_plan_id: UUID,
         recipe: list[str],
         nutrients: list["Nutrient_Daily_Value_DTO"],
         k_cal: float,
@@ -17,8 +18,10 @@ class Food_Nutrient_Stats_DTO(Base_DTO):
         fat_k_cal: float,
         carb_k_cal: float,
         weight: float,
-        associated_meal_plan: "Meal_Plan_Domain",
+        active: bool,
     ):
+        self.id = id
+        self.meal_plan_id = meal_plan_id
         self.recipe = recipe
         self.nutrients = nutrients
         self.k_cal = k_cal
@@ -26,4 +29,14 @@ class Food_Nutrient_Stats_DTO(Base_DTO):
         self.fat_k_cal = fat_k_cal
         self.carb_k_cal = carb_k_cal
         self.weight = weight
-        self.associated_meal_plan = Meal_Plan_DTO(meal_plan_domain=associated_meal_plan)
+        self.active = active
+
+    def serialize(self):
+        serialized_attributes = super().serialize()
+        serialized_nutrients = []
+        for nutrient in self.nutrients:
+            serialized_nutrient = nutrient.serialize()
+            serialized_nutrients.append(serialized_nutrient)
+        serialized_attributes["nutrients"] = serialized_nutrients
+
+        return serialized_attributes
