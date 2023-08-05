@@ -42,7 +42,7 @@ class Food_Nutrient_Stats_Service:
                 carb_k_cal=serialized_food["carb_k_cal"],
                 weight=total_grams,
                 active=extended_meal_plan_food.active,
-                associated_meal=extended_meal_plan_food.associated_meal,
+                meal_id=extended_meal_plan_food.associated_meal.id,
             )
         else:
             return Snack_Nutrient_Stats_DTO(
