@@ -3541,7 +3541,7 @@ def update_client_address() -> Response:
 @app.route("/api/dietitian/sample_trial_period", methods=["GET"])
 def sample_trial_period() -> Response:
     if request.method == "GET":
-        return jsonify(True), 200
+        return jsonify(False), 200
     else:
         return Response(status=405)
 
