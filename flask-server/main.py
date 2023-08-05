@@ -305,6 +305,7 @@ def continuity_initialize() -> Response:
         "DB_PASSWORD"
     )
 
+
     live_db_string = os.getenv("DB_STRING") or get_db_connection_string(
         username=db_username, password=db_password, db_name="nourishdb"
     )
@@ -3406,7 +3407,13 @@ def stripe_payment_methods(client_stripe_id: str) -> Response:
     payment_methods = Stripe_Service().get_payment_methods(
         client_stripe_id=client_stripe_id
     )
-    return jsonify(payment_methods.data[0].card.last4), 200
+    print(payment_methods)
+    response = {
+            'last4': payment_methods.data[0].card.last4,
+            'exp_month': payment_methods.data[0].card.exp_month,
+            'exp_year': payment_methods.data[0].card.exp_year
+        }
+    return jsonify(response), 200
     # return Response(status=201)
 
 
@@ -3458,7 +3465,80 @@ def get_customer_details(customer_id):
     except stripe.error.StripeError as e:
         error_message = e.user_message or str(e)
         return False, error_message
+    
+@app.route("/api/stripe/check_last_payment/<string:customer_id>/", methods=["GET"])
+def check_last_payment(customer_id):
+    try:
+        invoices = stripe.Invoice.list(customer=customer_id)
+        last_invoice = invoices.data[0]
+        last_invoice_status = last_invoice.status
 
+        if last_invoice_status == 'failed':
+            response = {
+                'status': 'failed',
+                'message': 'The last payment for this customer has failed.'
+            }
+        else:
+            response = {
+                'status': 'success',
+                'message': 'The last payment for this customer was successful.'
+            }
+
+        return jsonify(response), 200
+
+    except stripe.error.StripeError as e:
+        # Handle any Stripe API errors
+        error_message = str(e)
+        response = {
+            'status': 'error',
+            'message': 'An error occurred while checking the payment status.',
+            'error': error_message
+        }
+        return jsonify(response), 500
+    
+    
+@app.route("/api/stripe/get_client_payment_invoices/<string:customer_id>/", methods=["GET"])
+def get_client_payment_invoices(customer_id):
+    try:
+        invoices = stripe.Invoice.list(customer=customer_id, limit=10)
+        invoice_details = []
+
+        for invoice in invoices.data:
+            invoice_url = invoice.hosted_invoice_url
+            invoice_price = invoice.amount_due
+            invoice_created = datetime.fromtimestamp(invoice.created).strftime('%Y-%m-%d')
+            invoice_number = invoice.number;
+            last_invoice_status = invoice.status;
+            if last_invoice_status == 'failed':
+                invoice_status = 'failed';
+            else:
+                invoice_status = 'success';
+
+            invoice_details.append({
+                'invoice_url': invoice_url,
+                'invoice_price': invoice_price,
+                'invoice_created': invoice_created,
+                'invoice_number' : invoice_number,
+                'invoice_status' : invoice_status,
+            })
+
+        response = {
+            'status': 'success',
+            'message': 'Invoice details retrieved successfully.',
+            'invoices': invoice_details
+        }
+
+        return jsonify(response), 200
+
+    except stripe.error.StripeError as e:
+        # Handle any Stripe API errors
+        error_message = str(e)
+        response = {
+            'status': 'error',
+            'message': 'An error occurred while retrieving the invoice details.',
+            'error': error_message
+        }
+        return jsonify(response), 500
 
 @app.route("/api/stripe/payment_intent", methods=["POST"])
 def create_stripe_payment_intent() -> Response:
