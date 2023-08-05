@@ -36,5 +36,4 @@ class Meal_Nutrient_Stats_DTO(Food_Nutrient_Stats_DTO):
             weight=weight,
             active=active,
         )
-        # self.associated_meal = Extended_Meal_DTO(extended_meal_domain=associated_meal)
         self.meal_id = meal_id
