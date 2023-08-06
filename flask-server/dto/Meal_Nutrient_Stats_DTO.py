@@ -1,5 +1,4 @@
 from .Food_Nutrient_Stats_DTO import Food_Nutrient_Stats_DTO
-from dto.Extended_Meal_DTO import Extended_Meal_DTO
 from typing import TYPE_CHECKING
 from uuid import UUID
 
