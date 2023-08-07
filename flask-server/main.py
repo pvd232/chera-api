@@ -1043,7 +1043,7 @@ def dietitian() -> Response | Response:
             gcp_secret_manager_service=GCP_Secret_Manager_Service(),
         ).send_new_user_sign_up_notification(
             first_name="Peter",
-            email="patardriscoll@gmail.com",
+            email="peterdriscoll@cherahealth.com",
             user_type="Dietitian",
             user=created_dietitian_domain,
             env=env,
@@ -1151,72 +1151,6 @@ def get_dietitian(dietitian_id: str) -> Response:
             return jsonify(dietitian_DTO.serialize()), 200
         else:
             return Response(status=404)
-    else:
-        return Response(status=405)
-
-
-@app.route("/api/dietitian/authenticate", methods=["GET"])
-def authenticate_dietitian() -> Response:
-    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
-    from service.Dietitian_Service import Dietitian_Service
-    from repository.Dietitian_Repository import Dietitian_Repository
-    from domain.Dietitian_Domain import Dietitian_Domain
-    from dto.Dietitian_DTO import Dietitian_DTO
-    import base64
-
-    if request.method == "GET":
-        # Auth credentials sent in following HTTP header format <Authorization: Basic {{Username}}:{{Passowrd}}>
-        base_64_auth_credentials: str | None = request.headers.get(
-            "Authorization"
-        ).split(" ")[1]
-        base64_bytes: bytes = base_64_auth_credentials.encode("ascii")
-        message_bytes: bytes = base64.b64decode(base64_bytes)
-        message: str = message_bytes.decode("ascii")
-        username: str = message.split(":")[0]
-        password: str = message.split(":")[1]
-        dietitian: Optional[Dietitian_Domain] = Dietitian_Service(
-            dietitian_repository=Dietitian_Repository(db=db)
-        ).authenticate_dietitian(dietitian_id=username, password=password)
-        if dietitian:
-            dietitian_dto = Dietitian_DTO(
-                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
-                dietitian_domain=dietitian,
-            )
-            serialized_dietitian_dto = dietitian_dto.serialize()
-            return jsonify(serialized_dietitian_dto), 200
-        else:
-            return Response(status=401)
-    else:
-        return Response(status=405)
-
-
-@app.route("/api/client/authenticate", methods=["GET"])
-def authenticate_client() -> Response:
-    from service.Client_Service import Client_Service
-    from repository.Client_Repository import Client_Repository
-    from domain.Client_Domain import Client_Domain
-    from dto.Client_DTO import Client_DTO
-    import base64
-
-    if request.method == "GET":
-        # Auth credentials sent in following HTTP header format <Authorization: Basic {{Username}}:{{Passowrd}}>
-        base_64_auth_credentials: str | None = request.headers.get(
-            "Authorization"
-        ).split(" ")[1]
-        base64_bytes: bytes = base_64_auth_credentials.encode("ascii")
-        message_bytes: bytes = base64.b64decode(base64_bytes)
-        message: str = message_bytes.decode("ascii")
-        username: str = message.split(":")[0]
-        password: str = message.split(":")[1]
-        client: Optional[Client_Domain] = Client_Service(
-            client_repository=Client_Repository(db=db)
-        ).authenticate_client(client_id=username, password=password)
-
-        if client and client.active:
-            client_dto: Client_DTO = Client_DTO(client_domain=client)
-            return jsonify(client_dto.serialize()), 200
-        else:
-            return Response(status=401)
     else:
         return Response(status=405)
 
@@ -1377,7 +1311,7 @@ def stripe_subscription_data() -> Response:
 
     if request.method == "POST":
         stripe_subscription_data = json.loads(request.data)
-        client_id: str = stripe_subscription_data["client_id"]
+        client_email: str = stripe_subscription_data["client_email"]
         number_of_meals: int = int(stripe_subscription_data["number_of_meals"])
         number_of_snacks: int = int(stripe_subscription_data["number_of_snacks"])
         zipcode: str = stripe_subscription_data["zipcode"]
@@ -1408,7 +1342,7 @@ def stripe_subscription_data() -> Response:
         client_stripe_data = Stripe_Service().create_stripe_subscription(
             num_items=num_items,
             meal_price=meal_price,
-            client_id=client_id,
+            client_email=client_email,
             stripe_one_time_account_setup_fee_price_id=stripe_one_time_account_setup_fee,
             date_service=Date_Service(),
             prepaid=prepaid,

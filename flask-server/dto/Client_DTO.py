@@ -1,5 +1,5 @@
 from uuid import UUID
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 from .Base_DTO import Base_DTO
 
 if TYPE_CHECKING:
@@ -12,7 +12,8 @@ class Client_DTO(Base_DTO):
     ) -> None:
         if client_json:
             self.id: UUID = client_json["id"]
-            self.dietitian_id: str = client_json["dietitian_id"]
+            self.email: str = client_json["email"]
+            self.dietitian_id: Optional[UUID] = client_json["dietitian_id"]
             self.meal_plan_id: UUID = UUID(client_json["meal_plan_id"])
             self.stripe_id: str = client_json["stripe_id"]
             self.first_name: str = client_json["first_name"]
@@ -31,8 +32,9 @@ class Client_DTO(Base_DTO):
             self.active: bool = client_json["active"]
 
         elif client_domain:
-            self.id: str = client_domain.id
-            self.dietitian_id: str = client_domain.dietitian_id
+            self.id: UUID = client_domain.id
+            self.email: str = client_domain.email
+            self.dietitian_id: Optional[UUID] = client_domain.dietitian_id
             self.meal_plan_id: UUID = client_domain.meal_plan_id
             self.stripe_id: str = client_domain.stripe_id
             self.first_name: str = client_domain.first_name

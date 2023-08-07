@@ -63,18 +63,18 @@ class Stripe_Service(object):
         invoice = stripe.Invoice.retrieve(invoice_id)
         return invoice
 
-    def create_stripe_customer(self, client_id: str) -> stripe.Customer:
-        return stripe.Customer.create(email=client_id)
+    def create_stripe_customer(self, client_email: str) -> stripe.Customer:
+        return stripe.Customer.create(email=client_email)
 
     def delete_customer(self, customer_id: str) -> stripe.Customer:
         stripe_customer = stripe.Customer.retrieve(customer_id)
         if stripe_customer:
             stripe_customer.delete()
         return
-      
-    def get_payment_methods(self,client_stripe_id: str):
+
+    def get_payment_methods(self, client_stripe_id: str):
         return stripe.PaymentMethod.list(customer=client_stripe_id, type="card")
-    
+
     def get_subscription(self, stripe_subscription_id: str) -> stripe.Subscription:
         return stripe.Subscription.retrieve(stripe_subscription_id)
 
@@ -82,7 +82,7 @@ class Stripe_Service(object):
         self,
         num_items: int,
         meal_price: int,
-        client_id: str,
+        client_email: str,
         stripe_one_time_account_setup_fee_price_id: str,
         date_service: "Date_Service",
         discount: "Discount_Domain" = None,
@@ -91,7 +91,7 @@ class Stripe_Service(object):
         trial_end = int(date_service.get_stripe_delivery_date_anchor())
 
         stripe_customer: stripe.Customer = self.create_stripe_customer(
-            client_id=client_id
+            client_email=client_email
         )
         stripe_price = self.get_price(meal_price=meal_price, recurring=True)
         stripe_meal_one_time_price = self.get_price(

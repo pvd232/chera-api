@@ -8,10 +8,18 @@ if TYPE_CHECKING:
 class COGS_Service(object):
     def __init__(self, cogs_repository: "COGS_Repository") -> None:
         self.cogs_repository = cogs_repository
-        self.meal_profit_premium = 2
+        self.meal_profit_premium = 1
 
     def get_cogs(self) -> list[COGS_Domain]:
         return self.cogs_repository.get_cogs()
+
+    def get_meals_per_box(self) -> int:
+        all_cogs = self.cogs_repository.get_cogs()
+        cogs_domains = [COGS_Domain(cogs_object=cogs) for cogs in all_cogs]
+        cogs_with_lowest_cost_per_meal = min(
+            cogs_domains, key=lambda cogs: cogs.get_total_cost_per_meal()
+        )
+        return cogs_with_lowest_cost_per_meal.num_meals
 
     def get_specific_cogs(
         self, num_meals, num_snacks: int, is_local: bool = False
@@ -30,7 +38,7 @@ class COGS_Service(object):
 
     def get_num_boxes(self, num_meals: int, num_snacks: int) -> int:
         num_items = self.get_num_items(num_meals=num_meals, num_snacks=num_snacks)
-        max_items_per_box = self.cogs_repository.get_cogs()[0].num_meals
+        max_items_per_box = self.get_meals_per_box()
         upper_bound = (max_items_per_box * 2) - 2
         if num_items > upper_bound:
             times_divisible = num_items // max_items_per_box
@@ -49,16 +57,15 @@ class COGS_Service(object):
     def get_lcd_num_items(self, num_meals: int, num_snacks: int) -> int:
         num_items = self.get_num_items(num_meals=num_meals, num_snacks=num_snacks)
         # Prepaid meals triggers no value for lcd_num_items
-        # lcd_num_items = num_items
-        max_items_per_box = self.cogs_repository.get_cogs()[0].num_meals
-        upper_bound = (max_items_per_box * 2) - 2
+        meals_per_box = self.get_meals_per_box()
+        upper_bound = (meals_per_box * 2) - 2
 
-        if num_items >= max_items_per_box and num_items <= upper_bound:
+        if num_items >= meals_per_box and num_items <= upper_bound:
             lcd_num_items = num_items
 
         elif num_items > upper_bound:
-            remainder = num_items % max_items_per_box
-            lcd_num_items = max_items_per_box + remainder
+            remainder = num_items % meals_per_box
+            lcd_num_items = meals_per_box + remainder
 
         return int(lcd_num_items)
 

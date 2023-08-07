@@ -1,15 +1,19 @@
+from uuid import UUID
+from typing import Optional
 from models import Staged_Client_Model
 from dto.Staged_Client_DTO import Staged_Client_DTO
-from uuid import UUID
 from .Base_Domain import Base_Domain
 
 
 class Staged_Client_Domain(Base_Domain):
-    def __init__(self, staged_client_object: Staged_Client_Model | Staged_Client_DTO) -> None:
-        self.id: str = staged_client_object.id
-        self.dietitian_id: str = staged_client_object.dietitian_id
+    def __init__(
+        self, staged_client_object: Staged_Client_Model | Staged_Client_DTO
+    ) -> None:
+        self.id: UUID = staged_client_object.id
+        self.email: str = staged_client_object.email
+        self.dietitian_id: Optional[UUID] = staged_client_object.dietitian_id
         self.meal_plan_id: UUID = staged_client_object.meal_plan_id
-        #personal info
+        # personal info
         self.first_name: str = staged_client_object.first_name
         self.current_weight: str = staged_client_object.current_weight
         self.target_weight: str = staged_client_object.target_weight

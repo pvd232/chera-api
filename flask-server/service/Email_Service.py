@@ -256,7 +256,7 @@ class Email_Service(object):
         )
         # The body and the attachments for the mail
         sender_address = "Chera@support.cherahealth.com"
-        email = user.id
+        email = user.email
 
         # Setup the MIME
         message = MIMEMultipart()
@@ -367,7 +367,7 @@ class Email_Service(object):
         )
 
         sender_address = "Chera@support.cherahealth.com"
-        email = staged_client.id
+        email = staged_client.email
 
         # Setup the MIME
         message = MIMEMultipart()
@@ -416,7 +416,7 @@ class Email_Service(object):
         )
         # The body and the attachments for the mail
         sender_address = "Chera@support.cherahealth.com"
-        email = dietitian.id
+        email = dietitian.email
 
         # Setup the MIME
         message = MIMEMultipart()
@@ -458,7 +458,7 @@ class Email_Service(object):
         )
 
         sender_address = "Chera@support.cherahealth.com"
-        email = staged_client.id
+        email = staged_client.email
 
         # Setup the MIME
         message = MIMEMultipart()

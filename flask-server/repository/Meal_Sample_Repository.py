@@ -1,6 +1,6 @@
 from repository.Base_Repository import Base_Repository
-from models import Meal_Sample_Model, Meal_Subscription_Invoice_Model
-from typing import Optional, TYPE_CHECKING
+from models import Meal_Sample_Model
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from domain.Meal_Sample_Domain import Meal_Sample_Domain
@@ -15,18 +15,3 @@ class Meal_Sample_Repository(Base_Repository):
             self.db.session.add(new_meal_sample)
         self.db.session.commit()
         return
-
-    def get_meal_samples(self, dietitian_id: str) -> Optional[list[Meal_Sample_Model]]:
-        meal_samples_to_return: list[Meal_Sample_Model] = []
-        meal_subscription_invoices: Optional[
-            list[Meal_Subscription_Invoice_Model]
-        ] = self.db.session.query(Meal_Subscription_Invoice_Model).filter(
-            Meal_Subscription_Invoice_Model.dietitian_id == dietitian_id
-        )
-        if meal_subscription_invoices:
-            for meal_subscription_invoice in meal_subscription_invoices:
-                for meal_sample in meal_subscription_invoice.meal_samples:
-                    meal_samples_to_return.append(meal_sample)
-            return meal_samples_to_return
-        else:
-            return None

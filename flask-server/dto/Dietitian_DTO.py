@@ -1,3 +1,4 @@
+from uuid import UUID
 from typing import TYPE_CHECKING
 from .Base_DTO import Base_DTO
 
@@ -14,7 +15,9 @@ class Dietitian_DTO(Base_DTO):
         dietitian_domain: "Dietitian_Domain" = None,
     ) -> None:
         if dietitian_json:
-            self.id: str = dietitian_json["id"]
+            self.id: UUID = dietitian_json["id"]
+            self.email: str = dietitian_json["email"]
+            self.phone_number: str = dietitian_json["phone_number"]
             self.first_name: str = dietitian_json["first_name"]
             self.last_name: str = dietitian_json["last_name"]
             self.dietetic_registration_number: str = dietitian_json[
@@ -41,7 +44,9 @@ class Dietitian_DTO(Base_DTO):
                 self.admin = False
 
         elif dietitian_domain:
-            self.id: str = dietitian_domain.id
+            self.id: UUID = dietitian_domain.id
+            self.email: str = dietitian_domain.email
+            self.phone_number: str = dietitian_domain.phone_number
             self.first_name: str = dietitian_domain.first_name
             self.last_name: str = dietitian_domain.last_name
             self.dietetic_registration_number: str = (
