@@ -1137,7 +1137,7 @@ def get_dietitian(dietitian_email: str) -> Response:
         dietitian_domain: Optional[Dietitian_Domain] = Dietitian_Service(
             dietitian_repository=Dietitian_Repository(db=db)
         ).get_dietitian(dietitian_email=dietitian_email)
-        if dietitian_domain:
+        if dietitian_domain and dietitian_domain.active:
             dietitian_DTO = Dietitian_DTO(
                 dietitian_domain=dietitian_domain,
             )
@@ -1452,7 +1452,7 @@ def staged_client(staged_client_identifier: Optional[str]) -> Response:
         staged_client = Staged_Client_Service(
             staged_client_repository=Staged_Client_Repository(db=db)
         ).get_staged_client(staged_client_id=staged_client_identifier)
-        if staged_client:
+        if staged_client and staged_client.active:
             staged_client_dto = Staged_Client_DTO(staged_client_domain=staged_client)
             return jsonify(staged_client_dto.serialize()), 200
         else:
@@ -1461,16 +1461,14 @@ def staged_client(staged_client_identifier: Optional[str]) -> Response:
     elif request.method == "GET" and not staged_client_identifier:
         staged_client_email = request.args.get("email")
         if staged_client_email:
-            print("staged_client_email", staged_client_email)
             staged_client = Staged_Client_Service(
                 staged_client_repository=Staged_Client_Repository(db=db)
             ).get_staged_client(staged_client_id=staged_client_identifier)
-            if staged_client:
+            if staged_client and staged_client.active:
                 staged_client_dto = Staged_Client_DTO(
                     staged_client_domain=staged_client
                 )
                 staged_client_dto
-                print("staged_client_dto", staged_client_dto)
                 return jsonify(staged_client_dto.serialize()), 200
             else:
                 return Response(status=404)
