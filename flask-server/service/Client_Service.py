@@ -1,4 +1,5 @@
 from typing import Optional, TYPE_CHECKING
+from uuid import UUID
 from domain.Client_Domain import Client_Domain
 
 if TYPE_CHECKING:
@@ -20,10 +21,10 @@ class Client_Service(object):
         return created_client_domain
 
     def get_client(
-        self, client_id: str = None, client_stripe_id: str = None
+        self, client_email: str = None, client_stripe_id: str = None, client_id: UUID = None
     ) -> Optional[Client_Domain]:
-        if client_id:
-            client = self.client_repository.get_client(client_id=client_id)
+        if client_email:
+            client = self.client_repository.get_client(client_email=client_email)
             if not client:
                 return None
             else:
@@ -32,6 +33,12 @@ class Client_Service(object):
             client = self.client_repository.get_client(
                 client_stripe_id=client_stripe_id
             )
+            if not client:
+                return None
+            else:
+                client_domain = Client_Domain(client_object=client)
+        elif client_id:
+            client = self.client_repository.get_client(client_id=client_id)
             if not client:
                 return None
             else:
@@ -53,11 +60,11 @@ class Client_Service(object):
         self.client_repository.update_client(client_domain=client_domain)
         return client_domain
 
-    def update_client_address(self, client_dto: "Client_DTO")-> Client_Domain:
+    def update_client_address(self, client_dto: "Client_DTO") -> Client_Domain:
         client_domain = Client_Domain(client_object=client_dto)
         self.client_repository.update_client_address(client_domain=client_domain)
         return client_domain
-    
+
     def update_client_meal_plan(self, client_dto: "Client_DTO") -> None:
         updated_client: Client_Domain = Client_Domain(client_object=client_dto)
         return self.client_repository.update_client_meal_plan(

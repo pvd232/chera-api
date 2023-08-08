@@ -26,23 +26,9 @@ class Dietitian_Service(object):
             )
         )
 
-    def authenticate_dietitian(
-        self, dietitian_id: str, password: str
-    ) -> Optional[Dietitian_Domain]:
-        dietitian_object = self.dietitian_repository.authenticate_dietitian(
-            dietitian_id=dietitian_id, password=password
-        )
-        if dietitian_object:
-            dietitian_domain: Dietitian_Domain = Dietitian_Domain(
-                dietitian_object=dietitian_object
-            )
-            return dietitian_domain
-        else:
-            return None
-
-    def get_dietitian(self, dietitian_id: str) -> Optional[Dietitian_Domain]:
+    def get_dietitian(self, dietitian_email: str) -> Optional[Dietitian_Domain]:
         requested_dietitian = self.dietitian_repository.get_dietitian(
-            dietitian_id=dietitian_id
+            dietitian_email=dietitian_email
         )
         if requested_dietitian:
             return Dietitian_Domain(dietitian_object=requested_dietitian)
@@ -56,7 +42,7 @@ class Dietitian_Service(object):
         )
         created_dietitian_domain = Dietitian_Domain(dietitian_object=created_dietitian)
         return created_dietitian_domain
-    
+
     def initialize_dietitians(self) -> None:
         self.dietitian_repository.initialize_dietitians()
         return

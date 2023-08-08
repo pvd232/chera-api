@@ -1126,8 +1126,8 @@ def sample_order_confirmation() -> Response:
     return Response(status=200)
 
 
-@app.route("/api/dietitian/<string:dietitian_id>", methods=["GET"])
-def get_dietitian(dietitian_id: str) -> Response:
+@app.route("/api/dietitian/<string:dietitian_email>", methods=["GET"])
+def get_dietitian(dietitian_email: str) -> Response:
     from service.Dietitian_Service import Dietitian_Service
     from repository.Dietitian_Repository import Dietitian_Repository
     from domain.Dietitian_Domain import Dietitian_Domain
@@ -1136,7 +1136,7 @@ def get_dietitian(dietitian_id: str) -> Response:
     if request.method == "GET":
         dietitian_domain: Optional[Dietitian_Domain] = Dietitian_Service(
             dietitian_repository=Dietitian_Repository(db=db)
-        ).get_dietitian(dietitian_id=dietitian_id)
+        ).get_dietitian(dietitian_email=dietitian_email)
         if dietitian_domain:
             dietitian_DTO = Dietitian_DTO(
                 dietitian_domain=dietitian_domain,
@@ -1179,8 +1179,8 @@ def extended_clients() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/client/<string:client_id>", methods=["GET", "PUT"])
-def update_client(client_id: str) -> Response:
+@app.route("/api/client/<string:client_email>", methods=["GET", "PUT"])
+def update_client(client_email: str) -> Response:
     from repository.Client_Repository import Client_Repository
     from service.Client_Service import Client_Service
     from dto.Client_DTO import Client_DTO
@@ -1188,7 +1188,7 @@ def update_client(client_id: str) -> Response:
     if request.method == "GET":
         requested_client = Client_Service(
             client_repository=Client_Repository(db=db)
-        ).get_client(client_id=client_id)
+        ).get_client(client_email=client_email)
         if requested_client and requested_client.active:
             client_DTO = Client_DTO(client_domain=requested_client)
             return jsonify(client_DTO.serialize()), 200
@@ -1196,7 +1196,7 @@ def update_client(client_id: str) -> Response:
             return Response(status=404)
     elif request.method == "PUT":
         Client_Service(client_repository=Client_Repository(db=db)).deactivate_client(
-            client_id=client_id
+            client_email=client_email
         )
         return Response(status=204)
     else:
@@ -1430,13 +1430,13 @@ def extended_staged_client() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/staged_client/<string:staged_client_id>", methods=["GET"])
+@app.route("/api/staged_client/<string:staged_client_identifier>", methods=["GET"])
 @app.route(
     "/api/staged_client",
-    defaults={"staged_client_id": None},
+    defaults={"staged_client_identifier": None},
     methods=["GET", "POST", "PUT"],
 )
-def staged_client(staged_client_id: Optional[str]) -> Response:
+def staged_client(staged_client_identifier: Optional[str]) -> Response:
     from service.Staged_Client_Service import Staged_Client_Service
     from service.Email_Service import Email_Service
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
@@ -1444,32 +1444,48 @@ def staged_client(staged_client_id: Optional[str]) -> Response:
     from domain.Staged_Client_Domain import Staged_Client_Domain
     from dto.Staged_Client_DTO import Staged_Client_DTO
 
-    # Checking username availability
-    if request.method == "GET" and staged_client_id:
+    if request.method == "GET" and staged_client_identifier:
         staged_client: Optional[Staged_Client_Domain] = Staged_Client_Service(
             staged_client_repository=Staged_Client_Repository(db=db)
-        ).get_staged_client(staged_client_id=staged_client_id)
+        ).get_staged_client(staged_client_email=staged_client_identifier)
 
-        # Username is unavailable
+        staged_client = Staged_Client_Service(
+            staged_client_repository=Staged_Client_Repository(db=db)
+        ).get_staged_client(staged_client_id=staged_client_identifier)
         if staged_client:
             staged_client_dto = Staged_Client_DTO(staged_client_domain=staged_client)
             return jsonify(staged_client_dto.serialize()), 200
-        # Username is available
         else:
             return Response(status=404)
 
-    elif request.method == "GET" and not staged_client_id:
-        dietitian_id: Optional[str] = request.args.get("dietitian_id")
-        staged_client_domains: list[Staged_Client_Domain] = Staged_Client_Service(
-            staged_client_repository=Staged_Client_Repository(db=db)
-        ).get_staged_clients(dietitian_id=dietitian_id)
-        staged_client_DTOs: list[Staged_Client_DTO] = [
-            Staged_Client_DTO(staged_client_domain=x) for x in staged_client_domains
-        ]
-        serialized_staged_clients: list[dict] = [
-            x.serialize() for x in staged_client_DTOs
-        ]
-        return jsonify(serialized_staged_clients), 200
+    elif request.method == "GET" and not staged_client_identifier:
+        staged_client_email = request.args.get("email")
+        if staged_client_email:
+            print("staged_client_email", staged_client_email)
+            staged_client = Staged_Client_Service(
+                staged_client_repository=Staged_Client_Repository(db=db)
+            ).get_staged_client(staged_client_id=staged_client_identifier)
+            if staged_client:
+                staged_client_dto = Staged_Client_DTO(
+                    staged_client_domain=staged_client
+                )
+                staged_client_dto
+                print("staged_client_dto", staged_client_dto)
+                return jsonify(staged_client_dto.serialize()), 200
+            else:
+                return Response(status=404)
+        else:
+            dietitian_id: Optional[str] = request.args.get("dietitian_id")
+            staged_client_domains: list[Staged_Client_Domain] = Staged_Client_Service(
+                staged_client_repository=Staged_Client_Repository(db=db)
+            ).get_staged_clients(dietitian_id=dietitian_id)
+            staged_client_DTOs: list[Staged_Client_DTO] = [
+                Staged_Client_DTO(staged_client_domain=x) for x in staged_client_domains
+            ]
+            serialized_staged_clients: list[dict] = [
+                x.serialize() for x in staged_client_DTOs
+            ]
+            return jsonify(serialized_staged_clients), 200
 
     elif request.method == "POST":
         staged_client_dto: Staged_Client_DTO = Staged_Client_DTO(
@@ -1485,7 +1501,7 @@ def staged_client(staged_client_id: Optional[str]) -> Response:
             gcp_secret_manager_service=GCP_Secret_Manager_Service(),
         ).send_new_user_sign_up_notification(
             first_name="Peter",
-            email="patardriscoll@gmail.com",
+            email="peterdriscoll@cherahealth.com",
             user_type="Staged_Client",
             user=new_staged_client_domain,
             env=env,

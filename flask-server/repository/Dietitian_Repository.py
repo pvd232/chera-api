@@ -12,10 +12,10 @@ class Dietitian_Repository(Base_Repository):
         dietitians = self.db.session.query(Dietitian_Model).all()
         return dietitians
 
-    def get_dietitian(self, dietitian_id: str) -> Optional[Dietitian_Model]:
+    def get_dietitian(self, dietitian_email: str) -> Optional[Dietitian_Model]:
         dietitian = (
             self.db.session.query(Dietitian_Model)
-            .filter(Dietitian_Model.id == dietitian_id)
+            .filter(Dietitian_Model.email == dietitian_email)
             .first()
         )
         return dietitian
