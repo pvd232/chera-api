@@ -400,7 +400,6 @@ def sign_up_email_confirmation_dietitian() -> Response:
     from tzlocal import get_localzone
 
     dietitian = Dietitian_DTO(
-        gcp_secret_manager_service=GCP_Secret_Manager_Service(),
         dietitian_json=json.loads(request.data),
     )
     dt = datetime.now()
@@ -1011,7 +1010,6 @@ def dietitian() -> Response | Response:
     if request.method == "POST":
         requested_dietitian = json.loads(request.data)
         requested_dietitian_dto = Dietitian_DTO(
-            gcp_secret_manager_service=GCP_Secret_Manager_Service(),
             dietitian_json=requested_dietitian,
         )
         created_dietitian_domain = Dietitian_Service(
@@ -1050,7 +1048,6 @@ def dietitian() -> Response | Response:
         )
 
         dietitian_dto = Dietitian_DTO(
-            gcp_secret_manager_service=GCP_Secret_Manager_Service(),
             dietitian_domain=created_dietitian_domain,
         )
         serialized_dietitian_dto = dietitian_dto.serialize()
@@ -1070,7 +1067,6 @@ def create_meal_sample_shipment() -> Response:
 
     request_data = json.loads(request.data)
     dietitian = Dietitian_DTO(
-        gcp_secret_manager_service=GCP_Secret_Manager_Service(),
         dietitian_json=request_data["dietitian"],
     )
     shipping_address = request_data["shipping_address"]
@@ -1097,7 +1093,6 @@ def sample_order_confirmation() -> Response:
     from tzlocal import get_localzone
 
     dietitian = Dietitian_DTO(
-        gcp_secret_manager_service=GCP_Secret_Manager_Service(),
         dietitian_json=json.loads(request.data),
     )
     meal_samples = Meal_Service(
@@ -1133,7 +1128,6 @@ def sample_order_confirmation() -> Response:
 
 @app.route("/api/dietitian/<string:dietitian_id>", methods=["GET"])
 def get_dietitian(dietitian_id: str) -> Response:
-    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
     from service.Dietitian_Service import Dietitian_Service
     from repository.Dietitian_Repository import Dietitian_Repository
     from domain.Dietitian_Domain import Dietitian_Domain
@@ -1145,7 +1139,6 @@ def get_dietitian(dietitian_id: str) -> Response:
         ).get_dietitian(dietitian_id=dietitian_id)
         if dietitian_domain:
             dietitian_DTO = Dietitian_DTO(
-                gcp_secret_manager_service=GCP_Secret_Manager_Service(),
                 dietitian_domain=dietitian_domain,
             )
             return jsonify(dietitian_DTO.serialize()), 200
@@ -3717,6 +3710,20 @@ def nysand_lead() -> Response:
 
         dietitian_id = json.loads(request.data)["dietitian_id"]
         NYSAND_Lead_Repository(db=db).create_nysand_lead(dietitian_id=dietitian_id)
+        return Response(status=200)
+    else:
+        return Response(status=405)
+
+
+@app.route("/api/dietitian/initialize", methods=["GET"])
+def initialize_dietitian() -> Response:
+    if request.method == "GET":
+        from repository.Dietitian_Repository import Dietitian_Repository
+        from service.Dietitian_Service import Dietitian_Service
+
+        Dietitian_Service(
+            dietitian_repository=Dietitian_Repository(db=db)
+        ).initialize_dietitians()
         return Response(status=200)
     else:
         return Response(status=405)

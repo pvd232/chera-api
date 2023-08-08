@@ -308,7 +308,7 @@ class Dietitian_Model(db.Model):
     __tablename__ = "dietitian"
     id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
     email = db.Column(db.String(40), nullable=False)
-    phone_number = db.Column(db.String(20), nullable=False)
+    phone_number = db.Column(db.String(20), default="", nullable=False)
     first_name = db.Column(db.String(80), nullable=False)
     last_name = db.Column(db.String(80), nullable=False)
     dietetic_registration_number = db.Column(db.String(20), nullable=False)

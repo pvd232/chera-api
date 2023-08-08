@@ -56,3 +56,7 @@ class Dietitian_Service(object):
         )
         created_dietitian_domain = Dietitian_Domain(dietitian_object=created_dietitian)
         return created_dietitian_domain
+    
+    def initialize_dietitians(self) -> None:
+        self.dietitian_repository.initialize_dietitians()
+        return

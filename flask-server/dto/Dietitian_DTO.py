@@ -10,7 +10,6 @@ if TYPE_CHECKING:
 class Dietitian_DTO(Base_DTO):
     def __init__(
         self,
-        gcp_secret_manager_service: "GCP_Secret_Manager_Service",
         dietitian_json: dict = None,
         dietitian_domain: "Dietitian_Domain" = None,
     ) -> None:
@@ -37,11 +36,6 @@ class Dietitian_DTO(Base_DTO):
             self.datetime: float = float(dietitian_json["datetime"])
             self.got_sample: bool = dietitian_json["got_sample"]
             self.active: bool = dietitian_json["active"]
-
-            if self.id == gcp_secret_manager_service.get_secret("ADMIN_ID"):
-                self.admin = True
-            else:
-                self.admin = False
 
         elif dietitian_domain:
             self.id: UUID = dietitian_domain.id
