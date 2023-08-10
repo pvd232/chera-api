@@ -26,3 +26,34 @@ class Meal_Sample_Shipment_Repository(Base_Repository):
             .first()
         )
         return meal_sample_shipment
+
+    def get_meal_sample_shipments(self):
+        meal_sample_shipment_objects = self.db.session.query(
+            Meal_Sample_Shipment_Model
+        ).all()
+        return meal_sample_shipment_objects
+
+    def initialize_meal_sample_shipments(self, dietitian_dict) -> None:
+        from pathlib import Path
+        from utils.load_json import load_json
+        from domain.Meal_Sample_Shipment_Domain import Meal_Sample_Shipment_Domain
+
+        meal_sample_json_file = Path(
+            ".", "dietitian_data", "meal_sample_shipments.json"
+        )
+        meal_sample_shipment_data = load_json(filename=meal_sample_json_file)
+
+        for meal_sample_shipment_json in meal_sample_shipment_data:
+            # Pass in dietitian dict with email as key and updated dietitian object as value
+            matching_dietitian = dietitian_dict[
+                meal_sample_shipment_json["dietitian_id"]
+            ]
+            meal_sample_shipment_json["dietitian_id"] = matching_dietitian["id"]
+            meal_sample_shipment_domain = Meal_Sample_Shipment_Domain(
+                meal_sample_shipment_json=meal_sample_shipment_json
+            )
+            meal_sample_shipment_model = Meal_Sample_Shipment_Model(
+                meal_sample_shipment_domain=meal_sample_shipment_domain
+            )
+            self.db.session.add(meal_sample_shipment_model)
+        self.db.session.commit()

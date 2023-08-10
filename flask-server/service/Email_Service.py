@@ -256,7 +256,7 @@ class Email_Service(object):
         )
         # The body and the attachments for the mail
         sender_address = "Chera@support.cherahealth.com"
-        email = user.id
+        email = user.email
 
         # Setup the MIME
         message = MIMEMultipart()
@@ -317,16 +317,16 @@ class Email_Service(object):
                     first_name=first_name,
                     user_type=user_type,
                     user_first_name=user.first_name.capitalize(),
-                    email=user.id,
+                    email=user.email,
                 )
-            else:
+            elif user_type == "Dietitian":
                 mail_content = mail_body.read().format(
                     logo_url=self.logo_url,
                     first_name=first_name,
                     user_type=user_type,
                     user_first_name=user.first_name.capitalize(),
                     user_last_name=user.last_name.capitalize(),
-                    email=user.id,
+                    email=user.email,
                     zipcode=zipcode,
                 )
 
@@ -367,7 +367,7 @@ class Email_Service(object):
         )
 
         sender_address = "Chera@support.cherahealth.com"
-        email = staged_client.id
+        email = staged_client.email
 
         # Setup the MIME
         message = MIMEMultipart()
@@ -416,7 +416,7 @@ class Email_Service(object):
         )
         # The body and the attachments for the mail
         sender_address = "Chera@support.cherahealth.com"
-        email = dietitian.id
+        email = dietitian.email
 
         # Setup the MIME
         message = MIMEMultipart()
@@ -458,7 +458,7 @@ class Email_Service(object):
         )
 
         sender_address = "Chera@support.cherahealth.com"
-        email = staged_client.id
+        email = staged_client.email
 
         # Setup the MIME
         message = MIMEMultipart()

@@ -1,5 +1,4 @@
 from domain.Meal_Sample_Shipment_Domain import Meal_Sample_Shipment_Domain
-from uuid import UUID
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -23,3 +22,13 @@ class Meal_Sample_Shipment_Service(object):
             )
         )
         return meal_sample_shipment_domain
+
+    def get_meal_sample_shipments(self):
+        meal_sample_shipment_objects = (
+            self.meal_sample_shipment_repository.get_meal_sample_shipments()
+        )
+        meal_sample_shipment_domains = [
+            Meal_Sample_Shipment_Domain(meal_sample_shipment_object=x)
+            for x in meal_sample_shipment_objects
+        ]
+        return meal_sample_shipment_domains

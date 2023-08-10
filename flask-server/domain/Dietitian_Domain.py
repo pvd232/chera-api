@@ -1,12 +1,14 @@
+from uuid import UUID
 from models import Dietitian_Model
 from .Base_Domain import Base_Domain
 from dto.Dietitian_DTO import Dietitian_DTO
-from datetime import datetime
 
 
 class Dietitian_Domain(Base_Domain):
     def __init__(self, dietitian_object: Dietitian_Model | Dietitian_DTO) -> None:
-        self.id: str = dietitian_object.id
+        self.id: UUID = dietitian_object.id
+        self.email: str = dietitian_object.email
+        self.phone_number: str = dietitian_object.phone_number
         self.first_name: str = dietitian_object.first_name
         self.last_name: str = dietitian_object.last_name
         self.dietetic_registration_number: str = (

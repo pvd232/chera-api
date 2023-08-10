@@ -1,5 +1,4 @@
 from typing import TYPE_CHECKING
-from uuid import UUID
 
 if TYPE_CHECKING:
     from repository.Imperial_Unit_Repository import Imperial_Unit_Repository
@@ -28,6 +27,10 @@ if TYPE_CHECKING:
         Recipe_Ingredient_Nutrient_Repository,
     )
     from repository.Discount_Repository import Discount_Repository
+    from repository.Meal_Sample_Repository import Meal_Sample_Repository
+    from repository.Meal_Sample_Shipment_Repository import (
+        Meal_Sample_Shipment_Repository,
+    )
 
 
 class Continuity_Repository(object):
@@ -67,12 +70,14 @@ class Continuity_Repository(object):
         recipe_ingredient_nutrient_repository.initialize_recipe_ingredient_nutrients(),
         discount_repository.initialize_discounts()
 
-    def initialize_meal_plan_meal(
+    def initialize_dietitian_data(
         self,
-        meal_plan_meal_id: UUID,
-        meal_plan_meal_repository: "Meal_Plan_Meal_Repository",
-    ) -> None:
-        meal_plan_meal_repository.initialize_plan_meal(
-            meal_plan_meal_id=meal_plan_meal_id
+        dietitian_dict: dict,
+        meal_sample_repository: "Meal_Sample_Repository",
+        meal_sample_shipment_repository: "Meal_Sample_Shipment_Repository",
+    ):
+        meal_sample_repository.initialize_meal_samples(dietitian_dict=dietitian_dict)
+        meal_sample_shipment_repository.initialize_meal_sample_shipments(
+            dietitian_dict=dietitian_dict
         )
         return

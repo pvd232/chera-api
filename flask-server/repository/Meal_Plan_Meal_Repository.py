@@ -89,11 +89,5 @@ class Meal_Plan_Meal_Repository(Base_Repository):
             meal_plan_meal_model = Meal_Plan_Meal_Model(
                 meal_plan_meal_domain=meal_plan_meal_domain
             )
-            # meal_plan_meal_already_exists = (
-            #     self.db.session.query(Meal_Plan_Meal_Model)
-            #     .filter(Meal_Plan_Meal_Model.id == meal_plan_meal_model.id)
-            #     .first()
-            # )
-            # if not meal_plan_meal_already_exists:
             self.db.session.add(meal_plan_meal_model)
         self.db.session.commit()

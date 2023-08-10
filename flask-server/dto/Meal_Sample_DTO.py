@@ -15,8 +15,8 @@ class Meal_Sample_DTO(Base_DTO):
         if meal_sample_json:
             self.id: UUID = meal_sample_json["id"]
             self.meal_id: UUID = meal_sample_json["meal_id"]
-            self.dietitian_id: str = meal_sample_json["dietitian_id"]
+            self.dietitian_id: UUID = meal_sample_json["dietitian_id"]
         elif meal_sample_domain:
             self.id: UUID = meal_sample_domain.id
             self.meal_id: UUID = meal_sample_domain.meal_id
-            self.dietitian_id: str = meal_sample_domain.dietitian_id
+            self.dietitian_id: UUID = meal_sample_domain.dietitian_id

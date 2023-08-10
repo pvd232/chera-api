@@ -1,4 +1,5 @@
 from uuid import UUID
+from typing import Optional
 from .Base_Domain import Base_Domain
 from models import Client_Model
 from dto.Client_DTO import Client_DTO
@@ -6,8 +7,9 @@ from dto.Client_DTO import Client_DTO
 
 class Client_Domain(Base_Domain):
     def __init__(self, client_object: Client_Model | Client_DTO) -> None:
-        self.id: str = client_object.id
-        self.dietitian_id: str = client_object.dietitian_id
+        self.id: UUID = client_object.id
+        self.email: str = client_object.email
+        self.dietitian_id: Optional[UUID] = client_object.dietitian_id
         self.meal_plan_id: UUID = client_object.meal_plan_id
         self.stripe_id: str = client_object.stripe_id
         self.first_name: str = client_object.first_name

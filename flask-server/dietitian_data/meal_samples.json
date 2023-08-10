@@ -1,0 +1,122 @@
+[
+  {
+    "id": "c00ed2ca-8384-48b0-9581-b24960413596",
+    "meal_id": "b4276da4-715a-4775-907b-c068c952ac55",
+    "dietitian_id": "myvidanutrition@gmail.com"
+  },
+  {
+    "id": "f075c03a-ddc8-4db4-adff-f3678348dee0",
+    "meal_id": "0db1d251-2a99-4f1b-936e-2d0fed28f9ea",
+    "dietitian_id": "myvidanutrition@gmail.com"
+  },
+  {
+    "id": "1d9c9779-b978-4d82-8634-586ab761c283",
+    "meal_id": "b4276da4-715a-4775-907b-c068c952ac55",
+    "dietitian_id": "georgeannelittle@gmail.com"
+  },
+  {
+    "id": "f51d3ba7-f3fe-42dd-946e-2836573a8507",
+    "meal_id": "0db1d251-2a99-4f1b-936e-2d0fed28f9ea",
+    "dietitian_id": "georgeannelittle@gmail.com"
+  },
+  {
+    "id": "36aa0bf8-9d22-4faa-8b68-953356cbd499",
+    "meal_id": "b4276da4-715a-4775-907b-c068c952ac55",
+    "dietitian_id": "tonikohnmsrd@gmail.com"
+  },
+  {
+    "id": "34ed4a52-b281-496e-a9ab-91f6b33b86ba",
+    "meal_id": "0db1d251-2a99-4f1b-936e-2d0fed28f9ea",
+    "dietitian_id": "tonikohnmsrd@gmail.com"
+  },
+  {
+    "id": "f95ef663-f4cf-4564-9cc7-e26b2b0e92e1",
+    "meal_id": "b4276da4-715a-4775-907b-c068c952ac55",
+    "dietitian_id": "emileewells37@gmail.com"
+  },
+  {
+    "id": "793af49c-176d-4c19-aef8-417c41fcb2ae",
+    "meal_id": "0db1d251-2a99-4f1b-936e-2d0fed28f9ea",
+    "dietitian_id": "emileewells37@gmail.com"
+  },
+  {
+    "id": "c0218870-44de-4e41-8b2c-d4149f25058d",
+    "meal_id": "b4276da4-715a-4775-907b-c068c952ac55",
+    "dietitian_id": "peterdriscoll@cherahealth.com"
+  },
+  {
+    "id": "cd8fa981-e49b-4905-ad43-1725dd136aa0",
+    "meal_id": "0db1d251-2a99-4f1b-936e-2d0fed28f9ea",
+    "dietitian_id": "peterdriscoll@cherahealth.com"
+  },
+  {
+    "id": "a6c6e938-ba5b-4cd4-94eb-1489e30d1f7f",
+    "meal_id": "b4276da4-715a-4775-907b-c068c952ac55",
+    "dietitian_id": "caitlin@simplicitynutrition.com"
+  },
+  {
+    "id": "288d9b82-faec-42be-abaf-85af7a6a8c84",
+    "meal_id": "0db1d251-2a99-4f1b-936e-2d0fed28f9ea",
+    "dietitian_id": "caitlin@simplicitynutrition.com"
+  },
+  {
+    "id": "5b7a8ebb-c686-4fd6-85ce-ca921ff85caf",
+    "meal_id": "b4276da4-715a-4775-907b-c068c952ac55",
+    "dietitian_id": "mackenzie@nourishforlife.com"
+  },
+  {
+    "id": "39c59546-f9c1-4399-a80f-0fd326436ec9",
+    "meal_id": "0db1d251-2a99-4f1b-936e-2d0fed28f9ea",
+    "dietitian_id": "mackenzie@nourishforlife.com"
+  },
+  {
+    "id": "8b15f030-3cb5-4f42-ad30-4de8099100c0",
+    "meal_id": "b4276da4-715a-4775-907b-c068c952ac55",
+    "dietitian_id": "jkelly@berrystreet.co"
+  },
+  {
+    "id": "b0de3cb5-4ecf-45f1-9544-74352cc05c73",
+    "meal_id": "0db1d251-2a99-4f1b-936e-2d0fed28f9ea",
+    "dietitian_id": "jkelly@berrystreet.co"
+  },
+  {
+    "id": "3ddaeb31-7263-4895-a477-e082edfba624",
+    "meal_id": "b4276da4-715a-4775-907b-c068c952ac55",
+    "dietitian_id": "barissa.rd@gmail.com"
+  },
+  {
+    "id": "f5154561-2d65-413c-b8b9-ef4a4fba19af",
+    "meal_id": "0db1d251-2a99-4f1b-936e-2d0fed28f9ea",
+    "dietitian_id": "barissa.rd@gmail.com"
+  },
+  {
+    "id": "b19e79d4-0f85-459a-b3f1-b799f8bb2af3",
+    "meal_id": "b4276da4-715a-4775-907b-c068c952ac55",
+    "dietitian_id": "geiger.107@gmail.com"
+  },
+  {
+    "id": "39e05802-db7d-4e00-874a-62a0bc43ce80",
+    "meal_id": "0db1d251-2a99-4f1b-936e-2d0fed28f9ea",
+    "dietitian_id": "geiger.107@gmail.com"
+  },
+  {
+    "id": "c1618415-4985-43ba-8d67-68915744d820",
+    "meal_id": "b4276da4-715a-4775-907b-c068c952ac55",
+    "dietitian_id": "desacrewsrd@gmail.com"
+  },
+  {
+    "id": "0aa9c3e2-ce2a-4f03-ae24-2220054c4432",
+    "meal_id": "0db1d251-2a99-4f1b-936e-2d0fed28f9ea",
+    "dietitian_id": "desacrewsrd@gmail.com"
+  },
+  {
+    "id": "76d560f6-f231-4cfb-a59e-fc54d37461c7",
+    "meal_id": "b4276da4-715a-4775-907b-c068c952ac55",
+    "dietitian_id": "pdriscollmd@yahoo.com"
+  },
+  {
+    "id": "94ca8e01-12da-48dd-9346-32e74f25e7a5",
+    "meal_id": "0db1d251-2a99-4f1b-936e-2d0fed28f9ea",
+    "dietitian_id": "pdriscollmd@yahoo.com"
+  }
+]

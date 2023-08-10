@@ -86,14 +86,12 @@ app.secret_key = os.getenv("APP_SECRET_KEY") or GCP_Secret_Manager_Service().get
 )
 oauth.register(
     "auth0",
-    client_id=os.getenv("AUTH0_CLIENT_ID")
-    or GCP_Secret_Manager_Service().get_secret(f"{env.upper()}_AUTH0_CLIENT_ID"),
-    client_secret=os.getenv("AUTH0_CLIENT_SECRET")
-    or GCP_Secret_Manager_Service().get_secret(f"{env.upper()}_AUTH0_CLIENT_SECRET"),
+    client_id=os.getenv("AUTH0_CLIENT_ID"),
+    client_secret=os.getenv("AUTH0_CLIENT_SECRET"),
     client_kwargs={
         "scope": "openid profile email",
     },
-    server_metadata_url=f'https://{os.getenv("AUTH0_DOMAIN") or GCP_Secret_Manager_Service().get_secret(f"{env.upper()}_AUTH0_DOMAIN")}/.well-known/openid-configuration',
+    server_metadata_url=f'https://{os.getenv("AUTH0_DOMAIN")}/.well-known/openid-configuration',
 )
 #############################################
 
@@ -144,9 +142,10 @@ db = SQLAlchemy(app)
 
 class Client_Model(db.Model):
     __tablename__ = "client"
-    id = db.Column(db.String(80), primary_key=True, unique=True, nullable=False)
+    id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
+    email = db.Column(db.String(40), nullable=False)
     dietitian_id = db.Column(
-        db.String(80), db.ForeignKey("dietitian.id"), nullable=False
+        UUID(as_uuid=True), db.ForeignKey("dietitian.id"), nullable=True
     )
     meal_plan_id = db.Column(
         UUID(as_uuid=True), db.ForeignKey("meal_plan.id"), nullable=False
@@ -171,6 +170,7 @@ class Client_Model(db.Model):
 
     def __init__(self, client_domain: "Client_Domain") -> None:
         self.id = client_domain.id
+        self.email = client_domain.email
         self.dietitian_id = client_domain.dietitian_id
         self.meal_plan_id = client_domain.meal_plan_id
         self.stripe_id = client_domain.stripe_id
@@ -250,9 +250,10 @@ class COGS_Model(db.Model):
 
 class Staged_Client_Model(db.Model):
     __tablename__ = "staged_client"
-    id = db.Column(db.String(80), primary_key=True, nullable=False)
+    id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
+    email = db.Column(db.String(40), nullable=False)
     dietitian_id = db.Column(
-        db.String(80), db.ForeignKey("dietitian.id"), nullable=False
+        UUID(as_uuid=True), db.ForeignKey("dietitian.id"), nullable=True
     )
     meal_plan_id = db.Column(
         UUID(as_uuid=True), db.ForeignKey("meal_plan.id"), nullable=False
@@ -281,6 +282,7 @@ class Staged_Client_Model(db.Model):
 
     def __init__(self, staged_client_domain: "Staged_Client_Domain") -> None:
         self.id = staged_client_domain.id
+        self.email = staged_client_domain.email
         # personal information
         self.first_name = staged_client_domain.first_name
         self.current_weight = staged_client_domain.current_weight
@@ -302,7 +304,9 @@ class Staged_Client_Model(db.Model):
 
 class Dietitian_Model(db.Model):
     __tablename__ = "dietitian"
-    id = db.Column(db.String(80), primary_key=True, unique=True, nullable=False)
+    id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
+    email = db.Column(db.String(40), nullable=False)
+    phone_number = db.Column(db.String(20), default="", nullable=False)
     first_name = db.Column(db.String(80), nullable=False)
     last_name = db.Column(db.String(80), nullable=False)
     dietetic_registration_number = db.Column(db.String(20), nullable=False)
@@ -322,6 +326,8 @@ class Dietitian_Model(db.Model):
 
     def __init__(self, dietitian_domain: "Dietitian_Domain") -> None:
         self.id = dietitian_domain.id
+        self.email = dietitian_domain.email
+        self.phone_number = dietitian_domain.phone_number
         self.first_name = dietitian_domain.first_name
         self.last_name = dietitian_domain.last_name
         self.dietetic_registration_number = (
@@ -489,7 +495,7 @@ class Meal_Sample_Model(db.Model):
     id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
     meal_id = db.Column(UUID(as_uuid=True), db.ForeignKey("meal.id"), nullable=False)
     dietitian_id = db.Column(
-        db.String(80),
+        UUID(as_uuid=True),
         db.ForeignKey("dietitian.id"),
         nullable=False,
     )
@@ -570,7 +576,7 @@ class Meal_Sample_Shipment_Model(db.Model):
 
     id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
     dietitian_id = db.Column(
-        db.String(80),
+        UUID(as_uuid=True),
         db.ForeignKey("dietitian.id"),
         nullable=False,
     )
@@ -707,7 +713,7 @@ class Staged_Schedule_Meal_Model(db.Model):
     id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
     meal_id = db.Column(UUID(as_uuid=True), db.ForeignKey("meal.id"), nullable=False)
     staged_client_id = db.Column(
-        db.String(80), db.ForeignKey("staged_client.id"), nullable=False
+        UUID(as_uuid=True), db.ForeignKey("staged_client.id"), nullable=False
     )
     dietitian_prepayment_id = db.Column(
         UUID(as_uuid=True), db.ForeignKey("dietitian_prepayment.id"), nullable=True
@@ -764,7 +770,7 @@ class Staged_Schedule_Snack_Model(db.Model):
     id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
     snack_id = db.Column(UUID(as_uuid=True), db.ForeignKey("snack.id"), nullable=False)
     staged_client_id = db.Column(
-        db.String(80), db.ForeignKey("staged_client.id"), nullable=False
+        UUID(as_uuid=True), db.ForeignKey("staged_client.id"), nullable=False
     )
     dietitian_prepayment_id = db.Column(
         UUID(as_uuid=True), db.ForeignKey("dietitian_prepayment.id"), nullable=True
@@ -783,9 +789,11 @@ class Staged_Schedule_Snack_Model(db.Model):
 class Meal_Subscription_Model(db.Model):
     __tablename__ = "meal_subscription"
     id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
-    client_id = db.Column(db.String(80), db.ForeignKey("client.id"), nullable=False)
+    client_id = db.Column(
+        UUID(as_uuid=True), db.ForeignKey("client.id"), nullable=False
+    )
     dietitian_id = db.Column(
-        db.String(80), db.ForeignKey("dietitian.id"), nullable=False
+        UUID(as_uuid=True), db.ForeignKey("dietitian.id"), nullable=True
     )
     stripe_subscription_id = db.Column(db.String(80), unique=True, nullable=False)
     shipping_rate = db.Column(db.Float(), nullable=False)
@@ -1187,7 +1195,7 @@ class Order_Discount_Model(db.Model):
         nullable=False,
     )
     staged_client_id = db.Column(
-        db.String(80),
+        UUID(as_uuid=True),
         db.ForeignKey("staged_client.id"),
         primary_key=True,
         nullable=False,
@@ -1206,10 +1214,13 @@ class Dietitian_Prepayment_Model(db.Model):
     __tablename__ = "dietitian_prepayment"
     id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
     dietitian_id = db.Column(
-        db.String(80), db.ForeignKey("dietitian.id"), primary_key=True, nullable=False
+        UUID(as_uuid=True),
+        db.ForeignKey("dietitian.id"),
+        primary_key=True,
+        nullable=False,
     )
     staged_client_id = db.Column(
-        db.String(80),
+        UUID(as_uuid=True),
         db.ForeignKey("staged_client.id"),
         primary_key=True,
         nullable=False,
@@ -1246,10 +1257,13 @@ class NYSAND_Lead(db.Model):
     __tablename__ = "nysand_lead"
     id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
     dietitian_id = db.Column(
-        db.String(80), db.ForeignKey("dietitian.id"), primary_key=True, nullable=False
+        UUID(as_uuid=True),
+        db.ForeignKey("dietitian.id"),
+        primary_key=True,
+        nullable=False,
     )
 
-    def __init__(self,id: UUID, dietitian_id:str):
+    def __init__(self, id: UUID, dietitian_id: str):
         self.id = id
         self.dietitian_id = dietitian_id
 

@@ -1,5 +1,6 @@
 from .Base_Repository import Base_Repository
 from models import Client_Model, Staged_Client_Model
+from uuid import UUID
 from typing import Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -24,12 +25,12 @@ class Client_Repository(Base_Repository):
         return client
 
     def get_client(
-        self, client_id: str = None, client_stripe_id=None
+        self, client_email: str = None, client_stripe_id=None, client_id: UUID = None
     ) -> Optional[Client_Model]:
-        if client_id:
+        if client_email:
             client = (
                 self.db.session.query(Client_Model)
-                .filter(Client_Model.id == client_id)
+                .filter(Client_Model.email == client_email)
                 .first()
             )
         elif client_stripe_id:
@@ -38,9 +39,15 @@ class Client_Repository(Base_Repository):
                 .filter(Client_Model.stripe_id == client_stripe_id)
                 .first()
             )
+        elif client_id:
+            client = (
+                self.db.session.query(Client_Model)
+                .filter(Client_Model.id == client_id)
+                .first()
+            )
         return client
 
-    def get_clients(self, dietitian_id: str = None) -> Optional[list[Client_Model]]:
+    def get_clients(self, dietitian_id: UUID = None) -> Optional[list[Client_Model]]:
         if dietitian_id:
             clients = (
                 self.db.session.query(Client_Model)
@@ -80,7 +87,7 @@ class Client_Repository(Base_Repository):
         self.db.session.commit()
         return
 
-    def deactivate_client(self, client_id: str) -> None:
+    def deactivate_client(self, client_id: UUID) -> None:
         client_to_update: Client_Model = self.get_client(client_id=client_id)
         client_to_update.active = False
         self.db.session.commit()

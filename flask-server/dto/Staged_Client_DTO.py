@@ -1,15 +1,21 @@
 from uuid import UUID
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 from .Base_DTO import Base_DTO
+
 if TYPE_CHECKING:
     from domain.Staged_Client_Domain import Staged_Client_Domain
 
 
 class Staged_Client_DTO(Base_DTO):
-    def __init__(self, staged_client_json: dict = None, staged_client_domain: 'Staged_Client_Domain' = None) -> None:
+    def __init__(
+        self,
+        staged_client_json: dict = None,
+        staged_client_domain: "Staged_Client_Domain" = None,
+    ) -> None:
         if staged_client_json:
-            self.id: str = staged_client_json["id"]
-            self.dietitian_id: str = staged_client_json["dietitian_id"]
+            self.id: UUID = staged_client_json["id"]
+            self.email: str = staged_client_json["email"]
+            self.dietitian_id: Optional[str] = staged_client_json["dietitian_id"]
             self.meal_plan_id: int = staged_client_json["meal_plan_id"]
             # personal information
             self.first_name: str = staged_client_json["first_name"]
@@ -28,7 +34,8 @@ class Staged_Client_DTO(Base_DTO):
             self.meals_prepaid: bool = staged_client_json["meals_prepaid"]
         elif staged_client_domain:
             self.id: str = staged_client_domain.id
-            self.dietitian_id: str = staged_client_domain.dietitian_id
+            self.email: str = staged_client_domain.email
+            self.dietitian_id: Optional[str] = staged_client_domain.dietitian_id
             self.meal_plan_id: UUID = staged_client_domain.meal_plan_id
             # personal info
             self.first_name: str = staged_client_domain.first_name

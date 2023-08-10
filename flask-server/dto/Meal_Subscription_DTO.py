@@ -1,6 +1,6 @@
 from .Base_DTO import Base_DTO
 from uuid import UUID
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 if TYPE_CHECKING:
     from domain.Meal_Subscription_Domain import Meal_Subscription_Domain
@@ -15,7 +15,7 @@ class Meal_Subscription_DTO(Base_DTO):
         if meal_subscription_json:
             self.id: UUID = UUID(meal_subscription_json["id"])
             self.client_id: str = meal_subscription_json["client_id"]
-            self.dietitian_id: str = meal_subscription_json["dietitian_id"]
+            self.dietitian_id: Optional[UUID] = meal_subscription_json["dietitian_id"]
             self.stripe_subscription_id: str = meal_subscription_json[
                 "stripe_subscription_id"
             ]
@@ -26,7 +26,7 @@ class Meal_Subscription_DTO(Base_DTO):
         elif meal_subscription_domain:
             self.id: UUID = meal_subscription_domain.id
             self.client_id: str = meal_subscription_domain.client_id
-            self.dietitian_id: str = meal_subscription_domain.dietitian_id
+            self.dietitian_id: Optional[UUID] = meal_subscription_domain.dietitian_id
             self.stripe_subscription_id: str = (
                 meal_subscription_domain.stripe_subscription_id
             )
