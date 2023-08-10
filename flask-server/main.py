@@ -51,10 +51,22 @@ def handle_auth_error(ex):
     return response
 
 
-@app.route("/client_sign_up/<string:staged_client_id>")
+@app.route("/api/client_sign_up/<string:staged_client_id>")
 def client_signup(staged_client_id: str):
+    print('os.getenv("AUTH0_AUDIENCE")', os.getenv("AUTH0_AUDIENCE"))
+    print("request.scheme", request.scheme)
+    print(
+        'url_for("callback", _external=True)',
+        url_for("callback", _external=True, _scheme=request.scheme),
+    )
+    if env == "debug":
+        the_scheme = "http"
+
+    else:
+        the_scheme = "https"
+    print("the_scheme", the_scheme)
     return oauth.auth0.authorize_redirect(
-        redirect_uri=url_for("callback", _external=True),
+        redirect_uri=url_for("callback", _external=True, _scheme=the_scheme),
         audience=os.getenv("AUTH0_AUDIENCE"),
         screen_hint="signup",
         response_type="code",
@@ -62,7 +74,7 @@ def client_signup(staged_client_id: str):
     )
 
 
-@app.route("/callback", methods=["GET", "POST"])
+@app.route("/api/callback", methods=["GET", "POST"])
 def callback():
     staged_client_id = request.args.get("state")
     token = oauth.auth0.authorize_access_token()
@@ -70,6 +82,7 @@ def callback():
     redirect_signup_url = (
         f"{host_url}/client-sign-up?staged_client_id={staged_client_id}"
     )
+    print("redirect_signup_url", redirect_signup_url)
     return redirect(redirect_signup_url)
 
 

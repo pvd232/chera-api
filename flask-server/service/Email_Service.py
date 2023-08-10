@@ -328,8 +328,16 @@ class Email_Service(object):
                     user_last_name=user.last_name.capitalize(),
                     email=user.email,
                     zipcode=zipcode,
+                    number_of_ed_clients=user.number_of_ed_clients,
                 )
-
+            elif user_type == "Client":
+                mail_content = mail_body.read().format(
+                    logo_url=self.logo_url,
+                    first_name=first_name,
+                    user_type=user_type,
+                    user_first_name=user.first_name.capitalize(),
+                    email=user.email,
+                )
             # The body and the attachments for the mail
             message.attach(MIMEText(mail_content, "html"))
             s = smtplib.SMTP("smtp.mailgun.org", 587)
@@ -339,7 +347,9 @@ class Email_Service(object):
             s.quit()
 
     def send_sign_up_email(self, staged_client: "Staged_Client_Domain") -> None:
-        button_url = f"{self.scheme}://{self.host}/client_sign_up/{staged_client.id}"
+        button_url = (
+            f"{self.scheme}://{self.host}/api/client_sign_up/{staged_client.id}"
+        )
         if staged_client.meals_prepaid:
             email_template_name = "sign_up_prepaid_meals.html"
         else:
@@ -435,7 +445,9 @@ class Email_Service(object):
     def send_sign_up_reminder_email(
         self, staged_client: "Staged_Client_Domain"
     ) -> None:
-        button_url = f"{self.scheme}://{self.host}/client_sign_up/{staged_client.id}"
+        button_url = (
+            f"{self.scheme}://{self.host}/api/client_sign_up/{staged_client.id}"
+        )
         sign_up_button = (
             Path(".")
             .joinpath("email_templates", "round_button.html")
