@@ -54,9 +54,12 @@ def handle_auth_error(ex):
 @app.route("/api/client_sign_up/<string:staged_client_id>")
 def client_signup(staged_client_id: str):
     print('os.getenv("AUTH0_AUDIENCE")', os.getenv("AUTH0_AUDIENCE"))
-    print('url_for("callback", _external=True)', url_for("callback", _external=True))
+    print(
+        'url_for("callback", _external=True)',
+        url_for("callback", _external=True, _scheme=request.scheme),
+    )
     return oauth.auth0.authorize_redirect(
-        redirect_uri=url_for("callback", _external=True),
+        redirect_uri=url_for("callback", _external=True, _scheme=request.scheme),
         audience=os.getenv("AUTH0_AUDIENCE"),
         screen_hint="signup",
         response_type="code",
