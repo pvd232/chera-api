@@ -328,8 +328,16 @@ class Email_Service(object):
                     user_last_name=user.last_name.capitalize(),
                     email=user.email,
                     zipcode=zipcode,
+                    number_of_ed_clients=user.number_of_ed_clients,
                 )
-
+            elif user_type == "Client":
+                mail_content = mail_body.read().format(
+                    logo_url=self.logo_url,
+                    first_name=first_name,
+                    user_type=user_type,
+                    user_first_name=user.first_name.capitalize(),
+                    email=user.email,
+                )
             # The body and the attachments for the mail
             message.attach(MIMEText(mail_content, "html"))
             s = smtplib.SMTP("smtp.mailgun.org", 587)
