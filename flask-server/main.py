@@ -1244,7 +1244,7 @@ def client() -> Response:
             gcp_secret_manager_service=GCP_Secret_Manager_Service(),
         ).send_new_user_sign_up_notification(
             first_name="Peter",
-            email="patardriscoll@gmail.com",
+            email="peterdriscoll@cherahealth.com",
             user_type="Client",
             user=returned_client,
             env=env,
@@ -3733,11 +3733,38 @@ def nysand_lead() -> Response:
 def initialize_dietitian() -> Response:
     if request.method == "GET":
         from repository.Dietitian_Repository import Dietitian_Repository
+        from repository.Continuity_Repository import Continuity_Repository
+        from repository.Meal_Sample_Repository import Meal_Sample_Repository
+        from repository.Meal_Sample_Shipment_Repository import (
+            Meal_Sample_Shipment_Repository,
+        )
         from service.Dietitian_Service import Dietitian_Service
+        from service.Continuity_Service import Continuity_Service
+        from service.Meal_Sample_Service import Meal_Sample_Service
+        from service.Meal_Sample_Shipment_Service import Meal_Sample_Shipment_Service
 
         Dietitian_Service(
             dietitian_repository=Dietitian_Repository(db=db)
         ).initialize_dietitians()
+        # Continuity_Service().write_dietitian_data(
+        #     meal_sample_service=Meal_Sample_Service(
+        #         meal_sample_repository=Meal_Sample_Repository(db=db)
+        #     ),
+        #     meal_sample_shipment_service=Meal_Sample_Shipment_Service(
+        #         meal_sample_shipment_repository=Meal_Sample_Shipment_Repository(db=db)
+        #     ),
+        # )
+        dietitians = Dietitian_Service(
+            dietitian_repository=Dietitian_Repository(db=db)
+        ).get_dietitians()
+        dietitian_dict = {}
+        for dietitian in dietitians:
+            dietitian_dict[dietitian.email] = dietitian.serialize()
+        Continuity_Repository().initialize_dietitian_data(
+            dietitian_dict=dietitian_dict,
+            meal_sample_repository=Meal_Sample_Repository(db=db),
+            meal_sample_shipment_repository=Meal_Sample_Shipment_Repository(db=db),
+        )
         return Response(status=200)
     else:
         return Response(status=405)

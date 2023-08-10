@@ -86,14 +86,12 @@ app.secret_key = os.getenv("APP_SECRET_KEY") or GCP_Secret_Manager_Service().get
 )
 oauth.register(
     "auth0",
-    client_id=os.getenv("AUTH0_CLIENT_ID")
-    or GCP_Secret_Manager_Service().get_secret(f"{env.upper()}_AUTH0_CLIENT_ID"),
-    client_secret=os.getenv("AUTH0_CLIENT_SECRET")
-    or GCP_Secret_Manager_Service().get_secret(f"{env.upper()}_AUTH0_CLIENT_SECRET"),
+    client_id=os.getenv("AUTH0_CLIENT_ID"),
+    client_secret=os.getenv("AUTH0_CLIENT_SECRET"),
     client_kwargs={
         "scope": "openid profile email",
     },
-    server_metadata_url=f'https://{os.getenv("AUTH0_DOMAIN") or GCP_Secret_Manager_Service().get_secret(f"{env.upper()}_AUTH0_DOMAIN")}/.well-known/openid-configuration',
+    server_metadata_url=f'https://{os.getenv("AUTH0_DOMAIN")}/.well-known/openid-configuration',
 )
 #############################################
 
