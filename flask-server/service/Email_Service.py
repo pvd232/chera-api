@@ -339,9 +339,7 @@ class Email_Service(object):
             s.quit()
 
     def send_sign_up_email(self, staged_client: "Staged_Client_Domain") -> None:
-        button_url = (
-            f"{self.scheme}://{self.host}/api/client_sign_up/{staged_client.id}"
-        )
+        button_url = f"{self.scheme}://{self.host}/client_sign_up/{staged_client.id}"
         if staged_client.meals_prepaid:
             email_template_name = "sign_up_prepaid_meals.html"
         else:
@@ -437,9 +435,7 @@ class Email_Service(object):
     def send_sign_up_reminder_email(
         self, staged_client: "Staged_Client_Domain"
     ) -> None:
-        button_url = (
-            f"{self.scheme}://{self.host}/api/client_sign_up/{staged_client.id}"
-        )
+        button_url = f"{self.scheme}://{self.host}/client_sign_up/{staged_client.id}"
         sign_up_button = (
             Path(".")
             .joinpath("email_templates", "round_button.html")

@@ -51,7 +51,7 @@ def handle_auth_error(ex):
     return response
 
 
-@app.route("/api/client_sign_up/<string:staged_client_id>")
+@app.route("/client_sign_up/<string:staged_client_id>")
 def client_signup(staged_client_id: str):
     return oauth.auth0.authorize_redirect(
         redirect_uri=url_for("callback", _external=True),
@@ -62,7 +62,7 @@ def client_signup(staged_client_id: str):
     )
 
 
-@app.route("/api/callback", methods=["GET", "POST"])
+@app.route("/callback", methods=["GET", "POST"])
 def callback():
     staged_client_id = request.args.get("state")
     token = oauth.auth0.authorize_access_token()
