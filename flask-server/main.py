@@ -3351,14 +3351,12 @@ def stripe_payment_methods(client_stripe_id: str) -> Response:
     payment_methods = Stripe_Service().get_payment_methods(
         client_stripe_id=client_stripe_id
     )
-    print(payment_methods)
     response = {
         "last4": payment_methods.data[0].card.last4,
         "exp_month": payment_methods.data[0].card.exp_month,
         "exp_year": payment_methods.data[0].card.exp_year,
     }
     return jsonify(response), 200
-    # return Response(status=201)
 
 
 @app.route(
