@@ -9,21 +9,16 @@ class COGS_Service(object):
     def __init__(self, cogs_repository: "COGS_Repository") -> None:
         self.cogs_repository = cogs_repository
         self.meal_profit_premium = 1
+        self.meals_per_box = 6
 
     def get_cogs(self) -> list[COGS_Domain]:
         return self.cogs_repository.get_cogs()
 
-    def get_meals_per_box(self) -> int:
-        all_cogs = self.cogs_repository.get_cogs()
-        cogs_domains = [COGS_Domain(cogs_object=cogs) for cogs in all_cogs]
-        cogs_with_lowest_cost_per_meal = min(
-            cogs_domains, key=lambda cogs: cogs.get_total_cost_per_meal()
-        )
-        return cogs_with_lowest_cost_per_meal.num_meals
-
+    # num_meals and num_snacks are the raw values
     def get_specific_cogs(
         self, num_meals, num_snacks: int, is_local: bool = False
     ) -> COGS_Domain:
+        # get the matching num_items such that it is an even multiple of a base cogs value
         lcd_num_items = self.get_lcd_num_items(
             num_meals=num_meals, num_snacks=num_snacks
         )
@@ -38,36 +33,27 @@ class COGS_Service(object):
 
     def get_num_boxes(self, num_meals: int, num_snacks: int) -> int:
         num_items = self.get_num_items(num_meals=num_meals, num_snacks=num_snacks)
-        max_items_per_box = self.get_meals_per_box()
-        upper_bound = (max_items_per_box * 2) - 2
-        if num_items > upper_bound:
-            times_divisible = num_items // max_items_per_box
-            remainder = num_items % max_items_per_box
-            if remainder == 0:
-                num_boxes = times_divisible
-            else:
-                num_boxes = times_divisible + 1
-        elif num_items > max_items_per_box and num_items <= upper_bound:
-            num_boxes = 2
-        else:
-            num_boxes = 1
+        if num_items % 2 != 0:
+            num_items = num_items - 1
+        num_boxes = num_items / self.meals_per_box
         return int(num_boxes)
 
-    # Get the lowest common denominator of meals and snacks (costs are calculated per meal, and are proportional to underlying num_meals range of 8-14)
+    # Get the matchings cogs for the given num_meals
     def get_lcd_num_items(self, num_meals: int, num_snacks: int) -> int:
         num_items = self.get_num_items(num_meals=num_meals, num_snacks=num_snacks)
         # Prepaid meals triggers no value for lcd_num_items
-        meals_per_box = self.get_meals_per_box()
-        upper_bound = (meals_per_box * 2) - 2
 
-        if num_items >= meals_per_box and num_items <= upper_bound:
-            lcd_num_items = num_items
+        cogs = self.cogs_repository.get_cogs()
 
-        elif num_items > upper_bound:
-            remainder = num_items % meals_per_box
-            lcd_num_items = meals_per_box + remainder
+        if num_items % 2 != 0:
+            num_items = num_items - 1
+        matching_cogs_num_items = 0
 
-        return int(lcd_num_items)
+        for cog in cogs:
+            if cog.num_meals % num_items == 0:
+                matching_cogs_num_items = cog.num_meals
+
+        return int(matching_cogs_num_items)
 
     def get_shipping_cost(
         self, num_meals: int, num_snacks: int, shipping_rate: float
