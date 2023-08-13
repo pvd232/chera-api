@@ -971,8 +971,26 @@ def delivery_date() -> None:
     from service.Date_Service import Date_Service
     from flask import jsonify
 
-    upcoming_delivery_dates = Date_Service().get_upcoming_delivery_dates()
-    upcoming_delivery_cutoff_dates = Date_Service().get_upcoming_cutoff_delivery_dates()
+    current_week_delivery_date = Date_Service().get_current_week_delivery_date()
+    current_week_cutoff_date = Date_Service().get_current_week_cutoff(
+        current_delivery_date=current_week_delivery_date
+    )
+    # If the cutoff for this week has passed, update the delivery date to next week
+    # Then update the cutoff date to next week
+    if current_week_cutoff_date < datetime.now(timezone.utc).timestamp():
+        current_week_delivery_date = Date_Service().get_next_week_date(
+            current_week_delivery_date
+        )
+        current_week_cutoff_date = Date_Service().get_next_week_date(
+            current_week_cutoff_date
+        )
+
+    upcoming_delivery_dates = Date_Service().get_upcoming_delivery_dates(
+        current_week_delivery_date=current_week_delivery_date,
+    )
+    upcoming_delivery_cutoff_dates = Date_Service().get_upcoming_cutoff_delivery_dates(
+        current_week_cutoff_date=current_week_cutoff_date,
+    )
 
     return jsonify(
         {

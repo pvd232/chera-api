@@ -170,8 +170,8 @@ class Date_Service(object):
             current_week_anchor += timedelta(days=7)
         return current_week_anchor.timestamp()
 
-    def get_next_week_delivery_date(self, current_delivery_date: float) -> float:
-        new_datetime = datetime.utcfromtimestamp(current_delivery_date).replace(
+    def get_next_week_date(self, current_date: float) -> float:
+        new_datetime = datetime.utcfromtimestamp(current_date).replace(
             tzinfo=timezone.utc
         ) + timedelta(days=7)
         return new_datetime.timestamp()
@@ -191,24 +191,24 @@ class Date_Service(object):
         )
         return shipping_date.timestamp()
 
-    def get_upcoming_delivery_dates(self) -> list[float]:
+    def get_upcoming_delivery_dates(
+        self, current_week_delivery_date: float
+    ) -> list[float]:
         upcoming_delivery_dates = []
-        current_delivery_date = self.get_current_week_delivery_date()
         for i in range(0, 4):
             upcoming_delivery_date = datetime.utcfromtimestamp(
-                current_delivery_date
+                current_week_delivery_date
             ).replace(tzinfo=timezone.utc) + timedelta(days=i * 7)
             upcoming_delivery_dates.append(upcoming_delivery_date.timestamp())
         return upcoming_delivery_dates
 
-    def get_upcoming_cutoff_delivery_dates(self) -> list[float]:
+    def get_upcoming_cutoff_delivery_dates(
+        self, current_week_cutoff_date: float
+    ) -> list[float]:
         upcoming_cutoff_delivery_dates = []
-        current_delivery_date = self.get_current_week_delivery_date()
         for i in range(0, 4):
             upcoming_cutoff_date = datetime.utcfromtimestamp(
-                self.get_current_week_cutoff(
-                    current_delivery_date=current_delivery_date
-                )
+                current_week_cutoff_date
             ).replace(tzinfo=timezone.utc) + timedelta(days=i * 7)
             upcoming_cutoff_delivery_dates.append(upcoming_cutoff_date.timestamp())
         return upcoming_cutoff_delivery_dates

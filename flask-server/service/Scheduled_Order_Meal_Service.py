@@ -260,7 +260,7 @@ class Scheduled_Order_Meal_Service(object):
                     scheduled_order_meal_object=None,
                     schedule_meal_object=schedule_meal,
                     scheduled_order_meal_id=new_scheduled_order_meal_id,
-                    delivery_date=date_service.get_next_week_delivery_date(
+                    delivery_date=date_service.get_next_week_date(
                         last_scheduled_order_meal_date
                     ),
                     is_paused=is_paused,

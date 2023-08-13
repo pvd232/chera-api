@@ -220,9 +220,7 @@ class Stripe_Service(object):
         date_service: "Date_Service",
     ) -> None:
         datetime_to_resume = int(
-            date_service.get_next_week_delivery_date(
-                current_delivery_date=delivery_date
-            )
+            date_service.get_next_week_date(current_delivery_date=delivery_date)
         )
         stripe.Subscription.modify(
             stripe_subscription_id,

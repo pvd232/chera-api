@@ -100,7 +100,6 @@ class Scheduled_Order_Snack_Service(object):
         )
         return
 
-
     def create_scheduled_order_snacks(
         self, scheduled_order_snack_dtos: list["Scheduled_Order_Snack_DTO"]
     ) -> None:
@@ -229,7 +228,7 @@ class Scheduled_Order_Snack_Service(object):
                     scheduled_order_snack_object=None,
                     schedule_snack_object=schedule_snack,
                     scheduled_order_snack_id=new_scheduled_order_snack_id,
-                    delivery_date=date_service.get_next_week_delivery_date(
+                    delivery_date=date_service.get_next_week_date(
                         last_scheduled_order_snack_date
                     ),
                     is_paused=is_paused,
