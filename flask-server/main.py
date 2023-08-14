@@ -975,9 +975,10 @@ def delivery_date() -> None:
     current_week_cutoff_date = Date_Service().get_current_week_cutoff(
         current_delivery_date=current_week_delivery_date
     )
+    sign_up = request.headers.get("sign-up")
     # If the cutoff for this week has passed, update the delivery date to next week
     # Then update the cutoff date to next week
-    if current_week_cutoff_date < datetime.now(timezone.utc).timestamp():
+    if sign_up and current_week_cutoff_date < datetime.now(timezone.utc).timestamp():
         current_week_delivery_date = Date_Service().get_next_week_date(
             current_week_delivery_date
         )
