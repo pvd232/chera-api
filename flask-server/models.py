@@ -204,7 +204,7 @@ class Client_Model(db.Model):
         self.datetime = client_domain.datetime
         self.active = client_domain.active
 
-    def update_client_address(self, client_domain: "Client_Domain") -> None:
+    def update_address(self, client_domain: "Client_Domain") -> None:
         self.suite = client_domain.suite
         self.street = client_domain.street
         self.city = client_domain.city

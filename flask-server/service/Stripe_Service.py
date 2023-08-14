@@ -72,8 +72,33 @@ class Stripe_Service(object):
             stripe_customer.delete()
         return
 
-    def get_payment_methods(self, client_stripe_id: str):
-        return stripe.PaymentMethod.list(customer=client_stripe_id, type="card")
+    def get_payment_methods(self, stripe_customer_id: str):
+        return stripe.PaymentMethod.list(customer=stripe_customer_id, type="card")
+
+    def update_payment_method(
+        self,
+        stripe_customer_id: str,
+        stripe_payment_method_id: str,
+        stripe_subscription_id: str,
+    ) -> None:
+        try:
+            stripe.PaymentMethod.attach(
+                stripe_payment_method_id,
+                customer=stripe_customer_id,
+            )
+            stripe.Customer.modify(
+                stripe_customer_id,
+                invoice_settings={"default_payment_method": stripe_payment_method_id},
+            )
+            stripe.Subscription.modify(
+                stripe_subscription_id,
+                default_payment_method=stripe_payment_method_id,
+            )
+            return True
+        except stripe.error.StripeError as e:
+            error_message = e.user_message or str(e)
+            print("error_message", error_message)
+            return False
 
     def get_subscription(self, stripe_subscription_id: str) -> stripe.Subscription:
         return stripe.Subscription.retrieve(stripe_subscription_id)
