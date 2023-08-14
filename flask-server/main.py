@@ -1418,11 +1418,6 @@ def stripe_subscription_data() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/hello", methods=["GET"])
-def hello():
-    return jsonify({"hello": "world"}), 200
-
-
 @app.route("/api/extended_staged_client", methods=["GET"])
 def extended_staged_client() -> Response:
     from service.Extended_Staged_Client_Service import Extended_Staged_Client_Service
@@ -3754,14 +3749,6 @@ def initialize_dietitian() -> Response:
         Dietitian_Service(
             dietitian_repository=Dietitian_Repository(db=db)
         ).initialize_dietitians()
-        # Continuity_Service().write_dietitian_data(
-        #     meal_sample_service=Meal_Sample_Service(
-        #         meal_sample_repository=Meal_Sample_Repository(db=db)
-        #     ),
-        #     meal_sample_shipment_service=Meal_Sample_Shipment_Service(
-        #         meal_sample_shipment_repository=Meal_Sample_Shipment_Repository(db=db)
-        #     ),
-        # )
         dietitians = Dietitian_Service(
             dietitian_repository=Dietitian_Repository(db=db)
         ).get_dietitians()
