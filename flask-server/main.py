@@ -975,9 +975,10 @@ def delivery_date() -> None:
     current_week_cutoff_date = Date_Service().get_current_week_cutoff(
         current_delivery_date=current_week_delivery_date
     )
+    sign_up = request.headers.get("sign-up")
     # If the cutoff for this week has passed, update the delivery date to next week
     # Then update the cutoff date to next week
-    if current_week_cutoff_date < datetime.now(timezone.utc).timestamp():
+    if sign_up and current_week_cutoff_date < datetime.now(timezone.utc).timestamp():
         current_week_delivery_date = Date_Service().get_next_week_date(
             current_week_delivery_date
         )
@@ -1415,11 +1416,6 @@ def stripe_subscription_data() -> Response:
         return Response(status=204)
     else:
         return Response(status=405)
-
-
-@app.route("/api/hello", methods=["GET"])
-def hello():
-    return jsonify({"hello": "world"}), 200
 
 
 @app.route("/api/extended_staged_client", methods=["GET"])
@@ -3753,14 +3749,6 @@ def initialize_dietitian() -> Response:
         Dietitian_Service(
             dietitian_repository=Dietitian_Repository(db=db)
         ).initialize_dietitians()
-        # Continuity_Service().write_dietitian_data(
-        #     meal_sample_service=Meal_Sample_Service(
-        #         meal_sample_repository=Meal_Sample_Repository(db=db)
-        #     ),
-        #     meal_sample_shipment_service=Meal_Sample_Shipment_Service(
-        #         meal_sample_shipment_repository=Meal_Sample_Shipment_Repository(db=db)
-        #     ),
-        # )
         dietitians = Dietitian_Service(
             dietitian_repository=Dietitian_Repository(db=db)
         ).get_dietitians()
