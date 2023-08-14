@@ -204,7 +204,7 @@ class Client_Model(db.Model):
         self.datetime = client_domain.datetime
         self.active = client_domain.active
 
-    def update_client_address(self, client_domain: "Client_Domain") -> None:
+    def update_address(self, client_domain: "Client_Domain") -> None:
         self.suite = client_domain.suite
         self.street = client_domain.street
         self.city = client_domain.city
@@ -313,10 +313,7 @@ class Dietitian_Model(db.Model):
     clinic_city = db.Column(db.String(40), nullable=False)
     clinic_state = db.Column(db.String(2), nullable=False)
     clinic_address = db.Column(db.String(200), nullable=False)
-    clinic_url = db.Column(db.String(80), nullable=False)
     number_of_ed_clients = db.Column(db.Integer(), nullable=False)
-    percent_intensive_outpatient = db.Column(db.Float(), nullable=False)
-    percent_regular_outpatient = db.Column(db.Float(), nullable=False)
     datetime = db.Column(db.Float(), nullable=False)
     got_sample = db.Column(db.Boolean(), default=False, nullable=False)
     active = db.Column(db.Boolean(), default=True, nullable=False)
@@ -336,12 +333,7 @@ class Dietitian_Model(db.Model):
         self.clinic_city = dietitian_domain.clinic_city
         self.clinic_state = dietitian_domain.clinic_state
         self.clinic_address = dietitian_domain.clinic_address
-        self.clinic_url = dietitian_domain.clinic_url
         self.number_of_ed_clients = dietitian_domain.number_of_ed_clients
-        self.percent_intensive_outpatient = (
-            dietitian_domain.percent_intensive_outpatient
-        )
-        self.percent_regular_outpatient = dietitian_domain.percent_regular_outpatient
         self.datetime = dietitian_domain.datetime
         self.got_sample = dietitian_domain.got_sample
         self.active = dietitian_domain.active

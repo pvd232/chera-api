@@ -971,8 +971,26 @@ def delivery_date() -> None:
     from service.Date_Service import Date_Service
     from flask import jsonify
 
-    upcoming_delivery_dates = Date_Service().get_upcoming_delivery_dates()
-    upcoming_delivery_cutoff_dates = Date_Service().get_upcoming_cutoff_delivery_dates()
+    current_week_delivery_date = Date_Service().get_current_week_delivery_date()
+    current_week_cutoff_date = Date_Service().get_current_week_cutoff(
+        current_delivery_date=current_week_delivery_date
+    )
+    # If the cutoff for this week has passed, update the delivery date to next week
+    # Then update the cutoff date to next week
+    if current_week_cutoff_date < datetime.now(timezone.utc).timestamp():
+        current_week_delivery_date = Date_Service().get_next_week_date(
+            current_week_delivery_date
+        )
+        current_week_cutoff_date = Date_Service().get_next_week_date(
+            current_week_cutoff_date
+        )
+
+    upcoming_delivery_dates = Date_Service().get_upcoming_delivery_dates(
+        current_week_delivery_date=current_week_delivery_date,
+    )
+    upcoming_delivery_cutoff_dates = Date_Service().get_upcoming_cutoff_delivery_dates(
+        current_week_cutoff_date=current_week_cutoff_date,
+    )
 
     return jsonify(
         {
@@ -3344,53 +3362,39 @@ def verify_discount() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/stripe/payment_method/<string:client_stripe_id>", methods=["GET"])
-def stripe_payment_methods(client_stripe_id: str) -> Response:
+@app.route("/api/stripe/payment_method", methods=["GET", "PUT"])
+def stripe_payment_methods() -> Response:
     from service.Stripe_Service import Stripe_Service
 
-    payment_methods = Stripe_Service().get_payment_methods(
-        client_stripe_id=client_stripe_id
-    )
-    response = {
-        "last4": payment_methods.data[0].card.last4,
-        "exp_month": payment_methods.data[0].card.exp_month,
-        "exp_year": payment_methods.data[0].card.exp_year,
-    }
-    return jsonify(response), 200
-
-
-@app.route(
-    "/api/stripe/update_payment_method/<string:customer_id>/<string:subscription_id>/<string:payment_method>",
-    methods=["POST"],
-)
-def update_subscription_card(customer_id, subscription_id, payment_method):
-    try:
-        stripe.PaymentMethod.attach(
-            payment_method,
-            customer=customer_id,
+    stripe_customer_id = request.args.get("stripe_customer_id")
+    if request.method == "GET":
+        payment_methods = Stripe_Service().get_payment_methods(
+            stripe_customer_id=stripe_customer_id
         )
-
-        stripe.Customer.modify(
-            customer_id,
-            invoice_settings={"default_payment_method": payment_method},
+        response = {
+            "last4": payment_methods.data[0].card.last4,
+            "exp_month": payment_methods.data[0].card.exp_month,
+            "exp_year": payment_methods.data[0].card.exp_year,
+        }
+        return jsonify(response), 200
+    elif request.method == "PUT":
+        stripe_payment_method_id = request.headers.get("stripe-payment-method-id")
+        stripe_subscription_id = request.headers.get("stripe-subscription-id")
+        payment_method_update = Stripe_Service().update_payment_method(
+            stripe_customer_id=stripe_customer_id,
+            stripe_payment_method_id=stripe_payment_method_id,
+            stripe_subscription_id=stripe_subscription_id,
         )
-
-        stripe.Subscription.modify(
-            subscription_id,
-            default_payment_method=payment_method,
-        )
-
-        return jsonify("Card updated successfully"), 200
-    except stripe.error.StripeError as e:
-        print(e)
-        error_message = e.user_message or str(e)
-        return jsonify({"success": False, "error": error_message}), 400
+        if payment_method_update:
+            return Response(status=204)
+        else:
+            return Response(status=400)
 
 
 @app.route(
     "/api/stripe/get_subscription_details/<string:subscription_id>/", methods=["GET"]
 )
-def get_subscription_details(subscription_id):
+def get_subscription_details(subscription_id: str):
     try:
         subscription = stripe.Subscription.retrieve(subscription_id)
         return jsonify(subscription), 200
@@ -3551,17 +3555,17 @@ def create_stripe_payment_intent() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/client/update_address", methods=["PUT"])
+@app.route("/api/client/address", methods=["PUT"])
 def update_client_address() -> Response:
     from service.Client_Service import Client_Service
     from repository.Client_Repository import Client_Repository
     from dto.Client_DTO import Client_DTO
 
+    client_dto = Client_DTO(client_json=json.loads(request.data))
     if request.method == "PUT":
-        client_dto: Client_DTO = Client_DTO(client_json=json.loads(request.data))
-        Client_Service(
-            client_repository=Client_Repository(db=db)
-        ).update_client_address(client_dto=client_dto)
+        Client_Service(client_repository=Client_Repository(db=db)).update_address(
+            client_dto=client_dto
+        )
         return Response(status=201)
 
     else:

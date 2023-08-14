@@ -105,7 +105,7 @@ class Date_Service(unittest.TestCase):
         self.assertIsInstance(stripe_timestamp_int, int)
         self.assertTrue(test_datetime.timestamp() > datetime.utcnow().timestamp())
 
-    def get_next_week_delivery_date(self) -> None:
+    def get_next_week_date(self) -> None:
         from service.Date_Service import Date_Service
 
         test_timestamp = Date_Service().get_current_week_delivery_date()
@@ -113,9 +113,7 @@ class Date_Service(unittest.TestCase):
             tzinfo=timezone.utc
         )
         test_next_week_delivery_date = datetime.utcfromtimestamp(
-            Date_Service().get_next_week_delivery_date(
-                current_delivery_date=test_timestamp
-            )
+            Date_Service().get_next_week_date(current_delivery_date=test_timestamp)
         ).replace(tzinfo=timezone.utc)
 
         self.assertEqual(
@@ -151,7 +149,7 @@ class Date_Service(unittest.TestCase):
 # Date_Service().get_current_week_delivery_date()
 # Date_Service().get_current_week_cutoff()
 # Date_Service().get_stripe_delivery_date_anchor()
-# Date_Service().get_next_week_delivery_date()
+# Date_Service().get_next_week_date()
 # Date_Service().get_shipping_date_from_delivery_date()
 # Date_Service().get_shipping_date_from_delivery_date()
 Date_Service().get_current_week_sample_delivery_date(
