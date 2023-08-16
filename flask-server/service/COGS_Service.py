@@ -89,3 +89,6 @@ class COGS_Service(object):
 
     def get_snack_price(self, meal_price: float) -> float:
         return meal_price / 2
+
+    def delete_all_cogs(self) -> None:
+        self.cogs_repository.delete_all_cogs()

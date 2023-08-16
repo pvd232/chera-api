@@ -14,3 +14,7 @@ class COGS_Repository(Base_Repository):
             .first()
         )
         return cogs
+
+    def delete_all_cogs(self):
+        self.db.session.query(COGS_Model).delete()
+        self.db.session.commit()

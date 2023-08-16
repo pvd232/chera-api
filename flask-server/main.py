@@ -3031,17 +3031,22 @@ def order_meal() -> Response:
         return Response(status=405)
 
 
-@app.route("/api/cogs", methods=["GET"])
+@app.route("/api/cogs", methods=["GET", "PUT"])
 def cogs() -> Response:
     from repository.COGS_Repository import COGS_Repository
     from service.COGS_Service import COGS_Service
     from dto.COGS_DTO import COGS_DTO
+    from helpers.db.create_cogs import create_cogs
 
     if request.method == "GET":
         cogs_list = COGS_Service(cogs_repository=COGS_Repository(db=db)).get_cogs()
         cogs_dtos = [COGS_DTO(cogs_domain=x) for x in cogs_list]
         serialized_cogs = [x.serialize() for x in cogs_dtos]
         return jsonify(serialized_cogs), 200
+    elif request.method == "PUT":
+        COGS_Service(cogs_repository=COGS_Repository(db=db)).delete_all_cogs()
+        create_cogs(db=db)
+        return Response(status=204)
     else:
         return Response(status=405)
 
