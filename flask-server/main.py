@@ -19,7 +19,7 @@ from service.Logging_Service import Logging_Service
 
 
 @app.errorhandler(404)
-def not_found(e) -> str:
+def not_found() -> str:
     # print("requested url:", request.path, "\n", "error:", e)
     log_text = "404 not found, requested url:" + str(request.path)
     Logging_Service().warning(text=log_text)
