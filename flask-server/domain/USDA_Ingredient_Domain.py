@@ -1,13 +1,14 @@
 from .Base_Domain import Base_Domain
 from models import USDA_Ingredient_Model
 from dto.USDA_Ingredient_DTO import USDA_Ingredient_DTO
+from uuid import UUID
 
 
 class USDA_Ingredient_Domain(Base_Domain):
     def __init__(
         self, usda_ingredient_object: USDA_Ingredient_Model | USDA_Ingredient_DTO
     ) -> None:
-        self.id: str = usda_ingredient_object.id
+        self.id: UUID = usda_ingredient_object.id
         self.name: str = usda_ingredient_object.name
         self.fdc_id: str = usda_ingredient_object.fdc_id
         self.amount_of_grams: float = usda_ingredient_object.amount_of_grams

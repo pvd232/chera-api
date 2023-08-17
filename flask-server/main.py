@@ -781,9 +781,12 @@ def stripe_webhook() -> Response:
         from dto.Meal_Subscription_Invoice_DTO import Meal_Subscription_Invoice_DTO
         from datetime import datetime
 
-        stripe_invoice_id = event["data"]["object"]["id"]
-        stripe_subscription_id = event["data"]["object"]["subscription"]
-        stripe_payment_intent_id = event["data"]["object"]["payment_intent"]
+        try:
+            stripe_invoice_id = event["data"]["object"]["id"]
+            stripe_subscription_id = event["data"]["object"]["subscription"]
+            stripe_payment_intent_id = event["data"]["object"]["payment_intent"]
+        except:
+            return Response(status=400, response="Invalid stripe event")
 
         meal_subscription: Optional[
             Meal_Subscription_Domain
@@ -794,7 +797,7 @@ def stripe_webhook() -> Response:
         )
 
         if not meal_subscription:
-            return Response(status=404)
+            return Response(status=404, response="No meal subscription found")
 
         staged_client = Staged_Client_Service(
             staged_client_repository=Staged_Client_Repository(db=db)
@@ -870,15 +873,16 @@ def stripe_webhook() -> Response:
             )
 
             # Get scheduled order meals for this week
-            this_weeks_scheduled_order_meals: list[
-                Scheduled_Order_Meal_Domain
-            ] = Scheduled_Order_Meal_Service(
+            this_weeks_scheduled_order_meals = Scheduled_Order_Meal_Service(
                 scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(db=db)
             ).get_scheduled_order_meals_for_week(
                 meal_subscription_id=meal_subscription.id,
                 delivery_date=Date_Service().get_current_week_delivery_date(),
             )
 
+            # Scheduled order meals are mandatory (even if week skipped or delivery paused - this is just a boolean attribute), if none are found, something went wrong
+            if not this_weeks_scheduled_order_meals:
+                return Response(status=400, response="No scheduled order meals found")
             # Create new order meals for invoice
             for scheduled_order_meal in this_weeks_scheduled_order_meals:
                 order_meal_id = uuid.uuid4()
@@ -907,6 +911,12 @@ def stripe_webhook() -> Response:
                 delivery_date=Date_Service().get_current_week_delivery_date(),
             )
 
+            # Scheduled order snacks are optional
+            if not this_weeks_scheduled_order_snacks:
+                return Response(
+                    status=204,
+                    response="No scheduled order snacks found, scheduled order meals created",
+                )
             # Create new order snacks for invoice
             for scheduled_order_snack in this_weeks_scheduled_order_snacks:
                 order_snack_id = uuid.uuid4()
@@ -924,6 +934,7 @@ def stripe_webhook() -> Response:
                 Order_Snack_Service(
                     order_snack_repository=Order_Snack_Repository(db=db)
                 ).create_order_snack(order_snack_domain=order_snack_domain)
+            return Response(status=204, response="Order meals and snacks created")
 
         # Invoice created when client first signs up
         elif staged_client.account_created is False:
