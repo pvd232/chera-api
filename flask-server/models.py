@@ -123,7 +123,6 @@ else:
 
 stripe.api_key = STRIPE_API_KEY
 shippo.config.api_key = SHIPPO_API_KEY
-print("host_url", host_url)
 
 jwt_secret = os.getenv("JWT_SECRET") or GCP_Secret_Manager_Service().get_secret(
     "JWT_SECRET"
