@@ -19,8 +19,7 @@ from service.Logging_Service import Logging_Service
 
 
 @app.errorhandler(404)
-def not_found() -> str:
-    # print("requested url:", request.path, "\n", "error:", e)
+def not_found(e) -> str:
     log_text = "404 not found, requested url:" + str(request.path)
     Logging_Service().warning(text=log_text)
     return Response(status=404)
@@ -34,8 +33,7 @@ def handle_exception(e) -> HTTPException | Response:
         "errorType": "Internal Server Error",
         "errorMessage": "Something went really wrong!",
     }
-    if env == "debug":
-        res["errorMessage"] = e.message if hasattr(e, "message") else f"{e}"
+    res["errorMessage"] = e.message if hasattr(e, "message") else f"{e}"
     return Response(status=500, response=json.dumps(res))
 
 
