@@ -15,29 +15,25 @@ from werkzeug.exceptions import HTTPException
 from typing import Optional
 import stripe
 import uuid
+from service.Logging_Service import Logging_Service
 
 
 @app.errorhandler(404)
 def not_found(e) -> str:
-    print("requested url:", request.path, "\n", "error:", e)
+    log_text = "404 not found, requested url:" + str(request.path)
+    Logging_Service().warning(text=log_text)
     return Response(status=404)
 
 
 @app.errorhandler(500)
 def handle_exception(e) -> HTTPException | Response:
-    print()
-    print("500 error exception", e)
-    print()
-    if isinstance(e, HTTPException):
-        return e
-
+    Logging_Service().error(text=f"500 error: {e}")
     res = {
         "code": 500,
         "errorType": "Internal Server Error",
         "errorMessage": "Something went really wrong!",
     }
-    if env == "debug":
-        res["errorMessage"] = e.message if hasattr(e, "message") else f"{e}"
+    res["errorMessage"] = e.message if hasattr(e, "message") else f"{e}"
     return Response(status=500, response=json.dumps(res))
 
 
