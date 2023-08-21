@@ -1157,7 +1157,7 @@ def sample_order_confirmation() -> Response:
     return Response(status=200)
 
 
-@app.route("/api/dietitian/<string:dietitian_email>", methods=["GET"])
+@app.route("/api/dietitian/<string:dietitian_email>", methods=["GET", "DELETE"])
 def get_dietitian(dietitian_email: str) -> Response:
     from service.Dietitian_Service import Dietitian_Service
     from repository.Dietitian_Repository import Dietitian_Repository
@@ -1175,6 +1175,11 @@ def get_dietitian(dietitian_email: str) -> Response:
             return jsonify(dietitian_DTO.serialize()), 200
         else:
             return Response(status=404)
+    elif request.method == "DELETE":
+        Dietitian_Service(
+            dietitian_repository=Dietitian_Repository(db=db)
+        ).delete_dietitian(dietitian_email=dietitian_email)
+        return Response(status=204)
     else:
         return Response(status=405)
 
@@ -3761,14 +3766,7 @@ def initialize_dietitian() -> Response:
         Dietitian_Service(
             dietitian_repository=Dietitian_Repository(db=db)
         ).initialize_dietitians()
-        dietitians = Dietitian_Service(
-            dietitian_repository=Dietitian_Repository(db=db)
-        ).get_dietitians()
-        dietitian_dict = {}
-        for dietitian in dietitians:
-            dietitian_dict[dietitian.email] = dietitian.serialize()
         Continuity_Repository().initialize_dietitian_data(
-            dietitian_dict=dietitian_dict,
             meal_sample_repository=Meal_Sample_Repository(db=db),
             meal_sample_shipment_repository=Meal_Sample_Shipment_Repository(db=db),
         )

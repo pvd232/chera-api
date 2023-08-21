@@ -37,12 +37,16 @@ class Dietitian_Repository(Base_Repository):
 
         # Only initialize custom values, not USDA values which are initialized alongside Dietitian_Models
         for dietitian_json in dietitians_data:
-            dietitian_json["email"] = dietitian_json["id"]
-            dietitian_json["id"] = uuid4()
-            dietitian_json["phone_number"] = None
             dietitian_dto = Dietitian_DTO(dietitian_json=dietitian_json)
             dietitian_domain = Dietitian_Domain(dietitian_object=dietitian_dto)
 
             new_dietitian_model = Dietitian_Model(dietitian_domain=dietitian_domain)
             self.db.session.add(new_dietitian_model)
         self.db.session.commit()
+
+    def delete_dietitian(self, dietitian_email: str) -> None:
+        self.db.session.query(Dietitian_Model).filter(
+            Dietitian_Model.email == dietitian_email
+        ).delete()
+        self.db.session.commit()
+        return

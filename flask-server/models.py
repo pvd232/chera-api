@@ -144,7 +144,9 @@ class Client_Model(db.Model):
     id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
     email = db.Column(db.String(40), nullable=False)
     dietitian_id = db.Column(
-        UUID(as_uuid=True), db.ForeignKey("dietitian.id"), nullable=True
+        UUID(as_uuid=True),
+        db.ForeignKey("dietitian.id"),
+        nullable=True,
     )
     meal_plan_id = db.Column(
         UUID(as_uuid=True), db.ForeignKey("meal_plan.id"), nullable=False
@@ -252,7 +254,9 @@ class Staged_Client_Model(db.Model):
     id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
     email = db.Column(db.String(40), nullable=False)
     dietitian_id = db.Column(
-        UUID(as_uuid=True), db.ForeignKey("dietitian.id"), nullable=True
+        UUID(as_uuid=True),
+        db.ForeignKey("dietitian.id", ondelete="CASCADE"),
+        nullable=True,
     )
     meal_plan_id = db.Column(
         UUID(as_uuid=True), db.ForeignKey("meal_plan.id"), nullable=False
@@ -317,8 +321,14 @@ class Dietitian_Model(db.Model):
     got_sample = db.Column(db.Boolean(), default=False, nullable=False)
     active = db.Column(db.Boolean(), default=True, nullable=False)
 
-    clients = relationship("Client_Model", lazy=True)
-    staged_clients = relationship("Staged_Client_Model", lazy=True)
+    clients = relationship("Client_Model", lazy=True, passive_deletes=True)
+    staged_clients = relationship(
+        "Staged_Client_Model", lazy=True, passive_deletes=True
+    )
+    meal_samples = relationship("Meal_Sample_Model", lazy=True, passive_deletes=True)
+    meal_sample_shipments = relationship(
+        "Meal_Sample_Shipment_Model", lazy=True, passive_deletes=True
+    )
 
     def __init__(self, dietitian_domain: "Dietitian_Domain") -> None:
         self.id = dietitian_domain.id
@@ -487,7 +497,7 @@ class Meal_Sample_Model(db.Model):
     meal_id = db.Column(UUID(as_uuid=True), db.ForeignKey("meal.id"), nullable=False)
     dietitian_id = db.Column(
         UUID(as_uuid=True),
-        db.ForeignKey("dietitian.id"),
+        db.ForeignKey("dietitian.id", ondelete="CASCADE"),
         nullable=False,
     )
 
@@ -568,7 +578,7 @@ class Meal_Sample_Shipment_Model(db.Model):
     id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
     dietitian_id = db.Column(
         UUID(as_uuid=True),
-        db.ForeignKey("dietitian.id"),
+        db.ForeignKey("dietitian.id", ondelete="CASCADE"),
         nullable=False,
     )
     shippo_transaction_id = db.Column(db.String(80), nullable=False)

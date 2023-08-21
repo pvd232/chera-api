@@ -46,3 +46,7 @@ class Dietitian_Service(object):
     def initialize_dietitians(self) -> None:
         self.dietitian_repository.initialize_dietitians()
         return
+
+    def delete_dietitian(self, dietitian_email: str) -> None:
+        self.dietitian_repository.delete_dietitian(dietitian_email=dietitian_email)
+        return

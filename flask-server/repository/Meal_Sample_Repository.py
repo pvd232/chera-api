@@ -20,7 +20,7 @@ class Meal_Sample_Repository(Base_Repository):
         meal_sample_objects = self.db.session.query(Meal_Sample_Model).all()
         return meal_sample_objects
 
-    def initialize_meal_samples(self, dietitian_dict) -> None:
+    def initialize_meal_samples(self) -> None:
         from pathlib import Path
         from utils.load_json import load_json
         from domain.Meal_Sample_Domain import Meal_Sample_Domain
@@ -31,8 +31,6 @@ class Meal_Sample_Repository(Base_Repository):
 
         for meal_sample_json in meal_samples_data:
             # Pass in dietitian dict with email as key and updated dietitian object as value
-            matching_dietitian = dietitian_dict[meal_sample_json["dietitian_id"]]
-            meal_sample_json["dietitian_id"] = matching_dietitian["id"]
             meal_sample_dto = Meal_Sample_DTO(meal_sample_json=meal_sample_json)
             meal_sample_domain = Meal_Sample_Domain(meal_sample_object=meal_sample_dto)
             meal_sample_model = Meal_Sample_Model(meal_sample_domain=meal_sample_domain)
