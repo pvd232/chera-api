@@ -4,7 +4,1403 @@ info:
   title: 'Sample API'
   description: Buy or rent spacecrafts
 
+servers:
+  - url: https://localhost:4000/api
+    description: Local development server
+  - url: https://cherahealth.com
+    description: Production server (uses live data)
+  - url: https://staging.cherahealth.com
+    description: Staging server
 paths:
+  /usda_ingredient_portion:
+    post:
+      summary: Creates usda ingredient portion information
+      responses:
+        '201':
+          description: The usda ingredient portion corresponding to the provided `usdaIngredientPortion`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsdaIngredientPortion'
+
+  /usda_ingredient:
+    post:
+      summary: Create ingredient information
+      responses:
+        '201':
+          description: The usda ingredient corresponding to the provided `usdaIngredient` was successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsdaIngredient'
+    
+    delete:
+      summary: Deletes a USDA Ingredient given in the parameters
+      responses:
+        '200':
+          description: The usda ingredient was successfully deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsdaIngredient'
+  
+  /usda_ingredient/{usda_ingredient_id}:
+    parameters:
+      - name: usda_ingredient_id
+        description: The unique  identifier of the ingredient
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/UsdaIngredientId'
+    delete:
+      summary: remove a usda ingredient
+      responses:
+        '200':
+          description: The ingredient corresponding to the `ingredientId` was successfully  deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsdaIngredientId'
+
+  /dietitian:
+    post:
+      summary: create a dietitian object
+      responses:
+        '201':
+          description: The dietitian object was succesfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dietitian'
+        '405':
+          description: Client used a HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dietitian'
+
+  /dietitian/{dietitian_id}:
+    parameters:
+      - name: dietitian_id
+        description: The unique identifier of each dietitian
+        in: path
+        required: true
+        schema: 
+          $ref: '#/components/schemas/Dietitian'
+    get:
+      summary: Read a dietitian
+      responses:
+        '200':
+          description: The dietitianId corresponding to the provided `dietitianId`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dietitian'
+        '404':
+          description: The dietitianId was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dietitian'
+        '405':
+          description: Client used a HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dietitian'
+
+  /dietitian/authenticate:
+    get:
+      summary: Read dietitian information and validate
+      responses:
+        '200':
+          description: The dietitian information is valid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dietitian'
+        '401': 
+          description: Unauthorized dietitian attempting to connect
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dietitian'
+        '405':
+          description:  Client used a HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dietitian'
+
+  /client/authenticate:
+    get:
+      summary: Read client information and validate
+      responses:
+        '200':
+          description: The client information is valid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '401':
+          description: Unauthorized client attempting to connect
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '405':
+          description: Client used a HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+
+  /dietitian/reset_password:
+    put:
+      summary: updates a dietitian password
+      responses:
+        '200':
+          description: Password was succesfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dietitian'
+        '405':
+          description: Client used a HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dietitian'
+    get:
+      summary: reads dietitian information and checks if email exists
+      responses:
+        '204':
+          description: email was succesfully sent to client for reset, and client does not need to change webpage
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dietitian'
+        '401':
+          description: Unauthorized dietitian trying to change password
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dietitian'
+
+  /client/reset_password:
+    get:
+      summary: Read a clients password and check email validity
+      responses:
+        '204':
+          description: email was succesfully sent to client for reset, and client does not need to change webpage
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '401':
+          description: Unauthorized client trying to change password
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+    put:
+      summary: reset a clients password
+      responses:
+        '200':
+          description: client password was successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '405':
+          description: Client used a HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+
+  /extended_client:
+    get:
+      summary: read extended client information
+      responses:
+        '200':
+          description: The extended client information was successfully read
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedClient'
+        '204':
+          description: extended client information was succesfully read and user does not need to change percantage
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedClient'
+        '405':
+          description: Client used a HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedClient'
+
+  /client/{client_id}:
+    parameters:
+      - name: client_id
+        description: The unique identifier for client
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Client'
+    get:
+      summary: Read a clients id
+      responses:
+        '200':
+          description: Client information was successfully read 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '404':
+          description: Client information corresponding to the provided `client_id` was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+    put:
+      summary: Edit a clients id
+      responses:
+        '204':
+          description: Client information was successfully edited
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '405':
+          description: Client used a HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+
+  /client:
+    get:
+      summary: Read a client
+      responses:
+        '200':
+          description: Client information was successfully read
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+    post:
+      summary: Create a new client object
+      responses:
+        '201':
+          description: Client object was successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+    put:
+      summary: Edit a existing client object
+      responses:
+        '200':
+          description: Client was successfully edited
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+
+  /extended_staged_client:
+    get:
+      summary: Reads extra client information
+      responses:
+        '200':
+          description: extra client information successfully read
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedStagedClient'
+        '204':
+          description: extra client information successfully read and user does not need to navigate away
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedStagedClient'
+        '405':
+          description: Client attempted to use an HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedStagedClient'
+    
+  /extended_staged_client/{staged_client_id}:
+    parameters:
+      - name: staged_client_id
+        description: The unique identifier of the extended staged client
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/ExtendedStagedClient'
+    get:
+      summary: Read a staged client given their id
+      responses:
+        '200':
+          description: The extended staged client corresponding to the provided `spacecraftId`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedStagedClient'
+
+  /staged_client:
+    get:
+      summary: Read a staged client
+      responses:
+        '200':
+          description: The staged client information was successfully read
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StagedClient'
+        '404':
+          description: The staged client information was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StagedClient'
+    post:
+      summary: Create a new staged client
+      responses:
+        '201':
+          description: The staged client was successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StagedClient'
+    put:
+      summary: Edit a staged client
+      responses:
+        '204':
+          description: Successfully edited staged client information and client does not need to navigate away
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StagedClient'
+        '405':
+          description: User tried to use an HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StagedClient'
+
+  /extended_usda_ingredient:
+    get:
+      summary: Read a usda ingredient with extended information
+      responses:
+        '200':
+          description: Successfully read usda ingredient extended information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedUsdaIngredient'
+        '405':
+          description: User tried to use an HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedUsdaIngredient'
+
+  /recipe_ingredient:
+    post:
+      summary: Create a new extended usda ingredient
+      responses: 
+        '201':
+          description: Successfully created a new extended usda ingredient
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeIngredient'
+    put:
+      summary: Edit a extended usda ingredient
+      responses:
+        '204': 
+          description: Successfully edited recipe ingredient information and client doesnt need to navigate to new page
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeIngredient'
+        '405':
+          description: User tried to use an HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeIngredient'
+
+  /recipe_ingredient_nutrient:
+    post:
+      summary: Create a new recipe ingredient with nutrient information
+      responses:
+        '201':
+          description: The recipe ingredient nutrient was successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeIngredientNutrient'
+        '405':
+          description: User tried to use an HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeIngredientNutrient'
+    put:
+      summary: Edit a existing recipe ingredient nutrient
+      responses:
+        '201':
+          description: The recipe ingredient nutrient was successfully edited
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeIngredientNutrient'
+        '405':
+          description: User tried to use an HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeIngredientNutrient'
+
+  /extended_meal:
+    get:
+      summary: Reads extended meal information
+      responses:
+        '200': 
+          description: Extended meal information successfully read
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedMeal'
+        '405':
+          description: User tried to use an HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedMeal'
+
+  /meal_dietary_restriction:
+    post: 
+      summary: create new meal dietary restriction
+      responses:
+        '201':
+          description: Meal dietary restriction successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealDietaryRestriction'
+        '405':
+          description: User tried to use an HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealDietaryRestriction'
+
+  /dietary_restriction:
+    get:
+      summary: Read a dietary restriction
+      responses:
+        '200':
+          description: Successfully read a dietary restriction
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DietaryRestriction'
+        '405':
+          description: User tried to use an HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DietaryRestriction'
+
+  /meal/{meal_id}:
+    parameters: 
+      - name: meal_id
+        description: The unique identifier of a meal
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Meal'
+    delete:
+      summary: delete a meal
+      responses:
+        '204': 
+          description: The meal corresponding to the provided `meal_id` was successfully deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Meal'
+        '405':
+          description: User tried to use an HTTP method not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Meal'
+
+  /meal:
+    get:
+      summary: Read a meal
+      responses:
+        '200':
+          description: Successfully read a meal
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Meal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Meal'
+    post:
+      summary: Create a meal
+      responses:
+        '201':
+          description: Meal successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Meal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Meal'
+    delete:
+      summary: Delete a meal
+      responses: 
+        '204':
+          description: Meal data successfully deleted
+          content:
+            application/json:
+              schema:
+                $ref:  '#/components/schemas/Meal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Meal'
+
+  /extended_meal_plan_meal:
+    get:
+      summary: Read a extended meal plan's indiviual meal
+      responses:
+        '200': 
+          description: Successfully read a extended meal plan meal
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedMealPlanMeal'
+        '404':
+          description: Extended meal plan meal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedMealPlanMeal'
+    put:
+      summary: Edit a current extended meal plan's indiviual meal
+      responses:
+        '200':
+          description: successfully updated meal plan meal
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedMealPlanMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedMealPlanMeal'
+
+  /meal_plan_meal:
+    put:
+      summary: Edit a meal plan's meal
+      responses:
+        '204':
+          description: The meal plan's meal was successfully changed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealPlanMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealPlanMeal'
+    post:
+      summary: Create a meal plan's meal
+      responses:
+        '201':
+          description: The meal plan's meal was successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealPlanMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealPlanMeal'
+
+  /extended_scheduled_order_meal:
+    get:
+      summary: Read a extended scheduled order meal
+      responses:
+        '204':
+          description: Successfully read extended scheduled order meal
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedScheduledOrderMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedScheduledOrderMeal'
+
+  /scheduled_order_meal:
+    summary: CRUD a scheduled order meal object
+    get:
+      summary: Read a scheduled order meal
+      responses:
+        '200':
+          description: Successfully read scheduled order meal object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderMeal'
+    post:
+      summary: Create a scheduled order meal
+      responses:
+        '201':
+          description: Successfully created a scheduled order meal object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderMeal'
+    put:
+      summary: Edit a existing scheduled order meal
+      responses:
+        '204':
+          description: Successfully edited a scheduled order meal object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderMeal'
+    delete:
+      summary: Delete a existing scheduled order meal
+      responses:
+        '204':
+          description: Successfully deleted a scheduled order meal object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderMeal'
+  /extended_schedule_meal:
+    get:
+      summary: Read a extended scheule meal
+      responses:
+        '200':
+          description: The extended schedule meal was successfully read
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedScheduleMeal'
+        '204':
+          description: Nothing to return
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedScheduleMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedScheduleMeal'
+
+  /schedule_meal:
+    post:
+      summary: Create a schedule meal object
+      responses:
+        '201':
+          description: Successfully created a schedule meal object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleMeal'
+    get:
+      summary: Read a schedule meal object
+      responses:
+        '200':
+          description: Successfully read a schedule meal object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleMeal'
+    delete:
+      summary: Delete a schedule meal object
+      responses: 
+        '204':
+          description: Successfully delete a schedule meal object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleMeal'
+  
+  /extended_staged_schedule_meal:
+    get:
+      summary: Read a extended staged schedule meal
+      responses:
+        '200':
+          description: The staged schedule meal was successfully read
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedStagedScheduleMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedStagedScheduleMeal'
+    
+  /staged_schedule_meal:
+    post:
+      summary: Create a staged schedule meal
+      responses:
+        '201':
+          description:  The staged schedule meal was successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StagedScheduleMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref:  '#/components/schemas/StagedScheduleMeal'
+    get:
+      summary: Read a staged schedule meal
+      responses:
+        '200':
+          description: Successfully read staged schedule meal
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StagedScheduleMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StagedScheduleMeal'
+  
+  /snack/{snack_id}:
+    parameters:
+      - name: snack_id
+        description: The unique identifier of the snack
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Snack'
+    delete:
+      summary: delete a snack based off the snack ID
+      responses:
+        '201': 
+          description: Snack successfully deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Snack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Snack'
+
+  /snack:
+    get:
+      summary: Read a snack
+      responses:
+        '200':
+          description: Snack successfully read
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Snack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Snack'
+    post:
+      summary: Create a snack
+      responses:
+        '201':
+          description: Snack successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Snack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Snack'
+
+  /schedule_snack:
+    get:
+      summary: Read a scheduled snack
+      responses:
+        '200':
+          description: Successfully read a scheduled snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleSnack'
+    post:
+      summary: Create a scheduled snack
+      responses:
+        '201':
+          description: Successfully created a scheduled snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleSnack'
+    delete:
+      summary: Delete a scheduled snack
+      responses:
+        '204':
+          description: Successfully deleted a scheduled snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduleSnack'
+
+  /scheduled_order_snack:
+    get:
+      summary: Read a scheduled order snack
+      responses:
+        '200':
+          description: Successfully read a scheduled order snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderSnack'
+        '404':
+          description: Scheduled order snack not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderSnack'
+    post:
+      summary: Create a scheduled order snack
+      responses:
+        '201':
+          description: Successfully created a scheduled order snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderSnack'
+    put:
+      summary: Edit a existing scheduled order snack
+      responses:
+        '204':
+          description: Successfully edited a scheduled order snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderSnack'
+    delete:
+      summary: Delete a existing scheduled order snack
+      responses:
+        '204':
+          description: Successfully deleted a scheduled order snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledOrderSnack'
+    
+  /extended_scheduled_order_snack:
+    get:
+      summary: Read a extended scheduled order snack
+      responses:
+        '200': 
+          description: Successfully read a extended scheduled order snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedScheduledOrderSnack'
+        '204':
+          description: The extended order snack domain did not match the DTO
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedScheduledOrderSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedScheduledOrderSnack'
+  
+  /order_snack:
+    post:
+      summary: Create a order snack
+      responses:
+        '201':
+          description: Successfully created a order snack
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/OrderSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderSnack'
+    get:
+      summary: Read a order snack object
+      responses:
+        '200':
+          description: Successfully read a order snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderSnack'
+        '204':
+          description: Order snack domain did not match the DTO
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderSnack'
+
+  /meal_plan_snack:
+    put:
+      summary: Edit a meal plan snack
+      responses:
+        '204':
+          description: Successfully edited a meal plan snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealPlanSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealPlanSnack'
+    post:
+      summary: Create a meal plan snack
+      responses:
+        '201':
+          description: Successfully created a meal plan snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealPlanSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealPlanSnack'
+
+  /extended_meal_plan_snack:
+    get:
+      summary: Read a extended meal plan snack
+      responses:
+        '200':
+          description: Successfully read a extended meal plan snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedMealPlanSnack'
+        '404':
+          description: Extended meal plan snack not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedMealPlanSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedMealPlanSnack'
+    put:
+      summary: Edit a existing extended meal plan snack
+      responses:
+        '200':
+          description: Successfully edited a extended meal plan snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedMealPlanSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedMealPlanSnack'
+
+  /staged_schedule_snack:
+    post:
+      summary: Create a staged schedule snack
+      responses:
+        '201':
+          description: Successfully created a staged schedule snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StagedScheduleSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StagedScheduleSnack'
+    get:
+      summary: Read a staged schedule snack
+      responses:
+        '200':
+          description: Successfully read a staged schedule snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StagedScheduleSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StagedScheduleSnack'
+
+  /extended_staged_schedule_snack:
+    get:
+      summary: Read a extended staged schedule snack
+      responses:
+        '200':
+          description: Successfully read a extended staged schedule snack
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedStagedScheduleSnack'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref:  '#/components/schemas/ExtendedScheduledOrderSnack'
+
+  /dietitian_prepayment:
+    post:
+      summary: Create a dietitian prepayment object
+      responses:
+        '201':
+          description: Successfully created a dietitian prepayment object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DietitianPrepayment'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DietitianPrepayment'
+
+  /meal_subscription/{meal_subscription_id}:
+    parameters:
+      - name: meal_subscription_id
+        description: The unique identifier of the meal subscription
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/MealSubscription'
+    put:
+      summary: Edit a existing meal subscription
+      responses:
+        '204':
+          description: Either successfully deactivated, paused, or unpaused a meal subscription
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealSubscription'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealSubscription'
+
+  /meal_subscription:
+    post:
+      summary: Create a new meal subscription
+      responses:
+        '201':
+          description: Successfully created a new meal subscription
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealSubscription'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealSubscription'
+    get:
+      summary: Read a meal subscription
+      responses:
+        '200':
+          description: Successfully read a meal subscription
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealSubscription'
+        '204':
+          description: Successfully read but there is no content to send in responses
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealSubscription'
+        '404':
+          description: Meal subscription not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealSubscription'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealSubscription'
+  
+  /meal_plan:
+    get:
+      summary: Read a meal plan
+      responses:
+        '200':
+          description: Successfully read a meal plan
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealPlan'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MealPlan'
+  
+  /extended_order_meal:
+    get:
+      summary: Read a extended order meal
+      responses:
+        '200':
+          description: Successfully read a extended order meal
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedOrderMeal'
+        '404':
+          description: Extended order meal not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedOrderMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedOrderMeal'
+
+  /order_meal:
+    post:
+      summary: Create a order meal
+      responses:
+        '201':
+          description: Successfully created a order meal
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderMeal'
+    get:
+      summary: Read a order meal
+      responses:
+        '200':
+          description: Read a order meal
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderMeal'
+        '204':
+          description: order meal domain did not match DTO
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderMeal'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderMeal'
+  
+  
+  /order_discount:
+    post:
+      summary: Create a new order discount
+      responses:
+        '201':
+          description: Successfully created a new order discount
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderDiscount'
+  
+  /discount:
+    get:
+      summary: Read a discount
+      responses:
+        '200':
+          description: Successfully read discount
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Discount'
+        '404':
+          description: Discount not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Discount'
+        '405':
+          description: User tried to use an HTTP method that is not allowed by the server
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Discount'
+
+    
+
+
+
+
+
+            
   /spacecrafts/{spacecraftId}:
     parameters:
       - name: spacecraftId
@@ -23,7 +1419,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Spacecraft'
         404:
-          description: No spacecraft found for the provided `spacecraftId`
+          description: No spacecraft found for the  provided `spacecraftId`
           content:
             application/json:
               schema:
@@ -36,6 +1432,1020 @@ paths:
                 $ref: '#/components/schemas/Error'
 components: 
   schemas:
+    Base:
+      description: Parent class that holds serialized attributes and names
+      type: string
+
+    Client:
+      description: Class that holds onto all client information
+      type: string
+      required:
+        - id
+        - password
+        - dietitianID
+        - mealplanID
+        - stripeID
+        - firstname
+        - lastname
+        - street
+        - suite
+        - city
+        - state
+        - zipcode
+        - zipcodeextension
+        - address
+        - notes
+        - phonenumber
+        - datetime
+        - active
+      properties:
+        id:
+          type: string
+        password:
+          type: string
+        dietitianID:
+          type: string
+        mealplanID:
+          type: string
+        stripeID:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        street:
+          type: string
+        suite:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zipcode:
+          type: integer
+        zipcodeextension:
+          type: integer
+        address: 
+          type: string
+        notes:
+          type: string
+        phonenumber:
+          type: integer
+        datetime:
+          type: number
+        active:
+          type: boolean
+
+    CompressedNutrientData:
+      description: Contains all nutrient information
+      type: string
+      required:
+        - id
+        - recipeIngredientID
+        - nutrientID
+        - usdaNutrentDailyValueAmount
+        - amount
+        - nutrientName
+        - nutrientUnit
+        - USDANutrientID
+      properties:
+        id:
+          type: string
+        recipeIngredientID:
+          type: string
+        nutrientID:
+          type: string
+        usdaNutrentDailyValueAmount:
+          type: number
+        amount:
+          type: number
+        nutrientName:
+          type: string
+        nutrientUnit:
+          type: string
+
+    DietaryRestriction:
+      description: Sets user ID in the case that the user has a dietary restriction
+      type: string
+      required: 
+        - id
+      properties:
+        id:
+          type: string
+
+    Dietitian:
+      description: Holds all dietitian information
+      type: string
+      required:
+        - id
+        - password
+        - firstname
+        - lastname
+        - dieteticRegistrationNumber
+        - clinicCity
+        - clinicState
+        - clinicAddress
+        - clicicUrl
+        - datetime
+        - active
+      properties:
+        id:
+          type: string
+        password: 
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        dieteticRegistrationNumber:
+          type: string
+        clinicCity:
+          type: string
+        clinicState:
+          type: string
+        clinicAddress:
+          type: string
+        clinicUrl:
+          type: string
+        datetime:
+          type: number
+        active:
+          type: boolean
+    
+    DietitianPrepayment:
+      description: Contains dietitian id and fees
+      type: string
+      required:
+        - id
+        - dietitianID
+        - stagedClientID
+        - subtotal
+        - salesTaxPercentage
+        - salesTaxTotal
+        - shippingTotal
+        - stripeFeeTotal
+        - stripePaymentIntentID
+        - total
+        - datetime
+      properties:
+        id:
+          type: string
+        dietitianID:
+          type: string
+        stagedClientID:
+          type: string
+        subtotal:
+          type: number
+        salesTaxPercentage:
+          type: number
+        salesTaxTotal:
+          type: number
+        shippingTotal:
+          type: number
+        stripeFeeTotal:
+          type: number
+        stripePaymentIntentID:
+          type: string
+        total:
+          type: number
+        datetime:
+          type: number
+
+    Discount:
+      description: Contains discount code, percantage, and active
+      type: string
+      required: 
+        - id
+        - code
+        - discountPercentage
+        - active
+      properties:
+        id:
+          type: string
+        code:
+          type: string
+        discountPercentage:
+          type: number
+        active:
+          type: boolean
+    
+    ExtendedClient:
+      description: child class of client, which also includes meal plan
+      type: object
+      required:
+        - mealPlan
+      properties:
+        mealPlan:
+          type: string
+
+    ExtendedMeal:
+      description: child class of meal, which also includes dietary restrictions
+      type: object
+      required:
+        - dietaryRestrictions
+      properties:
+        dietaryRestrictions:
+          type: string
+
+    ExtendedMealPlan:
+      description: child class of meal plan, takes on additional USDA nutrient daily values
+      type: object
+      required:
+        - usdaNutrentDailyValues
+      properties: 
+        usdaNutrentDailyValues:
+          type: object
+
+    ExtendedMealPlanMeal:
+      description: contains all information from meal and includes recipe, associated meal, associated meal plan
+      type: object
+      required:
+        - recipe
+        - associatedMeal
+        - associatedMealPlan
+      properties:
+        recipe:
+          type: object
+        associatedMeal:
+          type: object
+        associatedMealPlan:
+          type: object
+
+    ExtendedMealPlanSnack:
+      description: contains all associated snacks and snack plans
+      type: object
+      required: 
+        - recipe
+        - associatedSnack
+        - associatedSnackPlan
+        - nutrients
+      properties:
+        recipe:
+          type: object
+        associatedSnack:
+          type: object
+        associatedSnackPlan:
+          type: object
+        nutrients:
+          type: string
+    
+    ExtendedOrderMeal:
+      description: child class of meal, adds scheduled order meals
+      type: object
+      required:
+        - scheduledOrderMeal
+      properties:
+        scheduledOrderMeal:
+          type: object
+
+    ExtendedOrderSnack:
+      description: child class of snack, adds scheduled order snacks
+      type: object
+      required: 
+        - scheduledOrderSnack
+      properties:
+        scheduledOrderSnack:
+          type: object
+    
+    ExtendedRecipeIngredient:
+      description: child class of recipe ingredient, includes ingredients along with portion sizes
+      type: object
+      required:
+        - nutrients
+        - usdaIngredientName
+        - usdaIngredientFdcId
+        - fdaPortionId
+        - amountOfGrams
+        - isImperial
+        - nonMetricUnit
+        - kCal
+      properties:
+        nutrients:
+          type: string
+        usdaIngredientName:
+          type: string
+        usdaIngredientFdcId:
+          type: string
+        fdaPortionId:
+          type: string
+        amountOfGrams:
+          type: number
+        isImperial:
+          type: boolean
+        nonMetricUnit:
+          type: string
+        kCal:
+          type: number
+
+    ExtendedRecipeIngredientNutrient:
+      description: child class of recipeIngredientNutrient, adds nutrient info (name, unit, id)
+      type: object
+      required:
+        - nutrientName
+        - nutrientUnit
+        - USDANutrientID
+      properties:
+        nutrientName:
+          type: string
+        nutrientUnit:
+          type: string
+        USDANutrientID:
+          type: string
+    
+    ExtendedScheduleMeal:
+      description: child class of meal, adds associated meal
+      type: object
+      required:
+        - associatedMeal
+      properties:
+        associatedMeal:
+          type: object
+    
+    ExtendedScheduleSnack:
+      description: child class of scheduleSnackDomain, adds associated snack
+      type: object
+      required:
+        - associatedSnack
+      properties:
+        associatedSnack:
+          type: object
+
+    ExtendedScheduledOrderMeal:
+      description: child class of scheduledOrderMeal
+      type: object
+      required:
+        - associatedMeal
+      properties:
+        associatedMeal:
+          type: object
+    
+    ExtendedScheduledOrderSnack:
+      description: child class of scheduledOrderSnack, adds associated snack
+      type: object
+      required:
+        - associatedSnack
+      properties:
+        associatedSnack:
+          type: object
+
+    ExtendedStagedClient:
+      description: child class of stagedClient, adds meal plan
+      type: object
+      required:
+        - mealPlan
+      properties:
+         mealPlan:
+          type: object
+
+    ExtendedStagedScheduleMeal:
+      description: child class of ExtendedStagedScheduleMeal, adds associatedMeal
+      type: object
+      required:
+        - associatedMeal
+      properties:
+        associatedMeal:
+          type: object
+
+    ExtendedStagedScheduleSnack:
+      description: child class of stagedScheduleSnack, adds associatedSnack
+      type: object
+      required:
+        - associatedSnack
+      properties:
+        associatedSnack:
+          type: object
+
+    ExtendedUsdaIngredient:
+      description: child of usdaIngredient, adds portions and serializes names
+      type: object
+      required:
+        - portions
+      properties:
+        portions:
+          type: object
+
+    MealDietaryRestriction:
+      description: contains user ID, meal ID, and dietary restriction ID
+      type: object
+      required: 
+        - id
+        - mealId
+        - dietaryRestrictionId
+      properties:
+        id:
+          type: string
+        mealId:
+          type: string
+        dietaryRestrictionId:
+          type: string
+
+    Meal:
+      description: super class, contains all meal variables
+      type: object
+      required:
+        - id
+        - mealTime
+        - name
+        - description
+        - price
+        - imageUrl
+        - active
+      properties:
+        id:
+          type: string
+        mealTime:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        imageUrl:
+          type: string
+        active:
+          type: boolean
+
+    MealPlan:
+      description: super class, contains all meal plan information
+      type: object
+      required:
+        - id
+        - number
+        - breakfastCalories
+        - lunchCalories
+        - dinnerCalories
+        - statedCaloricLowerBound
+        - statedCaloricUpperBound
+        - numberOfSnacks
+        - perSnackCaloricLowerBound
+        - perSnackCaloricUpperBound
+      properties:
+        id:
+          type: string
+        number:
+          type: integer
+        breakfastCalories:
+          type: integer
+        lunchCalories:
+          type: integer
+        dinnerCalories:
+          type: integer
+        statedCaloricLowerBound:
+          type: integer
+        statedCaloricUpperBound:
+          type: integer
+        numberOfSnacks:
+          type: number
+        perSnackCaloricLowerBound:
+          type: integer
+        perSnackCaloricUpperBound:
+          type: integer
+
+    MealPlanMeal:
+      description: indiviual meal plan meal info
+      type: object
+      required:
+        - id
+        - mealId
+        - mealPlan
+        - active
+      properties:
+        id:
+          type: string
+        mealId:
+          type: string
+        mealPlan:
+          type: string
+        active:
+          type: boolean
+
+    MealPlanSnack:
+      description: indiviual meal plan snack info
+      type: object
+      required:
+        - id
+        - snackId
+        - mealplanID
+        - active
+      properties:
+        id:
+          type: string
+        snackId:
+          type: string
+        mealplanID:
+          type: string
+        active: 
+          type: boolean
+
+    MealSubscription:
+      description: contains client info, dietitian info, stripe info, along with fees
+      type: object
+      required: 
+        - id
+        - clientId
+        - dietitianId
+        - stripeSubscriptionId
+        - shippingCost
+        - datetime
+        - paused
+        - active
+      properties:
+        id:
+          type: string
+        clientId:
+          type: string
+        dietitianID:
+          type: string
+        stripeSubscriptionId:
+          type: string
+        shippingCost:
+          type: number
+        dateTime:
+          type: number
+        paused:
+          type: boolean
+        active:
+          type: boolean
+
+    MealSubscriptionInvoice:
+      description: holds all invoice information
+      type: object
+      required:
+        - id
+        - MealSubscriptionId
+        - subtotal
+        - salesTaxPercentage
+        - salesTaxTotal
+        - shippingTotal
+        - stripeFeeTotal
+        - stripeInvoiceId
+        - stripePaymentIntentId
+        - total
+        - datetime
+        - deliveryDate
+      properties:
+        id:
+          type: string
+        MealSubscriptionId:
+          type: string
+        subtotal: 
+          type: number
+        salesTaxPercentage:
+          type: number
+        salesTaxTotal:
+          type: number
+        shippingTotal:
+          type: number
+        stripeFeeTotal:
+          type: number
+        stripeInvoiceId:
+          type: string
+        stripePaymentIntentId:
+          type: string
+        total:
+          type: number
+        datetime:
+          type: number
+        deliveryDate:
+          type: number
+    
+    Nutrient:
+      description: contains all nutrient information, including usda id and daily values
+      type: object
+      required: 
+        - id
+        - name
+        - unit
+        - usdaId
+        - hasDailyValue
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        unit:
+          type: string
+        usdaId:
+          type: string
+        hasDailyValue:
+          type: boolean
+
+    OrderDiscount:
+      description: contains discount information, along with staged client id
+      type: object
+      required:
+        - discountId
+        - stagedClientId
+        - amount
+        - datetime
+      properties:
+        discountId:
+          type: string
+        stagedClientId:
+          type: string
+        amount:
+          type: number
+        datetime:
+          type: number
+    
+    OrderMeal:
+      description: contains meal order and subscription invoice id
+      type: object
+      required:
+        - id
+        - scheduledOrderMealId
+        - mealSubscriptionInvoiceId
+      properties:
+        id:
+          type: string
+        scheduledOrderMealId:
+          type: string
+        mealSubscriptionInvoiceId:
+          type: string
+
+    OrderSnack:
+      description: contains id, and scheduled snack order id
+      type: object
+      required:
+        - id
+        - scheduledOrderSnackId
+        - mealSubscriptionInvoiceId
+      properties:
+        id:
+          type: string
+        scheduledOrderSnackId:
+          type: string
+        mealSubscriptionInvoiceId:
+          type: string
+    
+    RecipeIngredient:
+      description: contains USDA ingredient id alongside meal plan ids
+      type: object
+      required:
+        - id
+        - usdaIngredientId
+        - mealPlanMealId
+      properties:
+        id:
+          type: string
+        usdaIngredientId:
+          type: string
+        mealPlanMealId:
+          type: string
+
+    RecipeIngredientNutrient:
+      description: contains ingredient information alongside amount of nutrients
+      type: object
+      required:
+        - id
+        - recipeIngredientId
+        - nutrientId 
+        - usdaNutrientDailyValueAmount
+        - amount
+      properties:
+        id:
+          type: string
+        recipeIngredientId:
+          type: string
+        nutrientId:
+          type: string
+        usdaNutrientDailyValueAmount:
+          type: number
+        amount:
+          type: number
+
+    ScheduleMeal:
+      description: shows meal info related to schedule
+      type: object
+      required:
+        - id
+        - mealId
+        - mealSubscriptionId
+      properties:
+        id:
+          type: string
+        mealId:
+          type: string
+        mealSubscriptionId:
+          type: string
+
+    ScheduleSnack:
+      description: contains scheduled snack information
+      type: object
+      required: 
+        - id
+        - snackId 
+        - mealSubscriptionId
+      properties:
+        id:
+          type: string
+        snackId:
+          type: string
+        mealSubscriptionId:
+          type: string
+
+    ScheduledOrderMeal:
+      description: contains meal info and also delivery info for client
+      type: object
+      required:
+        - id
+        - mealSubscriptionId
+        - mealId
+        - deliveryDate
+        - deliverySkipped
+        - deliveryPaused
+        - datetime
+      properties:
+        id:
+          type: string
+        mealSubscriptionId:
+          type: string
+        mealId:
+          type: string
+        deliveryDate:
+          type: number
+        deliverySkipped: 
+          type: boolean
+        deliveryPaused:
+          type: boolean
+        datetime:
+          type: number
+
+    ScheduledOrderSnack:
+      description: contains snack info and also delivery info for client
+      type: object
+      required:
+        - id
+        - mealSubscriptionId
+        - snackId
+        - deliveryDate
+        - deliverySkipped
+        - deliveryPaused
+        - datetime
+      properties:
+        id: 
+          type: string
+        mealSubscriptionId:
+          type: string
+        snackId:
+          type: string
+        deliveryDate:
+          type: number
+        deliverySkipped:
+          type: boolean
+        deliveryPaused:
+          type: boolean
+        datetime:
+          type: number
+
+    Snack:
+      description: contains all snack information
+      type: object
+      required:
+        - id
+        - name
+        - description
+        - price
+        - imageUrl
+        - active
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        imageUrl: 
+          type: string
+        active:
+          type: boolean
+  
+    StagedClient:
+      description: contains all client information
+      type: object
+      required:
+        - id
+        - firstname
+        - dietitianid
+        - mealplanId
+        - notes
+        - datetime
+        - accountCreated
+        - active
+        - waitlisted
+        - mealsPreSelected
+        - mealsPrepaid
+      properties:
+        id:
+          type: string
+        firstname:
+          type: string
+        dietitianid:
+          type: string
+        mealplanId:
+          type: string
+        notes:
+          type: string
+        datetime:
+          type: number
+        accountCreated:
+          type: boolean
+        active:
+          type: boolean
+        waitlisted:
+          type: boolean
+        mealsPreSelected:
+          type: boolean
+        mealsPrepaid:
+          type: boolean
+
+    StagedScheduleMeal:
+      description: super class, creates base of client id, and meal id
+      type: object
+      required:
+        - id
+        - mealId
+        - stagedClientId
+      properties:
+        id:
+          type: string
+        mealId:
+          type: string
+        stagedClientId:
+          type: string
+    
+    StagedScheduleSnack:
+      description: super class, creates base of client id, and snack id
+      type: object
+      required:
+        - id
+        - snackId
+        - stagedClientId 
+      properties:
+        id: 
+          type: string
+        snackId:
+          type: string
+        stagedClientId:
+          type: string
+
+    StateSalesTax:
+      description: holds state tax with percentage and tax id
+      type: object
+      required:
+        - state
+        - salesTaxPercentage
+        - stripeTaxId
+      properties:
+        state:
+          type: string
+        salesTaxPercentage:
+          type: number
+        stripeTaxId: 
+          type: string
+    
+    UsdaIngredient:
+      description: holds all ingredient information
+      type: object
+      required: 
+        - id
+        - name
+        - fdcId 
+        - amountOfGrams
+        - kCal
+        - kCalToGramRatio
+        - usdaDataType
+        - fdaIdentifier
+        - active
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        fdcId:
+          type: string
+        amountOfGrams:
+          type: number
+        kCal:
+          type: integer
+        kCalToGramRatio:
+          type: number
+        usdaDataType:
+          type: string
+        active:
+          type: boolean
+
+    UsdaIngredientNutrient:
+      description: contains all nutrient information for ingredients
+      type: object
+      required:
+        - id
+        - usdaIngredientId
+        - nutrientId
+        - amount
+      properties:
+        id:
+          type: string
+        usdaIngredientId:
+          type: string
+        nutrientId:
+          type: string
+        amount:
+          type: number
+
+    UsdaIngredientPortion:
+      description: contains all portion information for ingredients
+      type: object
+      required: 
+        - id
+        - usdaIngredientId
+        - fdaPortionId
+        - nonMetricUnit
+        - gramsPerNonMetricUnit
+        - portionDescription
+        - isImperial
+        - usdaDataType
+        - customValue
+      properties:
+        id:
+          type: string
+        usdaIngredientId:
+          type: string
+        fdaPortionId:
+          type: string
+        nonMetricUnit:
+          type: string
+        gramsPerNonMetricUnit:
+          type: number
+        portionDescription:
+          type: string
+        isImperial:
+          type: boolean
+        usdaDataType:
+          type: string
+        customValue:
+          type: boolean
+    
+    UsdaNutrientDailyValue:
+      description: contains all nutrient info
+      type: object
+      required:
+        - id
+        - nutrientId
+        - mealplanId
+        - amount
+        - unit
+      properties:
+        id:
+          type: string
+        nutrientId:
+          type: string
+        mealplanId:
+          type: string
+        amount:
+          type: number
+        unit:
+          type: string
+    
+    UsdaNutrientMapper:
+      description: contains all usda ingredient nutrient information and also maps the info
+      type: object
+      required: 
+        - id
+        - name
+        - fdcId
+        - fdaIdentifier
+        - amountOfGrams
+        - kCal
+        - kCalToGramRatio
+        - usdaDataType
+        - active
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        fdcId:
+          type: string
+        fdaIdentifier:
+          type: string
+        amountOfGrams:
+          type: number
+        kCal:
+          type: integer
+        kCalToGramRatio:
+          type: number
+        usdaDataType:
+          type: string
+        active:
+          type: boolean
+
+    
+
+
     SpacecraftId:
       description: The unique identifier of a spacecraft
       type: string
