@@ -611,8 +611,8 @@ def weekly_update() -> Response:
     from service.Meal_Subscription_Service import Meal_Subscription_Service
     from service.Scheduled_Order_Meal_Service import Scheduled_Order_Meal_Service
     from service.Schedule_Meal_Service import Schedule_Meal_Service
+
     if request.method == "POST":
-    
         Meal_Subscription_Service(
             meal_subscription_repository=Meal_Subscription_Repository(db=db)
         ).refresh_meal_subscriptions(
@@ -1059,6 +1059,15 @@ def dietitian() -> Response | Response:
         ).send_new_user_sign_up_notification(
             first_name="Peter",
             email="peterdriscoll@cherahealth.com",
+            user_type="Dietitian",
+            user=created_dietitian_domain,
+            env=env,
+        )
+        Email_Service(
+            gcp_secret_manager_service=GCP_Secret_Manager_Service(),
+        ).send_new_user_sign_up_notification(
+            first_name="Carol",
+            email="driscoll_carol@yahoo.com",
             user_type="Dietitian",
             user=created_dietitian_domain,
             env=env,
