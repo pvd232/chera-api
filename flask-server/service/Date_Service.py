@@ -94,53 +94,37 @@ class Date_Service(object):
         )
 
     def get_current_week_delivery_date(self) -> float:
-        today = datetime.now(timezone.utc)
-        days_until_delivery_day = self.delivery_day_index - today.weekday()
-        hours_until_delivery_day = self.delivery_hour_index - today.hour
-        if days_until_delivery_day < 0 or (
-            days_until_delivery_day == 0 and hours_until_delivery_day <= 0
-        ):
-            days_until_delivery_day += 7
-        current_week_delivery_date = datetime(
-            year=today.year,
-            month=today.month,
-            day=today.day,
+        today_ = datetime.now(timezone.utc)
+        today = datetime(
+            year=today_.year,
+            month=today_.month,
+            day=today_.day,
             hour=self.delivery_hour_index,
             tzinfo=timezone.utc,
-        ) + timedelta(days=days_until_delivery_day)
-        return current_week_delivery_date.timestamp()
+        )
+        dd = today + timedelta((self.delivery_day_index - today.weekday() + 7) % 7)
+        return dd.timestamp()
 
     def get_current_week_sample_delivery_date(self, today: datetime) -> float:
-        if today.weekday() < self.normal_sample_cutoff_day_index:
-            if today.weekday() > self.alternate_sample_cutoff_day_index:
-                delivery_day_index_to_use = self.normal_sample_delivery_day_index
-            elif today.weekday() == self.alternate_sample_cutoff_day_index:
-                if today.hour > self.sample_cutoff_hour_index:
-                    delivery_day_index_to_use = self.normal_sample_delivery_day_index
-                else:
-                    delivery_day_index_to_use = self.alternate_sample_delivery_day_index
-            else:
-                delivery_day_index_to_use = self.alternate_sample_delivery_day_index
-        elif today.weekday() == self.normal_sample_cutoff_day_index:
-            if today.hour < self.sample_cutoff_hour_index:
-                delivery_day_index_to_use = self.normal_sample_delivery_day_index
-            else:
-                delivery_day_index_to_use = self.alternate_sample_delivery_day_index
-        else:
-            delivery_day_index_to_use = self.alternate_sample_delivery_day_index
-
-        days_until_delivery_day = delivery_day_index_to_use - today.weekday()
-        if days_until_delivery_day <= 0:
-            days_until_delivery_day += 7
-
-        current_week_delivery_date = datetime(
+        today_wo_hour = datetime(
             year=today.year,
             month=today.month,
             day=today.day,
-            hour=self.delivery_hour_index,
+            hour=self.alternate_sample_delivery_hour_index,
             tzinfo=timezone.utc,
-        ) + timedelta(days=days_until_delivery_day)
-        return current_week_delivery_date.timestamp()
+        )
+        if (
+            today.weekday() > self.normal_sample_cutoff_day_index
+            or today.weekday() <= self.alternate_sample_cutoff_day_index
+        ):
+            dd = today_wo_hour + timedelta(
+                (self.alternate_sample_delivery_day_index - today.weekday() + 7) % 7
+            )
+        else:
+            dd = today_wo_hour + timedelta(
+                (self.normal_sample_delivery_day_index - today.weekday() + 7) % 7
+            )
+        return dd.timestamp()
 
     def get_current_week_cutoff(self, current_delivery_date: float) -> float:
         current_delivery_datetime = datetime.utcfromtimestamp(
