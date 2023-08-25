@@ -3473,7 +3473,7 @@ def get_client_payment_invoices(customer_id):
             )
             invoice_number = invoice.number
             last_invoice_status = invoice.status
-            if last_invoice_status == "failed":
+            if last_invoice_status != "paid":
                 invoice_status = "failed"
             else:
                 invoice_status = "success"
