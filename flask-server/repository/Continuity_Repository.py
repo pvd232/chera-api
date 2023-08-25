@@ -72,12 +72,9 @@ class Continuity_Repository(object):
 
     def initialize_dietitian_data(
         self,
-        dietitian_dict: dict,
         meal_sample_repository: "Meal_Sample_Repository",
         meal_sample_shipment_repository: "Meal_Sample_Shipment_Repository",
     ):
-        meal_sample_repository.initialize_meal_samples(dietitian_dict=dietitian_dict)
-        meal_sample_shipment_repository.initialize_meal_sample_shipments(
-            dietitian_dict=dietitian_dict
-        )
+        meal_sample_repository.initialize_meal_samples()
+        meal_sample_shipment_repository.initialize_meal_sample_shipments()
         return
