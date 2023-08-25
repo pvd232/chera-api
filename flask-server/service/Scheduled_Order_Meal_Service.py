@@ -247,13 +247,17 @@ class Scheduled_Order_Meal_Service(object):
         date_service: "Date_Service",
         is_paused: bool,
     ) -> None:
-        delivery_dates = date_service.get_upcoming_delivery_dates()
+        delivery_dates = date_service.get_upcoming_delivery_dates(
+            current_week_delivery_date=date_service.get_current_week_delivery_date()
+        )
         # If there are only 4 upcoming delivery dates then add the 5th week of scheduled order meals
         if len(delivery_dates) == 4:
             last_scheduled_order_meal_date = delivery_dates[-1]
             schedule_meals = schedule_meal_service.get_schedule_meals(
                 meal_subscription_id=meal_subscription_id
             )
+            print("schedule_meals", schedule_meals)
+
             for schedule_meal in schedule_meals:
                 new_scheduled_order_meal_id = uuid4()
                 new_scheduled_order_meal = Scheduled_Order_Meal_Domain(

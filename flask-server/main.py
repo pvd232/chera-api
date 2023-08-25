@@ -607,28 +607,12 @@ def weekly_update() -> Response:
         Scheduled_Order_Meal_Repository,
     )
     from repository.Schedule_Meal_Repository import Schedule_Meal_Repository
-    from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
     from service.Date_Service import Date_Service
     from service.Meal_Subscription_Service import Meal_Subscription_Service
     from service.Scheduled_Order_Meal_Service import Scheduled_Order_Meal_Service
     from service.Schedule_Meal_Service import Schedule_Meal_Service
-
-    base_64_auth_credentials: str | None = request.headers.get("Authorization").split(
-        " "
-    )[1]
-    base64_bytes: bytes = base_64_auth_credentials.encode("ascii")
-    message_bytes: bytes = base64.b64decode(base64_bytes)
-    message: str = message_bytes.decode("ascii")
-    username: str = message.split(":")[0]
-    password: str = message.split(":")[1]
-    if (
-        os.getenv("WEBHOOK_USR")
-        or GCP_Secret_Manager_Service().get_secret("WEBHOOK_USR")
-    ) == username and (
-        os.getenv("WEBHOOK_PWD")
-        or GCP_Secret_Manager_Service().get_secret("WEBHOOK_PWD") == password
-    ):
-        # Create new scheduled order meals for the 5 weeks in the future
+    if request.method == "POST":
+    
         Meal_Subscription_Service(
             meal_subscription_repository=Meal_Subscription_Repository(db=db)
         ).refresh_meal_subscriptions(
