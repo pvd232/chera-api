@@ -81,8 +81,3 @@ class Staged_Client_Repository(Base_Repository):
         staged_client_to_update.waitlisted = True
         self.db.session.commit()
         return
-
-    def delete_all_staged_clients(self) -> None:
-        self.db.session.query(Staged_Client_Model).delete()
-        self.db.session.commit()
-        return

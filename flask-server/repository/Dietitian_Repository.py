@@ -35,7 +35,6 @@ class Dietitian_Repository(Base_Repository):
         dietitian_json_file = Path(".", "dietitian_data", "dietitians.json")
         dietitians_data = load_json(filename=dietitian_json_file)
 
-        # Only initialize custom values, not USDA values which are initialized alongside Dietitian_Models
         for dietitian_json in dietitians_data:
             dietitian_dto = Dietitian_DTO(dietitian_json=dietitian_json)
             dietitian_domain = Dietitian_Domain(dietitian_object=dietitian_dto)

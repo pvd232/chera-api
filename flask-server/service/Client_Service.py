@@ -97,6 +97,3 @@ class Client_Service(object):
             return client_domain
         else:
             return None
-
-    def delete_all_clients(self) -> None:
-        return self.client_repository.delete_all_clients()
