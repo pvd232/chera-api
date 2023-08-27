@@ -29,3 +29,15 @@ class Meal_Sample_Service(object):
             Meal_Sample_Domain(meal_sample_object=x) for x in meal_sample_objects
         ]
         return meal_sample_domains
+
+    def write_meal_samples(self) -> None:
+        from pathlib import Path
+        from utils.write_json import write_json
+
+        json_file_path = (
+            Path(".").joinpath("nutrient_data").joinpath("new_meal_samples.json")
+        )
+
+        with open(json_file_path, "r+") as outfile:
+            meal_sample_dtos = [x.serialize() for x in self.get_meal_samples()]
+            write_json(outfile=outfile, dicts=meal_sample_dtos)

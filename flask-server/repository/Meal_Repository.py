@@ -55,22 +55,3 @@ class Meal_Repository(Base_Repository):
             new_meal_model = Meal_Model(meal_domain=meal_domain)
             self.db.session.add(new_meal_model)
         self.db.session.commit()
-
-    def initialize_meal(self, meal_name: str) -> None:
-        from pathlib import Path
-        from utils.load_json import load_json
-        from domain.Meal_Domain import Meal_Domain
-        from dto.Meal_DTO import Meal_DTO
-
-        meal_json_file = Path(".", "nutrient_data", "new_meals.json")
-        meals_data = load_json(filename=meal_json_file)
-
-        # Only initialize custom values, not USDA values which are initialized alongside Meal_Models
-        for meal_json in meals_data:
-            if meal_json["name"] == meal_name:
-                meal_dto = Meal_DTO(meal_json=meal_json)
-                meal_domain = Meal_Domain(meal_object=meal_dto)
-
-                new_meal_model = Meal_Model(meal_domain=meal_domain)
-                self.db.session.add(new_meal_model)
-        self.db.session.commit()
