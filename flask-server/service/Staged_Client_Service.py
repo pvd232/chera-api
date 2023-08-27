@@ -70,6 +70,3 @@ class Staged_Client_Service(object):
         return self.staged_client_repository.add_staged_client_to_waitlist(
             staged_client_id=staged_client_id
         )
-
-    def delete_all_staged_clients(self) -> None:
-        self.staged_client_repository.delete_all_staged_clients()

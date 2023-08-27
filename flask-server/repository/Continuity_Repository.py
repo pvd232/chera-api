@@ -31,6 +31,7 @@ if TYPE_CHECKING:
     from repository.Meal_Sample_Shipment_Repository import (
         Meal_Sample_Shipment_Repository,
     )
+    from repository.Dietitian_Repository import Dietitian_Repository
 
 
 class Continuity_Repository(object):
@@ -72,9 +73,11 @@ class Continuity_Repository(object):
 
     def initialize_dietitian_data(
         self,
+        dietitian_repository: "Dietitian_Repository",
         meal_sample_repository: "Meal_Sample_Repository",
         meal_sample_shipment_repository: "Meal_Sample_Shipment_Repository",
     ):
+        dietitian_repository.initialize_dietitians(),
         meal_sample_repository.initialize_meal_samples()
         meal_sample_shipment_repository.initialize_meal_sample_shipments()
         return

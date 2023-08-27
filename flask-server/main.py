@@ -3798,15 +3798,9 @@ def initialize_dietitian() -> Response:
         from repository.Meal_Sample_Shipment_Repository import (
             Meal_Sample_Shipment_Repository,
         )
-        from service.Dietitian_Service import Dietitian_Service
-        from service.Continuity_Service import Continuity_Service
-        from service.Meal_Sample_Service import Meal_Sample_Service
-        from service.Meal_Sample_Shipment_Service import Meal_Sample_Shipment_Service
 
-        Dietitian_Service(
-            dietitian_repository=Dietitian_Repository(db=db)
-        ).initialize_dietitians()
         Continuity_Repository().initialize_dietitian_data(
+            dietitian_repository=Dietitian_Repository(db=db),
             meal_sample_repository=Meal_Sample_Repository(db=db),
             meal_sample_shipment_repository=Meal_Sample_Shipment_Repository(db=db),
         )

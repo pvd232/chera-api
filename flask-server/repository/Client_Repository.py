@@ -92,8 +92,3 @@ class Client_Repository(Base_Repository):
         client_to_update.active = False
         self.db.session.commit()
         return
-
-    def delete_all_clients(self) -> None:
-        self.db.session.query(Client_Model).delete()
-        self.db.session.commit()
-        return
