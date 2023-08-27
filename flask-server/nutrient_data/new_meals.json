@@ -102,5 +102,69 @@
         "description": "Grilled salmon served with basmati rice, veggies, and a blend of seasoning",
         "image_url": "https://storage.googleapis.com/chera_meal_photos/grilled_salmon_with_rice_and_veggies.jpg",
         "active": true
+    },
+    {
+        "id": "a939f918-5d8d-4405-97d7-93609467e392",
+        "meal_time": "dinner",
+        "name": "Cacio e Pepe",
+        "description": "Romano and parmigiano cheese blended with black pepper, served over bucatini",
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/cacio_e_pepe.jpg",
+        "active": true
+    },
+    {
+        "id": "bd4a2f06-c140-4dfb-8596-7e9f24bcfd91",
+        "meal_time": "lunch",
+        "name": "Baja Fish Tacos",
+        "description": "Mahi Mahi infused with Baja Cajun seasoning, paired with coleslaw, mango salsa, and avocado crema",
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/baja_fish_tacos.jpg",
+        "active": true
+    },
+    {
+        "id": "7b98ecee-916f-4bda-a56a-59e0389058c6",
+        "meal_time": "dinner",
+        "name": "Cowgirl Cheddar Burger & Fries",
+        "description": "Beef burger topped with cheddar, smoky spices, garlic, onion, and accompanied by sweet potato fries",
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/cowgirl_cheddar_burger_and_fries.jpg",
+        "active": true
+    },
+    {
+        "id": "56f03dc6-49e2-4ef6-a732-bac832836dd0",
+        "meal_time": "breakfast",
+        "name": "Egg n' Cheese Croissant",
+        "description": "Croissant filled with scrambled eggs and melted cheddar",
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/egg_and_cheese_croissant.jpg",
+        "active": true
+    },
+    {
+        "id": "8e740d7e-c8de-4a96-b76a-099486eb23c8",
+        "meal_time": "breakfast",
+        "name": "Eggs n' Veg Medley",
+        "description": "Eggs blended with saut\u00e9ed onions, spinach, and melted cheddar",
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/eggs_and_veg_medley.jpg",
+        "active": true
+    },
+    {
+        "id": "9d72ae04-e51a-43e7-bcb7-b4b78f7f40e0",
+        "meal_time": "dinner",
+        "name": "Pineapple Sticky Rice",
+        "description": "Pineapple-infused rice, cooked with coconut milk, adorned with cashews",
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/pineapple_sticky_rice.jpg",
+        "active": true
+    },
+    {
+        "id": "53cdcf14-c8ed-4fe8-9d12-382d4afcb9f5",
+        "meal_time": "dinner",
+        "name": "Coconut Chickpea Curry",
+        "description": "Chickpeas soaked in a coconut curry with red onion, garlic, spinach, and thai flavors",
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/coconut_chickpea_curry.jpg",
+        "active": true
+    },
+    {
+        "id": "bee29d5d-4e71-4e17-b946-92574881da78",
+        "meal_time": "dinner",
+        "name": "Cajun Sausage and Rice Skillet",
+        "description": "Spicy cajun skillet with andouille sausage, rice, peppers",
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/cajun_sausage_and_rice_skillet.jpg",
+        "active": true
     }
 ]

@@ -23,7 +23,7 @@ class Meal_Sample_Shipment_Service(object):
         )
         return meal_sample_shipment_domain
 
-    def get_meal_sample_shipments(self):
+    def get_meal_sample_shipments(self) -> list[Meal_Sample_Shipment_Domain]:
         meal_sample_shipment_objects = (
             self.meal_sample_shipment_repository.get_meal_sample_shipments()
         )
@@ -32,3 +32,19 @@ class Meal_Sample_Shipment_Service(object):
             for x in meal_sample_shipment_objects
         ]
         return meal_sample_shipment_domains
+
+    def write_meal_sample_shipments(self) -> None:
+        from pathlib import Path
+        from utils.write_json import write_json
+
+        json_file_path = (
+            Path(".")
+            .joinpath("nutrient_data")
+            .joinpath("new_meal_sample_shipments.json")
+        )
+
+        with open(json_file_path, "r+") as outfile:
+            meal_sample_shipment_dtos = [
+                x.serialize() for x in self.get_meal_sample_shipments()
+            ]
+            write_json(outfile=outfile, dicts=meal_sample_shipment_dtos)
