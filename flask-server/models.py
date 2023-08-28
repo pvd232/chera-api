@@ -262,14 +262,14 @@ class Staged_Client_Model(db.Model):
         UUID(as_uuid=True), db.ForeignKey("meal_plan.id"), nullable=False
     )
     eating_disorder_id = db.Column(
-        UUID(as_uuid=True), db.ForeignKey("eating_disorder.id"), nullable=False
+        UUID(as_uuid=True), db.ForeignKey("eating_disorder.id"), nullable=True
     )
     # personal information
-    first_name = db.Column(db.String(80), nullable=False)
-    current_weight = db.Column(db.Integer(), nullable=False)
-    target_weight = db.Column(db.Integer(), nullable=False)
-    age = db.Column(db.Integer(), nullable=False)
-    gender = db.Column(db.String(20), nullable=False)
+    first_name = db.Column(db.String(80), nullable=True)
+    current_weight = db.Column(db.Integer(), nullable=True)
+    target_weight = db.Column(db.Integer(), nullable=True)
+    age = db.Column(db.Integer(), nullable=True)
+    gender = db.Column(db.String(20), nullable=True)
     notes = db.Column(db.String(500), default="")
     # account information
     datetime = db.Column(db.Float(), nullable=False)
@@ -309,14 +309,9 @@ class Dietitian_Model(db.Model):
     __tablename__ = "dietitian"
     id = db.Column(UUID(as_uuid=True), primary_key=True, unique=True, nullable=False)
     email = db.Column(db.String(40), nullable=False)
-    phone_number = db.Column(db.String(20), default="", nullable=False)
+    phone_number = db.Column(db.String(20), default="", nullable=True)
     first_name = db.Column(db.String(80), nullable=False)
     last_name = db.Column(db.String(80), nullable=False)
-    dietetic_registration_number = db.Column(db.String(20), nullable=False)
-    clinic_city = db.Column(db.String(40), nullable=False)
-    clinic_state = db.Column(db.String(2), nullable=False)
-    clinic_address = db.Column(db.String(200), nullable=False)
-    number_of_ed_clients = db.Column(db.Integer(), nullable=False)
     datetime = db.Column(db.Float(), nullable=False)
     got_sample = db.Column(db.Boolean(), default=False, nullable=False)
     active = db.Column(db.Boolean(), default=True, nullable=False)
