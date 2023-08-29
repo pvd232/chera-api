@@ -520,6 +520,9 @@ def usda_ingredient_portion() -> Response:
         USDA_Ingredient_Portion_Service(
             usda_ingredient_portion_repository=USDA_Ingredient_Portion_Repository(db=db)
         ).update_usda_ingredient_portion(usda_ingredient_portion_data=portion_json)
+        USDA_Ingredient_Portion_Service(
+            usda_ingredient_portion_repository=USDA_Ingredient_Portion_Repository(db=db)
+        ).write_usda_ingredient_portions()
         return Response(status=201)
     else:
         return Response(status=405)
@@ -534,23 +537,28 @@ def usda_ingredient(usda_ingredient_id: Optional[UUID]) -> Response:
     from repository.Imperial_Unit_Repository import Imperial_Unit_Repository
     from repository.Nutrient_Repository import Nutrient_Repository
     from repository.USDA_Ingredient_Repository import USDA_Ingredient_Repository
-    from repository.USDA_Ingredient_Portion_Repository import (
-        USDA_Ingredient_Portion_Repository,
-    )
-    from repository.USDA_Ingredient_Nutrient_Repository import (
-        USDA_Ingredient_Nutrient_Repository,
-    )
+
     from service.USDA_API_Service import USDA_API_Service
     from service.Nutrient_Service import Nutrient_Service
     from service.Imperial_Unit_Service import Imperial_Unit_Service
     from service.USDA_Ingredient_Service import USDA_Ingredient_Service
-    from service.USDA_Ingredient_Portion_Service import USDA_Ingredient_Portion_Service
-    from service.USDA_Ingredient_Nutrient_Service import (
-        USDA_Ingredient_Nutrient_Service,
-    )
+
     from dto.USDA_Nutrient_Mapper_DTO import USDA_Nutrient_Mapper_DTO
 
     if request.method == "POST":
+        from service.USDA_Ingredient_Portion_Service import (
+            USDA_Ingredient_Portion_Service,
+        )
+        from service.USDA_Ingredient_Nutrient_Service import (
+            USDA_Ingredient_Nutrient_Service,
+        )
+        from repository.USDA_Ingredient_Portion_Repository import (
+            USDA_Ingredient_Portion_Repository,
+        )
+        from repository.USDA_Ingredient_Nutrient_Repository import (
+            USDA_Ingredient_Nutrient_Repository,
+        )
+
         imperial_units = Imperial_Unit_Service(
             imperial_unit_repository=Imperial_Unit_Repository(db=db)
         ).get_imperial_units()
@@ -612,11 +620,22 @@ def usda_ingredient(usda_ingredient_id: Optional[UUID]) -> Response:
         from helpers.db.wipe_all_usda_ingredient_related_data import (
             wipe_all_usda_ingredient_related_data,
         )
+        from service.USDA_Ingredient_Portion_Service import (
+            USDA_Ingredient_Portion_Service,
+        )
+        from service.USDA_Ingredient_Nutrient_Service import (
+            USDA_Ingredient_Nutrient_Service,
+        )
+        from repository.USDA_Ingredient_Portion_Repository import (
+            USDA_Ingredient_Portion_Repository,
+        )
+        from repository.USDA_Ingredient_Nutrient_Repository import (
+            USDA_Ingredient_Nutrient_Repository,
+        )
 
         wipe_all_usda_ingredient_related_data(
             db=db, usda_ingredient_id=usda_ingredient_id
         )
-
         USDA_Ingredient_Service(
             usda_ingredient_repository=USDA_Ingredient_Repository(db=db)
         ).write_usda_ingredients()
@@ -1616,6 +1635,9 @@ def recipe_ingredient() -> Response:
         Recipe_Ingredient_Service(
             recipe_ingredient_repository=Recipe_Ingredient_Repository(db=db)
         ).create_recipe_ingredients(recipe_ingredient_dtos=recipe_ingredient_dtos)
+        Recipe_Ingredient_Service(
+            recipe_ingredient_repository=Recipe_Ingredient_Repository(db=db)
+        ).write_recipe_ingredients()
         return Response(status=201)
     elif request.method == "PUT":
         updated_recipe_ingredients = json.loads(request.data)
@@ -1628,6 +1650,9 @@ def recipe_ingredient() -> Response:
         ).update_recipe_ingredients(
             recipe_ingredient_dtos=updated_recipe_ingredient_DTOs
         )
+        Recipe_Ingredient_Service(
+            recipe_ingredient_repository=Recipe_Ingredient_Repository(db=db)
+        ).write_recipe_ingredients()
         return Response(status=204)
     else:
         return Response(status=405)
@@ -1725,6 +1750,11 @@ def recipe_ingredient_nutrient() -> Response:
                 recipe_ingredient_repository=Recipe_Ingredient_Repository(db=db)
             ),
         )
+        Recipe_Ingredient_Nutrient_Service(
+            recipe_ingredient_nutrient_repository=Recipe_Ingredient_Nutrient_Repository(
+                db=db
+            )
+        ).write_recipe_ingredient_nutrients()
         return Response(status=201)
 
     else:
@@ -1772,6 +1802,11 @@ def meal_dietary_restriction() -> Response:
         ).create_meal_dietary_restriction(
             meal_dietary_restriction_dto=new_meal_dietary_restriction
         )
+        Meal_Dietary_Restriction_Service(
+            meal_dietary_restriction_repository=Meal_Dietary_Restriction_Repository(
+                db=db
+            )
+        ).write_meal_dietary_restrictions()
         return Response(status=201)
 
     else:
@@ -1821,10 +1856,15 @@ def meal(meal_id: Optional[str]) -> Response:
         return Response(status=201)
     elif request.method == "DELETE":
         from helpers.db.wipe_meal_data import wipe_meal_data
+        from repository.Meal_Plan_Meal_Repository import Meal_Plan_Meal_Repository
+        from service.Meal_Plan_Meal_Service import Meal_Plan_Meal_Service
 
         meal_uuid = UUID(meal_id)
         wipe_meal_data(db=db, meal_id=meal_uuid)
         Meal_Service(meal_repository=Meal_Repository(db=db)).write_meals()
+        Meal_Plan_Meal_Service(
+            meal_plan_meal_repository=Meal_Plan_Meal_Repository(db=db)
+        ).write_meal_plan_meals()
         return Response(status=200, response="Wiped meal data")
     else:
         return Response(status=405)
@@ -2318,10 +2358,15 @@ def snack(snack_id: Optional[str]) -> Response:
         return Response(status=201)
     elif request.method == "DELETE":
         from helpers.db.wipe_snack_data import wipe_snack_data
+        from service.Meal_Plan_Snack_Service import Meal_Plan_Snack_Service
+        from repository.Meal_Plan_Snack_Repository import Meal_Plan_Snack_Repository
 
         snack_uuid = UUID(snack_id)
         wipe_snack_data(db=db, snack_id=snack_uuid)
         Snack_Service(snack_repository=Snack_Repository(db=db)).write_snacks()
+        Meal_Plan_Snack_Service(
+            meal_plan_snack_repository=Meal_Plan_Snack_Repository(db=db)
+        ).write_meal_plan_snacks()
         return Response(status=200, response="Wiped snack data")
     else:
         return Response(status=405)

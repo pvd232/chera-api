@@ -859,7 +859,7 @@
     },
     {
         "id": "7678d0fc-8160-4780-99f3-c8d283b8c57c",
-        "name": "sweet yellow onion",
+        "name": "yellow onion",
         "fdc_id": "170004",
         "amount_of_grams": 100.0,
         "k_cal": 123,
@@ -980,7 +980,7 @@
     },
     {
         "id": "03b8f0c6-38dd-4797-b367-c6ad3ae3ca59",
-        "name": "cooked pasta",
+        "name": "pasta",
         "fdc_id": "172014",
         "amount_of_grams": 100.0,
         "k_cal": 157,
@@ -1493,6 +1493,17 @@
         "k_cal_to_gram_ratio": 0.5,
         "usda_data_type": "Survey (FNDDS)",
         "fda_identifier": "63141010",
+        "active": true
+    },
+    {
+        "id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "name": "hamburger bun",
+        "fdc_id": "2343137",
+        "amount_of_grams": 100.0,
+        "k_cal": 279,
+        "k_cal_to_gram_ratio": 2.79,
+        "usda_data_type": "Survey (FNDDS)",
+        "fda_identifier": "51154100",
         "active": true
     }
 ]

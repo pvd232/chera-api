@@ -44,12 +44,18 @@ class Extended_Meal_Plan_Meal_DTO(Meal_Plan_Meal_DTO):
         return sum
 
     def get_protein_k_cal(self) -> float:
+        if self.nutrients == {}:
+            return 1
         return self.nutrients["protein"].amount * 4.0
 
     def get_fat_k_cal(self) -> float:
+        if self.nutrients == {}:
+            return 1
         return self.nutrients["fat"].amount * 9.0
 
     def get_carb_k_cal(self) -> float:
+        if self.nutrients == {}:
+            return 1
         return self.nutrients["carb"].amount * 4.0
 
     def get_nutritional_k_cal_adjustment(self) -> None:
