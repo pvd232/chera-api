@@ -19582,5 +19582,149 @@
         "usda_ingredient_id": "4b6d695b-aa32-4f2e-883b-4e909559d510",
         "nutrient_id": "vitamin_e",
         "amount": 0.02
+    },
+    {
+        "id": "0d37ca07-3912-4a10-8697-431aee7ae6a6",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "nutrient_id": "protein",
+        "amount": 9.77
+    },
+    {
+        "id": "164d783c-9fc9-4901-9385-035869124ab7",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "nutrient_id": "carb",
+        "amount": 50.1
+    },
+    {
+        "id": "d9aa166c-c02a-4381-bd27-ab256cdcbf15",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "nutrient_id": "dietary_fiber",
+        "amount": 1.8
+    },
+    {
+        "id": "c1f3a022-06dc-4e57-88f1-9e2fd87b7be5",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "nutrient_id": "sugars",
+        "amount": 7.28
+    },
+    {
+        "id": "f55f7231-e60c-4820-84f0-3f14561fcdfd",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "nutrient_id": "fat",
+        "amount": 3.91
+    },
+    {
+        "id": "3c2aacb3-e84d-4588-93f2-e37ca43767bf",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "nutrient_id": "saturated_fat",
+        "amount": 0.842
+    },
+    {
+        "id": "db759fe5-1424-409b-9978-ac6eebf01d53",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "nutrient_id": "vitamin_d",
+        "amount": 0.0
+    },
+    {
+        "id": "f21c3f44-966d-4ac1-8e69-e223d2714c2b",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "nutrient_id": "calcium",
+        "amount": 144.0
+    },
+    {
+        "id": "39606ba6-d80e-49b1-9158-7e2e3f93b183",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "nutrient_id": "iron",
+        "amount": 3.43
+    },
+    {
+        "id": "db7c34fc-c640-474e-b5e4-1db6f2674339",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "nutrient_id": "potassium",
+        "amount": 122.0
+    },
+    {
+        "id": "950446ca-8b01-49fb-8210-ee801cf86f23",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "nutrient_id": "sodium",
+        "amount": 494.0
+    },
+    {
+        "id": "341b05e6-c9ec-4321-8bf5-d21d57b3f6b2",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "nutrient_id": "cholesterol",
+        "amount": 0.0
+    },
+    {
+        "id": "50b94b9b-d226-4143-b4ab-115334006d15",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "nutrient_id": "vitamin_c",
+        "amount": 1.3
+    },
+    {
+        "id": "aafc3677-50cc-4def-9200-1164b34a12b9",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "nutrient_id": "vitamin_b_6",
+        "amount": 0.063
+    },
+    {
+        "id": "c2b01530-8538-4610-a49c-78fc142c7ac3",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "nutrient_id": "vitamin_b_12",
+        "amount": 0.2
+    },
+    {
+        "id": "65d53e4b-5697-4a53-ad96-004a5b42b233",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "nutrient_id": "thiamin",
+        "amount": 0.543
+    },
+    {
+        "id": "e4a52f7c-05ac-45a2-94ff-cc20733e8422",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "nutrient_id": "riboflavin",
+        "amount": 0.297
+    },
+    {
+        "id": "09ed5d75-d5b4-4709-ac16-2f3969fc3a90",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "nutrient_id": "niacin",
+        "amount": 4.18
+    },
+    {
+        "id": "1c8520a1-18a0-432e-8779-3944771bfd82",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "nutrient_id": "folate",
+        "amount": 94.0
+    },
+    {
+        "id": "23180550-43fb-4de0-ae71-63086d3ef952",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "nutrient_id": "vitamin_k",
+        "amount": 4.8
+    },
+    {
+        "id": "a3067e84-b500-40a9-8d85-d8fe6afb7c0d",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "nutrient_id": "phosphorus",
+        "amount": 101.0
+    },
+    {
+        "id": "e1ddce3a-c1a0-446e-8e5a-dafc7754ecc3",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "nutrient_id": "trans_fat",
+        "amount": 0.0
+    },
+    {
+        "id": "59b07fac-1125-4071-9ab9-08236c152bd6",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "nutrient_id": "vitamin_a",
+        "amount": 0.0
+    },
+    {
+        "id": "7acdeef2-68ad-4216-ad04-fb07e6a745e7",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "nutrient_id": "vitamin_e",
+        "amount": 0.27
     }
 ]

@@ -104,15 +104,7 @@
         "active": true
     },
     {
-        "id": "a939f918-5d8d-4405-97d7-93609467e392",
-        "meal_time": "dinner",
-        "name": "Cacio e Pepe",
-        "description": "Romano and parmigiano cheese blended with black pepper, served over bucatini",
-        "image_url": "https://storage.googleapis.com/chera_meal_photos/cacio_e_pepe.jpg",
-        "active": true
-    },
-    {
-        "id": "bd4a2f06-c140-4dfb-8596-7e9f24bcfd91",
+        "id": "8024f437-ea18-4841-ad1b-4173ebdb0d6a",
         "meal_time": "lunch",
         "name": "Baja Fish Tacos",
         "description": "Mahi Mahi infused with Baja Cajun seasoning, paired with coleslaw, mango salsa, and avocado crema",
@@ -120,15 +112,7 @@
         "active": true
     },
     {
-        "id": "7b98ecee-916f-4bda-a56a-59e0389058c6",
-        "meal_time": "dinner",
-        "name": "Cowgirl Cheddar Burger & Fries",
-        "description": "Beef burger topped with cheddar, smoky spices, garlic, onion, and accompanied by sweet potato fries",
-        "image_url": "https://storage.googleapis.com/chera_meal_photos/cowgirl_cheddar_burger_and_fries.jpg",
-        "active": true
-    },
-    {
-        "id": "8e740d7e-c8de-4a96-b76a-099486eb23c8",
+        "id": "8f39ff9f-a32c-4ddf-9bc6-708f6123f9a4",
         "meal_time": "breakfast",
         "name": "Eggs n' Veg Medley",
         "description": "Eggs blended with saut\u00e9ed onions, spinach, and melted cheddar",
@@ -136,7 +120,7 @@
         "active": true
     },
     {
-        "id": "9d72ae04-e51a-43e7-bcb7-b4b78f7f40e0",
+        "id": "cd6c1a17-a096-4124-8e30-9dfa8a3eee1c",
         "meal_time": "dinner",
         "name": "Pineapple Sticky Rice",
         "description": "Pineapple-infused rice, cooked with coconut milk, adorned with cashews",
@@ -144,15 +128,7 @@
         "active": true
     },
     {
-        "id": "53cdcf14-c8ed-4fe8-9d12-382d4afcb9f5",
-        "meal_time": "dinner",
-        "name": "Coconut Chickpea Curry",
-        "description": "Chickpeas soaked in a coconut curry with red onion, garlic, spinach, and thai flavors",
-        "image_url": "https://storage.googleapis.com/chera_meal_photos/coconut_chickpea_curry.jpg",
-        "active": true
-    },
-    {
-        "id": "bee29d5d-4e71-4e17-b946-92574881da78",
+        "id": "69a59e66-eea2-45b0-9603-c7ee4de30078",
         "meal_time": "dinner",
         "name": "Cajun Sausage and Rice Skillet",
         "description": "Spicy cajun skillet with andouille sausage, rice, peppers",
@@ -160,11 +136,35 @@
         "active": true
     },
     {
-        "id": "269b1cbf-e2ce-4ffb-9c83-126aa9a2fb42",
+        "id": "bea6e216-06d4-412f-af5b-49317607bccf",
+        "meal_time": "dinner",
+        "name": "Coconut Chickpea Curry",
+        "description": "Chickpeas soaked in a coconut curry with red onion, garlic, spinach, and thai flavors",
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/coconut_chickpea_curry.jpg",
+        "active": true
+    },
+    {
+        "id": "a94e93a7-3703-4c08-b244-d04878f7ef2b",
         "meal_time": "breakfast",
         "name": "Egg n' Cheese Croissant",
         "description": "Croissant filled with scrambled eggs and melted cheddar",
         "image_url": "https://storage.googleapis.com/chera_meal_photos/egg_and_cheese_croissant.jpg",
+        "active": true
+    },
+    {
+        "id": "2e6d640e-2fcd-4bc1-b064-ba2a1af75b7e",
+        "meal_time": "dinner",
+        "name": "Cacio e Pepe",
+        "description": "Romano and parmigiano cheese blended with black pepper, served over bucatini",
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/cacio_e_pepe.jpg",
+        "active": true
+    },
+    {
+        "id": "7ea21691-207f-45e5-9a5c-d0c2972a0fed",
+        "meal_time": "dinner",
+        "name": "Cowgirl Cheddar Burger & Fries",
+        "description": "Beef burger topped with cheddar, smoky spices, garlic, onion, and accompanied by sweet potato fries",
+        "image_url": "https://storage.googleapis.com/chera_meal_photos/cowgirl_cheddar_burger_and_fries.jpg",
         "active": true
     }
 ]

@@ -19708,5 +19708,2597 @@
         "usda_ingredient_portion_id": "1deccd46-e392-44b7-9d21-897d9514a93e",
         "quantity": 0.266672,
         "active": true
+    },
+    {
+        "id": "cc330fd9-3773-4f67-a509-97cf4621de3a",
+        "usda_ingredient_id": "c5e7833b-c5bc-4d6d-bb7d-3d0db527bc06",
+        "meal_plan_meal_id": "5d0c635c-5c24-467f-b45e-a5ef95421b2d",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "b79eb79c-c5b1-47ce-b7b3-bdd94427e630",
+        "quantity": 4.0,
+        "active": true
+    },
+    {
+        "id": "1fec7361-d358-43fd-8163-ec14fe2b344f",
+        "usda_ingredient_id": "f9dea742-1153-4529-a52e-3372adf3510b",
+        "meal_plan_meal_id": "5d0c635c-5c24-467f-b45e-a5ef95421b2d",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "78ae42e7-c9fc-4501-afae-54431053f4ce",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "03d61171-4dfc-45ec-870d-c452f63b3900",
+        "usda_ingredient_id": "78d4ed7c-9b83-44ba-99d8-48f82b162658",
+        "meal_plan_meal_id": "5d0c635c-5c24-467f-b45e-a5ef95421b2d",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "e17cbe6b-744f-4cbc-98df-5604dea4c1ff",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "81d2ddec-2eca-4680-ad34-3421d3d4eb26",
+        "usda_ingredient_id": "54ff0b75-a3e0-4c5e-831e-18ed440ba158",
+        "meal_plan_meal_id": "5d0c635c-5c24-467f-b45e-a5ef95421b2d",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "f2dc6f15-f470-4e21-9e4a-49ff0b1f863b",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "45b31d37-f9d7-4ff8-9842-5996af54255c",
+        "usda_ingredient_id": "2bf622e1-b632-4ffe-9953-2eee902ebf43",
+        "meal_plan_meal_id": "5d0c635c-5c24-467f-b45e-a5ef95421b2d",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "88c227d2-f06e-4157-bb74-bf1bbfae4f6b",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "24dd7fce-1971-401b-930a-e1f515746427",
+        "usda_ingredient_id": "704480d5-f79f-45f1-9b92-9f5b0cc850b5",
+        "meal_plan_meal_id": "5d0c635c-5c24-467f-b45e-a5ef95421b2d",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "7e5c852a-6fc0-4d00-8e51-c558e1bf03db",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "14c4313d-0553-451c-a71e-f7c6d01fc034",
+        "usda_ingredient_id": "4c8cd76d-a951-4a78-a074-3f1bda39869f",
+        "meal_plan_meal_id": "5d0c635c-5c24-467f-b45e-a5ef95421b2d",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5332f388-05d8-47f8-9070-b041e3bd8f49",
+        "quantity": 3.0,
+        "active": true
+    },
+    {
+        "id": "7183b32b-82b4-4ba4-808f-ea4699a9f678",
+        "usda_ingredient_id": "ea8df0b4-1071-4758-8fe7-47b3a7bf1af5",
+        "meal_plan_meal_id": "5d0c635c-5c24-467f-b45e-a5ef95421b2d",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "fe722588-86e8-4f6f-8f61-f9462c710393",
+        "usda_ingredient_id": "c5e7833b-c5bc-4d6d-bb7d-3d0db527bc06",
+        "meal_plan_meal_id": "853460ca-7a28-456f-a143-1788fd8610bc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "b79eb79c-c5b1-47ce-b7b3-bdd94427e630",
+        "quantity": 4.0,
+        "active": true
+    },
+    {
+        "id": "58845ef5-f162-4bab-aeb0-8b830a552a3f",
+        "usda_ingredient_id": "f9dea742-1153-4529-a52e-3372adf3510b",
+        "meal_plan_meal_id": "853460ca-7a28-456f-a143-1788fd8610bc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "78ae42e7-c9fc-4501-afae-54431053f4ce",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "f69091d7-f9c8-4c68-a8b1-f93814e54432",
+        "usda_ingredient_id": "78d4ed7c-9b83-44ba-99d8-48f82b162658",
+        "meal_plan_meal_id": "853460ca-7a28-456f-a143-1788fd8610bc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "e17cbe6b-744f-4cbc-98df-5604dea4c1ff",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "1a83ccb3-a5ba-43f1-968f-6c5decbe9bda",
+        "usda_ingredient_id": "54ff0b75-a3e0-4c5e-831e-18ed440ba158",
+        "meal_plan_meal_id": "853460ca-7a28-456f-a143-1788fd8610bc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "f2dc6f15-f470-4e21-9e4a-49ff0b1f863b",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "873a8dc6-7d81-4f62-964b-015d19b6010f",
+        "usda_ingredient_id": "2bf622e1-b632-4ffe-9953-2eee902ebf43",
+        "meal_plan_meal_id": "853460ca-7a28-456f-a143-1788fd8610bc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "88c227d2-f06e-4157-bb74-bf1bbfae4f6b",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "a7f36f97-afa7-4f6f-ad65-02a166b5e269",
+        "usda_ingredient_id": "704480d5-f79f-45f1-9b92-9f5b0cc850b5",
+        "meal_plan_meal_id": "853460ca-7a28-456f-a143-1788fd8610bc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "7e5c852a-6fc0-4d00-8e51-c558e1bf03db",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "412368e8-fc40-4e5f-99b8-67816326deac",
+        "usda_ingredient_id": "4c8cd76d-a951-4a78-a074-3f1bda39869f",
+        "meal_plan_meal_id": "853460ca-7a28-456f-a143-1788fd8610bc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5332f388-05d8-47f8-9070-b041e3bd8f49",
+        "quantity": 3.0,
+        "active": true
+    },
+    {
+        "id": "be65cfcc-3b7a-4809-a021-d38ac37c0446",
+        "usda_ingredient_id": "ea8df0b4-1071-4758-8fe7-47b3a7bf1af5",
+        "meal_plan_meal_id": "853460ca-7a28-456f-a143-1788fd8610bc",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "6820d987-1022-4634-9d53-30cead9a8700",
+        "usda_ingredient_id": "c5e7833b-c5bc-4d6d-bb7d-3d0db527bc06",
+        "meal_plan_meal_id": "8c54df4f-acef-4a1a-83d9-19a0f9d4057e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "b79eb79c-c5b1-47ce-b7b3-bdd94427e630",
+        "quantity": 6.0,
+        "active": true
+    },
+    {
+        "id": "3496fe4d-6988-44ea-b617-b6e978e6ef8c",
+        "usda_ingredient_id": "f9dea742-1153-4529-a52e-3372adf3510b",
+        "meal_plan_meal_id": "8c54df4f-acef-4a1a-83d9-19a0f9d4057e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "78ae42e7-c9fc-4501-afae-54431053f4ce",
+        "quantity": 0.375,
+        "active": true
+    },
+    {
+        "id": "f53fab99-56a7-45f1-b69a-d9f5550418da",
+        "usda_ingredient_id": "78d4ed7c-9b83-44ba-99d8-48f82b162658",
+        "meal_plan_meal_id": "8c54df4f-acef-4a1a-83d9-19a0f9d4057e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "e17cbe6b-744f-4cbc-98df-5604dea4c1ff",
+        "quantity": 0.375,
+        "active": true
+    },
+    {
+        "id": "bdb75c14-4d24-419b-afb4-de9436911b52",
+        "usda_ingredient_id": "54ff0b75-a3e0-4c5e-831e-18ed440ba158",
+        "meal_plan_meal_id": "8c54df4f-acef-4a1a-83d9-19a0f9d4057e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "f2dc6f15-f470-4e21-9e4a-49ff0b1f863b",
+        "quantity": 0.375,
+        "active": true
+    },
+    {
+        "id": "a14a3d28-d536-4ea7-8e33-328a34129c19",
+        "usda_ingredient_id": "2bf622e1-b632-4ffe-9953-2eee902ebf43",
+        "meal_plan_meal_id": "8c54df4f-acef-4a1a-83d9-19a0f9d4057e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "88c227d2-f06e-4157-bb74-bf1bbfae4f6b",
+        "quantity": 0.375,
+        "active": true
+    },
+    {
+        "id": "b4cbc204-a5f5-438e-aabc-f58c6c65a51f",
+        "usda_ingredient_id": "704480d5-f79f-45f1-9b92-9f5b0cc850b5",
+        "meal_plan_meal_id": "8c54df4f-acef-4a1a-83d9-19a0f9d4057e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "7e5c852a-6fc0-4d00-8e51-c558e1bf03db",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "c5c8da84-a237-42e2-9013-619e2bb521bb",
+        "usda_ingredient_id": "4c8cd76d-a951-4a78-a074-3f1bda39869f",
+        "meal_plan_meal_id": "8c54df4f-acef-4a1a-83d9-19a0f9d4057e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5332f388-05d8-47f8-9070-b041e3bd8f49",
+        "quantity": 4.5,
+        "active": true
+    },
+    {
+        "id": "67d8bb2b-b00b-468e-8988-a35f6cbb719c",
+        "usda_ingredient_id": "ea8df0b4-1071-4758-8fe7-47b3a7bf1af5",
+        "meal_plan_meal_id": "8c54df4f-acef-4a1a-83d9-19a0f9d4057e",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 1.5,
+        "active": true
+    },
+    {
+        "id": "40d5a2fe-b8eb-4a94-af7e-52549570c2fc",
+        "usda_ingredient_id": "c5e7833b-c5bc-4d6d-bb7d-3d0db527bc06",
+        "meal_plan_meal_id": "cb024b7f-a86f-4406-b09c-6b227d1a6fb8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "b79eb79c-c5b1-47ce-b7b3-bdd94427e630",
+        "quantity": 4.0,
+        "active": true
+    },
+    {
+        "id": "82797469-70eb-4fb4-9a1d-2857eaf7ed5a",
+        "usda_ingredient_id": "f9dea742-1153-4529-a52e-3372adf3510b",
+        "meal_plan_meal_id": "cb024b7f-a86f-4406-b09c-6b227d1a6fb8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "78ae42e7-c9fc-4501-afae-54431053f4ce",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "045a712e-e554-4c40-a0b5-ff71fd8b0da9",
+        "usda_ingredient_id": "78d4ed7c-9b83-44ba-99d8-48f82b162658",
+        "meal_plan_meal_id": "cb024b7f-a86f-4406-b09c-6b227d1a6fb8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "e17cbe6b-744f-4cbc-98df-5604dea4c1ff",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "59346261-7a74-4595-a3f9-21817de332bb",
+        "usda_ingredient_id": "54ff0b75-a3e0-4c5e-831e-18ed440ba158",
+        "meal_plan_meal_id": "cb024b7f-a86f-4406-b09c-6b227d1a6fb8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "f2dc6f15-f470-4e21-9e4a-49ff0b1f863b",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "eb4da59f-70ac-46b3-866e-487c80d6ac13",
+        "usda_ingredient_id": "2bf622e1-b632-4ffe-9953-2eee902ebf43",
+        "meal_plan_meal_id": "cb024b7f-a86f-4406-b09c-6b227d1a6fb8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "88c227d2-f06e-4157-bb74-bf1bbfae4f6b",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "b1903d1d-51fa-455a-9969-177e47d8b79c",
+        "usda_ingredient_id": "704480d5-f79f-45f1-9b92-9f5b0cc850b5",
+        "meal_plan_meal_id": "cb024b7f-a86f-4406-b09c-6b227d1a6fb8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "7e5c852a-6fc0-4d00-8e51-c558e1bf03db",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "b4317b14-88cc-4159-9d3e-ac7fe15a9dba",
+        "usda_ingredient_id": "4c8cd76d-a951-4a78-a074-3f1bda39869f",
+        "meal_plan_meal_id": "cb024b7f-a86f-4406-b09c-6b227d1a6fb8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5332f388-05d8-47f8-9070-b041e3bd8f49",
+        "quantity": 3.0,
+        "active": true
+    },
+    {
+        "id": "d0e1c11c-554e-4697-ae52-4ad4a6dbfd6e",
+        "usda_ingredient_id": "ea8df0b4-1071-4758-8fe7-47b3a7bf1af5",
+        "meal_plan_meal_id": "cb024b7f-a86f-4406-b09c-6b227d1a6fb8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "717cecbe-64db-441e-be66-2cab59ccb47a",
+        "usda_ingredient_id": "c5e7833b-c5bc-4d6d-bb7d-3d0db527bc06",
+        "meal_plan_meal_id": "2b908a57-e62d-4a5d-b712-c83df5ce9f1d",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "b79eb79c-c5b1-47ce-b7b3-bdd94427e630",
+        "quantity": 8.0,
+        "active": true
+    },
+    {
+        "id": "92846c92-13d3-41bb-a58a-7e817102278d",
+        "usda_ingredient_id": "f9dea742-1153-4529-a52e-3372adf3510b",
+        "meal_plan_meal_id": "2b908a57-e62d-4a5d-b712-c83df5ce9f1d",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "78ae42e7-c9fc-4501-afae-54431053f4ce",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "548d4711-3c8a-4b96-8fad-a9b1db7bf429",
+        "usda_ingredient_id": "78d4ed7c-9b83-44ba-99d8-48f82b162658",
+        "meal_plan_meal_id": "2b908a57-e62d-4a5d-b712-c83df5ce9f1d",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "e17cbe6b-744f-4cbc-98df-5604dea4c1ff",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "222b2d18-3577-4dda-a8da-b0611400e381",
+        "usda_ingredient_id": "54ff0b75-a3e0-4c5e-831e-18ed440ba158",
+        "meal_plan_meal_id": "2b908a57-e62d-4a5d-b712-c83df5ce9f1d",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "f2dc6f15-f470-4e21-9e4a-49ff0b1f863b",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "ddd6f549-4b34-432b-ba32-b0524824e52a",
+        "usda_ingredient_id": "2bf622e1-b632-4ffe-9953-2eee902ebf43",
+        "meal_plan_meal_id": "2b908a57-e62d-4a5d-b712-c83df5ce9f1d",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "88c227d2-f06e-4157-bb74-bf1bbfae4f6b",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "083e6938-af92-477b-8f6c-973aac0352e5",
+        "usda_ingredient_id": "704480d5-f79f-45f1-9b92-9f5b0cc850b5",
+        "meal_plan_meal_id": "2b908a57-e62d-4a5d-b712-c83df5ce9f1d",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "7e5c852a-6fc0-4d00-8e51-c558e1bf03db",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "2d7f52cb-7df0-46a0-a9c9-69d3ba9b58c1",
+        "usda_ingredient_id": "4c8cd76d-a951-4a78-a074-3f1bda39869f",
+        "meal_plan_meal_id": "2b908a57-e62d-4a5d-b712-c83df5ce9f1d",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5332f388-05d8-47f8-9070-b041e3bd8f49",
+        "quantity": 6.0,
+        "active": true
+    },
+    {
+        "id": "61843f02-6417-4d55-9816-0d596263917e",
+        "usda_ingredient_id": "ea8df0b4-1071-4758-8fe7-47b3a7bf1af5",
+        "meal_plan_meal_id": "2b908a57-e62d-4a5d-b712-c83df5ce9f1d",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "e12a949e-c37f-499b-b1a4-455ad8f82d96",
+        "usda_ingredient_id": "ea7528d4-6586-4b05-9315-5e8f0e1c0e6a",
+        "meal_plan_meal_id": "0e81b2fb-a92c-4325-bf9e-f60a51af9eec",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8b2023ab-5052-4cb0-9842-3ed430375d4d",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "6873e785-4bdc-40b8-bc38-df596a67d255",
+        "usda_ingredient_id": "da704027-b234-44c5-b4ae-7c39e9d4607b",
+        "meal_plan_meal_id": "0e81b2fb-a92c-4325-bf9e-f60a51af9eec",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a97da0f3-a603-435e-b83e-4e02443c5dfe",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "81590879-531a-4989-ad17-bdfa21dbd4bd",
+        "usda_ingredient_id": "e81458a4-c124-48a6-9cab-cdf7e5baa704",
+        "meal_plan_meal_id": "0e81b2fb-a92c-4325-bf9e-f60a51af9eec",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c825324f-416e-4cea-8156-36951fd2afb3",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "7a07e108-7c4b-4773-aada-44986cf38036",
+        "usda_ingredient_id": "909b71fb-f084-4388-a375-5aa824c7a961",
+        "meal_plan_meal_id": "0e81b2fb-a92c-4325-bf9e-f60a51af9eec",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c2daf7da-8055-478a-98fd-172e8315cca8",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "2b4d6dab-0e57-4784-8beb-1db871e371fb",
+        "usda_ingredient_id": "ea7528d4-6586-4b05-9315-5e8f0e1c0e6a",
+        "meal_plan_meal_id": "4da3a26f-f288-4908-be2c-7fdb2024db44",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8b2023ab-5052-4cb0-9842-3ed430375d4d",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "7185b87b-3578-4200-b8b7-1fb4b8734757",
+        "usda_ingredient_id": "da704027-b234-44c5-b4ae-7c39e9d4607b",
+        "meal_plan_meal_id": "4da3a26f-f288-4908-be2c-7fdb2024db44",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a97da0f3-a603-435e-b83e-4e02443c5dfe",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "a1c7e8cd-2bc7-4780-be74-49f28b38b8b3",
+        "usda_ingredient_id": "e81458a4-c124-48a6-9cab-cdf7e5baa704",
+        "meal_plan_meal_id": "4da3a26f-f288-4908-be2c-7fdb2024db44",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c825324f-416e-4cea-8156-36951fd2afb3",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "7191741e-c8e4-4430-aaa6-4d1d4528a781",
+        "usda_ingredient_id": "909b71fb-f084-4388-a375-5aa824c7a961",
+        "meal_plan_meal_id": "4da3a26f-f288-4908-be2c-7fdb2024db44",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c2daf7da-8055-478a-98fd-172e8315cca8",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "98839ece-7bd6-4a53-a7ad-f60ae99d3865",
+        "usda_ingredient_id": "ea7528d4-6586-4b05-9315-5e8f0e1c0e6a",
+        "meal_plan_meal_id": "0b3443f3-817f-46f6-8d40-a3e76db1499f",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8b2023ab-5052-4cb0-9842-3ed430375d4d",
+        "quantity": 4.0,
+        "active": true
+    },
+    {
+        "id": "d0824129-2441-4483-a7f3-3063d93401ef",
+        "usda_ingredient_id": "da704027-b234-44c5-b4ae-7c39e9d4607b",
+        "meal_plan_meal_id": "0b3443f3-817f-46f6-8d40-a3e76db1499f",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a97da0f3-a603-435e-b83e-4e02443c5dfe",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "bdbca543-4813-4edf-a98f-5a74a1c92a0f",
+        "usda_ingredient_id": "e81458a4-c124-48a6-9cab-cdf7e5baa704",
+        "meal_plan_meal_id": "0b3443f3-817f-46f6-8d40-a3e76db1499f",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c825324f-416e-4cea-8156-36951fd2afb3",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "cd015c35-f181-4778-9b3c-25254ed64f43",
+        "usda_ingredient_id": "909b71fb-f084-4388-a375-5aa824c7a961",
+        "meal_plan_meal_id": "0b3443f3-817f-46f6-8d40-a3e76db1499f",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c2daf7da-8055-478a-98fd-172e8315cca8",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "8fa462ac-8868-422f-88aa-9f22bc8bf4c3",
+        "usda_ingredient_id": "ea7528d4-6586-4b05-9315-5e8f0e1c0e6a",
+        "meal_plan_meal_id": "10ceb7af-6ee8-42a2-bc96-f2d4e1c2a42d",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8b2023ab-5052-4cb0-9842-3ed430375d4d",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "196e6607-f583-4ad9-bad4-a5c97f143f21",
+        "usda_ingredient_id": "da704027-b234-44c5-b4ae-7c39e9d4607b",
+        "meal_plan_meal_id": "10ceb7af-6ee8-42a2-bc96-f2d4e1c2a42d",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a97da0f3-a603-435e-b83e-4e02443c5dfe",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "5db5d658-7bfd-44ca-96dc-8a2df6c26896",
+        "usda_ingredient_id": "e81458a4-c124-48a6-9cab-cdf7e5baa704",
+        "meal_plan_meal_id": "10ceb7af-6ee8-42a2-bc96-f2d4e1c2a42d",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c825324f-416e-4cea-8156-36951fd2afb3",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "050ef3a5-a9a7-4bea-8d61-3fd5a0fdea03",
+        "usda_ingredient_id": "909b71fb-f084-4388-a375-5aa824c7a961",
+        "meal_plan_meal_id": "10ceb7af-6ee8-42a2-bc96-f2d4e1c2a42d",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c2daf7da-8055-478a-98fd-172e8315cca8",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "3c11cdfe-815f-4e4d-827d-f8363bd07f38",
+        "usda_ingredient_id": "ea7528d4-6586-4b05-9315-5e8f0e1c0e6a",
+        "meal_plan_meal_id": "f9a0bec1-4f2e-417c-99ae-37308b10ea28",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8b2023ab-5052-4cb0-9842-3ed430375d4d",
+        "quantity": 5.0,
+        "active": true
+    },
+    {
+        "id": "c6d6bb66-24d0-4ccb-be4b-a08ed83bb1f8",
+        "usda_ingredient_id": "da704027-b234-44c5-b4ae-7c39e9d4607b",
+        "meal_plan_meal_id": "f9a0bec1-4f2e-417c-99ae-37308b10ea28",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a97da0f3-a603-435e-b83e-4e02443c5dfe",
+        "quantity": 0.625,
+        "active": true
+    },
+    {
+        "id": "f6e8fa79-5d56-4153-b8f0-19c821d14613",
+        "usda_ingredient_id": "e81458a4-c124-48a6-9cab-cdf7e5baa704",
+        "meal_plan_meal_id": "f9a0bec1-4f2e-417c-99ae-37308b10ea28",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c825324f-416e-4cea-8156-36951fd2afb3",
+        "quantity": 2.5,
+        "active": true
+    },
+    {
+        "id": "bed51d4d-b1b2-4647-b8d6-eadee00a8436",
+        "usda_ingredient_id": "909b71fb-f084-4388-a375-5aa824c7a961",
+        "meal_plan_meal_id": "f9a0bec1-4f2e-417c-99ae-37308b10ea28",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c2daf7da-8055-478a-98fd-172e8315cca8",
+        "quantity": 0.625,
+        "active": true
+    },
+    {
+        "id": "64e6ec14-2bf3-46b3-8b19-b49f07d718ac",
+        "usda_ingredient_id": "4b6d695b-aa32-4f2e-883b-4e909559d510",
+        "meal_plan_meal_id": "8e72a250-558f-49da-8310-d14c6a6a97f6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c2c39aa4-8f38-45b3-8111-38a069ebb022",
+        "quantity": 0.273,
+        "active": true
+    },
+    {
+        "id": "5c5b3017-6915-412f-a9bc-2e86c18dd7cb",
+        "usda_ingredient_id": "eb1f6c66-4ce0-4f9c-8373-3e02b284790a",
+        "meal_plan_meal_id": "8e72a250-558f-49da-8310-d14c6a6a97f6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "54b7414c-f932-444d-a0c4-6778de76d439",
+        "quantity": 0.65,
+        "active": true
+    },
+    {
+        "id": "1fc1c352-d19c-45ae-9c29-29e48541fe88",
+        "usda_ingredient_id": "bbb3255d-71f0-4e0a-98c3-4baf5c8e08ca",
+        "meal_plan_meal_id": "8e72a250-558f-49da-8310-d14c6a6a97f6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "995f5879-0684-46f2-8d53-80abbfeaf981",
+        "quantity": 0.35100000000000003,
+        "active": true
+    },
+    {
+        "id": "85f2988f-a1fe-4913-a58e-7e053ba92aeb",
+        "usda_ingredient_id": "b7c11c69-1197-4ce0-b0dd-9a36d75b4823",
+        "meal_plan_meal_id": "8e72a250-558f-49da-8310-d14c6a6a97f6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8f912782-076e-4767-94bd-1eec99113f1a",
+        "quantity": 1.729,
+        "active": true
+    },
+    {
+        "id": "d4f7a36d-74fd-4c77-8f66-cbf77f3406ca",
+        "usda_ingredient_id": "39f8e7e7-0191-4523-afcd-b4fceac07b50",
+        "meal_plan_meal_id": "8e72a250-558f-49da-8310-d14c6a6a97f6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "290f7466-9e62-417f-9cb8-d014e823ea9b",
+        "quantity": 0.052000000000000005,
+        "active": true
+    },
+    {
+        "id": "48ea4c32-cf33-4722-8628-c1272c6669da",
+        "usda_ingredient_id": "588514d2-3dad-4428-9e93-3fc33eb9656c",
+        "meal_plan_meal_id": "8e72a250-558f-49da-8310-d14c6a6a97f6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5429414b-8a3e-4777-b327-1f4ae695e968",
+        "quantity": 0.10400000000000001,
+        "active": true
+    },
+    {
+        "id": "2bab1f69-aced-4a2e-926e-4b3755e8885c",
+        "usda_ingredient_id": "d3142bd1-da59-4e90-b71c-8622ca3d618e",
+        "meal_plan_meal_id": "8e72a250-558f-49da-8310-d14c6a6a97f6",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "cabe2b17-a366-4219-bcdb-6b6509ce8f9e",
+        "quantity": 0.10400000000000001,
+        "active": true
+    },
+    {
+        "id": "72c081ab-0fd1-4701-932e-cfcd766f6118",
+        "usda_ingredient_id": "4b6d695b-aa32-4f2e-883b-4e909559d510",
+        "meal_plan_meal_id": "daf4871c-a3fe-405e-86d8-b8e3c5067a0b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c2c39aa4-8f38-45b3-8111-38a069ebb022",
+        "quantity": 0.21,
+        "active": true
+    },
+    {
+        "id": "e0f750b7-2688-4ceb-b90d-95445e09e64c",
+        "usda_ingredient_id": "eb1f6c66-4ce0-4f9c-8373-3e02b284790a",
+        "meal_plan_meal_id": "daf4871c-a3fe-405e-86d8-b8e3c5067a0b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "54b7414c-f932-444d-a0c4-6778de76d439",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "d5222c8f-4eb4-40c8-ab8d-95030df129f0",
+        "usda_ingredient_id": "bbb3255d-71f0-4e0a-98c3-4baf5c8e08ca",
+        "meal_plan_meal_id": "daf4871c-a3fe-405e-86d8-b8e3c5067a0b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "995f5879-0684-46f2-8d53-80abbfeaf981",
+        "quantity": 0.27,
+        "active": true
+    },
+    {
+        "id": "e1dcbb9a-410a-4896-a1e4-90617c81db95",
+        "usda_ingredient_id": "b7c11c69-1197-4ce0-b0dd-9a36d75b4823",
+        "meal_plan_meal_id": "daf4871c-a3fe-405e-86d8-b8e3c5067a0b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8f912782-076e-4767-94bd-1eec99113f1a",
+        "quantity": 1.33,
+        "active": true
+    },
+    {
+        "id": "4222bd35-fb0c-474b-9637-d1a99fe06ce3",
+        "usda_ingredient_id": "39f8e7e7-0191-4523-afcd-b4fceac07b50",
+        "meal_plan_meal_id": "daf4871c-a3fe-405e-86d8-b8e3c5067a0b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "290f7466-9e62-417f-9cb8-d014e823ea9b",
+        "quantity": 0.04,
+        "active": true
+    },
+    {
+        "id": "65c0bcb7-f939-4b2b-b901-eda19b104e9a",
+        "usda_ingredient_id": "588514d2-3dad-4428-9e93-3fc33eb9656c",
+        "meal_plan_meal_id": "daf4871c-a3fe-405e-86d8-b8e3c5067a0b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5429414b-8a3e-4777-b327-1f4ae695e968",
+        "quantity": 0.08,
+        "active": true
+    },
+    {
+        "id": "f792b9c2-4698-4853-8f8c-365f51af00e8",
+        "usda_ingredient_id": "d3142bd1-da59-4e90-b71c-8622ca3d618e",
+        "meal_plan_meal_id": "daf4871c-a3fe-405e-86d8-b8e3c5067a0b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "cabe2b17-a366-4219-bcdb-6b6509ce8f9e",
+        "quantity": 0.08,
+        "active": true
+    },
+    {
+        "id": "63f070cc-9bc6-4994-b261-7f16bcee73d9",
+        "usda_ingredient_id": "4b6d695b-aa32-4f2e-883b-4e909559d510",
+        "meal_plan_meal_id": "9e2d8d0c-c2e7-4da5-b801-b30d4da05921",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c2c39aa4-8f38-45b3-8111-38a069ebb022",
+        "quantity": 0.42,
+        "active": true
+    },
+    {
+        "id": "6fb8a148-4638-4069-bb6b-be33e55616f8",
+        "usda_ingredient_id": "eb1f6c66-4ce0-4f9c-8373-3e02b284790a",
+        "meal_plan_meal_id": "9e2d8d0c-c2e7-4da5-b801-b30d4da05921",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "54b7414c-f932-444d-a0c4-6778de76d439",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "91510214-9c51-42ef-9330-51d183e7efbc",
+        "usda_ingredient_id": "bbb3255d-71f0-4e0a-98c3-4baf5c8e08ca",
+        "meal_plan_meal_id": "9e2d8d0c-c2e7-4da5-b801-b30d4da05921",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "995f5879-0684-46f2-8d53-80abbfeaf981",
+        "quantity": 0.54,
+        "active": true
+    },
+    {
+        "id": "fbf33850-4ccf-45c0-a9de-c815b6b6aa0f",
+        "usda_ingredient_id": "b7c11c69-1197-4ce0-b0dd-9a36d75b4823",
+        "meal_plan_meal_id": "9e2d8d0c-c2e7-4da5-b801-b30d4da05921",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8f912782-076e-4767-94bd-1eec99113f1a",
+        "quantity": 2.66,
+        "active": true
+    },
+    {
+        "id": "dfaa43f1-eadf-4506-8b00-4f7edea93cd1",
+        "usda_ingredient_id": "39f8e7e7-0191-4523-afcd-b4fceac07b50",
+        "meal_plan_meal_id": "9e2d8d0c-c2e7-4da5-b801-b30d4da05921",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "290f7466-9e62-417f-9cb8-d014e823ea9b",
+        "quantity": 0.08,
+        "active": true
+    },
+    {
+        "id": "9c575a5f-0b82-4bd8-b835-867a7636e3e3",
+        "usda_ingredient_id": "588514d2-3dad-4428-9e93-3fc33eb9656c",
+        "meal_plan_meal_id": "9e2d8d0c-c2e7-4da5-b801-b30d4da05921",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5429414b-8a3e-4777-b327-1f4ae695e968",
+        "quantity": 0.16,
+        "active": true
+    },
+    {
+        "id": "7cfae73c-8afc-4269-be58-3466bd5fb490",
+        "usda_ingredient_id": "d3142bd1-da59-4e90-b71c-8622ca3d618e",
+        "meal_plan_meal_id": "9e2d8d0c-c2e7-4da5-b801-b30d4da05921",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "cabe2b17-a366-4219-bcdb-6b6509ce8f9e",
+        "quantity": 0.16,
+        "active": true
+    },
+    {
+        "id": "5d26a939-0a24-4788-bc7c-5251745df1ec",
+        "usda_ingredient_id": "4b6d695b-aa32-4f2e-883b-4e909559d510",
+        "meal_plan_meal_id": "363db1db-2e36-45fd-94a3-24a4fc876508",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c2c39aa4-8f38-45b3-8111-38a069ebb022",
+        "quantity": 0.21,
+        "active": true
+    },
+    {
+        "id": "8102d224-f8d8-47ba-a2e6-17a9b76dff60",
+        "usda_ingredient_id": "eb1f6c66-4ce0-4f9c-8373-3e02b284790a",
+        "meal_plan_meal_id": "363db1db-2e36-45fd-94a3-24a4fc876508",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "54b7414c-f932-444d-a0c4-6778de76d439",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "61a54acc-4bd9-4250-9318-5b4173ce9174",
+        "usda_ingredient_id": "bbb3255d-71f0-4e0a-98c3-4baf5c8e08ca",
+        "meal_plan_meal_id": "363db1db-2e36-45fd-94a3-24a4fc876508",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "995f5879-0684-46f2-8d53-80abbfeaf981",
+        "quantity": 0.27,
+        "active": true
+    },
+    {
+        "id": "3de1c451-7f24-4ef0-aa32-b16c3e9ae61b",
+        "usda_ingredient_id": "b7c11c69-1197-4ce0-b0dd-9a36d75b4823",
+        "meal_plan_meal_id": "363db1db-2e36-45fd-94a3-24a4fc876508",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8f912782-076e-4767-94bd-1eec99113f1a",
+        "quantity": 1.33,
+        "active": true
+    },
+    {
+        "id": "6f27ab87-1a34-4a99-8c0e-699b6c79e114",
+        "usda_ingredient_id": "39f8e7e7-0191-4523-afcd-b4fceac07b50",
+        "meal_plan_meal_id": "363db1db-2e36-45fd-94a3-24a4fc876508",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "290f7466-9e62-417f-9cb8-d014e823ea9b",
+        "quantity": 0.04,
+        "active": true
+    },
+    {
+        "id": "f5589821-d09a-4577-b8bc-53f258c3b364",
+        "usda_ingredient_id": "588514d2-3dad-4428-9e93-3fc33eb9656c",
+        "meal_plan_meal_id": "363db1db-2e36-45fd-94a3-24a4fc876508",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5429414b-8a3e-4777-b327-1f4ae695e968",
+        "quantity": 0.08,
+        "active": true
+    },
+    {
+        "id": "70f62e09-28a8-400d-9d15-a260d7fb8f71",
+        "usda_ingredient_id": "d3142bd1-da59-4e90-b71c-8622ca3d618e",
+        "meal_plan_meal_id": "363db1db-2e36-45fd-94a3-24a4fc876508",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "cabe2b17-a366-4219-bcdb-6b6509ce8f9e",
+        "quantity": 0.08,
+        "active": true
+    },
+    {
+        "id": "449f2c5e-0b73-4e6c-a72a-638542cbad1c",
+        "usda_ingredient_id": "4b6d695b-aa32-4f2e-883b-4e909559d510",
+        "meal_plan_meal_id": "9d04ad58-06da-461c-9e78-a53c2c8d0850",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c2c39aa4-8f38-45b3-8111-38a069ebb022",
+        "quantity": 0.525,
+        "active": true
+    },
+    {
+        "id": "b1be965f-65d5-4f3c-b745-1561d852519a",
+        "usda_ingredient_id": "eb1f6c66-4ce0-4f9c-8373-3e02b284790a",
+        "meal_plan_meal_id": "9d04ad58-06da-461c-9e78-a53c2c8d0850",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "54b7414c-f932-444d-a0c4-6778de76d439",
+        "quantity": 1.25,
+        "active": true
+    },
+    {
+        "id": "16e833be-5d09-41ca-99a1-24aedb762d1b",
+        "usda_ingredient_id": "bbb3255d-71f0-4e0a-98c3-4baf5c8e08ca",
+        "meal_plan_meal_id": "9d04ad58-06da-461c-9e78-a53c2c8d0850",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "995f5879-0684-46f2-8d53-80abbfeaf981",
+        "quantity": 0.675,
+        "active": true
+    },
+    {
+        "id": "b3b14ea8-dcf0-45e9-bc3a-8ac36519e161",
+        "usda_ingredient_id": "b7c11c69-1197-4ce0-b0dd-9a36d75b4823",
+        "meal_plan_meal_id": "9d04ad58-06da-461c-9e78-a53c2c8d0850",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8f912782-076e-4767-94bd-1eec99113f1a",
+        "quantity": 3.325,
+        "active": true
+    },
+    {
+        "id": "1130e0b2-0673-43e7-a545-802d3cb76cf0",
+        "usda_ingredient_id": "39f8e7e7-0191-4523-afcd-b4fceac07b50",
+        "meal_plan_meal_id": "9d04ad58-06da-461c-9e78-a53c2c8d0850",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "290f7466-9e62-417f-9cb8-d014e823ea9b",
+        "quantity": 0.1,
+        "active": true
+    },
+    {
+        "id": "38f80383-baa3-4ac2-8b0d-648b4ad30225",
+        "usda_ingredient_id": "588514d2-3dad-4428-9e93-3fc33eb9656c",
+        "meal_plan_meal_id": "9d04ad58-06da-461c-9e78-a53c2c8d0850",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5429414b-8a3e-4777-b327-1f4ae695e968",
+        "quantity": 0.2,
+        "active": true
+    },
+    {
+        "id": "47132234-edf3-4498-92a0-a41fb05d677f",
+        "usda_ingredient_id": "d3142bd1-da59-4e90-b71c-8622ca3d618e",
+        "meal_plan_meal_id": "9d04ad58-06da-461c-9e78-a53c2c8d0850",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "cabe2b17-a366-4219-bcdb-6b6509ce8f9e",
+        "quantity": 0.2,
+        "active": true
+    },
+    {
+        "id": "4ddb5683-9185-4d4e-aa33-e56350ee6a0d",
+        "usda_ingredient_id": "e8eaee90-6dbc-43e3-8ffb-ca9d1967410d",
+        "meal_plan_meal_id": "fddc6c5a-68aa-440a-ae45-be04c7853c8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ae256258-8537-490b-bf9e-12777c7b7f82",
+        "quantity": 3.75,
+        "active": true
+    },
+    {
+        "id": "79db381f-1b47-4619-9311-16c7b7657f0a",
+        "usda_ingredient_id": "38d06c9d-d1e8-460d-af46-87ea6269aef0",
+        "meal_plan_meal_id": "fddc6c5a-68aa-440a-ae45-be04c7853c8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "20283672-ffbd-437d-8eae-e46be9327bd0",
+        "quantity": 3.0,
+        "active": true
+    },
+    {
+        "id": "9e983e4f-5d81-4769-8431-0a34e226bd73",
+        "usda_ingredient_id": "71fe5e2e-a2ff-44a0-9bc1-48d07c413239",
+        "meal_plan_meal_id": "fddc6c5a-68aa-440a-ae45-be04c7853c8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "59f5ac3f-e1fc-4989-a75d-00439ed3e081",
+        "usda_ingredient_id": "edfc515b-2a64-44bd-9bda-4e5e93adf9fa",
+        "meal_plan_meal_id": "fddc6c5a-68aa-440a-ae45-be04c7853c8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ebfdeb55-2aef-47a1-93b9-5c078d2e2d87",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "33467f0c-9757-4058-949a-2c540c572d35",
+        "usda_ingredient_id": "ccfaa3b1-aede-4b17-9767-021d4610a737",
+        "meal_plan_meal_id": "fddc6c5a-68aa-440a-ae45-be04c7853c8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.03,
+        "active": true
+    },
+    {
+        "id": "6485feca-cdd8-4165-b0bb-0ec3e20b49a1",
+        "usda_ingredient_id": "a0591abb-c21e-4601-8584-5aa26893d8fe",
+        "meal_plan_meal_id": "fddc6c5a-68aa-440a-ae45-be04c7853c8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "95494ae9-a2da-46bf-8c16-9d310e8126c6",
+        "quantity": 0.13,
+        "active": true
+    },
+    {
+        "id": "b16f75ff-9c03-4ad3-8573-cc40cd41e08d",
+        "usda_ingredient_id": "1c52d2df-c6f9-43c0-bfea-7107c45cbb58",
+        "meal_plan_meal_id": "fddc6c5a-68aa-440a-ae45-be04c7853c8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "3f482fc0-3819-4053-a1c9-da11b9d94b04",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "473dc969-ce87-4762-a46b-5cfae81534b3",
+        "usda_ingredient_id": "735a8966-a7a4-411f-9757-990131d4f2c7",
+        "meal_plan_meal_id": "fddc6c5a-68aa-440a-ae45-be04c7853c8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "193bef1f-f706-40e8-b133-2ad8252b5174",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "65bd9bf1-a359-4b5a-9637-a7319f7eceb9",
+        "usda_ingredient_id": "eb1f6c66-4ce0-4f9c-8373-3e02b284790a",
+        "meal_plan_meal_id": "fddc6c5a-68aa-440a-ae45-be04c7853c8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "54b7414c-f932-444d-a0c4-6778de76d439",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "73e70247-4790-4f06-9252-4282e4f430dd",
+        "usda_ingredient_id": "e8eaee90-6dbc-43e3-8ffb-ca9d1967410d",
+        "meal_plan_meal_id": "c2b3a9ce-f16e-4f10-a824-635daea4de80",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ae256258-8537-490b-bf9e-12777c7b7f82",
+        "quantity": 3.75,
+        "active": true
+    },
+    {
+        "id": "36599c92-713a-490e-bf7c-237f6713a7c1",
+        "usda_ingredient_id": "0ff1c14f-7e29-44e3-ad87-2b427da794a9",
+        "meal_plan_meal_id": "fddc6c5a-68aa-440a-ae45-be04c7853c8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "72ab78d5-3c97-4eff-8f26-6846e4e2d62a",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "c5d719a8-7adf-4f8b-ae04-b1ce5b269587",
+        "usda_ingredient_id": "656e4e65-fbb5-4f29-a579-46dc52bcb0d7",
+        "meal_plan_meal_id": "fddc6c5a-68aa-440a-ae45-be04c7853c8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ad7a9425-384a-4ce7-9d75-94ac75547bc6",
+        "quantity": 0.06,
+        "active": true
+    },
+    {
+        "id": "aa5897e7-ec69-4f01-a810-a65fe271d1f1",
+        "usda_ingredient_id": "8ba84f4c-6b8b-43a7-b456-772ef24749a7",
+        "meal_plan_meal_id": "fddc6c5a-68aa-440a-ae45-be04c7853c8b",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "37be0e4a-98e8-49f1-9d0b-1af823967d33",
+        "quantity": 0.06,
+        "active": true
+    },
+    {
+        "id": "eb1db535-bdaa-41c0-9ee2-0f87c143c3a6",
+        "usda_ingredient_id": "edfc515b-2a64-44bd-9bda-4e5e93adf9fa",
+        "meal_plan_meal_id": "c2b3a9ce-f16e-4f10-a824-635daea4de80",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ebfdeb55-2aef-47a1-93b9-5c078d2e2d87",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "e54da276-501b-46a1-815b-db8a2ea91c2f",
+        "usda_ingredient_id": "38d06c9d-d1e8-460d-af46-87ea6269aef0",
+        "meal_plan_meal_id": "c2b3a9ce-f16e-4f10-a824-635daea4de80",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "20283672-ffbd-437d-8eae-e46be9327bd0",
+        "quantity": 3.0,
+        "active": true
+    },
+    {
+        "id": "1fef3666-a42f-4ac0-b337-31f20f9e952a",
+        "usda_ingredient_id": "71fe5e2e-a2ff-44a0-9bc1-48d07c413239",
+        "meal_plan_meal_id": "c2b3a9ce-f16e-4f10-a824-635daea4de80",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "6d3e2221-bc93-4142-a968-9c7e7395a006",
+        "usda_ingredient_id": "1c52d2df-c6f9-43c0-bfea-7107c45cbb58",
+        "meal_plan_meal_id": "c2b3a9ce-f16e-4f10-a824-635daea4de80",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "3f482fc0-3819-4053-a1c9-da11b9d94b04",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "d46e4f64-d462-44e2-b6c9-28b910fd0e30",
+        "usda_ingredient_id": "735a8966-a7a4-411f-9757-990131d4f2c7",
+        "meal_plan_meal_id": "c2b3a9ce-f16e-4f10-a824-635daea4de80",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "193bef1f-f706-40e8-b133-2ad8252b5174",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "0f163814-581e-4c47-8b0e-c3c387a484d7",
+        "usda_ingredient_id": "ccfaa3b1-aede-4b17-9767-021d4610a737",
+        "meal_plan_meal_id": "c2b3a9ce-f16e-4f10-a824-635daea4de80",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.03,
+        "active": true
+    },
+    {
+        "id": "125b9d56-f22a-480d-9e34-10eb5cc799ae",
+        "usda_ingredient_id": "a0591abb-c21e-4601-8584-5aa26893d8fe",
+        "meal_plan_meal_id": "c2b3a9ce-f16e-4f10-a824-635daea4de80",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "95494ae9-a2da-46bf-8c16-9d310e8126c6",
+        "quantity": 0.13,
+        "active": true
+    },
+    {
+        "id": "7d9555d9-e6b2-44ef-9261-0d6429442bc8",
+        "usda_ingredient_id": "0ff1c14f-7e29-44e3-ad87-2b427da794a9",
+        "meal_plan_meal_id": "c2b3a9ce-f16e-4f10-a824-635daea4de80",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "72ab78d5-3c97-4eff-8f26-6846e4e2d62a",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "df5f6fa1-7fe8-438d-ada4-b81cc1aa2f5b",
+        "usda_ingredient_id": "656e4e65-fbb5-4f29-a579-46dc52bcb0d7",
+        "meal_plan_meal_id": "c2b3a9ce-f16e-4f10-a824-635daea4de80",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ad7a9425-384a-4ce7-9d75-94ac75547bc6",
+        "quantity": 0.06,
+        "active": true
+    },
+    {
+        "id": "9286e6f6-4d49-43c8-bbd8-822905ac2109",
+        "usda_ingredient_id": "eb1f6c66-4ce0-4f9c-8373-3e02b284790a",
+        "meal_plan_meal_id": "c2b3a9ce-f16e-4f10-a824-635daea4de80",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "54b7414c-f932-444d-a0c4-6778de76d439",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "ea41e93a-bb0d-451b-8314-4ad62c827a98",
+        "usda_ingredient_id": "e8eaee90-6dbc-43e3-8ffb-ca9d1967410d",
+        "meal_plan_meal_id": "5ae598bc-cc2c-4381-b803-7ac972039762",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ae256258-8537-490b-bf9e-12777c7b7f82",
+        "quantity": 5.625,
+        "active": true
+    },
+    {
+        "id": "011ae4f5-7a07-4e25-9fb4-31b0f21a6756",
+        "usda_ingredient_id": "38d06c9d-d1e8-460d-af46-87ea6269aef0",
+        "meal_plan_meal_id": "5ae598bc-cc2c-4381-b803-7ac972039762",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "20283672-ffbd-437d-8eae-e46be9327bd0",
+        "quantity": 4.5,
+        "active": true
+    },
+    {
+        "id": "339de0d6-1e9f-4fc8-9cbb-37a2e352e2a6",
+        "usda_ingredient_id": "8ba84f4c-6b8b-43a7-b456-772ef24749a7",
+        "meal_plan_meal_id": "c2b3a9ce-f16e-4f10-a824-635daea4de80",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "37be0e4a-98e8-49f1-9d0b-1af823967d33",
+        "quantity": 0.06,
+        "active": true
+    },
+    {
+        "id": "49887992-18c4-4d94-bffd-276096693448",
+        "usda_ingredient_id": "edfc515b-2a64-44bd-9bda-4e5e93adf9fa",
+        "meal_plan_meal_id": "5ae598bc-cc2c-4381-b803-7ac972039762",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ebfdeb55-2aef-47a1-93b9-5c078d2e2d87",
+        "quantity": 0.375,
+        "active": true
+    },
+    {
+        "id": "acc41f61-17e7-4469-aaa9-1139fbf902e6",
+        "usda_ingredient_id": "ccfaa3b1-aede-4b17-9767-021d4610a737",
+        "meal_plan_meal_id": "5ae598bc-cc2c-4381-b803-7ac972039762",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.045,
+        "active": true
+    },
+    {
+        "id": "4b19efb2-7927-48f8-b5a7-8e6069e637e6",
+        "usda_ingredient_id": "a0591abb-c21e-4601-8584-5aa26893d8fe",
+        "meal_plan_meal_id": "5ae598bc-cc2c-4381-b803-7ac972039762",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "95494ae9-a2da-46bf-8c16-9d310e8126c6",
+        "quantity": 0.195,
+        "active": true
+    },
+    {
+        "id": "7ff144cf-0f60-47e5-945d-093a354b49d7",
+        "usda_ingredient_id": "71fe5e2e-a2ff-44a0-9bc1-48d07c413239",
+        "meal_plan_meal_id": "5ae598bc-cc2c-4381-b803-7ac972039762",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.375,
+        "active": true
+    },
+    {
+        "id": "5ddc732d-bdc8-45f5-b5c3-cf3e377d9e66",
+        "usda_ingredient_id": "1c52d2df-c6f9-43c0-bfea-7107c45cbb58",
+        "meal_plan_meal_id": "5ae598bc-cc2c-4381-b803-7ac972039762",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "3f482fc0-3819-4053-a1c9-da11b9d94b04",
+        "quantity": 3.0,
+        "active": true
+    },
+    {
+        "id": "e7a95312-605c-4667-b46f-57c1cc3f4c8b",
+        "usda_ingredient_id": "735a8966-a7a4-411f-9757-990131d4f2c7",
+        "meal_plan_meal_id": "5ae598bc-cc2c-4381-b803-7ac972039762",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "193bef1f-f706-40e8-b133-2ad8252b5174",
+        "quantity": 0.375,
+        "active": true
+    },
+    {
+        "id": "a1df5c61-eb94-45fd-9d2d-7f8504c4f067",
+        "usda_ingredient_id": "eb1f6c66-4ce0-4f9c-8373-3e02b284790a",
+        "meal_plan_meal_id": "5ae598bc-cc2c-4381-b803-7ac972039762",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "54b7414c-f932-444d-a0c4-6778de76d439",
+        "quantity": 1.125,
+        "active": true
+    },
+    {
+        "id": "b786e9a6-2038-4f67-a049-4486a8aa7682",
+        "usda_ingredient_id": "0ff1c14f-7e29-44e3-ad87-2b427da794a9",
+        "meal_plan_meal_id": "5ae598bc-cc2c-4381-b803-7ac972039762",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "72ab78d5-3c97-4eff-8f26-6846e4e2d62a",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "cab69772-4073-4295-89e3-af514438beea",
+        "usda_ingredient_id": "656e4e65-fbb5-4f29-a579-46dc52bcb0d7",
+        "meal_plan_meal_id": "5ae598bc-cc2c-4381-b803-7ac972039762",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ad7a9425-384a-4ce7-9d75-94ac75547bc6",
+        "quantity": 0.09,
+        "active": true
+    },
+    {
+        "id": "91b445bd-f9cf-489e-b9fc-9880bc03f09c",
+        "usda_ingredient_id": "8ba84f4c-6b8b-43a7-b456-772ef24749a7",
+        "meal_plan_meal_id": "5ae598bc-cc2c-4381-b803-7ac972039762",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "37be0e4a-98e8-49f1-9d0b-1af823967d33",
+        "quantity": 0.09,
+        "active": true
+    },
+    {
+        "id": "a449ebfb-5e03-4d17-a22b-59cd8c545d00",
+        "usda_ingredient_id": "edfc515b-2a64-44bd-9bda-4e5e93adf9fa",
+        "meal_plan_meal_id": "08b83107-ef77-4525-9d4f-375a39486eee",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ebfdeb55-2aef-47a1-93b9-5c078d2e2d87",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "2c219a1d-50ea-4a83-b5f2-56e10b163c33",
+        "usda_ingredient_id": "e8eaee90-6dbc-43e3-8ffb-ca9d1967410d",
+        "meal_plan_meal_id": "08b83107-ef77-4525-9d4f-375a39486eee",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ae256258-8537-490b-bf9e-12777c7b7f82",
+        "quantity": 3.75,
+        "active": true
+    },
+    {
+        "id": "0e4b6439-bfca-49a6-b094-f93b91a5c833",
+        "usda_ingredient_id": "38d06c9d-d1e8-460d-af46-87ea6269aef0",
+        "meal_plan_meal_id": "08b83107-ef77-4525-9d4f-375a39486eee",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "20283672-ffbd-437d-8eae-e46be9327bd0",
+        "quantity": 3.0,
+        "active": true
+    },
+    {
+        "id": "7822c2fb-2afb-4237-ab6c-80a17f3d9252",
+        "usda_ingredient_id": "71fe5e2e-a2ff-44a0-9bc1-48d07c413239",
+        "meal_plan_meal_id": "08b83107-ef77-4525-9d4f-375a39486eee",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "9281e094-2f7c-41d5-a3e9-4e7234dce6d6",
+        "usda_ingredient_id": "1c52d2df-c6f9-43c0-bfea-7107c45cbb58",
+        "meal_plan_meal_id": "08b83107-ef77-4525-9d4f-375a39486eee",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "3f482fc0-3819-4053-a1c9-da11b9d94b04",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "5d0ee007-9e46-49ed-bd23-8ddd748df935",
+        "usda_ingredient_id": "ccfaa3b1-aede-4b17-9767-021d4610a737",
+        "meal_plan_meal_id": "08b83107-ef77-4525-9d4f-375a39486eee",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.03,
+        "active": true
+    },
+    {
+        "id": "f631e17f-5d9d-46f4-86a0-72355c242f3a",
+        "usda_ingredient_id": "a0591abb-c21e-4601-8584-5aa26893d8fe",
+        "meal_plan_meal_id": "08b83107-ef77-4525-9d4f-375a39486eee",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "95494ae9-a2da-46bf-8c16-9d310e8126c6",
+        "quantity": 0.13,
+        "active": true
+    },
+    {
+        "id": "86d40d07-8c1c-42d9-ac7e-08457b59ceca",
+        "usda_ingredient_id": "0ff1c14f-7e29-44e3-ad87-2b427da794a9",
+        "meal_plan_meal_id": "08b83107-ef77-4525-9d4f-375a39486eee",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "72ab78d5-3c97-4eff-8f26-6846e4e2d62a",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "11796ec6-886c-4921-87ef-fa676c57fbee",
+        "usda_ingredient_id": "735a8966-a7a4-411f-9757-990131d4f2c7",
+        "meal_plan_meal_id": "08b83107-ef77-4525-9d4f-375a39486eee",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "193bef1f-f706-40e8-b133-2ad8252b5174",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "88a02663-8eca-4be2-b529-8bf261927f94",
+        "usda_ingredient_id": "eb1f6c66-4ce0-4f9c-8373-3e02b284790a",
+        "meal_plan_meal_id": "08b83107-ef77-4525-9d4f-375a39486eee",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "54b7414c-f932-444d-a0c4-6778de76d439",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "7ef08332-ecc1-40cd-accb-ee449288ba8d",
+        "usda_ingredient_id": "e8eaee90-6dbc-43e3-8ffb-ca9d1967410d",
+        "meal_plan_meal_id": "3cd43fb2-8a51-49ef-8333-b208efe4e4d4",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ae256258-8537-490b-bf9e-12777c7b7f82",
+        "quantity": 6.375,
+        "active": true
+    },
+    {
+        "id": "cc0b6f76-f178-481f-a1f6-53ef01f2b92d",
+        "usda_ingredient_id": "38d06c9d-d1e8-460d-af46-87ea6269aef0",
+        "meal_plan_meal_id": "3cd43fb2-8a51-49ef-8333-b208efe4e4d4",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "20283672-ffbd-437d-8eae-e46be9327bd0",
+        "quantity": 5.1,
+        "active": true
+    },
+    {
+        "id": "6cd0abf3-ac03-4ca2-acaa-c9d39a227899",
+        "usda_ingredient_id": "656e4e65-fbb5-4f29-a579-46dc52bcb0d7",
+        "meal_plan_meal_id": "08b83107-ef77-4525-9d4f-375a39486eee",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ad7a9425-384a-4ce7-9d75-94ac75547bc6",
+        "quantity": 0.06,
+        "active": true
+    },
+    {
+        "id": "fa96f703-1524-45f1-9388-510e15491642",
+        "usda_ingredient_id": "8ba84f4c-6b8b-43a7-b456-772ef24749a7",
+        "meal_plan_meal_id": "08b83107-ef77-4525-9d4f-375a39486eee",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "37be0e4a-98e8-49f1-9d0b-1af823967d33",
+        "quantity": 0.06,
+        "active": true
+    },
+    {
+        "id": "0c069421-8912-4cbe-b0aa-a6e71bad3387",
+        "usda_ingredient_id": "edfc515b-2a64-44bd-9bda-4e5e93adf9fa",
+        "meal_plan_meal_id": "3cd43fb2-8a51-49ef-8333-b208efe4e4d4",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ebfdeb55-2aef-47a1-93b9-5c078d2e2d87",
+        "quantity": 0.425,
+        "active": true
+    },
+    {
+        "id": "718e196a-b876-4b53-8a40-c101885351a3",
+        "usda_ingredient_id": "ccfaa3b1-aede-4b17-9767-021d4610a737",
+        "meal_plan_meal_id": "3cd43fb2-8a51-49ef-8333-b208efe4e4d4",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "477f25dc-861e-4b38-9c3f-4c8c4032842d",
+        "quantity": 0.051,
+        "active": true
+    },
+    {
+        "id": "3b64872a-d0a0-4117-9b5a-59fa14ce4b2b",
+        "usda_ingredient_id": "71fe5e2e-a2ff-44a0-9bc1-48d07c413239",
+        "meal_plan_meal_id": "3cd43fb2-8a51-49ef-8333-b208efe4e4d4",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.425,
+        "active": true
+    },
+    {
+        "id": "d476fae1-911a-46b9-8085-84f07e2e71ea",
+        "usda_ingredient_id": "1c52d2df-c6f9-43c0-bfea-7107c45cbb58",
+        "meal_plan_meal_id": "3cd43fb2-8a51-49ef-8333-b208efe4e4d4",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "3f482fc0-3819-4053-a1c9-da11b9d94b04",
+        "quantity": 3.4,
+        "active": true
+    },
+    {
+        "id": "ab1c9221-bd0c-4ce1-948a-c089a64d8a34",
+        "usda_ingredient_id": "735a8966-a7a4-411f-9757-990131d4f2c7",
+        "meal_plan_meal_id": "3cd43fb2-8a51-49ef-8333-b208efe4e4d4",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "193bef1f-f706-40e8-b133-2ad8252b5174",
+        "quantity": 0.425,
+        "active": true
+    },
+    {
+        "id": "5473b683-2e27-47a7-a276-98811c125233",
+        "usda_ingredient_id": "eb1f6c66-4ce0-4f9c-8373-3e02b284790a",
+        "meal_plan_meal_id": "3cd43fb2-8a51-49ef-8333-b208efe4e4d4",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "54b7414c-f932-444d-a0c4-6778de76d439",
+        "quantity": 1.275,
+        "active": true
+    },
+    {
+        "id": "aa6df9fc-50e2-4a79-a000-727f6854362b",
+        "usda_ingredient_id": "a0591abb-c21e-4601-8584-5aa26893d8fe",
+        "meal_plan_meal_id": "3cd43fb2-8a51-49ef-8333-b208efe4e4d4",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "95494ae9-a2da-46bf-8c16-9d310e8126c6",
+        "quantity": 0.221,
+        "active": true
+    },
+    {
+        "id": "bbaa48e4-5c73-4fef-ba05-c06fee2aaf89",
+        "usda_ingredient_id": "0ff1c14f-7e29-44e3-ad87-2b427da794a9",
+        "meal_plan_meal_id": "3cd43fb2-8a51-49ef-8333-b208efe4e4d4",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "72ab78d5-3c97-4eff-8f26-6846e4e2d62a",
+        "quantity": 0.85,
+        "active": true
+    },
+    {
+        "id": "d0b740ea-a302-4c55-a74d-eff9a77d88ce",
+        "usda_ingredient_id": "656e4e65-fbb5-4f29-a579-46dc52bcb0d7",
+        "meal_plan_meal_id": "3cd43fb2-8a51-49ef-8333-b208efe4e4d4",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ad7a9425-384a-4ce7-9d75-94ac75547bc6",
+        "quantity": 0.102,
+        "active": true
+    },
+    {
+        "id": "6d41482b-34b3-4605-a262-add74e71e7fc",
+        "usda_ingredient_id": "8ba84f4c-6b8b-43a7-b456-772ef24749a7",
+        "meal_plan_meal_id": "3cd43fb2-8a51-49ef-8333-b208efe4e4d4",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "37be0e4a-98e8-49f1-9d0b-1af823967d33",
+        "quantity": 0.102,
+        "active": true
+    },
+    {
+        "id": "722c155e-96d2-4797-9680-b9003f8a7c46",
+        "usda_ingredient_id": "65557c57-4fb8-49c5-bd1b-4bf8df899e83",
+        "meal_plan_meal_id": "60628cae-e5bd-4d75-98a2-962753ce1e43",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "1370b747-739d-4a87-b960-5fc67764bce2",
+        "quantity": 7.0,
+        "active": true
+    },
+    {
+        "id": "a6b6bf22-9294-48d7-876f-6a1b3a1ac629",
+        "usda_ingredient_id": "71fe5e2e-a2ff-44a0-9bc1-48d07c413239",
+        "meal_plan_meal_id": "60628cae-e5bd-4d75-98a2-962753ce1e43",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "e13a617a-8ba0-431b-8383-5e91ec3e7f13",
+        "usda_ingredient_id": "4410b6c0-961f-40ce-ac90-6f5d1050b12a",
+        "meal_plan_meal_id": "60628cae-e5bd-4d75-98a2-962753ce1e43",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "414d714c-08f1-4a63-bbeb-89f0ad9720d6",
+        "usda_ingredient_id": "1e851330-a389-4530-9441-f2c74ed1d1a1",
+        "meal_plan_meal_id": "60628cae-e5bd-4d75-98a2-962753ce1e43",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "6e362699-2db7-41b0-9865-ba0c0b25efa6",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "ba259f81-fcb0-4aa2-859f-22abfd797d17",
+        "usda_ingredient_id": "f5946ab6-1b3b-442f-8901-db0054addb00",
+        "meal_plan_meal_id": "60628cae-e5bd-4d75-98a2-962753ce1e43",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5669f29c-edf0-4a26-92ba-c2b2f988980f",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "0a723b5c-e2f7-4e1f-be92-062543431c26",
+        "usda_ingredient_id": "3a2502e7-f64c-4665-834e-86f5ff9557b1",
+        "meal_plan_meal_id": "60628cae-e5bd-4d75-98a2-962753ce1e43",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c3d279d3-df77-4213-ab37-89273fc03f4c",
+        "quantity": 0.3125,
+        "active": true
+    },
+    {
+        "id": "93717eee-5b95-476f-ae66-e23e3e1d0e17",
+        "usda_ingredient_id": "e81458a4-c124-48a6-9cab-cdf7e5baa704",
+        "meal_plan_meal_id": "60628cae-e5bd-4d75-98a2-962753ce1e43",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c825324f-416e-4cea-8156-36951fd2afb3",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "6df11299-a321-4ace-b88a-21eac1667a7d",
+        "usda_ingredient_id": "65557c57-4fb8-49c5-bd1b-4bf8df899e83",
+        "meal_plan_meal_id": "f737eb7a-f95d-4c59-9a08-1b470f5c0c7c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "1370b747-739d-4a87-b960-5fc67764bce2",
+        "quantity": 14.0,
+        "active": true
+    },
+    {
+        "id": "33a78e91-f223-4f77-912b-06d63fb8eb72",
+        "usda_ingredient_id": "da704027-b234-44c5-b4ae-7c39e9d4607b",
+        "meal_plan_meal_id": "60628cae-e5bd-4d75-98a2-962753ce1e43",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8ee9c171-690b-48c4-8e14-41ba58e44f09",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "4183b24e-8cb7-4f9d-9f0b-039ec4aa08f8",
+        "usda_ingredient_id": "94a253fe-af8e-463a-a136-70bd2231c89c",
+        "meal_plan_meal_id": "60628cae-e5bd-4d75-98a2-962753ce1e43",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "04b6d588-4772-416a-bd11-3d4f55ab21dc",
+        "quantity": 0.75,
+        "active": true
+    },
+    {
+        "id": "d1203ccd-5794-465e-9738-488020ea7075",
+        "usda_ingredient_id": "bbb3255d-71f0-4e0a-98c3-4baf5c8e08ca",
+        "meal_plan_meal_id": "60628cae-e5bd-4d75-98a2-962753ce1e43",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "995f5879-0684-46f2-8d53-80abbfeaf981",
+        "quantity": 0.4219,
+        "active": true
+    },
+    {
+        "id": "a2bf3a7b-81b7-4d9f-b0a3-2a23adc20cd1",
+        "usda_ingredient_id": "811c8e50-232a-4a8e-9c95-7eb4f0373e19",
+        "meal_plan_meal_id": "60628cae-e5bd-4d75-98a2-962753ce1e43",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "6b904e58-1fbf-4a48-827d-16dbd8ba6706",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "fd946de1-f319-44b4-b473-a73fc67e4588",
+        "usda_ingredient_id": "71fe5e2e-a2ff-44a0-9bc1-48d07c413239",
+        "meal_plan_meal_id": "f737eb7a-f95d-4c59-9a08-1b470f5c0c7c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "000c9fd7-dc1b-4876-a896-54d7d990df8c",
+        "usda_ingredient_id": "1e851330-a389-4530-9441-f2c74ed1d1a1",
+        "meal_plan_meal_id": "f737eb7a-f95d-4c59-9a08-1b470f5c0c7c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "6e362699-2db7-41b0-9865-ba0c0b25efa6",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "cb18b384-12ef-4322-a63c-f5c8b1c2b7a5",
+        "usda_ingredient_id": "f5946ab6-1b3b-442f-8901-db0054addb00",
+        "meal_plan_meal_id": "f737eb7a-f95d-4c59-9a08-1b470f5c0c7c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5669f29c-edf0-4a26-92ba-c2b2f988980f",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "4be09573-f021-45d0-a0c9-7e6a0e13d80a",
+        "usda_ingredient_id": "3a2502e7-f64c-4665-834e-86f5ff9557b1",
+        "meal_plan_meal_id": "f737eb7a-f95d-4c59-9a08-1b470f5c0c7c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c3d279d3-df77-4213-ab37-89273fc03f4c",
+        "quantity": 0.625,
+        "active": true
+    },
+    {
+        "id": "2a898f69-7fb4-434a-91eb-11db6610c875",
+        "usda_ingredient_id": "4410b6c0-961f-40ce-ac90-6f5d1050b12a",
+        "meal_plan_meal_id": "f737eb7a-f95d-4c59-9a08-1b470f5c0c7c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "4365ebd8-0eba-4636-ac53-a4cc41e0693d",
+        "usda_ingredient_id": "da704027-b234-44c5-b4ae-7c39e9d4607b",
+        "meal_plan_meal_id": "f737eb7a-f95d-4c59-9a08-1b470f5c0c7c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8ee9c171-690b-48c4-8e14-41ba58e44f09",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "bf6c2fc7-d10a-49e6-9f06-d029ea8461c2",
+        "usda_ingredient_id": "94a253fe-af8e-463a-a136-70bd2231c89c",
+        "meal_plan_meal_id": "f737eb7a-f95d-4c59-9a08-1b470f5c0c7c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "04b6d588-4772-416a-bd11-3d4f55ab21dc",
+        "quantity": 1.5,
+        "active": true
+    },
+    {
+        "id": "444af369-9bc8-4d3b-ae02-df693398bf3a",
+        "usda_ingredient_id": "bbb3255d-71f0-4e0a-98c3-4baf5c8e08ca",
+        "meal_plan_meal_id": "f737eb7a-f95d-4c59-9a08-1b470f5c0c7c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "995f5879-0684-46f2-8d53-80abbfeaf981",
+        "quantity": 0.8438,
+        "active": true
+    },
+    {
+        "id": "285346b2-6954-47ed-be85-ba2089b00df9",
+        "usda_ingredient_id": "e81458a4-c124-48a6-9cab-cdf7e5baa704",
+        "meal_plan_meal_id": "f737eb7a-f95d-4c59-9a08-1b470f5c0c7c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c825324f-416e-4cea-8156-36951fd2afb3",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "e56be300-575c-41e8-820e-78841c9bce8c",
+        "usda_ingredient_id": "65557c57-4fb8-49c5-bd1b-4bf8df899e83",
+        "meal_plan_meal_id": "e739dd31-6d83-41aa-9259-534ddd893fd8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "1370b747-739d-4a87-b960-5fc67764bce2",
+        "quantity": 14.0,
+        "active": true
+    },
+    {
+        "id": "f61a78c0-e4bb-4dbf-9f1c-efc5f0890c69",
+        "usda_ingredient_id": "4410b6c0-961f-40ce-ac90-6f5d1050b12a",
+        "meal_plan_meal_id": "e739dd31-6d83-41aa-9259-534ddd893fd8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "b3c5e0ac-d6a9-4450-a468-1cfd30ec39a0",
+        "usda_ingredient_id": "da704027-b234-44c5-b4ae-7c39e9d4607b",
+        "meal_plan_meal_id": "e739dd31-6d83-41aa-9259-534ddd893fd8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8ee9c171-690b-48c4-8e14-41ba58e44f09",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "f351b806-c902-4bfa-a7e3-a22f6b9d3967",
+        "usda_ingredient_id": "811c8e50-232a-4a8e-9c95-7eb4f0373e19",
+        "meal_plan_meal_id": "f737eb7a-f95d-4c59-9a08-1b470f5c0c7c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "6b904e58-1fbf-4a48-827d-16dbd8ba6706",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "980e1915-eb27-4277-aed4-c2abdc5c753c",
+        "usda_ingredient_id": "71fe5e2e-a2ff-44a0-9bc1-48d07c413239",
+        "meal_plan_meal_id": "e739dd31-6d83-41aa-9259-534ddd893fd8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "d582bf3c-c145-4e50-8dac-aefec6cb5e9e",
+        "usda_ingredient_id": "1e851330-a389-4530-9441-f2c74ed1d1a1",
+        "meal_plan_meal_id": "e739dd31-6d83-41aa-9259-534ddd893fd8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "6e362699-2db7-41b0-9865-ba0c0b25efa6",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "3b0d707a-8797-4ee5-bdfc-8da7d3344e83",
+        "usda_ingredient_id": "94a253fe-af8e-463a-a136-70bd2231c89c",
+        "meal_plan_meal_id": "e739dd31-6d83-41aa-9259-534ddd893fd8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "04b6d588-4772-416a-bd11-3d4f55ab21dc",
+        "quantity": 1.5,
+        "active": true
+    },
+    {
+        "id": "935fb8e7-c736-475d-a9c8-40e95f8a88ec",
+        "usda_ingredient_id": "bbb3255d-71f0-4e0a-98c3-4baf5c8e08ca",
+        "meal_plan_meal_id": "e739dd31-6d83-41aa-9259-534ddd893fd8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "995f5879-0684-46f2-8d53-80abbfeaf981",
+        "quantity": 0.8438,
+        "active": true
+    },
+    {
+        "id": "eb4ac7a3-f9f9-46de-a95b-0d46f3db6795",
+        "usda_ingredient_id": "811c8e50-232a-4a8e-9c95-7eb4f0373e19",
+        "meal_plan_meal_id": "e739dd31-6d83-41aa-9259-534ddd893fd8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "6b904e58-1fbf-4a48-827d-16dbd8ba6706",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "dec9f0c7-c7ae-4f54-9ae0-2ca5f657e22d",
+        "usda_ingredient_id": "71fe5e2e-a2ff-44a0-9bc1-48d07c413239",
+        "meal_plan_meal_id": "eb41544e-d30e-44bc-b188-954a89b652ce",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "73bee9f3-7658-43c9-85c1-e7cf44b653dd",
+        "usda_ingredient_id": "f5946ab6-1b3b-442f-8901-db0054addb00",
+        "meal_plan_meal_id": "e739dd31-6d83-41aa-9259-534ddd893fd8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5669f29c-edf0-4a26-92ba-c2b2f988980f",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "44d78891-0a46-4e85-b651-bb580eb00406",
+        "usda_ingredient_id": "3a2502e7-f64c-4665-834e-86f5ff9557b1",
+        "meal_plan_meal_id": "e739dd31-6d83-41aa-9259-534ddd893fd8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c3d279d3-df77-4213-ab37-89273fc03f4c",
+        "quantity": 0.625,
+        "active": true
+    },
+    {
+        "id": "82b88800-e8f3-488c-9c9c-752bf6e6baa1",
+        "usda_ingredient_id": "e81458a4-c124-48a6-9cab-cdf7e5baa704",
+        "meal_plan_meal_id": "e739dd31-6d83-41aa-9259-534ddd893fd8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c825324f-416e-4cea-8156-36951fd2afb3",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "98f39615-7409-4514-bebc-0789e7e2b609",
+        "usda_ingredient_id": "65557c57-4fb8-49c5-bd1b-4bf8df899e83",
+        "meal_plan_meal_id": "eb41544e-d30e-44bc-b188-954a89b652ce",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "1370b747-739d-4a87-b960-5fc67764bce2",
+        "quantity": 14.0,
+        "active": true
+    },
+    {
+        "id": "c815190a-c644-4eb2-87ff-70642dd23da6",
+        "usda_ingredient_id": "4410b6c0-961f-40ce-ac90-6f5d1050b12a",
+        "meal_plan_meal_id": "eb41544e-d30e-44bc-b188-954a89b652ce",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "96ef18a7-abcc-4ff3-90a5-3ba88c76de8b",
+        "usda_ingredient_id": "da704027-b234-44c5-b4ae-7c39e9d4607b",
+        "meal_plan_meal_id": "eb41544e-d30e-44bc-b188-954a89b652ce",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8ee9c171-690b-48c4-8e14-41ba58e44f09",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "167e1d73-3fed-43c8-ad4d-a4da8f7f76bb",
+        "usda_ingredient_id": "94a253fe-af8e-463a-a136-70bd2231c89c",
+        "meal_plan_meal_id": "eb41544e-d30e-44bc-b188-954a89b652ce",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "04b6d588-4772-416a-bd11-3d4f55ab21dc",
+        "quantity": 1.5,
+        "active": true
+    },
+    {
+        "id": "e06e90b2-dbcb-4c27-b576-8751dd7c05ef",
+        "usda_ingredient_id": "bbb3255d-71f0-4e0a-98c3-4baf5c8e08ca",
+        "meal_plan_meal_id": "eb41544e-d30e-44bc-b188-954a89b652ce",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "995f5879-0684-46f2-8d53-80abbfeaf981",
+        "quantity": 0.8438,
+        "active": true
+    },
+    {
+        "id": "b57e3de7-89fa-4cc2-a3b6-6e1f36c2a276",
+        "usda_ingredient_id": "1e851330-a389-4530-9441-f2c74ed1d1a1",
+        "meal_plan_meal_id": "eb41544e-d30e-44bc-b188-954a89b652ce",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "6e362699-2db7-41b0-9865-ba0c0b25efa6",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "6f42a9c8-8d1c-4318-a0bb-8b7ed2700633",
+        "usda_ingredient_id": "f5946ab6-1b3b-442f-8901-db0054addb00",
+        "meal_plan_meal_id": "eb41544e-d30e-44bc-b188-954a89b652ce",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5669f29c-edf0-4a26-92ba-c2b2f988980f",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "98f4c079-a1e8-4df9-a7fe-96af881fedfa",
+        "usda_ingredient_id": "3a2502e7-f64c-4665-834e-86f5ff9557b1",
+        "meal_plan_meal_id": "eb41544e-d30e-44bc-b188-954a89b652ce",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c3d279d3-df77-4213-ab37-89273fc03f4c",
+        "quantity": 0.625,
+        "active": true
+    },
+    {
+        "id": "7b915bc0-ddf3-44c1-9071-665a148336db",
+        "usda_ingredient_id": "e81458a4-c124-48a6-9cab-cdf7e5baa704",
+        "meal_plan_meal_id": "eb41544e-d30e-44bc-b188-954a89b652ce",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c825324f-416e-4cea-8156-36951fd2afb3",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "f4c59871-7688-49b3-bc89-bf53634229ac",
+        "usda_ingredient_id": "811c8e50-232a-4a8e-9c95-7eb4f0373e19",
+        "meal_plan_meal_id": "eb41544e-d30e-44bc-b188-954a89b652ce",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "6b904e58-1fbf-4a48-827d-16dbd8ba6706",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "48e358d6-d824-46ad-88fa-eb1b0d25e95b",
+        "usda_ingredient_id": "71fe5e2e-a2ff-44a0-9bc1-48d07c413239",
+        "meal_plan_meal_id": "66d5209f-d9e5-4f07-81d6-0148a8562506",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a439afb3-e80a-4dde-ac41-b4849030f5df",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "2e891b0d-6d7a-4743-be0a-cc25c1a1d0ef",
+        "usda_ingredient_id": "1e851330-a389-4530-9441-f2c74ed1d1a1",
+        "meal_plan_meal_id": "66d5209f-d9e5-4f07-81d6-0148a8562506",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "6e362699-2db7-41b0-9865-ba0c0b25efa6",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "0bf16e2f-a019-4523-bbaf-47008af059dc",
+        "usda_ingredient_id": "f5946ab6-1b3b-442f-8901-db0054addb00",
+        "meal_plan_meal_id": "66d5209f-d9e5-4f07-81d6-0148a8562506",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5669f29c-edf0-4a26-92ba-c2b2f988980f",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "aa19c213-aa24-42a3-9a92-d7ac91d2a399",
+        "usda_ingredient_id": "65557c57-4fb8-49c5-bd1b-4bf8df899e83",
+        "meal_plan_meal_id": "66d5209f-d9e5-4f07-81d6-0148a8562506",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "1370b747-739d-4a87-b960-5fc67764bce2",
+        "quantity": 14.0,
+        "active": true
+    },
+    {
+        "id": "759fbdbc-4c10-46d4-bc24-7f143d3a8394",
+        "usda_ingredient_id": "4410b6c0-961f-40ce-ac90-6f5d1050b12a",
+        "meal_plan_meal_id": "66d5209f-d9e5-4f07-81d6-0148a8562506",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "db9b0ef1-34a7-4021-b6a3-13d76d7649cb",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "2f4f0aad-7b97-4342-a7dd-437d504f1768",
+        "usda_ingredient_id": "da704027-b234-44c5-b4ae-7c39e9d4607b",
+        "meal_plan_meal_id": "66d5209f-d9e5-4f07-81d6-0148a8562506",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8ee9c171-690b-48c4-8e14-41ba58e44f09",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "223da0b9-e9c5-4672-b98b-3c29acee48cd",
+        "usda_ingredient_id": "3a2502e7-f64c-4665-834e-86f5ff9557b1",
+        "meal_plan_meal_id": "66d5209f-d9e5-4f07-81d6-0148a8562506",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c3d279d3-df77-4213-ab37-89273fc03f4c",
+        "quantity": 0.625,
+        "active": true
+    },
+    {
+        "id": "adc708da-766f-4ad0-8ab6-cfcd66c409dd",
+        "usda_ingredient_id": "e81458a4-c124-48a6-9cab-cdf7e5baa704",
+        "meal_plan_meal_id": "66d5209f-d9e5-4f07-81d6-0148a8562506",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c825324f-416e-4cea-8156-36951fd2afb3",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "f166c0b6-5541-4734-b983-52bd24793589",
+        "usda_ingredient_id": "909b71fb-f084-4388-a375-5aa824c7a961",
+        "meal_plan_meal_id": "46d83352-0da7-4564-8415-b584b5e8307c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0fed07ce-87cc-498b-8340-e66924068f81",
+        "quantity": 0.6,
+        "active": true
+    },
+    {
+        "id": "9a63304b-0da3-4e4b-8fa3-d9c87f3efb42",
+        "usda_ingredient_id": "d3142bd1-da59-4e90-b71c-8622ca3d618e",
+        "meal_plan_meal_id": "46d83352-0da7-4564-8415-b584b5e8307c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "102bd68e-c388-4153-a2a1-7fdddd627b5b",
+        "quantity": 0.6,
+        "active": true
+    },
+    {
+        "id": "716df9c8-357d-42ea-9b2b-4469db1092e3",
+        "usda_ingredient_id": "94a253fe-af8e-463a-a136-70bd2231c89c",
+        "meal_plan_meal_id": "66d5209f-d9e5-4f07-81d6-0148a8562506",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "04b6d588-4772-416a-bd11-3d4f55ab21dc",
+        "quantity": 1.5,
+        "active": true
+    },
+    {
+        "id": "0b97b843-b778-4b71-ba14-f3da4dc65995",
+        "usda_ingredient_id": "bbb3255d-71f0-4e0a-98c3-4baf5c8e08ca",
+        "meal_plan_meal_id": "66d5209f-d9e5-4f07-81d6-0148a8562506",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "995f5879-0684-46f2-8d53-80abbfeaf981",
+        "quantity": 0.8438,
+        "active": true
+    },
+    {
+        "id": "7d074afc-b29e-447c-a6d4-e9ed69d6deb3",
+        "usda_ingredient_id": "811c8e50-232a-4a8e-9c95-7eb4f0373e19",
+        "meal_plan_meal_id": "66d5209f-d9e5-4f07-81d6-0148a8562506",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "6b904e58-1fbf-4a48-827d-16dbd8ba6706",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "9e153ac3-e468-4289-9653-a84a1aa2de4c",
+        "usda_ingredient_id": "ea7528d4-6586-4b05-9315-5e8f0e1c0e6a",
+        "meal_plan_meal_id": "46d83352-0da7-4564-8415-b584b5e8307c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8b2023ab-5052-4cb0-9842-3ed430375d4d",
+        "quantity": 1.2,
+        "active": true
+    },
+    {
+        "id": "5fd75b96-fa23-4ec7-9c86-7ca18ba81923",
+        "usda_ingredient_id": "41d225f6-4907-4801-9fc8-46e1f5ca97ea",
+        "meal_plan_meal_id": "46d83352-0da7-4564-8415-b584b5e8307c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "d85837af-3539-4d1e-a936-5039bae4580e",
+        "quantity": 0.6,
+        "active": true
+    },
+    {
+        "id": "ae3c9328-502e-4d5b-b075-683947d3fdd0",
+        "usda_ingredient_id": "ea7528d4-6586-4b05-9315-5e8f0e1c0e6a",
+        "meal_plan_meal_id": "c2ab82e0-356a-45d9-8208-24330dbeab90",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8b2023ab-5052-4cb0-9842-3ed430375d4d",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "e7ad7846-2262-45f0-b26f-2d30f10067ed",
+        "usda_ingredient_id": "41d225f6-4907-4801-9fc8-46e1f5ca97ea",
+        "meal_plan_meal_id": "c2ab82e0-356a-45d9-8208-24330dbeab90",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "d85837af-3539-4d1e-a936-5039bae4580e",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "6dd820dd-26c8-470e-8334-c741cabef4d6",
+        "usda_ingredient_id": "ea7528d4-6586-4b05-9315-5e8f0e1c0e6a",
+        "meal_plan_meal_id": "ae2499fc-21af-424f-8c35-59a779c8b360",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8b2023ab-5052-4cb0-9842-3ed430375d4d",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "0f3d2bd7-8ac4-4041-b4cf-63a7acc401fc",
+        "usda_ingredient_id": "909b71fb-f084-4388-a375-5aa824c7a961",
+        "meal_plan_meal_id": "c2ab82e0-356a-45d9-8208-24330dbeab90",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0fed07ce-87cc-498b-8340-e66924068f81",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "a08b33ab-8185-483a-a228-c80520c6aa4f",
+        "usda_ingredient_id": "d3142bd1-da59-4e90-b71c-8622ca3d618e",
+        "meal_plan_meal_id": "c2ab82e0-356a-45d9-8208-24330dbeab90",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "102bd68e-c388-4153-a2a1-7fdddd627b5b",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "ffdacfa6-d46c-4512-9bf5-1db9aff64637",
+        "usda_ingredient_id": "909b71fb-f084-4388-a375-5aa824c7a961",
+        "meal_plan_meal_id": "ae2499fc-21af-424f-8c35-59a779c8b360",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0fed07ce-87cc-498b-8340-e66924068f81",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "716056df-9412-42d5-b8d7-9bea2ae72336",
+        "usda_ingredient_id": "d3142bd1-da59-4e90-b71c-8622ca3d618e",
+        "meal_plan_meal_id": "ae2499fc-21af-424f-8c35-59a779c8b360",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "102bd68e-c388-4153-a2a1-7fdddd627b5b",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "bb397294-93f0-491d-b318-d103c151d2a6",
+        "usda_ingredient_id": "41d225f6-4907-4801-9fc8-46e1f5ca97ea",
+        "meal_plan_meal_id": "ae2499fc-21af-424f-8c35-59a779c8b360",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "d85837af-3539-4d1e-a936-5039bae4580e",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "00da161c-fed2-4482-86d0-7eae2881e9be",
+        "usda_ingredient_id": "ea7528d4-6586-4b05-9315-5e8f0e1c0e6a",
+        "meal_plan_meal_id": "ea7d7b57-36ca-45f5-9a13-bfbc6118cff4",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8b2023ab-5052-4cb0-9842-3ed430375d4d",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "04b8ff05-d960-41a9-aba0-742eb000c338",
+        "usda_ingredient_id": "41d225f6-4907-4801-9fc8-46e1f5ca97ea",
+        "meal_plan_meal_id": "ea7d7b57-36ca-45f5-9a13-bfbc6118cff4",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "d85837af-3539-4d1e-a936-5039bae4580e",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "e779bd68-ddb4-48b3-8fa0-842e88a182ea",
+        "usda_ingredient_id": "ea7528d4-6586-4b05-9315-5e8f0e1c0e6a",
+        "meal_plan_meal_id": "bafc3147-bf28-4a9c-926c-267c8b5cef72",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "8b2023ab-5052-4cb0-9842-3ed430375d4d",
+        "quantity": 2.4,
+        "active": true
+    },
+    {
+        "id": "fb52d241-5896-45ca-95e9-f71ed7e2947a",
+        "usda_ingredient_id": "909b71fb-f084-4388-a375-5aa824c7a961",
+        "meal_plan_meal_id": "ea7d7b57-36ca-45f5-9a13-bfbc6118cff4",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0fed07ce-87cc-498b-8340-e66924068f81",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "f92f6f81-28ee-419d-a99d-98ca03f5a328",
+        "usda_ingredient_id": "d3142bd1-da59-4e90-b71c-8622ca3d618e",
+        "meal_plan_meal_id": "ea7d7b57-36ca-45f5-9a13-bfbc6118cff4",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "102bd68e-c388-4153-a2a1-7fdddd627b5b",
+        "quantity": 1.0,
+        "active": true
+    },
+    {
+        "id": "5ca8ab11-3b37-4eda-a4d8-8f1a355af3cb",
+        "usda_ingredient_id": "909b71fb-f084-4388-a375-5aa824c7a961",
+        "meal_plan_meal_id": "bafc3147-bf28-4a9c-926c-267c8b5cef72",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0fed07ce-87cc-498b-8340-e66924068f81",
+        "quantity": 1.2,
+        "active": true
+    },
+    {
+        "id": "9a3c3955-442f-4d2e-b9da-427a86693e6f",
+        "usda_ingredient_id": "41d225f6-4907-4801-9fc8-46e1f5ca97ea",
+        "meal_plan_meal_id": "bafc3147-bf28-4a9c-926c-267c8b5cef72",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "d85837af-3539-4d1e-a936-5039bae4580e",
+        "quantity": 1.2,
+        "active": true
+    },
+    {
+        "id": "68ee90d9-3ef0-4234-8ea8-d287c80f3321",
+        "usda_ingredient_id": "d3142bd1-da59-4e90-b71c-8622ca3d618e",
+        "meal_plan_meal_id": "bafc3147-bf28-4a9c-926c-267c8b5cef72",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "102bd68e-c388-4153-a2a1-7fdddd627b5b",
+        "quantity": 1.2,
+        "active": true
+    },
+    {
+        "id": "ac96d542-50d4-458f-852f-fd2679e627e4",
+        "usda_ingredient_id": "d3142bd1-da59-4e90-b71c-8622ca3d618e",
+        "meal_plan_meal_id": "fc86a476-def8-4613-8268-9433f21ca5c2",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "102bd68e-c388-4153-a2a1-7fdddd627b5b",
+        "quantity": 0.8,
+        "active": true
+    },
+    {
+        "id": "6a9955ac-eeb8-4998-bdaf-5a6c1203cb9a",
+        "usda_ingredient_id": "0dc129ab-4e12-4cfc-bd5a-d05c7f85c4b6",
+        "meal_plan_meal_id": "fc86a476-def8-4613-8268-9433f21ca5c2",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "50490bf5-8724-4d91-90d1-48670a4b29eb",
+        "quantity": 1.6,
+        "active": true
+    },
+    {
+        "id": "bd85e133-1d1e-4dc9-9c28-3394d93873d5",
+        "usda_ingredient_id": "b629a99b-c124-44fc-8fe6-bf4d0e3e0391",
+        "meal_plan_meal_id": "fc86a476-def8-4613-8268-9433f21ca5c2",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c78c4ea1-5e65-4536-8bee-600a072c18ad",
+        "quantity": 0.1,
+        "active": true
+    },
+    {
+        "id": "cf17f706-b78a-4432-9f64-53eaf5c5c8c5",
+        "usda_ingredient_id": "3b589f72-2138-4604-94f8-8a5999fd58aa",
+        "meal_plan_meal_id": "fc86a476-def8-4613-8268-9433f21ca5c2",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ce3c7638-26ba-4f81-bb03-ba48fcd80910",
+        "quantity": 0.2,
+        "active": true
+    },
+    {
+        "id": "76fd5d14-9964-4637-a4aa-3d691d6a06b1",
+        "usda_ingredient_id": "03b8f0c6-38dd-4797-b367-c6ad3ae3ca59",
+        "meal_plan_meal_id": "fc86a476-def8-4613-8268-9433f21ca5c2",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "337d8ff2-906b-47cb-a03d-794afbb77532",
+        "quantity": 2.4000000000000004,
+        "active": true
+    },
+    {
+        "id": "3113fc7e-dd4e-4624-b399-8a786f09ba8b",
+        "usda_ingredient_id": "d3142bd1-da59-4e90-b71c-8622ca3d618e",
+        "meal_plan_meal_id": "296169d9-8907-4b35-98fa-2cd69c256c87",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "102bd68e-c388-4153-a2a1-7fdddd627b5b",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "23cdbe1a-c871-416d-aa88-2222a1dabc2e",
+        "usda_ingredient_id": "0dc129ab-4e12-4cfc-bd5a-d05c7f85c4b6",
+        "meal_plan_meal_id": "296169d9-8907-4b35-98fa-2cd69c256c87",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "50490bf5-8724-4d91-90d1-48670a4b29eb",
+        "quantity": 4.0,
+        "active": true
+    },
+    {
+        "id": "ea6ea617-6214-44e9-9c69-ded175be298e",
+        "usda_ingredient_id": "b629a99b-c124-44fc-8fe6-bf4d0e3e0391",
+        "meal_plan_meal_id": "296169d9-8907-4b35-98fa-2cd69c256c87",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c78c4ea1-5e65-4536-8bee-600a072c18ad",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "5623fc65-ef4b-4f7e-aee1-51772eb57f82",
+        "usda_ingredient_id": "3b589f72-2138-4604-94f8-8a5999fd58aa",
+        "meal_plan_meal_id": "296169d9-8907-4b35-98fa-2cd69c256c87",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ce3c7638-26ba-4f81-bb03-ba48fcd80910",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "a128647a-ab5b-40e0-8ec3-d14e3c3d6de5",
+        "usda_ingredient_id": "03b8f0c6-38dd-4797-b367-c6ad3ae3ca59",
+        "meal_plan_meal_id": "296169d9-8907-4b35-98fa-2cd69c256c87",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "337d8ff2-906b-47cb-a03d-794afbb77532",
+        "quantity": 6.0,
+        "active": true
+    },
+    {
+        "id": "5409bbbf-d0af-4a95-a00b-29e65d8ad2e2",
+        "usda_ingredient_id": "d3142bd1-da59-4e90-b71c-8622ca3d618e",
+        "meal_plan_meal_id": "408b4fcb-1125-4a33-8a44-86cecca34ad8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "102bd68e-c388-4153-a2a1-7fdddd627b5b",
+        "quantity": 1.2,
+        "active": true
+    },
+    {
+        "id": "dcca94b4-ed5d-4f5e-adf6-d27a441992d1",
+        "usda_ingredient_id": "0dc129ab-4e12-4cfc-bd5a-d05c7f85c4b6",
+        "meal_plan_meal_id": "408b4fcb-1125-4a33-8a44-86cecca34ad8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "50490bf5-8724-4d91-90d1-48670a4b29eb",
+        "quantity": 2.4,
+        "active": true
+    },
+    {
+        "id": "e8f69cc7-32c9-4646-85f3-fdacf64c70c3",
+        "usda_ingredient_id": "b629a99b-c124-44fc-8fe6-bf4d0e3e0391",
+        "meal_plan_meal_id": "408b4fcb-1125-4a33-8a44-86cecca34ad8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c78c4ea1-5e65-4536-8bee-600a072c18ad",
+        "quantity": 0.15,
+        "active": true
+    },
+    {
+        "id": "dc4bcef2-6dde-4497-a6f3-eb70cb44b256",
+        "usda_ingredient_id": "3b589f72-2138-4604-94f8-8a5999fd58aa",
+        "meal_plan_meal_id": "408b4fcb-1125-4a33-8a44-86cecca34ad8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ce3c7638-26ba-4f81-bb03-ba48fcd80910",
+        "quantity": 0.3,
+        "active": true
+    },
+    {
+        "id": "08859aab-1271-43d7-9dbc-ba65fcee0e98",
+        "usda_ingredient_id": "03b8f0c6-38dd-4797-b367-c6ad3ae3ca59",
+        "meal_plan_meal_id": "408b4fcb-1125-4a33-8a44-86cecca34ad8",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "337d8ff2-906b-47cb-a03d-794afbb77532",
+        "quantity": 3.5999999999999996,
+        "active": true
+    },
+    {
+        "id": "e97dc388-bbf9-4870-898e-90a36ce5a13b",
+        "usda_ingredient_id": "d3142bd1-da59-4e90-b71c-8622ca3d618e",
+        "meal_plan_meal_id": "ee75596f-06e2-41df-82f9-5d4b5b984eaf",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "102bd68e-c388-4153-a2a1-7fdddd627b5b",
+        "quantity": 2.0,
+        "active": true
+    },
+    {
+        "id": "3a4e3a80-3683-4da4-9969-cd330a66e87e",
+        "usda_ingredient_id": "0dc129ab-4e12-4cfc-bd5a-d05c7f85c4b6",
+        "meal_plan_meal_id": "ee75596f-06e2-41df-82f9-5d4b5b984eaf",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "50490bf5-8724-4d91-90d1-48670a4b29eb",
+        "quantity": 4.0,
+        "active": true
+    },
+    {
+        "id": "7328fd23-dba8-4686-a4cd-10a91b26f766",
+        "usda_ingredient_id": "b629a99b-c124-44fc-8fe6-bf4d0e3e0391",
+        "meal_plan_meal_id": "ee75596f-06e2-41df-82f9-5d4b5b984eaf",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c78c4ea1-5e65-4536-8bee-600a072c18ad",
+        "quantity": 0.25,
+        "active": true
+    },
+    {
+        "id": "9fe8cd61-6f62-4dff-b6ed-f0b23740edf8",
+        "usda_ingredient_id": "3b589f72-2138-4604-94f8-8a5999fd58aa",
+        "meal_plan_meal_id": "ee75596f-06e2-41df-82f9-5d4b5b984eaf",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ce3c7638-26ba-4f81-bb03-ba48fcd80910",
+        "quantity": 0.5,
+        "active": true
+    },
+    {
+        "id": "8b2e6309-94e1-4d74-966c-e1bdc48630b9",
+        "usda_ingredient_id": "03b8f0c6-38dd-4797-b367-c6ad3ae3ca59",
+        "meal_plan_meal_id": "ee75596f-06e2-41df-82f9-5d4b5b984eaf",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "337d8ff2-906b-47cb-a03d-794afbb77532",
+        "quantity": 6.0,
+        "active": true
+    },
+    {
+        "id": "359ff6b4-cb26-4fb4-8b50-9a3a60c3078a",
+        "usda_ingredient_id": "d3142bd1-da59-4e90-b71c-8622ca3d618e",
+        "meal_plan_meal_id": "fb0f3566-5ebe-45d4-b5ae-c3eba11666e1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "102bd68e-c388-4153-a2a1-7fdddd627b5b",
+        "quantity": 1.6,
+        "active": true
+    },
+    {
+        "id": "74898615-2482-4421-b8a7-30dd007415e2",
+        "usda_ingredient_id": "0dc129ab-4e12-4cfc-bd5a-d05c7f85c4b6",
+        "meal_plan_meal_id": "fb0f3566-5ebe-45d4-b5ae-c3eba11666e1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "50490bf5-8724-4d91-90d1-48670a4b29eb",
+        "quantity": 3.2,
+        "active": true
+    },
+    {
+        "id": "5a2e05de-0b02-421d-bcb8-8ee958cf87e9",
+        "usda_ingredient_id": "b629a99b-c124-44fc-8fe6-bf4d0e3e0391",
+        "meal_plan_meal_id": "fb0f3566-5ebe-45d4-b5ae-c3eba11666e1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "c78c4ea1-5e65-4536-8bee-600a072c18ad",
+        "quantity": 0.2,
+        "active": true
+    },
+    {
+        "id": "d5a84523-2e4f-4e07-8128-2c8ef4991767",
+        "usda_ingredient_id": "3b589f72-2138-4604-94f8-8a5999fd58aa",
+        "meal_plan_meal_id": "fb0f3566-5ebe-45d4-b5ae-c3eba11666e1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ce3c7638-26ba-4f81-bb03-ba48fcd80910",
+        "quantity": 0.4,
+        "active": true
+    },
+    {
+        "id": "ed744479-63ee-4a9e-a66a-d7c480b895df",
+        "usda_ingredient_id": "03b8f0c6-38dd-4797-b367-c6ad3ae3ca59",
+        "meal_plan_meal_id": "fb0f3566-5ebe-45d4-b5ae-c3eba11666e1",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "337d8ff2-906b-47cb-a03d-794afbb77532",
+        "quantity": 4.800000000000001,
+        "active": true
+    },
+    {
+        "id": "a23088a3-f27e-4f9a-b4e3-07176b5a7b00",
+        "usda_ingredient_id": "5883e36e-7309-476d-869a-3cf9a1397999",
+        "meal_plan_meal_id": "e5485b46-1cfc-4aa9-b6f7-7b384a2a236c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "1a4ce99a-642b-4675-b80c-387f6c9dfaf3",
+        "quantity": 3.2,
+        "active": true
+    },
+    {
+        "id": "fe844346-35a8-45b8-a928-5cae796ee7df",
+        "usda_ingredient_id": "8ba84f4c-6b8b-43a7-b456-772ef24749a7",
+        "meal_plan_meal_id": "e5485b46-1cfc-4aa9-b6f7-7b384a2a236c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "37be0e4a-98e8-49f1-9d0b-1af823967d33",
+        "quantity": 0.1,
+        "active": true
+    },
+    {
+        "id": "fdb0940b-5238-4910-b014-cf99be5f7007",
+        "usda_ingredient_id": "656e4e65-fbb5-4f29-a579-46dc52bcb0d7",
+        "meal_plan_meal_id": "e5485b46-1cfc-4aa9-b6f7-7b384a2a236c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ad7a9425-384a-4ce7-9d75-94ac75547bc6",
+        "quantity": 0.1,
+        "active": true
+    },
+    {
+        "id": "352f858d-44d8-4a6a-aaec-373b07bada37",
+        "usda_ingredient_id": "909b71fb-f084-4388-a375-5aa824c7a961",
+        "meal_plan_meal_id": "e5485b46-1cfc-4aa9-b6f7-7b384a2a236c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0fed07ce-87cc-498b-8340-e66924068f81",
+        "quantity": 0.4,
+        "active": true
+    },
+    {
+        "id": "b6b0fff7-d61c-458e-a89a-d1d2c011b841",
+        "usda_ingredient_id": "54928889-875e-4066-97bf-598ef9db2398",
+        "meal_plan_meal_id": "e5485b46-1cfc-4aa9-b6f7-7b384a2a236c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a92faa94-860a-4bca-a35c-c53d8e3a12dd",
+        "quantity": 0.1,
+        "active": true
+    },
+    {
+        "id": "976e5c38-e5ab-4b28-a60e-3c67f3577bee",
+        "usda_ingredient_id": "edfc515b-2a64-44bd-9bda-4e5e93adf9fa",
+        "meal_plan_meal_id": "e5485b46-1cfc-4aa9-b6f7-7b384a2a236c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ebfdeb55-2aef-47a1-93b9-5c078d2e2d87",
+        "quantity": 0.1,
+        "active": true
+    },
+    {
+        "id": "df50855d-7a5c-4ce1-a7d7-7a99e46a5695",
+        "usda_ingredient_id": "ea8df0b4-1071-4758-8fe7-47b3a7bf1af5",
+        "meal_plan_meal_id": "e5485b46-1cfc-4aa9-b6f7-7b384a2a236c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 0.2,
+        "active": true
+    },
+    {
+        "id": "cdec3c09-fee3-478e-87f2-d34d2b2e82da",
+        "usda_ingredient_id": "f5946ab6-1b3b-442f-8901-db0054addb00",
+        "meal_plan_meal_id": "e5485b46-1cfc-4aa9-b6f7-7b384a2a236c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5669f29c-edf0-4a26-92ba-c2b2f988980f",
+        "quantity": 0.32000000000000006,
+        "active": true
+    },
+    {
+        "id": "5af0e61a-0235-4f21-be3d-04e1a96f198b",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "meal_plan_meal_id": "e5485b46-1cfc-4aa9-b6f7-7b384a2a236c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "dd161906-6b45-4172-ad04-e4b0bc4c3d01",
+        "quantity": 0.4,
+        "active": true
+    },
+    {
+        "id": "a41e417e-b724-4f0e-bc9d-9dd41d007116",
+        "usda_ingredient_id": "909b71fb-f084-4388-a375-5aa824c7a961",
+        "meal_plan_meal_id": "946d2148-d98d-4dff-b04e-44712e081d41",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0fed07ce-87cc-498b-8340-e66924068f81",
+        "quantity": 0.6,
+        "active": true
+    },
+    {
+        "id": "71b11606-ff26-4782-b658-77a39770acba",
+        "usda_ingredient_id": "da704027-b234-44c5-b4ae-7c39e9d4607b",
+        "meal_plan_meal_id": "e5485b46-1cfc-4aa9-b6f7-7b384a2a236c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "b0b9bf62-c4ad-4f4e-a1fa-274b6e7065b6",
+        "quantity": 0.4,
+        "active": true
+    },
+    {
+        "id": "8c65c075-be39-422d-ad39-55314b0545b0",
+        "usda_ingredient_id": "676cd667-adc0-4d82-b849-cf440d21f286",
+        "meal_plan_meal_id": "e5485b46-1cfc-4aa9-b6f7-7b384a2a236c",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "fcdbba35-aa9a-49c5-a392-451fb33b7e88",
+        "quantity": 10.0,
+        "active": true
+    },
+    {
+        "id": "0ee9771c-e0b4-4d89-965a-db9a6d4aff7c",
+        "usda_ingredient_id": "5883e36e-7309-476d-869a-3cf9a1397999",
+        "meal_plan_meal_id": "946d2148-d98d-4dff-b04e-44712e081d41",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "1a4ce99a-642b-4675-b80c-387f6c9dfaf3",
+        "quantity": 4.8,
+        "active": true
+    },
+    {
+        "id": "1f6803e6-3c32-4bbd-a742-fa5f16628ff9",
+        "usda_ingredient_id": "8ba84f4c-6b8b-43a7-b456-772ef24749a7",
+        "meal_plan_meal_id": "946d2148-d98d-4dff-b04e-44712e081d41",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "37be0e4a-98e8-49f1-9d0b-1af823967d33",
+        "quantity": 0.15,
+        "active": true
+    },
+    {
+        "id": "bff55b27-1b8b-41fb-b2ea-8ebb4fb71e24",
+        "usda_ingredient_id": "54928889-875e-4066-97bf-598ef9db2398",
+        "meal_plan_meal_id": "946d2148-d98d-4dff-b04e-44712e081d41",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a92faa94-860a-4bca-a35c-c53d8e3a12dd",
+        "quantity": 0.15,
+        "active": true
+    },
+    {
+        "id": "6be4adfa-4cb7-46a5-a805-c975f96c91dd",
+        "usda_ingredient_id": "edfc515b-2a64-44bd-9bda-4e5e93adf9fa",
+        "meal_plan_meal_id": "946d2148-d98d-4dff-b04e-44712e081d41",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ebfdeb55-2aef-47a1-93b9-5c078d2e2d87",
+        "quantity": 0.15,
+        "active": true
+    },
+    {
+        "id": "19788c09-8aed-4d70-9c6e-62da34456965",
+        "usda_ingredient_id": "da704027-b234-44c5-b4ae-7c39e9d4607b",
+        "meal_plan_meal_id": "946d2148-d98d-4dff-b04e-44712e081d41",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "b0b9bf62-c4ad-4f4e-a1fa-274b6e7065b6",
+        "quantity": 0.6,
+        "active": true
+    },
+    {
+        "id": "e9d23336-9a03-4214-b19c-c361cf902fbb",
+        "usda_ingredient_id": "676cd667-adc0-4d82-b849-cf440d21f286",
+        "meal_plan_meal_id": "946d2148-d98d-4dff-b04e-44712e081d41",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "fcdbba35-aa9a-49c5-a392-451fb33b7e88",
+        "quantity": 15.0,
+        "active": true
+    },
+    {
+        "id": "37b75e15-5dc2-4b3a-aa5f-12e59ee179d1",
+        "usda_ingredient_id": "656e4e65-fbb5-4f29-a579-46dc52bcb0d7",
+        "meal_plan_meal_id": "946d2148-d98d-4dff-b04e-44712e081d41",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ad7a9425-384a-4ce7-9d75-94ac75547bc6",
+        "quantity": 0.15,
+        "active": true
+    },
+    {
+        "id": "863b93d2-d1ce-4a38-872b-10cf36c74b96",
+        "usda_ingredient_id": "ea8df0b4-1071-4758-8fe7-47b3a7bf1af5",
+        "meal_plan_meal_id": "946d2148-d98d-4dff-b04e-44712e081d41",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 0.3,
+        "active": true
+    },
+    {
+        "id": "d21c4a49-78bd-4b8d-be01-1bf6bf14c7d3",
+        "usda_ingredient_id": "f5946ab6-1b3b-442f-8901-db0054addb00",
+        "meal_plan_meal_id": "946d2148-d98d-4dff-b04e-44712e081d41",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5669f29c-edf0-4a26-92ba-c2b2f988980f",
+        "quantity": 0.48,
+        "active": true
+    },
+    {
+        "id": "3ebfed0d-dd4f-48b8-9c67-8ff5247b4a5e",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "meal_plan_meal_id": "946d2148-d98d-4dff-b04e-44712e081d41",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "dd161906-6b45-4172-ad04-e4b0bc4c3d01",
+        "quantity": 0.6,
+        "active": true
+    },
+    {
+        "id": "b97d7a82-8757-4f72-ba6e-6a7c7a4bd8ca",
+        "usda_ingredient_id": "909b71fb-f084-4388-a375-5aa824c7a961",
+        "meal_plan_meal_id": "6a718c05-5ed5-40d1-a9ae-0fa3e2f29c95",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "0fed07ce-87cc-498b-8340-e66924068f81",
+        "quantity": 0.7,
+        "active": true
+    },
+    {
+        "id": "1737b90e-ed3b-42a4-bf86-3a7638f09b7e",
+        "usda_ingredient_id": "54928889-875e-4066-97bf-598ef9db2398",
+        "meal_plan_meal_id": "6a718c05-5ed5-40d1-a9ae-0fa3e2f29c95",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "a92faa94-860a-4bca-a35c-c53d8e3a12dd",
+        "quantity": 0.175,
+        "active": true
+    },
+    {
+        "id": "ebd7bd2c-337b-4305-b4cf-3a69fd94b639",
+        "usda_ingredient_id": "edfc515b-2a64-44bd-9bda-4e5e93adf9fa",
+        "meal_plan_meal_id": "6a718c05-5ed5-40d1-a9ae-0fa3e2f29c95",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ebfdeb55-2aef-47a1-93b9-5c078d2e2d87",
+        "quantity": 0.175,
+        "active": true
+    },
+    {
+        "id": "cb4f6f9d-6a71-4d91-b9b1-b3bfcbe5d39d",
+        "usda_ingredient_id": "5883e36e-7309-476d-869a-3cf9a1397999",
+        "meal_plan_meal_id": "6a718c05-5ed5-40d1-a9ae-0fa3e2f29c95",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "1a4ce99a-642b-4675-b80c-387f6c9dfaf3",
+        "quantity": 5.6,
+        "active": true
+    },
+    {
+        "id": "1ec8931f-0ce4-4664-972a-ccf5c9cb4db4",
+        "usda_ingredient_id": "8ba84f4c-6b8b-43a7-b456-772ef24749a7",
+        "meal_plan_meal_id": "6a718c05-5ed5-40d1-a9ae-0fa3e2f29c95",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "37be0e4a-98e8-49f1-9d0b-1af823967d33",
+        "quantity": 0.175,
+        "active": true
+    },
+    {
+        "id": "ec4c8bae-1e24-4422-aa84-cad66a0b5d11",
+        "usda_ingredient_id": "656e4e65-fbb5-4f29-a579-46dc52bcb0d7",
+        "meal_plan_meal_id": "6a718c05-5ed5-40d1-a9ae-0fa3e2f29c95",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "ad7a9425-384a-4ce7-9d75-94ac75547bc6",
+        "quantity": 0.175,
+        "active": true
+    },
+    {
+        "id": "70d5489b-4f17-47af-8aef-5539c7041d69",
+        "usda_ingredient_id": "ea8df0b4-1071-4758-8fe7-47b3a7bf1af5",
+        "meal_plan_meal_id": "6a718c05-5ed5-40d1-a9ae-0fa3e2f29c95",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "981eb028-85b5-48d2-ae60-46401f58d32c",
+        "quantity": 0.35,
+        "active": true
+    },
+    {
+        "id": "e1de6ae9-a37c-445e-aeed-d783f6888648",
+        "usda_ingredient_id": "da704027-b234-44c5-b4ae-7c39e9d4607b",
+        "meal_plan_meal_id": "6a718c05-5ed5-40d1-a9ae-0fa3e2f29c95",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "b0b9bf62-c4ad-4f4e-a1fa-274b6e7065b6",
+        "quantity": 0.7,
+        "active": true
+    },
+    {
+        "id": "be3cec76-8d41-4d41-96bd-a30d5245861d",
+        "usda_ingredient_id": "676cd667-adc0-4d82-b849-cf440d21f286",
+        "meal_plan_meal_id": "6a718c05-5ed5-40d1-a9ae-0fa3e2f29c95",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "fcdbba35-aa9a-49c5-a392-451fb33b7e88",
+        "quantity": 17.5,
+        "active": true
+    },
+    {
+        "id": "4133e376-48ae-4fa5-a6f9-9f83e267ceba",
+        "usda_ingredient_id": "f5946ab6-1b3b-442f-8901-db0054addb00",
+        "meal_plan_meal_id": "6a718c05-5ed5-40d1-a9ae-0fa3e2f29c95",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "5669f29c-edf0-4a26-92ba-c2b2f988980f",
+        "quantity": 0.5599999999999999,
+        "active": true
+    },
+    {
+        "id": "18806a18-3137-4e72-92f0-b9420cded26d",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "meal_plan_meal_id": "6a718c05-5ed5-40d1-a9ae-0fa3e2f29c95",
+        "meal_plan_snack_id": null,
+        "usda_ingredient_portion_id": "dd161906-6b45-4172-ad04-e4b0bc4c3d01",
+        "quantity": 0.7,
+        "active": true
     }
 ]

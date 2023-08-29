@@ -28,5 +28,30 @@
         "id": "8367b88b-ffc7-428f-bf0b-747b6b5265a9",
         "meal_id": "381cbf70-a6ec-48d7-8942-2447d8086dcc",
         "dietary_restriction_id": "vegetarian"
+    },
+    {
+        "id": "152b9e62-eedd-4dfb-8643-111c4e7f6de0",
+        "meal_id": "8f39ff9f-a32c-4ddf-9bc6-708f6123f9a4",
+        "dietary_restriction_id": "vegetarian"
+    },
+    {
+        "id": "1775e146-3de4-450e-a4e9-88216db13c73",
+        "meal_id": "cd6c1a17-a096-4124-8e30-9dfa8a3eee1c",
+        "dietary_restriction_id": "vegetarian"
+    },
+    {
+        "id": "1477924c-3d7b-4758-9768-5f51bf0abd0e",
+        "meal_id": "bea6e216-06d4-412f-af5b-49317607bccf",
+        "dietary_restriction_id": "vegetarian"
+    },
+    {
+        "id": "33c40091-fffa-43f1-b433-5659c2f7ee4a",
+        "meal_id": "a94e93a7-3703-4c08-b244-d04878f7ef2b",
+        "dietary_restriction_id": "vegetarian"
+    },
+    {
+        "id": "39414876-6641-4e4a-a6a3-81ac789741ab",
+        "meal_id": "2e6d640e-2fcd-4bc1-b064-ba2a1af75b7e",
+        "dietary_restriction_id": "vegetarian"
     }
 ]

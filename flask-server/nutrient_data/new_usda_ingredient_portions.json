@@ -5302,5 +5302,29 @@
         "usda_data_type": "Survey (FNDDS)",
         "custom_value": false,
         "multiplier": 1.0
+    },
+    {
+        "id": "dd161906-6b45-4172-ad04-e4b0bc4c3d01",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "fda_portion_id": "276779",
+        "non_metric_unit": "hamburger bun",
+        "grams_per_non_metric_unit": 52.0,
+        "portion_description": "1 hamburger bun",
+        "is_imperial": false,
+        "usda_data_type": "Survey (FNDDS)",
+        "custom_value": false,
+        "multiplier": 1.0
+    },
+    {
+        "id": "45b41afa-092a-481f-b39a-38497de37cba",
+        "usda_ingredient_id": "fd597940-b3fa-4e82-aa3f-fc9348c31c7d",
+        "fda_portion_id": "276778",
+        "non_metric_unit": "miniature/small hamburger bun",
+        "grams_per_non_metric_unit": 28.0,
+        "portion_description": "1 miniature/small hamburger bun",
+        "is_imperial": false,
+        "usda_data_type": "Survey (FNDDS)",
+        "custom_value": false,
+        "multiplier": 1.0
     }
 ]
