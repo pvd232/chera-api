@@ -10,10 +10,8 @@ from sqlalchemy.ext.compiler import compiles
 import stripe
 import shippo
 from typing import TYPE_CHECKING
-
-# from helpers.db.get_db_connection_string import get_db_connection_string
+from helpers.db.get_db_connection_string import get_db_connection_string
 from authlib.integrations.flask_client import OAuth
-from google.cloud.sql.connector import Connector, IPTypes
 
 if TYPE_CHECKING:
     from domain.Meal_Sample_Shipment_Domain import Meal_Sample_Shipment_Domain
@@ -66,31 +64,12 @@ username = os.getenv("DB_USER") or GCP_Secret_Manager_Service().get_secret("DB_U
 password = os.getenv("DB_PASSWORD") or GCP_Secret_Manager_Service().get_secret(
     "DB_PASSWORD"
 )
-print("username", username)
-print("password", password)
 
+connection_string = os.getenv("DB_STRING") or get_db_connection_string(
+    username=username, password=password, db_name="nourishdb"
+)
 
-# connection_string = os.getenv("DB_STRING") or get_db_connection_string(
-#     username=username, password=password, db_name=os.getenv("DB_NAME")
-# )
-# print("connection_string", connection_string)
-def getconn():
-    # initialize Python Connector object
-    connector = Connector()
-    conn = connector.connect(
-        "nourish-351123:us-central1:cheradb",  # Cloud SQL Instance Connection Name
-        "pg8000",
-        user=username,
-        password=password,
-        db="cheradb",
-        ip_type=IPTypes.PUBLIC,  # IPTypes.PRIVATE for private IP
-    )
-    return conn
-
-
-# configure Flask-SQLAlchemy to use Python Connector
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql+pg8000://"
-app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {"creator": getconn}
+app.config["SQLALCHEMY_DATABASE_URI"] = connection_string
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 
 USDA_api_key = os.getenv("USDA_API_KEY") or GCP_Secret_Manager_Service().get_secret(
@@ -99,7 +78,6 @@ USDA_api_key = os.getenv("USDA_API_KEY") or GCP_Secret_Manager_Service().get_sec
 
 # Env var from cloud run
 env = os.getenv("DEPLOYMENT_ENV") or "debug"
-print("env", env)
 
 ################### Auth0 ###################
 oauth = OAuth(app)
