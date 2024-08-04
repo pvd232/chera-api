@@ -59,14 +59,24 @@ load_dotenv()
 
 app = Flask(__name__)
 
+# Env var from cloud run
+env = os.getenv("DEPLOYMENT_ENV") or "debug"
 
 username = os.getenv("DB_USER") or GCP_Secret_Manager_Service().get_secret("DB_USER")
 password = os.getenv("DB_PASSWORD") or GCP_Secret_Manager_Service().get_secret(
     "DB_PASSWORD"
 )
+host = os.getenv("DB_HOST") or GCP_Secret_Manager_Service().get_secret("DB_HOST")
+port = os.getenv("DB_PORT") or GCP_Secret_Manager_Service().get_secret("DB_PORT")
+db_name = os.getenv("DB_NAME") or GCP_Secret_Manager_Service().get_secret("DB_NAME")
 
-connection_string = os.getenv("DB_STRING") or get_db_connection_string(
-    username=username, password=password, db_name="nourishdb"
+connection_string = get_db_connection_string(
+    username=username,
+    password=password,
+    env=env,
+    host=host,
+    port=port,
+    name=db_name,
 )
 
 app.config["SQLALCHEMY_DATABASE_URI"] = connection_string
@@ -76,8 +86,6 @@ USDA_api_key = os.getenv("USDA_API_KEY") or GCP_Secret_Manager_Service().get_sec
     "USDA_API_KEY"
 )
 
-# Env var from cloud run
-env = os.getenv("DEPLOYMENT_ENV") or "debug"
 
 ################### Auth0 ###################
 oauth = OAuth(app)

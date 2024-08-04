@@ -45,3 +45,7 @@
 # 2. To start the backend, run main.py in your editor from the flask-server directory. To do this, open up your terminal. Make sure you are in the flask-server directory. Then run main.py
 
 # 3. When signing off, shut down the backend by entering "ctrl + c" into the terminal window that has the backend running
+
+# ------> GCP Hints <------
+
+# 1. The connection string differs depending on the environment the server is running in, see the excerpts in models.py
