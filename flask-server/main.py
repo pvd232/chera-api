@@ -300,23 +300,6 @@ def continuity_initialize() -> Response:
     from repository.Dietary_Restriction_Repository import Dietary_Restriction_Repository
     from models import db_password, connection_string
 
-    # db_username = os.getenv("DB_USER") or GCP_Secret_Manager_Service().get_secret("DB_USER")
-    #     db_password = os.getenv("DB_PASSWORD") or GCP_Secret_Manager_Service().get_secret(
-    #     "DB_PASSWORD"
-    # )
-    # host = os.getenv("DB_HOST") or GCP_Secret_Manager_Service().get_secret("DB_HOST")
-    # port = os.getenv("DB_PORT") or GCP_Secret_Manager_Service().get_secret("DB_PORT")
-    # db_name = os.getenv("DB_NAME") or GCP_Secret_Manager_Service().get_secret("DB_NAME")
-
-    # connection_string = get_db_connection_string(
-    #     username=db_username,
-    #     password=db_password,
-    #     env=env,
-    #     host=host,
-    #     port=port,
-    #     name=db_name,
-    # )
-
     if not check_auth(env=env, db_password=db_password, request=request):
         return Response(status=401)
 
