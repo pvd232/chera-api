@@ -261,7 +261,8 @@ def continuity_write() -> Response:
 @app.route("/api/continuity/initialize")
 def continuity_initialize() -> Response:
     from sqlalchemy import create_engine
-    from helpers.db.get_db_connection_string import get_db_connection_string
+
+    # from helpers.db.get_db_connection_string import get_db_connection_string
     from helpers.db.create_state_tax_rates import create_state_tax_rates
     from helpers.check_auth import check_auth
     from helpers.db.create_cogs import create_cogs
@@ -297,29 +298,31 @@ def continuity_initialize() -> Response:
         Meal_Dietary_Restriction_Repository,
     )
     from repository.Dietary_Restriction_Repository import Dietary_Restriction_Repository
+    from models import db_password, connection_string
 
-    db_username = os.getenv("DB_USER") or GCP_Secret_Manager_Service().get_secret(
-        "DB_USER"
-    )
+    # db_username = os.getenv("DB_USER") or GCP_Secret_Manager_Service().get_secret("DB_USER")
+    #     db_password = os.getenv("DB_PASSWORD") or GCP_Secret_Manager_Service().get_secret(
+    #     "DB_PASSWORD"
+    # )
+    # host = os.getenv("DB_HOST") or GCP_Secret_Manager_Service().get_secret("DB_HOST")
+    # port = os.getenv("DB_PORT") or GCP_Secret_Manager_Service().get_secret("DB_PORT")
+    # db_name = os.getenv("DB_NAME") or GCP_Secret_Manager_Service().get_secret("DB_NAME")
 
-    db_password = os.getenv("DB_PASSWORD") or GCP_Secret_Manager_Service().get_secret(
-        "DB_PASSWORD"
-    )
-
-    live_db_string = os.getenv("DB_STRING") or get_db_connection_string(
-        username=db_username, password=db_password, db_name="nourishdb"
-    )
+    # connection_string = get_db_connection_string(
+    #     username=db_username,
+    #     password=db_password,
+    #     env=env,
+    #     host=host,
+    #     port=port,
+    #     name=db_name,
+    # )
 
     if not check_auth(env=env, db_password=db_password, request=request):
         return Response(status=401)
 
-    db_engine = create_engine(live_db_string)
+    db_engine = create_engine(connection_string)
     db.drop_all()
     db.create_all()
-    # initialize_db(
-    #     db_engine=db_engine,
-    #     drop_tables=True,
-    # )
     create_state_tax_rates(db=db)
     create_cogs(db=db)
     create_eating_disorder(db=db)
@@ -822,12 +825,10 @@ def stripe_webhook() -> Response:
         except:
             return Response(status=400, response="Invalid stripe event")
 
-        meal_subscription: Optional[
-            Meal_Subscription_Domain
-        ] = Meal_Subscription_Service(
-            meal_subscription_repository=Meal_Subscription_Repository(db=db)
-        ).get_meal_subscription(
-            stripe_subscription_id=stripe_subscription_id
+        meal_subscription: Optional[Meal_Subscription_Domain] = (
+            Meal_Subscription_Service(
+                meal_subscription_repository=Meal_Subscription_Repository(db=db)
+            ).get_meal_subscription(stripe_subscription_id=stripe_subscription_id)
         )
 
         if not meal_subscription:
@@ -1242,12 +1243,10 @@ def extended_clients() -> Response:
 
     if request.method == "GET":
         dietitian_id: str = request.args.get("dietitian_id")
-        requested_extended_clients: Optional[
-            list[Extended_Client_Domain]
-        ] = Extended_Client_Service(
-            client_repository=Client_Repository(db=db)
-        ).get_extended_clients(
-            dietitian_id=dietitian_id
+        requested_extended_clients: Optional[list[Extended_Client_Domain]] = (
+            Extended_Client_Service(
+                client_repository=Client_Repository(db=db)
+            ).get_extended_clients(dietitian_id=dietitian_id)
         )
         if requested_extended_clients:
             requested_extended_client_dtos: list[Extended_Client_DTO] = [
@@ -2069,12 +2068,10 @@ def scheduled_order_meal() -> Response:
         return Response(status=201)
     elif request.method == "GET":
         meal_subscription_id: str = request.args.get("meal_subscription_id")
-        scheduled_order_meal_domains: Optional[
-            list[Scheduled_Order_Meal_Domain]
-        ] = Scheduled_Order_Meal_Service(
-            scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(db=db)
-        ).get_scheduled_order_meals(
-            meal_subscription_id=meal_subscription_id
+        scheduled_order_meal_domains: Optional[list[Scheduled_Order_Meal_Domain]] = (
+            Scheduled_Order_Meal_Service(
+                scheduled_order_meal_repository=Scheduled_Order_Meal_Repository(db=db)
+            ).get_scheduled_order_meals(meal_subscription_id=meal_subscription_id)
         )
         if scheduled_order_meal_domains:
             scheduled_order_meal_dtos = [
@@ -2395,12 +2392,10 @@ def schedule_snack() -> Response:
         meal_subscription_id: str | None = request.args.get("meal_subscription_id")
 
         if meal_subscription_id:
-            schedule_snack_domains: list[
-                Schedule_Snack_Domain
-            ] = Schedule_Snack_Service(
-                schedule_snack_repository=Schedule_Snack_Repository(db=db)
-            ).get_schedule_snacks(
-                meal_subscription_id=meal_subscription_id
+            schedule_snack_domains: list[Schedule_Snack_Domain] = (
+                Schedule_Snack_Service(
+                    schedule_snack_repository=Schedule_Snack_Repository(db=db)
+                ).get_schedule_snacks(meal_subscription_id=meal_subscription_id)
             )
             schedule_snack_DTOs = [
                 Schedule_Snack_DTO(schedule_snack_domain=x)
@@ -2467,12 +2462,10 @@ def scheduled_order_snack() -> Response:
         return Response(status=201)
     elif request.method == "GET":
         meal_subscription_id: str = request.args.get("meal_subscription_id")
-        scheduled_order_snack_domains: Optional[
-            list[Scheduled_Order_Snack_Domain]
-        ] = Scheduled_Order_Snack_Service(
-            scheduled_order_snack_repository=Scheduled_Order_Snack_Repository(db=db)
-        ).get_scheduled_order_snacks(
-            meal_subscription_id=meal_subscription_id
+        scheduled_order_snack_domains: Optional[list[Scheduled_Order_Snack_Domain]] = (
+            Scheduled_Order_Snack_Service(
+                scheduled_order_snack_repository=Scheduled_Order_Snack_Repository(db=db)
+            ).get_scheduled_order_snacks(meal_subscription_id=meal_subscription_id)
         )
         if scheduled_order_snack_domains:
             scheduled_order_snack_dtos = [
@@ -2990,12 +2983,10 @@ def meal_subscription() -> Response:
     elif request.method == "GET":
         client_id: str | None = request.args.get("client_id")
         if client_id:
-            meal_subscription_domain: Optional[
-                Meal_Subscription_Domain
-            ] = Meal_Subscription_Service(
-                meal_subscription_repository=Meal_Subscription_Repository(db=db)
-            ).get_client_meal_subscription(
-                client_id=client_id
+            meal_subscription_domain: Optional[Meal_Subscription_Domain] = (
+                Meal_Subscription_Service(
+                    meal_subscription_repository=Meal_Subscription_Repository(db=db)
+                ).get_client_meal_subscription(client_id=client_id)
             )
 
             # Client will always have 1 and only 1 active meal subscription
@@ -3009,12 +3000,10 @@ def meal_subscription() -> Response:
                 return Response(status=404)
         else:
             dietitian_id = request.args.get("dietitian_id")
-            meal_subscription_domains: Optional[
-                list[Meal_Subscription_Domain]
-            ] = Meal_Subscription_Service(
-                meal_subscription_repository=Meal_Subscription_Repository(db=db)
-            ).get_dietitian_meal_subscriptions(
-                dietitian_id=dietitian_id
+            meal_subscription_domains: Optional[list[Meal_Subscription_Domain]] = (
+                Meal_Subscription_Service(
+                    meal_subscription_repository=Meal_Subscription_Repository(db=db)
+                ).get_dietitian_meal_subscriptions(dietitian_id=dietitian_id)
             )
             if meal_subscription_domains:
                 meal_subscription_DTOs = [
@@ -3073,12 +3062,10 @@ def extended_order_meal() -> Response:
 
     if request.method == "GET":
         meal_subscription_id = request.args.get("meal_subscription_id")
-        extended_order_meals: Optional[
-            list[Extended_Order_Meal_Domain]
-        ] = Extended_Order_Meal_Service(
-            order_meal_repository=Order_Meal_Repository(db=db)
-        ).get_extended_order_meals(
-            meal_subscription_id=meal_subscription_id
+        extended_order_meals: Optional[list[Extended_Order_Meal_Domain]] = (
+            Extended_Order_Meal_Service(
+                order_meal_repository=Order_Meal_Repository(db=db)
+            ).get_extended_order_meals(meal_subscription_id=meal_subscription_id)
         )
         if extended_order_meals:
             extended_order_meal_DTOs = [
@@ -3797,11 +3784,11 @@ def extended_meal_plan_snack_v2() -> Response:
             else:
                 return jsonify([]), 200
         else:
-            extended_meal_plan_snacks = (
-                extended_meal_plan_snack
-            ) = Extended_Meal_Plan_Snack_Service(
-                meal_plan_snack_repository=Meal_Plan_Snack_Repository(db=db)
-            ).get_standard_extended_meal_plan_snacks()
+            extended_meal_plan_snacks = extended_meal_plan_snack = (
+                Extended_Meal_Plan_Snack_Service(
+                    meal_plan_snack_repository=Meal_Plan_Snack_Repository(db=db)
+                ).get_standard_extended_meal_plan_snacks()
+            )
             extended_meal_plan_snack_DTOs = [
                 Extended_Meal_Plan_Snack_DTO(extended_meal_plan_snack_domain=x)
                 for x in extended_meal_plan_snacks

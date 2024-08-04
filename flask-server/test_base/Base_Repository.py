@@ -3,17 +3,16 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from dotenv import load_dotenv
-from models import db
+from models import connection_string
 
-username = os.environ.get("USER", "postgres")
-password = os.environ.get("PASSWORD", "Iqopaogh23!")
-connection_string_beginning = "postgresql://"
-connection_string_end = "@localhost:5432/nourishdb"
-connection_string = connection_string_beginning + \
-    username + ":" + password + connection_string_end
+# username = os.environ.get("USER", "postgres")
+# password = os.environ.get("PASSWORD", "Iqopaogh23!")
+# connection_string_beginning = "postgresql://"
+# connection_string_end = "@localhost:5432/nourishdb"
+# connection_string = connection_string_beginning + \
+#     username + ":" + password + connection_string_end
 
-engine = create_engine(os.environ.get(
-    "DB_STRING", connection_string), pool_size=100, max_overflow=10)
+engine = create_engine(connection_string, pool_size=100, max_overflow=10)
 
 
 class Base_Repository(unittest.TestCase):
