@@ -67,10 +67,7 @@ password = os.getenv("DB_PASSWORD") or GCP_Secret_Manager_Service().get_secret(
 print("username", username)
 print("password", password)
 connection_string = os.getenv("DB_STRING") or get_db_connection_string(
-    username=username,
-    password=password,
-    db_name=os.getenv("DB_NAME"),
-    db_server=os.getenv("DB_SERVER"),
+    username=username, password=password, db_name="chera-prod-db"
 )
 print("connection_string", connection_string)
 
