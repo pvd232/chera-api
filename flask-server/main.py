@@ -3854,6 +3854,11 @@ def initialize_dietitian() -> Response:
         return Response(status=405)
 
 
+@app.route("/")
+def hello_word() -> Response:
+    return "Hello World!"
+
+
 if env == "debug":
     debug = True
 else:

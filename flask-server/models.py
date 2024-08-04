@@ -65,6 +65,9 @@ password = os.getenv("DB_PASSWORD") or GCP_Secret_Manager_Service().get_secret(
     "DB_PASSWORD"
 )
 
+print("password", password)
+print("username", username)
+
 connection_string = os.getenv("DB_STRING") or get_db_connection_string(
     username=username, password=password, db_name="nourishdb"
 )
@@ -78,6 +81,7 @@ USDA_api_key = os.getenv("USDA_API_KEY") or GCP_Secret_Manager_Service().get_sec
 
 # Env var from cloud run
 env = os.getenv("DEPLOYMENT_ENV") or "debug"
+print("env: ", env)
 
 ################### Auth0 ###################
 oauth = OAuth(app)
@@ -845,9 +849,9 @@ class Dietary_Restriction_Model(db.Model):
     __tablename__ = "dietary_restriction"
     id = db.Column(db.String(80), primary_key=True, unique=True, nullable=False)
 
-    meal_dietary_restriction: Mapped[
-        list[Meal_Dietary_Restriction_Model]
-    ] = relationship("Meal_Dietary_Restriction_Model", lazy=True)
+    meal_dietary_restriction: Mapped[list[Meal_Dietary_Restriction_Model]] = (
+        relationship("Meal_Dietary_Restriction_Model", lazy=True)
+    )
 
     def __init__(
         self, dietary_restriction_domain: "Dietary_Restriction_Domain"
