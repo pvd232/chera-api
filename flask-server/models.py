@@ -67,8 +67,9 @@ password = os.getenv("DB_PASSWORD") or GCP_Secret_Manager_Service().get_secret(
 print("username", username)
 print("password", password)
 connection_string = os.getenv("DB_STRING") or get_db_connection_string(
-    username=username, password=password, db_name="nourishdb"
+    username=username, password=password, db_name=os.getenv("DB_NAME")
 )
+print("connection_string", connection_string)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = connection_string
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
@@ -847,9 +848,9 @@ class Dietary_Restriction_Model(db.Model):
     __tablename__ = "dietary_restriction"
     id = db.Column(db.String(80), primary_key=True, unique=True, nullable=False)
 
-    meal_dietary_restriction: Mapped[
-        list[Meal_Dietary_Restriction_Model]
-    ] = relationship("Meal_Dietary_Restriction_Model", lazy=True)
+    meal_dietary_restriction: Mapped[list[Meal_Dietary_Restriction_Model]] = (
+        relationship("Meal_Dietary_Restriction_Model", lazy=True)
+    )
 
     def __init__(
         self, dietary_restriction_domain: "Dietary_Restriction_Domain"
