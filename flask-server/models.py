@@ -64,7 +64,8 @@ username = os.getenv("DB_USER") or GCP_Secret_Manager_Service().get_secret("DB_U
 password = os.getenv("DB_PASSWORD") or GCP_Secret_Manager_Service().get_secret(
     "DB_PASSWORD"
 )
-
+print("username", username)
+print("password", password)
 connection_string = os.getenv("DB_STRING") or get_db_connection_string(
     username=username, password=password, db_name="nourishdb"
 )
@@ -78,6 +79,7 @@ USDA_api_key = os.getenv("USDA_API_KEY") or GCP_Secret_Manager_Service().get_sec
 
 # Env var from cloud run
 env = os.getenv("DEPLOYMENT_ENV") or "debug"
+print("env", env)
 
 ################### Auth0 ###################
 oauth = OAuth(app)
