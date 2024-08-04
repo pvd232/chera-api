@@ -47,5 +47,4 @@ class GCP_Secret_Manager_Service(object):
 
         # Access the secret payload.
         secret_string = response.payload.data.decode("UTF-8")
-        print("secret_string", secret_string)
         return secret_string

@@ -20,14 +20,6 @@ class Extended_Meal_Plan_Meal_Service(Meal_Plan_Meal_Service):
                     meal_plan_meal_id=meal_plan_meal_id
                 )
             )
-        else:
-            print("meal_plan_id", meal_plan_id)
-            print("meal_id", meal_id)
-            return Extended_Meal_Plan_Meal_Domain(
-                meal_plan_meal_model=self.meal_plan_meal_repository.get_meal_plan_meal(
-                    meal_plan_id=meal_plan_id, meal_id=meal_id
-                )
-            )
 
     def get_extended_meal_plan_meals(
         self,
@@ -68,9 +60,9 @@ class Extended_Meal_Plan_Meal_Service(Meal_Plan_Meal_Service):
 
         updated_recipe_dict: dict[UUID:"Recipe_Ingredient_DTO"] = {}
         for recipe_ingredient in updated_recipe:
-            updated_recipe_dict[
-                recipe_ingredient.usda_ingredient_id
-            ] = recipe_ingredient
+            updated_recipe_dict[recipe_ingredient.usda_ingredient_id] = (
+                recipe_ingredient
+            )
 
         # Update recipe to reflect new recipe
         for recipe_ingredient in unaltered_extended_meal_plan_meal_domain.recipe:

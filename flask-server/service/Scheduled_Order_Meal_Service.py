@@ -256,7 +256,6 @@ class Scheduled_Order_Meal_Service(object):
             schedule_meals = schedule_meal_service.get_schedule_meals(
                 meal_subscription_id=meal_subscription_id
             )
-            print("schedule_meals", schedule_meals)
 
             for schedule_meal in schedule_meals:
                 new_scheduled_order_meal_id = uuid4()
