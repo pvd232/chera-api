@@ -1,6 +1,6 @@
 from dto.Staged_Schedule_Snack_DTO import Staged_Schedule_Snack_DTO
 from dto.Snack_DTO import Snack_DTO
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 if TYPE_CHECKING:
     from domain.Extended_Staged_Schedule_Snack_Domain import (
@@ -11,7 +11,9 @@ if TYPE_CHECKING:
 class Extended_Staged_Schedule_Snack_DTO(Staged_Schedule_Snack_DTO):
     def __init__(
         self,
-        extended_staged_schedule_snack_domain: Extended_Staged_Schedule_Snack_Domain = None,
+        extended_staged_schedule_snack_domain: Optional[
+            Extended_Staged_Schedule_Snack_Domain
+        ] = None,
     ) -> None:
         super().__init__(
             staged_schedule_snack_domain=extended_staged_schedule_snack_domain

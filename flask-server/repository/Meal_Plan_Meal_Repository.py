@@ -11,9 +11,9 @@ if TYPE_CHECKING:
 class Meal_Plan_Meal_Repository(Base_Repository):
     def get_meal_plan_meal(
         self,
-        meal_plan_meal_id: UUID = None,
-        meal_id: UUID = None,
-        meal_plan_id: UUID = None,
+        meal_plan_meal_id: Optional[UUID] = None,
+        meal_id: Optional[UUID] = None,
+        meal_plan_id: Optional[UUID] = None,
     ) -> Optional[Meal_Plan_Meal_Model]:
         if meal_plan_meal_id:
             meal_plan_meal: Optional[Meal_Plan_Meal_Model] = (
@@ -33,7 +33,7 @@ class Meal_Plan_Meal_Repository(Base_Repository):
         return meal_plan_meal
 
     def get_meal_plan_meals(
-        self, meal_plan_id: UUID = None
+        self, meal_plan_id: Optional[UUID] = None
     ) -> Optional[list[Meal_Plan_Meal_Model]]:
         meal_plan_meals_to_return: Optional[list[Meal_Plan_Meal_Model]] = []
         if meal_plan_id:

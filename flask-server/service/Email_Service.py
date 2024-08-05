@@ -6,8 +6,7 @@ from datetime import datetime
 from domain.Client_Domain import Client_Domain
 from domain.Dietitian_Domain import Dietitian_Domain
 from flask import request
-from typing import TYPE_CHECKING
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 if TYPE_CHECKING:
     from service.GCP_Secret_Manager_Service import GCP_Secret_Manager_Service
@@ -228,9 +227,9 @@ class Email_Service(object):
         self,
         user_type: str,
         user: Optional[Client_Domain | Dietitian_Domain] = None,
-        delivery_date: datetime = None,
-        cutoff_date: datetime = None,
-        tracking_url: str = None,
+        delivery_date: Optional[datetime] = None,
+        cutoff_date: Optional[datetime] = None,
+        tracking_url: Optional[str] = None,
     ) -> None:
         delivery_instructions = "Look for a plain white box, about 1 ft tall."
         email_file_name = Path(".").joinpath(
@@ -282,7 +281,7 @@ class Email_Service(object):
         user_type: str,
         user: Client_Domain | Dietitian_Domain,
         env: str,
-        zipcode: str = None,
+        zipcode: Optional[str] = None,
     ) -> None:
         if user_type == "Client" or user_type == "Staged_Client":
             email_template_name = "client_sign_up_notification.html"
@@ -512,9 +511,9 @@ class Email_Service(object):
                 for order_meal in meal_subscription_invoice.order_meals:
                     # Set meal property such that order meal string function can output the formatted meal summary
                     if order_meal.associated_meal.id not in meal_dict:
-                        meal_dict[
-                            order_meal.associated_meal.id
-                        ] = order_meal.associated_meal
+                        meal_dict[order_meal.associated_meal.id] = (
+                            order_meal.associated_meal
+                        )
                     else:
                         meal_dict[order_meal.associated_meal.id].quantity += 1
                 for meal in meal_dict.values():

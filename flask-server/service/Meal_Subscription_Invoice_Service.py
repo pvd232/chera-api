@@ -8,9 +8,6 @@ if TYPE_CHECKING:
     from repository.Meal_Subscription_Invoice_Repository import (
         Meal_Subscription_Invoice_Repository,
     )
-    from service.Scheduled_Order_Meal_Service import Scheduled_Order_Meal_Service
-    from service.Scheduled_Order_Meal_Service import Scheduled_Order_Meal_Service
-    from service.Scheduled_Order_Snack_Service import Scheduled_Order_Snack_Service
     from service.Order_Calc_Service import Order_Calc_Service
     from domain.Meal_Subscription_Domain import Meal_Subscription_Domain
     from dto.Meal_Subscription_Invoice_DTO import Meal_Subscription_Invoice_DTO
@@ -40,8 +37,8 @@ class Meal_Subscription_Invoice_Service(object):
 
     def get_meal_subscription_invoice(
         self,
-        meal_subscription_invoice_id: UUID = None,
-        stripe_payment_intent_id: str = None,
+        meal_subscription_invoice_id: Optional[UUID] = None,
+        stripe_payment_intent_id: Optional[str] = None,
     ) -> Optional[Meal_Subscription_Invoice_Domain]:
         if meal_subscription_invoice_id:
             return (
@@ -87,9 +84,9 @@ class Meal_Subscription_Invoice_Service(object):
         if meal_subscription_invoices:
             # sort in ascending order, which will return more recent dates first (larger gap in time since 1970), and older dates last
             meal_subscription_invoices.sort(key=get_date)
-            first_created_meal_subscription_invoice: Meal_Subscription_Invoice_Domain = meal_subscription_invoices[
-                -1
-            ]
+            first_created_meal_subscription_invoice: (
+                Meal_Subscription_Invoice_Domain
+            ) = meal_subscription_invoices[-1]
             return first_created_meal_subscription_invoice
         else:
             return None
@@ -101,7 +98,7 @@ class Meal_Subscription_Invoice_Service(object):
         shipping_cost: float,
         num_items: int,
         order_calc_service: "Order_Calc_Service",
-        discount_percentage: float = None,
+        discount_percentage: Optional[float] = None,
     ) -> Meal_Subscription_Invoice_Domain:
         meal_subscription_invoice_domain = Meal_Subscription_Invoice_Domain(
             meal_subscription_invoice_object=meal_subscription_invoice_dto

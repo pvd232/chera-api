@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 from .Base_DTO import Base_DTO
 
 if TYPE_CHECKING:
@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 class Imperial_Unit_DTO(Base_DTO):
     def __init__(
         self,
-        imperial_unit_json: dict = None,
+        imperial_unit_json: Optional[dict] = None,
         imperial_unit_domain: "Imperial_Unit_Domain" = None,
     ) -> None:
         if imperial_unit_json:

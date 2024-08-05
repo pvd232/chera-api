@@ -19,7 +19,9 @@ class Staged_Client_Repository(Base_Repository):
         return new_staged_client
 
     def get_staged_client(
-        self, staged_client_email: str = None, staged_client_id: UUID = None
+        self,
+        staged_client_email: Optional[str] = None,
+        staged_client_id: Optional[UUID] = None,
     ) -> Optional[Staged_Client_Model]:
         if staged_client_email:
             staged_client = (
@@ -36,7 +38,7 @@ class Staged_Client_Repository(Base_Repository):
         return staged_client
 
     def get_staged_clients(
-        self, dietitian_id: UUID = None
+        self, dietitian_id: Optional[UUID] = None
     ) -> list[Staged_Client_Model]:
         if dietitian_id:
             dietitian = (

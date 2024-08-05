@@ -22,9 +22,9 @@ class Client_Service(object):
 
     def get_client(
         self,
-        client_email: str = None,
-        client_stripe_id: str = None,
-        client_id: UUID = None,
+        client_email: Optional[str] = None,
+        client_stripe_id: Optional[str] = None,
+        client_id: Optional[UUID] = None,
     ) -> Optional[Client_Domain]:
         if client_email:
             client = self.client_repository.get_client(client_email=client_email)
@@ -48,7 +48,9 @@ class Client_Service(object):
                 client_domain = Client_Domain(client_object=client)
         return client_domain
 
-    def get_clients(self, dietitian_id: str = None) -> Optional[list[Client_Domain]]:
+    def get_clients(
+        self, dietitian_id: Optional[str] = None
+    ) -> Optional[list[Client_Domain]]:
         client_models = self.client_repository.get_clients(dietitian_id=dietitian_id)
         if client_models:
             return [
@@ -85,15 +87,3 @@ class Client_Service(object):
 
     def deactivate_client(self, client_id: str) -> None:
         return self.client_repository.deactivate_client(client_id=client_id)
-
-    def authenticate_client(
-        self, client_id: str, password: str
-    ) -> Optional[Client_Domain]:
-        client_object = self.client_repository.authenticate_client(
-            client_id=client_id, password=password
-        )
-        if client_object:
-            client_domain: Client_Domain = Client_Domain(client_object=client_object)
-            return client_domain
-        else:
-            return None

@@ -1,9 +1,7 @@
 from domain.Meal_Plan_Snack_Domain import Meal_Plan_Snack_Domain
 from domain.Meal_Plan_Domain import Meal_Plan_Domain
 from domain.Recipe_Ingredient_Domain import Recipe_Ingredient_Domain
-
 from uuid import UUID
-import json
 from typing import Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -21,10 +19,10 @@ class Meal_Plan_Snack_Service(object):
     def get_meal_plan_snack(
         self, meal_plan_snack_id: UUID
     ) -> Optional[Meal_Plan_Snack_Domain]:
-        meal_plan_snack: Optional[
-            Meal_Plan_Snack_Model
-        ] = self.meal_plan_snack_repository.get_meal_plan_snack(
-            meal_plan_snack_id=meal_plan_snack_id
+        meal_plan_snack: Optional[Meal_Plan_Snack_Model] = (
+            self.meal_plan_snack_repository.get_meal_plan_snack(
+                meal_plan_snack_id=meal_plan_snack_id
+            )
         )
         meal_plan_snack_domain: Meal_Plan_Snack_Domain = Meal_Plan_Snack_Domain(
             meal_plan_snack_object=meal_plan_snack
@@ -32,12 +30,12 @@ class Meal_Plan_Snack_Service(object):
         return meal_plan_snack_domain
 
     def get_meal_plan_snacks(
-        self, meal_plan_id: UUID = None
+        self, meal_plan_id: Optional[UUID] = None
     ) -> Optional[list[Meal_Plan_Snack_Domain]]:
-        meal_plan_snacks: Optional[
-            list[Meal_Plan_Snack_Model]
-        ] = self.meal_plan_snack_repository.get_meal_plan_snacks(
-            meal_plan_id=meal_plan_id
+        meal_plan_snacks: Optional[list[Meal_Plan_Snack_Model]] = (
+            self.meal_plan_snack_repository.get_meal_plan_snacks(
+                meal_plan_id=meal_plan_id
+            )
         )
         if meal_plan_snacks:
             meal_plan_snack_domains: list[Meal_Plan_Snack_Domain] = [

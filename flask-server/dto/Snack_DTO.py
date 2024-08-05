@@ -1,5 +1,5 @@
 from uuid import UUID
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 from .Base_DTO import Base_DTO
 
 if TYPE_CHECKING:
@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 
 class Snack_DTO(Base_DTO):
     def __init__(
-        self, snack_json: dict = None, snack_domain: "Snack_Domain" = None
+        self, snack_json: Optional[dict] = None, snack_domain: "Snack_Domain" = None
     ) -> None:
         if snack_json:
             self.id: UUID = UUID(snack_json["id"])

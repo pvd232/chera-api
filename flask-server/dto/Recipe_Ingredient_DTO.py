@@ -1,7 +1,6 @@
 from uuid import UUID
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 from .Base_DTO import Base_DTO
-from typing import Optional
 
 if TYPE_CHECKING:
     from domain.Recipe_Ingredient_Domain import Recipe_Ingredient_Domain
@@ -10,7 +9,7 @@ if TYPE_CHECKING:
 class Recipe_Ingredient_DTO(Base_DTO):
     def __init__(
         self,
-        recipe_ingredient_json: dict = None,
+        recipe_ingredient_json: Optional[dict] = None,
         recipe_ingredient_domain: "Recipe_Ingredient_Domain" = None,
     ) -> None:
         if recipe_ingredient_json:
@@ -44,12 +43,12 @@ class Recipe_Ingredient_DTO(Base_DTO):
         elif recipe_ingredient_domain:
             self.id: UUID = recipe_ingredient_domain.id
             self.usda_ingredient_id: UUID = recipe_ingredient_domain.usda_ingredient_id
-            self.meal_plan_meal_id: Optional[
-                UUID
-            ] = recipe_ingredient_domain.meal_plan_meal_id
-            self.meal_plan_snack_id: Optional[
-                UUID
-            ] = recipe_ingredient_domain.meal_plan_snack_id
+            self.meal_plan_meal_id: Optional[UUID] = (
+                recipe_ingredient_domain.meal_plan_meal_id
+            )
+            self.meal_plan_snack_id: Optional[UUID] = (
+                recipe_ingredient_domain.meal_plan_snack_id
+            )
             self.usda_ingredient_portion_id: UUID = (
                 recipe_ingredient_domain.usda_ingredient_portion_id
             )

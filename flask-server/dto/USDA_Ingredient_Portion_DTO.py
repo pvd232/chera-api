@@ -1,5 +1,5 @@
 from .Base_DTO import Base_DTO
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 from uuid import UUID
 
 if TYPE_CHECKING:
@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 class USDA_Ingredient_Portion_DTO(Base_DTO):
     def __init__(
         self,
-        usda_ingredient_portion_json: dict = None,
+        usda_ingredient_portion_json: Optional[dict] = None,
         usda_ingredient_portion_domain: "USDA_Ingredient_Portion_Domain" = None,
     ) -> None:
         if usda_ingredient_portion_json:

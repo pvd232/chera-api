@@ -1,15 +1,12 @@
 from models import Meal_Plan_Model
 from repository.Base_Repository import Base_Repository
 import uuid
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from domain.Meal_Plan_Domain import Meal_Plan_Domain
+from typing import Optional
 
 
 class Meal_Plan_Repository(Base_Repository):
     def get_meal_plan(
-        self, meal_plan_id: uuid.UUID = None, meal_plan_number: int = None
+        self, meal_plan_id: uuid.UUID = None, meal_plan_number: Optional[int] = None
     ) -> Meal_Plan_Model:
         if meal_plan_id and not meal_plan_number:
             meal_plan = (

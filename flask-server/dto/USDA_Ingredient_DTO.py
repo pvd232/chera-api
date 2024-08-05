@@ -1,5 +1,5 @@
 from .Base_DTO import Base_DTO
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 if TYPE_CHECKING:
     from domain.USDA_Ingredient_Domain import USDA_Ingredient_Domain
@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 class USDA_Ingredient_DTO(Base_DTO):
     def __init__(
         self,
-        usda_ingredient_json: dict = None,
+        usda_ingredient_json: Optional[dict] = None,
         usda_ingredient_domain: "USDA_Ingredient_Domain" = None,
     ) -> None:
         if usda_ingredient_json:

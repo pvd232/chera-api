@@ -1,6 +1,6 @@
 from domain.Meal_Plan_Domain import Meal_Plan_Domain
 from uuid import UUID
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 if TYPE_CHECKING:
     from repository.Meal_Plan_Repository import Meal_Plan_Repository
@@ -11,7 +11,9 @@ class Meal_Plan_Service(object):
         self.meal_plan_repository = meal_plan_repository
 
     def get_meal_plan(
-        self, meal_plan_id: UUID = None, meal_plan_number: int = None
+        self,
+        meal_plan_id: Optional[UUID] = None,
+        meal_plan_number: Optional[int] = None,
     ) -> Meal_Plan_Domain:
         meal_plan = Meal_Plan_Domain(
             meal_plan_object=self.meal_plan_repository.get_meal_plan(

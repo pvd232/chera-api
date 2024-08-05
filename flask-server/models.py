@@ -9,7 +9,7 @@ from sqlalchemy.schema import DropTable, CheckConstraint
 from sqlalchemy.ext.compiler import compiles
 import stripe
 import shippo
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 from helpers.db.get_db_connection_string import get_db_connection_string
 from authlib.integrations.flask_client import OAuth
 
@@ -387,7 +387,9 @@ class Meal_Plan_Model(db.Model):
     )
 
     def __init__(
-        self, meal_plan_dict: dict = None, meal_plan_domain: "Meal_Plan_Domain" = None
+        self,
+        meal_plan_dict: Optional[dict] = None,
+        meal_plan_domain: "Meal_Plan_Domain" = None,
     ) -> None:
         if meal_plan_dict:
             self.id = meal_plan_dict["id"]
@@ -880,8 +882,8 @@ class USDA_Ingredient_Model(db.Model):
 
     def __init__(
         self,
-        usda_ingredient_nutrient_mapper: "USDA_Nutrient_Mapper_DTO" = None,
-        usda_ingredient_domain: "USDA_Ingredient_Domain" = None,
+        usda_ingredient_nutrient_mapper: Optional["USDA_Nutrient_Mapper_DTO"] = None,
+        usda_ingredient_domain: Optional["USDA_Ingredient_Domain"] = None,
     ) -> None:
         if usda_ingredient_nutrient_mapper:
             self.id = usda_ingredient_nutrient_mapper.usda_ingredient_id
@@ -1022,7 +1024,9 @@ class Nutrient_Model(db.Model):
     has_daily_value = db.Column(db.Boolean(), default=True, nullable=False)
 
     def __init__(
-        self, nutrient_dict: dict = None, nutrient_domain: "Nutrient_Domain" = None
+        self,
+        nutrient_dict: Optional[dict] = None,
+        nutrient_domain: "Nutrient_Domain" = None,
     ) -> None:
         if nutrient_dict:
             self.id = nutrient_dict["id"]
@@ -1103,7 +1107,7 @@ class USDA_Nutrient_Daily_Value_Model(db.Model):
 
     def __init__(
         self,
-        usda_nutrient_daily_value_dict: dict = None,
+        usda_nutrient_daily_value_dict: Optional[dict] = None,
         usda_nutrient_daily_value_domain: "USDA_Nutrient_Daily_Value_Domain" = None,
     ) -> None:
         if usda_nutrient_daily_value_dict:
@@ -1153,7 +1157,9 @@ class Discount_Model(db.Model):
     active = db.Column(db.Boolean(), nullable=False)
 
     def __init__(
-        self, discount_dict: dict = None, discount_domain: "Discount_Domain" = None
+        self,
+        discount_dict: Optional[dict] = None,
+        discount_domain: "Discount_Domain" = None,
     ) -> None:
         if discount_dict:
             self.id = discount_dict["id"]

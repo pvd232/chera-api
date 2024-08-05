@@ -17,10 +17,10 @@ class Meal_Plan_Meal_Service(object):
     def get_meal_plan_meal(
         self, meal_plan_meal_id: UUID
     ) -> Optional[Meal_Plan_Meal_Domain]:
-        meal_plan_meal: Optional[
-            Meal_Plan_Meal_Model
-        ] = self.meal_plan_meal_repository.get_meal_plan_meal(
-            meal_plan_meal_id=meal_plan_meal_id
+        meal_plan_meal: Optional[Meal_Plan_Meal_Model] = (
+            self.meal_plan_meal_repository.get_meal_plan_meal(
+                meal_plan_meal_id=meal_plan_meal_id
+            )
         )
         meal_plan_meal_domain: Meal_Plan_Meal_Domain = Meal_Plan_Meal_Domain(
             meal_plan_meal_object=meal_plan_meal
@@ -38,7 +38,7 @@ class Meal_Plan_Meal_Service(object):
         return even_meal_plan_meal
 
     def get_meal_plan_meals(
-        self, meal_plan_id: UUID = None
+        self, meal_plan_id: Optional[UUID] = None
     ) -> Optional[list[Meal_Plan_Meal_Domain]]:
         meal_plan_meals = self.meal_plan_meal_repository.get_meal_plan_meals(
             meal_plan_id=meal_plan_id
@@ -65,8 +65,8 @@ class Meal_Plan_Meal_Service(object):
             meal_plan_meal_object=meal_plan_meal_dto
         )
         self.meal_plan_meal_repository.update_meal_plan_meal(
-                meal_plan_meal_domain=meal_plan_meal_domain,
-            )
+            meal_plan_meal_domain=meal_plan_meal_domain,
+        )
         return
 
     def write_meal_plan_meals(self) -> None:

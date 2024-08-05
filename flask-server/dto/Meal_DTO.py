@@ -1,12 +1,15 @@
 from uuid import UUID
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 from .Base_DTO import Base_DTO
+
 if TYPE_CHECKING:
     from domain.Meal_Domain import Meal_Domain
 
 
 class Meal_DTO(Base_DTO):
-    def __init__(self, meal_json: dict = None, meal_domain: 'Meal_Domain' = None) -> None:
+    def __init__(
+        self, meal_json: Optional[dict] = None, meal_domain: "Meal_Domain" = None
+    ) -> None:
         if meal_json:
             self.id: UUID = UUID(meal_json["id"])
             self.meal_time: str = meal_json["meal_time"]

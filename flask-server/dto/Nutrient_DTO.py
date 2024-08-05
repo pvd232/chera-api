@@ -1,13 +1,17 @@
 from .Base_DTO import Base_DTO
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 if TYPE_CHECKING:
     from domain.Nutrient_Domain import Nutrient_Domain
 
 
 class Nutrient_DTO(Base_DTO):
-    def __init__(self, nutrient_json: dict = None, nutrient_domain: 'Nutrient_Domain' = None) -> None:
+    def __init__(
+        self,
+        nutrient_json: Optional[dict] = None,
+        nutrient_domain: "Nutrient_Domain" = None,
+    ) -> None:
         if nutrient_json:
             self.id: str = nutrient_json["id"]
             self.name: str = nutrient_json["name"]

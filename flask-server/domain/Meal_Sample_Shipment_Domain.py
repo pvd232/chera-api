@@ -1,12 +1,13 @@
 from models import Meal_Sample_Shipment_Model
 from .Base_Domain import Base_Domain
+from typing import Optional
 
 
 class Meal_Sample_Shipment_Domain(Base_Domain):
     def __init__(
         self,
-        meal_sample_shipment_object: Meal_Sample_Shipment_Model = None,
-        meal_sample_shipment_json: dict = None,
+        meal_sample_shipment_object: Optional[Meal_Sample_Shipment_Model] = None,
+        meal_sample_shipment_json: Optional[dict] = None,
     ) -> None:
         if meal_sample_shipment_object:
             self.id = meal_sample_shipment_object.id

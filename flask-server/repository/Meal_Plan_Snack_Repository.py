@@ -9,16 +9,19 @@ if TYPE_CHECKING:
 
 class Meal_Plan_Snack_Repository(Base_Repository):
     def get_meal_plan_snack(
-        self, meal_plan_snack_id: UUID, meal_plan_id: UUID = None, snack_id: UUID = None
+        self,
+        meal_plan_snack_id: Optional[UUID] = None,
+        meal_plan_id: Optional[UUID] = None,
+        snack_id: Optional[UUID] = None,
     ) -> Optional[Meal_Plan_Snack_Model]:
         if meal_plan_snack_id:
-            meal_plan_snack: Optional[Meal_Plan_Snack_Model] = (
+            return (
                 self.db.session.query(Meal_Plan_Snack_Model)
                 .filter(Meal_Plan_Snack_Model.id == meal_plan_snack_id)
                 .first()
             )
         else:
-            meal_plan_snack: Optional[Meal_Plan_Snack_Model] = (
+            return (
                 self.db.session.query(Meal_Plan_Snack_Model)
                 .filter(
                     Meal_Plan_Snack_Model.meal_plan_id == meal_plan_id,
@@ -26,15 +29,14 @@ class Meal_Plan_Snack_Repository(Base_Repository):
                 )
                 .first()
             )
-        return meal_plan_snack
 
     def get_meal_plan_snacks(
-        self, meal_plan_id: UUID = None
+        self, meal_plan_id: Optional[UUID] = None
     ) -> Optional[list[Meal_Plan_Snack_Model]]:
         if not meal_plan_id:
-            meal_plan_snacks: Optional[
-                list[Meal_Plan_Snack_Model]
-            ] = self.db.session.query(Meal_Plan_Snack_Model).all()
+            meal_plan_snacks: Optional[list[Meal_Plan_Snack_Model]] = (
+                self.db.session.query(Meal_Plan_Snack_Model).all()
+            )
             return meal_plan_snacks
         else:
             meal_plan_snacks: Optional[list[Meal_Plan_Snack_Model]] = (

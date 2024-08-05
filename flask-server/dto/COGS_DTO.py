@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 from .Base_DTO import Base_DTO
 
 if TYPE_CHECKING:
@@ -7,7 +7,7 @@ if TYPE_CHECKING:
 
 class COGS_DTO(Base_DTO):
     def __init__(
-        self, cogs_json: dict = None, cogs_domain: "COGS_Domain" = None
+        self, cogs_json: Optional[dict] = None, cogs_domain: "COGS_Domain" = None
     ) -> None:
         if cogs_json:
             self.num_meals: int = cogs_json["num_meals"]

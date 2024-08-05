@@ -17,15 +17,6 @@ class Dietitian_Service(object):
         ]
         return dietitian_domains
 
-    def update_dietitian_password(
-        self, dietitian_id: str, new_password: str
-    ) -> Dietitian_Domain:
-        return Dietitian_Domain(
-            dietitian_object=self.dietitian_repository.update_dietitian_password(
-                dietitian_id=dietitian_id, new_password=new_password
-            )
-        )
-
     def get_dietitian(self, dietitian_email: str) -> Optional[Dietitian_Domain]:
         requested_dietitian = self.dietitian_repository.get_dietitian(
             dietitian_email=dietitian_email

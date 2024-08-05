@@ -1,6 +1,6 @@
 from dto.Base_DTO import Base_DTO
 from uuid import UUID, uuid4
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 if TYPE_CHECKING:
     from domain.Meal_Subscription_Invoice_Domain import Meal_Subscription_Invoice_Domain
@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 class Meal_Subscription_Invoice_DTO(Base_DTO):
     def __init__(
         self,
-        meal_subscription_invoice_json: dict = None,
+        meal_subscription_invoice_json: Optional[dict] = None,
         meal_subscription_invoice_domain: "Meal_Subscription_Invoice_Domain" = None,
     ) -> None:
         if meal_subscription_invoice_json:

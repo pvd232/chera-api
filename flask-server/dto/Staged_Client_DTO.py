@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 class Staged_Client_DTO(Base_DTO):
     def __init__(
         self,
-        staged_client_json: dict = None,
+        staged_client_json: Optional[dict] = None,
         staged_client_domain: "Staged_Client_Domain" = None,
     ) -> None:
         if staged_client_json:

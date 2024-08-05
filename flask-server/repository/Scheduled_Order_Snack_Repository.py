@@ -28,7 +28,7 @@ class Scheduled_Order_Snack_Repository(Base_Repository):
             return None
 
     def get_scheduled_order_snacks(
-        self, meal_subscription_id: UUID = None
+        self, meal_subscription_id: Optional[UUID] = None
     ) -> Optional[list[Scheduled_Order_Snack_Model]]:
         if meal_subscription_id:
             scheduled_order_snacks: Optional[
@@ -41,9 +41,9 @@ class Scheduled_Order_Snack_Repository(Base_Repository):
             else:
                 return False
         else:
-            scheduled_order_snacks: Optional[
-                list[Scheduled_Order_Snack_Model]
-            ] = self.db.session.query(Scheduled_Order_Snack_Model).all()
+            scheduled_order_snacks: Optional[list[Scheduled_Order_Snack_Model]] = (
+                self.db.session.query(Scheduled_Order_Snack_Model).all()
+            )
         return scheduled_order_snacks
 
     def get_scheduled_order_snacks_for_week(
@@ -59,8 +59,6 @@ class Scheduled_Order_Snack_Repository(Base_Repository):
             .all()
         )
         return weekly_scheduled_order_snacks
-
-
 
     def create_scheduled_order_snacks(
         self, scheduled_order_snack_domains: list["Scheduled_Order_Snack_Domain"]

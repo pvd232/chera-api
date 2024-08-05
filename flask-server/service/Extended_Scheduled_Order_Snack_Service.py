@@ -11,12 +11,12 @@ if TYPE_CHECKING:
 
 class Extended_Scheduled_Order_Snack_Service(Scheduled_Order_Snack_Service):
     def get_upcoming_extended_scheduled_order_snacks(
-        self, meal_subscription_id: UUID = None
+        self, meal_subscription_id: Optional[UUID] = None
     ) -> Optional[list["Extended_Scheduled_Order_Snack_Domain"]]:
-        scheduled_order_snacks: Optional[
-            list["Scheduled_Order_Snack_Model"]
-        ] = self.scheduled_order_snack_repository.get_upcoming_scheduled_order_snacks(
-            meal_subscription_id=meal_subscription_id
+        scheduled_order_snacks: Optional[list["Scheduled_Order_Snack_Model"]] = (
+            self.scheduled_order_snack_repository.get_upcoming_scheduled_order_snacks(
+                meal_subscription_id=meal_subscription_id
+            )
         )
         if scheduled_order_snacks:
             return [

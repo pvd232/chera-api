@@ -14,8 +14,8 @@ class Meal_Subscription_Repository(Base_Repository):
 
     def get_meal_subscription(
         self,
-        meal_subscription_id: UUID = None,
-        stripe_subscription_id: str = None,
+        meal_subscription_id: Optional[UUID] = None,
+        stripe_subscription_id: Optional[str] = None,
     ) -> Optional[Meal_Subscription_Model]:
         if meal_subscription_id:
             subscription = (
@@ -94,7 +94,7 @@ class Meal_Subscription_Repository(Base_Repository):
         return
 
     def get_client_meal_subscription(
-        self, client_id: str = None
+        self, client_id: Optional[str] = None
     ) -> Optional[Meal_Subscription_Model]:
         meal_subscription: Optional[Meal_Subscription_Model] = (
             self.db.session.query(Meal_Subscription_Model)
@@ -110,7 +110,7 @@ class Meal_Subscription_Repository(Base_Repository):
             return False
 
     def get_dietitian_meal_subscriptions(
-        self, dietitian_id: str = None
+        self, dietitian_id: Optional[str] = None
     ) -> Optional[list[Meal_Subscription_Model]]:
         if dietitian_id:
             meal_subscriptions = self.db.session.query(Meal_Subscription_Model).filter(

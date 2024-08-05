@@ -27,7 +27,7 @@ class Scheduled_Order_Meal_Repository(Base_Repository):
             return None
 
     def get_scheduled_order_meals(
-        self, meal_subscription_id: UUID = None
+        self, meal_subscription_id: Optional[UUID] = None
     ) -> Optional[list[Scheduled_Order_Meal_Model]]:
         if meal_subscription_id:
             scheduled_order_meals: Optional[
@@ -40,9 +40,9 @@ class Scheduled_Order_Meal_Repository(Base_Repository):
             else:
                 return False
         else:
-            scheduled_order_meals: Optional[
-                list[Scheduled_Order_Meal_Model]
-            ] = self.db.session.query(Scheduled_Order_Meal_Model).all()
+            scheduled_order_meals: Optional[list[Scheduled_Order_Meal_Model]] = (
+                self.db.session.query(Scheduled_Order_Meal_Model).all()
+            )
         return scheduled_order_meals
 
     def get_scheduled_order_meals_for_week(

@@ -27,9 +27,9 @@ class Meal_Subscription_Service(object):
 
     def get_meal_subscription(
         self,
-        meal_subscription_id: UUID = None,
-        stripe_subscription_id: str = None,
-        client_id: str = None,
+        meal_subscription_id: Optional[UUID] = None,
+        stripe_subscription_id: Optional[str] = None,
+        client_id: Optional[str] = None,
     ) -> Optional[Meal_Subscription_Domain]:
         if meal_subscription_id:
             meal_subscription_object = (
@@ -92,9 +92,9 @@ class Meal_Subscription_Service(object):
         self, meal_subscription_id: UUID, stripe_service: "Stripe_Service"
     ) -> None:
         # Get the meal subscription
-        meal_subscription_to_pause: Optional[
-            Meal_Subscription_Domain
-        ] = self.get_meal_subscription(meal_subscription_id=meal_subscription_id)
+        meal_subscription_to_pause: Optional[Meal_Subscription_Domain] = (
+            self.get_meal_subscription(meal_subscription_id=meal_subscription_id)
+        )
         if meal_subscription_to_pause:
             # Pause the meal subscription
             self.meal_subscription_repository.pause_meal_subscription(
@@ -144,10 +144,10 @@ class Meal_Subscription_Service(object):
     def get_client_meal_subscription(
         self, client_id: str
     ) -> Optional[Meal_Subscription_Domain]:
-        client_meal_subscription: Optional[
-            "Meal_Subscription_Model"
-        ] = self.meal_subscription_repository.get_client_meal_subscription(
-            client_id=client_id
+        client_meal_subscription: Optional["Meal_Subscription_Model"] = (
+            self.meal_subscription_repository.get_client_meal_subscription(
+                client_id=client_id
+            )
         )
         if client_meal_subscription:
             return Meal_Subscription_Domain(
@@ -157,7 +157,7 @@ class Meal_Subscription_Service(object):
             None
 
     def get_dietitian_meal_subscriptions(
-        self, dietitian_id: str = None
+        self, dietitian_id: Optional[str] = None
     ) -> Optional[list[Meal_Subscription_Domain]]:
         meal_subscription_models = (
             self.meal_subscription_repository.get_dietitian_meal_subscriptions(

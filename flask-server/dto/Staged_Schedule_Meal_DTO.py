@@ -1,6 +1,6 @@
 from .Base_DTO import Base_DTO
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 from uuid import UUID
 
 if TYPE_CHECKING:
@@ -8,7 +8,11 @@ if TYPE_CHECKING:
 
 
 class Staged_Schedule_Meal_DTO(Base_DTO):
-    def __init__(self, staged_schedule_meal_json: dict = None, staged_schedule_meal_domain: 'Staged_Schedule_Meal_Domain' = None) -> None:
+    def __init__(
+        self,
+        staged_schedule_meal_json: Optional[dict] = None,
+        staged_schedule_meal_domain: "Staged_Schedule_Meal_Domain" = None,
+    ) -> None:
         if staged_schedule_meal_json:
             self.id: UUID = UUID(staged_schedule_meal_json["id"])
             self.meal_id: UUID = UUID(staged_schedule_meal_json["meal_id"])

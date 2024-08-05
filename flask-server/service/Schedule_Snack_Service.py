@@ -23,7 +23,7 @@ class Schedule_Snack_Service(object):
         )
 
     def get_schedule_snacks(
-        self, meal_subscription_id: UUID = None
+        self, meal_subscription_id: Optional[UUID] = None
     ) -> Optional[list[Schedule_Snack_Domain]]:
         schedule_snack_models = self.schedule_snack_repository.get_schedule_snacks(
             meal_subscription_id=meal_subscription_id

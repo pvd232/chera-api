@@ -6,9 +6,8 @@ class JWTTokenService(object):
         self.secret: str = jwt_secret
 
     def issue_token(self, identifier):
-        jwt_token = jwt.encode(
-            {"sub": identifier}, key=self.secret, algorithm="HS256")
+        jwt_token = jwt.encode({"sub": identifier}, key=self.secret, algorithm="HS256")
         return jwt_token
 
     def validate_token(self, session_token: str):
-        return self.jwt.decode(session_token, self.secret, algorithms=["HS256"])
+        return jwt.decode(session_token, self.secret, algorithms=["HS256"])

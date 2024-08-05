@@ -10,9 +10,9 @@ if TYPE_CHECKING:
 class Extended_Meal_Plan_Meal_Service(Meal_Plan_Meal_Service):
     def get_extended_meal_plan_meal(
         self,
-        meal_plan_meal_id: UUID = None,
-        meal_plan_id: UUID = None,
-        meal_id: UUID = None,
+        meal_plan_meal_id: Optional[UUID] = None,
+        meal_plan_id: Optional[UUID] = None,
+        meal_id: Optional[UUID] = None,
     ) -> Extended_Meal_Plan_Meal_Domain:
         if meal_plan_meal_id:
             return Extended_Meal_Plan_Meal_Domain(

@@ -1,5 +1,5 @@
 from .Base_DTO import Base_DTO
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 from uuid import UUID
 
 if TYPE_CHECKING:
@@ -8,7 +8,9 @@ if TYPE_CHECKING:
 
 class Discount_DTO(Base_DTO):
     def __init__(
-        self, discount_json: dict = None, discount_domain: "Discount_Domain" = None
+        self,
+        discount_json: Optional[dict] = None,
+        discount_domain: "Discount_Domain" = None,
     ) -> None:
         if discount_json:
             self.id: UUID = discount_json["id"]

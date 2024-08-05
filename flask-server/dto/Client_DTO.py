@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 
 class Client_DTO(Base_DTO):
     def __init__(
-        self, client_json: dict = None, client_domain: "Client_Domain" = None
+        self, client_json: Optional[dict] = None, client_domain: "Client_Domain" = None
     ) -> None:
         if client_json:
             self.id: UUID = client_json["id"]

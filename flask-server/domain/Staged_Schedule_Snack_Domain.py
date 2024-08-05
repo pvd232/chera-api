@@ -1,12 +1,13 @@
 from models import Staged_Schedule_Snack_Model
 from .Base_Domain import Base_Domain
+from typing import Optional
 
 
 class Staged_Schedule_Snack_Domain(Base_Domain):
     def __init__(
         self,
-        staged_schedule_snack_object: Staged_Schedule_Snack_Model = None,
-        staged_schedule_snack_json: dict = None,
+        staged_schedule_snack_object: Optional[Staged_Schedule_Snack_Model] = None,
+        staged_schedule_snack_json: Optional[dict] = None,
     ) -> None:
         if staged_schedule_snack_object:
             self.id = staged_schedule_snack_object.id

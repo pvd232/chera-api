@@ -26,8 +26,8 @@ class Meal_Subscription_Invoice_Repository(Base_Repository):
 
     def get_meal_subscription_invoice(
         self,
-        meal_subscription_invoice_id: UUID = None,
-        stripe_payment_intent_id: str = None,
+        meal_subscription_invoice_id: Optional[UUID] = None,
+        stripe_payment_intent_id: Optional[str] = None,
     ) -> Optional[Meal_Subscription_Invoice_Model]:
         if meal_subscription_invoice_id:
             meal_subscription_invoice = (

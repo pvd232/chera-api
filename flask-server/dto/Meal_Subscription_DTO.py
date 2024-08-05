@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 class Meal_Subscription_DTO(Base_DTO):
     def __init__(
         self,
-        meal_subscription_json: dict = None,
+        meal_subscription_json: Optional[dict] = None,
         meal_subscription_domain: "Meal_Subscription_Domain" = None,
     ) -> None:
         if meal_subscription_json:

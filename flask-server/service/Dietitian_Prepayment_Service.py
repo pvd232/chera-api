@@ -27,7 +27,7 @@ class Dietitian_Prepayment_Service(object):
         meal_price: float,
         snack_price: float,
         shipping_cost: float,
-        discount_percentage: float = None,
+        discount_percentage: Optional[float] = None,
     ) -> Dietitian_Prepayment_Domain:
         service_fee = 0.0
         sales_tax_total = 0.0

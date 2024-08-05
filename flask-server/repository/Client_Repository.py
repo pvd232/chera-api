@@ -25,7 +25,10 @@ class Client_Repository(Base_Repository):
         return client
 
     def get_client(
-        self, client_email: str = None, client_stripe_id=None, client_id: UUID = None
+        self,
+        client_email: Optional[str] = None,
+        client_stripe_id: Optional[str] = None,
+        client_id: Optional[UUID] = None,
     ) -> Optional[Client_Model]:
         if client_email:
             client = (
@@ -47,16 +50,17 @@ class Client_Repository(Base_Repository):
             )
         return client
 
-    def get_clients(self, dietitian_id: UUID = None) -> Optional[list[Client_Model]]:
-        if dietitian_id:
-            clients = (
+    def get_clients(
+        self, dietitian_id: Optional[UUID] = None
+    ) -> Optional[list[Client_Model]]:
+        if dietitian_id != None:
+            return (
                 self.db.session.query(Client_Model)
                 .filter(Client_Model.dietitian_id == dietitian_id)
                 .all()
             )
         else:
-            clients = self.db.session.query(Client_Model).all()
-        return clients
+            return self.db.session.query(Client_Model).all()
 
     def update_client(self, client_domain: "Client_Domain"):
         client_to_update: Client_Model = (

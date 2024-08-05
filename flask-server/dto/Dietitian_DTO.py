@@ -1,5 +1,5 @@
 from uuid import UUID
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 from .Base_DTO import Base_DTO
 
 if TYPE_CHECKING:
@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 class Dietitian_DTO(Base_DTO):
     def __init__(
         self,
-        dietitian_json: dict = None,
+        dietitian_json: Optional[dict] = None,
         dietitian_domain: "Dietitian_Domain" = None,
     ) -> None:
         if dietitian_json:

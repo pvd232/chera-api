@@ -23,7 +23,7 @@ class Schedule_Snack_Repository(Base_Repository):
         return
 
     def get_schedule_snacks(
-        self, meal_subscription_id: UUID = None
+        self, meal_subscription_id: Optional[UUID] = None
     ) -> Optional[list[Schedule_Snack_Model]]:
         if meal_subscription_id:
             schedule_snacks: list[Schedule_Snack_Model] = (

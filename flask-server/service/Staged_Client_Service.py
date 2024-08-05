@@ -24,7 +24,9 @@ class Staged_Client_Service(object):
         return new_staged_client_domain
 
     def get_staged_client(
-        self, staged_client_email: str = None, staged_client_id: UUID = None
+        self,
+        staged_client_email: Optional[str] = None,
+        staged_client_id: Optional[UUID] = None,
     ) -> Optional[Staged_Client_Domain]:
         staged_client = None
         if staged_client_email:

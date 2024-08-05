@@ -23,9 +23,9 @@ class Extended_Meal_Plan_Snack_Service(Meal_Plan_Snack_Service):
 
     def get_extended_meal_plan_snack(
         self,
-        meal_plan_snack_id: UUID = None,
-        meal_plan_id: UUID = None,
-        snack_id: UUID = None,
+        meal_plan_snack_id: Optional[UUID] = None,
+        meal_plan_id: Optional[UUID] = None,
+        snack_id: Optional[UUID] = None,
     ) -> Extended_Meal_Plan_Snack_Domain:
         return Extended_Meal_Plan_Snack_Domain(
             meal_plan_snack_model=self.meal_plan_snack_repository.get_meal_plan_snack(
@@ -38,9 +38,9 @@ class Extended_Meal_Plan_Snack_Service(Meal_Plan_Snack_Service):
     def get_extended_meal_plan_snacks(
         self,
     ) -> Optional[list["Extended_Meal_Plan_Snack_Domain"]]:
-        meal_plan_snacks: Optional[
-            list["Meal_Plan_Snack_Model"]
-        ] = self.meal_plan_snack_repository.get_meal_plan_snacks()
+        meal_plan_snacks: Optional[list["Meal_Plan_Snack_Model"]] = (
+            self.meal_plan_snack_repository.get_meal_plan_snacks()
+        )
         if meal_plan_snacks:
             return [
                 Extended_Meal_Plan_Snack_Domain(meal_plan_snack_model=x)
@@ -52,10 +52,10 @@ class Extended_Meal_Plan_Snack_Service(Meal_Plan_Snack_Service):
     def get_specific_extended_meal_plan_snacks(
         self, meal_plan_id: UUID
     ) -> Optional[list["Extended_Meal_Plan_Snack_Domain"]]:
-        meal_plan_snacks: Optional[
-            list["Meal_Plan_Snack_Model"]
-        ] = self.meal_plan_snack_repository.get_meal_plan_snacks(
-            meal_plan_id=meal_plan_id
+        meal_plan_snacks: Optional[list["Meal_Plan_Snack_Model"]] = (
+            self.meal_plan_snack_repository.get_meal_plan_snacks(
+                meal_plan_id=meal_plan_id
+            )
         )
         if meal_plan_snacks:
             return [
@@ -76,9 +76,9 @@ class Extended_Meal_Plan_Snack_Service(Meal_Plan_Snack_Service):
 
         updated_recipe_dict = {}
         for recipe_ingredient in updated_recipe:
-            updated_recipe_dict[
-                recipe_ingredient.usda_ingredient_id
-            ] = recipe_ingredient
+            updated_recipe_dict[recipe_ingredient.usda_ingredient_id] = (
+                recipe_ingredient
+            )
         # Update recipe to reflect new recipe
         for recipe_ingredient in unaltered_extended_meal_plan_snack_domain.recipe:
             matching_ingredient = updated_recipe_dict.get(

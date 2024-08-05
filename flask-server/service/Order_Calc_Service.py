@@ -1,10 +1,13 @@
+from typing import Optional
+
+
 class Order_Calc_Service(object):
     def get_order_calc(
         self,
         num_items: int,
         meal_price: float,
         shipping_cost: float,
-        discount_percentage: float = None,
+        discount_percentage: Optional[float] = None,
     ) -> dict:
         service_fee = 0.0
         sales_tax_total = 0.0
@@ -36,7 +39,7 @@ class Order_Calc_Service(object):
         self,
         num_items: int,
         meal_price: float,
-        discount_percentage: float = None,
+        discount_percentage: Optional[float] = None,
     ) -> int:
         order_subtotal = float(num_items) * meal_price
 
