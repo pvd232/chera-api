@@ -25,6 +25,7 @@ if TYPE_CHECKING:
     )
     from service.Meal_Sample_Service import Meal_Sample_Service
     from service.Meal_Sample_Shipment_Service import Meal_Sample_Shipment_Service
+    from service.Discount_Service import Discount_Service
 
 
 class Continuity_Service(object):
@@ -44,6 +45,7 @@ class Continuity_Service(object):
         meal_plan_snack_service: "Meal_Plan_Snack_Service",
         recipe_ingredient_service: "Recipe_Ingredient_Service",
         recipe_ingredient_nutrient_service: "Recipe_Ingredient_Nutrient_Service",
+        discount_service: "Discount_Service",
     ) -> None:
         usda_ingredient_service.write_usda_ingredients()
         nutrient_service.write_nutrients()
@@ -59,6 +61,7 @@ class Continuity_Service(object):
         meal_plan_snack_service.write_meal_plan_snacks()
         recipe_ingredient_service.write_recipe_ingredients()
         recipe_ingredient_nutrient_service.write_recipe_ingredient_nutrients()
+        discount_service.write_discounts()
 
     def write_dietitian_data(
         self,

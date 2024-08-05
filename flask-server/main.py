@@ -3010,7 +3010,6 @@ def meal_subscription() -> Response:
 def meal_plan() -> Response:
     from service.Meal_Plan_Service import Meal_Plan_Service
     from repository.Meal_Plan_Repository import Meal_Plan_Repository
-    from domain.Meal_Plan_Domain import Meal_Plan_Domain
     from dto.Meal_Plan_DTO import Meal_Plan_DTO
 
     if request.method == "GET":

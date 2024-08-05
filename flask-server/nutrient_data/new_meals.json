@@ -109,7 +109,7 @@
         "name": "Baja Fish Tacos",
         "description": "Mahi Mahi infused with Baja Cajun seasoning, paired with coleslaw, mango salsa, and avocado crema",
         "image_url": "https://storage.googleapis.com/chera_meal_photos/baja_fish_tacos.jpg",
-        "active": true
+        "active": false
     },
     {
         "id": "8f39ff9f-a32c-4ddf-9bc6-708f6123f9a4",
@@ -117,7 +117,7 @@
         "name": "Eggs n' Veg Medley",
         "description": "Eggs blended with saut\u00e9ed onions, spinach, and melted cheddar",
         "image_url": "https://storage.googleapis.com/chera_meal_photos/eggs_and_veg_medley.jpg",
-        "active": true
+        "active": false
     },
     {
         "id": "cd6c1a17-a096-4124-8e30-9dfa8a3eee1c",
@@ -125,7 +125,7 @@
         "name": "Pineapple Sticky Rice",
         "description": "Pineapple-infused rice, cooked with coconut milk, adorned with cashews",
         "image_url": "https://storage.googleapis.com/chera_meal_photos/pineapple_sticky_rice.jpg",
-        "active": true
+        "active": false
     },
     {
         "id": "69a59e66-eea2-45b0-9603-c7ee4de30078",
@@ -133,7 +133,7 @@
         "name": "Cajun Sausage and Rice Skillet",
         "description": "Spicy cajun skillet with andouille sausage, rice, peppers",
         "image_url": "https://storage.googleapis.com/chera_meal_photos/cajun_sausage_and_rice_skillet.jpg",
-        "active": true
+        "active": false
     },
     {
         "id": "bea6e216-06d4-412f-af5b-49317607bccf",
@@ -141,7 +141,7 @@
         "name": "Coconut Chickpea Curry",
         "description": "Chickpeas soaked in a coconut curry with red onion, garlic, spinach, and thai flavors",
         "image_url": "https://storage.googleapis.com/chera_meal_photos/coconut_chickpea_curry.jpg",
-        "active": true
+        "active": false
     },
     {
         "id": "a94e93a7-3703-4c08-b244-d04878f7ef2b",
@@ -149,7 +149,7 @@
         "name": "Egg n' Cheese Croissant",
         "description": "Croissant filled with scrambled eggs and melted cheddar",
         "image_url": "https://storage.googleapis.com/chera_meal_photos/egg_and_cheese_croissant.jpg",
-        "active": true
+        "active": false
     },
     {
         "id": "2e6d640e-2fcd-4bc1-b064-ba2a1af75b7e",
@@ -157,7 +157,7 @@
         "name": "Cacio e Pepe",
         "description": "Romano and parmigiano cheese blended with black pepper, served over bucatini",
         "image_url": "https://storage.googleapis.com/chera_meal_photos/cacio_e_pepe.jpg",
-        "active": true
+        "active": false
     },
     {
         "id": "7ea21691-207f-45e5-9a5c-d0c2972a0fed",
@@ -165,6 +165,6 @@
         "name": "Cowgirl Cheddar Burger & Fries",
         "description": "Beef burger topped with cheddar, smoky spices, garlic, onion, and accompanied by sweet potato fries",
         "image_url": "https://storage.googleapis.com/chera_meal_photos/cowgirl_cheddar_burger_and_fries.jpg",
-        "active": true
+        "active": false
     }
 ]
